@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - LucasArts-FullThrottle-MSDOS-Eng.iso
+    format: 1CD
+    url: https://archive.org/details/LucasArts_Full_Throttle_MSDOS_1995_Eng
+  igdb_slug: full-throttle
+  lang: en
+  media_assets:
+  name: Full Throttle
+  platform: dos
+  publisher: LucasArts
+  refs:
+    ag_id: 15741
+    lutris_id: full-throttle
+    mg_id: 940
+    pcgw_id: Full_Throttle
+    qz_id: 110
+  reqs:
+    color_bits: 256
+    midi: false
+    screen_height: 200
+    screen_width: 320
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-08 13:32:32 America/Los_Angeles
+  uuid: 64fe19f6-dc21-4653-bb0c-ed0efa397e6f
+  year_released: 1995
+installer: null

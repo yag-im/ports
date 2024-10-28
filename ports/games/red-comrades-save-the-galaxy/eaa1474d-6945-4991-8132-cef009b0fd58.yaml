@@ -1,0 +1,68 @@
+descr:
+  distro:
+    files:
+      - CD 1.mdf
+      - CD 2.mdf
+      - CD 3.mdf
+    format: 3CD
+    url: https://www.old-games.ru/game/download/8553.html
+  igdb_slug: red-comrades-save-the-galaxy
+  lang: ru
+  name: Петька и Василий Иванович Спасают Галактику
+  platform: win
+  publisher: Buka Entertainment
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 1854
+    pcgw_id: Red_Comrades_Save_the_Galaxy
+    qz_id: 80
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-02 18:54:00 America/Los_Angeles
+  uuid: eaa1474d-6945-4991-8132-cef009b0fd58
+  year_released: 1998
+# objects transparency issues on latest wine: https://hehabuctb.blogspot.com/2016/01/linux-wine.html
+# fix transparency and fonts issues before releasing
+# can't run old wine (1.6.2.-petka) on modern Debian
+installer:
+  tasks:
+    - copy:
+      src: "{SRC_DIR}"
+      dest: "{DEST_DIR}"
+      cd_images_as_letters: true
+    - dosbox:
+      flavor: WIN95OSR21
+      conf:
+        app_drive_size: 2000
+      tasks:
+        - mount:
+          src: "{DEST_DIR}"
+          cd_images_as_letters: true
+        - run:
+          path: "{THIRD_CD_DRIVE}/SETUP.EXE"
+        - run:
+          path: "{THIRD_CD_DRIVE}/DirectX/dxsetup.exe"
+        - copy:
+          src:
+            - "{item}/*.avi"
+            - "{item}/*.id"
+            - "{item}/*.str"
+          dest: "{APP_DIR}"
+          loop:
+            - "{FIRST_CD_DRIVE}"
+            - "{SECOND_CD_DRIVE}"
+            - "{THIRD_CD_DRIVE}"
+        - umount:
+          src: "{DEST_DIR}"
+          cd_images_as_letters: true
+        - gen_run_script:
+          path: "{APP_DIR}/PETKA.EXE"

@@ -1,0 +1,37 @@
+descr:
+  distro:
+    files:
+      - titanic1.iso
+      - titanic2.iso
+      - titanic3.iso
+    format: 3CD
+    url: https://archive.org/details/titanic1_201805
+  igdb_slug: james-camerons-titanic-explorer-a-historical-journey-on-the-ship-of-dreams
+  lang: en
+  media_assets:
+    cover:
+      image_id: e1009de8-b0be-444f-b251-7221cbd4ca3f
+    screenshots: []
+  name: "James Cameron's Titanic Explorer: A Historical Journey on the Ship of Dreams"
+  platform: win
+  publisher: Fox Interactive
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: null
+    pcgw_id: null
+    qz_id: null
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "9.0"
+  ts_added: 2024-08-25 21:40:00 America/Los_Angeles
+  uuid: e1009de8-b0be-444f-b251-7221cbd4ca3f
+  year_released: 1997
+installer: null

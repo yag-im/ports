@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - "Curse of Monkey Island, The (USA, Europe) (Disc 1).bin"
+      - "Curse of Monkey Island, The (USA, Europe) (Disc 2).bin"
+    format: 2CD
+    url: https://archive.org/details/curseofmonkeyislandtheusaeurope
+  igdb_slug: the-curse-of-monkey-island
+  lang: en
+  media_assets:
+  name: The Curse of Monkey Island
+  platform: win
+  publisher: LucasArts
+  refs:
+    ag_id: 15690
+    lutris_id: the-curse-of-monkey-island
+    mg_id: 547
+    pcgw_id: The_Curse_of_Monkey_Island
+    qz_id: 125
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-02 20:05:33 America/Los_Angeles
+  uuid: 81a90bbe-61ed-49d6-b820-f35958d49c0f
+  year_released: 1997
+installer: null

@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+      - EXPRESS1.iso
+      - EXPRESS2.iso
+      - EXPRESS3.iso
+      - HD.HPF
+    format: 3CD
+    url: https://rutracker.org/forum/viewtopic.php?t=248314
+  igdb_slug: the-last-express
+  lang: en
+  name: The Last Express
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id: 15567
+    lutris_id: last-express-the
+    mg_id: 1172
+    pcgw_id: The_Last_Express
+    qz_id: 111
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-07-23 18:01:00 America/Los_Angeles
+  uuid: 0c1c89fd-f93d-481a-accb-152d53337b54
+  year_released: 1997
+installer: null

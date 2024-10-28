@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Ripley's Believe it or not! - The Riddle of Master Lu (1995)(U.S. Gold).iso
+    format: 1CD
+    url: https://archive.org/details/Ripleys_Believe_it_or_not_-_The_Riddle_of_Master_Lu_1995_U.S._Gold
+  igdb_slug: ripleys-believe-it-or-not-the-riddle-of-master-lu
+  lang: en
+  name: "Ripley's Believe It or Not!: The Riddle of Master Lu"
+  platform: dos
+  publisher: Sanctuary Woods
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 1996
+    pcgw_id: Ripley%27s_Believe_It_or_Not!:_The_Riddle_of_Master_Lu
+    qz_id: 428
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-10-26 12:11:29 America/Los_Angeles
+  uuid: 066a6879-e45d-4276-aef1-961e52be4292
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_DIR}"
+    - extract:
+      src: "{DEST_DIR}/{descr[distro][files][0]}"
+      files:
+        - GOODSTUF/*
+        - OPTION1/*
+        - SETUP/*
+      dest: "{DEST_APP_DIR}"
+      copy_tree: True
+    - copy:
+      src: "{SRC_FILES_DIR}/{item}"
+      dest: "{DEST_APP_DIR}"
+      loop:
+        - "RIDDLE.CFG"
+    - dosbox:
+      flavor: DOS
+      tasks:
+        - mount:
+          letter: "{FIRST_CD_DRIVE_LETTER}"
+          src: "{DEST_DIR}/{descr[distro][files][0]}"
+        - gen_run_script:
+          path: "{APP_DIR}/RIDDLE.EXE"
+          args:
+            - "-c" # originally in MASTERLU.BAT it's: "-c %1 %2 %3 %4 %5 %6 %7 %8 %9"

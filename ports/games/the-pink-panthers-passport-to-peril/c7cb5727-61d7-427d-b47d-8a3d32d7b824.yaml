@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - PERIL.mdf
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=304972
+  igdb_slug: the-pink-panthers-passport-to-peril
+  lang: ru
+  name: 'Розовая Пантера: Право на риск'
+  platform: win
+  publisher: Новый Диск
+  refs:
+    ag_id: 46797
+    lutris_id: the-pink-panther-passport-to-peril
+    mg_id: 7995
+    pcgw_id: The_Pink_Panther%27s_Passport_to_Peril
+    qz_id: 241
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-23 20:11:00 America/Los_Angeles
+  uuid: c7cb5727-61d7-427d-b47d-8a3d32d7b824
+  year_released: 1996
+installer: null

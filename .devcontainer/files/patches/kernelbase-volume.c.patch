@@ -1,0 +1,20 @@
+--- kernelbase-volume.c.orig	2024-09-21 19:51:26.987691217 -0700
++++ kernelbase-volume.c.mod	2024-09-21 19:52:07.140412597 -0700
+@@ -582,13 +582,13 @@
+     HANDLE handle;
+     UINT ret;
+
++    ret = get_mountmgr_drive_type( root );
++    if (ret != DRIVE_UNKNOWN) {
++        return ret;
++    }
++
+     if (!open_device_root( root, &handle ))
+     {
+-        /* CD ROM devices do not necessarily have a volume, but a drive type */
+-        ret = get_mountmgr_drive_type( root );
+-        if (ret == DRIVE_CDROM || ret == DRIVE_REMOVABLE)
+-            return ret;
+-
+         return DRIVE_NO_ROOT_DIR;
+     }

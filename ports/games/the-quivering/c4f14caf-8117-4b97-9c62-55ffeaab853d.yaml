@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - The_Quivering_CD1.iso
+      - The_Quivering_CD2.iso
+    format: 2CD
+    url: https://www.old-games.ru/game/download/4572.html
+  igdb_slug: the-quivering
+  lang: en
+  media_assets:
+  name: The Quivering
+  platform: dos
+  publisher: Alternative Software
+  refs:
+    ag_id: 15683
+    lutris_id: the-quivering
+    mg_id: 5940
+    pcgw_id: The_Quivering
+    qz_id: 284
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-10-19 17:48:00 America/Los_Angeles
+  uuid: c4f14caf-8117-4b97-9c62-55ffeaab853d
+  year_released: 1998
+installer: null

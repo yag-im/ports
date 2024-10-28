@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - HPP.mdf
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=305003
+  igdb_slug: the-pink-panther-hokus-pokus-pink
+  lang: ru
+  name: Розовая Пантера. Фокус-Покус
+  platform: win
+  publisher: Новый Диск
+  refs:
+    ag_id: null
+    lutris_id: the-pink-panther-hokus-pokus-pink
+    mg_id: 41450
+    pcgw_id: The_Pink_Panther_in_Hokus_Pokus_Pink
+    qz_id: 242
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-01 19:00:00 America/Los_Angeles
+  uuid: 780a21c5-5635-4a6d-aece-c9267b4ac8ff
+  year_released: 1998
+installer: null

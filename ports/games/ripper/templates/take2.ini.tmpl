@@ -1,0 +1,34 @@
+[SOUND]
+DriverId = 0xe017
+DriverName = Sound Blaster 16/AWE 32
+Port = 0x220
+Irq = 7
+Dma = 1
+Dma16 = 5
+Volume = 0x7fff
+Use16Bit = Yes
+[MUSIC]
+DriverId = 0x0
+DriverName =
+Port = 0x0
+Volume = 0x7f
+[RIPPER]
+CD Base Name = ripper
+Video Mode = 3
+% for i in range(6):
+Drive${i+1} = ${chr(ord(first_cd_letter) + i)}${":\\"}
+% endfor
+[CD]
+Block Size = 32768
+[VIDEO]
+Brightness = 100
+Tint = 100
+Color = 100
+Contrast = 100
+[VOLUME]
+Master = 100
+Layer1 = 100
+Layer2 = 100
+Layer3 = 100
+Layer4 = 100
+Layer5 = 100

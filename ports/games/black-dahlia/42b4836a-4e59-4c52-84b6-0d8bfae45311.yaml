@@ -1,0 +1,38 @@
+descr:
+  distro:
+    files:
+      - BD_CD1.iso
+      - BD_CD2.iso
+      - BD_CD3.iso
+      - BD_CD4.iso
+      - BD_CD5.iso
+      - BD_CD6.iso
+      - BD_CD7.iso
+      - BD_CD8.iso
+    format: 8CD
+    url: https://rutracker.org/forum/viewtopic.php?t=777759
+  igdb_slug: black-dahlia
+  lang: en
+  name: Black Dahlia
+  platform: win
+  publisher: Interplay
+  refs:
+    ag_id: 15772
+    lutris_id: null
+    mg_id: 1174
+    pcgw_id: Black_Dahlia
+    qz_id: 179
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-08-31 20:12:00 America/Los_Angeles
+  uuid: 42b4836a-4e59-4c52-84b6-0d8bfae45311
+  year_released: 1998
+installer: null

@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - Broken Sword 1 - CD1.ISO
+      - Broken Sword 1 - CD2.ISO
+    format: 2CD
+    url: https://archive.org/details/msdos_Circle_of_Blood_1996
+  igdb_slug: circle-of-blood
+  lang: en
+  media_assets:
+  name: Circle of Blood
+  platform: win
+  publisher: Virgin Interactive Entertainment
+  refs:
+    ag_id: 17503
+    lutris_id: circle-of-blood
+    mg_id: 499
+    pcgw_id: Broken_Sword:_The_Shadow_of_the_Templars
+    qz_id: 25
+  reqs:
+    color_bits: 256
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-06 08:54:43 America/Los_Angeles
+  uuid: d68d2976-a150-4362-a334-93b911234440
+  year_released: 1996
+installer: null

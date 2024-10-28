@@ -1,0 +1,31 @@
+{
+    "name": "yag-ports",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--name=yag-ports",
+        "--add-host=portsvc.yag.dc:host-gateway",
+        "--env-file=${localWorkspaceFolder}/.devcontainer/.env",
+        "--ipc=host",
+        "--device=/dev/dri",
+        "--device=/dev/snd"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "humao.rest-client",
+                "ms-python.black-formatter",
+                "redhat.vscode-yaml"
+            ]
+        }
+    },
+    "postCreateCommand": ".devcontainer/post-create.sh",
+    "mounts": [
+        "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind",
+        "source=${env:HOME}${env:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
+        "source=/ara/devel/acme/yag/appstor_data,target=/mnt/appstor,type=bind",
+        "source=/ara/devel/acme/yag/infra,target=/mnt/infra,type=bind"
+    ]
+}

@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - bs25-setup.exe
+      - BS25_patch000_multilingual.zip
+    format: innosetup
+    url: http://www.brokensword25.com/
+  igdb_slug: broken-sword-2-dot-5-the-return-of-the-templars
+  lang: multi
+  name: 'Broken Sword 2.5: The Return of the Templars'
+  platform: win
+  publisher: mindFactory
+  refs:
+    ag_id: 15794
+    lutris_id: broken-sword-25-the-return-of-the-templars
+    mg_id: 36679
+    pcgw_id: Broken_Sword_2.5:_The_Return_of_the_Templars
+    qz_id: 27
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 1080
+    screen_width: 1920
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-12 20:00:00 America/Los_Angeles
+  uuid: d5d5fa77-ea2f-4c77-b272-e075b5589892
+  year_released: 2008
+installer: null

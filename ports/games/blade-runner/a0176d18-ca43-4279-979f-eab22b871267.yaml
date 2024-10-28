@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+      - Blade Runner (1997)(Virgin)(Disc 1 of 4)[!].iso
+      - Blade Runner (1997)(Virgin)(Disc 2 of 4)[!].iso
+      - Blade Runner (1997)(Virgin)(Disc 3 of 4)[!].iso
+      - Blade Runner (1997)(Virgin)(Disc 4 of 4)[!].iso
+    format: 4CD
+    url: https://archive.org/details/Blade_Runner_1997_Virgin
+  igdb_slug: blade-runner
+  lang: en
+  name: Blade Runner
+  platform: win
+  publisher: Virgin Interactive Entertainment
+  refs:
+    ag_id: 15769
+    lutris_id: blade-runner
+    mg_id: 341
+    pcgw_id: Blade_Runner
+    qz_id: 84
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-07-21 18:12:00 America/Los_Angeles
+  uuid: a0176d18-ca43-4279-979f-eab22b871267
+  year_released: 1997
+installer: null

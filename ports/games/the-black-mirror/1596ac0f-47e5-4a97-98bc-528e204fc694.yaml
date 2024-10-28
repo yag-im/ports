@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - setup_the_black_mirror_2.0.0.2.exe
+    format: gog
+    url: https://www.gog.com/en/game/the_black_mirror
+  igdb_slug: the-black-mirror
+  lang: en
+  name: The Black Mirror
+  platform: win
+  publisher: THQ Nordic
+  refs:
+    ag_id: 15584
+    lutris_id: the-black-mirror
+    mg_id: 9391
+    pcgw_id: The_Black_Mirror
+    qz_id: 1
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-05-16 02:49:00 America/Los_Angeles
+  uuid: 1596ac0f-47e5-4a97-98bc-528e204fc694
+  year_released: 2003
+installer: null

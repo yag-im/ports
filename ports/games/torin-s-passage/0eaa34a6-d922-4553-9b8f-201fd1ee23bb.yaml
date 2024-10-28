@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - TORINIBM.ISO
+    format: 1CD
+    url: https://archive.org/download/torins-passage-cd-rom-oem-ibm-1995/TORINIBM.ISO
+  igdb_slug: torin-s-passage
+  lang: fr
+  name: Torin's Passage
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 15611
+    lutris_id: torins-passage
+    mg_id: 1228
+    pcgw_id: Torin%27s_Passage
+    qz_id: 36
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-06-09 16:50:00 America/Los_Angeles
+  uuid: 0eaa34a6-d922-4553-9b8f-201fd1ee23bb
+  year_released: 1995
+installer: null

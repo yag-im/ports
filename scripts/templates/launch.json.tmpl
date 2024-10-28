@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "yag cli",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${PORTS_ROOT_DIR}/yag/cli.py",
+            "args": [
+                "install",
+                "games/${IGDB_SLUG}",
+                "--release",
+                "${APP_RELEASE_UUID}"
+            ],
+            "envFile": "${PORTS_ROOT_DIR}/.devcontainer/.env",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}

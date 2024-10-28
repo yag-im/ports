@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - SC.bin
+    format: 1CD
+    url: https://www.old-games.ru/game/download/5845.html
+  igdb_slug: safe-cracker
+  lang: en
+  name: Safe Cracker
+  platform: win
+  publisher: DreamCatcher Interactive
+  refs:
+    ag_id: 16297
+    lutris_id: null
+    mg_id: 5408
+    pcgw_id: Safecracker
+    qz_id: 245
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-10-19 12:22:00 America/Los_Angeles
+  uuid: 361588b8-7e1f-4d47-ad2b-dce530ecef92
+  year_released: 2000
+installer: null

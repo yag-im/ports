@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - Morpheus (Disc 1).img
+      - Morpheus (Disc 2).img
+      - Morpheus (Disc 3).img
+    format: 3CD
+    url: https://rutracker.org/forum/viewtopic.php?t=2821491
+  igdb_slug: morpheus--1
+  lang: en
+  name: Morpheus
+  platform: win
+  publisher: Piranha Interactive Publishing
+  refs:
+    ag_id: 15733
+    lutris_id: null
+    mg_id: 4669
+    pcgw_id: null
+    qz_id: 1344
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-06-09 01:28:00 America/Los_Angeles
+  uuid: a5ba51b2-4cfa-4d73-ae99-5777bc78b4b8
+  year_released: 1998
+installer: null

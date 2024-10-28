@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Discworld 2 (CD DOS, Spanish).zip
+    format: 2CD
+    url: https://dl7.cdromance.org/download.php?file=Discworld%202%20%28CD%20DOS%2C%20Spanish%29.zip&id=86905&platform=scummvm&key=10419772563
+  igdb_slug: discworld-ii-mortality-bytes
+  lang: es
+  name: 'Mundodisco II: ¿Presuntamente Desaparecido?'
+  platform: win
+  publisher: Psygnosis Limited
+  refs:
+    ag_id: 15827
+    lutris_id: discworld-ii-missing-presumed
+    mg_id: 1370
+    pcgw_id: Discworld_II:_Missing_Presumed...!%3F
+    qz_id: 63
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-18 04:51:00 America/Los_Angeles
+  uuid: cd55f091-dfe5-4365-a044-7eda94e2cbb5
+  year_released: 1996
+installer: null

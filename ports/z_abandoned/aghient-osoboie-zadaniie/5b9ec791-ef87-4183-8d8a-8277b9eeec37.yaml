@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - Agent.mdf
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=5474560
+  igdb_slug: aghient-osoboie-zadaniie
+  lang: ru
+  media_assets:
+  name: "Агент: особое задание"
+  platform: win
+  publisher: Buka Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 81665
+    pcgw_id:
+    qz_id: 19
+  reqs:
+    color_bits: 32
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-10-01 21:28:43 America/Los_Angeles
+  uuid: 5b9ec791-ef87-4183-8d8a-8277b9eeec37
+  year_released: 2001
+installer: null

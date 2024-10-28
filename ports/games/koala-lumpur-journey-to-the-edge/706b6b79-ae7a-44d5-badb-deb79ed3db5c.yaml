@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - koalalump.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=3278449
+  igdb_slug: koala-lumpur-journey-to-the-edge
+  lang: en
+  name: 'Koala Lumpur: Journey to the Edge'
+  platform: win
+  publisher: Broderbund
+  refs:
+    ag_id: 16432
+    lutris_id: null
+    mg_id: 4462
+    pcgw_id: null
+    qz_id: 1341
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-07-21 12:06:00 America/Los_Angeles
+  uuid: 706b6b79-ae7a-44d5-badb-deb79ed3db5c
+  year_released: 1997
+installer: null

@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - setup_shivers_2_harvest_of_souls_1.02_cda_(38718).exe
+    format: gog
+    url: https://www.gog.com/en/game/shivers_ii_harvest_of_souls
+  igdb_slug: shivers-ii-harvest-of-souls
+  lang: en
+  name: 'Shivers II: Harvest of Souls'
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 17524
+    lutris_id: shivers-ii-harvest-of-souls
+    mg_id: 665
+    pcgw_id: Shivers_Two:_Harvest_of_Souls
+    qz_id: 1353
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-07-23 15:01:00 America/Los_Angeles
+  uuid: 4fb32b29-26f1-4ae1-9e34-c9af03edb807
+  year_released: 1997
+installer: null

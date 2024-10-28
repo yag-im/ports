@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Nine.Prince.of.Amber.iso
+    format: 1CD
+    url: https://www.old-games.ru/game/download/1565.html
+  igdb_slug: devyat-princev-ambera
+  lang: ru
+  name: Девять принцев Амбера
+  platform: dos
+  publisher: Saturn Plus
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 58216
+    pcgw_id: null
+    qz_id: 12
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-06-17 01:31:00 America/Los_Angeles
+  uuid: 7e54e2fb-052d-401d-8a94-12929cee0e4e
+  year_released: 1998
+installer: null

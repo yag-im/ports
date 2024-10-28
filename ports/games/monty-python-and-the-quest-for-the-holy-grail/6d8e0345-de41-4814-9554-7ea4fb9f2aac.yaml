@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - Monty Python Holy Grail.iso
+    format: 1CD
+    url: https://archive.org/download/monty-python-quest-for-holy-grail
+  igdb_slug: monty-python-and-the-quest-for-the-holy-grail
+  lang: en
+  media_assets:
+  name: Monty Python & the Quest for the Holy Grail
+  platform: win
+  publisher: 7th Level
+  refs:
+    ag_id: 16368
+    lutris_id: null
+    mg_id: 1976
+    pcgw_id: Monty_Python_%26_the_Quest_for_the_Holy_Grail
+    qz_id: 175
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-30 17:22:32 America/Los_Angeles
+  uuid: 6d8e0345-de41-4814-9554-7ea4fb9f2aac
+  year_released: 1996
+installer: null

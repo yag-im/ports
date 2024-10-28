@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - MYST.bin
+    format: 1CD
+    url: https://archive.org/details/myst-classic-redump-46659
+  igdb_slug: myst
+  lang: en
+  media_assets:
+  name: Myst
+  platform: win
+  publisher: Cyan Worlds
+  refs:
+    ag_id: 15732
+    lutris_id: myst
+    mg_id: 1223
+    pcgw_id: Myst
+    qz_id: 1345
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-10-01 09:30:22 America/Los_Angeles
+  uuid: 36a2634b-b1df-4a2e-bc82-35f307673777
+  year_released: 1994
+installer: null

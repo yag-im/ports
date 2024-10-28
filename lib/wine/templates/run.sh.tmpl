@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CUR_DIR=$(cd `dirname $0` && pwd)
+
+export WINEPREFIX=$CUR_DIR/.wine
+export LC_ALL=${lang}
+
+% for cmd in pre_run:
+${cmd}
+% endfor
+
+% if virtual_desktop:
+wine start /wait /d "${work_dir}" explorer /desktop=yag,${virtual_desktop} "${app_exec}"
+% else:
+wine start /wait /d "${work_dir}" "${app_exec}"
+% endif

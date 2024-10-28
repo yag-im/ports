@@ -1,0 +1,11 @@
+--- winecfg-driveui.c.orig	2024-10-15 10:15:52.142345453 -0700
++++ winecfg-driveui.c.mod	2024-10-15 10:16:50.023226133 -0700
+@@ -176,7 +176,7 @@
+             disable(IDC_EDIT_DEVICE);
+             disable(IDC_BUTTON_BROWSE_DEVICE);
+             disable(IDC_EDIT_SERIAL);
+-            disable(IDC_EDIT_LABEL);
++            enable(IDC_EDIT_LABEL);
+             break;
+
+         case BOX_MODE_NORMAL:

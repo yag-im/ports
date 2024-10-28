@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+      - Monty Python and the Quest for the Holy Grail (1996) [Амбер].iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=77356
+  igdb_slug: monty-python-and-the-quest-for-the-holy-grail
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 3bd7c734-c0e7-4f9b-805a-ae58e006ea6b
+  name: Монти Пайтон и поиски Святого Грааля
+  platform: win
+  publisher: Amber Company
+  refs:
+    ag_id: 16368
+    lutris_id: null
+    mg_id: 1976
+    pcgw_id: Monty_Python_%26_the_Quest_for_the_Holy_Grail
+    qz_id: 175
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-30 21:36:32 America/Los_Angeles
+  uuid: 3bd7c734-c0e7-4f9b-805a-ae58e006ea6b
+  year_released: 1996
+installer: null

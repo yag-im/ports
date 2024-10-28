@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Golden.Gate.eng.iso
+    format: 1CD
+    url: https://www.myabandonware.com/download/nkw-golden-gate
+  igdb_slug: golden-gate
+  lang: en
+  name: Golden Gate
+  platform: win
+  publisher: Panasonic Interactive Media
+  refs:
+    ag_id: 15743
+    lutris_id: null
+    mg_id: 4960
+    pcgw_id: null
+    qz_id: null
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-05-23 03:52:00 America/Los_Angeles
+  uuid: 2eec60e2-07c2-4653-9fcf-3331e4e0c2d6
+  year_released: 1997
+installer: null

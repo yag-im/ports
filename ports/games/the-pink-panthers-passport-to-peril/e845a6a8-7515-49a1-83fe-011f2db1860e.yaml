@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Pink Panther, The - Passport to Peril (USA).bin
+    format: 1CD
+    url: https://archive.org/download/ThePinkPantherPassportToPerilUSA/Pink%20Panther%2C%20The%20-%20Passport%20to%20Peril%20%28USA%29.zip
+  igdb_slug: the-pink-panthers-passport-to-peril
+  lang: en
+  name: The Pink Panther's Passport to Peril
+  platform: win
+  publisher: BMG Interactive
+  refs:
+    ag_id: 46797
+    lutris_id: the-pink-panther-passport-to-peril
+    mg_id: 7995
+    pcgw_id: The_Pink_Panther%27s_Passport_to_Peril
+    qz_id: 241
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-23 20:11:00 America/Los_Angeles
+  uuid: e845a6a8-7515-49a1-83fe-011f2db1860e
+  year_released: 1996
+installer: null

@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - strliz.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=5388820
+  igdb_slug: styrlitz
+  lang: ru
+  name: Штырлиц
+  platform: win
+  publisher: Buka Entertainment
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 4197
+    pcgw_id: null
+    qz_id: 45
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-08-22 14:26:00 America/Los_Angeles
+  uuid: 65bd2c47-b6b0-449e-ab31-7c7ed1a3ed08
+  year_released: 1999
+installer: null

@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - JACK.iso
+    format: 1CD
+    url: https://archive.org/download/msdos_Jack_Orlando_1997/Jack_Orlando_1997.zip/jorlando%2Fcd%2FJACK.iso
+  igdb_slug: jack-orlando
+  lang: en
+  name: Jack Orlando
+  platform: win
+  publisher: TopWare Interactive
+  refs:
+    ag_id: 16250
+    lutris_id: null
+    mg_id: 3133
+    pcgw_id: Jack_Orlando
+    qz_id: 258
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-05-18 20:32:00 America/Los_Angeles
+  uuid: 4e00e59c-d1e2-4b9f-b8f5-4a4a372d926a
+  year_released: 1997
+installer: null

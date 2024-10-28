@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - cd1.iso
+      - cd2.iso
+    format: 2CD
+    url: https://rutracker.org/forum/viewtopic.php?t=43761
+  igdb_slug: discworld-ii-mortality-bytes
+  lang: ru
+  name: 'Дисклэнд II: Живите долго...?!'
+  platform: win
+  publisher: Psygnosis Limited
+  refs:
+    ag_id: 15827
+    lutris_id: discworld-ii-missing-presumed
+    mg_id: 1370
+    pcgw_id: Discworld_II:_Missing_Presumed...!%3F
+    qz_id: 63
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-18 04:51:00 America/Los_Angeles
+  uuid: 7bf8fab7-4355-412d-a2ac-4799f2decc72
+  year_released: 1996
+installer: null

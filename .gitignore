@@ -1,0 +1,26 @@
+*.swp
+package-lock.json
+*.egg-info
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+.idea
+.mypy_cache
+.pytest_cache
+.tox
+.vscode
+dist
+
+scripts/tmp/
+secret.env

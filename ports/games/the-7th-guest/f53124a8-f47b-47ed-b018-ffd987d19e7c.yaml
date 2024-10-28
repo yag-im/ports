@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - Disc 1 - Track 01.bin
+      - Disc 2 - Track 01.bin
+    format: 2CD
+    url: https://archive.org/details/The_7th_Guest_Reissue_USA
+  igdb_slug: the-7th-guest
+  lang: en
+  name: The 7th Guest
+  platform: win
+  publisher: Trilobyte
+  refs:
+    ag_id: 15781
+    lutris_id: 7th+guest
+    mg_id: 283
+    pcgw_id: The_7th_Guest
+    qz_id: 5
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-09-10 22:55:00 America/Los_Angeles
+  uuid: f53124a8-f47b-47ed-b018-ffd987d19e7c
+  year_released: 1997
+installer: null
