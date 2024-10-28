@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - HPP.ISO
+    format: 1CD
+    url: https://www.myabandonware.com/download/pgg-the-pink-panther-hokus-pokus-pink
+  igdb_slug: the-pink-panther-hokus-pokus-pink
+  lang: se
+  name: Rosa Pantern i Hokus Pokus Panter
+  platform: win
+  publisher: Ravensburger Interactive Media GmbH
+  refs:
+    ag_id: null
+    lutris_id: the-pink-panther-hokus-pokus-pink
+    mg_id: 41450
+    pcgw_id: The_Pink_Panther_in_Hokus_Pokus_Pink
+    qz_id: 242
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-01 19:00:00 America/Los_Angeles
+  uuid: 02cf9e86-6c84-4d09-9aa3-e7ad55bf79e7
+  year_released: 1998
+installer: null

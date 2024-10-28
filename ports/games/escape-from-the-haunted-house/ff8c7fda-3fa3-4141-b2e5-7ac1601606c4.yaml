@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - OldParkGhost.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=81690
+  igdb_slug: escape-from-the-haunted-house
+  lang: ru
+  media_assets:
+    cover:
+      image_id: ff8c7fda-3fa3-4141-b2e5-7ac1601606c4
+    screenshots: []
+  name: Призрак старого парка
+  platform: win
+  publisher: New Media Generation
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 159860
+    pcgw_id: null
+    qz_id: 244
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-05-17 21:25:00 America/Los_Angeles
+  uuid: ff8c7fda-3fa3-4141-b2e5-7ac1601606c4
+  year_released: 1997
+installer: null

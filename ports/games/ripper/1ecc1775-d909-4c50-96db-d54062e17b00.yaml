@@ -1,0 +1,36 @@
+descr:
+  distro:
+    files:
+      - 1_en.iso
+      - 2_en.iso
+      - 3_en.iso
+      - 4_en.iso
+      - 5_en.iso
+      - 6_en.iso
+    format: 6CD
+    url: https://archive.org/compress/ripper/formats=ISO%20IMAGE&file=/ripper.zip
+  igdb_slug: ripper
+  lang: en
+  name: Ripper
+  platform: dos
+  publisher: Take-Two Interactive
+  refs:
+    ag_id: 15678
+    lutris_id: null
+    mg_id: 3198
+    pcgw_id: Ripper
+    qz_id: 813
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-05-20 04:36:00 America/Los_Angeles
+  uuid: 1ecc1775-d909-4c50-96db-d54062e17b00
+  year_released: 1996
+installer: null

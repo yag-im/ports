@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - TEENAGNT.bin
+      - TEENAGNT.cue
+    format: 1CD
+    url: https://archive.org/details/nowy_teenagent
+  igdb_slug: teenagent
+  lang: pl
+  name: Teenagent
+  platform: dos
+  publisher: Metropolis Software
+  refs:
+    ag_id: 24290
+    lutris_id: teenagent
+    mg_id: 6423
+    pcgw_id: Teenagent
+    qz_id: 556
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 400
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-08-25 00:51:00 America/Los_Angeles
+  uuid: 3a0921b0-545e-42bd-9479-4f4329d1e8b3
+  year_released: 1994
+installer: null

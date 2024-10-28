@@ -1,0 +1,42 @@
+[sdl]
+fullscreen         = ${fullscreen}
+fullresolution     = desktop
+windowresolution   = desktop
+window_position    = auto
+window_decorations = false
+vsync              = false
+vsync_skip         = 7000
+max_resolution     = auto
+output             = texture
+texture_renderer   = auto
+capture_mouse      = onstart
+sensitivity        = 100
+raw_mouse_input    = false
+waitonerror        = true
+priority           = auto,auto
+screensaver        = block
+sensitivity        = ${sensitivity}
+
+[dosbox]
+language          = en
+machine           = svga_s3
+captures          = capture
+memsize           = 16
+vmemsize          = auto
+vesa_modes        = compatible
+autoexec_section  = join
+startup_verbosity = quiet
+
+[render]
+scaler=none
+aspect=true
+
+[cpu]
+cputype=auto
+core=normal
+cycles=${cycles}
+
+[autoexec]
+% for cmd in autoexec:
+${cmd}
+% endfor

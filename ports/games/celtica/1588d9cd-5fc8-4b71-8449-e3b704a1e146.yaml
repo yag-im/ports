@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - CELTICA_CD1.ISO
+      - CELTICA_CD2.ISO
+    format: 2CD
+    url: https://archive.org/details/celticawin
+  igdb_slug: celtica
+  lang: en
+  name: Celtica
+  platform: win
+  publisher: Hoffmann + Associates Inc.
+  refs:
+    ag_id: 15765
+    lutris_id: null
+    mg_id: 2421
+    pcgw_id: null
+    qz_id: 1409
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-10 05:53:00 America/Los_Angeles
+  uuid: 1588d9cd-5fc8-4b71-8449-e3b704a1e146
+  year_released: 1998
+installer: null

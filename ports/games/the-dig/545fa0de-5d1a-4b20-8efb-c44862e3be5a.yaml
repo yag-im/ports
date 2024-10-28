@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - "Dig, The (USA) (Rerelease).bin"
+    format: 1CD
+    url: https://archive.org/details/DigTheUSARerelease
+  igdb_slug: the-dig
+  lang: en
+  media_assets:
+  name: The Dig
+  platform: dos
+  publisher: LucasArts
+  refs:
+    ag_id: 15756
+    lutris_id: the-dig
+    mg_id: 354
+    pcgw_id: The_Dig
+    qz_id: 112
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-02 19:14:55 America/Los_Angeles
+  uuid: 545fa0de-5d1a-4b20-8efb-c44862e3be5a
+  year_released: 1995
+installer: null

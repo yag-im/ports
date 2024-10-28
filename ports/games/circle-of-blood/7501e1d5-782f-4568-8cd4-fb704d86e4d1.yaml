@@ -1,0 +1,36 @@
+descr:
+  distro:
+    files:
+      - BS1.mdf
+      - BS2.mdf
+    format: 2CD
+    url: https://rutracker.org/forum/viewtopic.php?t=269802
+  igdb_slug: circle-of-blood
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 7501e1d5-782f-4568-8cd4-fb704d86e4d1
+    screenshots: []
+  name: "Сломанный меч. Тень тамплиеров"
+  platform: win
+  publisher: Akella
+  refs:
+    ag_id: 17503
+    lutris_id: circle-of-blood
+    mg_id: 499
+    pcgw_id: Broken_Sword:_The_Shadow_of_the_Templars
+    qz_id: 25
+  reqs:
+    color_bits: 256
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-06 10:40:43 America/Los_Angeles
+  uuid: 7501e1d5-782f-4568-8cd4-fb704d86e4d1
+  year_released: 1996
+installer: null

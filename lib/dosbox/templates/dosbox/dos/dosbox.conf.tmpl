@@ -1,0 +1,28 @@
+[sdl]
+autolock=${autolock}
+fullscreen=${fullscreen}
+fulldouble=false
+fullresolution=desktop
+windowresolution=desktop
+output=opengl
+waitonerror=false
+sensitivity=${sensitivity}
+
+[dosbox]
+memsize=16
+machine=svga_s3
+
+[cpu]
+cputype=auto
+core=normal
+cycles=${cycles}
+
+[render]
+scaler=${scaler}
+aspect=${aspect}
+
+[autoexec]
+SET PATH=%PATH%;C:\UTILS
+% for cmd in autoexec:
+${cmd}
+% endfor

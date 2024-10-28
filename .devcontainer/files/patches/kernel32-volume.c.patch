@@ -1,0 +1,18 @@
+--- kernel32-volume.c.orig	2024-10-15 10:40:04.043183141 -0700
++++ kernel32-volume.c.mod	2024-10-15 10:40:41.035863640 -0700
+@@ -265,6 +265,7 @@
+         break;
+     case DRIVE_REMOVABLE:
+     case DRIVE_FIXED:
++    case DRIVE_CDROM:
+         {
+             WCHAR labelW[] = L"A:\\.windows-label";
+
+@@ -291,7 +292,6 @@
+         }
+     case DRIVE_REMOTE:
+     case DRIVE_RAMDISK:
+-    case DRIVE_CDROM:
+         SetLastError( ERROR_ACCESS_DENIED );
+         break;
+     }

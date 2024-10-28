@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - Lighthouse - The Dark Being (1996)(Sierra)(Disc 1 of 2)[RF105725-032].iso
+      - Lighthouse - The Dark Being (1996)(Sierra)(Disc 2 of 2)[RF105726-047].iso
+    format: 2CD
+    url: https://archive.org/download/Lighthouse_-_The_Dark_Being_1996_Sierra
+  igdb_slug: lighthouse-the-dark-being
+  lang: en
+  media_assets:
+  name: "Lighthouse: The Dark Being"
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 15737
+    lutris_id: lighthouse-the-dark-being
+    mg_id: 266
+    pcgw_id: Lighthouse:_The_Dark_Being
+    qz_id: 92
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-09-29 09:29:06 America/Los_Angeles
+  uuid: bb1fb407-cae8-48ec-992c-fab0879ad838
+  year_released: 1996
+installer: null

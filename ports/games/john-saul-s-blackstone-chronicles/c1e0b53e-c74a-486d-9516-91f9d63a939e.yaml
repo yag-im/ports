@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - blackstonechronicles1.img
+      - blackstonechronicles2.img
+    format: 2CD
+    url: https://www.myabandonware.com/game/john-saul-s-blackstone-chronicles-an-adventure-in-terror-dgg
+  igdb_slug: john-saul-s-blackstone-chronicles
+  lang: en
+  name: John Saul's Blackstone Chronicles
+  platform: win
+  publisher: Mindscape
+  refs:
+    ag_id: 15701
+    lutris_id: null
+    mg_id: 1214
+    pcgw_id: null
+    qz_id: 367
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-09-18 19:20:47 America/Los_Angeles
+  uuid: c1e0b53e-c74a-486d-9516-91f9d63a939e
+  year_released: 1998
+installer: null

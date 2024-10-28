@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - RAHCD1.img
+      - RAHCD2.img
+    format: 2CD
+    url: https://www.myabandonware.com/game/rent-a-hero-gff
+  igdb_slug: rent-a-hero
+  lang: en
+  name: Rent-A-Hero
+  platform: win
+  publisher: THQ
+  refs:
+    ag_id: 15840
+    lutris_id: null
+    mg_id: 2424
+    pcgw_id: Rent-a-Hero
+    qz_id: 578
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-06 05:12:00 America/Los_Angeles
+  uuid: e8f0ccb3-6369-4caf-90f3-807ccc91777a
+  year_released: 1998
+installer: null

@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - HW.BIN
+      - HW.CUE
+    format: 1CD
+    url: https://archive.org/details/hw_20210302
+  igdb_slug: die-hohlenwelt-saga-der-leuchtende-kristall
+  lang: de
+  name: 'Die Höhlenwelt Saga: Der Leuchtende Kristall'
+  platform: dos
+  publisher: Software 2000
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 19435
+    pcgw_id: null
+    qz_id: 948
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-08-24 20:44:00 America/Los_Angeles
+  uuid: f9ce6dea-7bbd-4fac-9d9f-93a083698e70
+  year_released: 1994
+installer: null

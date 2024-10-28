@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+      - aop1.img
+      - aop2.img
+      - aop3.img
+      - aop4.img
+    format: 4CD
+    url: https://archive.org/details/theadventuresofpinocchio1996fmvgame
+  igdb_slug: the-adventures-of-pinocchio--1
+  lang: en
+  name: The Adventures of Pinocchio
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id: 16328
+    lutris_id: null
+    mg_id: 22872
+    pcgw_id: null
+    qz_id: null
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-08-27 22:32:00 America/Los_Angeles
+  uuid: 1ff94361-d6e5-491a-bd5c-3fe3fbb968f9
+  year_released: 1996
+installer: null

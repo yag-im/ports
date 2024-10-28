@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - Broken Sword 2 CD1.iso
+      - Broken Sword 2 CD2.iso
+    format: 2CD
+    url: https://www.old-games.ru/game/download/433.html
+  igdb_slug: broken-sword-the-smoking-mirror
+  lang: en
+  media_assets:
+  name: "Broken Sword: The Smoking Mirror"
+  platform: win
+  publisher: Virgin Interactive Entertainment
+  refs:
+    ag_id: 15768
+    lutris_id: broken-sword-the-smoking-mirror
+    mg_id: 1133
+    pcgw_id: Broken_Sword_II:_The_Smoking_Mirror
+    qz_id: 26
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-08 13:59:38 America/Los_Angeles
+  uuid: 72554980-66b3-46b1-b693-db1a00df3bb5
+  year_released: 1997
+installer: null

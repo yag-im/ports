@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - UFOS.mdf
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=2215297
+  igdb_slug: ufos
+  lang: ru
+  name: Приключения инопланетянина
+  platform: win
+  publisher: Akella
+  refs:
+    ag_id: 16608
+    lutris_id: ufos
+    mg_id: 4556
+    pcgw_id: UFOs
+    qz_id: 142
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-06-09 16:00:00 America/Los_Angeles
+  uuid: 6f915823-f263-47f3-82fb-36fbb8d874ce
+  year_released: 1998
+installer: null

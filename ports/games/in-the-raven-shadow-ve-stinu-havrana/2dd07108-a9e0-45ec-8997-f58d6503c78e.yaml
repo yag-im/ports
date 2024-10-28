@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - Ten vorona  [torrents.ru] .nrg
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=1533234
+  igdb_slug: in-the-raven-shadow-ve-stinu-havrana
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 2dd07108-a9e0-45ec-8997-f58d6503c78e
+    screenshots: []
+  name: Тень ворона
+  platform: win
+  publisher: Akella
+  refs:
+    ag_id: 16715
+    lutris_id: in-the-raven-shadow-ve-stinu-havrana
+    mg_id: 22050
+    pcgw_id: In_the_Raven_Shadow_-_Ve_stínu_havrana
+    qz_id: 124
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "9.0"
+  ts_added: 2024-10-10 18:41:40 America/Los_Angeles
+  uuid: 2dd07108-a9e0-45ec-8997-f58d6503c78e
+  year_released: 2003
+installer: null

@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - SANITARIUM1.iso
+      - SANITARIUM2.iso
+      - SANITARIUM3.iso
+    format: 3CD
+    url: https://archive.org/download/sanitarium-3cd
+  igdb_slug: sanitarium
+  lang: en
+  name: Sanitarium
+  platform: win
+  publisher: ASC Games
+  refs:
+    ag_id: 15718
+    lutris_id: sanitarium
+    mg_id: 572
+    pcgw_id: Sanitarium
+    qz_id: 100
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-27 00:17:00 America/Los_Angeles
+  uuid: 4a57fa4c-af64-46ba-88b5-0a9619b25a8b
+  year_released: 1998
+installer: null

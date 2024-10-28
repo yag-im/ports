@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Wine\X11 Driver]
+"UseXRandR"="N"
+
+[HKEY_CURRENT_USER\Software\Wine\Drivers]
+"Graphics"="x11"

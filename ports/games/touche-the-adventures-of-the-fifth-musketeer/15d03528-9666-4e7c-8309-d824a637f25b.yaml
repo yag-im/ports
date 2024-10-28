@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Touche - The Adventures of the Fifth Musketeer (1995)(US Gold).iso
+    format: 1CD
+    url: https://archive.org/details/touche-the-adventures-of-the-fifth-musketeer
+  igdb_slug: touche-the-adventures-of-the-fifth-musketeer
+  lang: en
+  name: 'Touché: The Adventures of the Fifth Musketeer'
+  platform: dos
+  publisher: U.S. Gold
+  refs:
+    ag_id: 16605
+    lutris_id: touche-the-adventures-of-the-fifth-musketeer
+    mg_id: 1114
+    pcgw_id: Touché:_The_Adventures_of_the_Fifth_Musketeer
+    qz_id: 3268
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-23 18:36:00 America/Los_Angeles
+  uuid: 15d03528-9666-4e7c-8309-d824a637f25b
+  year_released: 1995
+installer: null

@@ -1,0 +1,4 @@
+_extends: .github:settings.yml
+repository:
+  name: ports
+  description: Collection of ports (games installers)

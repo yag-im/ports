@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - Titanic Adventure out of time disc 1.iso
+      - Titanic Adventure out of time disc 2.iso
+    format: 2CD
+    url: https://archive.org/details/titanic-adventure-out-of-time_202105
+  igdb_slug: titanic-adventure-out-of-time
+  lang: en
+  name: 'Titanic: Adventure out of Time'
+  platform: win
+  publisher: GTE Entertainment
+  refs:
+    ag_id: 15720
+    lutris_id: titanic-adventure-out-of-time
+    mg_id: 2892
+    pcgw_id: Titanic:_Adventure_Out_of_Time
+    qz_id: 537
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-06-10 03:45:00 America/Los_Angeles
+  uuid: 00b85c18-cb6e-4799-a652-565303088991
+  year_released: 1996
+installer: null

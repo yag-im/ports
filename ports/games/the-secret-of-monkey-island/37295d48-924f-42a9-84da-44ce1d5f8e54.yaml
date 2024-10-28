@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - The_Secret_of_Monkey_Island.bin
+      - The_Secret_of_Monkey_Island.cue
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=438349
+  igdb_slug: the-secret-of-monkey-island
+  lang: multi
+  media_assets:
+  name: The Secret of Monkey Island
+  platform: dos
+  publisher: Lucasfilm Games
+  refs:
+    ag_id: 15481
+    lutris_id: the-secret-of-monkey-island
+    mg_id: 547
+    pcgw_id: The_Secret_of_Monkey_Island
+    qz_id: 115
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 200
+    screen_width: 320
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-10-03 13:10:30 America/Los_Angeles
+  uuid: 37295d48-924f-42a9-84da-44ce1d5f8e54
+  year_released: 1992
+installer: null

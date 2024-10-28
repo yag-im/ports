@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - Monkey_Island_2_1996edition.rar
+    format: 1CD
+    url: https://www.old-games.ru/game/download/504.html
+  igdb_slug: monkey-island-2-lechuck-s-revenge
+  lang: en
+  media_assets:
+  name: "Monkey Island 2: LeChuck's Revenge"
+  platform: dos
+  publisher: LucasArts
+  refs:
+    ag_id: 15482
+    lutris_id: monkey-island-2-lechucks-revenge
+    mg_id: 289
+    pcgw_id: Monkey_Island_2:_LeChuck%27s_Revenge
+    qz_id: 116
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 200
+    screen_width: 320
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-04 16:50:40 America/Los_Angeles
+  uuid: 753241ed-3b0a-4062-8e92-444a503d9057
+  year_released: 1996
+installer: null

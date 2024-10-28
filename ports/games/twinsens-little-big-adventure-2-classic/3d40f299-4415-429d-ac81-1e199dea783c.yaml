@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - Little_Big_Adventure_2_br.cue
+      - Little_Big_Adventure_2_br.img
+    format: 1CD
+    url: https://www.old-games.ru/game/download/454.html
+  igdb_slug: twinsens-little-big-adventure-2-classic
+  lang: en
+  media_assets:
+  name: Twinsen's Little Big Adventure 2 Classic
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id: 16399
+    lutris_id:
+    mg_id: 1765
+    pcgw_id: Little_Big_Adventure_2
+    qz_id: 22
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-09-29 10:44:50 America/Los_Angeles
+  uuid: 3d40f299-4415-429d-ac81-1e199dea783c
+  year_released: 1997
+installer: null

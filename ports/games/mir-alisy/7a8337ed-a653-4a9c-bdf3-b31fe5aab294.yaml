@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - ALICE.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=296560
+  igdb_slug: mir-alisy
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 7a8337ed-a653-4a9c-bdf3-b31fe5aab294
+    screenshots: []
+  name: Мир Алисы
+  platform: win
+  publisher: 1C Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-10-06 13:23:56 America/Los_Angeles
+  uuid: 7a8337ed-a653-4a9c-bdf3-b31fe5aab294
+  year_released: 1997
+installer: null

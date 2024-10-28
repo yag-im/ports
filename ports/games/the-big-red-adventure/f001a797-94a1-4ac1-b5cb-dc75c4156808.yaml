@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - BIGREDADVNTRE.cue
+      - BIGREDADVNTRE.img
+    format: 1CD
+    url: https://archive.org/details/msdos_Big_Red_Adventure_1995
+  igdb_slug: the-big-red-adventure
+  lang: en
+  name: The Big Red Adventure
+  platform: dos
+  publisher: Core Design
+  refs:
+    ag_id: 16448
+    lutris_id: the-big-red-adventure
+    mg_id: 3206
+    pcgw_id: The_Big_Red_Adventure
+    qz_id: 372
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 400
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-13 03:04:00 America/Los_Angeles
+  uuid: f001a797-94a1-4ac1-b5cb-dc75c4156808
+  year_released: 1995
+installer: null

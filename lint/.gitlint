@@ -1,0 +1,5 @@
+[general]
+ignore=body-min-length,body-max-line-length,body-is-missing
+
+[title-max-length]
+line-length=80

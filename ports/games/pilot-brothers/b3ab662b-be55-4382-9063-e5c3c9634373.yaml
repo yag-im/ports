@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - setup_pilot_brothers_gog-3_(5221).exe
+    format: gog
+    url: https://www.gog.com/en/game/pilot_brothers
+  igdb_slug: pilot-brothers
+  lang: multi
+  name: Pilot Brothers
+  platform: win
+  publisher: 1C Wireless
+  refs:
+    ag_id: 30404
+    lutris_id: pilot-brothers
+    mg_id: 9863
+    pcgw_id: Pilot_Brothers
+    qz_id: 232
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-07-21 15:08:00 America/Los_Angeles
+  uuid: b3ab662b-be55-4382-9063-e5c3c9634373
+  year_released: 2014
+installer: null

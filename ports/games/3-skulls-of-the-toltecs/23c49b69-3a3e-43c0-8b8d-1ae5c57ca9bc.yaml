@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - 3SKULLS.iso
+    format: 1CD
+    url: https://archive.org/details/videogame_ggffrdejh
+  igdb_slug: 3-skulls-of-the-toltecs
+  lang: es
+  name: Las 3 calaveras de los toltecas
+  platform: dos
+  publisher: WB Games
+  refs:
+    ag_id: 15691
+    lutris_id: 3-skulls-of-the-toltecs
+    mg_id: 3286
+    pcgw_id: 3_Skulls_of_the_Toltecs
+    qz_id: 3
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-09-08 16:32:00 America/Los_Angeles
+  uuid: 23c49b69-3a3e-43c0-8b8d-1ae5c57ca9bc
+  year_released: 1996
+installer: null

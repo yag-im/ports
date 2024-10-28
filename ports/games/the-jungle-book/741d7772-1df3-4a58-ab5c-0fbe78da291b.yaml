@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - The Jungle Book IBM (1996) (FMV Game).iso
+    format: 1DVD
+    url: https://archive.org/details/the-jungle-book-ibm-1996-fmv-game
+  igdb_slug: the-jungle-book
+  lang: en
+  name: The Jungle Book
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 24728
+    pcgw_id: null
+    qz_id: null
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-11 03:12:00 America/Los_Angeles
+  uuid: 741d7772-1df3-4a58-ab5c-0fbe78da291b
+  year_released: 1996
+installer: null

@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - Toonstruck_CD1.iso
+      - Toonstruck_CD2.iso
+    format: 2CD
+    url: https://www.old-games.ru/game/download/2143.html
+  igdb_slug: toonstruck
+  lang: en
+  name: Toonstruck
+  platform: win
+  publisher: Virgin Interactive Entertainment (Europe) Ltd.
+  refs:
+    ag_id: 15722
+    lutris_id: toonstruck
+    mg_id: 518
+    pcgw_id: Toonstruck
+    qz_id: 287
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-24 02:29:00 America/Los_Angeles
+  uuid: f0706422-b301-4323-9d46-584e00444f10
+  year_released: 1996
+installer: null

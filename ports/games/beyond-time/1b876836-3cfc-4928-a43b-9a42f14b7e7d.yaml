@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - BEYOND1.bin
+      - BEYOND2.bin
+    format: 2CD
+    url: https://www.myabandonware.com/game/beyond-time-dl5
+  igdb_slug: beyond-time
+  lang: en
+  name: Beyond Time
+  platform: win
+  publisher: DreamCatcher Interactive
+  refs:
+    ag_id: 15770
+    lutris_id: null
+    mg_id: 5669
+    pcgw_id: null
+    qz_id: 3015
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-09-11 03:53:00 America/Los_Angeles
+  uuid: 1b876836-3cfc-4928-a43b-9a42f14b7e7d
+  year_released: 1997
+installer: null

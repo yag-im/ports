@@ -1,0 +1,81 @@
+;1. any path without an explicit drive letter will be appended on to the
+;   Drive#=field
+;2. '.\' will path from the root of install directory
+
+[PATHS]
+script=.\script
+inventory=.\inventor
+puzzle=puzzle
+interface=.\interfac
+sound=.\sound
+install=.\
+
+[DRIVES]
+% for i in range(8):
+drive${i+1}=${chr(ord(first_cd_letter) + i)}${":\\"}
+% endfor
+
+section1=1  ;1A
+section2=2  ;1B
+section3=3  ;2A
+section4=4  ;2C
+section5=4  ;3A
+section6=5  ;3B
+section7=6  ;4A
+section8=5  ;4B
+section9=7  ;4C
+section10=7 ;5A
+section11=6 ;5B
+section12=8 ;6A
+section13=1 ;6B
+
+path1=p1a\
+path2=p1b\
+path3=p2a\
+path4=p2c\
+path5=p3a\
+path6=p3b\
+path7=p4A\
+path8=p4B\
+path9=p4C\
+path10=p5a\
+path11=p5b\
+path12=p6a\
+path13=p6b\
+
+[FILES]
+script=
+scene=
+invnetory=
+puzzle=
+interface=
+sound=
+save=bd.sav
+text=gametext.tf
+
+[options]
+spin edges= 0
+spin edge height= 45
+spin edge width= 50
+spin vres= 15
+spin hres= 25
+vjoy control= 0
+vjoy res= 20
+slide vjoy res= 5
+brightness= 100
+music vol= 100
+subtitles= 1
+autoscroll= 1
+hotkey 0= 27
+hotkey 1= 32847
+hotkey 2= 32841
+hotkey 3= 32855
+hotkey 4= 32846
+hotkey 5= 256
+hotkey 6= 32850
+hotkey 7= 32851
+hotkey 8= 32856
+auto music off= 0
+
+[Black Dahlia]
+set autorun = 1

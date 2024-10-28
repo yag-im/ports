@@ -1,0 +1,19 @@
+@appNameSlug = ${IGDB_SLUG}
+@appReleaseUuid = ${APP_RELEASE_UUID}
+@baseUrl = http://portsvc.yag.dc:8087/ports
+@contentType = application/x-yaml
+@appReleasePayloadFilePath = ${PORTS_ROOT_DIR}/ports/games/{{appNameSlug}}/{{appReleaseUuid}}.yaml
+
+###
+
+# @name upsertAppRelease
+POST {{baseUrl}}/apps/{{appNameSlug}}/releases/{{appReleaseUuid}} HTTP/1.1
+Content-Type: {{contentType}}
+
+< {{appReleasePayloadFilePath}}
+
+###
+
+# @name publishAppRelease
+# @note
+POST {{baseUrl}}/apps/{{appNameSlug}}/releases/{{appReleaseUuid}}/publish HTTP/1.1

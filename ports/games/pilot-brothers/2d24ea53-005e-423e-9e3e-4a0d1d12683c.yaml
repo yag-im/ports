@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - PILOTS.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=5171385
+  igdb_slug: pilot-brothers
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 2d24ea53-005e-423e-9e3e-4a0d1d12683c
+    screenshots: []
+  name: Братья-Пилоты. По следам полосатого слона
+  platform: win
+  publisher: 1C Company
+  refs:
+    ag_id: 30404
+    lutris_id: pilot-brothers
+    mg_id: 9863
+    pcgw_id: Pilot_Brothers
+    qz_id: 232
+  reqs:
+    color_bits: 8
+    midi: true
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-07-19 19:26:00 America/Los_Angeles
+  uuid: 2d24ea53-005e-423e-9e3e-4a0d1d12683c
+  year_released: 1997
+installer: null

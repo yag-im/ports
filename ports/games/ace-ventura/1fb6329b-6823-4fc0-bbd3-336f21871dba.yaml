@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - CD [ACE_VENTURA] German.iso
+    format: 1CD
+    url: https://www.myabandonware.com/download/1dlp-ace-ventura
+  igdb_slug: ace-ventura
+  lang: de
+  name: Ace Ventura
+  platform: win
+  publisher: Bomico Entertainment Software
+  refs:
+    ag_id: 22509
+    lutris_id: null
+    mg_id: 4757
+    pcgw_id: Ace_Ventura
+    qz_id: 20
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-05-09 01:51:00 America/Los_Angeles
+  uuid: 1fb6329b-6823-4fc0-bbd3-336f21871dba
+  year_released: 1996
+installer: null

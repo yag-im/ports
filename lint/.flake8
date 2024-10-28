@@ -1,0 +1,30 @@
+[flake8]
+import-order-style = google
+docstring-convention = google
+ignore =
+# line too long, defer to black
+  E501
+# allow line breaks before binary ops
+  W503
+# allow line breaks after binary ops
+  W504
+# allow whitespace before ':' (https://github.com/psf/black#slices)
+  E203
+# Missing type annotation for self in method
+  ANN101
+# Dynamically typed expressions (typing.Any) are disallowed
+  ANN401
+# invalid escape sequence
+  W605
+exclude =
+  .bzr
+  .git
+  .hg
+  .svn
+  .tox
+  CVS
+  .venv*/
+  venv*/
+  target
+  __pycache__
+  scripts/*

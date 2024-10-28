@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - MI-LSL7.iso
+    format: 1CD
+    url: https://archive.org/details/mi-lsl-7
+  igdb_slug: leisure-suit-larry-love-for-sail
+  lang: en
+  media_assets:
+  name: "Leisure Suit Larry: Love for Sail!"
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 15789
+    lutris_id: leisure-suit-larry-love-for-sail
+    mg_id: 381
+    pcgw_id: Leisure_Suit_Larry:_Love_for_Sail!
+    qz_id: 317
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-10-08 15:27:30 America/Los_Angeles
+  uuid: c744c938-8f8c-48fb-911c-88b63e638937
+  year_released: 1996
+installer: null

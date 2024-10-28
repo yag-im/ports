@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - Harvester_1.img
+      - Harvester_2.img
+      - Harvester_3.img
+    format: 3CD
+    url: https://www.old-games.ru/game/download/1793.html
+  igdb_slug: harvester
+  lang: en
+  name: Harvester
+  platform: dos
+  publisher: Merit Studios
+  refs:
+    ag_id: 16905
+    lutris_id: harvester
+    mg_id: 324
+    pcgw_id: Harvester
+    qz_id: 391
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-05-24 02:56:00 America/Los_Angeles
+  uuid: 3bc3254b-c938-489c-affe-f204c5793ec7
+  year_released: 1996
+installer: null

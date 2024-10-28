@@ -1,0 +1,41 @@
+[sdl]
+autolock=${autolock}
+fullscreen=${fullscreen}
+fulldouble=false
+fullresolution=desktop
+windowresolution=original
+output=opengl
+maximize=true
+showmenu=false
+mouse_emulation=never
+sensitivity=${sensitivity}
+
+[dosbox]
+title=DOS
+memsize=16
+
+[dos]
+hard drive data rate limit=0
+floppy drive data rate limit=0
+
+[cpu]
+cputype=auto
+core=normal
+cycles=${cycles}
+
+[pci]
+voodoo=false
+
+[ide, primary]
+int13fakeio=true
+int13fakev86io=false
+
+[render]
+scaler=none
+aspect=false
+
+[autoexec]
+SET PATH=%PATH%;C:\UTILS
+% for cmd in autoexec:
+${cmd}
+% endfor

@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - Safecraker.img
+    format: 1CD
+    url: https://www.myabandonware.com/game/safecracker-3pp
+  igdb_slug: safe-cracker
+  lang: es
+  media_assets:
+    cover:
+      image_id: 9a107922-6ead-4517-a370-8e9b04a05c56
+    screenshots: []
+  name: Safe Cracker
+  platform: win
+  publisher: GT Interactive Software
+  refs:
+    ag_id: 16297
+    lutris_id: null
+    mg_id: 5408
+    pcgw_id: Safecracker
+    qz_id: 245
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-10-19 16:48:00 America/Los_Angeles
+  uuid: 9a107922-6ead-4517-a370-8e9b04a05c56
+  year_released: 1997
+installer: null

@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Chewy - Esc from F5 (1997)(Play Byte).iso
+    format: 1CD
+    url: https://archive.org/details/chewy-esc-from-f5
+  igdb_slug: chewy-escape-from-f5
+  lang: en
+  name: 'Chewy: Escape from F5'
+  platform: win
+  publisher: Play Byte
+  refs:
+    ag_id: 16343
+    lutris_id: null
+    mg_id: 2339
+    pcgw_id: Chewy:_Esc_from_F5
+    qz_id: 2931
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-16 04:06:00 America/Los_Angeles
+  uuid: 2299a60a-3c5b-4f37-a060-0baa382af05c
+  year_released: 1997
+installer: null

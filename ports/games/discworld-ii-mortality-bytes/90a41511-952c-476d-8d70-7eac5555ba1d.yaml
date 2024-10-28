@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - dw2_cd1.bin
+      - dw2_cd2.bin
+    format: 2CD
+    url: https://www.myabandonware.com/download/4yg-discworld-ii-mortality-bytes
+  igdb_slug: discworld-ii-mortality-bytes
+  lang: en-us
+  name: 'Discworld II: Mortality Bytes!'
+  platform: win
+  publisher: Psygnosis Limited
+  refs:
+    ag_id: 15827
+    lutris_id: discworld-ii-missing-presumed
+    mg_id: 1370
+    pcgw_id: Discworld_II:_Missing_Presumed...!%3F
+    qz_id: 63
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-18 04:51:00 America/Los_Angeles
+  uuid: 90a41511-952c-476d-8d70-7eac5555ba1d
+  year_released: 1996
+installer: null

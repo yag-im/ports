@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - Pokus.iso
+    format: 1CD
+    url: https://www.myabandonware.com/download/pgf-the-pink-panther-hokus-pokus-pink
+  igdb_slug: the-pink-panther-hokus-pokus-pink
+  lang: en
+  name: 'The Pink Panther: Hokus Pokus Pink'
+  platform: win
+  publisher: Ravensburger Interactive Media GmbH
+  refs:
+    ag_id: null
+    lutris_id: the-pink-panther-hokus-pokus-pink
+    mg_id: 41450
+    pcgw_id: The_Pink_Panther_in_Hokus_Pokus_Pink
+    qz_id: 242
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-01 19:00:00 America/Los_Angeles
+  uuid: 653cc955-8e32-4fb6-b44c-5d43897e0219
+  year_released: 1998
+installer: null

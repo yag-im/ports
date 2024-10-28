@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - PILOTS2.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=5197058
+  igdb_slug: pilot-brothers-2
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 03740d50-e724-41cd-8b2c-d0009f90edca
+    screenshots: []
+  name: Братья-Пилоты. Дело о серийном маньяке
+  platform: win
+  publisher: 1C Company
+  refs:
+    ag_id: 30405
+    lutris_id: null
+    mg_id: 13055
+    pcgw_id: Pilot_Brothers_2
+    qz_id: 233
+  reqs:
+    color_bits: 8
+    midi: true
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-09-11 03:39:00 America/Los_Angeles
+  uuid: 03740d50-e724-41cd-8b2c-d0009f90edca
+  year_released: 1998
+installer: null

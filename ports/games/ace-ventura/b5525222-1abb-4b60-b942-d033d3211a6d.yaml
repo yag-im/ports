@@ -1,0 +1,31 @@
+descr:
+  distro:
+    files:
+      - ACE.iso
+    format: 1CD
+    url: https://www.myabandonware.com/download/ko0-ace-ventura
+  igdb_slug: ace-ventura
+  lang: ru
+  name: Эйс Вентура
+  platform: win
+  publisher: Amber Company
+  refs:
+    ag_id: 22509
+    lutris_id: null
+    mg_id: 4757
+    pcgw_id: Ace_Ventura
+    qz_id: 20
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-05-09 01:51:00 America/Los_Angeles
+  uuid: b5525222-1abb-4b60-b942-d033d3211a6d
+  year_released: 1996
+installer: null

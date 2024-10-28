@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - GAMETEK3IN1.img
+    format: 1CD
+    url: https://d2.myabandonware.com/t/71ce2e0f-c115-4ef5-b118-89482aa056a8/Hell-A-Cyberpunk-Thriller_DOS_EN_Alternative-ISO-Version.zip
+  igdb_slug: hell-a-cyberpunk-thriller
+  lang: en
+  media_assets:
+  name: "Hell: A Cyberpunk Thriller"
+  platform: dos
+  publisher: GameTek, Inc.
+  refs:
+    ag_id: 16485
+    lutris_id: hell-a-cyberpunk-thriller
+    mg_id: 1824
+    pcgw_id:
+    qz_id: 380
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-10-16 19:59:26 America/Los_Angeles
+  uuid: 7687dbf5-10d3-4471-aa88-b83594078d42
+  year_released: 1994
+installer: null

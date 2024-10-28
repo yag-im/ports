@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - VERSAIL_1.mdf
+      - VERSAILL_2.mdf
+    format: 2CD
+    url: https://www.myabandonware.com/game/versailles-1685-7r7
+  igdb_slug: versailles-1685
+  lang: en
+  name: Versailles 1685
+  platform: win
+  publisher: Réunion des Musées Nationaux
+  refs:
+    ag_id: 15725
+    lutris_id: versailles-1685
+    mg_id: 6889
+    pcgw_id: Versailles_1685
+    qz_id: 1358
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-05-04 20:11:00 America/Los_Angeles
+  uuid: 46ba41a8-6a36-45f9-a594-278c2e2d0af0
+  year_released: 1996
+installer: null

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CUR_DIR=$(cd `dirname $0` && pwd)
+cd $CUR_DIR
+
+% if autolock:
+export SDL_VIDEO_X11_DGAMOUSE=0
+% endif
+
+dosbox -conf ${dosbox_conf} -exit

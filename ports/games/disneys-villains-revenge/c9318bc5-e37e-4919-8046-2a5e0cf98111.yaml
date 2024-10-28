@@ -1,0 +1,32 @@
+descr:
+  distro:
+    files:
+      - DVRDisc1.iso
+      - DVRDisc2.iso
+    format: 2CD
+    url: https://oldgamesdownload.com/disneys-villains-revenge
+  igdb_slug: disneys-villains-revenge
+  lang: en
+  name: Disney's Villains' Revenge
+  platform: win
+  publisher: Disney Interactive Studios
+  refs:
+    ag_id: null
+    lutris_id: null
+    mg_id: 9278
+    pcgw_id: Villains%27_Revenge
+    qz_id: null
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-08-28 05:13:00 America/Los_Angeles
+  uuid: c9318bc5-e37e-4919-8046-2a5e0cf98111
+  year_released: 1999
+installer: null
