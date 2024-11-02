@@ -12,9 +12,9 @@ set -ux
 IGDB_SLUG="$1"
 RELEASE_ID="$2"
 
-LOCAL_DIR_APPS_PATH=/mnt/appstor/apps
-LOCAL_APPS_SRC_PATH=/mnt/appstor/apps_src
-LOCAL_APPS_TMP_PATH=/mnt/appstor/tmp
+LOCAL_APPS_DIR=/mnt/ports_data/apps
+LOCAL_APPS_SRC_DIR=/mnt/ports_data/apps_src
+LOCAL_APPS_TMP_DIR=/mnt/ports_data/tmp
 
 BASTION_KEY_PATH=/mnt/infra/tofu/modules/bastion/files/secrets/prod/id_ed25519
 BASTION_HOST=bastion.yag.im
@@ -32,12 +32,12 @@ APP_ARCH_NAME=app_$RELEASE_ID.tar.xz
 # upload app into the appstor
 # direct nfs copy of many files is slow, so sending an archived copy and unpacking directly on the appstor host
 # using tar.xz insted of 7z due to "danger symlinks" unsupported in the latter (e.g. z: -> / is mandatory for .wine)
-tar -I "xz -9 -T 0 -v" -cvf $LOCAL_APPS_TMP_PATH/$APP_ARCH_NAME -C $LOCAL_DIR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID --strip-components 1 .
+tar -I "xz -9 -T 0 -v" -cvf $LOCAL_APPS_TMP_DIR/$APP_ARCH_NAME -C $LOCAL_APPS_DIR/$IGDB_SLUG/$RELEASE_ID --strip-components 1 .
 
 # copy archived app to appstor
 rsync -ahr --progress \
     -e "ssh -i $BASTION_KEY_PATH -o ProxyCommand='ssh -p $BASTION_PORT -W %h:%p $BASTION_USER@$BASTION_HOST'" \
-    $LOCAL_APPS_TMP_PATH/$APP_ARCH_NAME \
+    $LOCAL_APPS_TMP_DIR/$APP_ARCH_NAME \
     $APPSTOR_USER@$APPSTOR_HOST:$APPSTOR_TMP_PATH
 
 # unpack app in appstor
@@ -47,5 +47,5 @@ ssh -i $BASTION_KEY_PATH \
     "rm -rf $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && mkdir -p $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && tar -xvf $APPSTOR_TMP_PATH/$APP_ARCH_NAME -C $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && rm $APPSTOR_TMP_PATH/$APP_ARCH_NAME"
 
 # upload archived sources (7z) into the ports storage (S3 Glacier Deep Archive)
-7zz a $LOCAL_APPS_TMP_PATH/$RELEASE_ID.7z $LOCAL_APPS_SRC_PATH/$IGDB_SLUG/$RELEASE_ID/* -mhc=on -mhe=on -mmt=on -mx9 -t7z
-AWS_PROFILE=yag-prod aws s3 cp $LOCAL_APPS_TMP_PATH/$RELEASE_ID.7z s3://yag-im-ports/$IGDB_SLUG/$RELEASE_ID.7z
+7zz a $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z $LOCAL_APPS_SRC_DIR/$IGDB_SLUG/$RELEASE_ID/* -mhc=on -mhe=on -mmt=on -mx9 -t7z
+AWS_PROFILE=yag-prod aws s3 cp $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z s3://yag-im-ports/$IGDB_SLUG/$RELEASE_ID.7z

@@ -15,6 +15,7 @@ from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DRIVE_LETTER,
     BUNDLES_BASE_DIR,
+    RUNNERS_SRC_BASE_DIR,
     SYSTEM_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox import DosBox
@@ -30,6 +31,7 @@ from lib.dosbox.misc import (
 from lib.utils import (
     copy,
     replace,
+    rm,
 )
 
 
@@ -37,6 +39,7 @@ from lib.utils import (
 class DosBoxWin3xConf(DosBoxConf):
     flavor: DosBoxFlavor = field(default=DosBoxFlavor.WIN311)
     mod: DosBoxMod = field(default=DosBoxMod.X)
+    win32s: bool = False
 
 
 class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
@@ -56,6 +59,14 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
             ]
         )
         self.set_display_params(self.app_descr.app_reqs.screen_width, self.app_descr.app_reqs.color_bits)
+        if conf.win32s:
+            self.setup_win32s()
+
+    def setup_win32s(self):
+        WIN32S_VER = "win32s_v1.30c"
+        copy(RUNNERS_SRC_BASE_DIR / "win311" / "utils" / WIN32S_VER, self.system_drive)
+        self.run("C:\\win32s~1.30c\\SETUP.EXE")
+        rm(self.system_drive / WIN32S_VER)
 
     def set_display_params(self, screen_width: int, color_bits: int):
         system_ini_file_path = self.system_drive / "WINDOWS" / "SYSTEM.INI"

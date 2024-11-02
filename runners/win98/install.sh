@@ -3,7 +3,7 @@
 
 # https://dosbox-x.com/wiki/Guide:Installing-Windows-98
 
-cd /mnt/appstor/runners/src/win98
+cd /mnt/ports_data/runners/src/win98
 
 # bootstrap
 

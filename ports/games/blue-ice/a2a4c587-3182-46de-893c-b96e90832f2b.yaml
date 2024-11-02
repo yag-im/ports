@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Blue Ice (1996)(Psygnosis).iso
+    format: 1CD
+    url: https://archive.org/download/blue-ice/Blue%20Ice%20%281996%29%28Psygnosis%29.iso
+  igdb_slug: blue-ice
+  lang: en
+  media_assets:
+  name: Blue Ice
+  platform: dos
+  publisher: Psygnosis Limited
+  refs:
+    ag_id: 17502
+    lutris_id:
+    mg_id: 2788
+    pcgw_id:
+    qz_id: 61
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-staging
+    ver: 0.81.1
+  ts_added: 2024-11-01 18:38:57 America/Los_Angeles
+  uuid: a2a4c587-3182-46de-893c-b96e90832f2b
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_DIR}"
+    - dosbox:
+      flavor: DOS
+      tasks:
+        - mount:
+          letter: "{FIRST_CD_DRIVE_LETTER}"
+          src: "{DEST_DIR}/{descr[distro][files][0]}"
+        - run:
+          path: "{FIRST_CD_DRIVE}/BLUEICE/INSTALL.EXE"
+        - gen_run_script:
+          path: "{APP_DIR}/BI.EXE"
+    - copy:
+      src: "{SRC_FILES_DIR}/{item}"
+      dest: "{DEST_APP_DIR}"
+      loop:
+        - "DIG.INI"

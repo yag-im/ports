@@ -25,7 +25,7 @@
         "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind",
         "source=${env:HOME}${env:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
-        "source=/ara/devel/acme/yag/appstor_data,target=/mnt/appstor,type=bind",
+        "source=/mnt/ports_data,target=/mnt/ports_data,type=bind",
         "source=/ara/devel/acme/yag/infra,target=/mnt/infra,type=bind"
     ]
 }
