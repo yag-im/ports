@@ -49,9 +49,9 @@ class DosBox(Protocol[T]):
         self.system_drive = root_dir / SYSTEM_DRIVE_LETTER
         self.app_drive = root_dir / APP_DRIVE_LETTER
         self.templates_dir = CURRENT_DIR / "templates" / self.conf.mod.value / self.conf.flavor.value
-        self.run_cmds: Optional[
-            List[DosCmdExec]
-        ] = None  # TODO: should we optionally accept cmds in the ctor and execute them right away?
+        self.run_cmds: Optional[List[DosCmdExec]] = (
+            None  # TODO: should we optionally accept cmds in the ctor and execute them right away?
+        )
         # xorg doesn't support lower than 640, so scaling up
         # leave aspect as false for e.g. Lost Eden, otherwise lower bottom will be cut
         if app_descr.app_reqs.screen_width == 320:

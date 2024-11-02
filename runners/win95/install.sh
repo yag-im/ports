@@ -2,7 +2,7 @@
 
 # https://dosbox-x.com/wiki/Guide:Installing-Windows-95
 
-cd /mnt/appstor/runners/src/win98/osrXX-lng
+cd /mnt/ports_data/runners/src/win98/osrXX-lng
 
 # bootstrap
 

@@ -9,7 +9,7 @@ fi
 
 set -u
 
-APPS_SRC_ROOT_DIR=/mnt/appstor/apps_src
+APPS_SRC_ROOT_DIR=/mnt/ports_data/apps_src
 
 export APP_RELEASE_UUID=`uuidgen`
 export TZ="America/Los_Angeles"
@@ -23,7 +23,6 @@ mkdir -p $APPS_SRC_ROOT_DIR/$IGDB_SLUG/$APP_RELEASE_UUID
 # create dir and template for installer
 mkdir -p $PORTS_ROOT_DIR/ports/games/$IGDB_SLUG
 envsubst < $PORTS_ROOT_DIR/scripts/templates/release.yaml.tmpl > $PORTS_ROOT_DIR/ports/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml
-touch $PORTS_ROOT_DIR/ports/games/$IGDB_SLUG/install.py
 
 # update vscode launcher script
 envsubst < $PORTS_ROOT_DIR/scripts/templates/launch.json.tmpl > $PORTS_ROOT_DIR/.vscode/launch.json

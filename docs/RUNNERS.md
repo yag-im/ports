@@ -105,7 +105,7 @@ https://dosbox-x.com/wiki/#Guide:Installing-Windows-3.1x
 # win311 is tied with dosbox-x by a doxbox-x mouse drivers
 
     LANG=ru
-    RUNNERS_BASE_DIR=/mnt/appstor/runners
+    RUNNERS_BASE_DIR=/mnt/ports_data/runners
     RUNNERS_SRC_DIR=$RUNNERS_BASE_DIR/src
     WIN311_SRC_DIR=$RUNNERS_SRC_DIR/win311
     RUNNERS_BUNDLE_DIR=$RUNNERS_BASE_DIR/bundles

@@ -11,7 +11,7 @@ CUR_DIR=$(cd `dirname $0` && pwd)
 export USER=gamer
 export WINEARCH=win32
 export WINE_VER=9.0
-export WINEPREFIX="/mnt/appstor/runners/bundles/wine/$WINE_VER/$WINEARCH"
+export WINEPREFIX="/mnt/ports_data/runners/bundles/wine/$WINE_VER/$WINEARCH"
 export WINEDLLOVERRIDES='mscoree=d,mshtml=d'
 
 rm -rf $WINEPREFIX && mkdir -p $WINEPREFIX

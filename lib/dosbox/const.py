@@ -31,5 +31,6 @@ THIRD_CD_DRIVE_DIR = PureWindowsPath(f"{THIRD_CD_LETTER}:\\")
 
 RUNNERS_BASE_DIR = Path(os.environ["RUNNERS_DIR"])  # TODO: move to the base runners' class
 BUNDLES_BASE_DIR = RUNNERS_BASE_DIR / "bundles"
+RUNNERS_SRC_BASE_DIR = RUNNERS_BASE_DIR / "src"
 
 CONF_NAME = "dosbox.conf"

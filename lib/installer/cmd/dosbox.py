@@ -5,7 +5,10 @@ from pathlib import (
 
 from lib.app_desc import AppDesc
 from lib.dosbox.dosbox import DosBox
-from lib.dosbox.dosbox_conf import DosBoxFlavor
+from lib.dosbox.dosbox_conf import (
+    DosBoxFlavor,
+    DosBoxMod,
+)
 from lib.dosbox.dosbox_dos import (
     DosBoxDos,
     DosBoxDosConf,
@@ -86,10 +89,14 @@ def exec_subtask(app_descr: AppDesc, dbox: DosBox, task: dict) -> None:
 
 
 def exec(task: dict, app_descr: AppDesc) -> None:
-    flavor = DosBoxFlavor[str(task.get("flavor")).upper()]
-    dst_dir = app_descr.dst_path()
     dosbox_conf = task.get("conf", {})
+    flavor = DosBoxFlavor[str(task.get("flavor")).upper()]
     dosbox_conf["flavor"] = flavor
+    mod = task.get("mod", None)
+    if mod:
+        mod = DosBoxMod[str(mod).upper()]
+        dosbox_conf["mod"] = mod
+    dst_dir = app_descr.dst_path()
     if flavor == DosBoxFlavor.WIN311:
         dbox = DosBoxWin3x(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxWin3xConf(**dosbox_conf))
     elif flavor in {DosBoxFlavor.WIN95OSR21, DosBoxFlavor.WIN95OSR25, DosBoxFlavor.WIN98SE}:

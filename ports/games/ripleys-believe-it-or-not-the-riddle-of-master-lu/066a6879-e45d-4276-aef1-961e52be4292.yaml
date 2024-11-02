@@ -55,4 +55,4 @@ installer:
         - gen_run_script:
           path: "{APP_DIR}/RIDDLE.EXE"
           args:
-            - "-c" # originally in MASTERLU.BAT it's: "-c %1 %2 %3 %4 %5 %6 %7 %8 %9"
+            - "-c" # in MASTERLU.BAT it's: "-c %1 %2 %3 %4 %5 %6 %7 %8 %9"
