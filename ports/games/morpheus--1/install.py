@@ -31,7 +31,7 @@ class Main(Installer):
             w.add_cdrom(SECOND_CD_LETTER, dst_folder / SECOND_CD_LETTER)
             w.add_cdrom(THIRD_CD_LETTER, dst_folder / THIRD_CD_LETTER)
             # install into D:\app, ignore QT install errors, there are few
-            w.run(FIRST_CD_DRIVE_DIR / "Setup.exe", virtual_desktop=VirtualDesktopResolution.RES_640x480)
+            w.run(FIRST_CD_DRIVE_DIR / "Setup.exe", virtual_desktop=VirtualDesktopResolution.RES_640_480)
             w.gen_run_script(
                 app_exec=APP_EXEC,
             )

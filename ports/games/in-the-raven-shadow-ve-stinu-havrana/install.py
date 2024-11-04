@@ -56,6 +56,8 @@ class Main(Installer):
                 copy(dst_dir / FIRST_CD_LETTER / "Cd Data" / "EX.XXX", app_dir / app_exec)
                 w.add_cdrom(FIRST_CD_LETTER, dst_dir / FIRST_CD_LETTER, label="Havran")
                 fate_ins_content = str(APP_DIR / "Data")
+            else:
+                raise ValueError(f"Unknown language: {app_desc.lang}")
             with open(dst_dir / ".wine" / "drive_c" / "windows" / "fate.ins", "wb") as f:
                 f.write(fate_ins_content.encode("UTF-8"))
             w.gen_run_script(

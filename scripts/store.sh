@@ -12,11 +12,11 @@ set -ux
 IGDB_SLUG="$1"
 RELEASE_ID="$2"
 
-LOCAL_APPS_DIR=/mnt/ports_data/apps
-LOCAL_APPS_SRC_DIR=/mnt/ports_data/apps_src
-LOCAL_APPS_TMP_DIR=/mnt/ports_data/tmp
+LOCAL_APPS_DIR=$DATA_DIR/apps
+LOCAL_APPS_SRC_DIR=$DATA_DIR/apps_src
+LOCAL_APPS_TMP_DIR=$DATA_DIR/tmp
 
-BASTION_KEY_PATH=/mnt/infra/tofu/modules/bastion/files/secrets/prod/id_ed25519
+BASTION_KEY_PATH=/workspaces/ports/.devcontainer/secrets/id_ed25519
 BASTION_HOST=bastion.yag.im
 BASTION_PORT=2207
 BASTION_USER=infra

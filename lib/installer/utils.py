@@ -37,25 +37,25 @@ def copy_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], fi
         cd_letter = chr(ord(cd_letter) + 1)
 
 
-def fstr(tmpl: str, vars: dict) -> str:
-    return tmpl.format(**vars)
+def fstr(tmpl: str, variables: dict) -> str:
+    return tmpl.format(**variables)
 
 
-def subst_vars(task: dict, vars: dict) -> dict:
+def subst_vars(task: dict, variables: dict) -> dict:
     fmt_task = {}
     for k, v in task.items():
         if isinstance(v, str):
-            fmt_task[k] = fstr(v, vars)
+            fmt_task[k] = fstr(v, variables)
         elif isinstance(v, list):
             fmt_list = []
             for v_ in v:
                 if isinstance(v_, str):
-                    fmt_list.append(fstr(v_, vars))
+                    fmt_list.append(fstr(v_, variables))
                 else:
                     fmt_list.append(v_)
             fmt_task[k] = fmt_list
         elif isinstance(v, dict):
-            fmt_task[k] = subst_vars(v, vars)
+            fmt_task[k] = subst_vars(v, variables)
         else:
             fmt_task[k] = v
     return fmt_task
@@ -69,25 +69,25 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     final_vars["SRC_FILES_DIR"] = str(Path(os.environ.get("PORTS_ROOT_PATH")) / "games" / app_descr.app_slug / "files")
     final_vars["descr"] = asdict(app_descr)
     final_vars |= load_vars("lib.dosbox.const")
-    vars = installer.get("vars", None)
-    if vars:
-        final_vars |= vars
+    installer_vars = installer.get("vars", None)
+    if installer_vars:
+        final_vars |= installer_vars
     final_vars["item"] = "{item}"  # TODO: this is silly, just to avoid format exception for loop items
     return final_vars
 
 
-def unwind_loops(root: dict, vars: dict) -> None:
+def unwind_loops(root: dict, variables: dict) -> None:
     unw_tasks = []
     for t in root["tasks"]:
-        fmt_task = subst_vars(t, vars)
+        fmt_task = subst_vars(t, variables)
         if "loop" in fmt_task:
             for item in fmt_task["loop"]:
-                fmt_item = subst_vars(fmt_task, vars={"item": item})
+                fmt_item = subst_vars(fmt_task, variables={"item": item})
                 del fmt_item["loop"]
                 unw_tasks.append(fmt_item)
         else:
             if "tasks" in fmt_task:
-                unwind_loops(fmt_task, vars)
+                unwind_loops(fmt_task, variables)
             unw_tasks.append(fmt_task)
     root["tasks"] = unw_tasks
 

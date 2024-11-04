@@ -40,7 +40,7 @@ class Main(Installer):
             w = Wine(dst_folder, os_ver=OsVer.WINDOWSXP)
             w.add_cdrom(FIRST_CD_LETTER, dst_folder / FIRST_CD_LETTER)
             # install into D:\app, skip QT install at the end
-            w.run(FIRST_CD_DRIVE_DIR / "Install.exe", virtual_desktop=VirtualDesktopResolution.RES_640x480)
+            w.run(FIRST_CD_DRIVE_DIR / "Install.exe", virtual_desktop=VirtualDesktopResolution.RES_640_480)
             cd_letter = FIRST_CD_LETTER
             for i in range(1, 4):
                 move(dst_folder / cd_letter / f"DATA{i}", app_folder / "data")

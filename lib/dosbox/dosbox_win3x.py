@@ -14,7 +14,7 @@ from typing import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DRIVE_LETTER,
-    BUNDLES_BASE_DIR,
+    RUNNERS_BUNDLES_BASE_DIR,
     RUNNERS_SRC_BASE_DIR,
     SYSTEM_DRIVE_LETTER,
 )
@@ -47,7 +47,7 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
         super().__init__(root_dir, conf, app_descr)
         # copy bundled system folder: bundles/dosbox-x/win311-en -> root_dir/C
         copy(
-            BUNDLES_BASE_DIR / self.conf.mod.value / f"{self.conf.flavor.value}-{self.conf.lang}",
+            RUNNERS_BUNDLES_BASE_DIR / self.conf.mod.value / f"{self.conf.flavor.value}-{self.conf.lang}",
             self.system_drive,
             copy_tree=True,
         )
@@ -63,24 +63,26 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
             self.setup_win32s()
 
     def setup_win32s(self):
-        WIN32S_VER = "win32s_v1.30c"
-        copy(RUNNERS_SRC_BASE_DIR / "win311" / "utils" / WIN32S_VER, self.system_drive)
+        win32s_ver = "win32s_v1.30c"
+        copy(RUNNERS_SRC_BASE_DIR / "win311" / "utils" / win32s_ver, self.system_drive)
         self.run("C:\\win32s~1.30c\\SETUP.EXE")
-        rm(self.system_drive / WIN32S_VER)
+        rm(self.system_drive / win32s_ver)
 
     def set_display_params(self, screen_width: int, color_bits: int):
         system_ini_file_path = self.system_drive / "WINDOWS" / "SYSTEM.INI"
         replace(system_ini_file_path, "screen-size=[0-9]+", f"screen-size={screen_width}")
         replace(system_ini_file_path, "color-format=[0-9]+", f"color-format={color_bits}")
 
-    def run(self, path: PureWindowsPath, args: List[Any] = [], exit=True, mock=False) -> None:
+    def run(self, path: PureWindowsPath, args: List[Any] = None, runexit=True, mock=False) -> None:
         """Runs existing app in the Win311-flavored env"""
 
+        if args is None:
+            args = []
         cmds = []
         if self.conf.lang == "ru":
             cmds.append(DosCmdExec("CHCP", [866]))
         app_exec = [path, *args]
-        if exit:
+        if runexit:
             app_exec.insert(0, "RUNEXIT.EXE")
         cmds.append(DosCmdExec("C:\\WINDOWS\\WIN", app_exec))
         self._run(cmds, mock=mock)

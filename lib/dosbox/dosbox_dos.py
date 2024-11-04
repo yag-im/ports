@@ -15,7 +15,7 @@ from typing import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DRIVE_LETTER,
-    BUNDLES_BASE_DIR,
+    RUNNERS_BUNDLES_BASE_DIR,
     SYSTEM_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox import DosBox
@@ -47,7 +47,7 @@ class DosBoxDos(DosBox[DosBoxConf]):
         super().__init__(root_dir, conf, app_descr)
         self.system_drive.mkdir(exist_ok=False)
         copy(
-            BUNDLES_BASE_DIR / self.conf.mod.value / "dos",
+            RUNNERS_BUNDLES_BASE_DIR / self.conf.mod.value / "dos",
             self.system_drive,
             copy_tree=True,
         )
@@ -67,7 +67,9 @@ class DosBoxDos(DosBox[DosBoxConf]):
             cmds.append(DosCmdExec(XCOPY_CMD, [s, dst, *XCOPY_CMD_OPTIONS]))
         self._run(cmds)
 
-    def run(self, path: PureWindowsPath, args: List[Any] = [], mock=False) -> None:
+    def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False) -> None:
+        if args is None:
+            args = []
         cmds = []
         if self.conf.lang == "ru":
             cmds.append(DosCmdExec("CHCP", [866]))

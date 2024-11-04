@@ -45,7 +45,9 @@ class Main(Installer):
             filename = "US"
         elif lng in ["en", "ru", "es"]:
             filename = "ENGLISH"
-        for ext in {"TXT", "SMP", "IDX"}:
+        else:
+            raise ValueError(f"Unknown language: {lng}")
+        for ext in ("TXT", "SMP", "IDX"):
             move(dst_app_path / "DW2" / f"{filename}.{ext}", dst_app_path / "DW2" / f"{filename}{idx}.{ext}")
 
 

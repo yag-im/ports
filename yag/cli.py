@@ -22,7 +22,7 @@ def cli():
 def install(app: str, release: str):
     print(os.environ)
     category, app_slug = app.split("/")
-    with open(PORTS_ROOT_PATH / "games" / app_slug / f"{release}.yaml") as f:
+    with open(PORTS_ROOT_PATH / "games" / app_slug / f"{release}.yaml", encoding="UTF-16") as f:
         raw_yaml = yaml.safe_load(f)
         app_descr = AppDesc.from_dict(raw_yaml["descr"], app_slug, release)
         installer: dict = raw_yaml["installer"]

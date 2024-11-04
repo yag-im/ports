@@ -21,9 +21,10 @@ def unpack_cds_as_letters(src_folder: Path, dst_folder: Path, files: list[str], 
         cd_letter = chr(ord(cd_letter) + 1)
 
 
-def unmount_remove_cds(wine: Wine, dst_folder: Path, first_cd_letter: chr, num: int):
+def unmount_cds(wine: Wine, dst_folder: Path, first_cd_letter: chr, num: int, remove: bool = True):
     cd_letter = first_cd_letter
     for _ in range(num):
-        # wine.remove_drive(cd_letter) TODO
-        rm(dst_folder / cd_letter)
+        if remove:
+            wine.remove_drive(cd_letter)
+            rm(dst_folder / cd_letter)
         cd_letter = chr(ord(cd_letter) + 1)

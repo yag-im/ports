@@ -20,7 +20,8 @@ from lib.dosbox.helpers import (
 from lib.errors import UnknownDistroFormatException
 from lib.installer import Installer
 
-# TODO: wine has a "golden" support for this game, but it doesn't work in a docker container - mouse movements are locked
+# TODO: wine has a "golden" support for this game, but it doesn't work in a docker container -
+# mouse movements are locked
 
 APP_DRIVE_SIZE = 20
 APP_EXEC_PATH = APP_DIR / "sc_eng.exe"
@@ -35,7 +36,7 @@ class Main(Installer):
         elif lang == "es":
             return "spa"
         else:
-            raise Exception(f"Unknown language: {lang}")
+            raise ValueError(f"Unknown language: {lang}")
 
     def __init__(self, app_desc: AppDesc):
         super().__init__(app_desc)
@@ -52,7 +53,7 @@ class Main(Installer):
                 dbox.run(FIRST_CD_DRIVE_DIR / "Qt32inst.exe")
                 dbox.run(FIRST_CD_DRIVE_DIR / "Directx" / "setup.exe")
                 runexit = False
-            dbox.run(INSTALLER_EXEC_PATH, exit=runexit)
+            dbox.run(INSTALLER_EXEC_PATH, runexit=runexit)
             dbox.run(APP_DIR / f"sc_{self.get_exec_prefix(app_desc.lang)}.exe", mock=True)
         else:
             raise UnknownDistroFormatException(app_desc.distro)

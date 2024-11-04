@@ -35,7 +35,7 @@ class Main(Installer):
                 dst_folder, app_desc, DosBoxWin9xConf(flavor=DosBoxFlavor.WIN95OSR21, app_drive_size=APP_DRIVE_SIZE)
             )
             dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
-            dbox.run(INSTALLER_EXEC_PATH, exit=False)
+            dbox.run(INSTALLER_EXEC_PATH, runexit=False)
             dbox.run(APP_EXEC_PATH, mock=True)
         else:
             raise UnknownDistroFormatException(app_desc.distro)

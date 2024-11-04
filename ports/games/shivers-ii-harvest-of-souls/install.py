@@ -47,7 +47,7 @@ class Main(Installer):
             dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / FIRST_CD_LETTER))
 
             # proceed installing into D:\app\SIERRA\SHIVERS2, skip system check as it hangs")
-            dbox.run(INSTALLER_EXEC_PATH, exit=False)
+            dbox.run(INSTALLER_EXEC_PATH, runexit=False)
             # patch removes startup delay (some timer based performance checks) at 0x413851
             # TODO: make all videos play fullscreen by default (currently requires manual F5 press)
             copy(src_folder / "patches" / "RSHIVERS.EXE", app_path / "SIERRA" / "SHIVERS2")

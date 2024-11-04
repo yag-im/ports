@@ -30,7 +30,7 @@ from lib.utils import (
 from lib.wine.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    BUNDLES_BASE_DIR,
+    RUNNERS_BUNDLES_BASE_DIR,
     SYSTEM_DRIVE_DIR,
 )
 
@@ -48,9 +48,9 @@ class OsArch(Enum):
 
 
 class VirtualDesktopResolution(Enum):
-    RES_640x480 = "640x480"
-    RES_800x600 = "800x600"
-    RES_1024x768 = "1024x768"
+    RES_640_480 = "640x480"
+    RES_800_600 = "800x600"
+    RES_1024_768 = "1024x768"
 
 
 DEFAULT_OS_VER = OsVer.WINDOWS7
@@ -92,7 +92,7 @@ class Wine:
         }
         self.wine_env = wine_env
         self.prefix.mkdir()
-        copy(BUNDLES_BASE_DIR / "wine" / wine_ver / os_arch.value, self.prefix, copy_tree=True)
+        copy(RUNNERS_BUNDLES_BASE_DIR / "wine" / wine_ver / os_arch.value, self.prefix, copy_tree=True)
 
         self.app_drive_dir = self.root_dir / APP_DRIVE_LETTER
         self.app_drive_dir.mkdir(exist_ok=False, parents=True)
@@ -122,14 +122,28 @@ class Wine:
         drive_path = self.prefix / "dosdevices" / str(letter + ":")
         if drive_path.exists():
             if not replace:
-                raise Exception(f"drive {drive_path} already exist")
+                raise ValueError(f"drive {drive_path} already exist")
             if not drive_path.is_symlink():
-                raise Exception(f"drive {drive_path} is not a symlink")
+                raise ValueError(f"drive {drive_path} is not a symlink")
             drive_path.unlink()
         drive_path.symlink_to(os.path.relpath(target, self.prefix / "dosdevices"))
         if label:
-            with open(target / ".windows-label", "w") as f:
+            with open(target / ".windows-label", "w", encoding="UTF-8") as f:
                 f.write(label)
+
+    def remove_drive(self, letter: str):
+        letter = letter.lower()
+        s = f'"{letter}:"='
+        sysreg_path = self.prefix / "system.reg"
+        self.upd_reg({"HKEY_LOCAL_MACHINE\\Software\\Wine\\Drives": [{str(letter + ":"): "-"}]})
+        while str_in_file(sysreg_path, s):
+            time.sleep(2)
+        drive_path = self.prefix / "dosdevices" / str(letter + ":")
+        if drive_path.exists():
+            if not drive_path.is_symlink():
+                raise ValueError(f"drive {drive_path} is not a symlink")
+            drive_path.unlink()
+        # TODO: rm drive folder?
 
     def add_cdrom(self, letter: str, target: Path, replace=True, label=None) -> None:
         self.add_drive(DriveType.CDROM, letter, target, replace, label)
@@ -149,13 +163,13 @@ class Wine:
                         val = val.replace("\\", "\\\\")  # escape
                         val = f'"{val}"'  # quote
                     elif isinstance(val, int):
-                        val = "{:>08d}".format(val)  # pad with zeroes
+                        val = f"{val:>08d}"  # pad with zeroes
                         val = f"dword:{val}"
                     elif isinstance(val, PureWindowsPath):
                         val = str(val).replace("\\", "\\\\")
                         val = f'"{val}"'  # quote
                     else:
-                        raise Exception(f"unrecognized val type: {val}")
+                        raise ValueError(f"unrecognized val type: {val}")
                     f.write(f'"{subkey}"={val}\n')
                 f.write("\n")
             f.flush()
@@ -172,14 +186,16 @@ class Wine:
         elif self.lang == "cs":
             return "cs_CS.UTF8"
         else:
-            raise Exception(f"unknown language: {self.lang}")
+            raise ValueError(f"unknown language: {self.lang}")
 
     def gen_run_script(
         self,
         app_exec: str,
-        pre_run: List[str] = [],
+        pre_run: List[str] = None,
         work_dir: str = str(APP_DIR),
     ) -> Path:
+        if pre_run is None:
+            pre_run = []
         output_path = self.root_dir / "run.sh"
         tmpl_params = {
             "app_exec": app_exec,
@@ -199,15 +215,14 @@ class Wine:
         self,
         path: Union[Path, PureWindowsPath, str],
         args: Union[List[str], str] = None,
-        virtual_desktop: VirtualDesktopResolution = VirtualDesktopResolution.RES_640x480,
+        virtual_desktop: VirtualDesktopResolution = VirtualDesktopResolution.RES_640_480,
     ) -> None:
         wine_env = os.environ.copy()  # without that wine crashes
         for k, v in self.wine_env.items():
             wine_env[k] = v
-        work_dir = (
-            str(path.parent) if (isinstance(path, Path) or isinstance(path, PureWindowsPath)) else str(SYSTEM_DRIVE_DIR)
-        )
-        exec_file = str(path.name) if (isinstance(path, Path) or isinstance(path, PureWindowsPath)) else path
+        is_path = isinstance(path, (Path, PureWindowsPath))
+        work_dir = str(path.parent) if is_path else str(SYSTEM_DRIVE_DIR)
+        exec_file = str(path.name) if is_path else path
         cmd_line = ["wine", "start", "/wait", "/d", work_dir]
         vd = self.virtual_desktop or virtual_desktop
         if vd:
@@ -246,7 +261,7 @@ class Wine:
         for value, dlls in override_buckets.items():
             if not dlls:
                 continue
-            override_strings.append("{}={}".format(",".join(sorted(dlls)), value))
+            override_strings.append(f"{','.join(sorted(dlls))}={value}")
         return ";".join(override_strings)
 
     @DeprecationWarning
@@ -268,4 +283,3 @@ class Wine:
             time.sleep(0.25)
         if not system_reg_path.exists():
             print("error: no system.reg found after prefix creation. Prefix might be invalid")
-            return

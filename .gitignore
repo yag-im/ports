@@ -23,4 +23,5 @@ venv.bak/
 dist
 
 scripts/tmp/
-secret.env
+secrets/
+secrets.env

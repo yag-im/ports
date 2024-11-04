@@ -36,7 +36,7 @@ def move(src: Path, dst: Path, copy_tree: bool = False) -> None:
 
 def _copy_norm_path(path: Path):
     # 3 skulls of the toltecs, Spanish version: ESPA?OL
-    for sym in {"*", "?"}:
+    for sym in ("*", "?"):
         # a*b should become a"*"b, same for a?b
         path = str(path).replace(sym, f'"{sym}"')
     path = f'"{path}"'
@@ -68,13 +68,13 @@ def copy(src: Union[Path, list[Path]], dst: Path, copy_tree: bool = False) -> No
 
 def template(src: Union[Path, str], dst: Union[Path, None], params: dict, newline="\n") -> Union[str, None]:
     if isinstance(src, Path):
-        with open(src, "r") as f:
-            input = f.read()
+        with open(src, "r", encoding="UTF-8") as f:
+            tmpl_input = f.read()
     else:
-        input = src
-    output = Template(input).render(**params)
+        tmpl_input = src
+    output = Template(tmpl_input).render(**params)
     if isinstance(dst, Path):
-        with open(dst, "w", newline=newline) as f:
+        with open(dst, "w", newline=newline, encoding="UTF-8") as f:
             f.write(output)
     else:
         return output

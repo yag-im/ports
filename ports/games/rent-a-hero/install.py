@@ -48,7 +48,7 @@ class Main(Installer):
                 ],
                 APP_DRIVE_DIR / "Game",
             )
-            dbox.run(INSTALLER_EXEC_PATH, exit=False)
+            dbox.run(INSTALLER_EXEC_PATH, runexit=False)
             dbox.copy(CURRENT_DIR / "files" / "RAH.INI", SYSTEM_DRIVE_DIR / "windows")
             dbox.umount(FIRST_CD_LETTER)
             dbox.umount(SECOND_CD_LETTER)

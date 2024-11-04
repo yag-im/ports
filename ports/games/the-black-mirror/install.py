@@ -35,7 +35,7 @@ class Main(Installer):
                 raise DistroNotFoundException(src_path)
             dst_path = app_desc.dst_path()
             app_path = dst_path / APP_DRIVE_LETTER / "app"
-            w = Wine(dst_path, virtual_desktop=VirtualDesktopResolution.RES_800x600)
+            w = Wine(dst_path, virtual_desktop=VirtualDesktopResolution.RES_800_600)
             with tempfile.TemporaryDirectory() as tmp_dir:
                 tmp_dir_path = Path(tmp_dir)
                 unpack_innoextract(src_path, tmp_dir_path, tmp_dir_path / "app" / APP_EXEC, is_gog=False)

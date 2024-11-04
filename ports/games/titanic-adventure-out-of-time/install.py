@@ -29,7 +29,7 @@ class Main(Installer):
             dbox = DosBoxWin3x(dst_folder, app_desc)
             dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
             # proceed with a minimal CD installation
-            dbox.run(INSTALLER_EXEC_PATH, exit=False)
+            dbox.run(INSTALLER_EXEC_PATH, runexit=False)
             dbox.run(APP_EXEC_PATH, mock=True)
         else:
             raise UnknownDistroFormatException(app_desc.distro)

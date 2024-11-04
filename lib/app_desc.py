@@ -3,8 +3,8 @@ import typing as t
 from dataclasses import dataclass
 from pathlib import Path
 
-APPS_BUNDLE_DIR = os.getenv("APPS_BUNDLE_DIR")
-APPS_SRC_DIR = os.getenv("APPS_SRC_DIR")
+APPS_BUNDLE_DIR = Path(os.getenv("DATA_DIR")) / "apps"
+APPS_SRC_DIR = Path(os.getenv("DATA_DIR")) / "apps_src"
 
 
 @dataclass

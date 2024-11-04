@@ -1,7 +1,9 @@
 import os
+from pathlib import Path
 
-APPS_BUNDLE_DIR = os.getenv("APPS_BUNDLE_DIR")
-APPS_SRC_DIR = os.getenv("APPS_SRC_DIR")
+DATA_DIR = Path(os.getenv("DATA_DIR"))
+APPS_BUNDLE_DIR = DATA_DIR / "apps"
+APPS_SRC_DIR = DATA_DIR / "apps_src"
 
 FIRST_CD_DRIVE_LETTER = "E"
 SECOND_CD_DRIVE_LETTER = "F"

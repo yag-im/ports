@@ -46,7 +46,7 @@ class Main(Installer):
         config = configparser.ConfigParser()
         config.read(qtw_ini_path)
         config["Override"] = {"oldVersion": "1"}
-        with open(qtw_ini_path, "w", newline="\r\n") as f:
+        with open(qtw_ini_path, "w", newline="\r\n", encoding="UTF-8") as f:
             config.write(f, space_around_delimiters=False)
 
 

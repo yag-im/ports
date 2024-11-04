@@ -36,7 +36,7 @@ class Main(Installer):
                 DosBoxWin9xConf(app_drive_size=APP_DRIVE_SIZE, flavor=DosBoxFlavor.WIN98SE, memsize=128),
             )
             dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
-            dbox.run("Explorer.exe", exit=False)
+            dbox.run("Explorer.exe", runexit=False)
             # dbox.run(INSTALLER_EXEC_PATH)
             # dbox.run(APP_EXEC_PATH, mock=True)
         else:
