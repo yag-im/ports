@@ -39,7 +39,7 @@ class Main(Installer):
         app_path = dst_dir / APP_DRIVE_LETTER / "app"
         if app_desc.distro.format == "1DVD":
             unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_LETTER)
-            w = Wine(dst_dir, os_ver=OsVer.WINDOWS98, virtual_desktop=VirtualDesktopResolution.RES_800x600)
+            w = Wine(dst_dir, os_ver=OsVer.WINDOWS98, virtual_desktop=VirtualDesktopResolution.RES_800_600)
             w.add_cdrom(FIRST_CD_LETTER, dst_dir / FIRST_CD_LETTER)
             w.run(FIRST_CD_DRIVE_DIR / "SETUP.EXE")
             # install into D:\app, install RSX3D sound, do not install DirectX 5

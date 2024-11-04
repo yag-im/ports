@@ -1,4 +1,4 @@
-# Yag ports collection
+# Yag's Ports Collection
 
 ## Terms
 
@@ -8,54 +8,72 @@
    780a21c5-5635-4a6d-aece-c9267b4ac8ff: app release uuid (randomly generated uuid4)
    50000: user id
 
-PORTS_DATA_DIR=/mnt/ports_data - ports data dir mounted into the devcontainer.
+DATA_DIR=/mnt/data - ports data directory mounted into the devcontainer.
 
-`APP_SRC` - original apps' artifacts, e.g. a release image (CD/DVD), archived folder or GOG's innosetup exe file as well as patches and language packs, residing in:
+`APP_SRC` - original apps' artifacts, e.g. a release image (CD/DVD), archived folder or GOG's innosetup exe file as well
+as patches and language packs, reside in:
 
-    $PORTS_DATA_DIR/apps_src
+    $DATA_DIR/apps_src
 
 Example:
 
-    $PORTS_DATA_DIR/apps_src/the-pink-panther-hokus-pokus-pink/780a21c5-5635-4a6d-aece-c9267b4ac8ff/HPP.mdf
+    $DATA_DIR/apps_src/the-pink-panther-hokus-pokus-pink/780a21c5-5635-4a6d-aece-c9267b4ac8ff/HPP.mdf
 
-`RUNNER_BUNDLE` - folder containing common OS and runtime specific data, e.g. WINE bottle, Win3.11 folder for DosBox etc, resides in:
+`RUNNER_BUNDLE` - folder containing common OS and runtime specific data, e.g. WINE bottles, Win3.11 folders for DosBox
+etc, reside in:
 
-    $PORTS_DATA_DIR/runners
+    $DATA_DIR/runners
 
 Example: TODO
 
-`APP_BUNDLE` - combined RUNNER_BUNDLE and the APP_SRC data with all patches and config changes applied on the top, resides in:
+`APP_BUNDLE` - combined RUNNER_BUNDLE and the APP_SRC data with all patches and config changes applied on the top,
+reside in:
 
-    $PORTS_DATA_DIR/apps
+    $DATA_DIR/apps
 
 Example:
 
-    $PORTS_DATA_DIR/apps/the-pink-panther-hokus-pokus-pink/780a21c5-5635-4a6d-aece-c9267b4ac8ff/...
+    $DATA_DIR/apps/the-pink-panther-hokus-pokus-pink/780a21c5-5635-4a6d-aece-c9267b4ac8ff/...
 
 `APP_CLONE` - users' copy of an APP_BUNDLE, resides in:
 
-    $PORTS_DATA_DIR/clones
+    $DATA_DIR/clones
 
 Example:
 
-    $PORTS_DATA_DIR/clones/50000/the-pink-panther-hokus-pokus-pink/780a21c5-5635-4a6d-aece-c9267b4ac8ff/...
+    $DATA_DIR/clones/50000/the-pink-panther-hokus-pokus-pink/780a21c5-5635-4a6d-aece-c9267b4ac8ff/...
 
 ## Prerequisite
 
-Make sure that on the host machine:
+Before opening this project as devcontainer, make sure ports data directory (`~/yag/data/ports`) is created on the
+host machine:
 
-- ports data drive is properly mounted:
+Example 1: ports directory backed with a dedicated SSD drive:
 
-    Local folder (backed with a dedicated SSD drive):
+    sudo mount -t ntfs-3g -o rw,user,exec,uid=1000,gid=1000,dmask=0007,fmask=0007 /dev/sda1 /mnt/yag_data_drive
+    ln -s /mnt/yag_data_drive/yag_data/ports ~/yag/data/ports
 
-        sudo mount -t ntfs-3g -o rw,user,exec,uid=1000,gid=1000,dmask=0007,fmask=0007 /dev/sda1 /mnt/ports_data_drive
-        # ln -s /mnt/ports_data_drive/ports_data /mnt/ports_data
+Example 2: simple ports directory
 
-    (mounted inside the devcontainer as: $PORTS_DATA_DIR)
+    mkdir -p ~/yag/data/ports
 
-Update `mounts` in devcontainer.json afterwards.
+and mounted inside the devcontainer as: $DATA_DIR.
 
 From the ports data drive, `apps` will be distributed to appstor nodes in other regions (see lsyncd).
+
+### Publish ports
+
+In order to publish ports to remote appstor instances (optional step), you'll need to propagate bastion host keys inside
+the  devcontainer. For this copy:
+
+    infra/tofu/modules/bastion/files/secrets/prod/id_ed25519
+    infra/tofu/modules/bastion/files/secrets/prod/id_ed25519.pub
+
+into:
+
+    .devcontainer/secrets
+
+folder.
 
 ## Online databases
 

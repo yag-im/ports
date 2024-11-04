@@ -9,7 +9,7 @@ fi
 
 set -u
 
-APPS_SRC_ROOT_DIR=/mnt/ports_data/apps_src
+APPS_SRC_ROOT_DIR=$DATA_DIR/apps_src
 
 export APP_RELEASE_UUID=`uuidgen`
 export TZ="America/Los_Angeles"

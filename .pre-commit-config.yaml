@@ -14,12 +14,12 @@ repos:
     rev: 5.13.2
     hooks:
       - id: isort
-        args: [ ports, tests ]
+        args: [ ports, lib, yag, tests ]
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
       - id: black
-        args: [ ports, tests ]
+        args: [ ports, lib, yag, tests ]
   - repo: https://github.com/PyCQA/flake8
     rev: 7.1.1
     hooks:
@@ -31,16 +31,16 @@ repos:
     hooks:
       - id: gitlint
         args: [ --config=lint/.gitlint, --msg-filename ]
-  # - repo: https://github.com/pycqa/pylint
-  #   rev: v3.0.3
-  #   hooks:
-  #     - id: pylint
-  #       args:
-  #         [
-  #           --rcfile=lint/pylintrc,
-  #           --output-format=colorized,
-  #         ]
-  #       files: ports/
+  - repo: https://github.com/pycqa/pylint
+    rev: v3.3.1
+    hooks:
+      - id: pylint
+        args:
+          [
+            --rcfile=lint/pylintrc,
+            --output-format=colorized,
+          ]
+        files: "^(ports/|lib/|yag/).*"
   # - repo: https://github.com/pre-commit/mirrors-mypy
   #   rev: v1.8.0
   #   hooks:
@@ -50,10 +50,10 @@ repos:
   #         types-requests
   #       ]
   #       exclude: tests/
-#  - repo: https://github.com/PyCQA/bandit
-#    rev: 1.7.6
-#    hooks:
-#      - id: bandit
-#        args: [
-#            --exclude, tests
-#        ]
+  # - repo: https://github.com/PyCQA/bandit
+  #   rev: 1.7.6
+  #   hooks:
+  #     - id: bandit
+  #       args: [
+  #           --exclude, tests
+  #       ]

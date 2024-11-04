@@ -17,8 +17,8 @@ from typing import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DRIVE_LETTER,
-    BUNDLES_BASE_DIR,
     FIRST_CD_DRIVE_DIR,
+    RUNNERS_BUNDLES_BASE_DIR,
     SYSTEM_DRIVE_DIR,
     SYSTEM_DRIVE_LETTER,
 )
@@ -64,7 +64,10 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
         super().__init__(root_dir, conf, app_descr)
         # copy bundled system drive image: bundles/dosbox-x/win9x/C -> root_dir/C
         cp(
-            BUNDLES_BASE_DIR / self.conf.mod.value / f"{self.conf.flavor.value}-{self.conf.lang}" / SYSTEM_DRIVE_LETTER,
+            RUNNERS_BUNDLES_BASE_DIR
+            / self.conf.mod.value
+            / f"{self.conf.flavor.value}-{self.conf.lang}"
+            / SYSTEM_DRIVE_LETTER,
             self.root_dir,
         )
         # drive D can't be a folder as dosbox-x doesn't support persistent mounted folders in win9x env, only images
@@ -109,18 +112,18 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                         val = val.replace("\\", "\\\\")  # escape
                         val = f'"{val}"'  # quote
                     elif isinstance(val, int):
-                        val = "{:>08d}".format(val)  # pad with zeroes
+                        val = f"{val:>08d}"  # pad with zeroes
                         val = f"dword:{val}"
                     elif isinstance(val, PureWindowsPath):
                         val = str(val).replace("\\", "\\\\")
                         val = f'"{val}"'  # quote
                     else:
-                        raise Exception(f"unrecognized val type: {val}")
+                        raise ValueError(f"unrecognized val type: {val}")
                     f.write(f'"{subkey}"={val}\n')
                 f.write("\n")
             f.flush()
             # drive X becomes drive E (first CD drive) after booting into Win9x :(
-            self.run("C:\WINDOWS\REGEDIT.EXE", args=["/s", FIRST_CD_DRIVE_DIR / Path(f.name).name], umount_x=False)
+            self.run("C:\\WINDOWS\\REGEDIT.EXE", args=["/s", FIRST_CD_DRIVE_DIR / Path(f.name).name], umount_x=False)
 
     def set_display_params(self, screen_width: int, screen_height, color_bits: int):
         self.regedit(
@@ -170,10 +173,10 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 # intra-dosbox copy
                 cmds.append(DosCmdExec(LCOPY_CMD, [s, dst, *lcopy_cmd_options]))
             else:
-                raise Exception(f"unrecognized copy param type: {s}")
+                raise ValueError(f"unrecognized copy param type: {s}")
         self._run(cmds)
 
-    def run(self, path: PureWindowsPath, args: List[Any] = [], mock=False, exit=True, umount_x=True) -> None:
+    def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False, runexit=True, umount_x=True) -> None:
         """Runs existing app in the Win9x-flavored env (runs after Win9x is booted inside the DosBox instance).
 
         You'll need to copy a file beforehand if it doesn't exist in the flavored env.
@@ -181,9 +184,11 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
 
         mock: only propagate a new SYSTEM.INI and generate a dosbox.conf
         """
+        if args is None:
+            args = []
         with tempfile.TemporaryDirectory() as tmp_dir:
             shell_cmds = []
-            if exit:
+            if runexit:
                 shell_cmds.append("RUNEXIT.EXE")
             shell_cmds.append(path)
             if args:

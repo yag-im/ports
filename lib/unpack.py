@@ -35,7 +35,7 @@ def unpack_archive(src: Path, dest: Path, extract_files: List[str] = None, creat
     if image_format in {"zip", "sh"}:
         try:
             run_cmd(["unzip", str(src), "-d", str(dest)])
-        except Exception:
+        except Exception:  # pylint: disable=W0718
             pass  # mojosetup returns non-zero exit status
     elif image_format == "cab":
         with tempfile.TemporaryDirectory() as td:
@@ -67,7 +67,7 @@ def unpack_disc_image(
             run_cmd(["iat", src, tmp_iso_image])
             run_7z(tmp_iso_image, dest, extract_files, copy_tree)
     else:
-        raise Exception(f"Unrecognized image format: {image_format}")
+        raise ValueError(f"Unrecognized image format: {image_format}")
 
     if creates and not creates.exists():
         print(f"error: extracted archive doesn't contain expected file: {creates}, installer might be corrupted")
@@ -83,6 +83,6 @@ def unpack_innoextract(src: Path, dest: Path, creates: Path, is_gog: bool = Fals
     cmd_args.append(str(src))
     run_cmd(cmd_args)
     if not creates.exists():
-        raise Exception(
+        raise ValueError(
             f"error: extracted archive doesn't contain expected file: {creates}, installer might be corrupted"
         )

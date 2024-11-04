@@ -35,6 +35,7 @@ class Main(Installer):
                 unpack_disc_image(src_folder / f, dst_app_path, ["CLUSTERS", "MUSIC", "SMACKSHI", "SPEECH"])
                 move(dst_app_path / "SPEECH" / "SPEECH.CLU", dst_app_path / "SPEECH" / f"SPEECH{ix+1}.CLU")
             if app_desc.lang == "ru":
+                f = app_desc.distro.files[0]
                 with tempfile.TemporaryDirectory() as tmp_dir:
                     tmp_path = Path(tmp_dir)
                     ru_cd2_files = ["Clusters", "Music", "Smackshi", "Speech"]

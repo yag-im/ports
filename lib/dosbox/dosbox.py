@@ -40,7 +40,7 @@ T = TypeVar("T", bound=DosBoxConf)
 class DosBox(Protocol[T]):
     def __init__(self, root_dir: Path, conf: DosBoxConf, app_descr: AppDesc) -> None:
         if not root_dir.exists():
-            raise Exception(f"root dir doesn't exist: {root_dir}")
+            raise ValueError(f"root dir doesn't exist: {root_dir}")
         self.conf: T = conf
         self.root_dir = root_dir
         self.app_descr = app_descr
@@ -59,7 +59,9 @@ class DosBox(Protocol[T]):
             self.conf.aspect = False
         self.gen_run_script()
 
-    def mount(self, mount_points: Union[DosMountPoint, List[DosMountPoint]] = []):
+    def mount(self, mount_points: Union[DosMountPoint, List[DosMountPoint]] = None):
+        if mount_points is None:
+            mount_points = []
         return self.conf.mount(mount_points)
 
     def umount(self, drive_letter: Union[str, list[str]], remove: bool = False) -> None:

@@ -18,5 +18,5 @@ FIRST_CD_DRIVE_DIR = PureWindowsPath(f"{FIRST_CD_LETTER}:\\")
 SECOND_CD_DRIVE_DIR = PureWindowsPath(f"{SECOND_CD_LETTER}:\\")
 THIRD_CD_DRIVE_DIR = PureWindowsPath(f"{THIRD_CD_LETTER}:\\")
 
-RUNNERS_BASE_DIR = Path(os.environ["RUNNERS_DIR"])  # TODO: move to the base runners' class
-BUNDLES_BASE_DIR = RUNNERS_BASE_DIR / "bundles"
+RUNNERS_BASE_DIR = Path(os.environ["DATA_DIR"]) / "runners"  # TODO: move to the base runners' class
+RUNNERS_BUNDLES_BASE_DIR = RUNNERS_BASE_DIR / "bundles"

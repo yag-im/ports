@@ -61,14 +61,16 @@ class DosBoxConf:
 
     def mount(
         self,
-        mount_points: Union[DosMountPoint, List[DosMountPoint]] = [],
+        mount_points: Union[DosMountPoint, List[DosMountPoint]] = None,
     ) -> None:
         """Adds mounted image/folder"""
+        if mount_points is None:
+            mount_points = []
         if not isinstance(mount_points, List):
             mount_points = [mount_points]
         for p in mount_points:
             if not p.path.exists():
-                raise Exception(f"non-existing mount point: {p.path}")
+                raise ValueError(f"non-existing mount point: {p.path}")
             self.mount_points[p.letter] = p
 
     def umount_all(self, remove: bool = False, cd_only: bool = False) -> None:

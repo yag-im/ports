@@ -6,7 +6,7 @@ from lib.installer.utils import copy_cd_images_as_letters
 from lib.utils import copy
 
 
-def exec(task: dict, app_descr: AppDesc) -> None:
+def run(task: dict, app_descr: AppDesc) -> None:
     src = Path(task.get("src"))
     dest = Path(task.get("dest"))
     cd_images_as_letters = task.get("cd_images_as_letters", False)

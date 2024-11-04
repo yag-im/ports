@@ -38,18 +38,18 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
         dbox.run(path=PureWindowsPath(task.get("path")), args=task.get("args", []), mock=mock)
     elif isinstance(dbox, DosBoxWin3x):
         dbox.run(
-            path=PureWindowsPath(task.get("path")), args=task.get("args", []), exit=task.get("exit", True), mock=mock
+            path=PureWindowsPath(task.get("path")), args=task.get("args", []), runexit=task.get("exit", True), mock=mock
         )
     elif isinstance(dbox, DosBoxWin9x):
         dbox.run(
             path=PureWindowsPath(task.get("path")),
             args=task.get("args", []),
-            exit=task.get("exit", True),
+            runexit=task.get("exit", True),
             mock=mock,
             umount_x=task.get("unmount_x", True),
         )
     else:
-        raise Exception(f"unrecognized dbox: {dbox}")
+        raise ValueError(f"unrecognized dbox: {dbox}")
 
 
 def exec_subtask(app_descr: AppDesc, dbox: DosBox, task: dict) -> None:
@@ -85,10 +85,10 @@ def exec_subtask(app_descr: AppDesc, dbox: DosBox, task: dict) -> None:
         if cd_images_as_letters:
             dbox.umount_all(remove, cd_only=True)
     else:
-        raise Exception(f"unrecognized command: {cmd}")
+        raise ValueError(f"unrecognized command: {cmd}")
 
 
-def exec(task: dict, app_descr: AppDesc) -> None:
+def run(task: dict, app_descr: AppDesc) -> None:
     dosbox_conf = task.get("conf", {})
     flavor = DosBoxFlavor[str(task.get("flavor")).upper()]
     dosbox_conf["flavor"] = flavor
@@ -104,7 +104,7 @@ def exec(task: dict, app_descr: AppDesc) -> None:
     elif flavor == DosBoxFlavor.DOS:
         dbox = DosBoxDos(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxDosConf(**dosbox_conf))
     else:
-        raise Exception(f"unrecognized flavor {flavor}")
+        raise ValueError(f"unrecognized flavor {flavor}")
     task_: dict
     for task_ in task.get("tasks"):
         exec_subtask(app_descr, dbox, task_)

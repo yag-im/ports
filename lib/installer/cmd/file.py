@@ -17,7 +17,7 @@ def get_default_state(task: dict) -> str:
     return default_state
 
 
-def exec(task: dict) -> None:
+def run(task: dict) -> None:
     path = Path(task.get("path"))
     exists = path.exists()
     state = task.get("state", get_default_state(task))

@@ -2,8 +2,8 @@
 
 ## Vars
 
-    PORTS_DATA_DIR=/mnt/ports_data - ports data dir mounted into the ports' devcontainer
-    TMP_APP_SRC_DIR=$PORTS_DATA_DIR/tmp - dir for apps sources
+    DATA_DIR=/mnt/data - ports data dir mounted into the ports' devcontainer
+    TMP_APP_SRC_DIR=$DATA_DIR/tmp - dir for apps sources
     IGDB_SLUG - apps' IGDB slug (e.g. the-pink-panther-hokus-pokus-pink)
     APP_RELEASE_UUID - unique id generated for every new app release (e.g. 780a21c5-5635-4a6d-aece-c9267b4ac8ff)
 
@@ -18,7 +18,7 @@ This step includes following actions:
 
     - generating a new release uuid;
     - creating dir for app source files:
-        $PORTS_DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID;
+        $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID;
     - creating dir and templates for descriptor and installer script:
         $PORTS_ROOT_DIR/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml
         $PORTS_ROOT_DIR/ports/games/$IGDB_SLUG/install.py
@@ -45,12 +45,12 @@ Examples:
 **Step 2.1**
 Unpack all archived sources (iso, mdf etc) into the local app sources storage, e.g.:
 
-    $PORTS_DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID
+    $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID
 
 and remove original archives.
 
 **Step 2.2 [optional]**
-Download localized media assets (covers, screenshots) if any into the $PORTS_DATA_DIR/media folder.
+Download localized media assets (covers, screenshots) if any into the $DATA_DIR/media folder.
 
 ## Local install and test
 
@@ -65,7 +65,7 @@ Update local SQL DB instance by invoking `upsertAppRelease` function from `scrip
 We need to make sure everything works as expected locally. For that we need to install a new app into the local
 cluster first. This step includes:
 
-    - creating a new runner (if needed) in the `$PORTS_DATA_DIR/runners` folder;
+    - creating a new runner (if needed) in the `$DATA_DIR/runners` folder;
     - creating a new installer:
 
         /workspaces/ports/ports/games/$IGDB_SLUG/install.py
@@ -81,11 +81,11 @@ Run all devcontainers and open http://localhost:8080/ in the browser. Select and
 
 At that point, app sources should be located at:
 
-    $PORTS_DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID
+    $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID
 
 and app installed into:
 
-    $PORTS_DATA_DIR/apps/$IGDB_SLUG/$APP_RELEASE_UUID
+    $DATA_DIR/apps/$IGDB_SLUG/$APP_RELEASE_UUID
 
 **Step 4**
 Invoke:

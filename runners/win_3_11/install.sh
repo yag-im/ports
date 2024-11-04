@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RUNNERS_BASE_DIR=/mnt/ports_data/runners
+RUNNERS_BASE_DIR=$DATA_DIR/runners
 RUNNERS_SRC_DIR=$RUNNERS_BASE_DIR/src
 WIN311_SRC_DIR=$RUNNERS_SRC_DIR/win311
 
