@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$1" ]; then
-    echo "usage: init_port.sh igdb_slug"
+    echo "usage: setup.sh igdb_slug"
     exit 1
 fi
 
