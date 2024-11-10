@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - ANASTASIA.iso
+    format: 1CD
+    url: https://archive.org/download/anastasia_1997/ANASTASIA.iso
+  igdb_slug: anastasia-adventures-with-pooka-and-bartok
+  lang: en
+  media_assets:
+  name: "Anastasia: Adventures with Pooka and Bartok"
+  platform: win
+  publisher: Fox Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 5683
+    pcgw_id:
+    qz_id: 7914
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-11-10 10:47:50 America/Los_Angeles
+  uuid: 05017a07-dcbc-48fb-9b33-b8f78449b1f9
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+      src: "{SRC_DIR}"
+      dest: "{DEST_DIR}"
+      cd_images_as_letters: true
+    - dosbox:
+      flavor: WIN311
+      tasks:
+        - mount:
+          src: "{DEST_DIR}"
+          cd_images_as_letters: true
+        - run:
+          # proceed with a minimal CD installation, skip QT install
+          path: "{FIRST_CD_DRIVE_DIR}/SETUP.EXE"
+          exit: false
+        - gen_run_script:
+          path: "{APP_DIR}/ANASTASI.EXE"
