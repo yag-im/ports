@@ -9,6 +9,9 @@ descr:
   igdb_slug: cluedo-chronicles-fatal-illusion
   lang: en
   media_assets:
+    cover:
+      image_id: edeeaeb7-4a7e-4bbd-b7ae-1ebf3a107477
+    screenshots: []
   name: "Clue Chronicles: Fatal Illusion"
   platform: win
   publisher: Hasbro Interactive
