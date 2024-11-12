@@ -10,6 +10,7 @@ from pathlib import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import APP_DRIVE_LETTER
 from lib.errors import DistroNotFoundException
+from lib.unpack import unpack_disc_image
 from lib.utils import copy
 
 
@@ -20,6 +21,21 @@ def load_vars(module_name: str) -> dict:
         if name.isupper():
             constants[name] = value
     return constants
+
+
+def unpack_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], first_cd_letter: chr) -> None:
+    """Unpack CD images into letter folders, e.g.:
+
+    {src_dir}/1.iso -> {dst_dir}/E
+    {src_dir}/2.iso -> {dst_dir}/F
+    """
+    cd_letter = first_cd_letter
+    for f in files:
+        src_path = src_dir / f
+        if not src_path.exists():
+            raise DistroNotFoundException(src_path)
+        unpack_disc_image(src_path, dst_dir / cd_letter)
+        cd_letter = chr(ord(cd_letter) + 1)
 
 
 def copy_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], first_cd_letter: chr) -> None:
