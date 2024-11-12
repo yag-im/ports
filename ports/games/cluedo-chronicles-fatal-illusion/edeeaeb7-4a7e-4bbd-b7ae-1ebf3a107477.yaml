@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - CLUEC1D1.iso
+      - CLUEC1D2.iso
+      - CLUEC1D3.iso
+    format: 3CD
+    url: https://archive.org/compress/cluechronicles2000/formats=ISO%20IMAGE&file=/cluechronicles2000.zip
+  igdb_slug: cluedo-chronicles-fatal-illusion
+  lang: en
+  media_assets:
+  name: "Clue Chronicles: Fatal Illusion"
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id: 16453
+    lutris_id:
+    mg_id: 17219
+    pcgw_id:
+    qz_id: 1987
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: '9.0'
+  ts_added: 2024-11-11 18:20:21 America/Los_Angeles
+  uuid: edeeaeb7-4a7e-4bbd-b7ae-1ebf3a107477
+  year_released: 2000
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}"
+      dest: "{DEST_DIR}"
+      cd_images_as_letters: true
+    - wine:
+      tasks:
+        - mount:
+          letter: "{FIRST_CD_DRIVE_LETTER}"
+          src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          label: "CLUEC1D1"
+        - mount:
+          letter: "{SECOND_CD_DRIVE_LETTER}"
+          src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          label: "CLUEC1D2"
+        - mount:
+          letter: "{THIRD_CD_DRIVE_LETTER}"
+          src: "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+          label: "CLUEC1D3"
+        - run:
+          # install into D:\APP, skip DX install at the end
+          path: "{FIRST_CD_DRIVE_DIR}/Setup.exe"
+        - gen_run_script:
+          path: "{APP_DIR}/Fatal_Illusion.exe"

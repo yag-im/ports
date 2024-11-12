@@ -31,7 +31,7 @@ def install(app: str, release: str):
         p.run(app_descr, installer)
     else:
         m = f"ports.{category}.{app_slug}.install"
-        importlib.import_module(m).Main()
+        importlib.import_module(m).Main(app_descr)
     return 0
 
 

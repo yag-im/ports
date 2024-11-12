@@ -1,15 +1,27 @@
 from pathlib import Path
 from shutil import unpack_archive
 
+from lib.app_desc import AppDesc
+from lib.installer.const import FIRST_CD_DRIVE_LETTER
+from lib.installer.utils import unpack_cd_images_as_letters
 from lib.unpack import unpack_disc_image
 
 
-def run(task: dict) -> None:
+def run(task: dict, app_descr: AppDesc) -> None:
     src = Path(task.get("src"))
     files = task.get("files")
     dest = Path(task.get("dest"))
     copy_tree = task.get("copy_tree", False)
-    if src.suffix.lower()[1:] in ["iso", "nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:
-        unpack_disc_image(src, dest, files, copy_tree=copy_tree)
+    cd_images_as_letters = task.get("cd_images_as_letters", False)
+    if cd_images_as_letters:
+        unpack_cd_images_as_letters(
+            src_dir=src,
+            dst_dir=dest,
+            files=task.get("files", app_descr.distro.files),
+            first_cd_letter=task.get("first_cd_drive_letter", FIRST_CD_DRIVE_LETTER),
+        )
     else:
-        unpack_archive(src, dest, files)
+        if src.suffix.lower()[1:] in ["iso", "nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:
+            unpack_disc_image(src, dest, files, copy_tree=copy_tree)
+        else:
+            unpack_archive(src, dest, files)
