@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - CALLAHAN.ISO
+    format: 1CD
+    url: https://archive.org/download/CALLAHAN/CALLAHAN.ISO
+  igdb_slug: callahans-crosstime-saloon
+  lang: en
+  media_assets:
+  name: Callahan's Crosstime Saloon
+  platform: dos
+  publisher: Take-Two Interactive
+  refs:
+    ag_id: 15852
+    lutris_id: callahans-crosstime-saloon
+    mg_id: 2150
+    pcgw_id: Callahan%27s_Crosstime_Saloon
+    qz_id: 350
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-11-16 11:43:30 America/Los_Angeles
+  uuid: cdb30089-3550-4e7b-8847-b662b1e5d7d4
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_DIR}"
+    - dosbox:
+      flavor: DOS
+      tasks:
+        - mount:
+          letter: "{FIRST_CD_DRIVE_LETTER}"
+          src: "{DEST_DIR}/{descr[distro][files][0]}"
+        - run:
+          path: "{FIRST_CD_DRIVE}/CCS/INSTALL.EXE"
+        - gen_run_script:
+          path: "{APP_DIR}/CCS.EXE"
+    - copy:
+      src: "{SRC_FILES_DIR}/{item}"
+      dest: "{DEST_APP_DIR}"
+      loop:
+        - "DIG.INI"
