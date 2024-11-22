@@ -6,6 +6,10 @@ descr:
     url: https://archive.org/download/torins-passage-cd-rom-oem-ibm-1995/TORINIBM.ISO
   igdb_slug: torin-s-passage
   lang: de
+  media_assets:
+    cover:
+      image_id: 6f97ed3e-be6a-47ac-b98e-165af06be069
+    screenshots: []
   name: Torin's Passage
   platform: win
   publisher: Sierra On-Line
@@ -28,4 +32,19 @@ descr:
   ts_added: 2024-06-09 16:50:00 America/Los_Angeles
   uuid: 6f97ed3e-be6a-47ac-b98e-165af06be069
   year_released: 1995
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - GERMAN
+        - MOVIE
+        - RES*
+        - SVGA
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Torin's_Passage
+      tasks:
+        - gen_run_script:
+          game: sci:torin
+          path: "{DEST_APP_DIR}"

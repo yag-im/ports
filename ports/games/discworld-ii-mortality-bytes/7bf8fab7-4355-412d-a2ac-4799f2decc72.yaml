@@ -7,6 +7,10 @@ descr:
     url: https://rutracker.org/forum/viewtopic.php?t=43761
   igdb_slug: discworld-ii-mortality-bytes
   lang: ru
+  media_assets:
+    cover:
+      image_id: 7bf8fab7-4355-412d-a2ac-4799f2decc72
+    screenshots: []
   name: 'Дисклэнд II: Живите долго...?!'
   platform: win
   publisher: Psygnosis Limited
@@ -29,4 +33,37 @@ descr:
   ts_added: 2024-05-18 04:51:00 America/Los_Angeles
   uuid: 7bf8fab7-4355-412d-a2ac-4799f2decc72
   year_released: 1996
-installer: null
+installer:
+  vars:
+    DATA_FILENAME: ENGLISH
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DW2/*
+    - move:
+      src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
+      dest: "{DEST_APP_DIR}/{DATA_FILENAME}1.{item}"
+      loop:
+        - TXT
+        - SMP
+        - IDX
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DW2/*
+    - move:
+      src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
+      dest: "{DEST_APP_DIR}/{DATA_FILENAME}2.{item}"
+      loop:
+        - TXT
+        - SMP
+        - IDX
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Discworld_II:_Missing_Presumed...!%3F
+      tasks:
+        - gen_run_script:
+          game: tinsel:dw2
+          path: "{DEST_APP_DIR}"

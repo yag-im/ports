@@ -10,6 +10,7 @@ from pathlib import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import APP_DRIVE_LETTER
 from lib.errors import DistroNotFoundException
+from lib.installer.const import APP_DIR
 from lib.unpack import unpack_disc_image
 from lib.utils import copy
 
@@ -81,7 +82,10 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     final_vars = load_vars("lib.installer.const")
     final_vars["SRC_DIR"] = str(app_descr.src_path())
     final_vars["DEST_DIR"] = str(app_descr.dst_path())
-    final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DRIVE_LETTER / "APP")
+    if app_descr.runner.name in ("scummvm", "wine"):
+        final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DIR)
+    else:
+        final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DRIVE_LETTER / APP_DIR)
     final_vars["SRC_FILES_DIR"] = str(Path(os.environ.get("PORTS_ROOT_PATH")) / "games" / app_descr.app_slug / "files")
     final_vars["descr"] = asdict(app_descr)
     final_vars |= load_vars("lib.dosbox.const")
@@ -118,3 +122,7 @@ def transform_str_path(str_path: str) -> object:
         return PureWindowsPath(str_path)
     else:
         return Path(str_path)
+
+
+def to_bool(s: str) -> bool:
+    return s.lower() in ["true", "1", "t", "y", "yes"]

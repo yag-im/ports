@@ -29,4 +29,19 @@ descr:
   ts_added: 2024-10-08 15:27:30 America/Los_Angeles
   uuid: c744c938-8f8c-48fb-911c-88b63e638937
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - MUSIC
+        - MOVIE
+        - "*.000"
+        - RESOURCE.*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=Leisure_Suit_Larry_7
+      tasks:
+        - gen_run_script:
+          game: sci:lsl7
+          path: "{DEST_APP_DIR}"

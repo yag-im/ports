@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - King's Quest VII - The Princeless Bride v1.51 (1994)(Sierra).iso
+    format: 1CD
+    url: https://archive.org/download/Kings_Quest_VII_-_The_Princeless_Bride_v1.51_1994_Sierra/King%27s%20Quest%20VII%20-%20The%20Princeless%20Bride%20v1.51%20%281994%29%28Sierra%29.iso
+  igdb_slug: king-s-quest-vii-the-princeless-bride--1
+  lang: en
+  media_assets:
+  name: "King's Quest VII: The Princeless Bride"
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 15543
+    lutris_id: kings-quest-vii-the-princeless-bride
+    mg_id: 135
+    pcgw_id: King%27s_Quest_VII:_The_Princeless_Bride
+    qz_id: 228
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-11-17 12:13:43 America/Los_Angeles
+  uuid: 38feebc4-37e5-45ec-841c-13be2e18eb93
+  year_released: 1994
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - ALTRES.*
+        - AVI
+        - RESOURCE.*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=King%27s_Quest_VII
+      subtitles: false # disabling subtitiles due to issues in KQ7
+      tasks:
+        - gen_run_script:
+          game: sci
+          path: "{DEST_APP_DIR}"

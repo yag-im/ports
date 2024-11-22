@@ -6,7 +6,7 @@ descr:
     url: https://archive.org/details/chewy-esc-from-f5
   igdb_slug: chewy-escape-from-f5
   lang: en
-  name: 'Chewy: Escape from F5'
+  name: "Chewy: Escape from F5"
   platform: win
   publisher: Play Byte
   refs:
@@ -28,4 +28,22 @@ descr:
   ts_added: 2024-05-16 04:06:00 America/Los_Angeles
   uuid: 2299a60a-3c5b-4f37-a060-0baa382af05c
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - BACK
+        - CUT
+        - ERR
+        - MISC
+        - ROOM
+        - SOUND
+        - TXT
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=Chewy:_Esc_from_F5
+      tasks:
+        - gen_run_script:
+          game: chewy
+          path: "{DEST_APP_DIR}"

@@ -29,4 +29,20 @@ descr:
   ts_added: 2024-10-08 13:32:32 America/Los_Angeles
   uuid: 64fe19f6-dc21-4653-bb0c-ed0efa397e6f
   year_released: 1995
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - RESOURCE/FT.LA0
+        - RESOURCE/FT.LA1
+        - RESOURCE/MONSTER.SOU
+        - RESOURCE/DATA
+        - RESOURCE/VIDEO
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=Full_Throttle
+      tasks:
+        - gen_run_script:
+          game: scumm:ft
+          path: "{DEST_APP_DIR}"

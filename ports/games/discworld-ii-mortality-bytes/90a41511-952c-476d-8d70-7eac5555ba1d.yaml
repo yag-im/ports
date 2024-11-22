@@ -29,4 +29,38 @@ descr:
   ts_added: 2024-05-18 04:51:00 America/Los_Angeles
   uuid: 90a41511-952c-476d-8d70-7eac5555ba1d
   year_released: 1996
-installer: null
+installer:
+  vars:
+    DATA_FILENAME: US
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DW2/*
+    - move:
+      src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
+      dest: "{DEST_APP_DIR}/{DATA_FILENAME}1.{item}"
+      loop:
+        - TXT
+        - SMP
+        - IDX
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DW2/*
+    - move:
+      src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
+      dest: "{DEST_APP_DIR}/{DATA_FILENAME}2.{item}"
+      loop:
+        - TXT
+        - SMP
+        - IDX
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Discworld_II:_Missing_Presumed...!%3F
+      tasks:
+        - gen_run_script:
+          game: tinsel:dw2
+          lang: "us" # en-us -> us
+          path: "{DEST_APP_DIR}"

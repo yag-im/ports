@@ -6,6 +6,10 @@ descr:
     url: https://www.myabandonware.com/download/ko0-ace-ventura
   igdb_slug: ace-ventura
   lang: ru
+  media_assets:
+    cover:
+      image_id: b5525222-1abb-4b60-b942-d033d3211a6d
+    screenshots: []
   name: Эйс Вентура
   platform: win
   publisher: Amber Company

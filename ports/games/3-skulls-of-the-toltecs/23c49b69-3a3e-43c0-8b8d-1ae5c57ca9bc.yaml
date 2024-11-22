@@ -6,6 +6,10 @@ descr:
     url: https://archive.org/details/videogame_ggffrdejh
   igdb_slug: 3-skulls-of-the-toltecs
   lang: es
+  media_assets:
+    cover:
+      image_id: 23c49b69-3a3e-43c0-8b8d-1ae5c57ca9bc
+    screenshots: []
   name: Las 3 calaveras de los toltecas
   platform: dos
   publisher: WB Games

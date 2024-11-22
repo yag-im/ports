@@ -29,4 +29,20 @@ descr:
   ts_added: 2024-10-02 19:14:55 America/Los_Angeles
   uuid: 545fa0de-5d1a-4b20-8efb-c44862e3be5a
   year_released: 1995
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DIG/VIDEO
+        - DIG/DIG.LA0
+        - DIG/DIG.LA1
+        - DIG/DIGMUSIC.BUN
+        - DIG/DIGVOICE.BUN
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=The_Dig
+      tasks:
+        - gen_run_script:
+          game: dig
+          path: "{DEST_APP_DIR}"

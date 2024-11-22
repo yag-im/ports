@@ -6,6 +6,10 @@ descr:
     url: https://rutracker.org/forum/viewtopic.php?t=305003
   igdb_slug: the-pink-panther-hokus-pokus-pink
   lang: ru
+  media_assets:
+    cover:
+      image_id: 780a21c5-5635-4a6d-aece-c9267b4ac8ff
+    screenshots: []
   name: Розовая Пантера. Фокус-Покус
   platform: win
   publisher: Новый Диск
@@ -28,4 +32,19 @@ descr:
   ts_added: 2024-05-01 19:00:00 America/Los_Angeles
   uuid: 780a21c5-5635-4a6d-aece-c9267b4ac8ff
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - HPP.ORB
+        - HPP.DAT
+        - INSTALL/HPP.BRO
+        - INSTALL/HPP.EXE
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Hokus_Pokus_Pink
+      tasks:
+        - gen_run_script:
+          game: pink:pokus
+          path: "{DEST_APP_DIR}"

@@ -8,6 +8,7 @@ from lib.utils import copy
 
 def run(task: dict, app_descr: AppDesc) -> None:
     src = Path(task.get("src"))
+    # do not add support for multi-sources here; use loop/item in the playbook instead
     dest = Path(task.get("dest"))
     cd_images_as_letters = task.get("cd_images_as_letters", False)
     if cd_images_as_letters:

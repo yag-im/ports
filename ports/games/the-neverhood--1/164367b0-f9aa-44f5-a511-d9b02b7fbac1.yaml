@@ -28,4 +28,16 @@ descr:
   ts_added: 2024-05-23 19:30:00 America/Los_Angeles
   uuid: 164367b0-f9aa-44f5-a511-d9b02b7fbac1
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DATA/*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/The_Neverhood
+      tasks:
+        - gen_run_script:
+          game: neverhood
+          path: "{DEST_APP_DIR}"

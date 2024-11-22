@@ -28,4 +28,18 @@ descr:
   ts_added: 2024-05-23 20:11:00 America/Los_Angeles
   uuid: e845a6a8-7515-49a1-83fe-011f2db1860e
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - INSTALL/PPTP.BRO
+        - INSTALL/PPTP.EXE
+        - PPTP.ORB
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Passport_to_Peril
+      tasks:
+        - gen_run_script:
+          game: pink:peril
+          path: "{DEST_APP_DIR}"

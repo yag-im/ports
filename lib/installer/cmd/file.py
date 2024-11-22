@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from lib.utils import rm
+
 
 def get_default_state(task: dict) -> str:
     # Default is the current state of the file if it exists, directory if recurse=yes, or file otherwise.
@@ -25,3 +27,5 @@ def run(task: dict) -> None:
         if exists:
             return
         path.mkdir(parents=True)
+    elif state == "absent":
+        rm(path)

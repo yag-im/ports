@@ -6,6 +6,10 @@ descr:
     url: https://rutracker.org/forum/viewtopic.php?t=630236
   igdb_slug: ufos
   lang: ru
+  media_assets:
+    cover:
+      image_id: b129f0b8-3a66-4c5e-b01c-595bbf8976a8
+    screenshots: []
   name: Невероятные приключения Сникерса в России
   platform: win
   publisher: Fargus Multimedia
@@ -28,4 +32,16 @@ descr:
   ts_added: 2024-06-09 16:10:00 America/Los_Angeles
   uuid: b129f0b8-3a66-4c5e-b01c-595bbf8976a8
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - UFOS/*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/UFOs
+      tasks:
+        - gen_run_script:
+          game: gnap
+          path: "{DEST_APP_DIR}"

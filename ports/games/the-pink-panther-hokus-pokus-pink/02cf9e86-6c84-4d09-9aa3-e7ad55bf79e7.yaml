@@ -6,6 +6,10 @@ descr:
     url: https://www.myabandonware.com/download/pgg-the-pink-panther-hokus-pokus-pink
   igdb_slug: the-pink-panther-hokus-pokus-pink
   lang: se
+  media_assets:
+    cover:
+      image_id: 02cf9e86-6c84-4d09-9aa3-e7ad55bf79e7
+    screenshots: []
   name: Rosa Pantern i Hokus Pokus Panter
   platform: win
   publisher: Ravensburger Interactive Media GmbH
@@ -28,4 +32,18 @@ descr:
   ts_added: 2024-05-01 19:00:00 America/Los_Angeles
   uuid: 02cf9e86-6c84-4d09-9aa3-e7ad55bf79e7
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - HPP.BRO
+        - HPP.ORB
+        - INSTALL/HPP.EXE
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Hokus_Pokus_Pink
+      tasks:
+        - gen_run_script:
+          game: pink:pokus
+          path: "{DEST_APP_DIR}"

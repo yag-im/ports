@@ -30,4 +30,34 @@ descr:
   ts_added: 2024-10-06 08:54:43 America/Los_Angeles
   uuid: d68d2976-a150-4362-a334-93b911234440
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - CLUSTERS
+        - MUSIC
+        - SMACKSHI
+        - SPEECH
+    - move:
+      src: "{DEST_APP_DIR}/SPEECH/SPEECH.CLU"
+      dest: "{DEST_APP_DIR}/SPEECH/SPEECH1.CLU"
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - CLUSTERS
+        - MUSIC
+        - SMACKSHI
+        - SPEECH
+    - move:
+      src: "{DEST_APP_DIR}/SPEECH/SPEECH.CLU"
+      dest: "{DEST_APP_DIR}/SPEECH/SPEECH2.CLU"
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=Broken_Sword_1
+      tasks:
+        - gen_run_script:
+          game: sword1:sword1
+          lang: gb
+          path: "{DEST_APP_DIR}"
