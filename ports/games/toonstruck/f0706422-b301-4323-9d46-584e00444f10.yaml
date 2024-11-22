@@ -29,4 +29,23 @@ descr:
   ts_added: 2024-05-24 02:29:00 America/Los_Angeles
   uuid: f0706422-b301-4323-9d46-584e00444f10
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - ACT1
+        - MISC
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - ACT2
+        - MISC
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Versailles_1685
+      tasks:
+        - gen_run_script:
+          game: toon
+          path: "{DEST_APP_DIR}"

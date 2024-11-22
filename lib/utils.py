@@ -12,6 +12,7 @@ from mako.template import Template
 
 
 def rm(src: Path) -> None:
+    print(f"removing: {src}")
     if src.is_dir():
         shutil.rmtree(src)
     else:

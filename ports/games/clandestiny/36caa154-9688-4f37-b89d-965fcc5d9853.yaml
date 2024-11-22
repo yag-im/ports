@@ -29,4 +29,21 @@ descr:
   ts_added: 2024-05-16 04:51:00 America/Los_Angeles
   uuid: 36caa154-9688-4f37-b89d-965fcc5d9853
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{item}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - GROOVIE
+        - MEDIA
+        - SYSTEM
+      loop:
+        - "{SRC_DIR}/{descr[distro][files][0]}"
+        - "{SRC_DIR}/{descr[distro][files][1]}"
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Clandestiny
+      tasks:
+        - gen_run_script:
+          game: groovie:clandestiny
+          path: "{DEST_APP_DIR}"

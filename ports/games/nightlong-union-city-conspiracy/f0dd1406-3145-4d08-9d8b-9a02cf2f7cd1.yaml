@@ -31,4 +31,27 @@ descr:
   ts_added: 2024-10-01 12:50:05 America/Los_Angeles
   uuid: f0dd1406-3145-4d08-9d8b-9a02cf2f7cd1
   year_released: 1999
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - AUTORUN/DATA.NL
+        - FMV
+        - DATA
+    - extract:
+      src: "{item}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - FMV
+        - DATA
+      loop:
+        - "{SRC_DIR}/{descr[distro][files][1]}"
+        - "{SRC_DIR}/{descr[distro][files][2]}"
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=Nightlong:_Union_City_Conspiracy
+      tasks:
+        - gen_run_script:
+          game: trecision:nl
+          path: "{DEST_APP_DIR}"

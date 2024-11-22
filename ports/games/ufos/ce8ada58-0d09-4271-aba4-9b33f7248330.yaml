@@ -28,4 +28,16 @@ descr:
   ts_added: 2024-06-09 15:36:00 America/Los_Angeles
   uuid: ce8ada58-0d09-4271-aba4-9b33f7248330
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - UFOS/*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/UFOs
+      tasks:
+        - gen_run_script:
+          game: gnap
+          path: "{DEST_APP_DIR}"

@@ -28,4 +28,19 @@ descr:
   ts_added: 2024-06-09 16:50:00 America/Los_Angeles
   uuid: 5a0f46e6-5386-41aa-a01f-3f3e981050b1
   year_released: 1995
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - ENGLISH
+        - MOVIE
+        - RES*
+        - SVGA
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Torin's_Passage
+      tasks:
+        - gen_run_script:
+          game: sci:torin
+          path: "{DEST_APP_DIR}"

@@ -6,6 +6,10 @@ descr:
     url: https://www.myabandonware.com/download/1dlp-ace-ventura
   igdb_slug: ace-ventura
   lang: de
+  media_assets:
+    cover:
+      image_id: 1fb6329b-6823-4fc0-bbd3-336f21871dba
+    screenshots: []
   name: Ace Ventura
   platform: win
   publisher: Bomico Entertainment Software

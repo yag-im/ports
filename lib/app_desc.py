@@ -28,12 +28,18 @@ class AppDesc:
         patches: t.Optional[list[str]]
         url: str
 
+    @dataclass
+    class Runner:
+        name: str
+        ver: str
+
     app_slug: str
     app_reqs: AppReqs
     distro: Distro
     lang: str
     platform: str
     release_uuid: str
+    runner: Runner
     year_released: int
 
     def src_path(self):
@@ -62,5 +68,9 @@ class AppDesc:
             lang=app_descr["lang"],
             platform=app_descr["platform"],
             release_uuid=release_uuid,
+            runner=AppDesc.Runner(
+                name=app_descr["runner"]["name"],
+                ver=app_descr["runner"]["ver"],
+            ),
             year_released=app_descr["year_released"],
         )

@@ -19,7 +19,7 @@ descr:
     pcgw_id: Blade_Runner
     qz_id: 84
   reqs:
-    color_bits: 8
+    color_bits: 16
     midi: false
     screen_height: 480
     screen_width: 640
@@ -31,4 +31,52 @@ descr:
   ts_added: 2024-07-21 18:12:00 America/Los_Angeles
   uuid: a0176d18-ca43-4279-979f-eab22b871267
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - CD1/*
+        - BASE/COREANIM.DAT
+        - BASE/MODE.MIX
+        - BASE/MUSIC.MIX
+        - BASE/SFX.MIX
+        - BASE/SPCHSFX.TLK
+        - BASE/STARTUP.MIX
+    - move:
+      src: "{DEST_APP_DIR}/CDFRAMES.DAT"
+      dest: "{DEST_APP_DIR}/CDFRAMES1.DAT"
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - CD2/*
+    - move:
+      src: "{DEST_APP_DIR}/CDFRAMES.DAT"
+      dest: "{DEST_APP_DIR}/CDFRAMES2.DAT"
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][2]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - CD3/*
+    - move:
+      src: "{DEST_APP_DIR}/CDFRAMES.DAT"
+      dest: "{DEST_APP_DIR}/CDFRAMES3.DAT"
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][3]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - CD4/*
+    - move:
+      src: "{DEST_APP_DIR}/CDFRAMES.DAT"
+      dest: "{DEST_APP_DIR}/CDFRAMES4.DAT"
+    - extract:
+      src: "{SRC_DIR}/Blade_Runner_Subtitles-v8.zip"
+      dest: "{DEST_APP_DIR}"
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=Blade_Runner
+      tasks:
+        - gen_run_script:
+          game: bladerunner
+          path: "{DEST_APP_DIR}"

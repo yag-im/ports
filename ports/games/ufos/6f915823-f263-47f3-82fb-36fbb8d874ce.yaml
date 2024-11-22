@@ -6,6 +6,10 @@ descr:
     url: https://rutracker.org/forum/viewtopic.php?t=2215297
   igdb_slug: ufos
   lang: ru
+  media_assets:
+    cover:
+      image_id: 6f915823-f263-47f3-82fb-36fbb8d874ce
+    screenshots: []
   name: Приключения инопланетянина
   platform: win
   publisher: Akella
@@ -28,4 +32,16 @@ descr:
   ts_added: 2024-06-09 16:00:00 America/Los_Angeles
   uuid: 6f915823-f263-47f3-82fb-36fbb8d874ce
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - UFOS/*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/UFOs
+      tasks:
+        - gen_run_script:
+          game: gnap
+          path: "{DEST_APP_DIR}"

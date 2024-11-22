@@ -31,4 +31,19 @@ descr:
   ts_added: 2024-05-07 02:44:00 America/Los_Angeles
   uuid: ccb42a2a-a90b-494e-9033-2fdcf376ca88
   year_released: 1995
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{item}"
+      dest: "{DEST_APP_DIR}"
+      loop:
+        - "{SRC_DIR}/{descr[distro][files][0]}"
+        - "{SRC_DIR}/{descr[distro][files][1]}"
+        - "{SRC_DIR}/{descr[distro][files][2]}"
+        - "{SRC_DIR}/{descr[distro][files][3]}"
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/The_11th_Hour
+      tasks:
+        - gen_run_script:
+          game: groovie:11h
+          path: "{DEST_APP_DIR}"

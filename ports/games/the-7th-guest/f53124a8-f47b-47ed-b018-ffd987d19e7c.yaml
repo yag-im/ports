@@ -29,4 +29,33 @@ descr:
   ts_added: 2024-09-10 22:55:00 America/Los_Angeles
   uuid: f53124a8-f47b-47ed-b018-ffd987d19e7c
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - T7G/*.GJD
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - T7G/INSTALL/*.GJD
+        - T7G/INSTALL/*.GRV
+        - T7G/INSTALL/*.RL
+        - T7G/INSTALL/FAT.*
+        - T7G/INSTALL/SPHINX.FNT
+        - T7G/*.GJD
+    - copy:
+      # manually ripped audio tracks for ScummVM
+      src: "{item}"
+      dest: "{DEST_APP_DIR}"
+      loop:
+        - "{SRC_DIR}/track1.flac"
+        - "{SRC_DIR}/track2.flac"
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=The_7th_Guest
+      tasks:
+        - gen_run_script:
+          game: groovie:t7g
+          path: "{DEST_APP_DIR}"

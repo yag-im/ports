@@ -6,7 +6,7 @@ descr:
     url: https://www.myabandonware.com/download/pgf-the-pink-panther-hokus-pokus-pink
   igdb_slug: the-pink-panther-hokus-pokus-pink
   lang: en
-  name: 'The Pink Panther: Hokus Pokus Pink'
+  name: "The Pink Panther: Hokus Pokus Pink"
   platform: win
   publisher: Ravensburger Interactive Media GmbH
   refs:
@@ -28,4 +28,18 @@ descr:
   ts_added: 2024-05-01 19:00:00 America/Los_Angeles
   uuid: 653cc955-8e32-4fb6-b44c-5d43897e0219
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - HPP.ORB
+        - INSTALL/HPP.BRO
+        - INSTALL/HPP.EXE
+    - scummvm:
+      # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Hokus_Pokus_Pink
+      tasks:
+        - gen_run_script:
+          game: pink:pokus
+          path: "{DEST_APP_DIR}"

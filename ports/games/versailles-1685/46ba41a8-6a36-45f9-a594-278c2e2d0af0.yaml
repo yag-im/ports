@@ -29,4 +29,23 @@ descr:
   ts_added: 2024-05-04 20:11:00 America/Los_Angeles
   uuid: 46ba41a8-6a36-45f9-a594-278c2e2d0af0
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][0]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DATAS_V/*
+        - INSTALL/DATA/*
+        - INSTALL/DOS/VERSAILL.PGM
+    - extract:
+      src: "{SRC_DIR}/{descr[distro][files][1]}"
+      dest: "{DEST_APP_DIR}"
+      files:
+        - DATAS_V/*
+    - scummvm:
+      # https://wiki.scummvm.org/index.php/Versailles_1685
+      tasks:
+        - gen_run_script:
+          game: cryomni3d:versailles
+          path: "{DEST_APP_DIR}"
