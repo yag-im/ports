@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - MTI1.ISO
+      - MTI2.ISO
+      - MTI3.ISO
+    format: 3CD
+    url: https://archive.org/details/mti-1
+  igdb_slug: muppet-treasure-island
+  lang: en
+  media_assets:
+  name: Muppet Treasure Island
+  platform: win
+  publisher: Activision
+  refs:
+    ag_id: 16556
+    lutris_id: muppet-treasure-island
+    mg_id: 6477
+    pcgw_id: Muppet_Treasure_Island
+    qz_id: 843
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.8.1
+  ts_added: 2024-11-29 12:21:19 America/Los_Angeles
+  uuid: c0d6ea35-52c4-4352-88ac-ef767d7b3bb6
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATA_MTI/MTPLAY32
+          - DATA_MTI/MTI1.MPL
+          - DATA_MTI/MTI2.MPX
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATA_MTI/MTI3.MPX
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATA_MTI/MTI4.MPX
+          - DATA_MTI/VIDEO
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Muppet_Treasure_Island
+        tasks:
+          - gen_run_script:
+              game: mtropolis:mti
+              lang: en
+              path: "{DEST_APP_DIR}"
