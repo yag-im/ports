@@ -31,19 +31,19 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - BACK
-        - CUT
-        - ERR
-        - MISC
-        - ROOM
-        - SOUND
-        - TXT
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - BACK
+          - CUT
+          - ERR
+          - MISC
+          - ROOM
+          - SOUND
+          - TXT
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Chewy:_Esc_from_F5
-      tasks:
-        - gen_run_script:
-          game: chewy
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Chewy:_Esc_from_F5
+        tasks:
+          - gen_run_script:
+              game: chewy
+              path: "{DEST_APP_DIR}"

@@ -31,15 +31,15 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - INSTALL/PPTP.BRO
-        - INSTALL/PPTP.EXE
-        - PPTP.ORB
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - INSTALL/PPTP.BRO
+          - INSTALL/PPTP.EXE
+          - PPTP.ORB
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Passport_to_Peril
-      tasks:
-        - gen_run_script:
-          game: pink:peril
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Passport_to_Peril
+        tasks:
+          - gen_run_script:
+              game: pink:peril
+              path: "{DEST_APP_DIR}"

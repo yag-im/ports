@@ -36,33 +36,33 @@ descr:
 installer:
   tasks:
     - copy:
-      src: "{SRC_DIR}"
-      dest: "{DEST_DIR}"
-      cd_images_as_letters: true
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
     - dosbox:
-      flavor: WIN95OSR21
-      conf:
-        app_drive_size: 2000
-      tasks:
-        - mount:
-          src: "{DEST_DIR}"
-          cd_images_as_letters: true
-        - run:
-          path: "{THIRD_CD_DRIVE}/SETUP.EXE"
-        - run:
-          path: "{THIRD_CD_DRIVE}/DirectX/dxsetup.exe"
-        - copy:
-          src:
-            - "{item}/*.avi"
-            - "{item}/*.id"
-            - "{item}/*.str"
-          dest: "{APP_DIR}"
-          loop:
-            - "{FIRST_CD_DRIVE}"
-            - "{SECOND_CD_DRIVE}"
-            - "{THIRD_CD_DRIVE}"
-        - umount:
-          src: "{DEST_DIR}"
-          cd_images_as_letters: true
-        - gen_run_script:
-          path: "{APP_DIR}/PETKA.EXE"
+        flavor: WIN95OSR21
+        conf:
+          app_drive_size: 2000
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{THIRD_CD_DRIVE}/SETUP.EXE"
+          - run:
+              path: "{THIRD_CD_DRIVE}/DirectX/dxsetup.exe"
+          - copy:
+              src:
+                - "{item}/*.avi"
+                - "{item}/*.id"
+                - "{item}/*.str"
+              dest: "{APP_DIR}"
+              loop:
+                - "{FIRST_CD_DRIVE}"
+                - "{SECOND_CD_DRIVE}"
+                - "{THIRD_CD_DRIVE}"
+          - umount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{APP_DIR}/PETKA.EXE"

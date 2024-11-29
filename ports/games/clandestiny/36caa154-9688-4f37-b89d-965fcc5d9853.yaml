@@ -32,18 +32,18 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{item}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - GROOVIE
-        - MEDIA
-        - SYSTEM
-      loop:
-        - "{SRC_DIR}/{descr[distro][files][0]}"
-        - "{SRC_DIR}/{descr[distro][files][1]}"
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - GROOVIE
+          - MEDIA
+          - SYSTEM
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
     - scummvm:
-      # https://wiki.scummvm.org/index.php/Clandestiny
-      tasks:
-        - gen_run_script:
-          game: groovie:clandestiny
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/Clandestiny
+        tasks:
+          - gen_run_script:
+              game: groovie:clandestiny
+              path: "{DEST_APP_DIR}"

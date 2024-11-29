@@ -31,14 +31,14 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - WOODRUFF.ITK
-        - INTRO.STK
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - WOODRUFF.ITK
+          - INTRO.STK
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=The_Bizarre_Adventures_of_Woodruff_and_the_Schnibble
-      tasks:
-        - gen_run_script:
-          game: gob:woodruff
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=The_Bizarre_Adventures_of_Woodruff_and_the_Schnibble
+        tasks:
+          - gen_run_script:
+              game: gob:woodruff
+              path: "{DEST_APP_DIR}"

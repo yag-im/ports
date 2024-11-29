@@ -99,22 +99,24 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
 def unwind_loops(root: dict, variables: dict) -> None:
     unw_tasks = []
     for t in root["tasks"]:
-        fmt_task = subst_vars(t, variables)
+        cmd = list(t.keys())[0]
+        task_body = t[cmd]
+        if "tasks" in task_body:
+            task_body["tasks"] = unwind_loops(task_body, variables)
+        fmt_task = subst_vars(task_body, variables)
         if "loop" in fmt_task:
             for item in fmt_task["loop"]:
                 fmt_item = subst_vars(fmt_task, variables={"item": item})
                 del fmt_item["loop"]
-                unw_tasks.append(fmt_item)
+                unw_tasks.append({cmd: fmt_item})
         else:
-            if "tasks" in fmt_task:
-                unwind_loops(fmt_task, variables)
-            unw_tasks.append(fmt_task)
-    root["tasks"] = unw_tasks
+            unw_tasks.append({cmd: fmt_task})
+    return unw_tasks
 
 
 def prepare_tasks(app_descr: AppDesc, installer: dict):
     """Performs tokens substitution and loops unwinding"""
-    unwind_loops(installer, enrich_vars(app_descr, installer))
+    installer["tasks"] = unwind_loops(installer, enrich_vars(app_descr, installer))
 
 
 def transform_str_path(str_path: str) -> object:

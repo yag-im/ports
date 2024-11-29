@@ -31,28 +31,28 @@ descr:
 installer:
   tasks:
     - copy:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
     - extract:
-      src: "{DEST_DIR}/{descr[distro][files][0]}"
-      files:
-        - GOODSTUF/*
-        - OPTION1/*
-        - SETUP/*
-      dest: "{DEST_APP_DIR}"
-      copy_tree: True
+        src: "{DEST_DIR}/{descr[distro][files][0]}"
+        files:
+          - GOODSTUF/*
+          - OPTION1/*
+          - SETUP/*
+        dest: "{DEST_APP_DIR}"
+        copy_tree: True
     - copy:
-      src: "{SRC_FILES_DIR}/{item}"
-      dest: "{DEST_APP_DIR}"
-      loop:
-        - "RIDDLE.CFG"
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "RIDDLE.CFG"
     - dosbox:
-      flavor: DOS
-      tasks:
-        - mount:
-          letter: "{FIRST_CD_DRIVE_LETTER}"
-          src: "{DEST_DIR}/{descr[distro][files][0]}"
-        - gen_run_script:
-          path: "{APP_DIR}/RIDDLE.EXE"
-          args:
-            - "-c" # in MASTERLU.BAT it's: "-c %1 %2 %3 %4 %5 %6 %7 %8 %9"
+        flavor: DOS
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: "{APP_DIR}/RIDDLE.EXE"
+              args:
+                - "-c" # in MASTERLU.BAT it's: "-c %1 %2 %3 %4 %5 %6 %7 %8 %9"

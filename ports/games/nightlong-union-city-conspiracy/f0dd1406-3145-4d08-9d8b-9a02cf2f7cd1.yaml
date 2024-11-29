@@ -34,24 +34,24 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - AUTORUN/DATA.NL
-        - FMV
-        - DATA
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - AUTORUN/DATA.NL
+          - FMV
+          - DATA
     - extract:
-      src: "{item}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - FMV
-        - DATA
-      loop:
-        - "{SRC_DIR}/{descr[distro][files][1]}"
-        - "{SRC_DIR}/{descr[distro][files][2]}"
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - FMV
+          - DATA
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Nightlong:_Union_City_Conspiracy
-      tasks:
-        - gen_run_script:
-          game: trecision:nl
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Nightlong:_Union_City_Conspiracy
+        tasks:
+          - gen_run_script:
+              game: trecision:nl
+              path: "{DEST_APP_DIR}"

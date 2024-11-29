@@ -85,4 +85,4 @@ Preferrably it should be also present in:
 - [Adventure Gamer](https://adventuregamers.com)
 - [PC Gaming Wiki](https://www.pcgamingwiki.com/wiki/Home)
 
-TODO: scrapers should sync SQLDB with IGDB periodically.
+TODO: scrapers job should sync SQLDB with IGDB periodically.

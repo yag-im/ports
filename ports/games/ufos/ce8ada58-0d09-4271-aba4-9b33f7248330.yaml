@@ -31,13 +31,13 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - UFOS/*
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - UFOS/*
     - scummvm:
-      # https://wiki.scummvm.org/index.php/UFOs
-      tasks:
-        - gen_run_script:
-          game: gnap
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/UFOs
+        tasks:
+          - gen_run_script:
+              game: gnap
+              path: "{DEST_APP_DIR}"

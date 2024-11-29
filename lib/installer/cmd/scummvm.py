@@ -8,8 +8,9 @@ from lib.scummvm.scummvm import (
 )
 
 
-def exec_subtask(scummvm: ScummVm, task: dict, app_descr: AppDesc) -> None:
-    cmd = next(iter(task))
+def exec_subtask(task: dict, scummvm: ScummVm, app_descr: AppDesc) -> None:
+    cmd = list(task.keys())[0]
+    task = task[cmd]
     if cmd == CMD_GEN_RUN_SCRIPT:
         game = task.get("game")
         lang = task.get("lang", app_descr.lang)
@@ -30,4 +31,4 @@ def run(task: dict, app_descr: AppDesc) -> None:
     )
     task_: dict
     for task_ in task.get("tasks"):
-        exec_subtask(scummvm, task_, app_descr)
+        exec_subtask(task_, scummvm, app_descr)

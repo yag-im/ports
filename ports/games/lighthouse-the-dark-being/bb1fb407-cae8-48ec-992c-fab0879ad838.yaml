@@ -33,26 +33,26 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
     - move:
-      src: "{DEST_APP_DIR}/RESOURCE.AUD"
-      dest: "{DEST_APP_DIR}/RESAUD.001"
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.001"
     - file:
-      path: "{item}"
-      state: absent
-      loop:
-        - "{DEST_APP_DIR}/DEMOS"
-        - "{DEST_APP_DIR}/DIRECTX"
+        path: "{item}"
+        state: absent
+        loop:
+          - "{DEST_APP_DIR}/DEMOS"
+          - "{DEST_APP_DIR}/DIRECTX"
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][1]}"
-      dest: "{DEST_APP_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
     - move:
-      src: "{DEST_APP_DIR}/RESOURCE.AUD"
-      dest: "{DEST_APP_DIR}/RESAUD.002"
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.002"
     - scummvm:
-      # https://wiki.scummvm.org/index.php/Lighthouse
-      tasks:
-        - gen_run_script:
-          game: sci
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/Lighthouse
+        tasks:
+          - gen_run_script:
+              game: sci
+              path: "{DEST_APP_DIR}"
