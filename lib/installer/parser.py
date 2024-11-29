@@ -7,6 +7,7 @@ from lib.installer.cmd.extract import run as exec_extract
 from lib.installer.cmd.file import run as exec_file
 from lib.installer.cmd.innoextract import run as exec_innoextract
 from lib.installer.cmd.move import run as exec_move
+from lib.installer.cmd.replace import run as exec_replace
 from lib.installer.cmd.scummvm import run as exec_scummvm
 from lib.installer.cmd.wine import run as exec_wine
 from lib.installer.utils import prepare_tasks
@@ -17,6 +18,7 @@ CMD_EXTRACT = "extract"
 CMD_FILE = "file"
 CMD_INNOEXTRACT = "innoextract"
 CMD_MOVE = "move"
+CMD_REPLACE = "replace"
 CMD_SCUMMVM = "scummvm"
 CMD_WINE = "wine"
 
@@ -25,8 +27,9 @@ class Parser:
     def __init__(self) -> None:
         pass
 
-    def exec_task(self, app_descr: AppDesc, task: dict) -> None:
-        cmd = next(iter(task))
+    def exec_task(self, task: dict, app_descr: AppDesc) -> None:
+        cmd = list(task.keys())[0]
+        task = task[cmd]
         if cmd == CMD_COPY:
             exec_copy(task, app_descr)
         elif cmd == CMD_DOSBOX:
@@ -39,6 +42,8 @@ class Parser:
             exec_innoextract(task)
         elif cmd == CMD_MOVE:
             exec_move(task)
+        elif cmd == CMD_REPLACE:
+            exec_replace(task)
         elif cmd == CMD_SCUMMVM:
             exec_scummvm(task, app_descr)
         elif cmd == CMD_WINE:
@@ -51,4 +56,4 @@ class Parser:
         prepare_tasks(app_descr, installer)
         tasks: list[dict] = installer.get("tasks")
         for task in tasks:
-            self.exec_task(app_descr, task)
+            self.exec_task(task, app_descr)

@@ -32,14 +32,14 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - MONKEY2.000
-        - MONKEY2.001
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - MONKEY2.000
+          - MONKEY2.001
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Monkey_Island_2:_LeChuck%27s_Revenge
-      tasks:
-        - gen_run_script:
-          game: scumm:monkey2
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Monkey_Island_2:_LeChuck%27s_Revenge
+        tasks:
+          - gen_run_script:
+              game: scumm:monkey2
+              path: "{DEST_APP_DIR}"

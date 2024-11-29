@@ -36,50 +36,50 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - CLUSTERS
-        - MUSIC
-        - SMACKSHI
-        - SPEECH
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CLUSTERS
+          - MUSIC
+          - SMACKSHI
+          - SPEECH
     - move:
-      src: "{DEST_APP_DIR}/SPEECH/SPEECH.CLU"
-      dest: "{DEST_APP_DIR}/SPEECH/SPEECH1.CLU"
+        src: "{DEST_APP_DIR}/SPEECH/SPEECH.CLU"
+        dest: "{DEST_APP_DIR}/SPEECH/SPEECH1.CLU"
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][1]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - Clusters
-        - Music
-        - Smackshi
-        - Speech
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Clusters
+          - Music
+          - Smackshi
+          - Speech
     - move:
-      src: "{DEST_APP_DIR}/Speech/SPEECH.CLU"
-      dest: "{DEST_APP_DIR}/Speech/SPEECH2.CLU"
+        src: "{DEST_APP_DIR}/Speech/SPEECH.CLU"
+        dest: "{DEST_APP_DIR}/Speech/SPEECH2.CLU"
     - move:
-      src: "{DEST_APP_DIR}/Clusters/*"
-      dest: "{DEST_APP_DIR}/CLUSTERS"
+        src: "{DEST_APP_DIR}/Clusters/*"
+        dest: "{DEST_APP_DIR}/CLUSTERS"
     - move:
-      src: "{DEST_APP_DIR}/Music/*"
-      dest: "{DEST_APP_DIR}/MUSIC"
+        src: "{DEST_APP_DIR}/Music/*"
+        dest: "{DEST_APP_DIR}/MUSIC"
     - move:
-      src: "{DEST_APP_DIR}/Smackshi/*"
-      dest: "{DEST_APP_DIR}/SMACKSHI"
+        src: "{DEST_APP_DIR}/Smackshi/*"
+        dest: "{DEST_APP_DIR}/SMACKSHI"
     - move:
-      src: "{DEST_APP_DIR}/Speech/*"
-      dest: "{DEST_APP_DIR}/SPEECH"
+        src: "{DEST_APP_DIR}/Speech/*"
+        dest: "{DEST_APP_DIR}/SPEECH"
     - file:
-      path: "{DEST_APP_DIR}/{item}"
-      state: absent
-      loop:
-        - Clusters
-        - Music
-        - Smackshi
-        - Speech
+        path: "{DEST_APP_DIR}/{item}"
+        state: absent
+        loop:
+          - Clusters
+          - Music
+          - Smackshi
+          - Speech
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Broken_Sword_1
-      tasks:
-        - gen_run_script:
-          game: sword1:sword1
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Broken_Sword_1
+        tasks:
+          - gen_run_script:
+              game: sword1:sword1
+              path: "{DEST_APP_DIR}"

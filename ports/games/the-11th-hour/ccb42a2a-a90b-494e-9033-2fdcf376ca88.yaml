@@ -34,16 +34,16 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{item}"
-      dest: "{DEST_APP_DIR}"
-      loop:
-        - "{SRC_DIR}/{descr[distro][files][0]}"
-        - "{SRC_DIR}/{descr[distro][files][1]}"
-        - "{SRC_DIR}/{descr[distro][files][2]}"
-        - "{SRC_DIR}/{descr[distro][files][3]}"
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
     - scummvm:
-      # https://wiki.scummvm.org/index.php/The_11th_Hour
-      tasks:
-        - gen_run_script:
-          game: groovie:11h
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/The_11th_Hour
+        tasks:
+          - gen_run_script:
+              game: groovie:11h
+              path: "{DEST_APP_DIR}"

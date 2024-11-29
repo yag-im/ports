@@ -31,13 +31,13 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - DATA/*
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATA/*
     - scummvm:
-      # https://wiki.scummvm.org/index.php/The_Neverhood
-      tasks:
-        - gen_run_script:
-          game: neverhood
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/The_Neverhood
+        tasks:
+          - gen_run_script:
+              game: neverhood
+              path: "{DEST_APP_DIR}"

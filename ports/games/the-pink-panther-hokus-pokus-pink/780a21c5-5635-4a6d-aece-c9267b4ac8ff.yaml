@@ -35,16 +35,16 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - HPP.ORB
-        - HPP.DAT
-        - INSTALL/HPP.BRO
-        - INSTALL/HPP.EXE
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - HPP.ORB
+          - HPP.DAT
+          - INSTALL/HPP.BRO
+          - INSTALL/HPP.EXE
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Hokus_Pokus_Pink
-      tasks:
-        - gen_run_script:
-          game: pink:pokus
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Hokus_Pokus_Pink
+        tasks:
+          - gen_run_script:
+              game: pink:pokus
+              path: "{DEST_APP_DIR}"

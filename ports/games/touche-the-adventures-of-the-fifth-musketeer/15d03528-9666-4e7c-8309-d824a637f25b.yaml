@@ -31,15 +31,15 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - DATABASE/TOUCHE.DAT
-        - OBJ
-        - V*
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATABASE/TOUCHE.DAT
+          - OBJ
+          - V*
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Touch%C3%A9:_The_Adventures_of_the_Fifth_Musketeer
-      tasks:
-        - gen_run_script:
-          game: touche
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Touch%C3%A9:_The_Adventures_of_the_Fifth_Musketeer
+        tasks:
+          - gen_run_script:
+              game: touche
+              path: "{DEST_APP_DIR}"

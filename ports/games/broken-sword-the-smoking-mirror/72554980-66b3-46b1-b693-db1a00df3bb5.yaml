@@ -33,37 +33,37 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - Clusters/*.clu
-        - Clusters/SCRIPTS.CLU
-        - Clusters/*.inf
-        - Clusters/*.tab
-        - Clusters/Credits.bmp
-        - Smacks/*.smk
-        - Sword2/*.inf
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Clusters/*.clu
+          - Clusters/SCRIPTS.CLU
+          - Clusters/*.inf
+          - Clusters/*.tab
+          - Clusters/Credits.bmp
+          - Smacks/*.smk
+          - Sword2/*.inf
     - move:
-      src: "{DEST_APP_DIR}/{item}.clu"
-      dest: "{DEST_APP_DIR}/{item}1.clu"
-      loop:
-        - Music
-        - speech
+        src: "{DEST_APP_DIR}/{item}.clu"
+        dest: "{DEST_APP_DIR}/{item}1.clu"
+        loop:
+          - Music
+          - speech
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][1]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - Clusters/*.clu
-        - Smacks/*.smk
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Clusters/*.clu
+          - Smacks/*.smk
     - move:
-      src: "{DEST_APP_DIR}/{item}.clu"
-      dest: "{DEST_APP_DIR}/{item}2.clu"
-      loop:
-        - Music
-        - speech
+        src: "{DEST_APP_DIR}/{item}.clu"
+        dest: "{DEST_APP_DIR}/{item}2.clu"
+        loop:
+          - Music
+          - speech
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Broken_Sword_2
-      tasks:
-        - gen_run_script:
-          game: sword2:sword2
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Broken_Sword_2
+        tasks:
+          - gen_run_script:
+              game: sword2:sword2
+              path: "{DEST_APP_DIR}"

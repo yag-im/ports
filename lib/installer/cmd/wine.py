@@ -23,8 +23,9 @@ def exec_run(wine: Wine, task: dict):
     )
 
 
-def exec_subtask(wine: Wine, task: dict) -> None:
-    cmd = next(iter(task))
+def exec_subtask(task: dict, wine: Wine) -> None:
+    cmd = list(task.keys())[0]
+    task = task[cmd]
     if cmd == CMD_MOUNT:
         wine.add_cdrom(
             letter=task.get("letter"),
@@ -46,4 +47,4 @@ def run(task: dict, app_descr: AppDesc) -> None:
     wine = Wine(dst_dir)
     task_: dict
     for task_ in task.get("tasks"):
-        exec_subtask(wine, task_)
+        exec_subtask(task_, wine)

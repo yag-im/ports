@@ -1,0 +1,87 @@
+descr:
+  distro:
+    files:
+      - ELKMOON_1.bin
+      - ELKMOON_2.bin
+    format: 2CD
+    url: https://archive.org/details/santa_fe_mysteries_the_elk_moon_murder_usa
+  igdb_slug: santa-fe-mysteries-the-elk-moon-murder
+  lang: en
+  media_assets:
+  name: "Santa Fe Mysteries: The Elk Moon Murder"
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id: 15452
+    lutris_id:
+    mg_id: 4802
+    pcgw_id:
+    qz_id: 381
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-11-26 21:09:28 America/Los_Angeles
+  uuid: 340d865f-95da-4c29-8c35-bce75a606988
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/EMDOS.EXE"
+    - file:
+        path: "{DEST_APP_DIR}/RESOURCE"
+        state: directory
+    - copy:
+        src: "{DEST_DIR}/{FIRST_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}/RESOURCE"
+        loop:
+          - "*.AVI"
+          - "*.WAV"
+          - "VOL.001"
+          - "CDROM/*.ATS"
+          - "CDROM/*.FNT"
+          - "CDROM/*.MSG"
+          - "CDROM/*.TGA"
+    - copy:
+        src: "{DEST_DIR}/{FIRST_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "CDROM/RESOURCE.INI"
+          - "CDROM/RESOURCE.MAP"
+          - "DOS/DOS4GW.EXE"
+          - "DOS/EMDOS.EXE"
+          - "DOS/EMDOS.INI"
+          - "DOS/*.386"
+          - "DOS/*.BNK"
+    - copy:
+        src: "{DEST_DIR}/{SECOND_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}/RESOURCE"
+        loop:
+          - "*.AVI"
+          - "*.WAV"
+          - "VOL.002"
+    - copy:
+        src: "{SRC_FILES_DIR}/SETSOUND.CFG"
+        dest: "{DEST_APP_DIR}"
+    - replace:
+        path: "{DEST_APP_DIR}/RESOURCE.INI"
+        regexp: "d\\:"
+        replace: "D\\:\\/APP\\/RESOURCE"
+    - file:
+        path: "{item}"
+        state: absent
+        loop:
+          - "{DEST_DIR}/{FIRST_CD_LETTER}"
+          - "{DEST_DIR}/{SECOND_CD_LETTER}"

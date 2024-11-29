@@ -32,17 +32,17 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - DIG/VIDEO
-        - DIG/DIG.LA0
-        - DIG/DIG.LA1
-        - DIG/DIGMUSIC.BUN
-        - DIG/DIGVOICE.BUN
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DIG/VIDEO
+          - DIG/DIG.LA0
+          - DIG/DIG.LA1
+          - DIG/DIGMUSIC.BUN
+          - DIG/DIGVOICE.BUN
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=The_Dig
-      tasks:
-        - gen_run_script:
-          game: dig
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=The_Dig
+        tasks:
+          - gen_run_script:
+              game: dig
+              path: "{DEST_APP_DIR}"

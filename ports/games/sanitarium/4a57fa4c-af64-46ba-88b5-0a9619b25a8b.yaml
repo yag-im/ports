@@ -33,19 +33,19 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{item}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - Data/*
-      loop:
-        - "{SRC_DIR}/{descr[distro][files][2]}"
-        - "{SRC_DIR}/{descr[distro][files][1]}"
-        - "{SRC_DIR}/{descr[distro][files][0]}"
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Data/*
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][0]}"
     - scummvm:
-      # https://wiki.scummvm.org/index.php/Sanitarium
-      # going in reverse order so files from CD #1 overwrite the rest, see scummvm wiki
-      # also make sure *_volume settings are explicitly defined in scummvm.ini, or game will start muted
-      tasks:
-        - gen_run_script:
-          game: asylum
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/Sanitarium
+        # going in reverse order so files from CD #1 overwrite the rest, see scummvm wiki
+        # also make sure *_volume settings are explicitly defined in scummvm.ini, or game will start muted
+        tasks:
+          - gen_run_script:
+              game: asylum
+              path: "{DEST_APP_DIR}"

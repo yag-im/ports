@@ -32,20 +32,20 @@ descr:
 installer:
   tasks:
     - copy:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
     - dosbox:
-      flavor: DOS
-      tasks:
-        - mount:
-          letter: "{FIRST_CD_DRIVE_LETTER}"
-          src: "{DEST_DIR}/{descr[distro][files][0]}"
-        - run:
-          path: "{FIRST_CD_DRIVE}/CCS/INSTALL.EXE"
-        - gen_run_script:
-          path: "{APP_DIR}/CCS.EXE"
+        flavor: DOS
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/CCS/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/CCS.EXE"
     - copy:
-      src: "{SRC_FILES_DIR}/{item}"
-      dest: "{DEST_APP_DIR}"
-      loop:
-        - "DIG.INI"
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "DIG.INI"

@@ -38,32 +38,32 @@ installer:
     DATA_FILENAME: ENGLISH
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - DW2/*
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DW2/*
     - move:
-      src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
-      dest: "{DEST_APP_DIR}/{DATA_FILENAME}1.{item}"
-      loop:
-        - TXT
-        - SMP
-        - IDX
+        src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
+        dest: "{DEST_APP_DIR}/{DATA_FILENAME}1.{item}"
+        loop:
+          - TXT
+          - SMP
+          - IDX
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][1]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - DW2/*
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DW2/*
     - move:
-      src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
-      dest: "{DEST_APP_DIR}/{DATA_FILENAME}2.{item}"
-      loop:
-        - TXT
-        - SMP
-        - IDX
+        src: "{DEST_APP_DIR}/{DATA_FILENAME}.{item}"
+        dest: "{DEST_APP_DIR}/{DATA_FILENAME}2.{item}"
+        loop:
+          - TXT
+          - SMP
+          - IDX
     - scummvm:
-      # https://wiki.scummvm.org/index.php/Discworld_II:_Missing_Presumed...!%3F
-      tasks:
-        - gen_run_script:
-          game: tinsel:dw2
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/Discworld_II:_Missing_Presumed...!%3F
+        tasks:
+          - gen_run_script:
+              game: tinsel:dw2
+              path: "{DEST_APP_DIR}"

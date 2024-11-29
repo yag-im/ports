@@ -52,8 +52,9 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
         raise ValueError(f"unrecognized dbox: {dbox}")
 
 
-def exec_subtask(app_descr: AppDesc, dbox: DosBox, task: dict) -> None:
-    cmd = next(iter(task))
+def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
+    cmd = list(task.keys())[0]
+    task = task[cmd]
     if cmd == CMD_COPY:
         src = task.get("src")
         if isinstance(src, str):
@@ -90,7 +91,7 @@ def exec_subtask(app_descr: AppDesc, dbox: DosBox, task: dict) -> None:
 
 def run(task: dict, app_descr: AppDesc) -> None:
     dosbox_conf = task.get("conf", {})
-    flavor = DosBoxFlavor[str(task.get("flavor")).upper()]
+    flavor = DosBoxFlavor[str(task.get("flavor", "DOS")).upper()]
     dosbox_conf["flavor"] = flavor
     mod = task.get("mod", None)
     if mod:
@@ -107,4 +108,4 @@ def run(task: dict, app_descr: AppDesc) -> None:
         raise ValueError(f"unrecognized flavor {flavor}")
     task_: dict
     for task_ in task.get("tasks"):
-        exec_subtask(app_descr, dbox, task_)
+        exec_subtask(task_, app_descr, dbox)

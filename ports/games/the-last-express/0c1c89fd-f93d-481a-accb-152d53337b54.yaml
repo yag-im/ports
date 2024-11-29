@@ -34,26 +34,26 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - CD1.HPF
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CD1.HPF
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][1]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - CD2.HPF
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CD2.HPF
     - extract:
-      src: "{SRC_DIR}/{descr[distro][files][2]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - CD3.HPF
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CD3.HPF
     - copy:
-      src: "{SRC_DIR}/{descr[distro][files][3]}"
-      dest: "{DEST_APP_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][3]}"
+        dest: "{DEST_APP_DIR}"
     - scummvm:
-      # https://wiki.scummvm.org/index.php/The_Last_Express
-      tasks:
-        - gen_run_script:
-          game: lastexpress
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php/The_Last_Express
+        tasks:
+          - gen_run_script:
+              game: lastexpress
+              path: "{DEST_APP_DIR}"

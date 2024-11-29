@@ -36,6 +36,7 @@ def move(src: Path, dst: Path, copy_tree: bool = False) -> None:
 
 
 def _copy_norm_path(path: Path):
+    # escapes special symbols in paths (* and ?)
     # 3 skulls of the toltecs, Spanish version: ESPA?OL
     for sym in ("*", "?"):
         # a*b should become a"*"b, same for a?b
@@ -51,7 +52,6 @@ def copy(src: Union[Path, list[Path]], dst: Path, copy_tree: bool = False) -> No
     """
     copies /a/* into /b/a/* when copy_tree is False (default)
     copies /a/* into /b/* when copy_tree is True
-    creates destination directory if it doesn't exist in all cases
     """
     if isinstance(src, Path):
         src = [src]

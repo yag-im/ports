@@ -37,25 +37,25 @@ descr:
 installer:
   tasks:
     - extract:
-      src: "{SRC_DIR}"
-      dest: "{DEST_DIR}"
-      cd_images_as_letters: true
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
     - wine:
-      tasks:
-        - mount:
-          letter: "{FIRST_CD_DRIVE_LETTER}"
-          src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
-          label: "CLUEC1D1"
-        - mount:
-          letter: "{SECOND_CD_DRIVE_LETTER}"
-          src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
-          label: "CLUEC1D2"
-        - mount:
-          letter: "{THIRD_CD_DRIVE_LETTER}"
-          src: "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
-          label: "CLUEC1D3"
-        - run:
-          # install into D:\APP, skip DX install at the end
-          path: "{FIRST_CD_DRIVE_DIR}/Setup.exe"
-        - gen_run_script:
-          path: "{APP_DIR}/Fatal_Illusion.exe"
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: "CLUEC1D1"
+          - mount:
+              letter: "{SECOND_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+              label: "CLUEC1D2"
+          - mount:
+              letter: "{THIRD_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+              label: "CLUEC1D3"
+          - run:
+              # install into D:\APP, skip DX install at the end
+              path: "{FIRST_CD_DRIVE_DIR}/Setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Fatal_Illusion.exe"

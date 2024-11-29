@@ -32,18 +32,18 @@ descr:
 installer:
   tasks:
     - innoextract:
-      src: "{SRC_DIR}/{descr[distro][files][0]}"
-      dest: "{DEST_APP_DIR}"
-      files:
-        - app/*
-      gog: false
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - app/*
+        gog: false
     - extract: # patch
-      src: "{SRC_DIR}/{descr[distro][files][1]}"
-      dest: "{DEST_APP_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
     - scummvm:
-      # https://wiki.scummvm.org/index.php?title=Sword25
-      tasks:
-        - gen_run_script:
-          game: sword25
-          lang: en
-          path: "{DEST_APP_DIR}"
+        # https://wiki.scummvm.org/index.php?title=Sword25
+        tasks:
+          - gen_run_script:
+              game: sword25
+              lang: en
+              path: "{DEST_APP_DIR}"
