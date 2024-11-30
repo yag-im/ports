@@ -38,6 +38,10 @@ def exec_subtask(task: dict, wine: Wine) -> None:
     elif cmd == CMD_GEN_RUN_SCRIPT:
         path = PureWindowsPath(task.get("path"))
         wine.gen_run_script(app_exec=path.name, work_dir=path.parent)
+    elif cmd == "winetricks":
+        cmd_ = task.get("cmd")
+        quiet = task.get("quiet", False)
+        wine.run_winetricks(cmd_, quiet=quiet)
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 
