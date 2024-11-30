@@ -1,6 +1,6 @@
 # Runners
 
-## APP_BUNDLEs structure
+## APP_RELEASE_BUNDLE structure
 
 ## scummvm
 
@@ -10,9 +10,9 @@
 
 ## wine
 
-    .wine - wine bottle with win and app deps if any. Contains drive_c folder.
+    .wine - wine bottle with win and app deps (if any). Also contains a `drive_c` folder.
     D - app folder mounted as D:
-        - usually contains only a single 'app' folder
+        - usually contains only a single 'APP' folder with app release data
     E - CD1 folder mounted as E: (optional)
     F - CD2 folder mounted as F: (optional)
     run.sh
@@ -218,9 +218,3 @@ Copy [RUNEXIT.EXE](https://github.com/yag-im/runexit) into `C:\WINDOWS`.
 ## dosbox
 
 see win311 section in dosbox-x
-
-
-# FAQ
-
-Q: dosbox win9x installer closes immediately
-A: use runexit=False
