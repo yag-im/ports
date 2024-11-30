@@ -1,0 +1,97 @@
+descr:
+  distro:
+    files:
+      - Spycraft - The Great Game (USA) (Disc 1).bin
+      - Spycraft - The Great Game (USA, Europe) (Disc 2).bin
+      - Spycraft - The Great Game (USA) (Disc 3).bin
+    format: 3CD
+    url: https://archive.org/details/SpycraftTheGreatGameUSA
+  igdb_slug: spycraft-the-great-game
+  lang: en
+  media_assets:
+  name: "Spycraft: The Great Game"
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id: 15572
+    lutris_id: spycraft-the-great-game
+    mg_id: 966
+    pcgw_id: Spycraft:_The_Great_Game
+    qz_id: 408
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-11-30 10:54:00 America/Los_Angeles
+  uuid: bfbfe57b-92f3-4024-9cfc-e7ecfdbc54f8
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/SPYDOS.EXE"
+    - file:
+        path: "{DEST_APP_DIR}/RESOURCE"
+        state: directory
+    - copy:
+        src: "{DEST_DIR}/{FIRST_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}/RESOURCE"
+        loop:
+          - "*.AVI"
+          - "*.WAV"
+          - "VOL.001"
+          - "ANIMS/*.ATS"
+          - "CDROM/*.TGA"
+    - copy:
+        src: "{DEST_DIR}/{FIRST_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "CDROM/RESOURCE.INI"
+          - "CDROM/RESOURCE.MAP"
+          - "DOS/DOS4GW.EXE"
+          - "DOS/SPYDOS.EXE"
+          - "DOS/SPYDOS.INI"
+          - "DOS/*.386"
+          - "DOS/*.BNK"
+    - copy:
+        src: "{DEST_DIR}/{SECOND_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}/RESOURCE"
+        loop:
+          - "*.AVI"
+          - "*.WAV"
+          - "VOL.002"
+    - copy:
+        src: "{DEST_DIR}/{THIRD_CD_LETTER}/{item}"
+        dest: "{DEST_APP_DIR}/RESOURCE"
+        loop:
+          - "*.AVI"
+          - "*.WAV"
+          - "VOL.003"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - SETSOUND.CFG
+          - SPYCRAFT.INI
+    - replace:
+        path: "{DEST_APP_DIR}/RESOURCE.INI"
+        regexp: "d\\:"
+        replace: "D\\:\\/APP\\/RESOURCE"
+    - file:
+        path: "{item}"
+        state: absent
+        loop:
+          - "{DEST_DIR}/{FIRST_CD_LETTER}"
+          - "{DEST_DIR}/{SECOND_CD_LETTER}"
+          - "{DEST_DIR}/{THIRD_CD_LETTER}"
