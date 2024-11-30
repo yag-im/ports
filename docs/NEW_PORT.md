@@ -112,7 +112,7 @@ Post a new release message to the https://discord.com/channels/12512066208226386
 
 ## FAQ:
 
-Q: Game cursor appears in a semi-transparent square (e.g. "James Camerons' Titanic" and "Escape From The Haunted House")
+Q: Game cursor appears in a semi-transparent square (e.g. "James Camerons' Titanic", "Escape From The Haunted House", "Peter Gabriel: Eve")
 A: Set color_bits to 24
 
 Q: How to rip audio tracks?

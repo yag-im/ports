@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Peter Gabriel - EVE - The Music and Art Adventure (Peter Gabriel) (1996).ISO
+    format: 1CD
+    url: https://archive.org/download/Peter_Gabriel_EVE_The_Music_and_Art_Adventure_Peter_Gabriel_1996/Peter%20Gabriel%20-%20EVE%20-%20The%20Music%20and%20Art%20Adventure%20%28Peter%20Gabriel%29%20%281996%29.ISO
+  igdb_slug: peter-gabriel-eve
+  lang: en
+  media_assets:
+  name: "Peter Gabriel: Eve"
+  platform: win
+  publisher: Real World Multimedia
+  refs:
+    ag_id: 23757
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id: 1337
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "9.0"
+  ts_added: 2024-11-29 15:03:37 America/Los_Angeles
+  uuid: 0281ef0f-45dd-4508-be38-a8f8261f8c4a
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        # TODO: fix QT issue (video is not playing when clicking numbers 1-7 in the house), switch to dosbox (Win95)
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              # install into D:\APP, then install QT 2.1 from the same disk
+              path: "{FIRST_CD_DRIVE_DIR}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/eve.exe"

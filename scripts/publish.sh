@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "usage: publish_prod.sh IGDB_SLUG RELEASE_UUID"
+    echo "usage: publish.sh IGDB_SLUG RELEASE_UUID"
     exit 1
 fi
 
