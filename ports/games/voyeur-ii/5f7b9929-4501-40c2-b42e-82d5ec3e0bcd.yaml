@@ -1,0 +1,64 @@
+descr:
+  distro:
+    files:
+      - Voyeur II - Watching Is Not Enough (InterWeave)(Disc 1)(1996).iso
+      - Voyeur II - Watching Is Not Enough (InterWeave)(Disc 2)(1996).iso
+    format: 2CD
+    url: https://archive.org/details/Voyeur_II_Watching_Is_Not_Enough_InterWeave
+  igdb_slug: voyeur-ii
+  lang: en
+  media_assets:
+  name: Voyeur II
+  platform: dos
+  publisher: Philips Interactive Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 3971
+    pcgw_id: Voyeur_II
+    qz_id: 3583
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-11-29 16:54:25 America/Los_Angeles
+  uuid: 5f7b9929-4501-40c2-b42e-82d5ec3e0bcd
+  year_released: 1996
+installer:
+  vars:
+    # the only supported installation path
+    APP_DIR: C:\\VOYEURII
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - file:
+        path: "{DEST_DIR}/C/VOYEURII"
+        state: directory
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - copy:
+              src: "{FIRST_CD_DRIVE_DIR}/VOLS/{item}"
+              dest: "{APP_DIR}"
+              loop:
+                - DOS4GW.EXE
+                - V2.EXE
+          - gen_run_script:
+              path: "{APP_DIR}/V2.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_DIR}/C/VOYEURII"
+        loop:
+          - "DIG.INI"

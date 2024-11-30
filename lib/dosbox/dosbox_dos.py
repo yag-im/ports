@@ -45,7 +45,7 @@ class DosBoxDosConf(DosBoxConf):
 class DosBoxDos(DosBox[DosBoxConf]):
     def __init__(self, root_dir: Path, app_descr: AppDesc, conf: DosBoxConf = DosBoxDosConf()) -> None:
         super().__init__(root_dir, conf, app_descr)
-        self.system_drive.mkdir(exist_ok=False)
+        self.system_drive.mkdir(exist_ok=True)
         copy(
             RUNNERS_BUNDLES_BASE_DIR / self.conf.mod.value / "dos",
             self.system_drive,
