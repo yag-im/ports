@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - "Amber - Journeys Beyond (USA).bin"
+    format: 1CD
+    url: https://archive.org/details/amber-journeys-beyond-usa-original
+  igdb_slug: amber-journeys-beyond
+  lang: en
+  media_assets:
+  name: "Amber: Journeys Beyond"
+  platform: win
+  publisher: Hue Forest Entertainment
+  refs:
+    ag_id: 15778
+    lutris_id:
+    mg_id: 2430
+    pcgw_id: "Amber:_Journeys_Beyond"
+    qz_id: 217
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-11-30 14:00:44 America/Los_Angeles
+  uuid: 8e74d585-d4b7-457b-9416-c69e2c610c76
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        conf:
+          app_drive_size: 50
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/AMBER_JB.EXE"
