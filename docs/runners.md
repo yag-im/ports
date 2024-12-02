@@ -37,6 +37,8 @@
         Power management -> Turn Off Hard Disks: Never
         Display settings -> 16 bit
         Mouse -> Set slowest motion speed
+        Adjust Date/Time -> Timezone Tab -> Set "UTC" timezone and disable "Automatically Adjust Clock..."
+            (otherwise it may popup unexpectedly interrupting execution flow)
 
     Folder options:
         Classic style
