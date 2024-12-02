@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - Heroes2_Gold.cue
+      - Heroes2_Gold.bin
+    format: 1CD
+    url: https://archive.org/details/heroes-2-gold
+  igdb_slug: heroes-of-might-and-magic-ii-gold
+  lang: en
+  media_assets:
+  name: "Heroes of Might and Magic II: Gold"
+  platform: win
+  publisher: The 3DO Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 32082
+    pcgw_id: Heroes_of_Might_and_Magic_II
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-11-30 19:29:18 America/Los_Angeles
+  uuid: 9b4603c4-4147-418c-8315-3bcad19faa26
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              # TODO: {FIRST_CD_DRIVE}/SETUP.EXE fails to start without explorer.exe
+              path: "EXPLORER.EXE"
+              exit: false
+              # after installation completes, click "yes" to reboot and run app
+              # this is a mandaroty step to init all registry keys,
+              # otherwise regedit changes on the next step will be lost on the first app run
+          - regedit:
+              path: "HKEY_LOCAL_MACHINE\\SOFTWARE\\New World Computing\\Heroes of Might and Magic 2\\1.0"
+              values:
+                - Main Game Color Mouse Cursor: 1
+                - Slow Video: 0
+          - gen_run_script:
+              path: "{APP_DIR}/HEROES2W.EXE"

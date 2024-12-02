@@ -29,8 +29,15 @@ from lib.installer.utils import transform_str_path
 CMD_COPY = "copy"
 CMD_GEN_RUN_SCRIPT = "gen_run_script"
 CMD_MOUNT = "mount"
+CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
 CMD_UMOUNT = "umount"
+
+
+def exec_regedit(dbox: DosBoxWin9x, task: dict):
+    key_path = task.get("path")
+    values = task.get("values")
+    dbox.regedit({key_path: values})
 
 
 def exec_run(dbox: DosBox, task: dict, mock=False):
@@ -78,6 +85,8 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
                     label=task.get("label", None),
                 )
             )
+    elif cmd == CMD_REGEDIT:
+        exec_regedit(dbox, task)
     elif cmd == CMD_RUN:
         exec_run(dbox, task)
     elif cmd == CMD_UMOUNT:
