@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      - Heaven's Dawn - The Final Hope.iso
+    format: 1CD
+    url: https://www.myabandonware.com/game/heaven-s-dawn-321
+  igdb_slug: heavens-dawn
+  lang: en
+  media_assets:
+  name: Heaven's Dawn
+  platform: dos
+  publisher: Art 9 Entertainment Inc.
+  refs:
+    ag_id: 36424
+    lutris_id:
+    mg_id: 45120
+    pcgw_id: Heaven%27s_Dawn
+    qz_id: 923
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-01 18:15:09 America/Los_Angeles
+  uuid: 44863734-b2f0-4765-8149-4fdcf49adddb
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - extract:
+        src: "{DEST_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - HEAVEN/HD/*
+    - dosbox:
+        conf:
+          cycles: fixed 3000
+          fullscreen: true
+        flavor: DOS
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: "{APP_DIR}/AVG.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - ART9.CFG
+          - DIG.INI
