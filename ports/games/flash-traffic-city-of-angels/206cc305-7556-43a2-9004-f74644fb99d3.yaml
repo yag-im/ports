@@ -1,0 +1,76 @@
+descr:
+  distro:
+    files:
+      - Flash1.iso
+      - Flash2.iso
+      - Flash3.iso
+    format: 3CD
+    url: https://ia801303.us.archive.org/view_archive.php?archive=/27/items/msdos_Flash_Traffic_-_City_of_Angels_1994/Flash_Traffic_-_City_of_Angels_1994.zip
+  igdb_slug: flash-traffic-city-of-angels
+  lang: en
+  media_assets:
+  name: "Flash Traffic: City of Angels"
+  platform: dos
+  publisher: Time Warner Interactive
+  refs:
+    ag_id: 16477
+    lutris_id:
+    mg_id: 14651
+    pcgw_id:
+    qz_id: 386
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-03 19:50:52 America/Los_Angeles
+  uuid: 206cc305-7556-43a2-9004-f74644fb99d3
+  year_released: 1994
+installer:
+  tasks:
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - file:
+        path: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        state: directory
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DOS4GW.EXE
+          - FLASH.EXE
+          - MCGA.DLL
+          - OTHER
+          - "*.386"
+    - extract:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        files:
+          - BFI
+          - "DISK.*"
+          - "*.SNT"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        flavor: DOS
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{APP_DIR}/FLASH.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "TSAGE32.CFG"
