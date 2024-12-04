@@ -3,7 +3,7 @@
 ## Vars
 
     DATA_DIR=/mnt/data - ports data dir mounted into the ports' devcontainer
-    TMP_APP_SRC_DIR=$DATA_DIR/tmp - temporal dir for apps sources
+    TMP_APP_SRC_DIR=$DATA_DIR/tmp - temporary dir for apps sources
     IGDB_SLUG - apps' IGDB slug (e.g. the-pink-panther-hokus-pokus-pink)
     APP_RELEASE_UUID - unique id generated for every new app release (e.g. 780a21c5-5635-4a6d-aece-c9267b4ac8ff)
 
@@ -20,18 +20,17 @@ This step performs following actions:
 - generates a new release uuid;
 - creates empty dir for app source files:
     $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID;
-- creates dir and template for descriptor and installer script:
+- creates an app installer template:
     $PORTS_ROOT_DIR/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml
-- updates vscode launch script (for immediate debugging):
+- updates vscode launch script (for local debugging):
     $PORTS_ROOT_DIR/.vscode/launch.json
 - generates requests.http (to simplify local publishing):
     $PORTS_ROOT_DIR/scripts/tmp/requests.http
 
-and provides brief instructions on how to proceed.
-
 ## Sources artifacts
 
 **Step 2**
+
 Download port sources artifacts (ISO images, GOG setup files, patches etc) or prepare yours if you own any.
 
 Make sure you're performing this step from a third-party remote server to avoid internet providers' rules violation.
@@ -45,6 +44,7 @@ Examples:
     wget https://archive.org/download/SOLARSYS_WIN/SOLARSYS.zip -o $TMP_APP_SRC_DIR/SOLARSYS.zip
 
 **Step 2.1**
+
 Unpack all archived sources (iso, mdf etc) into the local app sources storage, e.g.:
 
     $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID/CD1.iso
@@ -52,25 +52,34 @@ Unpack all archived sources (iso, mdf etc) into the local app sources storage, e
 
 and remove original archives.
 
-**Step 2.2 [optional]**
-Download any available localized media assets (covers, screenshots) into the $DATA_DIR/media directory.
+**Step 2.2 (optional, when localized media assets are available)**
 
-## Writing a new installer and descriptor
+Download any available localized media assets (such as covers and screenshots) into the $DATA_DIR/media directory. The
+default assets should be accessible from IGDB, so start by checking the game's page to ensure it includes a cover and
+screenshots. If any are missing, add them (to IGDB) and refresh the local SQL DB using scrapers [TODO: ref].
+
+## Writing a new installer
 
 **Step 3**
+
+This step includes writing a new runner and installer.
+
+Creating a new runner in the `$DATA_DIR/runners` folder; This step is almost never required as most popular runners are
+already there.
 
 The app installer and descriptor are contained within the same YAML file:
 
     /workspaces/ports/ports/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml
 
-In order to write a descriptor, search for all available references in the third-party catalogs (MobyGames, QuestZone
-etc). Update appropriate fields in the file above with the discovered info.
+In order to fill in app descriptor details, search for all available references in the third-party catalogs (MobyGames,
+QuestZone etc). Update appropriate fields in the file above with the discovered info.
 
-In order to write a new installer follow a [Writing installers](installers.md) instruction
+In order to write a new installer follow [Writing installers](installers.md) instruction.
 
 ## Local install and test
 
 **Step 4**
+
 Make sure `SQL DB` and `portsvc` services are up and running locally. Update local `SQL DB` instance by invoking
 `upsertAppRelease` function from `scripts/tmp/requests.http`. Alternatively, you can run `curl` directly:
 
@@ -80,56 +89,60 @@ Make sure `SQL DB` and `portsvc` services are up and running locally. Update loc
         --data-binary @/workspaces/ports/ports/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml \
         http://portsvc/ports/apps/$IGDB_SLUG/releases/$APP_RELEASE_UUID
 
-
 **Step 4.1**
-We need to make sure everything works as expected locally. For that we need to install a new app into the local
-cluster first. This step includes:
 
-    - creating a new runner (optinal, only when needed) in the `$DATA_DIR/runners` folder;
-    - creating a new installer:
-
-        /workspaces/ports/ports/games/$IGDB_SLUG/install.py
-
-    - installing a new release:
+We need to make sure everything works as expected locally. For that we need to install a new app. Installing an app can
+be performed from command line:
 
         yag install games/$IGDB_SLUG --release=$APP_RELEASE_UUID
 
+or from IDE (recommended):
+
+    Select "yag cli" in the launcher menu and hit "F5" (start debugging).
+
+$PORTS_ROOT_DIR/.vscode/launch.json will be updated for you by the setup.sh script on step 1.
+
 **Step 4.2**
-Run all relevant services and open http://localhost:8080/ in the browser. Select and run installed app.
+
+Run all relevant services [TODO: ref] and open http://localhost:8080/ in the browser. Select and run installed app.
 Make sure all golden flows (start/play/save/exit) are working as expected.
 
-## Prod publishing [optional, for cloud deployments only]
+## Prod publishing (optional, for cloud deployments only)
 
 At that point, app sources should be located at:
 
     $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID
 
-and app installed into:
+and app bundle installed into:
 
     $DATA_DIR/apps/$IGDB_SLUG/$APP_RELEASE_UUID
 
 **Step 5**
+
 Invoke:
 
-    scripts/publish.sh
+    scripts/publish.sh $IGDB_SLUG $APP_RELEASE_UUID
 
-which performs steps below:
+This performs steps below:
 
-    - Uploads app bundle files into the clouds' primary instance;
-    - Uploads game sources into the cold storage (AWS glacier);
-    - Uploads all media assets (including custom localized) into the media artifacts storage (S3 CDN);
-    - Updates prod SQL DB with new release entries.
+    - Uploads app bundle files into the clouds' primary appstor instance (will be lsynced to all secondary appstor
+        instances from there automatically);
+    - Archives and uploads game sources into the cold storage (AWS Glacier);
+    - Uploads all media assets (including custom localized) into the media artifacts storage (AWS S3 CDN);
+    - Updates prod SQL DB with a new release entry.
 
 ### Test app in prod.
 
 **Step 6**
+
 Make sure all golden flows (start/play/save/exit) are working as expected. If something went wrong then hide the failing
 app (use the `games.releases.is_visible` flag) and fix the issue ASAP.
 
 ### Announce a new app release.
 
 **Step 7**
-Post a new release message to the https://discord.com/channels/1251206620822638684/1251209249460060180 channel.
+Post a new release message to the https://discord.com/channels/1251206620822638684/1251209249460060180 channel and
+reddit group: https://www.reddit.com/r/yagim.
 
 ## FAQ:
 
