@@ -1,0 +1,74 @@
+descr:
+  distro:
+    files:
+      - Star Wars, Rebel Assault II (Disc 1).iso
+      - Star Wars, Rebel Assault II (Disc 2).iso
+    format: 2CD
+    url: https://archive.org/details/star-wars-rebel-assault-ii-disc-2
+  igdb_slug: star-wars-rebel-assault-ii-the-hidden-empire
+  lang: en
+  media_assets:
+  name: "Star Wars: Rebel Assault II - The Hidden Empire"
+  platform: dos
+  publisher: LucasArts
+  refs:
+    ag_id:
+    lutris_id: star-wars-rebel-assault-ii
+    mg_id: 5800
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 400
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-12-04 20:56:17 America/Los_Angeles
+  uuid: 6dbf48a7-9f21-4eb2-8f7b-3a7b010d9b5d
+  year_released: 1996
+installer:
+  tasks:
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - file:
+        path: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        state: directory
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        files:
+          - CREDITS
+          - DRIVERS
+          - LAUNCH
+          - LEV*
+          - OPEN
+          - SYSTM
+          - REBEL2.EXE
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        files:
+          - FINAL
+          - LEV*
+    - dosbox:
+        flavor: DOS
+        mod: X
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE_DIR}/REBEL2.EXE"
+              args:
+                - "{APP_DIR}"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "REBEL2.CFG"
+          - "REBEL2.PRF"
