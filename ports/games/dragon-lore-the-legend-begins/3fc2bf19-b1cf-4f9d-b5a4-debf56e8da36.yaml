@@ -1,0 +1,67 @@
+descr:
+  distro:
+    files:
+      - DRAGON1_100.ISO
+      - DRAGON2_100.ISO
+    format: 2CD
+    url: https://archive.org/details/dragon-lore-the-legend-begins-v1.0-bundled-dos-1994
+  igdb_slug: dragon-lore-the-legend-begins
+  lang: en
+  media_assets:
+  name: "Dragon Lore: The Legend Begins"
+  platform: dos
+  publisher: Mindscape
+  refs:
+    ag_id: 16417
+    lutris_id: dragon-lore-the-legend-begins
+    mg_id: 3776
+    pcgw_id: Dragon_Lore:_The_Legend_Begins
+    qz_id: 3455
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-03 21:30:28 America/Los_Angeles
+  uuid: 3fc2bf19-b1cf-4f9d-b5a4-debf56e8da36
+  year_released: 1994
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        files:
+          - DRAGON.EXE
+          - DRAGON.LBM
+          - DRAGON1
+          - INSTALL.EXE
+          - TALES.EXE
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        files:
+          - DRAGON2
+    - dosbox:
+        conf:
+          cycles: fixed 6000
+          fullscreen: true
+        flavor: DOS
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              # perform minimal install into D:\APP
+              path: "{FIRST_CD_DRIVE_DIR}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE_DIR}/TALES.EXE"
+              args:
+                - ENG
+                - SBP2227
+                - EMS
+                - WRI{APP_DIR}\
