@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Oregon_The_1990.zip
+    format: 2 x 5.25" Disk
+    url: https://archive.org/details/oregon-trail-the-1990_202208
+  igdb_slug: the-oregon-trail--5
+  lang: en
+  media_assets:
+  name: The Oregon Trail
+  platform: dos
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 746
+    pcgw_id: The_Oregon_Trail
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-06 14:47:00 America/Los_Angeles
+  uuid: 844429d0-8625-4fae-b717-deda49967b2b
+  year_released: 1990
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        flavor: DOS
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/OREGON.EXE"
