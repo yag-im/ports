@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - TTDX_DJW_1.mdf
+    format: 1CD
+    url: https://archive.org/details/transport-tycoon-deluxe
+  igdb_slug: transport-tycoon-deluxe
+  lang: en
+  media_assets:
+  name: Transport Tycoon Deluxe
+  platform: dos
+  publisher: MicroProse Software, Inc.
+  refs:
+    ag_id:
+    lutris_id: transport-tycoon-deluxe
+    mg_id: 535
+    pcgw_id: Transport_Tycoon_Deluxe
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-05 17:20:40 America/Los_Angeles
+  uuid: 6d54ef95-afef-44da-b033-3cd645c6cfe4
+  year_released: 1995
+installer:
+  tasks:
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+    - extract:
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/ENGLISH/MPSLABS.001"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        flavor: DOS
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{APP_DIR}/TTDX.EXE"
+              args:
+                - "{FIRST_CD_DRIVE_DIR}"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "SOUND.CFG"
