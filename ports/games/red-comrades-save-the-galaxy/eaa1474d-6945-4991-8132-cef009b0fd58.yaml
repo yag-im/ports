@@ -40,9 +40,9 @@ installer:
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
     - dosbox:
-        flavor: WIN95OSR21
         conf:
           app_drive_size: 2000
+        flavor: WIN95OSR21
         tasks:
           - mount:
               src: "{DEST_DIR}"

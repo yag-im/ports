@@ -81,6 +81,14 @@ class DosBox(Protocol[T]):
             )
         )
 
+    def md(self, path: PureWindowsPath):
+        self._run(
+            DosCmdExec(
+                PureWindowsPath("MD"),
+                [path],
+            )
+        )
+
     def _run_dosbox(self, dosbox_conf_path: Path) -> None:
         if self.conf.mod == DosBoxMod.X:
             cmd = ["dosbox-x"]
@@ -96,6 +104,7 @@ class DosBox(Protocol[T]):
         mock=False,
     ):
         """Runs command(s) inside the dos env. For internal use only.
+        Create wrapper functions to call _run (see "md" implementation).
 
         To run command(s) in the flavored env, use the run() method from an appropriate implementation.
         """
