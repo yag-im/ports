@@ -37,7 +37,6 @@ installer:
     - dosbox:
         conf:
           fullscreen: true
-        flavor: DOS
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/OREGON.EXE"

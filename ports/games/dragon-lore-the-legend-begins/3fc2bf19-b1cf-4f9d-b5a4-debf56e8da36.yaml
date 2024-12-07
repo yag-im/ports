@@ -50,7 +50,6 @@ installer:
         conf:
           cycles: fixed 6000
           fullscreen: true
-        flavor: DOS
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

@@ -56,8 +56,6 @@ installer:
           - FINAL
           - LEV*
     - dosbox:
-        flavor: DOS
-        mod: X
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

@@ -47,7 +47,6 @@ installer:
         loop:
           - "RIDDLE.CFG"
     - dosbox:
-        flavor: DOS
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"
