@@ -104,11 +104,11 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
 
 
 def get_dosbox_mod(app_descr: AppDesc) -> DosBoxMod:
-    if app_descr.runner == "dosbox-x":
+    if app_descr.runner.name == "dosbox-x":
         return DosBoxMod.X
-    elif app_descr.runner == "dosbox-staging":
+    elif app_descr.runner.name == "dosbox-staging":
         return DosBoxMod.STAGE
-    elif app_descr.runner == "dosbox":
+    elif app_descr.runner.name == "dosbox":
         return DosBoxMod.ORIG
 
 

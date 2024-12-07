@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Wrath of the Gods (1994)(Luminaria).iso
+    format: 1CD
+    url: https://archive.org/details/wrath-of-the-gods
+  igdb_slug: wrath-of-the-gods
+  lang: en
+  media_assets:
+  name: Wrath of the Gods
+  platform: win
+  publisher: Luminaria
+  refs:
+    ag_id: 16394
+    lutris_id:
+    mg_id: 2081
+    pcgw_id:
+    qz_id: 841
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-12-07 11:58:02 America/Los_Angeles
+  uuid: 649cd6c3-027c-4391-9070-fde116f4f530
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE_DIR}/WRATH/000WRATH.EXE"
