@@ -62,7 +62,6 @@ installer:
     - dosbox:
         conf:
           fullscreen: true
-        flavor: DOS
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

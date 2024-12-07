@@ -7,6 +7,8 @@ descr:
   igdb_slug: tsarevna-a-medieval-russia-quest
   lang: ru
   media_assets:
+    cover:
+      image_id: 028fef62-7906-4a1c-a3d6-5b753bfe6650
   name: Царевна
   platform: win
   publisher: Sibart
@@ -39,7 +41,7 @@ installer:
     - dosbox:
         conf:
           app_drive_size: 20
-          cycles: fixed 20000 # otherwise it's too fast
+          cycles: fixed 40000 # otherwise it's too fast TODO: for home pc it should be 20000, for current OVH node it should be 40000
         flavor: WIN95OSR21
         tasks:
           - mount:

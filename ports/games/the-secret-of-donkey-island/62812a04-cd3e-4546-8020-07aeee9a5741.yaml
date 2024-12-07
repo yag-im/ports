@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - donkey-island-cz.zip
+    format: 1 x 5.25" Disk
+    url: https://archive.org/details/donkey-island-cz
+  igdb_slug: the-secret-of-donkey-island
+  lang: cz
+  media_assets:
+    cover:
+      image_id: 62812a04-cd3e-4546-8020-07aeee9a5741
+  name: Tajemství Oslího ostrova
+  platform: dos
+  publisher: Vochozka Trading
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 4922
+    pcgw_id:
+    qz_id: 866
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-07 11:09:12 America/Los_Angeles
+  uuid: 62812a04-cd3e-4546-8020-07aeee9a5741
+  year_released: 1994
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/TOO.EXE"

@@ -103,14 +103,20 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
         raise ValueError(f"unrecognized command: {cmd}")
 
 
+def get_dosbox_mod(app_descr: AppDesc) -> DosBoxMod:
+    if app_descr.runner == "dosbox-x":
+        return DosBoxMod.X
+    elif app_descr.runner == "dosbox-staging":
+        return DosBoxMod.STAGE
+    elif app_descr.runner == "dosbox":
+        return DosBoxMod.ORIG
+
+
 def run(task: dict, app_descr: AppDesc) -> None:
     dosbox_conf = task.get("conf", {})
     flavor = DosBoxFlavor[str(task.get("flavor", "DOS")).upper()]
     dosbox_conf["flavor"] = flavor
-    mod = task.get("mod", None)
-    if mod:
-        mod = DosBoxMod[str(mod).upper()]
-        dosbox_conf["mod"] = mod
+    dosbox_conf["mod"] = get_dosbox_mod(app_descr)
     dst_dir = app_descr.dst_path()
     if flavor == DosBoxFlavor.WIN311:
         dbox = DosBoxWin3x(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxWin3xConf(**dosbox_conf))

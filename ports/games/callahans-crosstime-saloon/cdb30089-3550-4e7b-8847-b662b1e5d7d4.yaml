@@ -35,7 +35,6 @@ installer:
         src: "{SRC_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_DIR}"
     - dosbox:
-        flavor: DOS
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"
