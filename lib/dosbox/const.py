@@ -12,7 +12,7 @@ THIRD_CD_DRIVE_LETTER = "G"
 
 SYSTEM_DRIVE = PureWindowsPath(f"{SYSTEM_DRIVE_LETTER}:")
 APP_DRIVE = PureWindowsPath(f"{APP_DRIVE_LETTER}:")
-APP_DIR = f"{APP_DRIVE}/APP"
+APP_DIR = f"{APP_DRIVE}\\APP"  # do not use backslash! Some DosBox cmds will not work (e.g. MD D:/APP fails)
 FIRST_CD_DRIVE = PureWindowsPath(f"{FIRST_CD_DRIVE_LETTER}:")
 SECOND_CD_DRIVE = PureWindowsPath(f"{SECOND_CD_DRIVE_LETTER}:")
 THIRD_CD_DRIVE = PureWindowsPath(f"{THIRD_CD_DRIVE_LETTER}:")

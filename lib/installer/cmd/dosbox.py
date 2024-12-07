@@ -28,6 +28,7 @@ from lib.installer.utils import transform_str_path
 
 CMD_COPY = "copy"
 CMD_GEN_RUN_SCRIPT = "gen_run_script"
+CMD_MD = "md"
 CMD_MOUNT = "mount"
 CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
@@ -65,6 +66,8 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
     if cmd == CMD_COPY:
         src = task.get("src")
         if isinstance(src, str):
+            # using an array of sources is preferred for copying, as it runs DOSBox once,
+            # whereas using a "loop" causes DOSBox to run multiple times.
             src = [src]
         transformed_srcs = []
         for src_ in src:
@@ -72,6 +75,8 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
         dbox.copy(transformed_srcs, transform_str_path(task.get("dest")))
     elif cmd == CMD_GEN_RUN_SCRIPT:
         exec_run(dbox, task, mock=True)
+    elif cmd == CMD_MD:
+        dbox.md(task.get("path"))
     elif cmd == CMD_MOUNT:
         cd_images_as_letters = task.get("cd_images_as_letters", False)
         if cd_images_as_letters:

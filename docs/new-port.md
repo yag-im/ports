@@ -159,3 +159,6 @@ A: Use CD audio ripper "freac" (can't be run from docker, AppImage requires FUSE
 
 Q: dosbox win9x installer closes immediately
 A: use runexit=False
+
+Q: LCOPY hangs in dosbox when copying from mounted CDROM image
+A: make sure your CDROM source is an image, not a directory

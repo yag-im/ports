@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      - Царевна.ISO
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=3347177
+  igdb_slug: tsarevna-a-medieval-russia-quest
+  lang: ru
+  media_assets:
+  name: Царевна
+  platform: win
+  publisher: Sibart
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 9813
+    pcgw_id:
+    qz_id: 98
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-12-06 15:42:26 America/Los_Angeles
+  uuid: 028fef62-7906-4a1c-a3d6-5b753bfe6650
+  year_released: 1998
+installer:
+  # TODO: also runs in wine, but is too fast (use cpulimit -l nn -e wine-preloader & ?)
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          app_drive_size: 20
+          cycles: fixed 20000 # otherwise it's too fast
+        flavor: WIN95OSR21
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - md:
+              path: "{APP_DIR}"
+          - copy:
+              src:
+                - "{FIRST_CD_DRIVE_DIR}/sibart.exe"
+                - "{FIRST_CD_DRIVE_DIR}/resource/*.vol"
+              dest: "{APP_DIR}"
+          - copy:
+              src: "{SRC_FILES_DIR}/sibart.cfg"
+              dest: "{APP_DIR}"
+          - run: # TODO: we need to run this game after install cos it alwalys fails on the very first run
+              path: "{APP_DIR}/sibart.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/sibart.exe"
