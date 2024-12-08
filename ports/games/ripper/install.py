@@ -6,8 +6,8 @@ from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
     SYSTEM_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_dos import DosBoxDos
@@ -25,7 +25,7 @@ from lib.utils import (
 CURRENT_DIR = Path(__file__).resolve().parent
 
 APP_EXEC_PATH = APP_DIR / "RIPPER.EXE"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "INSTALL.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "INSTALL.EXE"
 
 
 class Main(Installer):
@@ -36,9 +36,9 @@ class Main(Installer):
         src_folder = app_desc.src_path()
 
         if app_desc.distro.format == "6CD":
-            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_LETTER)
+            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxDos(dst_folder, app_desc)
-            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
+            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_DRIVE_LETTER, len(app_desc.distro.files)))
             dbox.run(INSTALLER_EXEC_PATH)
             copy(app_desc.src_path() / "rip103.exe", app_folder)
             dbox.run(APP_DIR / "RIP103.EXE")
@@ -48,7 +48,7 @@ class Main(Installer):
             template(
                 CURRENT_DIR / "templates" / "take2.ini.tmpl",
                 dst_folder / SYSTEM_DRIVE_LETTER / "TAKE2.INI",
-                params={"first_cd_letter": FIRST_CD_LETTER},
+                params={"first_cd_letter": FIRST_CD_DRIVE_LETTER},
                 newline="\r\n",
             )
             dbox.run(APP_EXEC_PATH, mock=True)

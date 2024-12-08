@@ -16,7 +16,7 @@ from lib.utils import (
 from lib.wine.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.wine.wine import Wine
 
@@ -37,13 +37,13 @@ class Main(Installer):
                 if not src_path.exists():
                     raise DistroNotFoundException(src_path)
                 unpack_disc_image(src_path, dst_folder / app_path)
-            cd_dir = dst_folder / FIRST_CD_LETTER
+            cd_dir = dst_folder / FIRST_CD_DRIVE_LETTER
             cd_dir.mkdir()
             work_dir = app_path / "engine" / "linc"
             wine_work_dir = APP_DIR / "engine" / "linc"
             # app requires "movies" on CD
             move(app_path / "movies", cd_dir)
-            w.add_cdrom(FIRST_CD_LETTER, cd_dir)
+            w.add_cdrom(FIRST_CD_DRIVE_LETTER, cd_dir)
             # with "minimum" app just exits and empties "m" folder
             rm(work_dir / "minimum")
             w.gen_run_script(app_exec=APP_EXEC, work_dir=wine_work_dir)

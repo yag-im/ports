@@ -43,6 +43,6 @@ installer:
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - run:
               # install into D:\APP, then install QT 2.1 from the same disk
-              path: "{FIRST_CD_DRIVE_DIR}/setup.exe"
+              path: "{FIRST_CD_DRIVE}/setup.exe"
           - gen_run_script:
               path: "{APP_DIR}/eve.exe"

@@ -6,8 +6,8 @@ from pathlib import Path
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_win3x import DosBoxWin3x
 from lib.dosbox.misc import DosMountPointCD
@@ -23,7 +23,7 @@ from lib.wine.wine import Wine
 
 APP_EXEC = "RSHIVERS.EXE"
 APP_EXEC_PATH = APP_DIR / "SIERRA" / "SHIVERS2" / APP_EXEC
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "SETUP.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "SETUP.EXE"
 
 
 class Main(Installer):
@@ -41,10 +41,10 @@ class Main(Installer):
             app_path = dst_folder / APP_DRIVE_LETTER / "app"
             app_path.mkdir(parents=True)
 
-            first_cd_drive_path = dst_folder / FIRST_CD_LETTER
+            first_cd_drive_path = dst_folder / FIRST_CD_DRIVE_LETTER
             unpack_disc_image(src_folder / app_desc.distro.files[0], first_cd_drive_path)
             unpack_disc_image(src_folder / app_desc.distro.files[2], first_cd_drive_path)
-            dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / FIRST_CD_LETTER))
+            dbox.mount(DosMountPointCD(letter=FIRST_CD_DRIVE_LETTER, path=dst_folder / FIRST_CD_DRIVE_LETTER))
 
             # proceed installing into D:\app\SIERRA\SHIVERS2, skip system check as it hangs")
             dbox.run(INSTALLER_EXEC_PATH, runexit=False)

@@ -6,8 +6,8 @@ from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_dos import (
     DosBoxDos,
@@ -30,10 +30,10 @@ class Main(Installer):
         src_folder = app_desc.src_path()
         if app_desc.distro.format == "1CD":
             # TODO: fix cracky sound
-            copy(src_folder / app_desc.distro.files[0], dst_folder / FIRST_CD_LETTER)
+            copy(src_folder / app_desc.distro.files[0], dst_folder / FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxDos(dst_folder, app_desc, conf=DosBoxDosConf(cycles="max"))
-            dbox.mount(DosMountPoint(FIRST_CD_LETTER, dst_folder / FIRST_CD_LETTER, is_cd=True))
-            dbox.run(FIRST_CD_DRIVE_DIR / "INSTALL.EXE")
+            dbox.mount(DosMountPoint(FIRST_CD_DRIVE_LETTER, dst_folder / FIRST_CD_DRIVE_LETTER, is_cd=True))
+            dbox.run(FIRST_CD_DRIVE / "INSTALL.EXE")
             copy(CURRENT_DIR / "files" / "EDEN.BAT", dst_folder / APP_DRIVE_LETTER / "APP")
             dbox.run(APP_EXEC_PATH, mock=True)
         else:

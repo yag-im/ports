@@ -43,7 +43,7 @@ installer:
               cd_images_as_letters: true
           - run:
               # proceed with a minimal CD installation, skip QT install
-              path: "{FIRST_CD_DRIVE_DIR}/SETUP.EXE"
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
               exit: false
           - gen_run_script:
               path: "{APP_DIR}/ANASTASI.EXE"

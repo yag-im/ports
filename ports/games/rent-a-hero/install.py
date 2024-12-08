@@ -6,12 +6,12 @@ from lib.app_desc import AppDesc
 from lib.dosbox import DosBoxWin9x
 from lib.dosbox.const import (
     APP_DIR,
-    APP_DRIVE_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
-    SECOND_CD_DRIVE_DIR,
-    SECOND_CD_LETTER,
-    SYSTEM_DRIVE_DIR,
+    APP_DRIVE,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
+    SECOND_CD_DRIVE,
+    SECOND_CD_DRIVE_LETTER,
+    SYSTEM_DRIVE,
 )
 from lib.dosbox.dosbox_conf import DosBoxFlavor
 from lib.dosbox.dosbox_win9x import DosBoxWin9xConf
@@ -27,7 +27,7 @@ CURRENT_DIR = Path(__file__).resolve().parent
 
 APP_DRIVE_SIZE = 1000
 APP_EXEC_PATH = APP_DIR / "rent-a-hero.exe"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "Setup" / "Setup.exe"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "Setup" / "Setup.exe"
 
 
 class Main(Installer):
@@ -36,24 +36,24 @@ class Main(Installer):
         dst_folder = app_desc.dst_path()
         src_folder = app_desc.src_path()
         if app_desc.distro.format == "2CD":
-            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_LETTER)
+            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxWin9x(
                 dst_folder, app_desc, DosBoxWin9xConf(flavor=DosBoxFlavor.WIN98SE, app_drive_size=APP_DRIVE_SIZE)
             )
-            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
+            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_DRIVE_LETTER, len(app_desc.distro.files)))
             dbox.copy(
                 [
-                    FIRST_CD_DRIVE_DIR / "Game" / "*",
-                    SECOND_CD_DRIVE_DIR / "Game" / "*",
+                    FIRST_CD_DRIVE / "Game" / "*",
+                    SECOND_CD_DRIVE / "Game" / "*",
                 ],
-                APP_DRIVE_DIR / "Game",
+                APP_DRIVE / "Game",
             )
             dbox.run(INSTALLER_EXEC_PATH, runexit=False)
-            dbox.copy(CURRENT_DIR / "files" / "RAH.INI", SYSTEM_DRIVE_DIR / "windows")
-            dbox.umount(FIRST_CD_LETTER)
-            dbox.umount(SECOND_CD_LETTER)
-            rm(dst_folder / FIRST_CD_LETTER)
-            rm(dst_folder / SECOND_CD_LETTER)
+            dbox.copy(CURRENT_DIR / "files" / "RAH.INI", SYSTEM_DRIVE / "windows")
+            dbox.umount(FIRST_CD_DRIVE_LETTER)
+            dbox.umount(SECOND_CD_DRIVE_LETTER)
+            rm(dst_folder / FIRST_CD_DRIVE_LETTER)
+            rm(dst_folder / SECOND_CD_DRIVE_LETTER)
             dbox.run(APP_EXEC_PATH, mock=True)
         else:
             raise UnknownDistroFormatException(app_desc.distro)

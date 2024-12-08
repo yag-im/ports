@@ -31,7 +31,7 @@ from lib.wine.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
     RUNNERS_BUNDLES_BASE_DIR,
-    SYSTEM_DRIVE_DIR,
+    SYSTEM_DRIVE,
 )
 
 
@@ -221,7 +221,7 @@ class Wine:
         for k, v in self.wine_env.items():
             wine_env[k] = v
         is_path = isinstance(path, (Path, PureWindowsPath))
-        work_dir = str(path.parent) if is_path else str(SYSTEM_DRIVE_DIR)
+        work_dir = str(path.parent) if is_path else str(SYSTEM_DRIVE) + "\\"
         exec_file = str(path.name) if is_path else path
         cmd_line = ["wine", "start", "/wait", "/d", work_dir]
         vd = self.virtual_desktop or virtual_desktop

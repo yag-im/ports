@@ -12,8 +12,8 @@ from lib.utils import (
 )
 from lib.wine.const import (
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.wine.helpers import unpack_cds_as_letters
 from lib.wine.wine import (
@@ -36,12 +36,12 @@ class Main(Installer):
             src_folder = app_desc.src_path()
             dst_folder = app_desc.dst_path()
             app_folder = dst_folder / APP_DRIVE_LETTER / "app"
-            unpack_cds_as_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_LETTER)
+            unpack_cds_as_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             w = Wine(dst_folder, os_ver=OsVer.WINDOWSXP)
-            w.add_cdrom(FIRST_CD_LETTER, dst_folder / FIRST_CD_LETTER)
+            w.add_cdrom(FIRST_CD_DRIVE_LETTER, dst_folder / FIRST_CD_DRIVE_LETTER)
             # install into D:\app, skip QT install at the end
-            w.run(FIRST_CD_DRIVE_DIR / "Install.exe", virtual_desktop=VirtualDesktopResolution.RES_640_480)
-            cd_letter = FIRST_CD_LETTER
+            w.run(FIRST_CD_DRIVE / "Install.exe", virtual_desktop=VirtualDesktopResolution.RES_640_480)
+            cd_letter = FIRST_CD_DRIVE_LETTER
             for i in range(1, 4):
                 move(dst_folder / cd_letter / f"DATA{i}", app_folder / "data")
                 rm(dst_folder / cd_letter)  # TODO: use w.remove_cdrom() instead

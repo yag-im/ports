@@ -4,8 +4,8 @@ import sys
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_conf import DosBoxMod
 from lib.dosbox.dosbox_dos import (
@@ -21,7 +21,7 @@ from lib.installer import Installer
 from lib.utils import copy
 
 APP_EXEC_PATH = APP_DIR / "TBRA.BAT"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "SETUP.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "SETUP.EXE"
 
 
 class Main(Installer):
@@ -37,7 +37,7 @@ class Main(Installer):
                 copy(src_path, dst_folder)
             dbox = DosBoxDos(dst_folder, app_desc, DosBoxDosConf(mod=DosBoxMod.X))
             cue_img_name = app_desc.distro.files[0]
-            dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / cue_img_name))
+            dbox.mount(DosMountPointCD(letter=FIRST_CD_DRIVE_LETTER, path=dst_folder / cue_img_name))
             dbox.run(INSTALLER_EXEC_PATH)
             dbox.run(APP_EXEC_PATH, mock=True)
         else:

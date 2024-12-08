@@ -11,10 +11,10 @@ from lib.utils import (
     rm,
 )
 from lib.wine.const import (
-    APP_DRIVE_DIR,
+    APP_DRIVE,
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.wine.helpers import unpack_cds_as_letters
 from lib.wine.wine import (
@@ -38,13 +38,13 @@ class Main(Installer):
         dst_dir = app_desc.dst_path()
         app_path = dst_dir / APP_DRIVE_LETTER / "app"
         if app_desc.distro.format == "1DVD":
-            unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_LETTER)
+            unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             w = Wine(dst_dir, os_ver=OsVer.WINDOWS98, virtual_desktop=VirtualDesktopResolution.RES_800_600)
-            w.add_cdrom(FIRST_CD_LETTER, dst_dir / FIRST_CD_LETTER)
-            w.run(FIRST_CD_DRIVE_DIR / "SETUP.EXE")
+            w.add_cdrom(FIRST_CD_DRIVE_LETTER, dst_dir / FIRST_CD_DRIVE_LETTER)
+            w.run(FIRST_CD_DRIVE / "SETUP.EXE")
             # install into D:\app, install RSX3D sound, do not install DirectX 5
             unpack_archive(src_dir / "patch" / "tex5b104.zip", dst_dir / APP_DRIVE_LETTER / "patch")
-            w.run(APP_DRIVE_DIR / "patch" / "UPDATE.EXE")
+            w.run(APP_DRIVE / "patch" / "UPDATE.EXE")
             rm(dst_dir / APP_DRIVE_LETTER / "patch")
             copy(CURRENT_DIR / "files" / "Tex.ini", app_path)
             w.run_winetricks(OsVer.WINDOWSXP.value)

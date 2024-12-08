@@ -13,7 +13,7 @@ from lib.utils import (
 from lib.wine.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.wine.helpers import unpack_cds_as_letters
 from lib.wine.wine import (
@@ -38,23 +38,23 @@ class Main(Installer):
             w = Wine(dst_dir, os_ver=OsVer.WINDOWS95, lang=app_desc.lang)
             w.run_winetricks("renderer=no3d")  # remove if 3D adapter is available
 
-            unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_LETTER)
+            unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             app_dir.mkdir()
             if app_desc.lang == "ru":
                 app_exec = APP_EXEC_RU
-                copy(dst_dir / FIRST_CD_LETTER / "cd data", app_dir / "Data")
+                copy(dst_dir / FIRST_CD_DRIVE_LETTER / "cd data", app_dir / "Data")
                 move(app_dir / "Data" / "*.dll", app_dir)
                 # mock CD label checks. Also *avi files must be present in Data dir
                 copy(src_dir / "patch" / app_exec, app_dir)
-                rm(dst_dir / FIRST_CD_LETTER)
+                rm(dst_dir / FIRST_CD_DRIVE_LETTER)
                 fate_ins_content = str(APP_DIR)
             elif app_desc.lang == "cs":
                 (app_dir / "Data").mkdir()
                 app_exec = APP_EXEC_CS
-                copy(dst_dir / FIRST_CD_LETTER / "Cd Data" / "*.AFV", app_dir / "Data")
-                copy(dst_dir / FIRST_CD_LETTER / "Cd Data" / "DSETUP.DLL", app_dir)
-                copy(dst_dir / FIRST_CD_LETTER / "Cd Data" / "EX.XXX", app_dir / app_exec)
-                w.add_cdrom(FIRST_CD_LETTER, dst_dir / FIRST_CD_LETTER, label="Havran")
+                copy(dst_dir / FIRST_CD_DRIVE_LETTER / "Cd Data" / "*.AFV", app_dir / "Data")
+                copy(dst_dir / FIRST_CD_DRIVE_LETTER / "Cd Data" / "DSETUP.DLL", app_dir)
+                copy(dst_dir / FIRST_CD_DRIVE_LETTER / "Cd Data" / "EX.XXX", app_dir / app_exec)
+                w.add_cdrom(FIRST_CD_DRIVE_LETTER, dst_dir / FIRST_CD_DRIVE_LETTER, label="Havran")
                 fate_ins_content = str(APP_DIR / "Data")
             else:
                 raise ValueError(f"Unknown language: {app_desc.lang}")

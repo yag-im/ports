@@ -6,8 +6,8 @@ from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_dos import DosBoxDos
 from lib.dosbox.misc import DosMountPointCD
@@ -19,7 +19,7 @@ from lib.installer import Installer
 from lib.utils import copy
 
 APP_EXEC_PATH = APP_DIR / "HW.EXE"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "INSTALL.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "INSTALL.EXE"
 
 CURRENT_DIR = Path(__file__).resolve().parent
 
@@ -37,7 +37,7 @@ class Main(Installer):
                 copy(src_path, dst_folder)
             dbox = DosBoxDos(dst_folder, app_desc)
             cue_img_name = app_desc.distro.files[1]
-            dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / cue_img_name))
+            dbox.mount(DosMountPointCD(letter=FIRST_CD_DRIVE_LETTER, path=dst_folder / cue_img_name))
             dbox.run(INSTALLER_EXEC_PATH)
             # for a valid music device (CD Audio) we need to copy config
             copy(CURRENT_DIR / "files" / "HW.BIN", dst_folder / APP_DRIVE_LETTER / "APP" / "HW.CFG")

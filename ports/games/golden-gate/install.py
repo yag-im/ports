@@ -12,7 +12,7 @@ from lib.unpack import unpack_disc_image
 from lib.utils import copy
 from lib.wine.const import (
     APP_DRIVE_LETTER,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.wine.wine import (
     OsVer,
@@ -38,7 +38,7 @@ class Main(Installer):
             w = Wine(dst_folder, os_ver=OsVer.WINDOWS95)
             unpack_disc_image(
                 src_path,
-                dst_folder / FIRST_CD_LETTER,
+                dst_folder / FIRST_CD_DRIVE_LETTER,
                 extract_files=[
                     "NEWMLIST.TXT",
                     "GGVARS",
@@ -47,9 +47,10 @@ class Main(Installer):
                     "QTIME32",
                 ],
             )
-            w.add_cdrom(FIRST_CD_LETTER, dst_folder / FIRST_CD_LETTER)
-            w.run(dst_folder / FIRST_CD_LETTER / "QTIME32" / "QT32INST.EXE", virtual_desktop=None)
-            # rm(dst_folder / FIRST_CD_LETTER / "QTIME32") TODO: this hangs cos QT remains opened, so remove manually
+            w.add_cdrom(FIRST_CD_DRIVE_LETTER, dst_folder / FIRST_CD_DRIVE_LETTER)
+            w.run(dst_folder / FIRST_CD_DRIVE_LETTER / "QTIME32" / "QT32INST.EXE", virtual_desktop=None)
+            # TODO: this hangs cos QT remains opened, so remove manually
+            # rm(dst_folder / FIRST_CD_DRIVE_LETTER / "QTIME32")
             Path(app_drive_folder / "app").mkdir()
             copy(src_folder / "patch" / APP_EXEC_PATCH, app_drive_folder / "app" / APP_EXEC)
             w.gen_run_script(

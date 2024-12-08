@@ -56,6 +56,6 @@ installer:
               label: "CLUEC1D3"
           - run:
               # install into D:\APP, skip DX install at the end
-              path: "{FIRST_CD_DRIVE_DIR}/Setup.exe"
+              path: "{FIRST_CD_DRIVE}/Setup.exe"
           - gen_run_script:
               path: "{APP_DIR}/Fatal_Illusion.exe"

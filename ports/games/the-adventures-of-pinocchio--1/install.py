@@ -6,8 +6,8 @@ from pathlib import Path
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_win3x import DosBoxWin3x
 from lib.dosbox.misc import DosMountPointCD
@@ -24,7 +24,7 @@ from lib.utils import (
 )
 
 APP_EXEC_PATH = APP_DIR / "PINOC.EXE"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "SETUP.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "SETUP.EXE"
 
 
 class Main(Installer):
@@ -38,13 +38,13 @@ class Main(Installer):
             src_path = src_folder / img_file
             if not src_path.exists():
                 raise DistroNotFoundException(src_path)
-            copy(src_path, dst_folder / FIRST_CD_LETTER)
+            copy(src_path, dst_folder / FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxWin3x(dst_folder, app_desc)
             # proceed installing with all suggested deps")
-            dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / FIRST_CD_LETTER))
+            dbox.mount(DosMountPointCD(letter=FIRST_CD_DRIVE_LETTER, path=dst_folder / FIRST_CD_DRIVE_LETTER))
             dbox.run(path=INSTALLER_EXEC_PATH)
-            rm(dst_folder / FIRST_CD_LETTER)
-            dbox.umount(drive_letter=FIRST_CD_LETTER)
+            rm(dst_folder / FIRST_CD_DRIVE_LETTER)
+            dbox.umount(drive_letter=FIRST_CD_DRIVE_LETTER)
             # copy all AVI files into app folder
             with tempfile.TemporaryDirectory() as tmp_dir:
                 tmp_folder = Path(tmp_dir)

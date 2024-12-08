@@ -48,7 +48,7 @@ installer:
           - gen_run_script:
               path: "{APP_DIR}/TTDX.EXE"
               args:
-                - "{FIRST_CD_DRIVE_DIR}"
+                - "{FIRST_CD_DRIVE}"
     - copy:
         src: "{SRC_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"

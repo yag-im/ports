@@ -10,8 +10,8 @@ from lib.app_desc import AppDesc
 from lib.dosbox import DosBoxWin3x
 from lib.dosbox.const import (
     APP_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
     SYSTEM_DRIVE_LETTER,
 )
 from lib.dosbox.helpers import (
@@ -22,7 +22,7 @@ from lib.errors import UnknownDistroFormatException
 from lib.installer import Installer
 
 APP_EXEC = "MYST.EXE"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "MSSETUP.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "MSSETUP.EXE"
 
 
 class Main(Installer):
@@ -31,9 +31,9 @@ class Main(Installer):
         dst_folder = app_desc.dst_path()
         src_folder = app_desc.src_path()
         if app_desc.distro.format == "1CD":
-            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_LETTER)
+            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxWin3x(dst_folder, app_desc)
-            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
+            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_DRIVE_LETTER, len(app_desc.distro.files)))
             # proceed with a minimal CD installation
             dbox.run(INSTALLER_EXEC_PATH)
             # resolve QT conflict

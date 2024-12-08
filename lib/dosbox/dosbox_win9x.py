@@ -17,9 +17,9 @@ from typing import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
+    FIRST_CD_DRIVE,
     RUNNERS_BUNDLES_BASE_DIR,
-    SYSTEM_DRIVE_DIR,
+    SYSTEM_DRIVE,
     SYSTEM_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox import DosBox
@@ -123,7 +123,7 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 f.write("\n")
             f.flush()
             # drive X becomes drive E (first CD drive) after booting into Win9x :(
-            self.run("C:\\WINDOWS\\REGEDIT.EXE", args=["/s", FIRST_CD_DRIVE_DIR / Path(f.name).name], umount_x=False)
+            self.run("C:\\WINDOWS\\REGEDIT.EXE", args=["/s", FIRST_CD_DRIVE / Path(f.name).name], umount_x=False)
 
     def set_display_params(self, screen_width: int, screen_height, color_bits: int):
         self.regedit(
@@ -202,7 +202,7 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 },
                 newline="\r\n",
             )
-            self.copy(tmp_file_path, SYSTEM_DRIVE_DIR / "WINDOWS")
+            self.copy(tmp_file_path, SYSTEM_DRIVE / "WINDOWS")
 
         # X drive normally should not appear in the Win9x env
         # exceptions: regedit.exe will need drive X (appears as drive E in Win9x)

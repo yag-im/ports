@@ -45,7 +45,7 @@ installer:
         path: "{DEST_APP_DIR}/RESOURCE"
         state: directory
     - copy:
-        src: "{DEST_DIR}/{FIRST_CD_LETTER}/{item}"
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/{item}"
         dest: "{DEST_APP_DIR}/RESOURCE"
         loop:
           - "*.AVI"
@@ -54,7 +54,7 @@ installer:
           - "ANIMS/*.ATS"
           - "CDROM/*.TGA"
     - copy:
-        src: "{DEST_DIR}/{FIRST_CD_LETTER}/{item}"
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - "CDROM/RESOURCE.INI"
@@ -65,14 +65,14 @@ installer:
           - "DOS/*.386"
           - "DOS/*.BNK"
     - copy:
-        src: "{DEST_DIR}/{SECOND_CD_LETTER}/{item}"
+        src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}/{item}"
         dest: "{DEST_APP_DIR}/RESOURCE"
         loop:
           - "*.AVI"
           - "*.WAV"
           - "VOL.002"
     - copy:
-        src: "{DEST_DIR}/{THIRD_CD_LETTER}/{item}"
+        src: "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}/{item}"
         dest: "{DEST_APP_DIR}/RESOURCE"
         loop:
           - "*.AVI"
@@ -92,6 +92,6 @@ installer:
         path: "{item}"
         state: absent
         loop:
-          - "{DEST_DIR}/{FIRST_CD_LETTER}"
-          - "{DEST_DIR}/{SECOND_CD_LETTER}"
-          - "{DEST_DIR}/{THIRD_CD_LETTER}"
+          - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
