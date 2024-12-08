@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Blue_Force_eng.iso
+    format: 1CD
+    url: https://archive.org/details/blue-force-eng
+  igdb_slug: blue-force
+  lang: en
+  media_assets:
+  name: Blue Force
+  platform: dos
+  publisher: Tsunami Media
+  refs:
+    ag_id: 16895
+    lutris_id: blue-force
+    mg_id: 1478
+    pcgw_id: Blue_Force
+    qz_id: 388
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3-4
+  ts_added: 2024-12-07 16:37:35 America/Los_Angeles
+  uuid: 48de8be0-82b4-41fb-8633-ecdbfff61cbc
+  year_released: 1993
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - copy:
+        src: "{SRC_FILES_DIR}/TSAGE.CFG"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/BLUE/BLUE.EXE"
+              cd: "{APP_DIR}"
