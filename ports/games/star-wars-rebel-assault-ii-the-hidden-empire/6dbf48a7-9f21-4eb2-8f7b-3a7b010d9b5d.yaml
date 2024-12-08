@@ -61,7 +61,7 @@ installer:
               letter: "{FIRST_CD_DRIVE_LETTER}"
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - gen_run_script:
-              path: "{FIRST_CD_DRIVE_DIR}/REBEL2.EXE"
+              path: "{FIRST_CD_DRIVE}/REBEL2.EXE"
               args:
                 - "{APP_DIR}"
     - copy:

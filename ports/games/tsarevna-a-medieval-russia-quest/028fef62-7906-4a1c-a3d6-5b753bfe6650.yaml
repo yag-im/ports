@@ -51,8 +51,8 @@ installer:
               path: "{APP_DIR}"
           - copy:
               src:
-                - "{FIRST_CD_DRIVE_DIR}/sibart.exe"
-                - "{FIRST_CD_DRIVE_DIR}/resource/*.vol"
+                - "{FIRST_CD_DRIVE}/sibart.exe"
+                - "{FIRST_CD_DRIVE}/resource/*.vol"
               dest: "{APP_DIR}"
           - copy:
               src: "{SRC_FILES_DIR}/sibart.cfg"

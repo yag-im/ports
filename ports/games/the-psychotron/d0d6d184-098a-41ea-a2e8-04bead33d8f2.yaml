@@ -42,7 +42,7 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE_DIR}/INSTALL.EXE"
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
               exit: false
           - gen_run_script:
               path: "{APP_DIR}/TB/TBOOK.EXE"

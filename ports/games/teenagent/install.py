@@ -6,8 +6,8 @@ from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_conf import DosBoxMod
 from lib.dosbox.dosbox_dos import (
@@ -25,7 +25,7 @@ from lib.utils import copy
 CURRENT_DIR = Path(__file__).resolve().parent
 
 APP_EXEC_PATH = APP_DIR / "TEENAGNT.EXE"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "INSTALUJ.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "INSTALUJ.EXE"
 
 
 class Main(Installer):
@@ -44,7 +44,7 @@ class Main(Installer):
                 copy(src_path, dst_folder)
             cue_img_name = app_desc.distro.files[1]
             dbox = (DosBoxDos(dst_folder, app_desc, DosBoxDosConf(mod=DosBoxMod.X)),)
-            dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / cue_img_name))
+            dbox.mount(DosMountPointCD(letter=FIRST_CD_DRIVE_LETTER, path=dst_folder / cue_img_name))
             dbox.run(INSTALLER_EXEC_PATH)
             copy(CURRENT_DIR / "files" / "SOUND.SET", app_folder)
             dbox.run(APP_EXEC_PATH, mock=True)

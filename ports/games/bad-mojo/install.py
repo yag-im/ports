@@ -4,8 +4,8 @@ import sys
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_win3x import DosBoxWin3x
 from lib.dosbox.helpers import (
@@ -16,7 +16,7 @@ from lib.errors import UnknownDistroFormatException
 from lib.installer import Installer
 
 APP_EXEC_PATH = APP_DIR / "BADMOJO.EXE"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "SETUP.EXE"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "SETUP.EXE"
 
 
 class Main(Installer):
@@ -26,9 +26,9 @@ class Main(Installer):
         src_folder = app_desc.src_path()
 
         if app_desc.distro.format == "1CD":
-            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_LETTER)
+            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxWin3x(dst_folder, app_desc)
-            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
+            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_DRIVE_LETTER, len(app_desc.distro.files)))
             # proceed with a minimal CD installation, skip QT install
             dbox.run(INSTALLER_EXEC_PATH, runexit=False)
             dbox.run(APP_EXEC_PATH, mock=True)

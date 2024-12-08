@@ -50,7 +50,7 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - copy:
-              src: "{FIRST_CD_DRIVE_DIR}/VOLS/{item}"
+              src: "{FIRST_CD_DRIVE}/VOLS/{item}"
               dest: "{APP_DIR}"
               loop:
                 - DOS4GW.EXE

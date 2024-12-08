@@ -4,8 +4,8 @@ import sys
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DIR,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_dos import (
     DosBoxDos,
@@ -19,7 +19,7 @@ from lib.errors import UnknownDistroFormatException
 from lib.installer import Installer
 
 APP_EXEC_PATH = APP_DIR / "quiv.exe"
-INSTALLER_EXEC_PATH = FIRST_CD_DRIVE_DIR / "install.exe"
+INSTALLER_EXEC_PATH = FIRST_CD_DRIVE / "install.exe"
 
 
 class Main(Installer):
@@ -28,9 +28,9 @@ class Main(Installer):
         dst_folder = app_desc.dst_path()
         src_folder = app_desc.src_path()
         if app_desc.distro.format == "2CD":
-            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_LETTER)
+            copy_distro_files_as_cd_letters(src_folder, dst_folder, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxDos(dst_folder, app_desc, conf=DosBoxDosConf(cycles="max", fullscreen=True))
-            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_LETTER, len(app_desc.distro.files)))
+            dbox.mount(gen_cd_mount_points(dst_folder, FIRST_CD_DRIVE_LETTER, len(app_desc.distro.files)))
             dbox.run(INSTALLER_EXEC_PATH)
             # both CDs must remain mounted during runtime
             dbox.run(APP_EXEC_PATH, mock=True)

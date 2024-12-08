@@ -42,4 +42,4 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - gen_run_script:
-              path: "{FIRST_CD_DRIVE_DIR}/WRATH/000WRATH.EXE"
+              path: "{FIRST_CD_DRIVE}/WRATH/000WRATH.EXE"

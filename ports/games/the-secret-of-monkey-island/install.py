@@ -4,8 +4,8 @@ from pathlib import Path
 
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_dos import (
     DosBoxDos,
@@ -20,7 +20,7 @@ from lib.installer import Installer
 from lib.utils import copy
 
 # runs and installs from CD
-APP_EXEC_PATH = FIRST_CD_DRIVE_DIR / "MONKEY.COM"
+APP_EXEC_PATH = FIRST_CD_DRIVE / "MONKEY.COM"
 
 CURRENT_DIR = Path(__file__).resolve().parent
 
@@ -38,7 +38,7 @@ class Main(Installer):
                 copy(src_path, dst_folder)
             dbox = DosBoxDos(dst_folder, app_desc, conf=DosBoxDosConf(fullscreen=True))
             cue_img_name = app_desc.distro.files[1]
-            dbox.mount(DosMountPointCD(letter=FIRST_CD_LETTER, path=dst_folder / cue_img_name))
+            dbox.mount(DosMountPointCD(letter=FIRST_CD_DRIVE_LETTER, path=dst_folder / cue_img_name))
             dbox.run(APP_EXEC_PATH, mock=True)
         else:
             raise UnknownDistroFormatException(app_desc.distro)

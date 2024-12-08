@@ -56,9 +56,9 @@ installer:
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - run:
               # perform minimal install into D:\APP
-              path: "{FIRST_CD_DRIVE_DIR}/INSTALL.EXE"
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
           - gen_run_script:
-              path: "{FIRST_CD_DRIVE_DIR}/TALES.EXE"
+              path: "{FIRST_CD_DRIVE}/TALES.EXE"
               args:
                 - ENG
                 - SBP2227

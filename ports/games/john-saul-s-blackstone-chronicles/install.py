@@ -11,9 +11,9 @@ from lib.utils import (
 )
 from lib.wine.const import (
     APP_DRIVE_LETTER,
-    FIRST_CD_DRIVE_DIR,
-    FIRST_CD_LETTER,
-    SECOND_CD_LETTER,
+    FIRST_CD_DRIVE,
+    FIRST_CD_DRIVE_LETTER,
+    SECOND_CD_DRIVE_LETTER,
 )
 from lib.wine.helpers import unpack_cds_as_letters
 from lib.wine.wine import Wine
@@ -29,16 +29,16 @@ class Main(Installer):
             dst_dir = app_desc.dst_path()
             app_path = dst_dir / APP_DRIVE_LETTER / "app"
             w = Wine(dst_dir, lang=app_desc.lang)
-            unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_LETTER)
+            unpack_cds_as_letters(src_dir, dst_dir, app_desc.distro.files, FIRST_CD_DRIVE_LETTER)
             # make full install into D:\app with additional images
-            unpack_archive(dst_dir / FIRST_CD_LETTER / "data1.cab", app_path)
-            copy(dst_dir / FIRST_CD_LETTER / "BSC" / "*.PIC", app_path)
+            unpack_archive(dst_dir / FIRST_CD_DRIVE_LETTER / "data1.cab", app_path)
+            copy(dst_dir / FIRST_CD_DRIVE_LETTER / "BSC" / "*.PIC", app_path)
             # QT3 install (select "custom", uncheck everything except QuickTime itself at the top), ignore errors
-            w.add_cdrom(FIRST_CD_LETTER, dst_dir / FIRST_CD_LETTER)
-            w.run(FIRST_CD_DRIVE_DIR / "QuickTime" / "QuickTime30.exe")
-            rm(dst_dir / FIRST_CD_LETTER)  # TODO: use w.remove_cdrom() instead when it's implemented
+            w.add_cdrom(FIRST_CD_DRIVE_LETTER, dst_dir / FIRST_CD_DRIVE_LETTER)
+            w.run(FIRST_CD_DRIVE / "QuickTime" / "QuickTime30.exe")
+            rm(dst_dir / FIRST_CD_DRIVE_LETTER)  # TODO: use w.remove_cdrom() instead when it's implemented
             # hi-res videos are on the CD2 so using it
-            w.add_cdrom(SECOND_CD_LETTER, dst_dir / SECOND_CD_LETTER)
+            w.add_cdrom(SECOND_CD_DRIVE_LETTER, dst_dir / SECOND_CD_DRIVE_LETTER)
             w.upd_reg(
                 {
                     "HKEY_LOCAL_MACHINE\\Software\\Red Orb Entertainment\\John Saul's Blackstone Chronicles\\1.0": [
