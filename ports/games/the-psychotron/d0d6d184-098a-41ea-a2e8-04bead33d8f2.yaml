@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - ThePsychotron.iso
+    format: 1CD
+    url: https://archive.org/details/The_Psychotron_-_Win3.1_Game_-_Merit_StudiosEng
+  igdb_slug: the-psychotron
+  lang: en
+  media_assets:
+  name: The Psychotron
+  platform: win
+  publisher: Merit Software
+  refs:
+    ag_id:
+    lutris_id: the-psychotron
+    mg_id: 4409
+    pcgw_id:
+    qz_id: 4677
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.03.01
+  ts_added: 2024-12-07 16:01:41 America/Los_Angeles
+  uuid: d0d6d184-098a-41ea-a2e8-04bead33d8f2
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE_DIR}/INSTALL.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/TB/TBOOK.EXE"
+              args:
+                - "{FIRST_CD_DRIVE}/PSYCHO/BOOKS/PSYCHO.TBK"
