@@ -46,6 +46,7 @@ class DosMountPointHDD(DosMountPoint):
 class DosCmdExec:
     exec_path: PureWindowsPath
     args: list[Any] = None
+    cd: PureWindowsPath = None
 
     def __post_init__(self):
         self.exec_path = PureWindowsPath(self.exec_path)
@@ -54,22 +55,35 @@ class DosCmdExec:
         """exec_path containing full directory path should be split to multiple commands.
 
         Example:
+
             in: "F:\\GAME\\GAME.EXE", ["param1", "param2"]
             out: ["F:", "CD GAME", "GAME.EXE param1 param2"]
+
+        When "cd" is specified, the output is slightly different:
+
+            in: "F:\\GAME\\GAME.EXE", ["param1", "param2"], "D:\\APP"
+            out: ["D:", "CD D:\\APP", "F:\\GAME\\GAME.EXE param1 param2"]
         """
         res_arr = []
-        drive = self.exec_path.drive
-        parent = self.exec_path.parent
-        if not drive or parent == self.exec_path:
-            # basic built-in command, e.g. MD
+        if self.cd:
+            drive = self.cd.drive
             cmd_exec = [self.exec_path]
             if self.args:
                 cmd_exec += self.args
-            res_arr.append(cmd_exec)
+            res_arr += [[drive], [f"CD {str(self.cd)}"], cmd_exec]
         else:
-            cmd_exec = [self.exec_path.name]
-            if self.args:
-                cmd_exec += self.args
-            res_arr += [[drive], [f"CD {parent}"], cmd_exec]
+            drive = self.exec_path.drive
+            parent = self.exec_path.parent
+            if not drive or parent == self.exec_path:
+                # basic built-in command, e.g. MD
+                cmd_exec = [self.exec_path]
+                if self.args:
+                    cmd_exec += self.args
+                res_arr.append(cmd_exec)
+            else:
+                cmd_exec = [self.exec_path.name]
+                if self.args:
+                    cmd_exec += self.args
+                res_arr += [[drive], [f"CD {parent}"], cmd_exec]
         for cmd in res_arr:
             yield " ".join([str(part) for part in cmd])
