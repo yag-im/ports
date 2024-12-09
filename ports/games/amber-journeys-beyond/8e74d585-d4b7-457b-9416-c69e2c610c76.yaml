@@ -37,8 +37,7 @@ installer:
         cd_images_as_letters: true
     - dosbox:
         flavor: WIN95OSR25
-        conf:
-          app_drive_size: 50
+        app_drive_size: 50
         tasks:
           - mount:
               src: "{DEST_DIR}"

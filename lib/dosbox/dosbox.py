@@ -82,12 +82,25 @@ class DosBox(Protocol[T]):
         )
 
     def md(self, path: PureWindowsPath):
-        self._run(
-            DosCmdExec(
-                PureWindowsPath("MD"),
-                [path],
+        # md in dosbox doesn't support backslashes nor intermediate paths creation
+        # so we create intermediate paths in a loop replacing backslashes
+        cmds = []
+        paths = []
+        path_tmp = path
+        while len(path_tmp.parts) > 1:
+            paths.append(path_tmp.parent)
+            path_tmp = path_tmp.parent
+        paths.reverse()
+        paths = [str(p).replace("/", "\\") for p in paths[1:]]
+        paths.append(path)
+        for p in paths:
+            cmds.append(
+                DosCmdExec(
+                    PureWindowsPath("MD"),
+                    [p],
+                )
             )
-        )
+        self._run(cmds)
 
     def _run_dosbox(self, dosbox_conf_path: Path) -> None:
         if self.conf.mod == DosBoxMod.X:

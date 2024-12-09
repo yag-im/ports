@@ -6,11 +6,12 @@ from pathlib import (
     Path,
     PureWindowsPath,
 )
+from typing import Any
 
 from lib.app_desc import AppDesc
 from lib.dosbox.const import APP_DRIVE_LETTER
 from lib.errors import DistroNotFoundException
-from lib.installer.const import APP_DIR
+from lib.installer.const import APP_DIR_NAME
 from lib.unpack import unpack_disc_image
 from lib.utils import copy
 
@@ -58,23 +59,24 @@ def fstr(tmpl: str, variables: dict) -> str:
     return tmpl.format(**variables)
 
 
+def subs_vars_in_task_val(v: Any, variables: dict) -> Any:
+    if isinstance(v, str):
+        return fstr(v, variables)
+    elif isinstance(v, list):
+        fmt_list = []
+        for v_ in v:
+            fmt_list.append(subs_vars_in_task_val(v_, variables))
+        return fmt_list
+    elif isinstance(v, dict):
+        return subst_vars(v, variables)
+    else:
+        return v
+
+
 def subst_vars(task: dict, variables: dict) -> dict:
     fmt_task = {}
     for k, v in task.items():
-        if isinstance(v, str):
-            fmt_task[k] = fstr(v, variables)
-        elif isinstance(v, list):
-            fmt_list = []
-            for v_ in v:
-                if isinstance(v_, str):
-                    fmt_list.append(fstr(v_, variables))
-                else:
-                    fmt_list.append(v_)
-            fmt_task[k] = fmt_list
-        elif isinstance(v, dict):
-            fmt_task[k] = subst_vars(v, variables)
-        else:
-            fmt_task[k] = v
+        fmt_task[k] = subs_vars_in_task_val(v, variables)
     return fmt_task
 
 
@@ -83,9 +85,9 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     final_vars["SRC_DIR"] = str(app_descr.src_path())
     final_vars["DEST_DIR"] = str(app_descr.dst_path())
     if app_descr.runner.name in ("scummvm"):
-        final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DIR)
+        final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DIR_NAME)
     elif "dosbox" in app_descr.runner.name or app_descr.runner.name == "wine":
-        final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DRIVE_LETTER / APP_DIR)
+        final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DRIVE_LETTER / APP_DIR_NAME)
     else:
         raise ValueError(f"unknown runner: {app_descr.runner.name}")
     final_vars["SRC_FILES_DIR"] = str(Path(os.environ.get("PORTS_ROOT_PATH")) / "games" / app_descr.app_slug / "files")

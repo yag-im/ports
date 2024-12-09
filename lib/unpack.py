@@ -2,7 +2,10 @@ import os
 import tempfile
 from pathlib import Path
 from subprocess import CalledProcessError
-from typing import List
+from typing import (
+    List,
+    Optional,
+)
 
 from lib.utils import (
     copy,
@@ -13,36 +16,48 @@ from lib.utils import (
 SEVENZ_EXEC = os.getenv("SEVENZ_EXEC")
 
 
-def run_7z(src, dest, extract_files=None):
+def run_7z(src: Path, dest: Path, extract_files: Optional[list[str]] = None):
     # 7z "e" doesn't work as it always eliminate all inner directories recursively
-    # so we first extract into the temp dir using "x", and then move files into dest dir honoring copy_tree nehavior
+    # so we first extract into the temp dir using "x", and then move files into dest dir honoring copy_tree behavior
     # (when extract files contain '*')
-    with tempfile.TemporaryDirectory() as temp_dir:
-        tmp_path = Path(temp_dir)
-        cmd = [SEVENZ_EXEC, "x", src, f"-o{tmp_path}", "-y"]
-        if extract_files:
+    if extract_files:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            cmd = [SEVENZ_EXEC, "x", src, f"-o{tmp_path}", "-y"]
             cmd += extract_files
-        else:
-            extract_files = "*"
-        try:
-            run_cmd(cmd)
-        except CalledProcessError as e:
-            if e.returncode == 2:
-                # e.g. when filename contains non-latin characters (e.g. 3 Skulls of the toltecs, Spanish version)
-                # files unpack fine, but 7z returns an error
-                print("7z has failed, but we'll try to proceed...")
-        copy([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
+    else:
+        cmd = [SEVENZ_EXEC, "x", src, f"-o{dest}", "-y"]
+    try:
+        run_cmd(cmd)
+    except CalledProcessError as e:
+        if e.returncode == 2:
+            # e.g. when filename contains non-latin characters (e.g. 3 Skulls of the toltecs, Spanish version)
+            # files unpack fine, but 7z returns an error
+            print("7z has failed, but we'll try to proceed...")
+    if extract_files:
+        move([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
+
+
+def run_unzip(src: Path, dest: Path, extract_files=None):
+    if extract_files:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            run_cmd(["unzip", "-o", str(src), "-d", str(tmp_path)])
+            move([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
+    else:
+        run_cmd(["unzip", "-o", str(src), "-d", str(dest)])
 
 
 def unpack_archive(src: Path, dest: Path, extract_files: List[str] = None, creates: Path = None) -> None:
-    assert src.exists()
+    if not src.exists():
+        raise ValueError(f"src doesn't exist: {src}")
     dest.mkdir(parents=True, exist_ok=True)
 
     image_format = src.suffix.lower()[1:]
     # sh - gog's mojosetup
     if image_format in {"zip", "sh"}:
         try:
-            run_cmd(["unzip", "-o", str(src), "-d", str(dest)])
+            run_unzip(src, dest, extract_files)
         except Exception:  # pylint: disable=W0718
             pass  # mojosetup returns non-zero exit status
     elif image_format == "cab":

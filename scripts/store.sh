@@ -36,12 +36,13 @@ tar -I "xz -9 -T 0 -v" -cvf $LOCAL_APPS_TMP_DIR/$APP_ARCH_NAME -C $LOCAL_APPS_DI
 
 # copy archived app to appstor
 rsync -ahr --progress \
-    -e "ssh -i $BASTION_KEY_PATH -o ProxyCommand='ssh -p $BASTION_PORT -W %h:%p $BASTION_USER@$BASTION_HOST'" \
+    -e "ssh -i $BASTION_KEY_PATH -o ServerAliveInterval=60 -o ProxyCommand='ssh -p $BASTION_PORT -W %h:%p $BASTION_USER@$BASTION_HOST'" \
     $LOCAL_APPS_TMP_DIR/$APP_ARCH_NAME \
     $APPSTOR_USER@$APPSTOR_HOST:$APPSTOR_TMP_PATH
 
 # unpack app in appstor
 ssh -i $BASTION_KEY_PATH \
+    -o ServerAliveInterval=60 \
     -J $BASTION_USER@$BASTION_HOST:$BASTION_PORT \
     $APPSTOR_USER@$APPSTOR_HOST \
     "rm -rf $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && mkdir -p $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && tar -xvf $APPSTOR_TMP_PATH/$APP_ARCH_NAME -C $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && rm $APPSTOR_TMP_PATH/$APP_ARCH_NAME"

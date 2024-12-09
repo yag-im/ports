@@ -39,8 +39,8 @@ installer:
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
     - dosbox:
+        app_drive_size: 20
         conf:
-          app_drive_size: 20
           cycles: fixed 40000 # otherwise it's too fast TODO: for home pc it should be 20000, for current OVH node it should be 40000
         flavor: WIN95OSR21
         tasks:

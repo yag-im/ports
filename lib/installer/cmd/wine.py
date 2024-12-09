@@ -12,6 +12,7 @@ from lib.wine.wine import (
 
 CMD_GEN_RUN_SCRIPT = "gen_run_script"
 CMD_MOUNT = "mount"
+CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
 CMD_UMOUNT = "umount"
 
@@ -34,6 +35,8 @@ def exec_subtask(task: dict, wine: Wine) -> None:
             replace=task.get("replace", True),
             label=task.get("label", None),
         )
+    elif cmd == CMD_REGEDIT:
+        wine.upd_reg({task.get("path"): task.get("values")})
     elif cmd == CMD_RUN:
         exec_run(wine, task)
     elif cmd == CMD_GEN_RUN_SCRIPT:

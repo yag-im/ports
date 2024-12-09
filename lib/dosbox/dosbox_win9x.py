@@ -17,6 +17,7 @@ from typing import (
 from lib.app_desc import AppDesc
 from lib.dosbox.const import (
     APP_DRIVE_LETTER,
+    DEFAULT_APP_DRIVE_SIZE,
     FIRST_CD_DRIVE,
     RUNNERS_BUNDLES_BASE_DIR,
     SYSTEM_DRIVE,
@@ -54,7 +55,7 @@ BASE_COLOR_BITS = 16
 
 @dataclass
 class DosBoxWin9xConf(DosBoxConf):
-    app_drive_size: int = 100  # desired app drive image size, in MB
+    app_drive_size: int = DEFAULT_APP_DRIVE_SIZE
     mod: DosBoxMod = field(default=DosBoxMod.X)
     flavor: DosBoxFlavor = field(default=DosBoxFlavor.WIN95OSR25)
 
@@ -159,7 +160,7 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
         if len(src) > 1 or "*" in str(src[0]):
             # when there are multiple sources or source contains a mask, destination is always a folder
             # (needs to be created for safety)
-            cmds.append(DosCmdExec("MD", [dst]))
+            self.md(dst)
             if "*" in str(src[0]):
                 # we don't want to go into subdirectories with *
                 lcopy_cmd_options.remove("/S")
