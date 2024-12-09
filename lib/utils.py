@@ -20,19 +20,22 @@ def rm(src: Path) -> None:
 
 
 def move(src: Path, dst: Path, copy_tree: bool = False) -> None:
-    cmd = ["mv"]
+    if isinstance(src, Path):
+        src = [src]
+    for s in src:
+        cmd = ["mv"]
 
-    # a*b should become a"*"b
-    src = str(src).replace("*", '"*"')
-    dst = str(dst).replace("*", '"*"')
+        # a*b should become a"*"b
+        s = str(s).replace("*", '"*"')
+        dst = str(dst).replace("*", '"*"')
 
-    src_part = f'"{str(src)}"'
-    dst_part = f'"{str(dst)}"'
-    if copy_tree:
-        cmd += ["-T"]
-    cmd += [src_part]
-    cmd += [dst_part]
-    run_cmd(cmd, shell=True)  # shell=True because otherwise asterisk is not handled properly
+        src_part = f'"{str(s)}"'
+        dst_part = f'"{str(dst)}"'
+        if copy_tree:
+            cmd += ["-T"]
+        cmd += [src_part]
+        cmd += [dst_part]
+        run_cmd(cmd, shell=True)  # shell=True because otherwise asterisk is not handled properly
 
 
 def _copy_norm_path(path: Path):

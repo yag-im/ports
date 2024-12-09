@@ -4,6 +4,7 @@ from pathlib import (
 )
 
 from lib.app_desc import AppDesc
+from lib.dosbox.const import DEFAULT_APP_DRIVE_SIZE
 from lib.dosbox.dosbox import DosBox
 from lib.dosbox.dosbox_conf import (
     DosBoxFlavor,
@@ -79,7 +80,7 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
     elif cmd == CMD_GEN_RUN_SCRIPT:
         exec_run(dbox, task, mock=True)
     elif cmd == CMD_MD:
-        dbox.md(task.get("path"))
+        dbox.md(PureWindowsPath(task.get("path")))
     elif cmd == CMD_MOUNT:
         cd_images_as_letters = task.get("cd_images_as_letters", False)
         if cd_images_as_letters:
@@ -120,6 +121,7 @@ def run(task: dict, app_descr: AppDesc) -> None:
     flavor = DosBoxFlavor[str(task.get("flavor", "DOS")).upper()]
     dosbox_conf["flavor"] = flavor
     dosbox_conf["mod"] = get_dosbox_mod(app_descr)
+    dosbox_conf["app_drive_size"] = task.get("app_drive_size", DEFAULT_APP_DRIVE_SIZE)
     dst_dir = app_descr.dst_path()
     if flavor == DosBoxFlavor.WIN311:
         dbox = DosBoxWin3x(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxWin3xConf(**dosbox_conf))

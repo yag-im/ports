@@ -1,0 +1,71 @@
+descr:
+  distro:
+    files:
+      - LIGHTBRINGER.ISO
+    format: 1DVD
+    url: https://d2.myabandonware.com/t/8eb2416e-aa05-44be-a6f6-260ec393cc6e/Cydonia-Mars-The-First-Manned-Mission_Win_EN_ISO-Version.zip
+  igdb_slug: cydonia-mars-the-first-manned-mission
+  lang: en
+  media_assets:
+  name: "Cydonia: Mars - The First Manned Mission"
+  platform: win
+  publisher: DreamCatcher Interactive
+  refs:
+    ag_id: 15758
+    lutris_id:
+    mg_id: 4502
+    pcgw_id:
+    qz_id: 3247
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "9.0"
+  ts_added: 2024-12-08 09:41:39 America/Los_Angeles
+  uuid: 9ec16a2a-0789-4ebc-bee8-893340e44a7f
+  year_released: 1999
+installer:
+  # TODO: This game runs much faster in Wine compared to DOSBox;
+  # however, there's an issue with the inventory — the animation for item usage
+  # is broken. For example, try using a comm cable with a comm port on the right side of the spaceship at the very
+  # beginning. Test with Wine 10.0 once it's released.
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - regedit:
+              path: "HKEY_LOCAL_MACHINE\\Software\\Aneiva\\Lightbringer\\1.0"
+              values:
+                - "@": "{APP_DIR}"
+                - CDPath: "{FIRST_CD_DRIVE}"
+                - Fileloc: "hex:00,00,01,01,00,00,00,01,01"
+          - gen_run_script:
+              path: "{APP_DIR}/Lightbringer.exe"
+    - file:
+        path: "{DEST_APP_DIR}/data"
+        state: directory
+    - copy:
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/data/{item}"
+        dest: "{DEST_APP_DIR}/data"
+        loop:
+          - music
+          - s
+          - samples
+          - suitcomp
+          - ui
+    - extract:
+        src: "{SRC_DIR}/Cydonia-Mars-The-First-Manned-Mission_Patch_Win_EN_Patch.zip"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Patch/Lightbringer.exe
