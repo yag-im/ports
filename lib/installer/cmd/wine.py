@@ -53,7 +53,7 @@ def exec_subtask(task: dict, wine: Wine) -> None:
 def run(task: dict, app_descr: AppDesc) -> None:
     dst_dir = app_descr.dst_path()
     os_ver = task.get("os_ver", OsVer.WINDOWS7.name)
-    wine = Wine(dst_dir, os_ver=OsVer[os_ver], lang=app_descr.lang)
+    wine = Wine(dst_dir, os_ver=OsVer(os_ver), lang=app_descr.lang)
     task_: dict
     for task_ in task.get("tasks"):
         exec_subtask(task_, wine)

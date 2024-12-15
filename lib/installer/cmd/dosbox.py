@@ -86,10 +86,17 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
         if cd_images_as_letters:
             dbox.mount(gen_cd_mount_points(Path(task.get("src")), FIRST_CD_DRIVE_LETTER, len(app_descr.distro.files)))
         else:
+            path = task.get("src")
+            if isinstance(path, str):
+                path = [Path(path)]
+            elif isinstance(path, list):
+                path = [Path(p) for p in path]
+            else:
+                raise ValueError(f"unknown src type: {path}")
             dbox.mount(
                 DosMountPoint(
                     letter=task.get("letter"),
-                    path=Path(task.get("src")),
+                    path=path,
                     is_cd=task.get("is_cd", True),
                     label=task.get("label", None),
                 )

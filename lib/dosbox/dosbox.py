@@ -49,6 +49,7 @@ class DosBox(Protocol[T]):
         self.system_drive = root_dir / SYSTEM_DRIVE_LETTER
         self.app_drive = root_dir / APP_DRIVE_LETTER
         self.templates_dir = CURRENT_DIR / "templates" / self.conf.mod.value / self.conf.flavor.value
+        self.files_dir = CURRENT_DIR / "files" / self.conf.mod.value
         self.run_cmds: Optional[List[DosCmdExec]] = (
             None  # TODO: should we optionally accept cmds in the ctor and execute them right away?
         )
@@ -163,6 +164,7 @@ class DosBox(Protocol[T]):
             "memsize": self.conf.memsize,
             "scaler": self.conf.scaler,
             "aspect": self.conf.aspect,
+            "cdrom_insertion_delay": self.conf.cdrom_insertion_delay,
             "cycles": self.conf.cycles,
             "fullscreen": str(self.conf.fullscreen).lower(),
             "sensitivity": AUTOLOCK_MOUSE_SENSITIVITY if self.conf.autolock else self.conf.sensitivity,

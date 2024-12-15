@@ -20,9 +20,9 @@ class DosMountPoint:
 
     def path_str(self):
         if isinstance(self.path, List):
-            return " ".join([str(p) for p in self.path])
+            return " ".join([f'"{str(p)}"' for p in self.path])
         else:
-            return str(self.path)
+            return f'"{str(self.path)}"'
 
     def relative_to(self, p_base: Path):
         if isinstance(self.path, List):
