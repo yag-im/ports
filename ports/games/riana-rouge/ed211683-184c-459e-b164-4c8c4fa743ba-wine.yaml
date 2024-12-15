@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - DISC1.bin
+      - Disc2.bin
+      - DISC3.bin
+    format: 3CD
+    url: https://archive.org/details/riana_rouge_usa/
+  igdb_slug: riana-rouge
+  lang: en
+  media_assets:
+  name: Riana Rouge
+  platform: win
+  publisher: Eidos Interactive
+  refs:
+    ag_id: 16583
+    lutris_id:
+    mg_id: 2428
+    pcgw_id: Riana_Rouge
+    qz_id: 1349
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "9.0"
+  ts_added: 2024-12-08 20:39:13 America/Los_Angeles
+  uuid: ed211683-184c-459e-b164-4c8c4fa743ba
+  year_released: 1997
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Riana.exe"

@@ -39,6 +39,7 @@ class DosBoxFlavor(StrEnum):
 class DosBoxConf:
     aspect: bool = True
     autolock: bool = False
+    cdrom_insertion_delay: int = 1000
     cycles: str = "max"
     flavor: DosBoxFlavor = DosBoxFlavor.DOS
     fullscreen: bool = False
@@ -68,10 +69,14 @@ class DosBoxConf:
             mount_points = []
         if not isinstance(mount_points, List):
             mount_points = [mount_points]
-        for p in mount_points:
-            if not p.path.exists():
-                raise ValueError(f"non-existing mount point: {p.path}")
-            self.mount_points[p.letter] = p
+        for mp in mount_points:
+            path = mp.path
+            if not isinstance(path, list):
+                path = [path]
+            for p in path:
+                if not p.exists():
+                    raise ValueError(f"non-existing mount point: {p}")
+            self.mount_points[mp.letter] = mp
 
     def umount_all(self, remove: bool = False, cd_only: bool = False) -> None:
         mp_copy = self.mount_points.copy()
@@ -94,17 +99,23 @@ class DosBoxConf:
             - Folder - copy of CD (using -t cdrom -label)
             - CD image (using -t iso)
             - HDD image
+            - List of above (switch by Ctrl+F4)
         """
         cmds = []
         # mounts should go in alphabetic order, e.g. MOUNT C should go first, then MOUNT D etc.
         for _, m in self.mount_points.items():
-            if m.path.is_dir():
-                mount_part = f'MOUNT {m.letter} "{m.relative_to(base_dir).path_str()}"'
+            path = m.path
+            if isinstance(path, list):
+                path = path[0]
+            if path.is_dir():
+                mount_part = f"MOUNT {m.letter} {m.relative_to(base_dir).path_str()}"
                 if m.is_cd:
-                    mount_part += f" -t cdrom -label {m.label}"
+                    mount_part += " -t cdrom"
+                if m.label:
+                    mount_part += f" -label {m.label}"
                 cmds += [mount_part]
             else:
-                mount_part = f'IMGMOUNT {m.letter} "{m.relative_to(base_dir).path_str()}"'
+                mount_part = f"IMGMOUNT {m.letter} {m.relative_to(base_dir).path_str()}"
                 if m.is_cd:
                     mount_part += " -t iso"
                 cmds += [mount_part]
