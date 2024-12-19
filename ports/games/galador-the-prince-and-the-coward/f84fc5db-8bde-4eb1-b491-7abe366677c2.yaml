@@ -1,14 +1,18 @@
 descr:
   distro:
     files:
-      - Galador - Polish.iso
+      - Galador.iso
     format: 1CD
     url: https://www.old-games.ru/game/download/1942.html
-  igdb_slug: the-prince-and-the-coward
-  lang: pl
-  name: Książę i Tchórz
+  igdb_slug: galador-the-prince-and-the-coward
+  lang: ru
+  media_assets:
+    cover:
+      image_id: f84fc5db-8bde-4eb1-b491-7abe366677c2
+    screenshots: []
+  name: Галадор
   platform: win
-  publisher: Metropolis Software
+  publisher: Седьмой волк
   refs:
     ag_id: 45762
     lutris_id: galador-the-prince-and-the-coward
@@ -25,7 +29,7 @@ descr:
   runner:
     name: wine
     ver: '9.0'
-  ts_added: 2024-09-14 12:43:00 America/Los_Angeles
-  uuid: 02959ab5-aefb-44a1-b2ca-4fe5cd515f04
+  ts_added: 2024-09-16 18:29:00 America/Los_Angeles
+  uuid: f84fc5db-8bde-4eb1-b491-7abe366677c2
   year_released: 1998
 installer: null
