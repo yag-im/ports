@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - Thief Gold (USA) (Disc 1) (Installation).bin
+      - Thief Gold (USA) (Disc 2) (Game).bin
+    format: 2CD
+    url: https://archive.org/details/ThiefGoldUSA
+  igdb_slug: thief-gold
+  lang: en
+  media_assets:
+  name: Thief Gold
+  platform: win
+  publisher: Eidos Interactive
+  refs:
+    ag_id:
+    lutris_id: thief-gold
+    mg_id: 1404
+    pcgw_id: Thief:_The_Dark_Project
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "9.0"
+  ts_added: 2024-12-29 16:18:38 America/Los_Angeles
+  uuid: f29d6ddf-08f4-4ee3-9243-bc567eba5b2a
+  year_released: 1999
+installer:
+  tasks:
+    - wine:
+        os_ver: win95
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/THIEF.EXE"
+    - extract:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - THIEF/*
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - file:
+        path: "{DEST_DIR}/{APP_DRIVE_LETTER}/THIEF"
+        state: directory
+    - copy:
+        # check cd bypass (app looks for {CD_DRIVE}:/THEIF/CONVICT.OSM file on startup)
+        src: "{DEST_APP_DIR}/CONVICT.OSM"
+        dest: "{DEST_DIR}/{APP_DRIVE_LETTER}/THIEF"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - install.cfg
+          - cam.cfg
