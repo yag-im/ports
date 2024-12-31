@@ -35,7 +35,8 @@ def run_7z(src: Path, dest: Path, extract_files: Optional[list[str]] = None):
             # files unpack fine, but 7z returns an error
             print("7z has failed, but we'll try to proceed...")
     if extract_files:
-        move([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
+        # do not use move; TODO: move a/b to c when c/b exists fails
+        copy([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
 
 
 def run_unzip(src: Path, dest: Path, extract_files=None):
@@ -43,7 +44,8 @@ def run_unzip(src: Path, dest: Path, extract_files=None):
         with tempfile.TemporaryDirectory() as temp_dir:
             tmp_path = Path(temp_dir)
             run_cmd(["unzip", "-o", str(src), "-d", str(tmp_path)])
-            move([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
+            # do not use move; TODO: move a/b to c when c/b exists fails
+            copy([tmp_path / ef for ef in extract_files], dest, copy_tree=False)
     else:
         run_cmd(["unzip", "-o", str(src), "-d", str(dest)])
 
