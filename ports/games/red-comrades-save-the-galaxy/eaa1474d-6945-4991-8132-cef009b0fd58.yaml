@@ -61,7 +61,6 @@ installer:
                 - "{SECOND_CD_DRIVE}"
                 - "{THIRD_CD_DRIVE}"
           - umount:
-              src: "{DEST_DIR}"
               cd_images_as_letters: true
           - gen_run_script:
               path: "{APP_DIR}/PETKA.EXE"

@@ -43,7 +43,7 @@ X_DRIVE_LETTER = "X"
 X_DRIVE_DIR = PureWindowsPath("X:\\")
 
 LCOPY_CMD = "LCOPY"
-LCOPY_CMD_OPTIONS = ["/Y", "/R", "/S", "/A", "/V", "/B", "/C"]
+LCOPY_CMD_OPTIONS = ["/Y", "/R", "/A", "/V", "/B", "/C", "/S", "/D"]
 
 XCOPY_CMD = "XCOPY"
 XCOPY_CMD_OPTIONS = ["/I", "/E", "/Y", "/H", "/R"]
@@ -147,27 +147,32 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
         LCOPY options:
             /Y: turn off prompting
             /R: overwrite existing read-only files
-            /S: copy subdirectories
             /A: copy hidden files
             /V: do not use extended memory (mandatory for dosbox-x)
             /B: do not abort operation by pressing any key
             /C: disable cache
+            /S: copy subdirectories
+            /D: do not create subdirectories when recursing (/S)
 
         TODO: only LCOPY preserves LFNs, but it fails to copy data from mounted dirs, so we have to use XCOPY to copy
         from X drive.
+        TODO: directories copy doesn't work, e.g. "LCOPY D1 D2" will produce an empty /D2/D1 directory.
+        You need to create /D2/D1 beforehand and use "LCOPY D1/* D2/D1" syntax instead.
         """
         if not isinstance(src, List):
             src = [src]
         cmds = []
-        # we might want to remove /S in certain cases
+        # we might want to remove /D in certain cases:
+        # - when copying SRC/* into DST we want to preserve subdirectories with all files inside (by removing /D)
+        # - when copying a single file (SRC/file.ext) into DST, we need to keep /D, otherwise
+        # LCOPY will recreate the whole structure of SRC at DST (bug: https://github.com/oglueck/lfntools/issues/1)
         lcopy_cmd_options = LCOPY_CMD_OPTIONS.copy()
         if len(src) > 1 or "*" in str(src[0]):
             # when there are multiple sources or source contains a mask, destination is always a folder
             # (needs to be created for safety)
             self.md(dst)
             if "*" in str(src[0]):
-                # we don't want to go into subdirectories with *
-                lcopy_cmd_options.remove("/S")
+                lcopy_cmd_options.remove("/D")
         for s in src:
             if isinstance(s, Path):
                 # copy from host into dosbox

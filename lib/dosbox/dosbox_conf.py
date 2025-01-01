@@ -89,7 +89,8 @@ class DosBoxConf:
         mp = self.mount_points[drive_letter]
         del self.mount_points[drive_letter]
         if remove:
-            rm(mp.path)
+            for p in mp.path:
+                rm(p)
 
     def gen_mount_cmds(self, base_dir: Path) -> list[str]:
         """Generate dosbox mount commands.

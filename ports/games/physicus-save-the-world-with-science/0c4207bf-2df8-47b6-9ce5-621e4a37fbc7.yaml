@@ -1,0 +1,86 @@
+descr:
+  distro:
+    files:
+      - Physicus1.bin
+      - Physicus2.bin
+    format: 2CD
+    url: https://archive.org/details/Physicus_Save_the_World_with_Science_USA
+  igdb_slug: physicus-save-the-world-with-science
+  lang: en
+  media_assets:
+  name: "Physicus: Save the World with Science!"
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id: 15559
+    lutris_id:
+    mg_id: 8393
+    pcgw_id: Physikus
+    qz_id: 310
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2024-12-31 10:58:17 America/Los_Angeles
+  uuid: 0c4207bf-2df8-47b6-9ce5-621e4a37fbc7
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 650
+        tasks:
+          - mount:
+              # second CD must remain mounted at runtime, so mounting it as CD1
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - mount:
+              # first CD is needed temporaly, just to install the game, so mounting it as CD2
+              letter: "{SECOND_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - copy:
+              src: "{SECOND_CD_DRIVE}/{item}/*"
+              dest: "{APP_DIR}/Physicus1/{item}"
+              loop:
+                - Akustik
+                - Elektrik
+                - Mechanik
+                - Optik
+                - WLehre
+                - XGame
+          - copy:
+              src:
+                - "{SECOND_CD_DRIVE}/CDEPlayer.dxr"
+                - "{SECOND_CD_DRIVE}/CDNr1.rup"
+                - "{SECOND_CD_DRIVE}/ClassPackager"
+                - "{SECOND_CD_DRIVE}/DPLib"
+                - "{SECOND_CD_DRIVE}/EInhalt.dxr"
+                - "{SECOND_CD_DRIVE}/IMLLib"
+                - "{SECOND_CD_DRIVE}/Schrift.cxt"
+                - "{SECOND_CD_DRIVE}/Trailer.mov"
+              dest: "{APP_DIR}/Physicus1"
+          - copy:
+              src: "{SECOND_CD_DRIVE}/Transfer/*"
+              dest: "{APP_DIR}"
+          - run:
+              path: "{SECOND_CD_DRIVE}/QT3Setup/Install QuickTime.exe"
+          - umount:
+              letter: "{SECOND_CD_DRIVE_LETTER}"
+          - copy:
+              src: "{SRC_FILES_DIR}/{item}"
+              dest: "{APP_DIR}"
+              loop:
+                - PHYDEL.INI
+                - PHYSICUS.RUP
+          - gen_run_script:
+              path: "{APP_DIR}/PHYSICUS.EXE"

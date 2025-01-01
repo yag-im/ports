@@ -31,8 +31,8 @@ descr:
   year_released: 1999
 installer:
   # TODO: This game runs much faster in Wine compared to DOSBox;
-  # however, there's an issue with the inventory — the animation for item usage
-  # is broken. For example, try using a comm cable with a comm port on the right side of the spaceship at the very
+  # however, there's an issue with the inventory — the animation for item usage is broken.
+  # For example, try using a comm cable with a comm port on the right side of the spaceship at the very
   # beginning. Test with Wine 10.0 once it's released.
   tasks:
     - extract:
