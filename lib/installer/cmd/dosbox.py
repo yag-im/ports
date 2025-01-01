@@ -110,6 +110,9 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
         remove = task.get("remove", True)
         if cd_images_as_letters:
             dbox.umount_all(remove, cd_only=True)
+        else:
+            letter = task.get("letter")
+            dbox.umount(letter, remove)
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 
