@@ -11,7 +11,7 @@ descr:
     cover:
       image_id: 7bf8fab7-4355-412d-a2ac-4799f2decc72
     screenshots: []
-  name: 'Дисклэнд II: Живите долго...?!'
+  name: "Дисклэнд II: Живите долго...?!"
   platform: win
   publisher: Psygnosis Limited
   refs:
@@ -29,7 +29,7 @@ descr:
       lock_pointer: false
   runner:
     name: scummvm
-    ver: 2.8.1
+    ver: 2.9.0
   ts_added: 2024-05-18 04:51:00 America/Los_Angeles
   uuid: 7bf8fab7-4355-412d-a2ac-4799f2decc72
   year_released: 1996

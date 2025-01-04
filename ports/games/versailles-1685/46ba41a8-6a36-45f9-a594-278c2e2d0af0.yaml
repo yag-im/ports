@@ -25,7 +25,7 @@ descr:
       lock_pointer: false
   runner:
     name: scummvm
-    ver: 2.8.1
+    ver: 2.9.0
   ts_added: 2024-05-04 20:11:00 America/Los_Angeles
   uuid: 46ba41a8-6a36-45f9-a594-278c2e2d0af0
   year_released: 1996

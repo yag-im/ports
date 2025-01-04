@@ -8,7 +8,7 @@ descr:
     url: https://archive.org/details/SHIVERS22
   igdb_slug: shivers-ii-harvest-of-souls
   lang: en
-  name: 'Shivers II: Harvest of Souls'
+  name: "Shivers II: Harvest of Souls"
   platform: win
   publisher: Sierra On-Line
   refs:
@@ -26,7 +26,7 @@ descr:
       lock_pointer: false
   runner:
     name: dosbox-x
-    ver: 2024.03.01
+    ver: 2024.12.04
   ts_added: 2024-07-23 15:02:00 America/Los_Angeles
   uuid: 746220fc-2503-4b61-b18f-d494067947ec
   year_released: 1997

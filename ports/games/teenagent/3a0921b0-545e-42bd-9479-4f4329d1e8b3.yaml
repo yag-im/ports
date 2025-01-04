@@ -25,7 +25,7 @@ descr:
       lock_pointer: false
   runner:
     name: dosbox-x
-    ver: 2024.03.01
+    ver: 2024.12.04
   ts_added: 2024-08-25 00:51:00 America/Los_Angeles
   uuid: 3a0921b0-545e-42bd-9479-4f4329d1e8b3
   year_released: 1994

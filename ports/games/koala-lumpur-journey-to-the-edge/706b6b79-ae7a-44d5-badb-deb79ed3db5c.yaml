@@ -6,7 +6,7 @@ descr:
     url: https://rutracker.org/forum/viewtopic.php?t=3278449
   igdb_slug: koala-lumpur-journey-to-the-edge
   lang: en
-  name: 'Koala Lumpur: Journey to the Edge'
+  name: "Koala Lumpur: Journey to the Edge"
   platform: win
   publisher: Broderbund
   refs:
@@ -24,7 +24,7 @@ descr:
       lock_pointer: false
   runner:
     name: dosbox-x
-    ver: 2024.03.01
+    ver: 2024.12.04
   ts_added: 2024-07-21 12:06:00 America/Los_Angeles
   uuid: 706b6b79-ae7a-44d5-badb-deb79ed3db5c
   year_released: 1997
