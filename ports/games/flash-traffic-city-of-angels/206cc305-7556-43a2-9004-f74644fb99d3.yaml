@@ -27,7 +27,7 @@ descr:
       lock_pointer: false
   runner:
     name: dosbox
-    ver: 0.74-3-4
+    ver: 0.74-3
   ts_added: 2024-12-03 19:50:52 America/Los_Angeles
   uuid: 206cc305-7556-43a2-9004-f74644fb99d3
   year_released: 1994

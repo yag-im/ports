@@ -7,7 +7,7 @@ descr:
     url: https://www.myabandonware.com/download/4yg-discworld-ii-mortality-bytes
   igdb_slug: discworld-ii-mortality-bytes
   lang: en-us
-  name: 'Discworld II: Mortality Bytes!'
+  name: "Discworld II: Mortality Bytes!"
   platform: win
   publisher: Psygnosis Limited
   refs:
@@ -25,7 +25,7 @@ descr:
       lock_pointer: false
   runner:
     name: scummvm
-    ver: 2.8.1
+    ver: 2.9.0
   ts_added: 2024-05-18 04:51:00 America/Los_Angeles
   uuid: 90a41511-952c-476d-8d70-7eac5555ba1d
   year_released: 1996

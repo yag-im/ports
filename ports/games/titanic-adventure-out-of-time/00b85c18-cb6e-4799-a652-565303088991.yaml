@@ -7,7 +7,7 @@ descr:
     url: https://archive.org/details/titanic-adventure-out-of-time_202105
   igdb_slug: titanic-adventure-out-of-time
   lang: en
-  name: 'Titanic: Adventure out of Time'
+  name: "Titanic: Adventure out of Time"
   platform: win
   publisher: GTE Entertainment
   refs:
@@ -25,7 +25,7 @@ descr:
       lock_pointer: false
   runner:
     name: dosbox-x
-    ver: 2024.03.01
+    ver: 2024.12.04
   ts_added: 2024-06-10 03:45:00 America/Los_Angeles
   uuid: 00b85c18-cb6e-4799-a652-565303088991
   year_released: 1996
