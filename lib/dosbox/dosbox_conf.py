@@ -7,6 +7,7 @@ from enum import StrEnum
 from pathlib import Path
 from typing import (
     List,
+    Optional,
     Union,
 )
 
@@ -49,7 +50,7 @@ class DosBoxConf:
     mod: DosBoxMod = DosBoxMod.ORIG
     mount_points: collections.OrderedDict[str, DosMountPoint] = field(default_factory=collections.OrderedDict)
     scaler: str = "none"
-    sensitivity: int = BASE_MOUSE_SENSITIVITY
+    sensitivity: Optional[int] = None
 
     @property
     def lang(self):
