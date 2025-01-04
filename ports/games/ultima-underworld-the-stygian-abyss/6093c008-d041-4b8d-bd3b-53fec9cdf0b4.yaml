@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Ultima Underworld I & II (USA).bin
+    format: 1CD
+    url: https://archive.org/details/UltimaUnderworld12USA
+  igdb_slug: ultima-underworld-the-stygian-abyss
+  lang: en
+  media_assets:
+  name: "Ultima Underworld: The Stygian Abyss"
+  platform: dos
+  publisher: Origin Systems
+  refs:
+    ag_id:
+    lutris_id: ultima-underworld-the-stygian-abyss
+    mg_id: 690
+    pcgw_id: "Ultima_Underworld:_The_Stygian_Abyss"
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-01-03 16:14:07 America/Los_Angeles
+  uuid: 6093c008-d041-4b8d-bd3b-53fec9cdf0b4
+  year_released: 1993
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - UW/*
+    - dosbox:
+        conf:
+          fullscreen: true
+          sensitivity: 100
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/UW.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/UW.CFG"
+        dest: "{DEST_APP_DIR}/DATA"

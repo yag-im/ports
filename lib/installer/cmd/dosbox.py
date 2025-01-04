@@ -131,11 +131,11 @@ def run(task: dict, app_descr: AppDesc) -> None:
     flavor = DosBoxFlavor[str(task.get("flavor", "DOS")).upper()]
     dosbox_conf["flavor"] = flavor
     dosbox_conf["mod"] = get_dosbox_mod(app_descr)
-    dosbox_conf["app_drive_size"] = task.get("app_drive_size", DEFAULT_APP_DRIVE_SIZE)
     dst_dir = app_descr.dst_path()
     if flavor == DosBoxFlavor.WIN311:
         dbox = DosBoxWin3x(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxWin3xConf(**dosbox_conf))
     elif flavor in {DosBoxFlavor.WIN95OSR21, DosBoxFlavor.WIN95OSR25, DosBoxFlavor.WIN98SE}:
+        dosbox_conf["app_drive_size"] = task.get("app_drive_size", DEFAULT_APP_DRIVE_SIZE)
         dbox = DosBoxWin9x(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxWin9xConf(**dosbox_conf))
     elif flavor == DosBoxFlavor.DOS:
         dbox = DosBoxDos(root_dir=dst_dir, app_descr=app_descr, conf=DosBoxDosConf(**dosbox_conf))

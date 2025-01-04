@@ -18,6 +18,7 @@ from lib.dosbox.const import (
     SYSTEM_DRIVE_LETTER,
 )
 from lib.dosbox.dosbox_conf import (
+    BASE_MOUSE_SENSITIVITY,
     DosBoxConf,
     DosBoxMod,
 )
@@ -158,6 +159,7 @@ class DosBox(Protocol[T]):
         for c in self.run_cmds:
             autoexec_cmds.append(c)
         autoexec_cmds.append("EXIT")
+        default_sensitivity = AUTOLOCK_MOUSE_SENSITIVITY if self.conf.autolock else BASE_MOUSE_SENSITIVITY
         tmpl_params = {
             "autolock": str(self.conf.autolock).lower(),
             "autoexec": autoexec_cmds,
@@ -167,7 +169,7 @@ class DosBox(Protocol[T]):
             "cdrom_insertion_delay": self.conf.cdrom_insertion_delay,
             "cycles": self.conf.cycles,
             "fullscreen": str(self.conf.fullscreen).lower(),
-            "sensitivity": AUTOLOCK_MOUSE_SENSITIVITY if self.conf.autolock else self.conf.sensitivity,
+            "sensitivity": self.conf.sensitivity or default_sensitivity,
         }
         dest_path = self.root_dir / CONF_NAME
         template(
