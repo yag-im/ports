@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - TKKG5.iso
+    format: 1CD
+    url: https://archive.org/details/tkkg-5
+  igdb_slug: tkkg-verrat-an-tkkg
+  lang: en
+  media_assets:
+  name: "TKKG: Verrat an TKKG"
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id: 909
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-01-19 19:32:16 America/Los_Angeles
+  uuid: 4c30125f-b75b-4e6b-bfd7-a4c59c235fd8
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/TKKG_5/TKKG5_16.EXE"
