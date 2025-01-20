@@ -2,7 +2,7 @@ ARG DEBIAN_VER=bookworm
 
 FROM mcr.microsoft.com/devcontainers/python:1-3.11-${DEBIAN_VER}
 
-ARG DOSBOX_VER=0.74-3
+ARG DOSBOX_VER=0.74-3-4
 ARG DOSBOX_X_VER=2024.12.04
 ARG DEBIAN_VER
 ARG DEBIAN_FRONTEND=noninteractive

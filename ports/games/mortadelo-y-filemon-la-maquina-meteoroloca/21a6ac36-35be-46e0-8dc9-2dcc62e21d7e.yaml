@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - MORTADELO2.iso
+    format: 1CD
+    url: https://drive.google.com/file/d/1d0a_7xA6bsYIhcefbrZSaKFLWU72PzHv
+  igdb_slug: mortadelo-y-filemon-la-maquina-meteoroloca
+  lang: es
+  media_assets:
+  name: "Mortadelo y Filemón: La Máquina Meteoroloca"
+  platform: win
+  publisher: Zeta MultiMedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 59989
+    pcgw_id:
+    qz_id: 796
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-01-19 11:29:16 America/Los_Angeles
+  uuid: 21a6ac36-35be-46e0-8dc9-2dcc62e21d7e
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 400
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - run:
+              path: "{FIRST_CD_DRIVE}/DX6RUNTIME/DX6CORE.EXE"
+          # workaround for UTF-8 to Unicode conversion of character á in the exec filename
+          # TODO: it was copied manually, test same from script
+          - copy:
+              src: "{APP_DIR}/L*.EXE"
+              dest: "{APP_DIR}/LMM.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/LMM.EXE"
