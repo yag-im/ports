@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Labyrinth_of_Time.iso
+    format: 1CD
+    url: https://archive.org/details/TheLabyrinthofTime-roverinfo
+  igdb_slug: the-labyrinth-of-time
+  lang: en
+  media_assets:
+  name: The Labyrinth of Time
+  platform: dos
+  publisher: Electronic Arts
+  refs:
+    ag_id: 15738
+    lutris_id: the-labyrinth-of-time
+    mg_id: 2441
+    pcgw_id: The_Labyrinth_of_Time
+    qz_id: 588
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-01-24 21:09:02 America/Los_Angeles
+  uuid: 1b06f18d-3e2e-44f2-a38e-9a4a0d11043c
+  year_released: 1993
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/LABW/player"
+              args:
+                - "%1"
+                - "%2"
