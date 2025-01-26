@@ -1,0 +1,78 @@
+descr:
+  distro:
+    files:
+      - Innocent.Until.Caught.bin
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=2736279
+  igdb_slug: innocent-until-caught
+  lang: multi
+  media_assets:
+  name: Innocent Until Caught
+  platform: dos
+  publisher: Psygnosis
+  refs:
+    ag_id: 15857
+    lutris_id: innocent-until-caught
+    mg_id: 2086
+    pcgw_id: Innocent_until_Caught
+    qz_id: 527
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    # vanilla dosbox won't work with CT-VOICE.DRV v3.x required for SFX in this game
+    # https://www.vogons.org/viewtopic.php?p=946743#p946743
+    name: dosbox-staging
+    ver: 0.82.0
+  ts_added: 2025-01-25 17:07:44 America/Los_Angeles
+  uuid: fcdc887e-aa72-4887-8152-32466b08b462
+  year_released: 1994
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    # folder for config (INNOCENT.INI) and saves
+    # INNOCENT.INI has SB enabled (b+)
+    - file:
+        path: "{DEST_DIR}/C/INNOCENT"
+        state: directory
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_DIR}/C/INNOCENT"
+        loop:
+          - INNOCENT.INI
+    # missing SB v3.x driver
+    - file:
+        path: "{DEST_APP_DIR}/DRV"
+        state: directory
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}/DRV"
+        loop:
+          - CT-VOICE.DRV
+    # IUC_PROG patches for "accept any code" on startup (offsets are different for CD, FD distros and languages)
+    # Example for a CD version, IUC_PROG.ENG:
+    # 0x4FCB9: AAAoZf5 block
+    # 0x4FCF1 (+0x38): 7F -> 6D
+    # 0x4FD23 (+0x6A): 7D -> 6D
+    # 0x4FD55 (+0x9C): 7B -> 6D
+    # 0x4FD87 (+0xCE): 79 -> 6D
+    #
+    # IUC.BAT: orig launcher with EXIT at the end
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - IUC_PROG.*
+          - IUC.BAT
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              pre_exec:
+                - SET SOUND=. # use DRV/CT-VOICE.DRV
+              path: "{APP_DIR}/IUC.BAT"

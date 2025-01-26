@@ -45,9 +45,10 @@ def exec_regedit(dbox: DosBoxWin9x, task: dict):
 def exec_run(dbox: DosBox, task: dict, mock=False):
     if isinstance(dbox, DosBoxDos):
         cd = task.get("cd", None)
+        pre_exec = task.get("pre_exec", None)
         if cd:
             cd = PureWindowsPath(cd)
-        dbox.run(path=PureWindowsPath(task.get("path")), args=task.get("args", []), cd=cd, mock=mock)
+        dbox.run(path=PureWindowsPath(task.get("path")), args=task.get("args", []), cd=cd, mock=mock, pre_exec=pre_exec)
     elif isinstance(dbox, DosBoxWin3x):
         dbox.run(
             path=PureWindowsPath(task.get("path")), args=task.get("args", []), runexit=task.get("exit", True), mock=mock
