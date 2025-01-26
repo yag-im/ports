@@ -71,6 +71,8 @@ installer:
           - IUC_PROG.*
           - IUC.BAT
     - dosbox:
+        conf:
+          cycles: 6000 # boarding the subway train fix
         tasks:
           - gen_run_script:
               pre_exec:
