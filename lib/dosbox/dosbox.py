@@ -51,7 +51,7 @@ class DosBox(Protocol[T]):
         self.app_drive = root_dir / APP_DRIVE_LETTER
         self.templates_dir = CURRENT_DIR / "templates" / self.conf.mod.value / self.conf.flavor.value
         self.files_dir = CURRENT_DIR / "files" / self.conf.mod.value
-        self.run_cmds: Optional[List[DosCmdExec]] = (
+        self.run_cmds: Optional[List[Union[DosCmdExec, str]]] = (
             None  # TODO: should we optionally accept cmds in the ctor and execute them right away?
         )
         # xorg doesn't support lower than 640, so scaling up
@@ -115,7 +115,7 @@ class DosBox(Protocol[T]):
 
     def _run(
         self,
-        cmds=Union[DosCmdExec, List[DosCmdExec]],
+        cmds=Union[DosCmdExec, List[DosCmdExec], str, List[str]],
         mock=False,
     ):
         """Runs command(s) inside the dos env. For internal use only.
@@ -127,10 +127,12 @@ class DosBox(Protocol[T]):
             cmds = [cmds]
         # gen conf
         self.run_cmds = []
-        c: DosCmdExec
         for c in cmds:
-            for c_ in c.iter():
-                self.run_cmds.append(c_)
+            if isinstance(c, DosCmdExec):
+                for c_ in c.iter():
+                    self.run_cmds.append(c_)
+            else:
+                self.run_cmds.append(c)
         dosbox_conf_path = self.gen_conf()
         if mock:
             return

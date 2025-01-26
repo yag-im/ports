@@ -67,11 +67,14 @@ class DosBoxDos(DosBox[DosBoxConf]):
             cmds.append(DosCmdExec(XCOPY_CMD, [s, dst, *XCOPY_CMD_OPTIONS]))
         self._run(cmds)
 
-    def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False, cd=None) -> None:
+    def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False, cd=None, pre_exec=None) -> None:
         if args is None:
             args = []
         cmds = []
         if self.conf.lang == "ru":
             cmds.append(DosCmdExec("CHCP", [866]))
+        if pre_exec:
+            for cmd in pre_exec:
+                cmds.append(cmd)
         cmds.append(DosCmdExec(path, args, cd))
         self._run(cmds, mock=mock)
