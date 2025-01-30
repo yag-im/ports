@@ -1,0 +1,56 @@
+descr:
+  distro:
+    files:
+      - Guilty.eng.bin
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=2736279
+  igdb_slug: guilty
+  lang: en
+  media_assets:
+  name: Guilty
+  platform: dos
+  publisher: Psygnosis
+  refs:
+    ag_id: 15863
+    lutris_id:
+    mg_id: 2091
+    pcgw_id:
+    qz_id: 529
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-01-26 13:48:42 America/Los_Angeles
+  uuid: d9293088-31a4-4f96-87ba-24801ff6954e
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.BAT"
+          - gen_run_script:
+              path: "{APP_DIR}/GUILTY.BAT"
+    # GUILTY.BAT: custom launcher with EXIT at the end
+    # LANGUAGE.EXE: language selector from first part of this game
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - GUILTY.BAT
+          - GUILTY.INI
+          - LANGUAGE.EXE
