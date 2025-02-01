@@ -1,0 +1,59 @@
+descr:
+  distro:
+    files:
+      - Urban Runner (Europe) (Disc 1).bin
+      - Urban Runner (Europe) (Disc 2).bin
+      - Urban Runner (Europe) (Disc 3).bin
+      - Urban Runner (Europe) (Disc 4).bin
+    format: 4CD
+    url: https://archive.org/details/urbanrunnereurope
+  igdb_slug: urban-runner
+  lang: en
+  media_assets:
+  name: Urban Runner
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 16680
+    lutris_id: urban-runner
+    mg_id: 3809
+    pcgw_id: Urban_Runner
+    qz_id: 96
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-02-01 14:13:33 America/Los_Angeles
+  uuid: b08dd98f-206e-4b36-85ac-4149139c19f5
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - "*.ITK"
+          - "*.STK"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+    - extract:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - "*.ITK"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php/Urban_Runner
+        tasks:
+          - gen_run_script:
+              game: gob:urban
+              path: "{DEST_APP_DIR}"
