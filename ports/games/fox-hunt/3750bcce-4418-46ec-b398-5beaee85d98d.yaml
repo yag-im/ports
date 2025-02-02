@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - fhunt1.img
+      - fhunt2.img
+      - fhunt3.img
+    format: 3CD
+    url: https://archive.org/details/fhunt2
+  igdb_slug: fox-hunt
+  lang: en
+  media_assets:
+  name: Fox Hunt
+  platform: win
+  publisher: Capcom
+  refs:
+    ag_id: 22212
+    lutris_id: fox-hunt
+    mg_id: 2030
+    pcgw_id:
+    qz_id: 6202
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-02-01 14:45:08 America/Los_Angeles
+  uuid: 3750bcce-4418-46ec-b398-5beaee85d98d
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/ENGINE/FOXHUNT.EXE"
