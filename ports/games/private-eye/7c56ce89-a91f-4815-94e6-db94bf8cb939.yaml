@@ -1,0 +1,62 @@
+descr:
+  distro:
+    files:
+      - Private Eye - Philip Marlowe (1996)(Simon and Schuster).iso
+    format: 1CD
+    url: https://archive.org/details/private-eye-philip-marlowe
+  igdb_slug: private-eye
+  lang: en
+  media_assets:
+  name: Private Eye
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id: 16575
+    lutris_id:
+    mg_id: 7117
+    pcgw_id: Private_Eye
+    qz_id: 800
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-02-02 20:24:58 America/Los_Angeles
+  uuid: 7c56ce89-a91f-4815-94e6-db94bf8cb939
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - BO
+          - CS
+          - CW
+          - DA
+          - DC
+          - DL
+          - GZ
+          - IS
+          - MO
+          - MW
+          - PO
+          - SG
+          - TS
+          - VN
+          - GLOBAL
+          - INFACE
+          - INTRO
+          - SUPPORT
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Private_Eye_(1996)
+        tasks:
+          - gen_run_script:
+              game: private:private-eye
+              lang: us
+              path: "{DEST_APP_DIR}"
