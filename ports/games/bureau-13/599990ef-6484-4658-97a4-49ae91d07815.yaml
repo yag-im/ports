@@ -1,0 +1,64 @@
+descr:
+  distro:
+    files:
+      - Bureau 13 (1995)(GameTek).cue
+      - Bureau 13 (1995)(GameTek).bin
+    format: 1CD
+    url: https://archive.org/details/bureau-13
+  igdb_slug: bureau-13
+  lang: en
+  media_assets:
+  name: Bureau 13
+  platform: win
+  publisher: GameTek, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 6601
+    pcgw_id:
+    qz_id: 378
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-02-03 18:47:58 America/Los_Angeles
+  uuid: 599990ef-6484-4658-97a4-49ae91d07815
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{DEST_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - B13.COM
+          - B13.DAT
+          - DATA.GL
+          - SETUP.EXE
+          - SETUP.GL
+          - TEXT.GL
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: "{APP_DIR}/B13.COM"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "BUREAU.CFG"
