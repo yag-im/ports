@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - MERLINS1_12NON1.bin
+    format: 1CD
+    url: https://legendsworld.net/adventure/game/4266
+  igdb_slug: merlins-apprentice
+  lang: en
+  media_assets:
+  name: Merlin's Apprentice
+  platform: win
+  publisher: Philips Interactive Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 6867
+    pcgw_id:
+    qz_id: 385
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-02-03 18:14:12 America/Los_Angeles
+  uuid: 33dae8ed-d3bc-450c-833a-551cf0d6de85
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/MERLIN.EXE"
