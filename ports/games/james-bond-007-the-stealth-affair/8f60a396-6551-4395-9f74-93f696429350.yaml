@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - DISK01.IMG
+      - DISK02.IMG
+      - DISK03.IMG
+    format: 3FD
+    url: https://archive.org/details/007-james-bond-the-stealth-affair-1990
+  igdb_slug: james-bond-007-the-stealth-affair
+  lang: en
+  media_assets:
+  name: "James Bond 007: The Stealth Affair"
+  platform: dos
+  publisher: U.S. Gold
+  refs:
+    ag_id: 34911
+    lutris_id: james-bond-007-the-stealth-affair
+    mg_id: 2236
+    pcgw_id: James_Bond_007:_The_Stealth_Affair
+    qz_id: 488
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-02-04 11:20:56 America/Los_Angeles
+  uuid: 8f60a396-6551-4395-9f74-93f696429350
+  year_released: 1990
+installer:
+  tasks:
+    - extract:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/BOND.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "DELPHINE.CFG"

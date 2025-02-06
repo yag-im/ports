@@ -22,7 +22,9 @@ def run(task: dict, app_descr: AppDesc) -> None:
             first_cd_letter=task.get("first_cd_drive_letter", FIRST_CD_DRIVE_LETTER),
         )
     else:
-        if src.suffix.lower()[1:] in ["iso", "nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:
+        if "cd" in app_descr.distro.format.lower():
+            # src.suffix.lower()[1:] in ["iso", "nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:
+            # FD images can also have img extensions, so switch by distro format
             unpack_disc_image(src, dest, files)
         else:
             unpack_archive(src, dest, files)
