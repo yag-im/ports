@@ -1,0 +1,75 @@
+descr:
+  distro:
+    files:
+      - Dust - A Tale of the Wired West (USA).bin
+    format: 1CD
+    url: https://archive.org/details/Nova_Dust-Wired-West_USA
+  igdb_slug: dust-a-tale-of-the-wired-west
+  lang: en
+  media_assets:
+  name: "Dust: A Tale of the Wired West"
+  platform: win
+  publisher: GTE Entertainment
+  refs:
+    ag_id: 15755
+    lutris_id:
+    mg_id: 3990
+    pcgw_id:
+    qz_id: 536
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-02-08 08:42:03 America/Los_Angeles
+  uuid: 648ff088-0132-48ec-85c1-4cb1ed0d7bc4
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL/WINUP/_SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/DF.EXE"
+    - file:
+        path: "{item}"
+        state: directory
+        loop:
+          - "{DEST_APP_DIR}/LOCAL"
+          - "{DEST_APP_DIR}/PLUGINS"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}/LOCAL"
+        files:
+          - DATA/EXTRA.CST
+          - DATA/GANG.CST
+          - DATA/HOUSE.PRP
+          - DATA/INVEN.PRP
+          - SALGAMES/SALGAMES.PRP
+          - TARGET/TARGET.CST
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}/PLUGINS"
+        files:
+          - INSTALL/ALT31/CHECKERS.DLL
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - INSTALL/ALT31/BOOTFILE
+          - INSTALL/ALT31/DF.EXE
+          - INSTALL/ALT31/MOVPLAY.EXE

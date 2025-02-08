@@ -32,6 +32,7 @@ descr:
   uuid: 8f60a396-6551-4395-9f74-93f696429350
   year_released: 1990
 installer:
+  # TODO: game screen flickers (starting from the color copy protection screen)
   tasks:
     - extract:
         src: "{item}"
