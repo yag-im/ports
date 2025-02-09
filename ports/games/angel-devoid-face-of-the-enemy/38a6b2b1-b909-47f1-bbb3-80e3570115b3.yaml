@@ -1,0 +1,83 @@
+descr:
+  distro:
+    files:
+      - Angel_1.img
+      - Angel_2.img
+      - Angel_3.img
+      - Angel_4.img
+    format: 4CD
+    url: https://archive.org/details/msdos_Angel_Devoid_1996
+  igdb_slug: angel-devoid-face-of-the-enemy
+  lang: en
+  media_assets:
+  name: "Angel Devoid: Face of the Enemy"
+  platform: dos
+  publisher: Mindscape
+  refs:
+    ag_id: 16443
+    lutris_id: angel-devoid-face-of-the-enemy
+    mg_id: 3468
+    pcgw_id:
+    qz_id: 549
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-02-09 08:59:16 America/Los_Angeles
+  uuid: 38a6b2b1-b909-47f1-bbb3-80e3570115b3
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+    - file:
+        path: "{DEST_APP_DIR}/PCX"
+        state: directory
+    - extract:
+        src: "{DEST_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - "ANGEL/MILES/*"
+          - "ANGEL/ANGEL.EXE"
+          - "ANGEL/UVCONFIG.EXE"
+    - extract:
+        src: "{DEST_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}/PCX"
+        files:
+          - "ANGEL/PCX/HEAD*.PCX"
+          - "ANGEL/PCX/I_*.PCX"
+          - "ANGEL/PCX/INV_*.PCX"
+          - "ANGEL/PCX/LOADICON.PCX"
+          - "ANGEL/PCX/SAVEICON.PCX"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "DIG.INI"
+          - "PATH.INF"
+    - dosbox:
+        tasks:
+          - mount:
+              # TODO: fix Ctrl+F4 swap (patch ANGEL.EXE)
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{descr[distro][files][2]}"
+                - "{DEST_DIR}/{descr[distro][files][3]}"
+          - gen_run_script:
+              path: "{APP_DIR}/ANGEL.EXE"
+              args:
+                - /NOUNIVBE
