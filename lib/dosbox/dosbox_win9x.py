@@ -63,9 +63,6 @@ class DosBoxWin9xConf(DosBoxConf):
 class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
     def __init__(self, root_dir: Path, app_descr: AppDesc, conf: DosBoxWin9xConf = DosBoxWin9xConf()) -> None:
         super().__init__(root_dir, conf, app_descr)
-        # copy kbd mapping file: we've redefined host key from F12 to Ctrl and Swap CD operation from D to F4,
-        # so it's Ctrl+F4 as in the classic DosBox
-        cp(self.files_dir / "mapper-dosbox-x.map", self.root_dir)
 
         # copy bundled system drive image: bundles/dosbox-x/win9x/C -> root_dir/C
         cp(

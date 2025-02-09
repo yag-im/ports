@@ -26,6 +26,7 @@ from lib.dosbox.misc import (
     DosCmdExec,
     DosMountPoint,
 )
+from lib.utils import copy as cp
 from lib.utils import (
     run_cmd,
     template,
@@ -157,6 +158,12 @@ class DosBox(Protocol[T]):
 
         Return: path to the generated config
         """
+
+        if self.conf.mod == DosBoxMod.X:
+            # copy kbd mapping file: redefined host key from F12 to Ctrl and Swap CD operation from D to F4,
+            # so it's Ctrl+F4 as in the classic DosBox
+            cp(self.files_dir / "mapper-dosbox-x.map", self.root_dir)
+
         autoexec_cmds = self.conf.gen_mount_cmds(self.root_dir)
         for c in self.run_cmds:
             autoexec_cmds.append(c)

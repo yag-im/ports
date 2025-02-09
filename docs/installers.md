@@ -27,6 +27,7 @@ In addition to the custom variables you define, a set of global variables availa
     FIRST_CD_DRIVE_LETTER  First CD drive letter  NA          E
     SECOND_CD_DRIVE_LETTER Second CD drive letter NA          F
     THIRD_CD_DRIVE_LETTER  Third CD drive letter  NA          G
+    FOURTH_CD_DRIVE_LETTER Fourth CD drive letter NA          H
     SYSTEM_DRIVE           System drive           DosBox      C:\
     APP_DRIVE              App drive              DosBox      D:\
     APP_DIR                App dir                DosBox      D:\APP

@@ -6,21 +6,15 @@ window_position    = auto
 window_decorations = false
 vsync              = false
 vsync_skip         = 7000
-max_resolution     = auto
 output             = texture
 texture_renderer   = auto
-capture_mouse      = onstart
-sensitivity        = 100
-raw_mouse_input    = false
 waitonerror        = true
-priority           = auto,auto
+priority           = auto
 screensaver        = block
-sensitivity        = ${sensitivity}
 
 [dosbox]
 language          = en
 machine           = svga_s3
-captures          = capture
 memsize           = 16
 vmemsize          = auto
 vesa_modes        = compatible
@@ -28,13 +22,21 @@ autoexec_section  = join
 startup_verbosity = quiet
 
 [render]
-scaler=none
-aspect=true
+aspect   = true
+viewport = fit
 
 [cpu]
-cputype=auto
-core=normal
-cycles=${cycles}
+cputype    = auto
+core       = normal
+cpu_cycles = ${cycles}
+
+[mouse]
+mouse_capture     = onstart
+mouse_raw_input   = false
+mouse_sensitivity = ${sensitivity}
+
+[capture]
+capture_dir = capture
 
 [autoexec]
 % for cmd in autoexec:
