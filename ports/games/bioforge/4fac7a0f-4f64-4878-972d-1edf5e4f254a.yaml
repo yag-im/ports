@@ -1,0 +1,67 @@
+descr:
+  distro:
+    files:
+      - BioForge (USA, Europe).bin
+    format: 1CD
+    url: https://archive.org/details/bioforgeusaeurope
+  igdb_slug: bioforge
+  lang: en
+  media_assets:
+  name: BioForge
+  platform: dos
+  publisher: Electronic Arts
+  refs:
+    ag_id:
+    lutris_id: bioforge
+    mg_id: 561
+    pcgw_id: BioForge
+    qz_id: 216
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-02-11 19:26:57 America/Los_Angeles
+  uuid: 4fac7a0f-4f64-4878-972d-1edf5e4f254a
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - BIOFORGE/BIOFORGE.EXE
+          - BIOFORGE/INITGAME
+          - BIOFORGE/KEYCODE*.DAT
+          - BIOFORGE/MUSIC/AILSBFM.DLL
+          - BIOFORGE/RED.OPT
+          - BIOFORGE/SCRIPT
+    - move:
+        src: "{DEST_APP_DIR}/AILSBFM.DLL"
+        dest: "{DEST_APP_DIR}/AILXMI.DLL"
+    # game data (saves) folder
+    - move:
+        src: "{DEST_APP_DIR}/INITGAME"
+        dest: "{DEST_APP_DIR}/GAMEDAT"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: "{APP_DIR}/BIOFORGE.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "INSTALL.OPT"
