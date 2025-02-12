@@ -51,7 +51,6 @@ installer:
         files:
           - "ANGEL/MILES/*"
           - "ANGEL/ANGEL.EXE"
-          - "ANGEL/UVCONFIG.EXE"
     - extract:
         src: "{DEST_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_APP_DIR}/PCX"
