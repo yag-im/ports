@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - Clock Tower For Windows 95 English Setup.exe
+    format: setup.exe
+    url: https://archive.org/details/clock-tower-win-95
+  igdb_slug: clock-tower
+  lang: en
+  media_assets:
+  name: Clock Tower
+  platform: win
+  publisher: Human Entertainment
+  refs:
+    ag_id: 28071
+    lutris_id: clock-tower
+    mg_id: 20472
+    pcgw_id: Clock_Tower
+    qz_id: 9191
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-02-12 17:59:28 America/Los_Angeles
+  uuid: dd8d2eaf-d89f-4a56-b8a2-df28123f97ab
+  year_released: 1997
+installer:
+  vars:
+    SETUP_FILENAME: SETUP.EXE
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{SETUP_FILENAME}"
+    - dosbox:
+        app_drive_size: 120
+        flavor: WIN95OSR25
+        tasks:
+          - copy:
+              src: "{DEST_DIR}/{SETUP_FILENAME}"
+              dest: "{SYSTEM_DRIVE}"
+          - run:
+              path: "{SYSTEM_DRIVE}/{SETUP_FILENAME}"
+          - gen_run_script:
+              path: "{APP_DIR}/CT32.EXE"
+    - file:
+        path: "{item}"
+        state: absent
+        loop:
+          - "{DEST_DIR}/{SETUP_FILENAME}"
