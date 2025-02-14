@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - Dragonsphere.bin
+    format: 1CD
+    url: https://archive.org/details/msdos_Dragonsphere_1994
+  igdb_slug: dragonsphere
+  lang: en
+  media_assets:
+  name: Dragonsphere
+  platform: dos
+  publisher: MicroProse Software, Inc.
+  refs:
+    ag_id: 15835
+    lutris_id: dragonsphere
+    mg_id: 2257
+    pcgw_id: Dragonsphere
+    qz_id: 535
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-02-13 18:43:52 America/Los_Angeles
+  uuid: b284547f-530f-4ccd-81b9-cf8338c25d95
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/MAINMENU.EXE"
+              args:
+                - "-p"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - CONFIG.DRA
