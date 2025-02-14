@@ -1,0 +1,72 @@
+descr:
+  distro:
+    files:
+      - A_VIRUS.cue
+      - A_VIRUS.bin
+    format: 1CD
+    url: https://archive.org/details/alien-virus-mr-abandonware
+  igdb_slug: alien-virus
+  lang: en
+  media_assets:
+  name: Alien Virus
+  platform: dos
+  publisher: Softgold Computerspiele GmbH
+  refs:
+    ag_id: 16441
+    lutris_id:
+    mg_id: 6051
+    pcgw_id:
+    qz_id: 455
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-02-13 17:28:22 America/Los_Angeles
+  uuid: ef0bef79-148d-4989-a170-eb21d3364613
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - AV.EX_
+          - DOS4GW.EX_
+          - FUNSOFT.PIC
+          - INTRO.ANI
+          - S1.BIN
+          - S2.BIN
+          - TREC.PIC
+    - move:
+        src: "{DEST_APP_DIR}/{item}.EX_"
+        dest: "{DEST_APP_DIR}/{item}.EXE"
+        loop:
+          - AV
+          - DOS4GW
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: "{APP_DIR}/AV.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - AV.CFG
+          - AVSND.CFG
