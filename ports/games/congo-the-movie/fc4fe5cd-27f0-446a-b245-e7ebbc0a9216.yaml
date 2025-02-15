@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Congo - Descent into Zinj (1995)(Viacom).iso
+    format: 1CD
+    url: https://archive.org/details/congo-descent-into-zinj
+  igdb_slug: congo-the-movie
+  lang: en
+  media_assets:
+    cover:
+      image_id: fc4fe5cd-27f0-446a-b245-e7ebbc0a9216
+  name: "Congo: The Movie"
+  platform: win
+  publisher: Viacom New Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 4790
+    pcgw_id:
+    qz_id: 593
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-02-15 15:10:34 America/Los_Angeles
+  uuid: fc4fe5cd-27f0-446a-b245-e7ebbc0a9216
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/CONGO.EXE"
