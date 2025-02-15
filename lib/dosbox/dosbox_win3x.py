@@ -40,6 +40,7 @@ class DosBoxWin3xConf(DosBoxConf):
     flavor: DosBoxFlavor = field(default=DosBoxFlavor.WIN311)
     mod: DosBoxMod = field(default=DosBoxMod.X)
     win32s: bool = False
+    fullscreen: bool = True
 
 
 class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
