@@ -1,0 +1,142 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+      - disk5.img
+      - disk6.img
+    format: 6FD
+    url: https://archive.org/details/001291-DaughterOfSerpents
+  igdb_slug: daughter-of-serpents
+  lang: en
+  media_assets:
+  name: Daughter of Serpents
+  platform: dos
+  publisher: Millennium Interactive Ltd.
+  refs:
+    ag_id: 16459
+    lutris_id:
+    mg_id: 2534
+    pcgw_id:
+    qz_id: 686
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-02-16 09:08:55 America/Los_Angeles
+  uuid: 648bebac-3dfa-445a-a4aa-2f8bd493d86e
+  year_released: 1992
+installer:
+  vars:
+    UNFLOD_PATH: "A:0/UNFOLD.EXE"
+    APP_DIR: "C:\\DAUGHTER" # hardcoded in game
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/0"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/1"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/2"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][3]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/3"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][4]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/4"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][5]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/5"
+    # merging files stored partially on multiple FDs
+    - shell:
+        cmd: cat {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/1/ELOCS2.FLD {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/2/ELOCS2.FLD > {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/ELOCS2.FLD
+    - shell:
+        cmd: cat {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/2/ESIGBIN.FLD {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/3/ESIGBIN.FLD {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/4/ESIGBIN.FLD > {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/ESIGBIN.FLD
+    - shell:
+        cmd: cat {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/4/ESIGNOS2.FLD {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/5/ESIGNOS2.FLD > {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/ESIGNOS2.FLD
+    - dosbox:
+        conf:
+          fullscreen: true
+          cycles: 4000
+        tasks:
+          - md:
+              path: "{APP_DIR}\\{item}"
+              loop:
+                - GRAPHICS
+                - RECORDS
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+              is_cd: false
+          - run:
+              path: "{UNFLOD_PATH}"
+              args:
+                - -o
+                - "{item}"
+                - "{APP_DIR}" # doesn't work without a backslash
+              loop:
+                - "{FIRST_FD_DRIVE}\\0\\EPROGS.FLD" # first letter of FLD filename is a lang (E-English)
+                - "{FIRST_FD_DRIVE}\\0\\ERUN.FLD"
+          - run:
+              path: "{UNFLOD_PATH}"
+              args:
+                - -o
+                - "{item}"
+                - "{APP_DIR}\\RECORDS"
+              loop:
+                - "{FIRST_FD_DRIVE}\\0\\ECHARS.FLD"
+          - run:
+              path: "{UNFLOD_PATH}"
+              args:
+                - -o
+                - "{item}"
+                - "{APP_DIR}\\GRAPHICS"
+              loop:
+                - "{FIRST_FD_DRIVE}\\0\\EBIN.FLD"
+                - "{FIRST_FD_DRIVE}\\0\\EDATA.FLD"
+                - "{FIRST_FD_DRIVE}\\0\\EFONTS.FLD"
+                - "{FIRST_FD_DRIVE}\\0\\EMUSIC.FLD"
+                - "{FIRST_FD_DRIVE}\\0\\ERECS.FLD"
+          - run:
+              path: "{UNFLOD_PATH}"
+              args:
+                - -o
+                - "{item}"
+                - "{APP_DIR}\\GRAPHICS"
+              loop:
+                - "{FIRST_FD_DRIVE}\\1\\ELOCS1.FLD"
+                - "{FIRST_FD_DRIVE}\\ELOCS2.FLD"
+          - run:
+              path: "{UNFLOD_PATH}"
+              args:
+                - -o
+                - "{item}"
+                - "{APP_DIR}\\GRAPHICS"
+              loop:
+                - "{FIRST_FD_DRIVE}\\ESIGBIN.FLD"
+          - run:
+              path: "{UNFLOD_PATH}"
+              args:
+                - -o
+                - "{item}"
+                - "{APP_DIR}\\GRAPHICS"
+              loop:
+                - "{FIRST_FD_DRIVE}\\4\\ESIGNOS1.FLD"
+                - "{FIRST_FD_DRIVE}\\ESIGNOS2.FLD"
+          - gen_run_script:
+              path: "{APP_DIR}/RUN.BAT"
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+    - copy:
+        src: "{SRC_FILES_DIR}/RUN.BAT"
+        dest: "{DEST_DIR}/C/DAUGHTER"
