@@ -1,0 +1,10 @@
+@ECHO OFF
+IF EXIST C:\DAUGHTER\RECORDS\CNTRL.SIG GOTO SERPENTS1
+REM first run, character wasn't created yet
+RUN.COM
+GOTO END
+:SERPENTS1
+REM character was created
+SERPENTS.COM
+:END
+EXIT

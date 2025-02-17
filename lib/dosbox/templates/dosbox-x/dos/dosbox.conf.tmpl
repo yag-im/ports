@@ -34,6 +34,12 @@ int13fakev86io=false
 scaler=none
 aspect=false
 
+[midi]
+mididevice=fluidsynth
+# pulseaudio produces a noisy sound
+fluid.driver=alsa
+fluid.soundfont=/usr/share/sounds/sf2/FluidR3_GM.sf2
+
 [autoexec]
 SET PATH=%PATH%;C:\UTILS
 % for cmd in autoexec:

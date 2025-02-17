@@ -162,3 +162,6 @@ A: use runexit=False
 
 Q: LCOPY hangs in dosbox when copying from mounted CDROM image
 A: make sure your CDROM source is an image, not a directory
+
+Q: no midi sound in dosbox-x
+A: check sound font availability (/usr/share/sounds/sf2/FluidR3_GM.sf2) and a "midi" section in dosbox.conf
