@@ -37,6 +37,7 @@ installer:
     - extract:
         src: "{item}"
         dest: "{DEST_APP_DIR}"
+        hint: floppy
         loop:
           - "{SRC_DIR}/{descr[distro][files][0]}"
           - "{SRC_DIR}/{descr[distro][files][1]}"

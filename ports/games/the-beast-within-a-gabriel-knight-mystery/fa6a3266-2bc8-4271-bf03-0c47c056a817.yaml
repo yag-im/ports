@@ -1,0 +1,102 @@
+descr:
+  distro:
+    files:
+      - Beast Within, The - A Gabriel Knight Mystery (USA) (Disc 1) (v1.11).bin
+      - Beast Within, The - A Gabriel Knight Mystery (USA) (Disc 2) (v1.11).bin
+      - Beast Within, The - A Gabriel Knight Mystery (USA) (Disc 3) (v1.11).bin
+      - Beast Within, The - A Gabriel Knight Mystery (USA) (Disc 4) (v1.11).bin
+      - Beast Within, The - A Gabriel Knight Mystery (USA) (Disc 5) (v1.11).bin
+      - Beast Within, The - A Gabriel Knight Mystery (USA) (Disc 6) (v1.11).bin
+    format: 6CD
+    url: https://archive.org/details/beast-within-the-a-gabriel-knight-mystery-usa-v-1.11-19960524
+  igdb_slug: the-beast-within-a-gabriel-knight-mystery
+  lang: en
+  media_assets:
+  name: "The Beast Within: A Gabriel Knight Mystery"
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 15493
+    lutris_id: gabriel-knight-2-the-beast-within
+    mg_id: 118
+    pcgw_id: The_Beast_Within:_A_Gabriel_Knight_Mystery
+    qz_id: 269
+  reqs:
+    color_bits: 256
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-02-17 19:19:03 America/Los_Angeles
+  uuid: fa6a3266-2bc8-4271-bf03-0c47c056a817
+  year_released: 1995
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.001"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.001"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.002"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.002"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.003"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.003"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][3]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.004"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.004"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][4]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.005"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.005"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][5]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.006"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.006"
+    # english subtitles patch
+    - extract:
+        src: "{SRC_DIR}/GK2Subtitles_extracted.zip"
+        dest: "{DEST_APP_DIR}"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=The_Beast_Within
+        tasks:
+          - gen_run_script:
+              game: sci:gk2
+              path: "{DEST_APP_DIR}"
