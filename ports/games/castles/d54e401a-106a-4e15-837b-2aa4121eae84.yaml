@@ -3,7 +3,7 @@ descr:
     files:
       - disk1.img
       - disk2.img
-    format: 2FDD
+    format: 2FD
     url: https://archive.org/details/001026-Castles
   igdb_slug: castles
   lang: en
@@ -35,6 +35,7 @@ installer:
     - extract:
         src: "{item}"
         dest: "{DEST_APP_DIR}"
+        hint: floppy
         loop:
           - "{SRC_DIR}/{descr[distro][files][0]}"
           - "{SRC_DIR}/{descr[distro][files][1]}"

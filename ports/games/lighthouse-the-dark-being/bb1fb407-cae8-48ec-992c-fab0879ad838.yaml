@@ -54,5 +54,5 @@ installer:
         # https://wiki.scummvm.org/index.php/Lighthouse
         tasks:
           - gen_run_script:
-              game: sci
+              game: sci:lighthouse
               path: "{DEST_APP_DIR}"

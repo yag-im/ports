@@ -2,7 +2,7 @@ descr:
   distro:
     files:
       - Monkey_Island_2_1996edition.rar
-    format: 3FDD
+    format: 3FD
     url: https://www.old-games.ru/game/download/504.html
   igdb_slug: monkey-island-2-lechuck-s-revenge
   lang: en
@@ -34,6 +34,7 @@ installer:
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_APP_DIR}"
+        hint: floppy
         files:
           - MONKEY2.000
           - MONKEY2.001

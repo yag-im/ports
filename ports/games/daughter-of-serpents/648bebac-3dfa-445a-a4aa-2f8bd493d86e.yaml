@@ -42,21 +42,27 @@ installer:
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/0"
+        hint: floppy
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][1]}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/1"
+        hint: floppy
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][2]}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/2"
+        hint: floppy
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][3]}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/3"
+        hint: floppy
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][4]}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/4"
+        hint: floppy
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][5]}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/5"
+        hint: floppy
     # merging files stored partially on multiple FDs
     - shell:
         cmd: cat {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/1/ELOCS2.FLD {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/2/ELOCS2.FLD > {DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/ELOCS2.FLD
