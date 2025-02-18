@@ -90,7 +90,7 @@ installer:
     - move:
         src: "{DEST_APP_DIR}/RESOURCE.SFX"
         dest: "{DEST_APP_DIR}/RESSFX.006"
-    # english subtitles patch
+    # english subtitles patch: http://www.sierrahelp.com/Patches-Updates/Patches-Updates-Games/GK2SubtitlePatch.html
     - extract:
         src: "{SRC_DIR}/GK2Subtitles_extracted.zip"
         dest: "{DEST_APP_DIR}"
