@@ -22,7 +22,7 @@ descr:
     pcgw_id: The_Beast_Within:_A_Gabriel_Knight_Mystery
     qz_id: 269
   reqs:
-    color_bits: 256
+    color_bits: 8
     midi: false
     screen_height: 480
     screen_width: 640

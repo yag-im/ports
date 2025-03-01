@@ -5,6 +5,7 @@ from subprocess import CalledProcessError
 from typing import (
     Dict,
     List,
+    Optional,
     Union,
 )
 
@@ -70,7 +71,7 @@ def copy(src: Union[Path, list[Path]], dst: Path, copy_tree: bool = False) -> No
         run_cmd(cmd, shell=True)  # shell=True because otherwise asterisk is not handled properly
 
 
-def template(src: Union[Path, str], dst: Union[Path, None], params: dict, newline="\n") -> Union[str, None]:
+def template(src: Union[Path, str], dst: Optional[Path], params: dict, newline: str = "\n") -> Optional[str]:
     if isinstance(src, Path):
         with open(src, "r", encoding="UTF-8") as f:
             tmpl_input = f.read()
@@ -82,6 +83,7 @@ def template(src: Union[Path, str], dst: Union[Path, None], params: dict, newlin
             f.write(output)
     else:
         return output
+    return None
 
 
 def replace(file_path: Path, old: str, new: str) -> None:
