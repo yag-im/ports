@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: adiboo-magical-playland
+  lang: en
+  media_assets:
+  name: "Adiboo: Magical Playland"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-01 19:13:38 America/Los_Angeles
+  uuid: 5a9fbde2-c154-49c3-88ca-1f71f755b997
+  year_released: 1996
+installer:
+  tasks:
+    # set lang "gb"
