@@ -21,7 +21,7 @@ descr:
     pcgw_id: Broken_Sword:_The_Shadow_of_the_Templars
     qz_id: 25
   reqs:
-    color_bits: 256
+    color_bits: 8
     midi: false
     screen_height: 480
     screen_width: 640
