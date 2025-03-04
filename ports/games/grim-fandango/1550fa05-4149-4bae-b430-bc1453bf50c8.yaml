@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: grim-fandango
+  lang: en
+  media_assets:
+  name: Grim Fandango
+  platform: win
+  publisher: LucasArts
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 02:44:25 America/Los_Angeles
+  uuid: 1550fa05-4149-4bae-b430-bc1453bf50c8
+  year_released: 1998
+installer:
+  tasks:

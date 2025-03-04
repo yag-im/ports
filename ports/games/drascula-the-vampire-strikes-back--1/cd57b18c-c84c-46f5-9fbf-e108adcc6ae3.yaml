@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: drascula-the-vampire-strikes-back--1
+  lang: en
+  media_assets:
+  name: "Dr\xE1scula: The Vampire Strikes Back"
+  platform: dos
+  publisher: Digital Dreams Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 02:44:35 America/Los_Angeles
+  uuid: cd57b18c-c84c-46f5-9fbf-e108adcc6ae3
+  year_released: 1996
+installer:
+  tasks:
