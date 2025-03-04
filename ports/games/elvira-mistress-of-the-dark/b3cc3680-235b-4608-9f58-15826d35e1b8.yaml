@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: changeme
+    url: exoscummvm
   igdb_slug: elvira-mistress-of-the-dark
   lang: en
   media_assets:
-  name: 'Elvira: Mistress of the Dark'
+  name: "Elvira: Mistress of the Dark"
   platform: dos
   publisher: Accolade
   refs:

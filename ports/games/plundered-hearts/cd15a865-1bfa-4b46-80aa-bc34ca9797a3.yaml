@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1FD
+    url: exoscummvm
   igdb_slug: plundered-hearts
   lang: en
   media_assets:

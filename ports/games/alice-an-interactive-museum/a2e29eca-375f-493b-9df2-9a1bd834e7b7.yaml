@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: alice-an-interactive-museum
   lang: en
   media_assets:
-  name: 'Alice: An Interactive Museum'
+  name: "Alice: An Interactive Museum"
   platform: win
   publisher: Synergy Inc.
   refs:

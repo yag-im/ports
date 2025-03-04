@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: gabriel-knight-sins-of-the-fathers
   lang: en
   media_assets:
-  name: 'Gabriel Knight: Sins of the Fathers'
+  name: "Gabriel Knight: Sins of the Fathers"
   platform: dos
   publisher: Sierra On-Line
   refs:

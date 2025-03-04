@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: changeme
+    url: exoscummvm
   igdb_slug: police-quest-in-pursuit-of-the-death-angel--1
   lang: en
   media_assets:
-  name: 'Police Quest: In Pursuit of the Death Angel'
+  name: "Police Quest: In Pursuit of the Death Angel"
   platform: dos
   publisher: Sierra On-Line
   refs:
@@ -31,3 +31,4 @@ descr:
   year_released: 1987
 installer:
   tasks:
+    # DOS SCI remake version

@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: living-books-sheila-rae-the-brave
   lang: en
   media_assets:
-  name: 'Living Books: Sheila Rae, the Brave'
+  name: "Living Books: Sheila Rae, the Brave"
   platform: win
   publisher: "Br\xF8derbund Software"
   refs:

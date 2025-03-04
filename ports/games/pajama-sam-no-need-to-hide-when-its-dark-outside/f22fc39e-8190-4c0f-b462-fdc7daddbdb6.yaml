@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: pajama-sam-no-need-to-hide-when-its-dark-outside
   lang: en
   media_assets:
-  name: 'Pajama Sam: No Need to Hide When It''s Dark Outside'
+  name: "Pajama Sam: No Need to Hide When It's Dark Outside"
   platform: win
   publisher: UFO Interactive Games
   refs:
