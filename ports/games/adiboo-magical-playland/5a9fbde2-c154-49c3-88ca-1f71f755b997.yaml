@@ -2,8 +2,8 @@ descr:
   distro:
     files:
       - changeme
-    format: exoscummvm
-    url: changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: adiboo-magical-playland
   lang: en
   media_assets:

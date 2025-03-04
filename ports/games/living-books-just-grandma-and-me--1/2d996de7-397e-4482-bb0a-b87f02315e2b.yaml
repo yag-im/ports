@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: living-books-just-grandma-and-me--1
   lang: en
   media_assets:
-  name: 'Living Books: Just Grandma and Me'
+  name: "Living Books: Just Grandma and Me"
   platform: win
   publisher: "Br\xF8derbund Software"
   refs:
@@ -31,3 +31,4 @@ descr:
   year_released: 1992
 installer:
   tasks:
+    # TODO: there are v1 and v2 of this game in exoscummvm, this one is v1

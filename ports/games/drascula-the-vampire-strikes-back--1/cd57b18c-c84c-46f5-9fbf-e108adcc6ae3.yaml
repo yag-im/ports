@@ -1,11 +1,11 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: drascula-the-vampire-strikes-back--1
-  lang: en
+  lang: multi
   media_assets:
   name: "Dr\xE1scula: The Vampire Strikes Back"
   platform: dos

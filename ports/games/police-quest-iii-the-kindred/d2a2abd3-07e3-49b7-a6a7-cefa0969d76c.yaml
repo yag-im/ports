@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: changeme
+    url: exoscummvm
   igdb_slug: police-quest-iii-the-kindred
   lang: en
   media_assets:
-  name: 'Police Quest III: The Kindred'
+  name: "Police Quest III: The Kindred"
   platform: dos
   publisher: Sierra On-Line
   refs:
@@ -31,3 +31,4 @@ descr:
   year_released: 1991
 installer:
   tasks:
+    # there is EGA and VGA version in exoscummvm, this one is VGA

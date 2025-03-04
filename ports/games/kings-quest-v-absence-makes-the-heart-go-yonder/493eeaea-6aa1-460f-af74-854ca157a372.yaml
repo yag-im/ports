@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: kings-quest-v-absence-makes-the-heart-go-yonder
   lang: en
   media_assets:
-  name: 'King''s Quest V: Absence Makes The Heart Go Yonder!'
+  name: "King's Quest V: Absence Makes The Heart Go Yonder!"
   platform: win
   publisher: Konami
   refs:

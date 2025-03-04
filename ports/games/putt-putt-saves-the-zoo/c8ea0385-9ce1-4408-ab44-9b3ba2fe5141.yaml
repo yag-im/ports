@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: putt-putt-saves-the-zoo
   lang: en
   media_assets:

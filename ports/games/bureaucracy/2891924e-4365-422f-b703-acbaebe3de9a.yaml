@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: changeme
+    url: exoscummvm
   igdb_slug: bureaucracy
   lang: en
   media_assets:

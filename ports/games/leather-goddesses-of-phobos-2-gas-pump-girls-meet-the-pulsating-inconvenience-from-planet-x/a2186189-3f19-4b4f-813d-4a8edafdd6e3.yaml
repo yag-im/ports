@@ -1,14 +1,15 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 17FD
+    url: exoscummvm
   igdb_slug: leather-goddesses-of-phobos-2-gas-pump-girls-meet-the-pulsating-inconvenience-from-planet-x
   lang: en
   media_assets:
-  name: 'Leather Goddesses of Phobos 2: Gas Pump Girls Meet the Pulsating Inconvenience
-    from Planet X!'
+  name:
+    "Leather Goddesses of Phobos 2: Gas Pump Girls Meet the Pulsating Inconvenience
+    from Planet X!"
   platform: dos
   publisher: Activision
   refs:

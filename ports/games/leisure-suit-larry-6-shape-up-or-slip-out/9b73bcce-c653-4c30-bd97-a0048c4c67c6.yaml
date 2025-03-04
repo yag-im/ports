@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1CD
+    url: exoscummvm
   igdb_slug: leisure-suit-larry-6-shape-up-or-slip-out
   lang: en
   media_assets:
-  name: 'Leisure Suit Larry 6: Shape Up or Slip Out!'
+  name: "Leisure Suit Larry 6: Shape Up or Slip Out!"
   platform: win
   publisher: Sierra Entertainment
   refs:

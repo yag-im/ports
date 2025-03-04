@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-    - changeme
-    format: exoscummvm
-    url: changeme
+      - changeme
+    format: 1FD
+    url: exoscummvm
   igdb_slug: the-manhole
   lang: en
   media_assets:
