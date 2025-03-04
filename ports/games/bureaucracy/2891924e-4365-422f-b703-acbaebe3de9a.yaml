@@ -4,12 +4,12 @@ descr:
     - changeme
     format: exoscummvm
     url: changeme
-  igdb_slug: beavis-and-butt-head-in-virtual-stupidity
+  igdb_slug: bureaucracy
   lang: en
   media_assets:
-  name: Beavis and Butt-head in Virtual Stupidity
-  platform: win
-  publisher: B-Factory
+  name: Bureaucracy
+  platform: dos
+  publisher: Infocom
   refs:
     ag_id:
     lutris_id:
@@ -26,8 +26,8 @@ descr:
   runner:
     name: scummvm
     ver: 2.9.0
-  ts_added: 2025-03-04 03:37:35.707700 America/Los_Angeles
-  uuid: 038411db-3c76-44ae-9a3e-ba043def2993
-  year_released: 1995
+  ts_added: 2025-03-04 17:41:44.354564 America/Los_Angeles
+  uuid: 2891924e-4365-422f-b703-acbaebe3de9a
+  year_released: 1987
 installer:
   tasks:

@@ -26,7 +26,7 @@ descr:
   runner:
     name: scummvm
     ver: 2.9.0
-  ts_added: 2025-03-04 02:44:23 America/Los_Angeles
+  ts_added: 2025-03-04 02:44:23.707700 America/Los_Angeles
   uuid: 84269754-9427-4989-9b51-38a4e549cdaa
   year_released: 1987
 installer:

@@ -4,12 +4,13 @@ descr:
     - changeme
     format: exoscummvm
     url: changeme
-  igdb_slug: lancelot
+  igdb_slug: leather-goddesses-of-phobos-2-gas-pump-girls-meet-the-pulsating-inconvenience-from-planet-x
   lang: en
   media_assets:
-  name: Lancelot
+  name: 'Leather Goddesses of Phobos 2: Gas Pump Girls Meet the Pulsating Inconvenience
+    from Planet X!'
   platform: dos
-  publisher: Mandarin Software
+  publisher: Activision
   refs:
     ag_id:
     lutris_id:
@@ -26,8 +27,8 @@ descr:
   runner:
     name: scummvm
     ver: 2.9.0
-  ts_added: 2025-03-04 03:37:40.707700 America/Los_Angeles
-  uuid: f77a8100-cdd8-4ab8-9e38-14e4fd426e47
-  year_released: 1988
+  ts_added: 2025-03-04 17:41:44.219539 America/Los_Angeles
+  uuid: a2186189-3f19-4b4f-813d-4a8edafdd6e3
+  year_released: 1992
 installer:
   tasks:
