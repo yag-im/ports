@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: leisure-suit-larry-6-shape-up-or-slip-out
+  lang: en
+  media_assets:
+  name: 'Leisure Suit Larry 6: Shape Up or Slip Out!'
+  platform: win
+  publisher: Sierra Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 18:09:31.525435 America/Los_Angeles
+  uuid: 9b73bcce-c653-4c30-bd97-a0048c4c67c6
+  year_released: 1993
+installer:
+  tasks:

@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: total-eclipse--1
+  lang: en
+  media_assets:
+  name: Total Eclipse
+  platform: dos
+  publisher: Spotlight Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 18:09:38.442176 America/Los_Angeles
+  uuid: dc6fccd2-f020-45b6-9cbe-35b3cdca84ef
+  year_released: 1988
+installer:
+  tasks:
