@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: alice-an-interactive-museum
+  lang: en
+  media_assets:
+  name: 'Alice: An Interactive Museum'
+  platform: win
+  publisher: Synergy Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 18:09:28.544855 America/Los_Angeles
+  uuid: a2e29eca-375f-493b-9df2-9a1bd834e7b7
+  year_released: 1991
+installer:
+  tasks:

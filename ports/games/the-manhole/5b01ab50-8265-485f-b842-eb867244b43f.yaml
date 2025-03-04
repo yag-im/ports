@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: the-manhole
+  lang: en
+  media_assets:
+  name: The Manhole
+  platform: dos
+  publisher: Fujitsu
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 18:09:31.497873 America/Los_Angeles
+  uuid: 5b01ab50-8265-485f-b842-eb867244b43f
+  year_released: 1988
+installer:
+  tasks:

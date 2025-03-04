@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: kings-quest-v-absence-makes-the-heart-go-yonder
+  lang: en
+  media_assets:
+  name: 'King''s Quest V: Absence Makes The Heart Go Yonder!'
+  platform: win
+  publisher: Konami
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 18:09:36.738604 America/Los_Angeles
+  uuid: 493eeaea-6aa1-460f-af74-854ca157a372
+  year_released: 1990
+installer:
+  tasks:
