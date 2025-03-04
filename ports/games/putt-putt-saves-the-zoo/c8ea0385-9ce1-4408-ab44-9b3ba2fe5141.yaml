@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: putt-putt-saves-the-zoo
+  lang: en
+  media_assets:
+  name: Putt-Putt Saves the Zoo
+  platform: win
+  publisher: Akella
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 03:14:00 America/Los_Angeles
+  uuid: c8ea0385-9ce1-4408-ab44-9b3ba2fe5141
+  year_released: 1996
+installer:
+  tasks:
