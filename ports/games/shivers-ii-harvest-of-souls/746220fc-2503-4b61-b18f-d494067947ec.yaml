@@ -7,6 +7,7 @@ descr:
     format: 2CD
     url: https://archive.org/details/SHIVERS22
   igdb_slug: shivers-ii-harvest-of-souls
+  is_visible: false
   lang: en
   name: "Shivers II: Harvest of Souls"
   platform: win

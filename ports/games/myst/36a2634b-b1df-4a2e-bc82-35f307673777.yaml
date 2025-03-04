@@ -5,6 +5,7 @@ descr:
     format: 1CD
     url: https://archive.org/details/myst-classic-redump-46659
   igdb_slug: myst
+  is_visible: false
   lang: en
   media_assets:
   name: Myst
