@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: gabriel-knight-sins-of-the-fathers
+  lang: en
+  media_assets:
+  name: 'Gabriel Knight: Sins of the Fathers'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 02:33:07 America/Los_Angeles
+  uuid: 028be41d-2228-4349-8f51-2d491bd633fd
+  year_released: 1993
+installer:
+  tasks:

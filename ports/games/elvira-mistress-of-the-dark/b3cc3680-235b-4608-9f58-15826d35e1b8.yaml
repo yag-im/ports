@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: elvira-mistress-of-the-dark
+  lang: en
+  media_assets:
+  name: 'Elvira: Mistress of the Dark'
+  platform: dos
+  publisher: Accolade
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 02:24:26 America/Los_Angeles
+  uuid: b3cc3680-235b-4608-9f58-15826d35e1b8
+  year_released: 1990
+installer:
+  tasks:
