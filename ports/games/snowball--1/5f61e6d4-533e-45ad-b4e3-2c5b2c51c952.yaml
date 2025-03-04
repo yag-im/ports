@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: snowball--1
+  lang: en
+  media_assets:
+  name: Snowball
+  platform: dos
+  publisher: Level 9 Computing
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 03:37:35 America/Los_Angeles
+  uuid: 5f61e6d4-533e-45ad-b4e3-2c5b2c51c952
+  year_released: 1983
+installer:
+  tasks:
