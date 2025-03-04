@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: pajama-sam-no-need-to-hide-when-its-dark-outside
+  lang: en
+  media_assets:
+  name: 'Pajama Sam: No Need to Hide When It''s Dark Outside'
+  platform: win
+  publisher: UFO Interactive Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 02:44:23 America/Los_Angeles
+  uuid: f22fc39e-8190-4c0f-b462-fdc7daddbdb6
+  year_released: 1996
+installer:
+  tasks:
