@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: exoscummvm
+    url: changeme
+  igdb_slug: personal-nightmare
+  lang: en
+  media_assets:
+  name: Personal Nightmare
+  platform: dos
+  publisher: Horror Soft
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-04 04:29:01.707700 America/Los_Angeles
+  uuid: 8fc90d9f-2304-48d3-bf82-4f3b273157f9
+  year_released: 1989
+installer:
+  tasks:
