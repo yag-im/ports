@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: freddi-fish-and-luthers-water-worries
+  lang: en
+  media_assets:
+  name: Freddi Fish and Luther's Water Worries
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-05 05:02:46.370199 America/Los_Angeles
+  uuid: 5accbd55-f575-4c07-abbc-6ed8e5dca305
+  year_released: 1996
+installer:
+  tasks:

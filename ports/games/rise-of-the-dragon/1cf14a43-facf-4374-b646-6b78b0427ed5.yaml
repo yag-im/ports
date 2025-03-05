@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: rise-of-the-dragon
+  lang: en
+  media_assets:
+  name: Rise of the Dragon
+  platform: dos
+  publisher: Dynamix
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-05 00:45:07.590057 America/Los_Angeles
+  uuid: 1cf14a43-facf-4374-b646-6b78b0427ed5
+  year_released: 1989
+installer:
+  tasks:
