@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: space-quest-ii-roger-wilco-in-vohauls-revenge
+  lang: en
+  media_assets:
+  name: 'Space Quest II: Roger Wilco in Vohaul''s Revenge'
+  platform: win
+  publisher: Infamous Adventures
+  refs:
+    ag_id: 60817
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 768
+    screen_width: 1024
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-05 05:43:51.774897 America/Los_Angeles
+  uuid: 85ead980-5357-4a4f-a5ca-8dd10f5257de
+  year_released: 2011
+installer:
+  tasks:
