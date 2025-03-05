@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: flight-of-the-amazon-queen
+  lang: en
+  media_assets:
+  name: Flight of the Amazon Queen
+  platform: dos
+  publisher: Interactive Binary Illusions
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-05 05:02:46.842320 America/Los_Angeles
+  uuid: 3317f510-0aa7-488e-bee0-a4ae0424bd6a
+  year_released: 1995
+installer:
+  tasks:
