@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: freddi-fish-3-the-case-of-the-stolen-conch-shell
+  lang: en
+  media_assets:
+  name: 'Freddi Fish 3: The Case of the Stolen Conch Shell'
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-06 02:43:51.915850 America/Los_Angeles
+  uuid: 83dc0bba-5610-4740-80b4-9efde30923e1
+  year_released: 1998
+installer:
+  tasks:

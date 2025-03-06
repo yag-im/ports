@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: voyeur
+  lang: en
+  media_assets:
+  name: Voyeur
+  platform: dos
+  publisher: Interplay Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-06 02:43:48.882118 America/Los_Angeles
+  uuid: 266f38e9-b1a7-407b-9b66-0052f22b5f4d
+  year_released: 1992
+installer:
+  tasks:
