@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: the-crimson-crown
+  lang: en
+  media_assets:
+  name: The Crimson Crown
+  platform: dos
+  publisher: Polarware
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-06 02:43:53.212086 America/Los_Angeles
+  uuid: ebecee69-07c0-423e-ab42-bc602059cba0
+  year_released: 1986
+installer:
+  tasks:
