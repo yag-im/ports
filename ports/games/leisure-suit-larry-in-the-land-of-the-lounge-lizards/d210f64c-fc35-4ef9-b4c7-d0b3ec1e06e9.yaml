@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: leisure-suit-larry-in-the-land-of-the-lounge-lizards
+  lang: en
+  media_assets:
+  name: Leisure Suit Larry in the Land of the Lounge Lizards
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-10 03:37:50.191893 America/Los_Angeles
+  uuid: d210f64c-fc35-4ef9-b4c7-d0b3ec1e06e9
+  year_released: 1987
+installer:
+  tasks:

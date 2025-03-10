@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: living-books-little-monster-at-school--1
+  lang: en
+  media_assets:
+  name: 'Living Books: Little Monster at School'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-10 03:37:48.798531 America/Los_Angeles
+  uuid: 8779dc3f-d719-48e8-8408-ce7379d54999
+  year_released: 1994
+installer:
+  tasks:

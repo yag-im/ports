@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: gadget-invention-travel-and-adventure
+  lang: en
+  media_assets:
+  name: 'Gadget: Invention, Travel & Adventure'
+  platform: win
+  publisher: Toshiba-EMI
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-10 03:37:51.149465 America/Los_Angeles
+  uuid: 7f25675c-b8f8-4aa7-a3d4-122aba135dee
+  year_released: 1994
+installer:
+  tasks:

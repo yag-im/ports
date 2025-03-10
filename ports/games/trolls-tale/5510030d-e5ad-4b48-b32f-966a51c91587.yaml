@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: Floppy
+    url: exoscummvm
+  igdb_slug: trolls-tale
+  lang: en
+  media_assets:
+  name: Troll's Tale
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-10 03:37:50.181757 America/Los_Angeles
+  uuid: 5510030d-e5ad-4b48-b32f-966a51c91587
+  year_released: 1983
+installer:
+  tasks:

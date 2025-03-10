@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: gobliins-2-the-prince-buffoon
+  lang: en
+  media_assets:
+  name: 'Gobliins 2: The Prince Buffoon'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-10 03:37:50.262848 America/Los_Angeles
+  uuid: 244e6635-17a6-4e9e-bd83-6cca399becb5
+  year_released: 1993
+installer:
+  tasks:
