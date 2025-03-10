@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: putt-putt-and-pep-s-balloon-o-rama
+  lang: en
+  media_assets:
+  name: Putt-Putt and Pep's Balloon-O-Rama
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-10 03:37:55.604850 America/Los_Angeles
+  uuid: cd5213e1-b612-4c5a-8a39-020a2091de4a
+  year_released: 1996
+installer:
+  tasks:
