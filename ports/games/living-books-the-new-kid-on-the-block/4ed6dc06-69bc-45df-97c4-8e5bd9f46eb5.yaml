@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: living-books-the-new-kid-on-the-block
+  lang: en
+  media_assets:
+  name: 'Living Books: The New Kid on the Block'
+  platform: win
+  publisher: "Br\xF8derbund Software"
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 03:54:35.896502 America/Los_Angeles
+  uuid: 4ed6dc06-69bc-45df-97c4-8e5bd9f46eb5
+  year_released: 1993
+installer:
+  tasks:

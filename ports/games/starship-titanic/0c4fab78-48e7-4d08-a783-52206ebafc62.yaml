@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: starship-titanic
+  lang: en
+  media_assets:
+  name: Starship Titanic
+  platform: win
+  publisher: Simon & Schuster
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 03:54:44.956725 America/Los_Angeles
+  uuid: 0c4fab78-48e7-4d08-a783-52206ebafc62
+  year_released: 1998
+installer:
+  tasks:
