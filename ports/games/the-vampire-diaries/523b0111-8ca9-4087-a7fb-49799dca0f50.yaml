@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: the-vampire-diaries
+  lang: en
+  media_assets:
+  name: The Vampire Diaries
+  platform: win
+  publisher: American Laser Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 01:36:38.663497 America/Los_Angeles
+  uuid: 523b0111-8ca9-4087-a7fb-49799dca0f50
+  year_released: 1996
+installer:
+  tasks:

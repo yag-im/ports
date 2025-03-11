@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: leisure-suit-larry-2-goes-looking-for-love-in-several-wrong-places
+  lang: en
+  media_assets:
+  name: 'Leisure Suit Larry 2: Goes Looking for Love (in Several Wrong Places)'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 01:36:51.228926 America/Los_Angeles
+  uuid: dcad8246-b9df-4c10-9f81-7a57a572b940
+  year_released: 1988
+installer:
+  tasks:

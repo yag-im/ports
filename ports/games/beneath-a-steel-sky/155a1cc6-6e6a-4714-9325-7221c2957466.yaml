@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: beneath-a-steel-sky
+  lang: en
+  media_assets:
+  name: Beneath a Steel Sky
+  platform: dos
+  publisher: Virgin Interactive Entertainment (Europe) Ltd.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 01:36:36.781177 America/Los_Angeles
+  uuid: 155a1cc6-6e6a-4714-9325-7221c2957466
+  year_released: 1994
+installer:
+  tasks:
