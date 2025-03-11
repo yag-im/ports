@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: suspect
+  lang: en
+  media_assets:
+  name: Suspect
+  platform: dos
+  publisher: Infocom
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 03:54:55.014769 America/Los_Angeles
+  uuid: 397b96c4-e414-4988-8c73-5a587e956adf
+  year_released: 1984
+installer:
+  tasks:
