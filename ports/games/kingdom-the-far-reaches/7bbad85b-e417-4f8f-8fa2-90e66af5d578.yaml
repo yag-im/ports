@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: kingdom-the-far-reaches
+  lang: en
+  media_assets:
+  name: 'Kingdom: The Far Reaches'
+  platform: dos
+  publisher: Cinematronics, LLC
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 01:36:32.259515 America/Los_Angeles
+  uuid: 7bbad85b-e417-4f8f-8fa2-90e66af5d578
+  year_released: 1995
+installer:
+  tasks:

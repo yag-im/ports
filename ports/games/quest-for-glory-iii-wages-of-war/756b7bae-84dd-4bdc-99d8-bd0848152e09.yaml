@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: quest-for-glory-iii-wages-of-war
+  lang: en
+  media_assets:
+  name: 'Quest for Glory III: Wages of War'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 01:36:35.681496 America/Los_Angeles
+  uuid: 756b7bae-84dd-4bdc-99d8-bd0848152e09
+  year_released: 1992
+installer:
+  tasks:
