@@ -1,0 +1,35 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: the-last-dynasty
+  lang: en
+  media_assets:
+  name: The Last Dynasty
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 22:40:30.268455 America/Los_Angeles
+  uuid: 96b50734-0b5e-400a-8aca-4eae57fb49d7
+  year_released: 1995
+installer:
+  tasks:
+    # use lang "us"
+    # bug: https://github.com/exoscoriae/eXoScummVM/issues/782

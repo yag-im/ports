@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: living-books-ruffs-bone
+  lang: en
+  media_assets:
+  name: 'Living Books: Ruff''s Bone'
+  platform: win
+  publisher: "Br\xF8derbund Software"
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-11 22:40:43.794676 America/Los_Angeles
+  uuid: 852bbc30-8ada-43a9-a059-031da248c0e1
+  year_released: 1994
+installer:
+  tasks:
