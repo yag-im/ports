@@ -33,6 +33,7 @@ descr:
 # objects transparency issues on latest wine: https://hehabuctb.blogspot.com/2016/01/linux-wine.html
 # fix transparency and fonts issues before releasing
 # can't run old wine (1.6.2.-petka) on modern Debian
+# TODO: supported in ScummVM?
 installer:
   tasks:
     - copy:

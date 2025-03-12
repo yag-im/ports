@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: tender-loving-care
+  lang: en
+  media_assets:
+  name: Tender Loving Care
+  platform: win
+  publisher: Aftermath Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-12 03:56:09.520192 America/Los_Angeles
+  uuid: d243e4fd-bb98-4477-9ab7-92cfbddfaac4
+  year_released: 1998
+installer:
+  tasks:
