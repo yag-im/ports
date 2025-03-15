@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: elvira-ii-the-jaws-of-cerberus
+  lang: en
+  media_assets:
+  name: 'Elvira II: The Jaws of Cerberus'
+  platform: dos
+  publisher: Accolade
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-15 16:05:47.007422 America/Los_Angeles
+  uuid: b489d44f-d44d-411f-b76f-9286d11a515d
+  year_released: 1991
+installer:
+  tasks:
