@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: phantasmagoria
+  lang: en
+  media_assets:
+  name: Phantasmagoria
+  platform: win
+  publisher: Outrigger Koubou
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-15 16:05:01.034025 America/Los_Angeles
+  uuid: 4162c343-0cfb-47ab-87fc-33b80f2f70e9
+  year_released: 1995
+installer:
+  tasks:
