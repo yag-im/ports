@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: i-have-no-mouth-and-i-must-scream
+  lang: en
+  media_assets:
+  name: I Have No Mouth, and I Must Scream
+  platform: dos
+  publisher: Acclaim Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-16 00:08:23.414957 America/Los_Angeles
+  uuid: f67a1a24-7a56-485d-b86e-89bab2be2b5b
+  year_released: 1995
+installer:
+  tasks:

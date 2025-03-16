@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: border-zone
+  lang: en
+  media_assets:
+  name: Border Zone
+  platform: dos
+  publisher: Infocom
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-16 00:08:28.649149 America/Los_Angeles
+  uuid: d270f80d-e8a3-44a5-b833-8afd250a4257
+  year_released: 1987
+installer:
+  tasks:
