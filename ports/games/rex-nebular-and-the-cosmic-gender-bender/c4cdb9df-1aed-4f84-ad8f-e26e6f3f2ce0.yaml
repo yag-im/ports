@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: Floppy
+    url: exoscummvm
+  igdb_slug: rex-nebular-and-the-cosmic-gender-bender
+  lang: en
+  media_assets:
+  name: Rex Nebular and the Cosmic Gender Bender
+  platform: dos
+  publisher: Nightdive Studios
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-17 02:06:04.974491 America/Los_Angeles
+  uuid: c4cdb9df-1aed-4f84-ad8f-e26e6f3f2ce0
+  year_released: 1992
+installer:
+  tasks:

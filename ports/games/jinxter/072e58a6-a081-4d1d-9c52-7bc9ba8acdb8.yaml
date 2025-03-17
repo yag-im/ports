@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: Floppy
+    url: exoscummvm
+  igdb_slug: jinxter
+  lang: en
+  media_assets:
+  name: Jinxter
+  platform: dos
+  publisher: Rainbird
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-17 02:06:02.235705 America/Los_Angeles
+  uuid: 072e58a6-a081-4d1d-9c52-7bc9ba8acdb8
+  year_released: 1988
+installer:
+  tasks:

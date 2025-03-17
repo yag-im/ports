@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: return-to-zork
+  lang: en
+  media_assets:
+  name: Return to Zork
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-17 02:06:02.256362 America/Los_Angeles
+  uuid: 297c0789-4b2c-45c5-80b9-c0b40a42ac09
+  year_released: 1993
+installer:
+  tasks:

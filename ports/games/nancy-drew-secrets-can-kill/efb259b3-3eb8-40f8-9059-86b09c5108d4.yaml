@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: nancy-drew-secrets-can-kill
+  lang: en
+  media_assets:
+  name: 'Nancy Drew: Secrets Can Kill'
+  platform: win
+  publisher: DreamCatcher Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-17 02:05:53.573734 America/Los_Angeles
+  uuid: efb259b3-3eb8-40f8-9059-86b09c5108d4
+  year_released: 1998
+installer:
+  tasks:
