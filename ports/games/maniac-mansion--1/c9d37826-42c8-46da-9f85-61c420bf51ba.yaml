@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: maniac-mansion--1
+  lang: en
+  media_assets:
+  name: Maniac Mansion
+  platform: win
+  publisher: Jaleco USA
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-17 02:05:53.489160 America/Los_Angeles
+  uuid: c9d37826-42c8-46da-9f85-61c420bf51ba
+  year_released: 1988
+installer:
+  tasks:
+    # dos v2 enchanced version, EGA

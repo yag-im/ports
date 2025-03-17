@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: indiana-jones-and-the-fate-of-atlantis--1
+  lang: en
+  media_assets:
+  name: Indiana Jones and the Fate of Atlantis
+  platform: dos
+  publisher: U.S. Gold
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-17 02:06:05.263136 America/Los_Angeles
+  uuid: 98f3cace-0ee6-4bb3-a58c-3892556bed6e
+  year_released: 1992
+installer:
+  tasks:
