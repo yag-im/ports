@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: Floppy
+    url: exoscummvm
+  igdb_slug: fish
+  lang: en
+  media_assets:
+  name: Fish!
+  platform: dos
+  publisher: Rainbird
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-19 03:14:37.121912 America/Los_Angeles
+  uuid: fb786dd8-1ef8-4d89-a46f-9f6a26921438
+  year_released: 1988
+installer:
+  tasks:

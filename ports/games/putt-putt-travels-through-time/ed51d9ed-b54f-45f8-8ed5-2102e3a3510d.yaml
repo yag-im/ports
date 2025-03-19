@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: putt-putt-travels-through-time
+  lang: en
+  media_assets:
+  name: Putt-Putt Travels Through Time
+  platform: win
+  publisher: Nimbus Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-19 03:14:41.192213 America/Los_Angeles
+  uuid: ed51d9ed-b54f-45f8-8ed5-2102e3a3510d
+  year_released: 1997
+installer:
+  tasks:

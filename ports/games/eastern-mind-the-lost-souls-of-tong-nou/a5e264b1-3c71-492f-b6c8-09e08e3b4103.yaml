@@ -1,0 +1,34 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: eastern-mind-the-lost-souls-of-tong-nou
+  lang: en
+  media_assets:
+  name: 'Eastern Mind: The Lost Souls of Tong Nou'
+  platform: win
+  publisher: Sony Music Entertainment Japan
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-19 03:14:13.622708 America/Los_Angeles
+  uuid: a5e264b1-3c71-492f-b6c8-09e08e3b4103
+  year_released: 1994
+installer:
+  tasks:
+    # TODO: no sound

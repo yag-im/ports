@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: plumbers-don-t-wear-ties
+  lang: en
+  media_assets:
+  name: Plumbers Don't Wear Ties
+  platform: win
+  publisher: Kirin Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-19 03:14:37.132782 America/Los_Angeles
+  uuid: 6a7eb6cb-db3c-4e81-a1ce-f47bedb781b0
+  year_released: 1993
+installer:
+  tasks:
