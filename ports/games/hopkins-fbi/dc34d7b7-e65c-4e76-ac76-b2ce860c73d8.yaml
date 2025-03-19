@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: hopkins-fbi
+  lang: en
+  media_assets:
+  name: Hopkins FBI
+  platform: win
+  publisher: MP Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-19 03:14:32.115859 America/Los_Angeles
+  uuid: dc34d7b7-e65c-4e76-ac76-b2ce860c73d8
+  year_released: 1998
+installer:
+  tasks:

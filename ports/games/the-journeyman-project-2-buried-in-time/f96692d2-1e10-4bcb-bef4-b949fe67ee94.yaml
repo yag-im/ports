@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: the-journeyman-project-2-buried-in-time
+  lang: en
+  media_assets:
+  name: 'The Journeyman Project 2: Buried in Time'
+  platform: win
+  publisher: Sanctuary Woods
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-03-19 03:14:17.806762 America/Los_Angeles
+  uuid: f96692d2-1e10-4bcb-bef4-b949fe67ee94
+  year_released: 1995
+installer:
+  tasks:
