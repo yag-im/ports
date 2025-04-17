@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Thomas&FriendsTroubleOnTheTracks.iso
+    format: 1CD
+    url: https://archive.org/details/ThomasFriendsTroubleOnTheTracks
+  igdb_slug: thomas-and-friends-trouble-on-the-tracks
+  lang: en
+  media_assets:
+  name: Thomas and Friends - Trouble on the Tracks
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 128838
+    pcgw_id: Thomas_%26_Friends:_Trouble_on_the_Tracks
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-04-17 13:27:15 America/Los_Angeles
+  uuid: bfd3b3a6-875a-4670-8742-5e9db8689942
+  year_released: 2000
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Trouble.exe"
