@@ -55,7 +55,7 @@ class VirtualDesktopResolution(Enum):
 
 DEFAULT_OS_VER = OsVer.WINDOWS7
 DEFAULT_OS_ARCH = OsArch.WIN32
-DEFAULT_WINE_VER = "9.0"
+DEFAULT_WINE_VER = "10.0"
 
 WINE_USER = "gamer"
 

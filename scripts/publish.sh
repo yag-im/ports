@@ -12,8 +12,10 @@ set -ux
 IGDB_SLUG="$1"
 RELEASE_UUID="$2"
 
+CUR_DIR=$(cd `dirname $0` && pwd)
+
 # upload app bundle to appstor server and app sources to aws S3 glacier
-./store.sh $IGDB_SLUG $RELEASE_UUID
+$CUR_DIR/store.sh $IGDB_SLUG $RELEASE_UUID
 
 # upload media assets to AWS CDN
 curl -v --request POST \
