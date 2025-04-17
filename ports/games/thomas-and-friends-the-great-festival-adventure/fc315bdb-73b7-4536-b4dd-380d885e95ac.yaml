@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - thomas & friends the great festival adventure.ISO
+    format: 1CD
+    url: https://archive.org/details/thomas-friends-the-great-festival-adventure_202501
+  igdb_slug: thomas-and-friends-the-great-festival-adventure
+  lang: en
+  media_assets:
+  name: Thomas & Friends The Great Festival Adventure
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 143190
+    pcgw_id: Thomas_%26_Friends:_The_Great_Festival_Adventure
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-04-16 19:37:45 America/Los_Angeles
+  uuid: fc315bdb-73b7-4536-b4dd-380d885e95ac
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Thomas.exe"
