@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - THOMAS2.ISO
+    format: 1CD
+    url: https://archive.org/details/thomassavestheday
+  igdb_slug: thomas-and-friends-thomas-saves-the-day
+  lang: en
+  media_assets:
+  name: "Thomas & Friends: Thomas Saves the Day!"
+  platform: win
+  publisher: Atari Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 32383
+    pcgw_id: Thomas_%26_Friends:_Thomas_Saves_the_Day
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-04-17 14:05:05 America/Los_Angeles
+  uuid: 5835bbfc-91d2-4205-a464-a61d3884aa30
+  year_released: 2003
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Thomas_SavesTheDay.exe"
