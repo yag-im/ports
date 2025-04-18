@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: DVD
+    url: exoscummvm
+  igdb_slug: zork-nemesis-the-forbidden-lands
+  lang: en
+  media_assets:
+  name: 'Zork Nemesis: The Forbidden Lands'
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 00:01:56.259978 America/Los_Angeles
+  uuid: bbc2f9a1-ea6b-4c02-a515-df83e2da73eb
+  year_released: 1996
+installer:
+  tasks:
