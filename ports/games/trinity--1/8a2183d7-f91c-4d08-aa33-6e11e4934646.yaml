@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: trinity--1
+  lang: en
+  media_assets:
+  name: Trinity
+  platform: dos
+  publisher: Maelstrom Rabbit
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 03:13:48.695700 America/Los_Angeles
+  uuid: 8a2183d7-f91c-4d08-aa33-6e11e4934646
+  year_released: 1986
+installer:
+  tasks:

@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: freddi-fish-and-luther-s-maze-madness
+  lang: en
+  media_assets:
+  name: Freddi Fish and Luther's Maze Madness
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 03:13:31.150251 America/Los_Angeles
+  uuid: 028cda29-1fb4-4205-af42-054af012a4bc
+  year_released: 1996
+installer:
+  tasks:

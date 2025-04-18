@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: zork-ii-the-wizard-of-frobozz
+  lang: en
+  media_assets:
+  name: 'Zork II: The Wizard of Frobozz'
+  platform: dos
+  publisher: Infocom
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 03:13:51.106237 America/Los_Angeles
+  uuid: aa659fc1-5a17-46c6-b183-4c609b84f85d
+  year_released: 1982
+installer:
+  tasks:
