@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: putt-putt-enters-the-race
+  lang: en
+  media_assets:
+  name: Putt-Putt Enters the Race
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 03:13:51.111385 America/Los_Angeles
+  uuid: fa0e292a-19a2-48cb-9fa0-99f5747b3a09
+  year_released: 1998
+installer:
+  tasks:

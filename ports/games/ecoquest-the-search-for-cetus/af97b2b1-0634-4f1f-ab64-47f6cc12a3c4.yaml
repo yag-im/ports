@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: ecoquest-the-search-for-cetus
+  lang: en
+  media_assets:
+  name: 'EcoQuest: The Search for Cetus'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 03:13:48.703141 America/Los_Angeles
+  uuid: af97b2b1-0634-4f1f-ab64-47f6cc12a3c4
+  year_released: 1991
+installer:
+  tasks:
