@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: zork-the-undiscovered-underground
+  lang: en
+  media_assets:
+  name: 'Zork: The Undiscovered Underground'
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 02:22:22.284393 America/Los_Angeles
+  uuid: 9c2ffda5-c90f-4121-a172-48895ba13d9e
+  year_released: 1997
+installer:
+  tasks:

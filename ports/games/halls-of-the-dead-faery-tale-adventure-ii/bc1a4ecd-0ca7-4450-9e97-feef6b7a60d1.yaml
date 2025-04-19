@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: halls-of-the-dead-faery-tale-adventure-ii
+  lang: en
+  media_assets:
+  name: 'Halls of the Dead: Faery Tale Adventure II'
+  platform: win
+  publisher: Encore
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 02:22:00.945421 America/Los_Angeles
+  uuid: bc1a4ecd-0ca7-4450-9e97-feef6b7a60d1
+  year_released: 1997
+installer:
+  tasks:
