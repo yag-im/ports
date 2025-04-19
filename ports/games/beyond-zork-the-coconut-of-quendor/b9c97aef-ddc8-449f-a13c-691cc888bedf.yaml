@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: beyond-zork-the-coconut-of-quendor
+  lang: en
+  media_assets:
+  name: 'Beyond Zork: The Coconut of Quendor'
+  platform: dos
+  publisher: Infocom
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 02:22:18.828457 America/Los_Angeles
+  uuid: b9c97aef-ddc8-449f-a13c-691cc888bedf
+  year_released: 1987
+installer:
+  tasks:
