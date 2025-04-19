@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: simon-the-sorcerer-ii-the-lion-the-wizard-and-the-wardrobe
+  lang: en
+  media_assets:
+  name: 'Simon the Sorcerer II: The Lion, the Wizard and the Wardrobe'
+  platform: dos
+  publisher: Adventure Soft
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 16:54:18.269863 America/Los_Angeles
+  uuid: f77ad12a-63e4-4821-bd4c-6ba3747e0261
+  year_released: 1995
+installer:
+  tasks:
