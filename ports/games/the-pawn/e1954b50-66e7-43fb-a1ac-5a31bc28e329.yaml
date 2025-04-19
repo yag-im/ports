@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: Floppy
+    url: exoscummvm
+  igdb_slug: the-pawn
+  lang: en
+  media_assets:
+  name: The Pawn
+  platform: dos
+  publisher: Rainbird
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-18 16:54:18.256727 America/Los_Angeles
+  uuid: e1954b50-66e7-43fb-a1ac-5a31bc28e329
+  year_released: 1986
+installer:
+  tasks:
