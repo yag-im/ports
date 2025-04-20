@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: hyperspace-delivery-boy
+  lang: en
+  media_assets:
+  name: Hyperspace Delivery Boy!
+  platform: win
+  publisher: Monkeystone Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 18:17:54.887040 America/Los_Angeles
+  uuid: 9e3e3388-0a1e-4dd9-9c31-f4b9033638e2
+  year_released: 2001
+installer:
+  tasks:

@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: syberia
+  lang: en
+  media_assets:
+  name: Syberia
+  platform: mac
+  publisher: "Micro\xEFds"
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 960
+    screen_width: 1280
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 18:19:13.135718 America/Los_Angeles
+  uuid: ea1973d6-3b71-4dfc-b6cc-86a2919fe0ce
+  year_released: 2002
+installer:
+  tasks:
