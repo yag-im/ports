@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: nancy-drew-treasure-in-the-royal-tower
+  lang: en
+  media_assets:
+  name: 'Nancy Drew: Treasure in the Royal Tower'
+  platform: win
+  publisher: Her Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 18:19:37.006052 America/Los_Angeles
+  uuid: 06b2b031-f40f-4820-9f46-0da5541e19dd
+  year_released: 2001
+installer:
+  tasks:

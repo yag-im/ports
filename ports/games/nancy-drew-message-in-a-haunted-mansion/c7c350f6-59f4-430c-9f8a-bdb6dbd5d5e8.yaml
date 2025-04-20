@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: nancy-drew-message-in-a-haunted-mansion
+  lang: en
+  media_assets:
+  name: 'Nancy Drew: Message in a Haunted Mansion'
+  platform: win
+  publisher: DreamCatcher Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 18:17:47.531698 America/Los_Angeles
+  uuid: c7c350f6-59f4-430c-9f8a-bdb6dbd5d5e8
+  year_released: 2000
+installer:
+  tasks:

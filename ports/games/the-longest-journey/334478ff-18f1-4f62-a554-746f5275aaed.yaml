@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: the-longest-journey
+  lang: en
+  media_assets:
+  name: The Longest Journey
+  platform: win
+  publisher: Funcom
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-19 18:18:06.881185 America/Los_Angeles
+  uuid: 334478ff-18f1-4f62-a554-746f5275aaed
+  year_released: 2000
+installer:
+  tasks:
