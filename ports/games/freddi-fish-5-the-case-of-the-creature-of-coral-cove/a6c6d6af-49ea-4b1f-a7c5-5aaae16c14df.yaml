@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: freddi-fish-5-the-case-of-the-creature-of-coral-cove
+  lang: en
+  media_assets:
+  name: 'Freddi Fish 5: The Case of the Creature of Coral Cove'
+  platform: win
+  publisher: GT Interactive Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-21 01:34:46.132818 America/Los_Angeles
+  uuid: a6c6d6af-49ea-4b1f-a7c5-5aaae16c14df
+  year_released: 2001
+installer:
+  tasks:
