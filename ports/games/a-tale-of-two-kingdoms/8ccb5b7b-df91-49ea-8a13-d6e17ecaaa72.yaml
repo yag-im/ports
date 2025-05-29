@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: a-tale-of-two-kingdoms
+  lang: en
+  media_assets:
+  name: A Tale of Two Kingdoms
+  platform: win
+  publisher: Crystal Shard
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-21 01:54:25.327791 America/Los_Angeles
+  uuid: 8ccb5b7b-df91-49ea-8a13-d6e17ecaaa72
+  year_released: 2007
+installer:
+  tasks:
