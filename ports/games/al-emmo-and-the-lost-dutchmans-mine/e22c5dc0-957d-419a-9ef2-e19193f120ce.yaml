@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: al-emmo-and-the-lost-dutchmans-mine
+  lang: en
+  media_assets:
+  name: Al Emmo and the Lost Dutchman's Mine
+  platform: win
+  publisher: Himalaya Studios
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-04-21 01:54:15.413871 America/Los_Angeles
+  uuid: e22c5dc0-957d-419a-9ef2-e19193f120ce
+  year_released: 2006
+installer:
+  tasks:
