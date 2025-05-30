@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - TRIPITAKA.ISO
+    format: 1CD
+    url: https://archive.org/download/tripitaka_win_mac/TRIPITAKA.ISO
+  igdb_slug: tripitaka-the-pilgrimage-of-tripitaka
+  lang: ja
+  media_assets:
+  name: "Tripitaka: The Pilgrimage of Tripitaka"
+  platform: win
+  publisher: SOFTEDGE
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-05-29 16:11:18 America/Los_Angeles
+  uuid: bafaf2c2-8303-478d-b767-fc2daf824157
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/TRPTK_32.EXE"
+              chdir: false

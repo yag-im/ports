@@ -9,8 +9,16 @@ export LC_ALL=${lang}
 ${cmd}
 % endfor
 
-% if virtual_desktop:
+% if chdir:
+    % if virtual_desktop:
 wine start /wait /d "${work_dir}" explorer /desktop=yag,${virtual_desktop} "${app_exec}"
-% else:
+    % else:
 wine start /wait /d "${work_dir}" "${app_exec}"
+    % endif
+% else:
+    % if virtual_desktop:
+wine start /wait "${work_dir}${app_exec}" explorer /desktop=yag,${virtual_desktop}
+    % else:
+wine start /wait "${work_dir}${app_exec}"
+    % endif
 % endif
