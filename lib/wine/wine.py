@@ -185,6 +185,8 @@ class Wine:
             return "pl_PL.UTF8"
         elif self.lang == "cs":
             return "cs_CS.UTF8"
+        elif self.lang == "ja":
+            return "ja_JP.UTF8"
         else:
             raise ValueError(f"unknown language: {self.lang}")
 
@@ -193,6 +195,7 @@ class Wine:
         app_exec: str,
         pre_run: List[str] = None,
         work_dir: str = str(APP_DIR),
+        chdir: bool = True,
     ) -> Path:
         if pre_run is None:
             pre_run = []
@@ -206,6 +209,7 @@ class Wine:
             "user_gamer": USER_GAMER,
             "work_dir": work_dir,
             "lang": self._get_lang(),
+            "chdir": chdir,
         }
         template(CURRENT_DIR / "templates" / "run.sh.tmpl", output_path, params=tmpl_params)
         output_path.chmod(output_path.stat().st_mode | stat.S_IEXEC)
