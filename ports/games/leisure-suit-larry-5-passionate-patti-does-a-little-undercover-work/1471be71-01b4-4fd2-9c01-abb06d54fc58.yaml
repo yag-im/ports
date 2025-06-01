@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: leisure-suit-larry-5-passionate-patti-does-a-little-undercover-work
+  lang: en
+  media_assets:
+  name: 'Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-06-01 08:14:59 America/Los_Angeles
+  uuid: 1471be71-01b4-4fd2-9c01-abb06d54fc58
+  year_released: 1991
+installer:
+  tasks:
