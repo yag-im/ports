@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: the-legend-of-kyrandia
+  lang: en
+  media_assets:
+  name: The Legend of Kyrandia
+  platform: dos
+  publisher: Virgin Games
+  refs:
+    ag_id: 15842
+    lutris_id: the-legend-of-kyrandiabook-one
+    mg_id: 394
+    pcgw_id: The_Legend_of_Kyrandia
+    qz_id: 515
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-06-03 16:57:21 America/Los_Angeles
+  uuid: d141041c-728a-4a39-9ce5-38d58ea4fcc6
+  year_released: 1991
+installer:
+  tasks:
