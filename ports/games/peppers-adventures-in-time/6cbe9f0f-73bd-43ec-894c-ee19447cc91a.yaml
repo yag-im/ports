@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: 1FD
+    url: exoscummvm
+  igdb_slug: peppers-adventures-in-time
+  lang: en
+  media_assets:
+  name: Pepper's Adventures in Time
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: 15486
+    lutris_id: peppers-adventures-in-time
+    mg_id: 6312
+    pcgw_id: Pepper%27s_Adventures_in_Time
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-06-03 20:18:58 America/Los_Angeles
+  uuid: 6cbe9f0f-73bd-43ec-894c-ee19447cc91a
+  year_released: 1993
+installer:
+  tasks:

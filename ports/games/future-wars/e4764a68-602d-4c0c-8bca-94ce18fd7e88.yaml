@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: 1CD
+    url: exoscummvm
+  igdb_slug: future-wars
+  lang: en
+  media_assets:
+  name: Future Wars
+  platform: dos
+  publisher: Delphine Software
+  refs:
+    ag_id: 15861
+    lutris_id: future-wars
+    mg_id: 2205
+    pcgw_id: Future_Wars
+    qz_id: 483
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 200
+    screen_width: 320
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-06-03 20:30:11 America/Los_Angeles
+  uuid: e4764a68-602d-4c0c-8bca-94ce18fd7e88
+  year_released: 1989
+installer:
+  tasks:
