@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Ark.of.Time.eng.iso
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=2790889
+  igdb_slug: ark-of-time
+  lang: en
+  media_assets:
+  name: Ark of Time
+  platform: dos
+  publisher: Koei
+  refs:
+    ag_id: 15774
+    lutris_id: ark-of-time
+    mg_id: 2156
+    pcgw_id:
+    qz_id: 461
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-06-04 19:59:09 America/Los_Angeles
+  uuid: cf20cc4d-646f-49bf-901c-06e6b8a62497
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/AOT.EXE"
