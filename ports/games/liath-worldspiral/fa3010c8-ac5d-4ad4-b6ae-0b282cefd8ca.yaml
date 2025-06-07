@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - LIATH_CD1.mdf
+      - LIATH_CD2.mdf
+    format: 2CD
+    url: https://rutracker.org/forum/viewtopic.php?t=321043
+  igdb_slug: liath-worldspiral
+  lang: ru
+  media_assets:
+  name: "Liath: WorldSpiral"
+  platform: win
+  publisher: Project Two Interactive
+  refs:
+    ag_id: 15736
+    lutris_id: liath-worldspiral
+    mg_id: 5043
+    pcgw_id:
+    qz_id: 60
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-06-06 21:30:51 America/Los_Angeles
+  uuid: fa3010c8-ac5d-4ad4-b6ae-0b282cefd8ca
+  year_released: 1998
+installer:
+  tasks:
+    - extract:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - mount:
+              letter: "{SECOND_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Liath.exe"
