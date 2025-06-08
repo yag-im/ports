@@ -165,3 +165,19 @@ A: make sure your CDROM source is an image, not a directory
 
 Q: no midi sound in dosbox-x
 A: check sound font availability (/usr/share/sounds/sf2/default-GM.sf2) and a "midi" section in dosbox.conf
+
+Q: how to propagate files into dosbox-x disk images from host?
+A:
+    - create a folder X and put files there
+    - update dosbox.conf with:
+
+        mount X X
+
+    - copy files from X: into C:
+    - unmount X (otherwise windows will hang on boot):
+
+        mount -u X
+
+    - boot system:
+
+        boot C:
