@@ -1,6 +1,3 @@
-# Both versions: https://archive.org/details/armeddelirious (US) and https://archive.org/details/DEMENTIA_201712 (EU)
-# crashing in dosbox-x (WIN95OSR25, WIN95OSR21 and WIN98) and wine
-
 descr:
   distro:
     files:
@@ -45,6 +42,10 @@ installer:
     - dosbox:
         flavor: WIN95OSR25
         app_drive_size: 20
+        conf:
+          cycles: fixed 20000
+          # Both versions: https://archive.org/details/armeddelirious (US) and https://archive.org/details/DEMENTIA_201712 (EU)
+          # crashing in dosbox-x (WIN95OSR25, WIN95OSR21 and WIN98) without hard CPU limit set
         tasks:
           - mount:
               # TODO: get rid of Ctrl+F4 swap (patch CRUX.exe)
