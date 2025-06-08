@@ -1,0 +1,62 @@
+# Both versions: https://archive.org/details/armeddelirious (US) and https://archive.org/details/DEMENTIA_201712 (EU)
+# crashing in dosbox-x (WIN95OSR25, WIN95OSR21 and WIN98) and wine
+
+descr:
+  distro:
+    files:
+      - AD_1.bin
+      - AD_2.bin
+      - AD_3.bin
+      - AD_4.bin
+      - AD_5.bin
+    format: 5CD
+    url: https://archive.org/details/armeddelirious
+  igdb_slug: armed-and-delirious
+  lang: en
+  media_assets:
+  name: Armed & Delirious
+  platform: win
+  publisher: Sir-tech Software
+  refs:
+    ag_id: 16402
+    lutris_id: armed-and-delirious
+    mg_id: 5192
+    pcgw_id:
+    qz_id: 1334
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-06-07 11:15:19 America/Los_Angeles
+  uuid: 21a995f9-dda0-4597-abe1-1f78b34c11cc
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 20
+        tasks:
+          - mount:
+              # TODO: get rid of Ctrl+F4 swap (patch CRUX.exe)
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FIFTH_CD_DRIVE_LETTER}"
+          - run:
+              # do not install DirectX 3.0 when prompted
+              path: "{FIRST_CD_DRIVE}/ENGLISH/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/PROGRAM/CRUX.EXE -h"
