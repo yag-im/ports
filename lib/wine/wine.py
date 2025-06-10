@@ -187,6 +187,8 @@ class Wine:
             return "cs_CS.UTF8"
         elif self.lang == "ja":
             return "ja_JP.UTF8"
+        elif self.lang == "sv":
+            return "sv_SE.UTF8"
         else:
             raise ValueError(f"unknown language: {self.lang}")
 
