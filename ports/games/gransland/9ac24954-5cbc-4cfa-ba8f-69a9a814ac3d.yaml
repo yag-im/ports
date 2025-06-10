@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - gransland1.iso
+      - gransland2.iso
+    format: 2CD
+    url: https://archive.org/details/gransland
+  igdb_slug: gransland
+  lang: sv
+  media_assets:
+  name: Gränsland
+  platform: win
+  publisher: Paregos Mediadesign
+  refs:
+    ag_id:
+    lutris_id: gransland
+    mg_id:
+    pcgw_id:
+    qz_id: 6204
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-06-10 12:17:04 America/Los_Angeles
+  uuid: 9ac24954-5cbc-4cfa-ba8f-69a9a814ac3d
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/G_LAND.EXE"
