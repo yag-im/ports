@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - APOLLO_13.iso
+    format: 1CD
+    url: https://archive.org/details/apollo-xiii-a-week-to-remember
+  igdb_slug: apollo-xiii-a-week-to-remember
+  lang: en
+  media_assets:
+    cover:
+      image_id: 314f648d-d58d-4e43-ac87-0fb60e6667e7
+    screenshots: []
+  name: Apollo XIII - A Week To Remember
+  platform: win
+  publisher: Odyssey Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-06-14 13:20:14 America/Los_Angeles
+  uuid: 314f648d-d58d-4e43-ac87-0fb60e6667e7
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          # - run:
+          #     path: "{FIRST_CD_DRIVE}/QTW/SETUP.EXE"
+          #     exit: false
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/APOLLO13.EXE"
