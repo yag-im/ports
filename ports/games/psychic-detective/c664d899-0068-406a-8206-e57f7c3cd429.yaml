@@ -1,0 +1,62 @@
+descr:
+  distro:
+    files:
+      - Psychic.Detective.CD1.ISO
+      - Psychic.Detective.CD2.ISO
+      - Psychic.Detective.CD3.ISO
+    format: 3CD
+    url: https://archive.org/details/msdos_Psychic_Detective_1995
+  igdb_slug: psychic-detective
+  lang: en
+  media_assets:
+  name: Psychic Detective
+  platform: dos
+  publisher: Electronic Arts
+  refs:
+    ag_id: psychic-detective
+    lutris_id: psychic-detective
+    mg_id: 3503
+    pcgw_id:
+    qz_id: 875
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-06-15 09:18:01 America/Los_Angeles
+  uuid: c664d899-0068-406a-8206-e57f7c3cd429
+  year_released: 1995
+installer:
+  # app works only with the gravis ultrasound emulation (gus) - otherwise it hangs on the intro video
+  tasks:
+    - extract:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+    - dosbox:
+        conf:
+          gus: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              is_cd: true
+          - run:
+              # select "16 bit high color" during install
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/PD.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "DIG.INI"
+          - "PD.INI"

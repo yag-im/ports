@@ -51,6 +51,7 @@ class DosBoxConf:
     mount_points: collections.OrderedDict[str, DosMountPoint] = field(default_factory=collections.OrderedDict)
     scaler: str = "none"
     sensitivity: Optional[int] = None
+    gus: bool = False
 
     @property
     def lang(self):

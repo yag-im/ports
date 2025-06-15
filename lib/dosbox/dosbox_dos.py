@@ -58,6 +58,11 @@ class DosBoxDos(DosBox[DosBoxConf]):
                 DosMountPointHDD(APP_DRIVE_LETTER, self.app_drive),
             ]
         )
+        if conf.gus:
+            copy(
+                RUNNERS_BUNDLES_BASE_DIR / self.conf.mod.value / "ULTRASND",
+                self.system_drive,
+            )
 
     def copy(self, src: Union[Path, List[Path], PureWindowsPath, List[PureWindowsPath]], dst: PureWindowsPath) -> None:
         if not isinstance(src, List):

@@ -179,6 +179,7 @@ class DosBox(Protocol[T]):
             "cycles": self.conf.cycles,
             "fullscreen": str(self.conf.fullscreen).lower(),
             "sensitivity": self.conf.sensitivity or default_sensitivity,
+            "gus": self.conf.gus,
         }
         dest_path = self.root_dir / CONF_NAME
         template(
