@@ -21,6 +21,18 @@ cycles=${cycles}
 scaler=${scaler}
 aspect=${aspect}
 
+% if gus:
+[gus]
+gus=true
+gusrate=22050
+gusbase=240
+irq1=5
+irq2=5
+dma1=3
+dma2=3
+ultradir=C:\ULTRASND
+% endif
+
 [autoexec]
 SET PATH=%PATH%;C:\UTILS
 % for cmd in autoexec:
