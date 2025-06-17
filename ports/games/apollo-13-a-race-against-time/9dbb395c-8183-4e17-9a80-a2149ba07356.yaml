@@ -7,6 +7,9 @@ descr:
   igdb_slug: apollo-13-a-race-against-time
   lang: en
   media_assets:
+    cover:
+      image_id: 9dbb395c-8183-4e17-9a80-a2149ba07356
+    screenshots: []
   name: Apollo 13 - A Race Against Time
   platform: win
   publisher: Computer Support Corporation
@@ -43,4 +46,4 @@ installer:
               cd_images_as_letters: true
           - gen_run_script:
               path: "{FIRST_CD_DRIVE}/APOLLO13/APOLLO13.EXE"
-              exit: false  # TODO: leaves windows opened; otherwise app closes immediately
+              exit: false  # TODO: leaves OS opened; otherwise app closes immediately
