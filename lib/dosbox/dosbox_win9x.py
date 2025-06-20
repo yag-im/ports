@@ -163,14 +163,25 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
         # - when copying SRC/* into DST we want to preserve subdirectories with all files inside (by removing /D)
         # - when copying a single file (SRC/file.ext) into DST, we need to keep /D, otherwise
         # LCOPY will recreate the whole structure of SRC at DST (bug: https://github.com/oglueck/lfntools/issues/1)
+        # another bug has been discovered: when using /S and trying to copy a single file, LCOPY will also try to
+        # copy all subdirs on the src drive into destination and /D won't help. So we need to remove /S for files.
         lcopy_cmd_options = LCOPY_CMD_OPTIONS.copy()
         if len(src) > 1 or "*" in str(src[0]):
-            # when there are multiple sources or source contains a mask, destination is always a folder
-            # (needs to be created for safety)
+            # when there are multiple sources, destination is always a folder.
+            # also handle case when there is only one source and it contains "*"
+            # we need to created it for safety
             self.md(dst)
-            if "*" in str(src[0]):
-                lcopy_cmd_options.remove("/D")
         for s in src:
+            if "/D" not in lcopy_cmd_options:
+                lcopy_cmd_options.append("/D")
+            # removing /D for "*" copies (when src contains *, dest is always a folder)
+            if "*" in str(s):
+                lcopy_cmd_options.remove("/D")
+            if "/S" not in lcopy_cmd_options:
+                lcopy_cmd_options.append("/S")
+            # removing /S for files due to a bug (see above)
+            if "." in str(s):
+                lcopy_cmd_options.remove("/S")
             if isinstance(s, Path):
                 # copy from host into dosbox
                 cp(s, self.x_drive)

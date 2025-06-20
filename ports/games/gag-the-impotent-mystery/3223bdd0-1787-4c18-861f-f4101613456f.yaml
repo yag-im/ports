@@ -1,0 +1,70 @@
+descr:
+  distro:
+    files:
+      - GAG [1].iso
+      - GAG [2].iso
+    format: 2CD
+    url: https://rutracker.org/forum/viewtopic.php?t=2447405
+  igdb_slug: gag-the-impotent-mystery
+  lang: ru
+  media_assets:
+  name: "ГЭГ: Отвязное приключение"
+  platform: win
+  publisher: Noviy Disk
+  refs:
+    ag_id: gag
+    lutris_id: gag-the-impotent-mystery
+    mg_id: 22034
+    pcgw_id:
+    qz_id: 103
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-06-19 18:50:57 America/Los_Angeles
+  uuid: 3223bdd0-1787-4c18-861f-f4101613456f
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR21
+        app_drive_size: 1100
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - md:
+              path: "{APP_DIR}"
+          - copy:
+              src:
+                - "{FIRST_CD_DRIVE}/XTETDLL.DLL"
+                - "{FIRST_CD_DRIVE}/PcInfo.exe"
+                - "{FIRST_CD_DRIVE}/Gag01.cdf"
+              dest: "{APP_DIR}"
+          - copy:
+              src:
+                - "{SECOND_CD_DRIVE}/Gag02.cdf"
+              dest: "{APP_DIR}"
+          - umount:
+              cd_images_as_letters: true
+          - regedit:
+              path: "HKEY_LOCAL_MACHINE\\SOFTWARE\\ZES't Corp.\\GAG"
+              values:
+                - path: "D:\\APP"
+                - version: "Russian Edition Version 2.51"
+          - copy:
+              src:
+                - "{SRC_FILES_DIR}/GAG.EXE"
+              dest: "{APP_DIR}"
+          - gen_run_script:
+              path: "{APP_DIR}/GAG.EXE"

@@ -72,10 +72,8 @@ class DosBoxConf:
         if not isinstance(mount_points, List):
             mount_points = [mount_points]
         for mp in mount_points:
-            path = mp.path
-            if not isinstance(path, list):
-                path = [path]
-            for p in path:
+            paths_list = mp.path if isinstance(mp.path, list) else [mp.path]
+            for p in paths_list:
                 if not p.exists():
                     raise ValueError(f"non-existing mount point: {p}")
             self.mount_points[mp.letter] = mp
@@ -91,7 +89,8 @@ class DosBoxConf:
         mp = self.mount_points[drive_letter]
         del self.mount_points[drive_letter]
         if remove:
-            for p in mp.path:
+            paths_list = mp.path if isinstance(mp.path, list) else [mp.path]
+            for p in paths_list:
                 rm(p)
 
     def gen_mount_cmds(self, base_dir: Path) -> list[str]:
