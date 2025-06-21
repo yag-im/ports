@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - "Forgotten, The - It Begins... (USA).bin"
+    format: 1CD
+    url: https://archive.org/details/forgotten-the-it-begins...-usa
+  igdb_slug: the-forgotten-it-begins
+  lang: en
+  media_assets:
+  name: "The Forgotten: It Begins"
+  platform: win
+  publisher: DreamCatcher Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 3991
+    pcgw_id:
+    qz_id: 1067
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-06-21 08:38:08 America/Los_Angeles
+  uuid: f5c11857-1e44-412a-aa73-ba8ca6669091
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 200
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: "Forgotten"
+          - run:
+              # when installing QT4, select "Minimal" ("Custom" -> "Essentials" will be not enough)
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Forgot.EXE"
