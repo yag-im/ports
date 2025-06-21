@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - PINKGEAR2_DISC1.bin
+      - PINKGEAR2_DISC2.bin
+      - PINKGEAR2_DISC3.bin
+      - PINKGEAR2_DISC4.bin
+    format: 4CD
+    url: https://archive.org/details/pink-gear-2
+  igdb_slug: pink-gear-2
+  lang: ja
+  media_assets:
+  name: Pink Gear 2
+  platform: win
+  publisher: Toshiba EMI
+  refs:
+    ag_id:
+    lutris_id: pink-gear-2
+    mg_id:
+    pcgw_id:
+    qz_id: 6207
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-06-20 13:42:20 America/Los_Angeles
+  uuid: db262d72-9f2c-4b16-ae1b-10d1bb05e76d
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/QuickTime for Windows 3.02J/QuickTime30.exe"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/PINK GEAR/Go To PINK GEAR.exe"
