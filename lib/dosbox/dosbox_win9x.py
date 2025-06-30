@@ -194,7 +194,9 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 raise ValueError(f"unrecognized copy param type: {s}")
         self._run(cmds)
 
-    def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False, runexit=True, umount_x=True) -> None:
+    def run(
+        self, path: PureWindowsPath, args: List[Any] = None, mock=False, runexit=True, umount_x=True, workdir=None
+    ) -> None:
         """Runs existing app in the Win9x-flavored env (runs after Win9x is booted inside the DosBox instance).
 
         You'll need to copy a file beforehand if it doesn't exist in the flavored env.
@@ -208,6 +210,8 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             shell_cmds = []
             if runexit:
                 shell_cmds.append("RUNEXIT.EXE")
+            if workdir:
+                shell_cmds.append(f"/C:{workdir}")
             shell_cmds.append(path)
             if args:
                 shell_cmds.append(" ".join([str(a) for a in args]))
