@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Star Wars - Episode I - Insider's Guide (USA) (Disc 1).bin
+      - Star Wars - Episode I - Insider's Guide (USA) (Disc 2).bin
+    format: 2CD
+    url: https://archive.org/details/StarWarsEpisodeIInsidersGuideUSA
+  igdb_slug: star-wars-episode-i-insiders-guide
+  lang: en
+  media_assets:
+    cover:
+      image_id: 85358a30-4251-4ab0-9c77-8079f5c3d27a
+    screenshots: []
+  name: "Star Wars: Episode I Insider's Guide"
+  platform: win
+  publisher: LucasArts Entertainment Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-06-29 08:26:30 America/Los_Angeles
+  uuid: 85358a30-4251-4ab0-9c77-8079f5c3d27a
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 50
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              # TODO: get rid of Ctrl+F4 swap (patch epig.exe)
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/EPIG.EXE"
+              workdir: "{FIRST_CD_DRIVE}" # otherwise EPIG.EXE will just hang
