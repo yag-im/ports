@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - PIPER101.BIN
+    format: 1CD
+    url: https://archive.org/details/piper_201909
+  igdb_slug: piper
+  lang: en
+  media_assets:
+  name: Piper
+  platform: win
+  publisher: Splash Studios
+  refs:
+    ag_id:
+    lutris_id: piper
+    mg_id: 143544
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-08 08:52:53 America/Los_Angeles
+  uuid: 3f8f8489-b492-4186-a23b-42ef39ba08a6
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/PIPER.EXE"
