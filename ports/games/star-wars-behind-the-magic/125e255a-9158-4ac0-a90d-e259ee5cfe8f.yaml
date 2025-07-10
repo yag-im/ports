@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Star Wars - Behind the Magic (USA, Europe) (Disc 1).bin
+      - Star Wars - Behind the Magic (USA, Europe) (Disc 2).bin
+    format: 2CD
+    url: https://archive.org/details/20230618_20230618_0815
+  igdb_slug: star-wars-behind-the-magic
+  lang: en
+  media_assets:
+    cover:
+      image_id: 125e255a-9158-4ac0-a90d-e259ee5cfe8f
+    screenshots: []
+  name: "Star Wars: Behind the Magic"
+  platform: win
+  publisher: LucasArts Entertainment Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-07-09 19:36:19 America/Los_Angeles
+  uuid: 125e255a-9158-4ac0-a90d-e259ee5cfe8f
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 25
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              # TODO: get rid of Ctrl+F4 swap (patch BTM.exe)
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/BEHIND.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/BTM.EXE"
+              workdir: "{FIRST_CD_DRIVE}" # otherwise BTM.EXE will just hang
