@@ -7,6 +7,9 @@ descr:
   igdb_slug: star-wars-jar-jars-journey-adventure-book
   lang: en
   media_assets:
+    cover:
+      image_id: 2ad628f3-eaf2-4bac-a4a8-9760d710fd7c
+    screenshots: []
   name: "Star Wars: Jar Jar's Journey Adventure Book"
   platform: win
   publisher: Lucas Learning
