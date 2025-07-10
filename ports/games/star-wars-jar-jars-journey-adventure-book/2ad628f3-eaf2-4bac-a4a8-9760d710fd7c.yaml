@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Star Wars - Jar Jar's Journey Adventure Book (USA).bin
+    format: 1CD
+    url: https://archive.org/details/20230618_20230618_0815
+  igdb_slug: star-wars-jar-jars-journey-adventure-book
+  lang: en
+  media_assets:
+  name: "Star Wars: Jar Jar's Journey Adventure Book"
+  platform: win
+  publisher: Lucas Learning
+  refs:
+    ag_id:
+    lutris_id: star-wars-jar-jars-journey-adventure-book
+    mg_id: 42134
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-07-08 18:21:09 America/Los_Angeles
+  uuid: 2ad628f3-eaf2-4bac-a4a8-9760d710fd7c
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: "JarJar"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/JarJar.exe"
+              chdir: false
