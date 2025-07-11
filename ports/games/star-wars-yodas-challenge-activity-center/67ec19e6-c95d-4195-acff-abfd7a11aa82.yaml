@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Star Wars - Yoda's Challenge (USA).bin
+    format: 1CD
+    url: https://archive.org/details/20230618_20230618_0815
+  igdb_slug: star-wars-yodas-challenge-activity-center
+  lang: en
+  media_assets:
+  name: "Star Wars: Yoda's Challenge Activity Center"
+  platform: win
+  publisher: Lucas Learning
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 4559
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-07-11 11:17:31 America/Los_Angeles
+  uuid: 67ec19e6-c95d-4195-acff-abfd7a11aa82
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        virtual_desktop: 640x480
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              # proceed with a minimal install, skip directx install
+              path: "{FIRST_CD_DRIVE}/Launch.exe"
+          - gen_run_script:
+              # running exec from APP dir produces a directx mismatch error
+              path: "{FIRST_CD_DRIVE}/Launch.exe"

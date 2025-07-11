@@ -209,7 +209,7 @@ class Wine:
             "resolution": self.resolution,
             "video_output": VIDEO_OUTPUT,
             "user_gamer": USER_GAMER,
-            "work_dir": work_dir,
+            "work_dir": str(work_dir).replace("\\", "\\\\"),
             "lang": self._get_lang(),
             "chdir": chdir,
         }
