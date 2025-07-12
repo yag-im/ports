@@ -16,7 +16,8 @@
             "extensions": [
                 "humao.rest-client",
                 "ms-python.black-formatter",
-                "redhat.vscode-yaml"
+                "redhat.vscode-yaml",
+                "eamodio.gitlens"
             ]
         }
     },
