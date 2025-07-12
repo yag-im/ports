@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - TZAC.mdf
+    format: 1CD
+    url: https://archive.org/details/tarzan-activity-center-1999-burroughs-disney-interactive-cd
+  igdb_slug: disneys-tarzan-activity-center
+  lang: en
+  media_assets:
+  name: "Disney's Tarzan Activity Center"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 67751
+    pcgw_id: Tarzan_Activity_Center
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-11 22:42:12 America/Los_Angeles
+  uuid: fdfe7543-3ecc-482a-8a49-aaa6b26df075
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 100
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/TARZAN.EXE"
