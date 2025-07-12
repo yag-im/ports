@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - PoohBaby.iso
+    format: 1CD
+    url: https://archive.org/details/PoohBaby
+  igdb_slug: disney-learning-baby
+  lang: en
+  media_assets:
+    cover:
+      image_id: 7d41325c-768a-48d6-8222-e418368e259c
+    screenshots: []
+  name: "Disney Learning: Baby"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-12 12:31:05 America/Los_Angeles
+  uuid: 7d41325c-768a-48d6-8222-e418368e259c
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 100
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/Setup/Setup.exe"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/POOHBABY.EXE"
