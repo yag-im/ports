@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - "Disney's Ready to Read with Pooh (USA) (Rerelease).bin"
+    format: 1CD
+    url: https://archive.org/details/E9210
+  igdb_slug: disneys-ready-to-read-with-pooh
+  lang: en
+  media_assets:
+  name: Disney's Ready to Read with Pooh
+  platform: win
+  publisher: Disney Interactive Studios
+  refs:
+    ag_id:
+    lutris_id: disneys-ready-to-read-with-pooh
+    mg_id: 29273
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-12 11:07:59 America/Los_Angeles
+  uuid: 16e6dbe6-a324-4c53-af73-874cc65673a4
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 50
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/Setup/Setup.exe"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/POOHRTR.EXE"
