@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Swelac.iso
+    format: 1CD
+    url: https://archive.org/details/StarWarsEarlyLearningActivityCenter
+  igdb_slug: star-wars-early-learning-activity-center
+  lang: en
+  media_assets:
+  name: "Star Wars: Early Learning Activity Center"
+  platform: win
+  publisher: Lucas Learning
+  refs:
+    ag_id:
+    lutris_id: star-wars-early-learning-activity-center
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-07-12 10:49:49 America/Los_Angeles
+  uuid: 208b766c-811c-4e80-9274-1bc26a1a2dfa
+  year_released: 2000
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/Launch.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/Activity Center.exe"
