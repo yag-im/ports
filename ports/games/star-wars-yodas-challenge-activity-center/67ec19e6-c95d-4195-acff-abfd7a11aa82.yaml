@@ -48,3 +48,5 @@ installer:
           - gen_run_script:
               # running exec from APP dir produces a directx mismatch error
               path: "{FIRST_CD_DRIVE}/Launch.exe"
+# there is a "haisenbug" observed in this game: it complains on DirectX version mismatch when running on a faster CPU.
+# temp solution: add export WINEDEBUG=+warn,+loaddll into the run.sh to slow-down wine.

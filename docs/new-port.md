@@ -181,3 +181,13 @@ A:
     - boot system:
 
         boot C:
+
+Q: The app runs in one environment but not in another, even though both use the same Docker image. Why?
+A: It's likely due to differences in CPU clock speed. Some older applications are sensitive to processor speed and may
+fail or behave unpredictably on faster systems. Try adjusting the environment's CPU performance - either slowing it down
+or speeding it up. For example, "Star Wars: Yoda's Challenge Activity Center" may require throttling when running on
+high clock-rate CPUs in cloud environments. You can slow wine down using:
+
+    export WINEDEBUG=+warn,+loaddll
+
+or something similar
