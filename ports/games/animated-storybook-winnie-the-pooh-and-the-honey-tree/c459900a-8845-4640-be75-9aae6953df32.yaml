@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Disney's Animated Storybook Winnie the Pooh and the Honey Tree.iso
+    format: 1CD
+    url: https://archive.org/details/winnie-the-pooh-and-the-honey-tree-animated-storybook
+  igdb_slug: animated-storybook-winnie-the-pooh-and-the-honey-tree
+  lang: en
+  media_assets:
+    cover:
+      image_id: c459900a-8845-4640-be75-9aae6953df32
+    screenshots: []
+  name: "Animated StoryBook: Winnie the Pooh and the Honey Tree"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 108724
+    pcgw_id: Disney%27s_Animated_Storybook:_Winnie_the_Pooh_and_the_Honey_Tree
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-07-12 21:40:22 America/Los_Angeles
+  uuid: c459900a-8845-4640-be75-9aae6953df32
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 25
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/WPHTASB.EXE"
+              exit: false # TODO
