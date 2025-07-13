@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - 101_ESCAPE.ISO
+    format: 1CD
+    url: https://archive.org/details/101escape
+  igdb_slug: 101-dalmatians-escape-from-devil-manor
+  lang: en
+  media_assets:
+  name: "101 Dalmatians: Escape from DeVil Manor"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id: 101-dalmatians-escape-from-devil-manor
+    lutris_id: 101-dalmatians-escape-from-devil-manor
+    mg_id: 20630
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-07-12 22:13:43 America/Los_Angeles
+  uuid: 2d39c8fc-f0f7-46bc-940e-d0a36298b25a
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # proceed with a minimal CD installation, skip QT install
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/WDALMAT.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/HMISET.CFG"
+        dest: "{DEST_APP_DIR}"
