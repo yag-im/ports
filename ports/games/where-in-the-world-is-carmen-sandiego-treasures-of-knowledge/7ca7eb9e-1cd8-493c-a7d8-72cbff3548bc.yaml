@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Where in the World Is Carmen Sandiego Treasures of Knowledge.iso
+    format: 1CD
+    url: https://archive.org/details/Carmen_201904/Where%20In%20the%20World%20is%20Carmen%20Sandiego%20Treasures%20of%20Knowledge
+  igdb_slug: where-in-the-world-is-carmen-sandiego-treasures-of-knowledge
+  lang: en
+  media_assets:
+  name: "Where in the World Is Carmen Sandiego? Treasures of Knowledge"
+  platform: win
+  publisher: "The Learning Company"
+  refs:
+    ag_id:
+    lutris_id: where-in-the-world-is-carmen-sandiego-treasures-of
+    mg_id: 130063
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-07-14 18:51:12 America/Los_Angeles
+  uuid: 7ca7eb9e-1cd8-493c-a7d8-72cbff3548bc
+  year_released: 2001
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: CARMEN # otherwise it will not find some files, but you can copy them manually to APP_DIR anyway...
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/CARMEN.EXE"
