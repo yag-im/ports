@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Misja_Harolda_Cracked.rar
+    format: 1FD
+    url: https://www.old-games.ru/game/download/5454.html
+    # erav/Ripsaw cracked
+  igdb_slug: harolds-mission
+  lang: pl
+  media_assets:
+  name: Misja Harolda
+  platform: dos
+  publisher: MarkSoft
+  refs:
+    ag_id:
+    lutris_id: harolds-mission
+    mg_id: 42893
+    pcgw_id:
+    qz_id: 3963
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-13 20:14:08 America/Los_Angeles
+  uuid: 6a2f3bb4-e86c-492b-9dab-defbe8bce15d
+  year_released: 1995
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/HAROLD.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "SOUND.CFG" # only SB 16 works
