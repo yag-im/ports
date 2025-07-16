@@ -211,8 +211,8 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             if runexit:
                 shell_cmds.append("RUNEXIT.EXE")
             if workdir:
-                shell_cmds.append(f"/C:{workdir}")
-            shell_cmds.append(path)
+                shell_cmds.append(f'/C:"{workdir}"')
+            shell_cmds.append(f'"{path}"')
             if args:
                 shell_cmds.append(" ".join([str(a) for a in args]))
             tmp_file_path = Path(tmp_dir) / "SYSTEM.INI"

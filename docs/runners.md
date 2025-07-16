@@ -93,7 +93,7 @@ Delete:
     dosbox.conf
         - autoexec section:
             - mounts all drives
-            - runs: win RUNEXEC app.exe
+            - runs: win RUNEXIT app.exe
     run.sh:
         - runs dosbox-x -conf dosbox.conf
 
