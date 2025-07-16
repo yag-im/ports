@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - DKMMSPAC.ISO
+    format: 1CD
+    url: https://archive.org/details/DKMMSPAC
+  igdb_slug: eyewitness-encyclopedia-of-space-and-the-universe
+  lang: en
+  media_assets:
+    cover:
+      image_id: a23b7e86-0a5d-4645-8d1e-6ea5dd4f9937
+    screenshots: []
+  name: Eyewitness Encyclopedia of Space and the Universe
+  platform: win
+  publisher: Global Software Publishing Ltd.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 167353
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-16 07:03:10 America/Los_Angeles
+  uuid: a23b7e86-0a5d-4645-8d1e-6ea5dd4f9937
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/SPACE.EXE"
+              exit: false # TODO
