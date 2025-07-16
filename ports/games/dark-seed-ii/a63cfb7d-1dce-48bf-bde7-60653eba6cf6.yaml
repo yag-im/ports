@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Darkseed2.iso
+    format: 1CD
+    url: https://archive.org/details/dark-seed-ii-mr-abandonware
+  igdb_slug: dark-seed-ii
+  lang: en
+  media_assets:
+  name: Dark Seed II
+  platform: win
+  publisher: Cyberdreams
+  refs:
+    ag_id: dark-seed-ii
+    lutris_id: dark-seed-ii
+    mg_id: 4257
+    pcgw_id: Dark_Seed_II
+    qz_id: 440
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-15 19:45:43 America/Los_Angeles
+  uuid: a63cfb7d-1dce-48bf-bde7-60653eba6cf6
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # proceed with minimal install; it will then exit without installing some video drivers at the end.
+              # do not use "exit: false" installer option!
+              # it will try to install some video drivers and videoplayer will be broken.
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/DARK0001.EXE"
