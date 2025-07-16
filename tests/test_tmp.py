@@ -6,7 +6,7 @@ CURRENT_DIR = Path(__file__).resolve().parent
 params = {
     "dosbox_prefix": "./C",
     "img_drive_letter": "D",
-    "runexit_exec": "C:\\UTILS\\RUNEXEC.EXE",
+    "runexit_exec": "C:\\UTILS\\RUNEXIT.EXE",
     "app_image": "./1_en.iso",
     "app_exec": "C:\\NINE\\NINE_31.EXE",
     "dosbox_conf": "./C/dosbox.conf",

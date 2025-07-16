@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - ROYALRESCUE.ISO
+    format: 1CD
+    url: https://archive.org/details/royalrescuestarflyers
+  igdb_slug: starflyers-royal-jewel-rescue
+  lang: en
+  media_assets:
+  name: "StarFlyers: Royal Jewel Rescue"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: starflyers-royal-jewel-rescue
+    mg_id: 68936
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-15 08:09:56 America/Los_Angeles
+  uuid: df633407-f8fe-48c8-b11a-64d0b4ed0189
+  year_released: 2002
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN98SE
+        app_drive_size: 100
+        conf:
+          cycles: fixed 20000 # to prevent sound distortion; 20K for OVH, 40K for local
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL/_SETUP.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/StarFlyers Royal Jewel Rescue/Royal Jewel Rescue.exe"
