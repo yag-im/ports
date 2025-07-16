@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - ALIENSPACE.iso
+    format: 1CD
+    url: https://archive.org/details/alienspacestarflyers
+  igdb_slug: starflyers-alien-space-chase
+  lang: en
+  media_assets:
+    cover:
+      image_id: 67e0fed9-1b4b-42d1-aeb3-de01ce4afe86
+    screenshots: []
+  name: "StarFlyers: Alien Space Chase"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: starflyers-alien-space-chase
+    mg_id: 68974
+    pcgw_id: StarFlyers:_Alien_Space_Chase
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-15 08:24:56 America/Los_Angeles
+  uuid: 67e0fed9-1b4b-42d1-aeb3-de01ce4afe86
+  year_released: 2002
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN98SE
+        app_drive_size: 100
+        conf:
+          cycles: fixed 20000 # to prevent sound distortion; 20K for OVH, 40K for local
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL/_SETUP.exe"
+          - gen_run_script:
+              path: "{APP_DIR}/StarFlyers Alien Space Chase/Alien Space Chase.exe"
