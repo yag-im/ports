@@ -73,6 +73,8 @@ def unpack_archive(src: Path, dest: Path, extract_files: List[str] = None, creat
             cmd += extract_files
         cmd.append(str(dest))
         run_cmd(cmd)
+    elif image_format == "ima":  # floppy image
+        run_cmd(["mcopy", "-i", src, "-n", "::*", dest])
     else:
         run_7z(src, dest, extract_files)
         if creates and not creates.exists():
@@ -87,7 +89,7 @@ def unpack_disc_image(src: Path, dest: Path, extract_files: List[str] = None, cr
 
     if image_format == "iso":
         run_7z(src, dest, extract_files)
-    elif image_format in ["nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:
+    elif image_format in ["nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:  # cd image
         # create intermediate ISO
         with tempfile.TemporaryDirectory() as td:
             tmp_iso_image = Path(td) / "tmp.iso"

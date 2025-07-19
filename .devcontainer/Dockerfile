@@ -11,6 +11,7 @@ ARG USERNAME=vscode
 # common
 RUN apt-get update \
     && apt install --no-install-recommends -y \
+        mtools \
         pulseaudio
 RUN usermod -aG audio,video,pulse ${USERNAME}
 RUN mkdir -p /home/${USERNAME}/.config/pulse/ \
