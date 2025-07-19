@@ -59,7 +59,7 @@ hand_normal
 hand_dynamic
 hand_simple
 hand_full
-hand_swapimg "key 18 host"
+hand_swapimg "key 61 host"
 hand_swapcd "key 61 host"
 hand_debugger "key 72 mod2"
 hand_rescanall
