@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: 1CD
+    url: exoscummvm
+  igdb_slug: pajama-sams-sock-works
+  lang: en
+  media_assets:
+  name: Pajama Sam's Sock Works
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-07-19 12:07:09 America/Los_Angeles
+  uuid: 3ba402d2-8884-46cf-9795-23ebb03e25a5
+  year_released: 1997
+installer:
+  tasks:
