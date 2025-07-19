@@ -32,7 +32,7 @@ class Main(Installer):
             # TODO: fix cracky sound
             copy(src_folder / app_desc.distro.files[0], dst_folder / FIRST_CD_DRIVE_LETTER)
             dbox = DosBoxDos(dst_folder, app_desc, conf=DosBoxDosConf(cycles="max"))
-            dbox.mount(DosMountPoint(FIRST_CD_DRIVE_LETTER, dst_folder / FIRST_CD_DRIVE_LETTER, is_cd=True))
+            dbox.mount(DosMountPoint(FIRST_CD_DRIVE_LETTER, dst_folder / FIRST_CD_DRIVE_LETTER))
             dbox.run(FIRST_CD_DRIVE / "INSTALL.EXE")
             copy(CURRENT_DIR / "files" / "EDEN.BAT", dst_folder / APP_DRIVE_LETTER / "APP")
             dbox.run(APP_EXEC_PATH, mock=True)

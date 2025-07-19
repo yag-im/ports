@@ -29,7 +29,7 @@ class Main(Installer):
             copy(src_folder / app_desc.distro.files[0], dst_folder)
             copy(src_folder / app_desc.distro.files[1], dst_folder)
             dbox = DosBoxDos(dst_folder, app_desc)
-            dbox.mount(DosMountPoint(FIRST_CD_DRIVE_LETTER, dst_folder / app_desc.distro.files[0], is_cd=True))
+            dbox.mount(DosMountPoint(FIRST_CD_DRIVE_LETTER, dst_folder / app_desc.distro.files[0]))
             dbox.copy(FIRST_CD_DRIVE / "TWINSEN", APP_DIR)
             copy(CURRENT_DIR / "files" / "DIG.INI", dst_folder / APP_DRIVE_LETTER / "APP" / "DRIVERS")
             dbox.run(APP_EXEC_PATH, mock=True)

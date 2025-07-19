@@ -23,7 +23,10 @@ from lib.dosbox.dosbox_win9x import (
     DosBoxWin9xConf,
 )
 from lib.dosbox.helpers import gen_cd_mount_points
-from lib.dosbox.misc import DosMountPoint
+from lib.dosbox.misc import (
+    DosMountPoint,
+    DosMountPointType,
+)
 from lib.installer.const import FIRST_CD_DRIVE_LETTER
 from lib.installer.utils import transform_str_path
 
@@ -100,7 +103,7 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
                 DosMountPoint(
                     letter=task.get("letter"),
                     path=path,
-                    is_cd=task.get("is_cd", True),
+                    type=DosMountPointType[str(task.get("type", "CDROM")).upper()],
                     label=task.get("label", None),
                 )
             )

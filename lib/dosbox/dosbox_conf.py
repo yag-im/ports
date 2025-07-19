@@ -11,7 +11,10 @@ from typing import (
     Union,
 )
 
-from lib.dosbox.misc import DosMountPoint
+from lib.dosbox.misc import (
+    DosMountPoint,
+    DosMountPointType,
+)
 from lib.utils import rm
 
 BASE_LANG = "en"
@@ -81,7 +84,7 @@ class DosBoxConf:
     def umount_all(self, remove: bool = False, cd_only: bool = False) -> None:
         mp_copy = self.mount_points.copy()
         for letter, mp in mp_copy.items():
-            if cd_only and not mp.is_cd:
+            if cd_only and mp.type != DosMountPointType.CDROM:
                 continue
             self.umount(letter, remove)
 
@@ -111,14 +114,16 @@ class DosBoxConf:
                 path = path[0]
             if path.is_dir():
                 mount_part = f"MOUNT {m.letter} {m.relative_to(base_dir).path_str()}"
-                if m.is_cd:
+                if m.type == DosMountPointType.CDROM:
                     mount_part += " -t cdrom"
+                elif m.type == DosMountPointType.FLOPPY:
+                    mount_part += " -t floppy"
                 if m.label:
                     mount_part += f" -label {m.label}"
                 cmds += [mount_part]
             else:
                 mount_part = f"IMGMOUNT {m.letter} {m.relative_to(base_dir).path_str()}"
-                if m.is_cd:
+                if m.type == DosMountPointType.CDROM:
                     mount_part += " -t iso"
                 cmds += [mount_part]
         return cmds
