@@ -48,7 +48,6 @@ installer:
           - mount:
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
               letter: "{FIRST_CD_DRIVE_LETTER}"
-              is_cd: true
           - run:
               # select "16 bit high color" during install
               path: "{FIRST_CD_DRIVE}/INSTALL.EXE"

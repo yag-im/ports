@@ -83,7 +83,7 @@ installer:
           - mount:
               letter: "{FIRST_FD_DRIVE_LETTER}"
               src: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
-              is_cd: false
+              type: floppy
           - run:
               path: "{UNFLOD_PATH}"
               args:

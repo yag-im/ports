@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from enum import StrEnum
 from pathlib import (
     Path,
     PureWindowsPath,
@@ -11,11 +12,17 @@ from typing import (
 )
 
 
+class DosMountPointType(StrEnum):
+    CDROM = "cdrom"
+    FLOPPY = "floppy"
+    HDD = "hdd"
+
+
 @dataclass
 class DosMountPoint:
     letter: chr
     path: Union[Path, List[Path]]  # if list, swap CDs by Ctrl+F4
-    is_cd: bool
+    type: DosMountPointType = DosMountPointType.CDROM
     label: str = None
 
     def path_str(self):
@@ -34,12 +41,12 @@ class DosMountPoint:
 
 @dataclass
 class DosMountPointCD(DosMountPoint):
-    is_cd: bool = True
+    type: DosMountPointType = DosMountPointType.CDROM
 
 
 @dataclass
 class DosMountPointHDD(DosMountPoint):
-    is_cd: bool = False
+    type: DosMountPointType = DosMountPointType.HDD
 
 
 @dataclass

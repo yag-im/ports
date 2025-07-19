@@ -1,43 +1,41 @@
 descr:
   distro:
     files:
-      - 77A.IMA
-      - 77B.IMA
+      - disk01.img
+      - disk02.img
     format: 2FD
-    url: https://www.oldgames.sk/en/game/7-dni-a-7-noci/download/9490/
-  igdb_slug: 7-dni-a-7-noci
-  lang: cz
+    url: https://archive.org/details/002234-AbenteuerEuropa
+  igdb_slug: abenteuer-europa
+  lang: de
   media_assets:
-    cover:
-      image_id: 452f5c6b-59e9-4c7a-9f94-1618e667cd34
-    screenshots: []
-  name: 7 dní a 7 nocí
+  name: Abenteuer Europa
   platform: dos
-  publisher: Vochozka Trading
+  publisher: Sozialdemokratische Partei Deutschlands
   refs:
     ag_id:
-    lutris_id: 7-dni-a-7-noci
-    mg_id: 41724
+    lutris_id: abenteuer-europa
+    mg_id: 40443
     pcgw_id:
-    qz_id: 4
+    qz_id: 9
   reqs:
     color_bits: 8
     midi: false
-    screen_height: 200
-    screen_width: 320
+    screen_height: 480
+    screen_width: 640
     ua:
       lock_pointer: true
   runner:
-    name: dosbox-x # there is no sound in vanilla dosbox for this game!
-    ver: "2024.12.04"
-  ts_added: 2025-07-17 13:59:34 America/Los_Angeles
-  uuid: 452f5c6b-59e9-4c7a-9f94-1618e667cd34
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-18 19:57:36 America/Los_Angeles
+  uuid: 34970f01-7d78-4738-8ea1-e11e519baa98
   year_released: 1994
 installer:
   tasks:
     - extract:
         src: "{item}"
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        hint: floppy
         loop:
           - "{SRC_DIR}/{descr[distro][files][0]}"
           - "{SRC_DIR}/{descr[distro][files][1]}"
@@ -50,6 +48,6 @@ installer:
               src: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
               type: floppy
           - run:
-              path: "{FIRST_FD_DRIVE}/77INSTAL.EXE"
+              path: "{FIRST_FD_DRIVE}/INSTALL.EXE"
           - gen_run_script:
-              path: "{APP_DIR}/!START.EXE"
+              path: "{APP_DIR}/EURO.EXE"
