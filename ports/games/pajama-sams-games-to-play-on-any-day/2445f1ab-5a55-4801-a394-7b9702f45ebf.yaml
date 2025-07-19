@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: 1CD
+    url: exoscummvm
+  igdb_slug: pajama-sams-games-to-play-on-any-day
+  lang: en
+  media_assets:
+  name: Pajama Sam's Games to Play on Any Day
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-07-19 11:48:19 America/Los_Angeles
+  uuid: 2445f1ab-5a55-4801-a394-7b9702f45ebf
+  year_released: 2001
+installer:
+  tasks:
