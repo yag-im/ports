@@ -1,0 +1,68 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+      - disk5.img
+    format: 5FD
+    url: https://archive.org/details/000404-Universe
+  igdb_slug: universe
+  lang: multi
+  media_assets:
+  name: Universe
+  platform: dos
+  publisher: Core Design
+  refs:
+    ag_id:
+    lutris_id: universe
+    mg_id: 7091
+    pcgw_id:
+    qz_id: 375
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-07-19 10:57:26 America/Los_Angeles
+  uuid: c6a61c79-6122-49c5-9cdc-5c1131199ae3
+  year_released: 1994
+installer:
+  tasks:
+    - file:
+        path: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        state: directory
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+          - "{SRC_DIR}/{descr[distro][files][4]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}"
+              type: floppy
+          - run:
+              path: "{FIRST_FD_DRIVE}/INSTALL.EXE" # hit Ctrl+F4 multiple times when requested
+          - gen_run_script:
+              path: "{APP_DIR}/UNIVERSE.EXE" # type: 87764 when game asks for a code
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"

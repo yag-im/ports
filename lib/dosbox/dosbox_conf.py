@@ -125,5 +125,7 @@ class DosBoxConf:
                 mount_part = f"IMGMOUNT {m.letter} {m.relative_to(base_dir).path_str()}"
                 if m.type == DosMountPointType.CDROM:
                     mount_part += " -t iso"
+                elif m.type == DosMountPointType.FLOPPY:
+                    mount_part += " -t floppy"
                 cmds += [mount_part]
         return cmds
