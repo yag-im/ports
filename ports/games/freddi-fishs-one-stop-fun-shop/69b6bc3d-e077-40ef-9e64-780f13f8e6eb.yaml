@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+    - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: freddi-fishs-one-stop-fun-shop
+  lang: en
+  media_assets:
+  name: Freddi Fish's One Stop Fun Shop
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-07-19 15:54:38 America/Los_Angeles
+  uuid: 69b6bc3d-e077-40ef-9e64-780f13f8e6eb
+  year_released: 2000
+installer:
+  tasks:
