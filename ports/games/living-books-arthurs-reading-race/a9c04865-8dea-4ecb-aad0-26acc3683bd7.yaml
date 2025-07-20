@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - READ_RACE.ISO
+    format: 1CD
+    url: https://archive.org/details/living-books-arthurs-reading-race-1996
+  igdb_slug: living-books-arthurs-reading-race
+  lang: en
+  media_assets:
+  name: "Living Books: Arthur's Reading Race"
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: living-books-arthurs-reading-race
+    mg_id: 44963
+    pcgw_id: Arthur%27s_Reading_Race
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: "2.9.0"
+  ts_added: 2025-07-19 19:20:02 America/Los_Angeles
+  uuid: a9c04865-8dea-4ecb-aad0-26acc3683bd7
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Arthur%27s_Reading_Race
+        tasks:
+          - gen_run_script:
+              game: "mohawk:arthurrace"
+              path: "{DEST_APP_DIR}"

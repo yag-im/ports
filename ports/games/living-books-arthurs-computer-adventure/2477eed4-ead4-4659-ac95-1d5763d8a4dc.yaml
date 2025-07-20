@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Arthur's Computer Adventure.iso
+    format: 1CD
+    url: https://archive.org/details/arthurs-computer-adventure
+  igdb_slug: living-books-arthurs-birthday
+  lang: en
+  media_assets:
+  name: "Living Books: Arthur's Computer Adventure"
+  platform: win
+  publisher: "Br\xF8derbund Software"
+  refs:
+    ag_id:
+    lutris_id: living-books-arthurs-computer-adventure
+    mg_id: 79724
+    pcgw_id: Arthur%27s_Computer_Adventure
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-07-19 16:16:13 America/Los_Angeles
+  uuid: 2477eed4-ead4-4659-ac95-1d5763d8a4dc
+  year_released: 1997
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/ACA32.EXE"
