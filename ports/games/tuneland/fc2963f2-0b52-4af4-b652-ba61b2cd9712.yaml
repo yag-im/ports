@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - TuneLand.cue
+      - TuneLand.bin
+    format: 1CD
+    url: https://archive.org/details/TuneLand
+  igdb_slug: tuneland
+  lang: en
+  media_assets:
+  name: Tuneland
+  platform: win
+  publisher: 7th Level
+  refs:
+    ag_id:
+    lutris_id: tuneland
+    mg_id: 185405
+    pcgw_id: Tuneland
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-20 10:37:30 America/Los_Angeles
+  uuid: fc2963f2-0b52-4af4-b652-ba61b2cd9712
+  year_released: 1993
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/TUNELAND.EXE"
