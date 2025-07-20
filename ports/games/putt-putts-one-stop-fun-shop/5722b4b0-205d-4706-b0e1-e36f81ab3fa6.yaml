@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: putt-putts-one-stop-fun-shop
+  lang: en
+  media_assets:
+  name: Putt Putt's One Stop Fun Shop
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-07-20 09:13:01 America/Los_Angeles
+  uuid: 5722b4b0-205d-4706-b0e1-e36f81ab3fa6
+  year_released: 2000
+installer:
+  tasks:

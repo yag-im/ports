@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: changeme
+    url: exoscummvm
+  igdb_slug: putt-putt-s-fun-pack
+  lang: en
+  media_assets:
+  name: Putt-Putt's Fun Pack
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-07-20 09:03:20 America/Los_Angeles
+  uuid: 6975e023-e0f7-487f-b486-c72482be7aa9
+  year_released: 1994
+installer:
+  tasks:
