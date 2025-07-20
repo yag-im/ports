@@ -1,20 +1,20 @@
 descr:
   distro:
     files:
-    - changeme
-    format: CD
-    url: exoscummvm
+      - Living Books - The Cat in the Hat by Dr. Seuss (1997).iso
+    format: 1CD
+    url: https://archive.org/details/living-books-the-cat-in-the-hat-by-dr.-seuss-1997
   igdb_slug: living-books-the-cat-in-the-hat
   lang: en
   media_assets:
-  name: 'Living Books: The Cat in the Hat'
+  name: "Living Books: The Cat in the Hat"
   platform: win
   publisher: "Br\xF8derbund Software"
   refs:
     ag_id:
-    lutris_id:
-    mg_id:
-    pcgw_id:
+    lutris_id: living-books-the-cat-in-the-hat
+    mg_id: 79723
+    pcgw_id: The_Cat_in_the_Hat
     qz_id:
   reqs:
     color_bits: 8
@@ -22,12 +22,25 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: false
+      lock_pointer: true
   runner:
-    name: scummvm
-    ver: 2.9.0
+    name: dosbox-x
+    ver: 2024.12.04
   ts_added: 2025-04-19 02:22:21.024865 America/Los_Angeles
   uuid: d117352e-b8b6-40bc-853f-25dd8f62c472
   year_released: 1997
 installer:
   tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        app_drive_size: 10
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/cat32.exe"

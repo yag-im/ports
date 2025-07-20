@@ -191,3 +191,12 @@ high clock-rate CPUs in cloud environments. You can slow wine down using:
     export WINEDEBUG=+warn,+loaddll
 
 or something similar
+
+Q: How to upgrade existing port?
+A: Just run setup.sh / publish.sh as usual; After upgrade, you might want to delete old malfunctioned cloned versions.
+For this login into appstor-master host and run:
+
+    find /opt/yag/data/appstor/clones -type d -name "d117352e-b8b6-40bc-853f-25dd8f62c472" -exec rm -r {} +
+
+where `d117352e-b8b6-40bc-853f-25dd8f62c472` is a UUID of updated port. Be careful and remove only broken clones.
+Otherwise (in case it's just e.g. a more performant runner update) better leave cloned versions as is as it may contain users' saves.
