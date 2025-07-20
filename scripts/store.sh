@@ -47,7 +47,7 @@ ssh -i $BASTION_KEY_PATH \
     $APPSTOR_USER@$APPSTOR_HOST \
     "rm -rf $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && mkdir -p $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && tar -xvf $APPSTOR_TMP_PATH/$APP_ARCH_NAME -C $APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID && rm $APPSTOR_TMP_PATH/$APP_ARCH_NAME"
 
-# upload archived sources (7z) into the ports storage (S3 Glacier Deep Archive)
+# upload archived sources into the ports storage (S3 Glacier Deep Archive)
 if [ -d "$LOCAL_APPS_SRC_DIR/$IGDB_SLUG/$RELEASE_ID" ]; then
     7zz a $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z $LOCAL_APPS_SRC_DIR/$IGDB_SLUG/$RELEASE_ID/* -mhc=on -mhe=on -mmt=on -mx9 -t7z
     AWS_PROFILE=yag-prod aws s3 cp $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z s3://yag-im-ports/$IGDB_SLUG/$RELEASE_ID.7z

@@ -118,7 +118,7 @@ win311 is tied with dosbox-x by a doxbox-x mouse drivers
     RUNNERS_BUNDLE_DIR=$RUNNERS_BASE_DIR/bundles
     DOSBOX_X_WIN311_BUNDLE_DIR=$RUNNERS_BUNDLE_DIR/dosbox-x/win311-$LANG
     mkdir -p $DOSBOX_X_WIN311_BUNDLE_DIR
-    DOSBOX_X_CONF_PATH=/workspaces/ports/lib/dosbox/files/win311/dosbox.conf
+    DOSBOX_X_CONF_PATH=/mnt/data/runners/src/win311/dosbox.conf
 
     dosbox-x \
         -c "CHCP 866" \
@@ -134,6 +134,7 @@ win311 is tied with dosbox-x by a doxbox-x mouse drivers
     Product Number: 1337-W33D-420
 
 Deselect all optional components (wallpapers, sounds etc)
+You should install `[MCI] CD Audio` driver (required for some games, e.g. Tuneland)
 
 ### Drivers install
 
@@ -220,3 +221,11 @@ Copy [RUNEXIT.EXE](https://github.com/yag-im/runexit) into `C:\WINDOWS`.
 ## dosbox
 
 see win311 section in dosbox-x
+
+# FAQ
+
+## How to install new drivers into the existing bundle?
+
+    dosbox-x -c "MOUNT C /mnt/data/runners/bundles/dosbox-x/win311-en" \
+        -c "IMGMOUNT D /mnt/data/runners/src/win311/win3.11-en.iso -t iso" \
+        -conf /mnt/data/runners/src/win311/dosbox.conf
