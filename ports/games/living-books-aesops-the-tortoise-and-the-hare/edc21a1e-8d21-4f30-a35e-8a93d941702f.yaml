@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: living-books-aesops-the-tortoise-and-the-hare
+  lang: en
+  media_assets:
+  name: "Living Books: Aesop's The Tortoise and the Hare"
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-07-19 16:06:11 America/Los_Angeles
+  uuid: edc21a1e-8d21-4f30-a35e-8a93d941702f
+  year_released: 1993
+installer:
+  tasks:
