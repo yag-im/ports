@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - MAGGIE.BIN
+    format: 1CD
+    url: https://archive.org/details/maggiesfarmyardadventure
+  igdb_slug: living-books-maggies-farmyard-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: f6d61930-c795-41bd-9388-44670660bb97
+    screenshots: []
+  name: "Living Books: Maggie's Farmyard Adventure"
+  platform: win
+  publisher: "Br\xF8derbund Software"
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 201368
+    pcgw_id: Maggie%27s_Farmyard_Adventure
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-07-19 19:54:06 America/Los_Angeles
+  uuid: f6d61930-c795-41bd-9388-44670660bb97
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/MAGGIE16.EXE"
