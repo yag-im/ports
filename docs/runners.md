@@ -134,7 +134,7 @@ win311 is tied with dosbox-x by a doxbox-x mouse drivers
     Product Number: 1337-W33D-420
 
 Deselect all optional components (wallpapers, sounds etc)
-You should install `[MCI] CD Audio` driver (required for some games, e.g. Tuneland)
+You should install `[MCI] Audio CD` driver (required for some games, e.g. Tuneland)
 
 ### Drivers install
 

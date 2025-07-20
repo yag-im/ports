@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Under a Killing Moon (USA) (Disc 1).bin
+      - Under a Killing Moon (USA) (Disc 2).bin
+      - Under a Killing Moon (USA) (Disc 3).bin
+      - Under a Killing Moon (USA) (Disc 4).bin
+    format: 4CD
+    url: https://archive.org/details/TexMurphyUnderAKillingMoonUSA
+  igdb_slug: tex-murphy-under-a-killing-moon
+  lang: en
+  media_assets:
+  name: "Tex Murphy: Under a Killing Moon"
+  platform: dos
+  publisher: Access Software
+  refs:
+    ag_id: tex-murphy-under-a-killing-moon
+    lutris_id: tex-murphy-under-a-killing-moon
+    mg_id: 850
+    pcgw_id: Tex_Murphy:_Under_a_Killing_Moon
+    qz_id: 299
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-20 14:17:06 America/Los_Angeles
+  uuid: 94da07e7-89bb-45eb-a671-0aae3fc3ebd1
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/TEX3.EXE"
+    - copy:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "{SRC_FILES_DIR}/CONFIG.INI"
+    - file:
+        path: "{DEST_APP_DIR}/STATUS.DAT"
+        state: absent # with STATUS.DAT file, all CDs drives settings are being reset on the first run
