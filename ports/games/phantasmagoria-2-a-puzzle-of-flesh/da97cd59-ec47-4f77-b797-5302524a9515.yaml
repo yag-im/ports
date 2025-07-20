@@ -4,12 +4,12 @@ descr:
       - changeme
     format: CD
     url: exoscummvm
-  igdb_slug: phantasmagoria
+  igdb_slug: phantasmagoria-2-a-puzzle-of-flesh
   lang: en
   media_assets:
-  name: Phantasmagoria
+  name: "Phantasmagoria 2: A Puzzle of Flesh"
   platform: win
-  publisher: Outrigger Koubou
+  publisher: Sierra Entertainment
   refs:
     ag_id:
     lutris_id:
@@ -25,9 +25,10 @@ descr:
       lock_pointer: false
   runner:
     name: scummvm
-    ver: 2.9.0
-  ts_added: 2025-03-15 16:05:01.034025 America/Los_Angeles
-  uuid: 4162c343-0cfb-47ab-87fc-33b80f2f70e9
-  year_released: 1995
+    ver: 2.9.1
+  ts_added: 2025-07-20 09:25:17 America/Los_Angeles
+  uuid: da97cd59-ec47-4f77-b797-5302524a9515
+  year_released: 1996
 installer:
   tasks:
+    # sci:phantasmagoria2
