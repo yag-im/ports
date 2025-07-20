@@ -1,0 +1,33 @@
+descr:
+  distro:
+    files:
+      - changeme
+    format: CD
+    url: exoscummvm
+  igdb_slug: living-books-arthurs-teacher-trouble
+  lang: en
+  media_assets:
+  name: "Living Books: Arthur's Teacher Trouble"
+  platform: win
+  publisher: "Br\xF8derbund Software"
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.0
+  ts_added: 2025-07-19 19:42:25 America/Los_Angeles
+  uuid: f29a746f-cfed-40c3-969d-3aed78fa4c9c
+  year_released: 1992
+installer:
+  tasks:
