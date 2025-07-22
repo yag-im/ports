@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - DARKSEED151.ISO
+    format: 1CD
+    url: https://archive.org/details/dark-seed-1994-ms-dos-cd-rom
+  igdb_slug: dark-seed
+  lang: en
+  media_assets:
+  name: Dark Seed
+  platform: dos
+  publisher: Cyberdreams
+  refs:
+    ag_id: dark-seed
+    lutris_id: dark-seed
+    mg_id: 302
+    pcgw_id: Dark_Seed
+    qz_id: 438
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 400 # should be 350, but xorg doesn't support lower than 640x400
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox # in scummvm 2.9.1 click on the e.g. diskette icon makes no effect
+    ver: 0.74-3
+  ts_added: 2025-07-20 19:41:05 America/Los_Angeles
+  uuid: c89c2609-3d4c-48a4-9a8e-13e53c308fdb
+  year_released: 1992
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/DS.BAT"
+    - copy:
+        # modified DS.BAT (added exit at the end)
+        src: "{SRC_FILES_DIR}/DS.BAT"
+        dest: "{DEST_APP_DIR}"
