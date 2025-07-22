@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Eric the Unready (1997)(Legend).iso
+    format: 1CD
+    url: https://archive.org/details/eric-the-unready-1997-cdrom
+  igdb_slug: eric-the-unready
+  lang: en
+  media_assets:
+  name: Eric the Unready
+  platform: dos
+  publisher: Legend Entertainment
+  refs:
+    ag_id: eric-the-unready
+    lutris_id: eric-the-unready
+    mg_id: 431
+    pcgw_id: Eric_the_Unready
+    qz_id: 336
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-21 21:12:57 America/Los_Angeles
+  uuid: 33ea3f8a-f6fd-4333-94c2-731a287847b3
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/LEGEND.BAT"
+    - copy:
+        # modified DS.BAT (added exit at the end)
+        src: "{SRC_FILES_DIR}/LEGEND.BAT"
+        dest: "{DEST_APP_DIR}"
