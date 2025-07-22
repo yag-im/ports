@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - the_journeyman_project_turbo.iso
+    format: 1CD
+    url: https://archive.org/details/TheJourneymanProjectTurbo
+  igdb_slug: the-journeyman-project-turbo
+  lang: en
+  media_assets:
+  name: "The Journeyman Project: Turbo!"
+  platform: win
+  publisher: Presto Studios
+  refs:
+    ag_id: the-journeyman-project
+    lutris_id: the-journeyman-project-turbo
+    mg_id: 804
+    pcgw_id: The_Journeyman_Project
+    qz_id: 305
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-07-22 09:23:39 America/Los_Angeles
+  uuid: 592f385f-9fce-4357-83bf-4d2dc9b5ba57
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/JMSETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/JMAN.EXE"
