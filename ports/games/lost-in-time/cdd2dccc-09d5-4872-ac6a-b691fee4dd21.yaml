@@ -1,0 +1,77 @@
+descr:
+  distro:
+    files:
+      - losttime.cue
+      - losttime.BIN
+    format: 1CD
+    url: https://archive.org/details/lost-in-time-mr-abandonware
+  igdb_slug: lost-in-time
+  lang: en
+  media_assets:
+  name: Lost in Time
+  platform: dos
+  publisher: Coktel Vision
+  refs:
+    ag_id: lost-in-time
+    lutris_id: lost-in-time
+    mg_id: 6098
+    pcgw_id: Lost_in_Time
+    qz_id: 399
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-22 10:36:45 America/Los_Angeles
+  uuid: cdd2dccc-09d5-4872-ac6a-b691fee4dd21
+  year_released: 1993
+installer:
+  tasks:
+    - copy: # copying for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - BATCOM.ITK
+          - BATCOM.LTK
+          - CAT2.INF
+          - CAT3.INF
+          - CAT4.INF
+          - COMMUN1.ITK
+          - COMMUN1.LTK
+          - INSTALL.ASK
+          - INTRO.STK
+          - LOST.EXE
+          - LOST.ICO
+          - LOST.LIC
+          - MDO.DEF
+          - PARTIE1.ITK
+          - PARTIE1.LTK
+          - SETUP.CMP
+          - SETUP.EXE
+          - VERSION
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{APP_DIR}/LOST.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "CAT.INF"
+          - "MDO.CFG"
