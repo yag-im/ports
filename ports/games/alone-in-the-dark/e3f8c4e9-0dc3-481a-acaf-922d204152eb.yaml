@@ -1,0 +1,63 @@
+descr:
+  distro:
+    files:
+      - ALONECD.cue
+      - ALONECD.img
+    format: 1CD
+    url: https://archive.org/details/AloneintheDark-roverinfo
+  igdb_slug: alone-in-the-dark
+  lang: en
+  media_assets:
+  name: Alone in the Dark
+  platform: dos
+  publisher: Infogrames
+  refs:
+    ag_id: alone-in-the-dark
+    lutris_id: alone-in-the-dark-1
+    mg_id: 325
+    pcgw_id: Alone_in_the_Dark
+    qz_id: 2638
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-23 09:03:27 America/Los_Angeles
+  uuid: e3f8c4e9-0dc3-481a-acaf-922d204152eb
+  year_released: 1994
+installer:
+  tasks:
+    - copy: # copying orig sources for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - INDARK
+    - file:
+        path: "{DEST_APP_DIR}/INDARK/*.VOC"
+        state: absent
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{APP_DIR}/INDARK/INDARK.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}/INDARK"
+        loop:
+          - "INDARK2.CFG"
+          - "INSTALL.OPT"

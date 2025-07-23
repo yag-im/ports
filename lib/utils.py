@@ -1,3 +1,4 @@
+import glob
 import shutil
 import subprocess
 from pathlib import Path
@@ -17,7 +18,12 @@ def rm(src: Path) -> None:
     if src.is_dir():
         shutil.rmtree(src)
     else:
-        src.unlink()
+        if "*" in str(src):
+            for fp_str in glob.glob(str(src)):
+                fp = Path(fp_str)
+                fp.unlink()
+        else:
+            src.unlink()
 
 
 def move(src: Path, dst: Path, copy_tree: bool = False) -> None:
@@ -109,7 +115,7 @@ def patch_macromedia_director_free_virt_mem(file_path: Path):
     # https://www.sacah.net/2008/01/how-to-edit-director-player-60-to-stop.html
     with open(file_path, mode="rb") as f:
         data = bytearray(f.read())
-    target_ix = data.find(b"\x3D\x20\x75\x38\x00\x7D")  # cmp eax, 387520h; jge ...
+    target_ix = data.find(b"\x3d\x20\x75\x38\x00\x7d")  # cmp eax, 387520h; jge ...
     if target_ix == -1:
         raise ValueError("not a valid macromedia director executable")
     data[target_ix + 5] = 0xEB  # replace jge with jmp
