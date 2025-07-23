@@ -1,0 +1,63 @@
+descr:
+  distro: # same distro as in alone-in-the-dark
+    files:
+      - ALONECD.cue
+      - ALONECD.img
+    format: 1CD
+    url: https://archive.org/details/AloneintheDark-roverinfo
+  igdb_slug: jack-in-the-dark
+  lang: en
+  media_assets:
+  name: Jack in the Dark
+  platform: dos
+  publisher: Infogrames
+  refs:
+    ag_id:
+    lutris_id: jack-in-the-dark
+    mg_id: 1231
+    pcgw_id: Jack_in_the_Dark
+    qz_id: 2649
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-07-23 09:55:56 America/Los_Angeles
+  uuid: 279c236f-f376-405a-be09-1e1d71cd271e
+  year_released: 1994
+installer:
+  tasks:
+    - copy: # copying orig sources for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - JACK
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{APP_DIR}/JACK/INDARK2.EXE"
+              args:
+                - 16
+                - 1
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}/JACK"
+        loop:
+          - "INDARK2.CFG"
+          - "INSTALL.OPT"
