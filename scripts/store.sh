@@ -49,6 +49,7 @@ ssh -i $BASTION_KEY_PATH \
 
 # upload archived sources into the ports storage (S3 Glacier Deep Archive)
 if [ -d "$LOCAL_APPS_SRC_DIR/$IGDB_SLUG/$RELEASE_ID" ]; then
+    rm -f $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z
     7zz a $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z $LOCAL_APPS_SRC_DIR/$IGDB_SLUG/$RELEASE_ID/* -mhc=on -mhe=on -mmt=on -mx9 -t7z
     AWS_PROFILE=yag-prod aws s3 cp $LOCAL_APPS_TMP_DIR/$RELEASE_ID.7z s3://yag-im-ports/$IGDB_SLUG/$RELEASE_ID.7z
 else
