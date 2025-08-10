@@ -1,0 +1,59 @@
+descr:
+  distro:
+    files:
+      - Alice.iso
+    format: 1CD
+    url: https://www.myabandonware.com/game/alice-in-wonderland-xn6#download
+  igdb_slug: alice-in-wonderland--4
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 48cb81b1-4036-4be9-9b7e-6695a0876392
+    screenshots: []
+  name: Алиса в Стране Чудес
+  platform: win
+  publisher: Russobit-M
+  refs:
+    ag_id:
+    lutris_id: alice-in-wonderland--4
+    mg_id: 72549
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-08-10 07:10:29 America/Los_Angeles
+  uuid: 48cb81b1-4036-4be9-9b7e-6695a0876392
+  year_released: 2004
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - copy: # TODO: msiexec fails to recognize cyrillic letters in the path?
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/Алиса в Стране Чудес.msi"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/A.msi"
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - msiexec:
+              # deselect QT installation at the end. Otherwise msiexec exits in the middle of the QT install process
+              path: "{FIRST_CD_DRIVE}/A.msi"
+          - run:
+              path: "{APP_DIR}/qtime.exe"
+              virtual_desktop: false # otherwise qtime can't establish internet connection and fails to install!
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{APP_DIR}/alice/alice.exe"

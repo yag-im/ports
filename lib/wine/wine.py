@@ -1,4 +1,5 @@
 import os
+import shutil
 import stat
 import tempfile
 import time
@@ -95,7 +96,7 @@ class Wine:
         copy(RUNNERS_BUNDLES_BASE_DIR / "wine" / wine_ver / os_arch.value, self.prefix, copy_tree=True)
 
         self.app_drive_dir = self.root_dir / APP_DRIVE_LETTER
-        self.app_drive_dir.mkdir(exist_ok=False, parents=True)
+        self.app_drive_dir.mkdir(exist_ok=True, parents=True)
         self.add_drive(DriveType.HD, APP_DRIVE_LETTER, self.root_dir / APP_DRIVE_LETTER)
 
         if os_ver != DEFAULT_OS_VER:
@@ -113,11 +114,11 @@ class Wine:
 
     def add_drive(self, drive_type: DriveType, letter: str, target: Path, replace=True, label=None) -> None:
         letter = letter.lower()
-        s = f'"{letter}:"="{drive_type.value}"'
+        res_str = f'"{letter}:"="{drive_type.value}"'
         sysreg_path = self.prefix / "system.reg"
-        if not str_in_file(sysreg_path, s):
+        if not str_in_file(sysreg_path, res_str):
             self.upd_reg({"HKEY_LOCAL_MACHINE\\Software\\Wine\\Drives": [{str(letter + ":"): f"{drive_type.value}"}]})
-            while not str_in_file(sysreg_path, s):
+            while not str_in_file(sysreg_path, res_str):
                 time.sleep(2)
         drive_path = self.prefix / "dosdevices" / str(letter + ":")
         if drive_path.exists():
@@ -131,19 +132,26 @@ class Wine:
             with open(target / ".windows-label", "w", encoding="UTF-8") as f:
                 f.write(label)
 
-    def remove_drive(self, letter: str):
+    def remove_drive(self, letter: str, remove: bool = True):
         letter = letter.lower()
-        s = f'"{letter}:"='
+        res_str = f'"{letter}:"="-"'
         sysreg_path = self.prefix / "system.reg"
-        self.upd_reg({"HKEY_LOCAL_MACHINE\\Software\\Wine\\Drives": [{str(letter + ":"): "-"}]})
-        while str_in_file(sysreg_path, s):
-            time.sleep(2)
+        if str_in_file(sysreg_path, f'"{letter}:"='):
+            self.upd_reg({"HKEY_LOCAL_MACHINE\\Software\\Wine\\Drives": [{str(letter + ":"): "-"}]})
+            while not str_in_file(sysreg_path, res_str):
+                time.sleep(2)
+        else:
+            raise ValueError(f"drive {letter} is not mounted")
         drive_path = self.prefix / "dosdevices" / str(letter + ":")
         if drive_path.exists():
             if not drive_path.is_symlink():
                 raise ValueError(f"drive {drive_path} is not a symlink")
+            target_path = drive_path.readlink()
+            target_path = (drive_path.parent / target_path).resolve()
             drive_path.unlink()
-        # TODO: rm drive folder?
+            if remove:
+                if target_path.is_dir():
+                    shutil.rmtree(target_path)
 
     def add_cdrom(self, letter: str, target: Path, replace=True, label=None) -> None:
         self.add_drive(DriveType.CDROM, letter, target, replace, label)
@@ -238,6 +246,16 @@ class Wine:
             if not isinstance(args, List):
                 args = [args]
             cmd_line += args
+        run_cmd(cmd_line, env=wine_env)
+
+    def msiexec(
+        self,
+        path: Union[Path, PureWindowsPath, str],
+    ) -> None:
+        wine_env = os.environ.copy()
+        for k, v in self.wine_env.items():
+            wine_env[k] = v
+        cmd_line = ["wine", "msiexec", "/i", path]
         run_cmd(cmd_line, env=wine_env)
 
     @staticmethod
