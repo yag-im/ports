@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - ALICE.cue
+      - ALICE.bin
+    format: 1CD
+    url: https://www.myabandonware.com/game/alice-s-adventures-in-wonderland-xpf#download
+  igdb_slug: alices-adventures-in-wonderland
+  lang: en
+  media_assets:
+    cover:
+      image_id: 6a0db528-ca7c-4f85-903a-732eb5fea088
+    screenshots: []
+  name: Alice's Adventures in Wonderland
+  platform: win
+  publisher: Europress Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 146246
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-08-10 12:26:19 America/Los_Angeles
+  uuid: 6a0db528-ca7c-4f85-903a-732eb5fea088
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/ALICE.EXE"
