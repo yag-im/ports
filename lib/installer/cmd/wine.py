@@ -16,14 +16,7 @@ CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
 CMD_UMOUNT = "umount"
 CMD_WINETRICKS = "winetricks"
-
-
-def exec_run(wine: Wine, task: dict):
-    wine.run(
-        path=task.get("path"),
-        args=task.get("args", None),
-        virtual_desktop=VirtualDesktopResolution.RES_640_480,
-    )
+CMD_MSIEXEC = "msiexec"
 
 
 def exec_subtask(task: dict, wine: Wine) -> None:
@@ -39,7 +32,20 @@ def exec_subtask(task: dict, wine: Wine) -> None:
     elif cmd == CMD_REGEDIT:
         wine.upd_reg({task.get("path"): task.get("values")})
     elif cmd == CMD_RUN:
-        exec_run(wine, task)
+        # VirtualDesktop will not be used only when it's explicitly set to False;
+        # if it's empty or explicitly set - it will be used.
+        virtual_desktop = task.get("virtual_desktop", None)
+        if virtual_desktop:
+            virtual_desktop = VirtualDesktopResolution(virtual_desktop)
+        elif virtual_desktop is False:
+            virtual_desktop = None
+        else:
+            virtual_desktop = VirtualDesktopResolution.RES_640_480
+        wine.run(
+            path=task.get("path"),
+            args=task.get("args", None),
+            virtual_desktop=virtual_desktop,
+        )
     elif cmd == CMD_GEN_RUN_SCRIPT:
         path = PureWindowsPath(task.get("path"))
         chdir = task.get("chdir", True)
@@ -48,6 +54,10 @@ def exec_subtask(task: dict, wine: Wine) -> None:
         cmd_ = task.get("cmd")
         quiet = task.get("quiet", False)
         wine.run_winetricks(cmd_, quiet=quiet)
+    elif cmd == CMD_MSIEXEC:
+        wine.msiexec(task.get("path"))
+    elif cmd == CMD_UMOUNT:
+        wine.remove_drive(task.get("letter"), task.get("remove", True))
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 

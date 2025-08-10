@@ -7,6 +7,9 @@ descr:
   igdb_slug: eric-the-unready
   lang: en
   media_assets:
+    cover:
+      image_id: 33ea3f8a-f6fd-4333-94c2-731a287847b3
+    screenshots: []
   name: Eric the Unready
   platform: dos
   publisher: Legend Entertainment
