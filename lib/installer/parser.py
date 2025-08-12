@@ -8,6 +8,7 @@ from lib.installer.cmd.file import run as exec_file
 from lib.installer.cmd.innoextract import run as exec_innoextract
 from lib.installer.cmd.move import run as exec_move
 from lib.installer.cmd.replace import run as exec_replace
+from lib.installer.cmd.retroarch import run as exec_retroarch
 from lib.installer.cmd.scummvm import run as exec_scummvm
 from lib.installer.cmd.shell import run as exec_shell
 from lib.installer.cmd.wine import run as exec_wine
@@ -20,6 +21,7 @@ CMD_FILE = "file"
 CMD_INNOEXTRACT = "innoextract"
 CMD_MOVE = "move"
 CMD_REPLACE = "replace"
+CMD_RETROARCH = "retroarch"
 CMD_SCUMMVM = "scummvm"
 CMD_SHELL = "shell"
 CMD_WINE = "wine"
@@ -46,6 +48,8 @@ class Parser:
             exec_move(task)
         elif cmd == CMD_REPLACE:
             exec_replace(task)
+        elif cmd == CMD_RETROARCH:
+            exec_retroarch(task, app_descr)
         elif cmd == CMD_SCUMMVM:
             exec_scummvm(task, app_descr)
         elif cmd == CMD_SHELL:

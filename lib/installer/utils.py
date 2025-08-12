@@ -86,7 +86,7 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     final_vars["DEST_DIR"] = str(app_descr.dst_path())
     if app_descr.runner.name in ("scummvm"):
         final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DIR_NAME)
-    elif "dosbox" in app_descr.runner.name or app_descr.runner.name == "wine":
+    elif app_descr.runner.name in ("dosbox", "wine", "retroarch"):
         final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DRIVE_LETTER / APP_DIR_NAME)
     else:
         raise ValueError(f"unknown runner: {app_descr.runner.name}")

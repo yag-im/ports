@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Alice in Wonderland (USA).cue
+      - Alice in Wonderland (USA).bin
+    format: 1CD
+    url: https://archive.org/details/alice-in-wonderland-usa-philips-cd-i
+  igdb_slug: alice-in-wonderland--5
+  lang: en
+  media_assets:
+  name: Alice in Wonderland
+  platform: philips-cd-i
+  publisher: American Interactive Media
+  refs:
+    ag_id:
+    lutris_id: alice-in-wonderland--5
+    mg_id: 39627
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-08-12 09:11:18 America/Los_Angeles
+  uuid: f7e156c0-b9a5-4b9d-9e4c-bfc054bb7d3c
+  year_released: 1992
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: same_cdi
+              file: "{descr[distro][files][0]}"
