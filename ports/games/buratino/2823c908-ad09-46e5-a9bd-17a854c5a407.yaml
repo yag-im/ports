@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - BURATINO.TZX
+    format: tape
+    url: https://www.worldofspectrum.org//pub/sinclair/games/a/AdventuresOfBuratino.tzx.zip
+  igdb_slug: buratino
+  lang: ru
+  media_assets:
+  name: Приключения Буратино
+  platform: zxs
+  publisher: Copper Feet
+  refs:
+    ag_id:
+    lutris_id: buratino
+    mg_id: 81797
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-08-12 18:14:30 America/Los_Angeles
+  uuid: 2823c908-ad09-46e5-a9bd-17a854c5a407
+  year_released: 1993
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: fuse
+              file: "{descr[distro][files][0]}"
