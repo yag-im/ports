@@ -1,13 +1,19 @@
 from lib.app_desc import AppDesc
 from lib.installer.cmd.dosbox import CMD_GEN_RUN_SCRIPT
-from lib.retroarch.retroarch import RetroArch
+from lib.retroarch.retroarch import (
+    RetroArch,
+    RetroArchCore,
+)
 
 
 def exec_subtask(task: dict, retroarch: RetroArch) -> None:
     cmd = list(task.keys())[0]
     task = task[cmd]
     if cmd == CMD_GEN_RUN_SCRIPT:
-        core = task.get("core")
+        core_name = task.get("core")
+        core = RetroArchCore(core_name)
+        if core is None:
+            raise ValueError(f"Unknown RetroArch core: {core_name}")
         file = task.get("file", None)
         retroarch.gen_run_script(core, file)
     else:

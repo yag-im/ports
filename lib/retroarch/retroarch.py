@@ -8,20 +8,17 @@ CURRENT_DIR = Path(__file__).resolve().parent
 
 
 class RetroArchCore(StrEnum):
-    CDI = "same_cdi"
+    SAME_CDI = "same_cdi"  # Philips CD-I
+    FUSE = "fuse"  # ZX Spectrum
 
 
 class RetroArch:
     def __init__(self, root_dir) -> None:
         self.root_dir = root_dir
 
-    def map_core_libretro(self, core: RetroArchCore):
-        if core == RetroArchCore.CDI:
-            return "same_cdi_libretro.so"
-
     def gen_run_script(self, core: RetroArchCore, file: str) -> Path:
         tmpl_params = {
-            "libretro": self.map_core_libretro(core),
+            "libretro": core.value,
             "file": file,
         }
         output_path = self.root_dir / "run.sh"
