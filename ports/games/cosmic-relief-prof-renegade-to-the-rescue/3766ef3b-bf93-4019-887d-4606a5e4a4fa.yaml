@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Terramex.tzx
+    format: tape
+    url: https://www.worldofspectrum.org//pub/sinclair/games/t/Terramex.tzx.zip
+  igdb_slug: cosmic-relief-prof-renegade-to-the-rescue
+  lang: en
+  media_assets:
+  name: "Cosmic Relief: Prof. Renegade to the Rescue"
+  platform: zxs
+  publisher: Grandslam Entertainments
+  refs:
+    ag_id:
+    lutris_id: cosmic-relief-prof-renegade-to-the-rescue
+    mg_id: 23796
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-08-15 18:10:08 America/Los_Angeles
+  uuid: 3766ef3b-bf93-4019-887d-4606a5e4a4fa
+  year_released: 1988
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: fuse
+              file: "{descr[distro][files][0]}"
