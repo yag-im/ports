@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Secret Mission (Europe).cue
+      - Secret Mission (Europe).bin
+    format: 1CD
+    url: https://archive.org/download/philips_cd-i/Secret%20Mission%20%28Europe%29.zip
+  igdb_slug: secret-mission--1
+  lang: en
+  media_assets:
+  name: Secret Mission
+  platform: philips-cd-i
+  publisher: Philips Media
+  refs:
+    ag_id:
+    lutris_id: secret-mission--1
+    mg_id: 22008
+    pcgw_id:
+    qz_id: 230
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-08-16 18:26:33 America/Los_Angeles
+  uuid: 2919500c-b710-4c5e-b403-f066bd328e57
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: same_cdi
+              file: "{descr[distro][files][0]}"
