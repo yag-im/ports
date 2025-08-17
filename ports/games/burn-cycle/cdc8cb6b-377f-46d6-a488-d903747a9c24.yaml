@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - BURNCYCLE.cue
+      - BURNCYCLE.bin
+    format: 2CD
+    url: https://archive.org/details/burn-cycle-limited-edition-us-1994-win-mac
+  igdb_slug: burn-cycle
+  lang: en
+  media_assets:
+  name: Burn:Cycle
+  platform: win
+  publisher: Philips Interactive Media
+  refs:
+    ag_id:
+    lutris_id: burn-cycle
+    mg_id: 3962
+    pcgw_id: "Burn:Cycle"
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-08-16 17:37:59 America/Los_Angeles
+  uuid: cdc8cb6b-377f-46d6-a488-d903747a9c24
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/BURNCYCL.EXE"
