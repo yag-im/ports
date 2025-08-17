@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - NORMALITY.iso
+    format: 1CD
+    url: https://archive.org/details/NormalityUSDOS
+  igdb_slug: normality
+  lang: en
+  media_assets:
+  name: Normality
+  platform: dos
+  publisher: Interplay Productions
+  refs:
+    ag_id: normality
+    lutris_id: normality
+    mg_id: 1999
+    pcgw_id: Normality
+    qz_id: 732
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-08-16 22:04:08 America/Los_Angeles
+  uuid: e43dbad3-2c32-4ddb-9481-0ca11f699114
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/NORMAL.BAT"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "CONFIG.INI"
+          - "NORMAL.BAT"
