@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Story Machine - Magic Tales (USA).cue
+      - Story Machine - Magic Tales (USA).bin
+    format: 1CD
+    url: https://archive.org/download/philips_cd-i/Story%20Machine%20-%20Magic%20Tales%20%28USA%29.zip
+  igdb_slug: story-machine-magic-tales
+  lang: en
+  media_assets:
+    cover:
+      image_id: a48a1b37-a780-43d0-b42c-ad886783afaf
+    screenshots: []
+  name: "Story Machine: Magic Tales"
+  platform: philips-cd-i
+  publisher: American Interactive Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 194995
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-08-16 18:00:13 America/Los_Angeles
+  uuid: a48a1b37-a780-43d0-b42c-ad886783afaf
+  year_released: 1991
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: same_cdi
+              file: "{descr[distro][files][0]}"
