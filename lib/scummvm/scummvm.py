@@ -1,4 +1,5 @@
 import stat
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -40,3 +41,33 @@ class ScummVm:
         template(CURRENT_DIR / "templates" / "run.sh.tmpl", output_path, params=tmpl_params)
         output_path.chmod(output_path.stat().st_mode | stat.S_IEXEC)
         return output_path
+
+    @staticmethod
+    def rip_cd_audio(bin_file_path, cue_file_path, output_dir, track="track"):
+        """
+        Extracts CD audio tracks from BIN/CUE files using bchunk and converts them to FLAC.
+
+        Args:
+            bin_file_path (Path): Absolute path to the .bin file
+            cue_file_path (Path): Absolute path to the .cue file
+            output_dir (Path): Output directory
+        """
+
+        # Run bchunk to extract WAV tracks
+        bchunk_cmd = ["bchunk", "-w", str(bin_file_path), str(cue_file_path), track]
+        subprocess.run(bchunk_cmd, cwd=str(output_dir), check=True)
+
+        # Convert all track*.wav files to FLAC
+        wav_files = output_dir.glob(f"{track}*.wav")
+        for wav_file in wav_files:
+            flac_cmd = ["flac", "-f", str(wav_file)]
+            subprocess.run(flac_cmd, check=True)
+            wav_file.unlink()
+
+        for f in sorted(output_dir.glob(f"{track}*.flac")):
+            n = int(f.stem[len(track) :]) - 1
+            f.rename(f.with_name(f"{track}{n:02}.flac"))
+
+        # cleanup: remove iso track
+        for iso_file in output_dir.glob(f"{track}*.iso"):
+            iso_file.unlink()

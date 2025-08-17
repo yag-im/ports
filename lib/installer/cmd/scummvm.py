@@ -1,11 +1,13 @@
 from pathlib import Path
 
 from lib.app_desc import AppDesc
-from lib.installer.cmd.dosbox import CMD_GEN_RUN_SCRIPT
 from lib.scummvm.scummvm import (
     ScummVm,
     ScummVmConf,
 )
+
+CMD_GEN_RUN_SCRIPT = "gen_run_script"
+CMD_RIP_CD_AUDIO = "rip_cd_audio"
 
 
 def exec_subtask(task: dict, scummvm: ScummVm, app_descr: AppDesc) -> None:
@@ -17,6 +19,12 @@ def exec_subtask(task: dict, scummvm: ScummVm, app_descr: AppDesc) -> None:
         path = task.get("path", None)
         path = Path(path) if path else None
         scummvm.gen_run_script(game, lang, app_dir=path)
+    elif cmd == CMD_RIP_CD_AUDIO:
+        bin_file_path = Path(task.get("bin"))
+        cue_file_path = Path(task.get("cue"))
+        output_dir = Path(task.get("dest"))
+        track = task.get("track", "track")
+        ScummVm.rip_cd_audio(bin_file_path, cue_file_path, output_dir, track)
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 
