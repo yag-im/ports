@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - SPYFOX2.ISO
+    format: 1CD
+    url: https://archive.org/download/SPYFOX2/SPYFOX2.ISO
+  igdb_slug: spy-fox-2-some-assembly-required
+  lang: en
+  media_assets:
+  name: 'Spy Fox 2: "Some Assembly Required"'
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id: spy-fox-2-some-assembly-required
+    lutris_id: spy-fox-2-some-assembly-required
+    mg_id: 20987
+    pcgw_id: Spy_Fox_2:_Some_Assembly_Required
+    qz_id: 671
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 768
+    screen_width: 1024
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  ts_added: 2025-08-17 07:54:38 America/Los_Angeles
+  uuid: d6c81fe0-9669-435a-aa5a-44be417f80d5
+  year_released: 1999
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - SPYFOX2.HE0
+          - spyfox2.(a)
+          - SPYFOX2.HE2
+          - SPYFOX2.HE4
+          - spyfox2.he9
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=SPY_Fox_2:_Some_Assembly_Required
+        tasks:
+          - gen_run_script:
+              game: scumm:spyfox2
+              path: "{DEST_APP_DIR}"
+              lang: en
