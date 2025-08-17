@@ -10,6 +10,7 @@ CURRENT_DIR = Path(__file__).resolve().parent
 class RetroArchCore(StrEnum):
     SAME_CDI = "same_cdi"  # Philips CD-I
     FUSE = "fuse"  # ZX Spectrum
+    VICE_X64 = "vice_x64"  # Commodore 64 (fast)
 
 
 class RetroArch:

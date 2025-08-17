@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Burn-Cycle (USA, Europe) (Disc 1) (The Game).cue
+      - Burn-Cycle (USA, Europe) (Disc 1) (The Game).bin
+    format: 1CD
+    url: https://archive.org/download/philips_cd-i/Burn-Cycle%20%28USA%2C%20Europe%29%20%28Disc%201%29%20%28The%20Game%29.zip
+  igdb_slug: burn-cycle
+  lang: en
+  media_assets:
+  name: "Burn:Cycle"
+  platform: philips-cd-i
+  publisher: Philips Interactive Media
+  refs:
+    ag_id:
+    lutris_id: burn-cycle
+    mg_id: 3962
+    pcgw_id: "Burn:Cycle"
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-08-16 14:36:12 America/Los_Angeles
+  uuid: 825ab168-3c62-4124-ba1d-5f0b9f3c76a8
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: same_cdi
+              file: "{descr[distro][files][0]}"
