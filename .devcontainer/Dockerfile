@@ -187,3 +187,9 @@ RUN apt-get update \
         unrar-free \
         unshield \
         uuid-runtime
+
+# scummvm utils
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        bchunk \
+        flac

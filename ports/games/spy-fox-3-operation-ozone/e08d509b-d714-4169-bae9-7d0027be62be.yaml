@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - Operation Ozone.cue
+      - Operation Ozone.bin
+    format: 1CD
+    url: https://archive.org/download/OperationOzone
+  igdb_slug: spy-fox-3-operation-ozone
+  lang: en
+  media_assets:
+  name: "Spy Fox 3: Operation Ozone"
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: spy-fox-3-operation-ozone
+    mg_id: 18734
+    pcgw_id: Spy_Fox_3:_Operation_Ozone
+    qz_id: 664
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 768
+    screen_width: 1024
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  ts_added: 2025-08-17 08:28:11 America/Los_Angeles
+  uuid: e08d509b-d714-4169-bae9-7d0027be62be
+  year_released: 2001
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - SPYOZON.(A)
+          - SPYOZON.HE0
+          - SPYOZON.HE2
+          - SPYOZON.HE3
+          - SPYOZON.HE4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=SPY_Fox_3:_Operation_Ozone
+        tasks:
+          - rip_cd_audio:
+              cue: "{SRC_DIR}/{descr[distro][files][0]}"
+              bin: "{SRC_DIR}/{descr[distro][files][1]}"
+              dest: "{DEST_APP_DIR}"
+              track: "track"
+          - gen_run_script:
+              game: scumm:spyozon
+              path: "{DEST_APP_DIR}"
+              lang: en
