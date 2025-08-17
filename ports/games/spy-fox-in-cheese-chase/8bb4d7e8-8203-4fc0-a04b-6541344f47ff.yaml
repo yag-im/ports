@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - CHEESECHASE.mdf
+    format: 1CD
+    url: https://archive.org/details/spy-fox-in-cheese-chase-1998-humongous-entertainment-cd
+  igdb_slug: spy-fox-in-cheese-chase
+  lang: en
+  media_assets:
+  name: "Spy Fox In: Cheese Chase"
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: spy-fox-in-cheese-chase--1
+    mg_id: 20990
+    pcgw_id: Spy_Fox_in:_Cheese_Chase
+    qz_id:
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 768
+    screen_width: 1024
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  ts_added: 2025-08-17 09:56:51 America/Los_Angeles
+  uuid: 8bb4d7e8-8203-4fc0-a04b-6541344f47ff
+  year_released: 1998
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CHASE.HE0
+          - CHASE.HE1
+          - CHASE.HE2
+          - CHASE.HE4
+          - CHASE.HE8
+          - CHASE.HE9
+          - CUSTOM
+          - LEVELS
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=SPY_Fox_in_Cheese_Chase
+        tasks:
+          - gen_run_script:
+              game: scumm:chase
+              path: "{DEST_APP_DIR}"
+              lang: en
