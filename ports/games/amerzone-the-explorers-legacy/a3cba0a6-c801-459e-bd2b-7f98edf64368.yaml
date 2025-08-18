@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - AMERZONE.ISO
+    format: 1DVD
+    url: https://archive.org/download/amerzone_202505/AMERZONE.ISO
+  igdb_slug: amerzone-the-explorers-legacy
+  lang: en
+  media_assets:
+  name: "Amerzone: The Explorer's Legacy"
+  platform: win
+  publisher: Microïds
+  refs:
+    ag_id: amerzone-the-explorers-legacy
+    lutris_id: amerzone-the-explorers-legacy
+    mg_id: 3973
+    pcgw_id: Amerzone:_The_Explorer%27s_Legacy
+    qz_id: 67
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 768
+    screen_width: 1024
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-08-17 20:04:54 America/Los_Angeles
+  uuid: a3cba0a6-c801-459e-bd2b-7f98edf64368
+  year_released: 2010
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        files:
+          - GameUS.zip
+    - extract:
+        src: "{DEST_DIR}/GameUS.zip"
+        dest: "{DEST_APP_DIR}"
+    - file:
+        path: "{DEST_DIR}/GameUS.zip"
+        state: absent
+    - wine:
+        os_ver: winxp
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/game.exe"
