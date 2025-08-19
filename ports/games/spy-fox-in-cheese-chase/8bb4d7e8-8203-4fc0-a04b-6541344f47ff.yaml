@@ -19,8 +19,8 @@ descr:
   reqs:
     color_bits: 24
     midi: false
-    screen_height: 768
-    screen_width: 1024
+    screen_height: 600
+    screen_width: 800
     ua:
       lock_pointer: false
   runner:

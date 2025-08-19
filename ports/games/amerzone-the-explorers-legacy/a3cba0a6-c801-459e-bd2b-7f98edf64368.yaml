@@ -19,10 +19,10 @@ descr:
   reqs:
     color_bits: 16
     midi: false
-    screen_height: 768
-    screen_width: 1024
+    screen_height: 600
+    screen_width: 800
     ua:
-      lock_pointer: true
+      lock_pointer: false
   runner:
     name: wine
     ver: "10.0"
@@ -32,7 +32,7 @@ descr:
 installer:
   tasks:
     - extract:
-        src: "{SRC_DIR}"
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_DIR}"
         files:
           - GameUS.zip
