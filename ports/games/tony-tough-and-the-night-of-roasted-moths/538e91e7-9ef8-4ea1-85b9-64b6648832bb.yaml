@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Tony Tough and the Night of Roasted Moths (USA).bin
+    format: 1CD
+    url: https://archive.org/details/tony-tough-and-the-night-of-roasted-moths-usa
+  igdb_slug: tony-tough-and-the-night-of-roasted-moths
+  lang: en
+  media_assets:
+  name: Tony Tough and the Night of Roasted Moths
+  platform: win
+  publisher: Got Game Entertainment
+  refs:
+    ag_id: tony-tough-and-the-night-of-the-roasted-moths
+    lutris_id: tony-tough-and-the-night-of-roasted-moths
+    mg_id: 7659
+    pcgw_id: Tony_Tough_and_the_Night_of_Roasted_Moths
+    qz_id: 2
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  ts_added: 2025-08-21 22:08:14 America/Los_Angeles
+  uuid: 538e91e7-9ef8-4ea1-85b9-64b6648832bb
+  year_released: 2002
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Music
+          - Roasted
+          - Voices
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Tony_Tough_and_the_Night_of_Roasted_Moths
+        tasks:
+          - gen_run_script:
+              game: tony:tony
+              path: "{DEST_APP_DIR}"
+              lang: en
