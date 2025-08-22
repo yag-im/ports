@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Tiffy's Magical Tales - Pinocchio (1999)(Choice Software).iso
+    format: 1CD
+    url: https://archive.org/download/tiffys-magical-tales-pinocchio/Tiffy%27s%20Magical%20Tales%20-%20Pinocchio%20%281999%29%28Choice%20Software%29.iso
+  igdb_slug: tiffys-magical-tales-pinocchio
+  lang: en
+  media_assets:
+  name: "Tiffy's Magical Tales: Pinocchio"
+  platform: win
+  publisher: New Media Generation
+  refs:
+    ag_id:
+    lutris_id: tiffys-magical-tales-pinocchio
+    mg_id: 233962
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-08-22 08:43:25 America/Los_Angeles
+  uuid: a1b238d6-828d-4f4a-9ced-bde4c03d2626
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # installs only system files, runs from CD
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/PINOK4.EXE"
