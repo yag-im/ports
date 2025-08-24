@@ -24,8 +24,38 @@ descr:
       lock_pointer: false
   runner:
     name: wine
-    ver: '9.0'
+    ver: "10.0"
   ts_added: 2024-05-23 03:52:00 America/Los_Angeles
   uuid: 2eec60e2-07c2-4653-9fcf-3331e4e0c2d6
   year_released: 1997
-installer: null
+installer:
+  # TODO: unverified, check install.py
+  vars:
+    app_exec: GOLDENGA.EXE
+    patch_exec: GOLDENGA.EXE-patch-mod
+  extract:
+    src: "${src_root_dir}/${descr['distro']['files'][0]}"
+    dest: "${first_cd_drive_dir}"
+    include:
+      - NEWMLIST.TXT
+      - GGVARS
+      - GGSYSTBL
+      - GOLDEN
+      - QTIME32
+  copy:
+    src: "${src_root_dir}/patch/${patch_exec}"
+    dest: "${app_dir}/${app_exec}"
+  wine:
+    mount:
+      letter: "${first_cd_letter}"
+      src: "${first_cd_drive_dir}"
+      type: cdrom
+      state: mounted
+    run:
+      exec: QT32INST.EXE
+      work_dir: "${wine_first_cd_drive_dir}\\QTIME32"
+    runner_script:
+      exec: "${app_exec}"
+  file: # cleanup
+    path: "${first_cd_drive_dir}/QTIME32"
+    state: absent
