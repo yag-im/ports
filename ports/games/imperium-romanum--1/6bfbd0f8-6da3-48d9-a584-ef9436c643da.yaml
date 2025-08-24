@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Imperium Romanum (GERMAN).img
+    format: 1CD
+    url: https://archive.org/details/msdos_Imperium_Romanum_1996
+  igdb_slug: imperium-romanum--1
+  lang: de
+  media_assets:
+  name: Imperium Romanum
+  platform: dos
+  publisher: Rainbow Arts
+  refs:
+    ag_id:
+    lutris_id: imperium-romanum--1
+    mg_id: 6300
+    pcgw_id:
+    qz_id: 10
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-08-23 22:47:32 America/Los_Angeles
+  uuid: 6bfbd0f8-6da3-48d9-a584-ef9436c643da
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/IMPERIUM.EXE"
+    - copy:
+        src: "{SRC_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "SOUND.CFG"
+          - "VIDEO.CFG"
