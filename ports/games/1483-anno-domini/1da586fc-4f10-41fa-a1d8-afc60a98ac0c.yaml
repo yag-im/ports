@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - 100-6002.bin
+    format: 1CD
+    url: https://archive.org/details/1cover_20250109
+  igdb_slug: 1483-anno-domini
+  lang: de
+  media_assets:
+    cover:
+      image_id: 1da586fc-4f10-41fa-a1d8-afc60a98ac0c
+    screenshots: []
+  name: 1483 Anno Domini
+  platform: win
+  publisher: TLC Tewi Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 222850
+    pcgw_id:
+    qz_id: 7
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-08-23 18:34:23 America/Los_Angeles
+  uuid: 1da586fc-4f10-41fa-a1d8-afc60a98ac0c
+  year_released: 1993
+installer:
+  tasks:
+    - extract:
+        # when trying to run from CD, app crashes (tries to write to the non-writable working dir?)
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - ANNODOMI/*
+    - dosbox:
+        conf:
+          fullscreen: true
+          cycles: fixed 40000 # to prevent sound distortion
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/1483.EXE"
