@@ -5,8 +5,6 @@ from pathlib import Path
 from subprocess import CalledProcessError
 from typing import (
     Dict,
-    List,
-    Optional,
     Union,
 )
 
@@ -77,7 +75,7 @@ def copy(src: Union[Path, list[Path]], dst: Path, copy_tree: bool = False) -> No
         run_cmd(cmd, shell=True)  # shell=True because otherwise asterisk is not handled properly
 
 
-def template(src: Union[Path, str], dst: Optional[Path], params: dict, newline: str = "\n") -> Optional[str]:
+def template(src: Union[Path, str], dst: Path | None, params: dict, newline: str = "\n") -> str | None:
     if isinstance(src, Path):
         with open(src, "r", encoding="UTF-8") as f:
             tmpl_input = f.read()
@@ -96,7 +94,7 @@ def replace(file_path: Path, old: str, new: str) -> None:
     run_cmd(["sed", "-i", "-E", f"s/{old}/{new}/", str(file_path)])
 
 
-def run_cmd(cmd: Union[List[str], str], env: Dict[str, str] = None, cwd: Path = None, shell: bool = False) -> None:
+def run_cmd(cmd: Union[list[str], str], env: Dict[str, str] = None, cwd: Path = None, shell: bool = False) -> None:
     if isinstance(cmd, str):
         cmd = [cmd]
     print(f"executing: {cmd}")
@@ -121,3 +119,10 @@ def patch_macromedia_director_free_virt_mem(file_path: Path):
     data[target_ix + 5] = 0xEB  # replace jge with jmp
     with open(file_path, mode="wb") as f:
         f.write(data)
+
+
+def is_iso_image(file_path: Path):
+    with open(file_path, "rb") as f:
+        f.seek(0x8001)  # 32769 bytes offset
+        signature = f.read(5)
+        return signature == b"CD001"

@@ -4,8 +4,6 @@ from pathlib import (
     PureWindowsPath,
 )
 from typing import (
-    List,
-    Optional,
     Protocol,
     TypeVar,
     Union,
@@ -52,7 +50,7 @@ class DosBox(Protocol[T]):
         self.app_drive = root_dir / APP_DRIVE_LETTER
         self.templates_dir = CURRENT_DIR / "templates" / self.conf.mod.value / self.conf.flavor.value
         self.files_dir = CURRENT_DIR / "files" / self.conf.mod.value
-        self.run_cmds: Optional[List[Union[DosCmdExec, str]]] = (
+        self.run_cmds: list[Union[DosCmdExec, str]] | None = (
             None  # TODO: should we optionally accept cmds in the ctor and execute them right away?
         )
         # xorg doesn't support lower than 640, so scaling up
@@ -62,7 +60,7 @@ class DosBox(Protocol[T]):
             self.conf.aspect = False
         self.gen_run_script()
 
-    def mount(self, mount_points: Union[DosMountPoint, List[DosMountPoint]] = None):
+    def mount(self, mount_points: Union[DosMountPoint, list[DosMountPoint]] = None):
         if mount_points is None:
             mount_points = []
         return self.conf.mount(mount_points)
@@ -76,7 +74,7 @@ class DosBox(Protocol[T]):
     def umount_all(self, remove: bool = False, cd_only: bool = False):
         self.conf.umount_all(remove, type)
 
-    def create_hdd_image(self, drive_letter: chr, image_size: int):
+    def create_hdd_image(self, drive_letter: str, image_size: int):
         self._run(
             DosCmdExec(
                 PureWindowsPath("IMGMAKE"),
@@ -116,7 +114,7 @@ class DosBox(Protocol[T]):
 
     def _run(
         self,
-        cmds=Union[DosCmdExec, List[DosCmdExec], str, List[str]],
+        cmds=Union[DosCmdExec, list[DosCmdExec], str, list[str]],
         mock=False,
     ):
         """Runs command(s) inside the dos env. For internal use only.
@@ -124,7 +122,7 @@ class DosBox(Protocol[T]):
 
         To run command(s) in the flavored env, use the run() method from an appropriate implementation.
         """
-        if not isinstance(cmds, List):
+        if not isinstance(cmds, list):
             cmds = [cmds]
         # gen conf
         self.run_cmds = []

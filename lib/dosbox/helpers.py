@@ -12,7 +12,7 @@ from lib.utils import (
 )
 
 
-def copy_distro_files_as_cd_letters(src_folder: Path, dst_folder: Path, files: list[str], first_cd_letter: chr) -> None:
+def copy_distro_files_as_cd_letters(src_folder: Path, dst_folder: Path, files: list[str], first_cd_letter: str) -> None:
     """Copy distro files as CDs, e.g.:
 
     {src_folder}/1.iso -> {dst_folder}/E
@@ -41,12 +41,12 @@ def gen_cd_mount_points(src_folder: Path, first_cd_letter: str, num: int) -> lis
     return res
 
 
-def unmount_remove_mounted_cd(dbox: DosBox, dst_folder: Path, cd_letter: chr):
+def unmount_remove_mounted_cd(dbox: DosBox, dst_folder: Path, cd_letter: str):
     dbox.umount(cd_letter)
     rm(dst_folder / cd_letter)
 
 
-def unmount_remove_mounted_cds(dbox: DosBox, dst_folder: Path, first_cd_letter: chr, num: int):
+def unmount_remove_mounted_cds(dbox: DosBox, dst_folder: Path, first_cd_letter: str, num: int):
     cd_letter = first_cd_letter
     for _ in range(num):
         unmount_remove_mounted_cd(dbox, dst_folder, cd_letter)

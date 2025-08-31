@@ -1,9 +1,10 @@
 from lib.app_desc import AppDesc
-from lib.installer.cmd.dosbox import CMD_GEN_RUN_SCRIPT
 from lib.retroarch.retroarch import (
     RetroArch,
     RetroArchCore,
 )
+
+CMD_GEN_RUN_SCRIPT = "gen_run_script"
 
 
 def exec_subtask(task: dict, retroarch: RetroArch) -> None:

@@ -1,5 +1,4 @@
 import os
-import typing as t
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,7 +24,7 @@ class AppDesc:
     class Distro:
         files: list[str]
         format: str
-        patches: t.Optional[list[str]]
+        patches: list[str] | None
         url: str
 
     @dataclass

@@ -25,7 +25,7 @@ def load_vars(module_name: str) -> dict:
     return constants
 
 
-def unpack_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], first_cd_letter: chr) -> None:
+def unpack_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], first_cd_letter: str) -> None:
     """Unpack CD images into letter folders, e.g.:
 
     {src_dir}/1.iso -> {dst_dir}/E
@@ -40,7 +40,7 @@ def unpack_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], 
         cd_letter = chr(ord(cd_letter) + 1)
 
 
-def copy_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], first_cd_letter: chr) -> None:
+def copy_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], first_cd_letter: str) -> None:
     """Copy distro files as CD letters, e.g.:
 
     {src_dir}/1.iso -> {dst_dir}/E
@@ -86,7 +86,7 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     final_vars["DEST_DIR"] = str(app_descr.dst_path())
     if app_descr.runner.name in ("scummvm"):
         final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DIR_NAME)
-    elif app_descr.runner.name in ("dosbox", "wine", "retroarch", "dosbox-x", "dosbox-staging"):
+    elif app_descr.runner.name in ("dosbox", "wine", "retroarch", "dosbox-x", "dosbox-staging", "qemu"):
         final_vars["DEST_APP_DIR"] = str(app_descr.dst_path() / APP_DRIVE_LETTER / APP_DIR_NAME)
     else:
         raise ValueError(f"unknown runner: {app_descr.runner.name}")

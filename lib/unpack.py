@@ -2,10 +2,6 @@ import os
 import tempfile
 from pathlib import Path
 from subprocess import CalledProcessError
-from typing import (
-    List,
-    Optional,
-)
 
 from lib.utils import (
     copy,
@@ -16,7 +12,7 @@ from lib.utils import (
 SEVENZ_EXEC = os.getenv("SEVENZ_EXEC")
 
 
-def run_7z(src: Path, dest: Path, extract_files: Optional[list[str]] = None):
+def run_7z(src: Path, dest: Path, extract_files: list[str] | None = None):
     # 7z "e" doesn't work as it always eliminate all inner directories recursively
     # so we first extract into the temp dir using "x", and then move files into dest dir honoring copy_tree behavior
     # (when extract files contain '*')
@@ -50,7 +46,7 @@ def run_unzip(src: Path, dest: Path, extract_files=None):
         run_cmd(["unzip", "-o", str(src), "-d", str(dest)])
 
 
-def unpack_archive(src: Path, dest: Path, extract_files: List[str] = None, creates: Path = None) -> None:
+def unpack_archive(src: Path, dest: Path, extract_files: list[str] = None, creates: Path = None) -> None:
     if not src.exists():
         raise ValueError(f"src doesn't exist: {src}")
     dest.mkdir(parents=True, exist_ok=True)
@@ -81,7 +77,7 @@ def unpack_archive(src: Path, dest: Path, extract_files: List[str] = None, creat
             print(f"error: extracted archive doesn't contain expected file: {creates}, installer might be corrupted")
 
 
-def unpack_disc_image(src: Path, dest: Path, extract_files: List[str] = None, creates: Path = None) -> None:
+def unpack_disc_image(src: Path, dest: Path, extract_files: list[str] = None, creates: Path = None) -> None:
     assert src.exists()
     dest.mkdir(exist_ok=True, parents=True)
 

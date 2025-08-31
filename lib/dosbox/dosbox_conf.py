@@ -5,11 +5,7 @@ from dataclasses import (
 )
 from enum import StrEnum
 from pathlib import Path
-from typing import (
-    List,
-    Optional,
-    Union,
-)
+from typing import Union
 
 from lib.dosbox.misc import (
     DosMountPoint,
@@ -53,7 +49,7 @@ class DosBoxConf:
     mod: DosBoxMod = DosBoxMod.ORIG
     mount_points: collections.OrderedDict[str, DosMountPoint] = field(default_factory=collections.OrderedDict)
     scaler: str = "none"
-    sensitivity: Optional[int] = None
+    sensitivity: int | None = None
     gus: bool = False
 
     @property
@@ -67,12 +63,12 @@ class DosBoxConf:
 
     def mount(
         self,
-        mount_points: Union[DosMountPoint, List[DosMountPoint]] = None,
+        mount_points: Union[DosMountPoint, list[DosMountPoint]] = None,
     ) -> None:
         """Adds mounted image/folder"""
         if mount_points is None:
             mount_points = []
-        if not isinstance(mount_points, List):
+        if not isinstance(mount_points, list):
             mount_points = [mount_points]
         for mp in mount_points:
             paths_list = mp.path if isinstance(mp.path, list) else [mp.path]
