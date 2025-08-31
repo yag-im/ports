@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CUR_DIR=$(cd `dirname $0` && pwd)
+cd $CUR_DIR
+
+qemu-system-x86_64 \
+  ${mounts} \
+  -enable-kvm \
+  -cpu "${cpu}" \
+  -m ${memory} \
+  -net nic,model=rtl8139 \
+  -net user \
+  -usbdevice tablet \
+  -vga virtio \
+  -display sdl,full-screen=on,grab-mod=lshift-lctrl-lalt \
+  -audiodev pa,id=pa1 \
+  -device AC97,audiodev=pa1

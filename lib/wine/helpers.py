@@ -6,7 +6,7 @@ from lib.utils import rm
 from lib.wine.wine import Wine
 
 
-def unpack_cds_as_letters(src_folder: Path, dst_folder: Path, files: list[str], first_cd_letter: chr) -> None:
+def unpack_cds_as_letters(src_folder: Path, dst_folder: Path, files: list[str], first_cd_letter: str) -> None:
     """Unpack CD images into letter folders, e.g.:
 
     {src_folder}/1.iso -> {dst_folder}/E
@@ -21,7 +21,7 @@ def unpack_cds_as_letters(src_folder: Path, dst_folder: Path, files: list[str], 
         cd_letter = chr(ord(cd_letter) + 1)
 
 
-def unmount_cds(wine: Wine, dst_folder: Path, first_cd_letter: chr, num: int, remove: bool = True):
+def unmount_cds(wine: Wine, dst_folder: Path, first_cd_letter: str, num: int, remove: bool = True):
     cd_letter = first_cd_letter
     for _ in range(num):
         if remove:

@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - GOSHA.mdf
+      - Vlyapli.exe
+    format: 1CD
+    url: https://archive.org/details/gosha_202112
+  igdb_slug: vlyapli
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 91110cb0-3230-4543-bf4c-160f543ccba1
+    screenshots: []
+  name: Вляпли!
+  platform: win
+  publisher: Streko-Graphics Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id: 30
+  reqs:
+    color_bits: 32
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-08-25 11:01:54 America/Los_Angeles
+  uuid: 91110cb0-3230-4543-bf4c-160f543ccba1
+  year_released: 2003
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/Game/setup.exe"
+          - copy:
+              src: "{SRC_DIR}/{descr[distro][files][1]}"
+              dest: "{APP_DIR}"
+          - gen_run_script:
+              path: "{APP_DIR}/Vlyapli.exe"

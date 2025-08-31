@@ -17,6 +17,7 @@ yag = "yag.cli:cli"
 [tool.poetry.dependencies]
 python = "^3.11"
 click = "*"
+guestfs = {url = "https://libguestfs.org/download/python/guestfs-1.40.2.tar.gz"}
 Mako = "*"
 pyyaml = "^6.0.2"
 

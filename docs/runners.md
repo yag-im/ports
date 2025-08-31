@@ -222,6 +222,34 @@ Copy [RUNEXIT.EXE](https://github.com/yag-im/runexit) into `C:\WINDOWS`.
 
 see win311 section in dosbox-x
 
+# qemu
+
+## winxp
+
+### Create a new installation media (WinXPLite CD ISO)
+
+Sources and executables of all components are available at: `runners/src/winxp`
+
+1. Boot into Windows VM
+2. Extract official WinXP iso into folder `C:\WINDOWS_ISO` (this step should be repeated as nLite modifies content of target folder on every run)
+    TODO: find out why mouse cursor is invisible with qxl driver when qemu is running in the cloud
+    -3. Extract `qxl_xp_x86.zip` into the `C:\WINDOWS_ISO\qxl_xp_x86` (so nLite could find a video driver during install);-
+4. Copy `runners/winxp/files/{LANG}/LAST_SESSION*` into the same folder
+5. Run nLite (depends on `NetFx20SP1_x86.exe`) and point to the folder `C:\WINDOWS_ISO`
+6. Tweak settings and generate a `WinLite.iso` image
+7. Close VirtualBox VM to free a `/dev/kvm` handle
+
+### Install WinXP
+
+Run: `runners/winxp/install.sh` script.
+
+### After install tweaks
+
+- Set a 800x600 resolution (because of virtio glitch, which resets resolution to 640x480)
+- Format drive D: in FAT32
+- Reboot once manually (to unlock pagefile) and remove `C:\pagefile.sys` file
+- Set master volume to max level
+
 # FAQ
 
 ## How to install new drivers into the existing bundle?

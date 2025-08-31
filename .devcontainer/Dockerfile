@@ -1,6 +1,6 @@
 ARG DEBIAN_VER=bookworm
-
-FROM mcr.microsoft.com/devcontainers/python:1-3.11-${DEBIAN_VER}
+# https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/python/tags
+FROM mcr.microsoft.com/devcontainers/python:3.13-${DEBIAN_VER}
 
 ARG DOSBOX_VER=0.74-3-4
 ARG DOSBOX_X_VER=2024.12.04
@@ -11,9 +11,12 @@ ARG USERNAME=vscode
 # common
 RUN apt-get update \
     && apt install --no-install-recommends -y \
+        libguestfs-tools \
+        libguestfs-dev \
         mtools \
         pulseaudio
 RUN usermod -aG audio,video,pulse ${USERNAME}
+RUN mkdir /run/user/1000 && chown -R ${USERNAME} /run/user/1000
 RUN mkdir -p /home/${USERNAME}/.config/pulse/ \
     && echo "default-server=unix:/tmp/pulseaudio.socket" > /home/${USERNAME}/.config/pulse/client.conf
 RUN chown -R ${USERNAME} /home/${USERNAME}
@@ -193,3 +196,12 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         bchunk \
         flac
+
+# qemu
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        qemu-system-gui \
+        qemu-system-x86 \
+        qemu-utils
+# TODO: this doesn't work; we have to set vscode group to 106 explicitly to match hosts' kvm group id
+RUN usermod -aG kvm ${USERNAME}

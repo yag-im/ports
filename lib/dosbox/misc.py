@@ -1,4 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import (
+    dataclass,
+    replace,
+)
 from enum import StrEnum
 from pathlib import (
     Path,
@@ -20,7 +23,7 @@ class DosMountPointType(StrEnum):
 
 @dataclass
 class DosMountPoint:
-    letter: chr
+    letter: str
     path: Union[Path, List[Path]]  # if list, swap CDs by Ctrl+F4
     type: DosMountPointType = DosMountPointType.CDROM
     label: str = None
@@ -31,12 +34,12 @@ class DosMountPoint:
         else:
             return f'"{str(self.path)}"'
 
-    def relative_to(self, p_base: Path):
+    def relative_to(self, p_base: Path) -> "DosMountPoint":
         if isinstance(self.path, List):
             rel_path = [p.relative_to(p_base) for p in self.path]
         else:
             rel_path = self.path.relative_to(p_base)
-        return DosMountPoint(self.letter, rel_path, self.label)
+        return replace(self, path=rel_path)
 
 
 @dataclass

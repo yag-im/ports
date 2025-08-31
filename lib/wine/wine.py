@@ -285,7 +285,7 @@ class Wine:
         for value, dlls in override_buckets.items():
             if not dlls:
                 continue
-            override_strings.append(f"{','.join(sorted(dlls))}={value}")
+            override_strings.append(f'{",".join(sorted(dlls))}={value}')
         return ";".join(override_strings)
 
     @DeprecationWarning

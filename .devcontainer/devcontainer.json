@@ -9,7 +9,9 @@
         "--env-file=${localWorkspaceFolder}/.devcontainer/.env",
         "--ipc=host",
         "--device=/dev/dri",
-        "--device=/dev/snd"
+        "--device=/dev/snd",
+        "--device=/dev/kvm",
+        "--group-add=106" // TODO: 106 is a kvm group id on the host
     ],
     "customizations": {
         "vscode": {
@@ -22,10 +24,13 @@
         }
     },
     "postCreateCommand": ".devcontainer/post-create.sh",
+    // /boot and /lib/modules are required by libguestfs' supermin vm
     "mounts": [
         "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind",
         "source=${env:HOME}${env:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
-        "source=${env:HOME}${env:USERPROFILE}/yag/data/ports,target=/mnt/data,type=bind"
+        "source=${env:HOME}${env:USERPROFILE}/yag/data/ports,target=/mnt/data,type=bind",
+        "source=/boot,target=/boot,type=bind,readonly",
+        "source=/lib/modules,target=/lib/modules,type=bind,readonly"
     ]
 }
