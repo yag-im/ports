@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - IMAGE.img
+    format: 1CD
+    url: https://rutracker.org/forum/viewtopic.php?t=5176385
+  igdb_slug: nuclear-titbit
+  lang: ru
+  media_assets:
+  name: Ядерный Титбит
+  platform: win
+  publisher: Buka Entertainment
+  refs:
+    ag_id:
+    lutris_id: nuclear-titbit
+    mg_id: 31449
+    pcgw_id:
+    qz_id: 191
+  reqs:
+    color_bits: 32
+    midi: false
+    screen_height: 768
+    screen_width: 1024
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-08-31 07:32:08 America/Los_Angeles
+  uuid: 173acb4f-b239-4bb7-8cf2-510ab655ae23
+  year_released: 2003
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+          - regedit:
+              path: "HKEY_CURRENT_USER\\Software\\VZlab\\Titbit"
+              values:
+                # hex 20 = dec 32
+                - colordepth: 20
+                - refreshrate: 1
+                - resolution: 2
+                # b'01'
+                - suppress: !!binary |
+                    AQ==
+                # b'00'
+                - useds: !!binary |
+                    AA==
+          - gen_run_script:
+              path: "{APP_DIR}/titbit.exe"

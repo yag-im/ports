@@ -1,3 +1,4 @@
+import os
 import stat
 import tempfile
 from dataclasses import (
@@ -10,7 +11,10 @@ from pathlib import (
     PureWindowsPath,
 )
 from shutil import move
-from typing import Union
+from typing import (
+    Any,
+    Union,
+)
 
 from lib.app_desc import AppDesc
 from lib.const import (
@@ -19,6 +23,10 @@ from lib.const import (
     SYSTEM_DRIVE_LETTER,
 )
 from lib.guestfs import copy as guestfs_copy
+from lib.qemu.const import (
+    APP_DRIVE,
+    SYSTEM_DRIVE,
+)
 from lib.utils import copy as cp
 from lib.utils import (
     is_iso_image,
@@ -28,6 +36,8 @@ from lib.utils import (
 
 CURRENT_DIR = Path(__file__).resolve().parent
 BASE_LANG = "en"
+BASE_SCREEN_WIDTH = 800
+BASE_COLOR_BITS = 32
 
 
 class QemuFlavor(StrEnum):
@@ -108,6 +118,29 @@ class Qemu:
             image_format="qcow2",
         )
 
+        if (
+            self.app_descr.app_reqs.screen_width != BASE_SCREEN_WIDTH
+            or self.app_descr.app_reqs.color_bits != BASE_COLOR_BITS
+        ):
+            self.set_display_params(
+                self.app_descr.app_reqs.screen_width,
+                self.app_descr.app_reqs.screen_height,
+                self.app_descr.app_reqs.color_bits,
+            )
+
+    def set_display_params(self, screen_width: int, screen_height, color_bits: int):
+        self.run_exec(
+            "QRES",
+            args=[
+                "/X",
+                screen_width,
+                "/Y",
+                screen_height,
+                "/C",
+                color_bits,
+            ],
+        )
+
     def mount(
         self,
         image_path: Path,
@@ -160,12 +193,12 @@ class Qemu:
         ]
         run_cmd(cmd, cwd=self.root_dir)
 
-    def _run(
+    def run_on_startup(
         self,
         cmd: Union[str, list[str]],
         do_exit: bool = True,
         mock: bool = False,
-        runexit_script_dir: PureWindowsPath | None = None,
+        work_dir: PureWindowsPath | None = None,
     ) -> None:
         if isinstance(cmd, str):
             cmd = [cmd]
@@ -178,12 +211,12 @@ class Qemu:
                 params=tmpl_params,
                 newline="\r\n",
             )
-            if runexit_script_dir:
-                dest_path = runexit_script_dir
+            if work_dir:
+                dest_path = work_dir
             else:
-                dest_path = "C:\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
+                dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
                 if self.conf.lang == "ru":
-                    dest_path = "C:\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
+                    dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
             self.copy(
                 tmp_runexit_bat,
                 PureWindowsPath(dest_path),
@@ -191,24 +224,32 @@ class Qemu:
         if not mock:
             self._run_qemu()
 
-    def run(
+    def run_exec(
         self,
-        path: PureWindowsPath,
+        path: PureWindowsPath | str,
         do_exit: bool = True,
         mock: bool = False,
         runexit_script_dir: PureWindowsPath | None = None,
+        args: list[Any] | None = None,
     ) -> None:
-        cmd = f'start /wait "" /D "{str(path.parent)}" "{path}"'
-        return self._run(cmd, do_exit=do_exit, mock=mock, runexit_script_dir=runexit_script_dir)
+        if isinstance(path, str):
+            path = PureWindowsPath(path)
+        if args:
+            args = [str(a) for a in args]
+        cmd = ["start", "/wait", '""', "/D", f'"{str(path.parent)}"', f'"{path}"']
+        if args:
+            cmd += args
+        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, work_dir=runexit_script_dir)
 
     def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
-        self.run(
-            exec_path, mock=True, runexit_script_dir=PureWindowsPath("D:\\APP")
-        )  # this value goes into registry so no backslashes in a path
-        self._run(
-            'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon" '
-            "/v Shell /t REG_SZ "
-            '/d "D:\\APP\\RUNEXIT.BAT" /f'
+        # just copying RUNEXIT.BAT for apps' exec into D: drive, no runs
+        self.run_exec(exec_path, mock=True, runexit_script_dir=PureWindowsPath(APP_DRIVE))
+        self.upd_reg(
+            {
+                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon": [
+                    {"Shell": PureWindowsPath(f"{APP_DRIVE}\\RUNEXIT.BAT")}
+                ]
+            }
         )
         output_path = self.root_dir / "run.sh"
         tmpl_params = {
@@ -246,7 +287,6 @@ class Qemu:
         else:
             src_img_path, src_file_path = None, Path(src)
 
-        # Destination
         if is_guest_path(dest):
             pdest = PureWindowsPath(dest)
             dst_img_path = self._get_mounted_image_path(pdest.drive.rstrip(":").upper())
@@ -255,3 +295,35 @@ class Qemu:
             dst_img_path, dst_file_path = None, Path(dest)
 
         guestfs_copy(src_img_path, src_file_path, dst_img_path, dst_file_path)
+
+    def upd_reg(self, reg_dict: dict[str, list[dict[str, str]]]) -> None:
+        with tempfile.NamedTemporaryFile(mode="w+t", newline="\r\n", encoding="utf-16", suffix=".reg") as f:
+            f.write("Windows Registry Editor Version 5.00\n\n")
+            for k, v in reg_dict.items():
+                f.write(f"[{k.replace("/", "\\")}]\n")
+                for sv in v:
+                    ((subkey, val),) = sv.items()
+                    subkey = subkey.replace("\\", "\\\\")
+                    if isinstance(val, str):
+                        val = val.replace("\\", "\\\\")  # escape
+                        val = f'"{val}"'  # quote
+                    elif isinstance(val, int):
+                        val = f"{val:>08d}"  # pad with zeroes
+                        val = f"dword:{val}"
+                    elif isinstance(val, PureWindowsPath):
+                        val = str(val).replace("\\", "\\\\")
+                        val = f'"{val}"'  # quote
+                    elif isinstance(val, (bytes, bytearray)):
+                        val = f"hex:{val.hex()}"
+                    else:
+                        raise ValueError(f"unrecognized val type: {val}")
+                    f.write(f'"{subkey}"={val}\n')
+                f.write("\n")
+            f.flush()
+
+            self.copy(
+                os.path.abspath(f.name),
+                PureWindowsPath(APP_DRIVE),
+            )
+
+            self.run_exec("regedit", args=["/s", APP_DRIVE / os.path.basename(f.name)])

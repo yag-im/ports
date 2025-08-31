@@ -163,7 +163,7 @@ class Wine:
         with tempfile.NamedTemporaryFile(mode="w+t", dir=self.root_dir / ".wine" / "drive_c") as f:
             f.write("Windows Registry Editor Version 5.00\n\n")
             for k, v in reg_dict.items():
-                f.write(f"[{k}]\n")
+                f.write(f"[{k.replace("/", "\\")}]\n")
                 for sv in v:
                     ((subkey, val),) = sv.items()
                     subkey = subkey.replace("\\", "\\\\")

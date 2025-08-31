@@ -73,3 +73,8 @@ qemu-system-x86_64 \
   -display sdl,full-screen=off,grab-mod=lshift-lctrl-lalt \
   -audiodev pa,id=pa1 \
   -device AC97,audiodev=pa1
+
+# change resolution and color depth utility
+guestfish --rw -a C -i <<EOF
+copy-in $RUNNER_SRC/utils/QRes.exe /WINDOWS
+EOF

@@ -29,9 +29,9 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
         image_path = Path(task.get("src"))
         qemu.mount(image_path=image_path, media="cdrom", letter=Path(task.get("letter")))
     elif cmd == CMD_REGEDIT:
-        pass
+        qemu.upd_reg({task.get("path"): task.get("values")})
     elif cmd == CMD_RUN:
-        qemu.run(PureWindowsPath(task.get("path")))
+        qemu.run_exec(PureWindowsPath(task.get("path")))
     elif cmd == CMD_UMOUNT:
         pass
     else:
