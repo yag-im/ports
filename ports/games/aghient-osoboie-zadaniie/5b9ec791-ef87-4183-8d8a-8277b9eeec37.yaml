@@ -25,9 +25,9 @@ descr:
       lock_pointer: true
   runner:
     # in win95 game crashes
-    name: dosbox-x
-    ver: 2024.12.04
-  ts_added: 2025-08-21 21:28:43 America/Los_Angeles
+    name: qemu
+    ver: latest
+  ts_added: 2025-08-31 21:28:43 America/Los_Angeles
   uuid: 5b9ec791-ef87-4183-8d8a-8277b9eeec37
   year_released: 2001
 installer:
@@ -36,17 +36,12 @@ installer:
         src: "{SRC_DIR}"
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
-    - dosbox:
-        flavor: WIN95OSR21
-        app_drive_size: 50
+    - qemu:
+        flavor: WINXPSP3
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
-          - run:
-              path: "{FIRST_CD_DRIVE}/Support/DX7Aeng.exe"
-          - run:
-              path: "{FIRST_CD_DRIVE}/Support/iv5setup.exe"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
           - run:
               path: "{FIRST_CD_DRIVE}/Setup.exe"
           - gen_run_script:
