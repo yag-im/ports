@@ -106,7 +106,7 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
         with tempfile.NamedTemporaryFile(mode="w+t", dir=self.x_drive, newline="\r\n") as f:
             f.write("REGEDIT4\n\n")
             for k, v in reg_dict.items():
-                f.write(f"[{k}]\n")
+                f.write(f"[{k.replace("/", "\\")}]\n")
                 for sv in v:
                     ((subkey, val),) = sv.items()
                     subkey = subkey.replace("\\", "\\\\")

@@ -70,12 +70,13 @@ def copy(src_img_path: Path | None, src_file_path: Path, dst_img_path: Path | No
 
         src_pattern = to_guestfs_path(src_file_path)
         all_files = g_src.find("/")
+        all_files = ["/" + f for f in all_files]  # because find returns files without prefix
         matched_files = [f for f in all_files if fnmatch.fnmatch(f, src_pattern)]
         if not matched_files:
             raise FileNotFoundError(f"No files match {src_file_path} in {src_img_path}")
 
         for src_file in matched_files:
-            rel_path = Path(src_file).relative_to(Path(to_guestfs_path(src_file_path).parent))
+            rel_path = Path(src_file).relative_to(Path(to_guestfs_path(src_file_path)).parent)
             dst_base = Path(dst_file_path) if dst_file_path else Path(rel_path.parent)
             dst_path = dst_base / rel_path.name
             dst_path.parent.mkdir(parents=True, exist_ok=True)
