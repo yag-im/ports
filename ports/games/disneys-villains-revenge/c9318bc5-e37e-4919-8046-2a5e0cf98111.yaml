@@ -41,8 +41,10 @@ installer:
           fullscreen: false
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              # app is able to find CDs in multiple drives, no swaps needed
+              # still in fullscreen it looks too sharpy, so running it windowed mode
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - run:
               path: "{FIRST_CD_DRIVE}/SETUP.EXE"
           - gen_run_script:

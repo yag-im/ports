@@ -4,6 +4,7 @@ from pathlib import (
 )
 
 from lib.app_desc import AppDesc
+from lib.installer.const import FIRST_CD_DRIVE_LETTER
 from lib.qemu.qemu import (
     Qemu,
     QemuConf,
@@ -26,8 +27,17 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
     elif cmd == CMD_GEN_RUN_SCRIPT:
         qemu.gen_run_script(PureWindowsPath(task.get("path")))
     elif cmd == CMD_MOUNT:
-        image_path = Path(task.get("src"))
-        qemu.mount(image_path=image_path, media="cdrom", letter=Path(task.get("letter")))
+        src = Path(task.get("src"))
+        cd_images_as_letters = task.get("cd_images_as_letters", False)
+        if cd_images_as_letters:
+            cur_letter = FIRST_CD_DRIVE_LETTER
+            image_path = Path(src / cur_letter)
+            while image_path.exists():
+                qemu.mount(image_path=image_path, media="cdrom", letter=cur_letter)
+                cur_letter = chr(ord(cur_letter) + 1)
+                image_path = Path(src / cur_letter)
+        else:
+            qemu.mount(image_path=src, media="cdrom", letter=task.get("letter"))
     elif cmd == CMD_REGEDIT:
         qemu.upd_reg({task.get("path"): task.get("values")})
     elif cmd == CMD_RUN:

@@ -113,7 +113,7 @@ class Qemu:
         )
         self.mount(
             image_path=self.root_dir / APP_DRIVE_LETTER,
-            index=2,
+            index=1,
             media="disk",
             letter=APP_DRIVE_LETTER,
             image_format="qcow2",
@@ -158,8 +158,8 @@ class Qemu:
                     tmp_iso_image = Path(td) / "tmp.iso"
                     run_cmd(["iat", image_path, tmp_iso_image])
                     move(tmp_iso_image, image_path)
-        index = len(self.mount_points) + 1 if index is None else index
-        letter = letter or chr(ord("A")) + index + 1
+        index = len(self.mount_points) if index is None else index
+        letter = letter or chr(ord("A")) + index + 2
         self.mount_points.append(
             QemuMountPoint(
                 image_path=image_path, interface=interface, index=index, media=media, letter=letter, format=image_format
