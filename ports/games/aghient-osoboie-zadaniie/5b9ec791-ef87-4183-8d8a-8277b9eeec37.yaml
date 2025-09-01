@@ -22,7 +22,7 @@ descr:
     screen_height: 600
     screen_width: 800
     ua:
-      lock_pointer: true
+      lock_pointer: false
   runner:
     # in win95 game crashes
     name: qemu

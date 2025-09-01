@@ -24,7 +24,7 @@ descr:
     ua:
       lock_pointer: true
   runner:
-    # game fails to start in wine due to 256 colors requirement
+    # game fails to start in wine and qemu due to 256 colors requirement
     name: dosbox-x
     ver: 2024.12.04
   ts_added: 2025-08-20 19:07:03 America/Los_Angeles
