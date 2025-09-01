@@ -70,7 +70,8 @@ qemu-system-x86_64 \
   -net user \
   -usbdevice tablet \
   -vga virtio \
-  -display sdl,full-screen=off,grab-mod=lshift-lctrl-lalt \
+  -display sdl \
+  -monitor vc \
   -audiodev pa,id=pa1 \
   -device AC97,audiodev=pa1
 

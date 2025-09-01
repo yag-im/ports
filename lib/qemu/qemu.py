@@ -51,7 +51,8 @@ class QemuConf:
     # Avoid using `-cpu host`. Because the cloud CPU differs from the local dev CPU,
     # OS will detect a new processor and will raise a "New hardware has been found" wizard during the first boot.
     cpu: str = "Skylake-Server,model-id=Intel"
-    _lang = BASE_LANG
+    _lang: str = BASE_LANG
+    fullscreen: bool = True
 
     @property
     def lang(self):
@@ -186,6 +187,8 @@ class Qemu:
             "virtio",
             "-display",
             "sdl",
+            "-monitor",
+            "vc",
             "-audiodev",
             "pa,id=pa1",
             "-device",
@@ -252,12 +255,16 @@ class Qemu:
             }
         )
         output_path = self.root_dir / "run.sh"
+        # some games require CD swaps and therefore a switch to qemu monitor;
+        # after returning from monitor, mouse grab may not work in a full-screen mode;
+        display = "sdl,full-screen=on" if self.conf.fullscreen else "gtk,show-menubar=off,full-screen=off,gl=on"
         tmpl_params = {
             "cpu": self.conf.cpu,
             "memory": self.conf.memory,
             "mounts": " ".join(
                 str("-drive " + mp.qemu_drive_mount_option_relative_to(self.root_dir)) for mp in self.mount_points
             ),
+            "display": display,
         }
         template(
             self.templates_dir / "run.sh.tmpl",

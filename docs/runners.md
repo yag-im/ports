@@ -257,3 +257,7 @@ Run: `runners/winxp/install.sh` script.
     dosbox-x -c "MOUNT C /mnt/data/runners/bundles/dosbox-x/win311-en" \
         -c "IMGMOUNT D /mnt/data/runners/src/win311/win3.11-en.iso -t iso" \
         -conf /mnt/data/runners/src/win311/dosbox.conf
+
+## How to swap CDs in QEMU?
+
+Ctrl + Alt + 2, type: change ide1-cd1 F, then press Ctrl + Alt + 1
