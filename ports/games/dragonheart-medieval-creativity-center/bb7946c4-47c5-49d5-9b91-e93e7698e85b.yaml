@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - DRAGONHEART.ISO
+    format: 1CD
+    url: https://archive.org/details/dragonheart_202102
+  igdb_slug: dragonheart-medieval-creativity-center
+  lang: en
+  media_assets:
+    cover:
+      image_id: bb7946c4-47c5-49d5-9b91-e93e7698e85b
+    screenshots: []
+  name: "Dragonheart: Medieval Creativity Center"
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 219851
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: "2024.12.04"
+  ts_added: 2025-09-06 08:13:09 America/Los_Angeles
+  uuid: bb7946c4-47c5-49d5-9b91-e93e7698e85b
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 10
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/XPAT.EXE"
