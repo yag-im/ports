@@ -1,9 +1,11 @@
 import os
 import stat
 import tempfile
+from abc import (
+    abstractmethod,
+)
 from dataclasses import (
     dataclass,
-    field,
 )
 from enum import StrEnum
 from pathlib import (
@@ -13,7 +15,8 @@ from pathlib import (
 from shutil import move
 from typing import (
     Any,
-    Union,
+    Protocol,
+    TypeVar,
 )
 
 from lib.app_desc import AppDesc
@@ -23,9 +26,9 @@ from lib.const import (
     SYSTEM_DRIVE_LETTER,
 )
 from lib.guestfs import copy as guestfs_copy
+from lib.guestfs import replace_string_in_file as guestfs_replace_string_in_file
 from lib.qemu.const import (
     APP_DRIVE,
-    SYSTEM_DRIVE,
 )
 from lib.utils import copy as cp
 from lib.utils import (
@@ -35,24 +38,32 @@ from lib.utils import (
 )
 
 CURRENT_DIR = Path(__file__).resolve().parent
+
 BASE_LANG = "en"
-BASE_SCREEN_WIDTH = 800
-BASE_COLOR_BITS = 32
+KNOWN_LANG = {BASE_LANG, "ru"}
+
+BASE_FULLSCREEN = True
 
 
 class QemuFlavor(StrEnum):
     WINXPSP3 = "winxpsp3"
+    WIN98SE = "win98se"
 
 
 @dataclass
 class QemuConf:
-    flavor: QemuFlavor = field(default=QemuFlavor.WINXPSP3)
-    memory: int = 1024
+    flavor: QemuFlavor
     # Avoid using `-cpu host`. Because the cloud CPU differs from the local dev CPU,
     # OS will detect a new processor and will raise a "New hardware has been found" wizard during the first boot.
-    cpu: str = "Skylake-Server,model-id=Intel"
+    cpu: str
+    memory: int
+    color_bits: int
+    screen_width: int
+    audio_device: str
     _lang: str = BASE_LANG
-    fullscreen: bool = True
+    # some games require CD swaps and therefore a switch to qemu monitor;
+    # after returning from monitor, mouse grab may not work in a full-screen mode;
+    fullscreen: bool = BASE_FULLSCREEN
 
     @property
     def lang(self):
@@ -61,7 +72,7 @@ class QemuConf:
     @lang.setter
     def lang(self, new_value):
         # only BASE_LANG and "ru" versions are supported
-        self._lang = new_value if new_value in {BASE_LANG, "ru"} else BASE_LANG
+        self._lang = new_value if new_value in KNOWN_LANG else BASE_LANG
 
 
 @dataclass
@@ -84,8 +95,16 @@ class QemuMountPoint:
         return res
 
 
-class Qemu:
-    def __init__(self, root_dir: Path, app_descr: AppDesc, conf: QemuConf = QemuConf()) -> None:
+T = TypeVar("T", bound=QemuConf)
+
+
+class Qemu((Protocol[T])):
+    def __init__(
+        self,
+        root_dir: Path,
+        app_descr: AppDesc,
+        conf: QemuConf,
+    ) -> None:
         self.root_dir = root_dir
         self.app_descr = app_descr
         self.conf = conf
@@ -120,8 +139,8 @@ class Qemu:
         )
 
         if (
-            self.app_descr.app_reqs.screen_width != BASE_SCREEN_WIDTH
-            or self.app_descr.app_reqs.color_bits != BASE_COLOR_BITS
+            self.app_descr.app_reqs.screen_width != self.conf.screen_width
+            or self.app_descr.app_reqs.color_bits != self.conf.color_bits
         ):
             self.set_display_params(
                 self.app_descr.app_reqs.screen_width,
@@ -129,18 +148,20 @@ class Qemu:
                 self.app_descr.app_reqs.color_bits,
             )
 
-    def set_display_params(self, screen_width: int, screen_height, color_bits: int):
-        self.run_exec(
-            "QRES",
-            args=[
-                "/X",
-                screen_width,
-                "/Y",
-                screen_height,
-                "/C",
-                color_bits,
-            ],
-        )
+    @abstractmethod
+    def run_exec(
+        self,
+        exec_path: PureWindowsPath | str,
+        do_exit: bool = True,
+        mock: bool = False,
+        work_dir: PureWindowsPath | None = None,  # runexit script dir for winxp
+        args: list[Any] | None = None,
+    ) -> None:
+        pass
+
+    @abstractmethod
+    def set_display_params(self, screen_width: int, screen_height: int, color_bits: int) -> None:
+        pass
 
     def mount(
         self,
@@ -177,14 +198,6 @@ class Qemu:
             str(self.conf.cpu),
             "-m",
             str(self.conf.memory),
-            "-net",
-            "nic,model=rtl8139",
-            "-net",
-            "user",
-            "-usbdevice",
-            "tablet",
-            "-vga",
-            "virtio",
             "-display",
             "sdl",
             "-monitor",
@@ -192,72 +205,20 @@ class Qemu:
             "-audiodev",
             "pa,id=pa1",
             "-device",
-            "AC97,audiodev=pa1",
+            f"{self.conf.audio_device},audiodev=pa1",
+            "-usbdevice",
+            "tablet",
         ]
+        if self.conf.flavor == QemuFlavor.WINXPSP3:
+            cmd += [
+                "-vga",
+                "virtio",
+            ]
         run_cmd(cmd, cwd=self.root_dir)
 
-    def run_on_startup(
-        self,
-        cmd: Union[str, list[str]],
-        do_exit: bool = True,
-        mock: bool = False,
-        work_dir: PureWindowsPath | None = None,
-    ) -> None:
-        if isinstance(cmd, str):
-            cmd = [cmd]
-        with tempfile.TemporaryDirectory() as td:
-            tmp_runexit_bat = Path(td) / "RUNEXIT.BAT"
-            tmpl_params = {"cmd": "\r\n".join([str(c) for c in cmd]), "exit": do_exit}
-            template(
-                self.templates_dir / "RUNEXIT.BAT.tmpl",
-                tmp_runexit_bat,
-                params=tmpl_params,
-                newline="\r\n",
-            )
-            if work_dir:
-                dest_path = work_dir
-            else:
-                dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
-                if self.conf.lang == "ru":
-                    dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
-            self.copy(
-                tmp_runexit_bat,
-                PureWindowsPath(dest_path),
-            )
-        if not mock:
-            self._run_qemu()
-
-    def run_exec(
-        self,
-        path: PureWindowsPath | str,
-        do_exit: bool = True,
-        mock: bool = False,
-        runexit_script_dir: PureWindowsPath | None = None,
-        args: list[Any] | None = None,
-    ) -> None:
-        if isinstance(path, str):
-            path = PureWindowsPath(path)
-        if args:
-            args = [str(a) for a in args]
-        cmd = ["start", "/wait", '""', "/D", f'"{str(path.parent)}"', f'"{path}"']
-        if args:
-            cmd += args
-        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, work_dir=runexit_script_dir)
-
     def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
-        # just copying RUNEXIT.BAT for apps' exec into D: drive, no runs
-        self.run_exec(exec_path, mock=True, runexit_script_dir=PureWindowsPath(APP_DRIVE))
-        self.upd_reg(
-            {
-                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon": [
-                    {"Shell": PureWindowsPath(f"{APP_DRIVE}\\RUNEXIT.BAT")}
-                ]
-            }
-        )
         output_path = self.root_dir / "run.sh"
-        # some games require CD swaps and therefore a switch to qemu monitor;
-        # after returning from monitor, mouse grab may not work in a full-screen mode;
-        display = "sdl,full-screen=on" if self.conf.fullscreen else "gtk,show-menubar=off,full-screen=off,gl=on"
+        display = "sdl,full-screen=on,gl=on" if self.conf.fullscreen else "gtk,show-menubar=off,full-screen=off,gl=on"
         tmpl_params = {
             "cpu": self.conf.cpu,
             "memory": self.conf.memory,
@@ -265,6 +226,8 @@ class Qemu:
                 str("-drive " + mp.qemu_drive_mount_option_relative_to(self.root_dir)) for mp in self.mount_points
             ),
             "display": display,
+            "audiodev": self.conf.audio_device,
+            "flavor": self.conf.flavor.name,
         }
         template(
             self.templates_dir / "run.sh.tmpl",
@@ -272,7 +235,6 @@ class Qemu:
             params=tmpl_params,
         )
         output_path.chmod(output_path.stat().st_mode | stat.S_IEXEC)
-
         return output_path
 
     def _get_mounted_image_path(self, letter: str) -> Path | None:
@@ -303,11 +265,30 @@ class Qemu:
 
         guestfs_copy(src_img_path, src_file_path, dst_img_path, dst_file_path)
 
+    def replace_string_in_file(self, guest_path: PureWindowsPath, old, new):
+        """
+        Replace a string in a file inside a guest filesystem using libguestfs.
+
+        :param guest_path: Path to the file inside the guest.
+        :param old: The string to be replaced.
+        :param new: The replacement string.
+        :param filesystem: Device inside guest to mount (default: "/dev/sda1").
+        """
+
+        src_img_path = self._get_mounted_image_path(guest_path.drive.rstrip(":").upper())
+        src_file_path = "/" + str(guest_path.relative_to(guest_path.anchor)).replace("\\", "/")
+        guestfs_replace_string_in_file(src_img_path, src_file_path, old, new)
+        print(f"Replaced '{old}' with '{new}' in {guest_path}")
+
     def upd_reg(self, reg_dict: dict[str, list[dict[str, str]]]) -> None:
         with tempfile.NamedTemporaryFile(mode="w+t", newline="\r\n", encoding="utf-16", suffix=".reg") as f:
-            f.write("Windows Registry Editor Version 5.00\n\n")
+            if self.conf.flavor == QemuFlavor.WINXPSP3:
+                f.write("Windows Registry Editor Version 5.00\n\n")
+            elif self.conf.flavor == QemuFlavor.WIN98SE:
+                f.write("REGEDIT4\n\n")
             for k, v in reg_dict.items():
-                f.write(f"[{k.replace("/", "\\")}]\n")
+                norm_k = k.replace("/", "\\")
+                f.write(f"[{norm_k}]\n")
                 for sv in v:
                     ((subkey, val),) = sv.items()
                     subkey = subkey.replace("\\", "\\\\")

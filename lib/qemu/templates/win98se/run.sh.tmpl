@@ -12,7 +12,4 @@ qemu-system-x86_64 \
   -monitor vc \
   -audiodev pa,id=pa1 \
   -device ${audiodev},audiodev=pa1 \
-  -usbdevice tablet \
-  -vga virtio \
-  -net nic,model=rtl8139 \
-  -net user
+  -usbdevice tablet

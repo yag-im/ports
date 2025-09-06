@@ -1,8 +1,9 @@
-ARG DEBIAN_VER=bookworm
+ARG DEBIAN_VER=trixie
 # https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/python/tags
-FROM mcr.microsoft.com/devcontainers/python:3.13-${DEBIAN_VER}
+# TODO: guestfs is incompatible with python > 3.11
+FROM mcr.microsoft.com/devcontainers/python:3.11-${DEBIAN_VER}
 
-ARG DOSBOX_VER=0.74-3-4
+ARG DOSBOX_VER=0.74-3-5
 ARG DOSBOX_X_VER=2024.12.04
 ARG DEBIAN_VER
 ARG DEBIAN_FRONTEND=noninteractive
@@ -11,6 +12,7 @@ ARG USERNAME=vscode
 # common
 RUN apt-get update \
     && apt install --no-install-recommends -y \
+        genisoimage \
         libguestfs-tools \
         libguestfs-dev \
         mtools \

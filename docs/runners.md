@@ -35,7 +35,7 @@
     Control panel:
         Sounds -> Schemes: No sounds
         Power management -> Turn Off Hard Disks: Never
-        Display settings -> 16 bit
+                         -> Turn Off Monitor: Never
         Mouse -> Set slowest motion speed
         Adjust Date/Time -> Timezone Tab -> Set "UTC" timezone and disable "Automatically Adjust Clock..."
             (otherwise it may popup unexpectedly interrupting execution flow)
@@ -46,9 +46,14 @@
         Hide file extensions: No
         View as webpage: No
 
+    Recycle bin:
+        Check: Do not move files to the Recycle Bin
+        Uncheck: "Display delete confirmation dialog"
+
+
 Copy [RUNEXIT.EXE](https://github.com/yag-im/runexit) into C:\WINDOWS;
 
-Copy LCOPY.EXE into C:\UTILS.
+Copy LCOPY.EXE into C:\UTILS. (skip for QEMU)
 
 Make "En" a default input language (in non-En versions).
 
@@ -66,6 +71,25 @@ Delete:
 
     C:\WINDOWS\LOGOW.SYS - removes "Please wait while Windows is shutting down" message
     C:\WINDOWS\LOGOS.SYS - removes "It is now safe to turn off your computer" message
+
+Set volume levels in the mixer to "max" for everything except the microphone.
+
+
+##### QEMU-only tweaks:
+
+If it asks for password on logon (stock version):
+    - Right-click Network Neighborhood -> Configuration -> Primary Network Logon: Windows Logon
+
+Format drive D: with label DATA
+
+Add/Remove programs -> Windows Setup:
+    - Deselect all except "DOS Command Files" and "Multimedia"
+
+Update "Display" driver with one from deps.iso (140214/064MB)
+
+Updae AC97 Audio Driver
+
+Delete C:\WINCD and C:\DRIVERS
 
 #### Structure:
 
@@ -234,7 +258,7 @@ Sources and executables of all components are available at: `runners/src/winxp`
 2. Extract official WinXP iso into folder `C:\WINDOWS_ISO` (this step should be repeated as nLite modifies content of target folder on every run)
     TODO: find out why mouse cursor is invisible with qxl driver when qemu is running in the cloud
     -3. Extract `qxl_xp_x86.zip` into the `C:\WINDOWS_ISO\qxl_xp_x86` (so nLite could find a video driver during install);-
-4. Copy `runners/winxp/files/{LANG}/LAST_SESSION*` into the same folder
+4. Copy `runners/winxp/files/nlite/{LANG}/LAST_SESSION*` into the same folder
 5. Run nLite (depends on `NetFx20SP1_x86.exe`) and point to the folder `C:\WINDOWS_ISO`
 6. Tweak settings and generate a `WinLite.iso` image
 7. Close VirtualBox VM to free a `/dev/kvm` handle
@@ -250,14 +274,34 @@ Run: `runners/winxp/install.sh` script.
 - Reboot once manually (to unlock pagefile) and remove `C:\pagefile.sys` file
 - Set master volume to max level
 
+## qemu
+
+### Windows 98SE
+
+#### Prerequisite
+
+Video drivers: https://bearwindows.zcm.com.au/vbe9x.htm:
+
+    - http://www.navozhdeniye.narod.ru/140214.zip
+
+Create iso image with dependencies:
+
+    cd /mnt/data/runners/src/win9x/win98se-en/qemu
+    genisoimage -o deps.iso deps
+
+
 # FAQ
 
-## How to install new drivers into the existing bundle?
+## dosbox-x: how to install new drivers into the existing bundle?
 
     dosbox-x -c "MOUNT C /mnt/data/runners/bundles/dosbox-x/win311-en" \
         -c "IMGMOUNT D /mnt/data/runners/src/win311/win3.11-en.iso -t iso" \
         -conf /mnt/data/runners/src/win311/dosbox.conf
 
-## How to swap CDs in QEMU?
+## qemu: how to swap CDs?
 
 Ctrl + Alt + 2, type: change ide1-cd1 F, then press Ctrl + Alt + 1
+
+## guestfish: how to copy files to/from virtual drives?
+
+    guestfish --ro -a D -m /dev/sda1:/ download /APP/tex.ini /tmp/tex.ini
