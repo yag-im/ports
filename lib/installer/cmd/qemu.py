@@ -7,8 +7,15 @@ from lib.app_desc import AppDesc
 from lib.installer.const import FIRST_CD_DRIVE_LETTER
 from lib.qemu.qemu import (
     Qemu,
-    QemuConf,
     QemuFlavor,
+)
+from lib.qemu.qemu_win9x import (
+    QemuWin9x,
+    QemuWin9xConf,
+)
+from lib.qemu.qemu_winxp import (
+    QemuWinXp,
+    QemuWinXpConf,
 )
 
 CMD_COPY = "copy"
@@ -23,7 +30,7 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
     cmd = list(task.keys())[0]
     task = task[cmd]
     if cmd == CMD_COPY:
-        qemu.copy(task.get("src"), task.get("dest"))
+        qemu.copy(Path(task.get("src")), Path(task.get("dest")))
     elif cmd == CMD_GEN_RUN_SCRIPT:
         qemu.gen_run_script(PureWindowsPath(task.get("path")))
     elif cmd == CMD_MOUNT:
@@ -41,7 +48,9 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
     elif cmd == CMD_REGEDIT:
         qemu.upd_reg({task.get("path"): task.get("values")})
     elif cmd == CMD_RUN:
-        qemu.run_exec(PureWindowsPath(task.get("path")))
+        qemu.run_exec(
+            exec_path=PureWindowsPath(task.get("path")), do_exit=task.get("exit", True), args=task.get("args", None)
+        )
     elif cmd == CMD_UMOUNT:
         pass
     else:
@@ -49,11 +58,17 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
 
 
 def run(task: dict, app_descr: AppDesc) -> None:
-    qemu_conf = task.get("conf", {})
+    input_conf = task.get("conf", {})
     flavor = QemuFlavor[str(task.get("flavor", "WINXPSP3")).upper()]
-    qemu_conf["flavor"] = flavor
+    input_conf["flavor"] = flavor
     dst_dir = app_descr.dst_path()
-    qemu = Qemu(root_dir=dst_dir, app_descr=app_descr, conf=QemuConf(**qemu_conf))
+    if flavor == QemuFlavor.WINXPSP3:
+        qemu = QemuWinXp(root_dir=dst_dir, app_descr=app_descr, conf=QemuWinXpConf(**input_conf))
+    elif flavor == QemuFlavor.WIN98SE:
+        qemu = QemuWin9x(root_dir=dst_dir, app_descr=app_descr, conf=QemuWin9xConf(**input_conf))
+    else:
+        raise ValueError(f"unrecognized flavor: {flavor}")
+
     task_: dict
     for task_ in task.get("tasks"):
         exec_subtask(task_, qemu)

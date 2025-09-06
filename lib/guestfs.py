@@ -6,6 +6,29 @@ from pathlib import Path
 import guestfs
 
 
+def replace_string_in_file(image_path: Path, guest_path: str, old, new):
+    """
+    Replace a string in a file inside a guest filesystem using libguestfs.
+
+    :param image_path: Path to the disk image file on the host.
+    :param guest_path: Path to the file inside the guest (Linux-style, e.g., "/WINDOWS/SYSTEM.INI").
+    :param old: The string to be replaced.
+    :param new: The replacement string.
+    """
+
+    g = guestfs.GuestFS(python_return_dict=True)
+    g.add_drive(str(image_path))
+    g.launch()
+    partitions = g.list_partitions()
+    g.mount(partitions[0], "/")
+    content = g.read_file(guest_path).decode("cp1252")
+    updated = re.sub(old, new, content)
+    g.write(guest_path, updated.encode("cp1252"))
+    g.sync()
+    g.umount_all()
+    g.close()
+
+
 def copy(src_img_path: Path | None, src_file_path: Path, dst_img_path: Path | None, dst_file_path: Path | None = None):
     """
     Copy files between host and virtual disk images using guestfs.
