@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Pandora Directive, The (USA) (Disc 1).bin
+      - Pandora Directive, The (USA) (Disc 2).bin
+      - Pandora Directive, The (USA) (Disc 3).bin
+      - Pandora Directive, The (USA) (Disc 4).bin
+      - Pandora Directive, The (USA) (Disc 5).bin
+      - Pandora Directive, The (USA) (Disc 6).bin
+    format: 6CD
+    url: https://archive.org/details/TexMurphyThePandoraDirectiveUSA
+  igdb_slug: tex-murphy-the-pandora-directive
+  lang: en
+  media_assets:
+  name: "Tex Murphy: The Pandora Directive"
+  platform: dos
+  publisher: Access Software
+  refs:
+    ag_id: tex-murphy-the-pandora-directive
+    lutris_id: /tex-murphy-the-pandora-directive
+    mg_id: 1454
+    pcgw_id: Tex_Murphy:_The_Pandora_Directive
+    qz_id: 300
+  reqs:
+    color_bits: 8
+    midi: true
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-09-07 23:40:46 America/Los_Angeles
+  uuid: ee211c92-bb9d-4a3e-8b9a-824cd9124000
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}INSTALL.EXE"
+          - gen_run_script:
+              path: '{APP_DIR}\TEX4.EXE'
+    - copy:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "{PORT_FILES_DIR}/CONFIG.INI"
