@@ -38,14 +38,14 @@ installer:
     - qemu:
         flavor: WINXPSP3
         conf:
+          # in fullscreen it looks too sharpy, so running in windowed mode
           fullscreen: false
         tasks:
           - mount:
-              # app is able to find CDs in multiple drives, no swaps needed
-              # still in fullscreen it looks too sharpy, so running it windowed mode
+              # app is able to find CDs in multiple drives, no swaps are required!
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
           - gen_run_script:
-              path: "{APP_DIR}/VILLAINS.EXE"
+              path: '{APP_DIR}\VILLAINS.EXE'

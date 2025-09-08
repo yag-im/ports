@@ -28,6 +28,7 @@ qemu-img create -f qcow2 C 1G
 qemu-img create -f qcow2 D 5G
 
 qemu-system-x86_64 \
+  -nodefaults \
   -drive file=C,if=ide,index=0,media=disk,format=qcow2 \
   -drive file=D,if=ide,index=1,media=disk,format=qcow2 \
   -drive file=$RUNNER_SRC/$OS_FLAVOR-$LANG/qemu/win98qi_v0.9.6_ALL.iso,if=ide,index=2,media=cdrom \
@@ -35,10 +36,10 @@ qemu-system-x86_64 \
   -enable-kvm \
   -cpu pentium2-v1 \
   -m 256 \
-  -audiodev pa,id=pa1 \
-  -device AC97,audiodev=pa1 \
   -display sdl \
   -device VGA \
+  -audiodev pa,id=pa1 \
+  -device AC97,audiodev=pa1 \
   -usbdevice tablet
 
 # Format C: and D: and create primary partitions on both drives;
@@ -48,14 +49,15 @@ qemu-system-x86_64 \
 
 # deps install
 qemu-system-x86_64 \
+  -nodefaults \
   -drive file=C,if=ide,index=0,media=disk,format=qcow2 \
   -drive file=D,if=ide,index=1,media=disk,format=qcow2 \
   -drive file=$RUNNER_SRC/$OS_FLAVOR-$LANG/qemu/deps.iso,if=ide,index=2,media=cdrom \
   -enable-kvm \
   -cpu pentium2-v1 \
   -m 256 \
-  -audiodev pa,id=pa1 \
-  -device AC97,audiodev=pa1 \
   -display sdl \
   -device VGA \
+  -audiodev pa,id=pa1 \
+  -device AC97,audiodev=pa1 \
   -usbdevice tablet

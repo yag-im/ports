@@ -50,20 +50,21 @@ installer:
                 - "{SRC_DIR}/extras/tex5b104" # 1.04 patch
           - run:
               # install manually:
-              # "{APP_DRIVE}/ffdshow_rev2322_20081114_clsid.exe" # set libavcodec for MPEG2 video decoder!
-              # "{APP_DRIVE}/DVD Express/DVDPlay/SETUP.EXE"
-              # "{APP_DRIVE}/tex5b104/Update.exe"
-              # "{FIRST_CD_DRIVE}/SETUP.EXE" # install both RSX3D and DirectX5a; it hangs on next reboot
-              # TODO: automate; find a golden sequence of commands
+              # "{APP_DRIVE}ffdshow_rev2322_20081114_clsid.exe" # set libavcodec for MPEG2 video decoder!
+              # "{APP_DRIVE}DVD Express\DVDPlay\SETUP.EXE"
+              # "{FIRST_CD_DRIVE}SETUP.EXE" # install both RSX3D and DirectX5a; it hangs on next reboot
+              # "{APP_DRIVE}tex5b104\Update.exe"
+              # TODO: automate the process; find a golden sequence of commands
+              # shut down vm
               path: "Explorer.exe"
               exit: false
           - copy:
               src: "{PORT_FILES_DIR}/Tex.ini"
               dest: "{APP_DIR}"
           - run:
-              # after reboot, make sure it runs fine
-              # most probably, videos won't play; just reinstall "{APP_DRIVE}/ffdshow_rev2322_20081114_clsid.exe" again (set libavcodec for MPEG2 video decoder!)
+              # after shut down, make sure game runs fine
+              # most probably, videos won't play; just reinstall "{APP_DRIVE}ffdshow_rev2322_20081114_clsid.exe" again (set libavcodec for MPEG2 video decoder!)
               path: "Explorer.exe"
               exit: false
           - gen_run_script:
-              path: "{APP_DIR}/OVERSEER.EXE"
+              path: '{APP_DIR}\OVERSEER.EXE'

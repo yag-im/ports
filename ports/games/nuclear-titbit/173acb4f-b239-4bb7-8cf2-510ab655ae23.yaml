@@ -39,12 +39,12 @@ installer:
         flavor: WINXPSP3
         tasks:
           - mount:
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
-              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
           - regedit:
-              path: "HKEY_CURRENT_USER\\Software\\VZlab\\Titbit"
+              path: 'HKEY_CURRENT_USER\Software\VZlab\Titbit'
               values:
                 # hex 20 = dec 32
                 - colordepth: 20
@@ -57,4 +57,4 @@ installer:
                 - useds: !!binary |
                     AA==
           - gen_run_script:
-              path: "{APP_DIR}/titbit.exe"
+              path: '{APP_DIR}\titbit.exe'

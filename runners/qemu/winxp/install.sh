@@ -59,6 +59,7 @@ EOF
 # Avoid using `-cpu host`. Because the cloud CPU differs from the local dev CPU,
 # Windows will detect a new processor and will raise a "New hardware has been found" wizard during the first boot.
 qemu-system-x86_64 \
+  -nodefaults \
   -drive file=C,if=ide,index=0,media=disk,format=qcow2 \
   -drive file=D,if=ide,index=2,media=disk,format=qcow2 \
   -drive file=$RUNNER_SRC/nlite/WinLite-$LANG.iso,if=ide,index=3,media=cdrom \
@@ -66,14 +67,12 @@ qemu-system-x86_64 \
   -enable-kvm \
   -cpu "Skylake-Server,model-id=Intel" \
   -m 1024 \
-  -net nic,model=rtl8139 \
-  -net user \
-  -usbdevice tablet \
-  -vga virtio \
   -display sdl \
-  -monitor vc \
+  -vga virtio \
   -audiodev pa,id=pa1 \
-  -device AC97,audiodev=pa1
+  -device AC97,audiodev=pa1 \
+  -usbdevice tablet \
+  -monitor vc
 
 # change resolution and color depth utility
 guestfish --rw -a C -i <<EOF

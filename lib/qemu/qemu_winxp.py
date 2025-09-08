@@ -66,13 +66,10 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
         do_exit: bool = True,
         mock: bool = False,
         work_dir: PureWindowsPath | None = None,
-        args: list[Any] = None,
     ) -> None:
         if isinstance(cmd, str):
             cmd = [cmd]
         with tempfile.TemporaryDirectory() as td:
-            if args:
-                cmd += args
             tmp_runexit_bat = Path(td) / "RUNEXIT.BAT"
             tmpl_params = {"cmd": "\r\n".join([str(c) for c in cmd]), "exit": do_exit}
             template(
@@ -108,10 +105,12 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
     ) -> None:
         if isinstance(exec_path, str):
             exec_path = PureWindowsPath(exec_path)
+
+        cmd = ["start", "/wait", '""', "/D", f'"{str(exec_path.parent)}"', f'"{exec_path}"']
         if args:
             args = [str(a) for a in args]
-        cmd = ["start", "/wait", '""', "/D", f'"{str(exec_path.parent)}"', f'"{exec_path}"']
-        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, work_dir=work_dir, args=args)
+            cmd += args
+        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, work_dir=work_dir)
 
     def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
         # just copying RUNEXIT.BAT for apps' exec into D: drive, no runs
