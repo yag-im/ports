@@ -73,7 +73,7 @@ installer:
           - "*.WAV"
           - "VOL.002"
     - copy:
-        src: "{SRC_FILES_DIR}/SETSOUND.CFG"
+        src: "{PORT_FILES_DIR}/SETSOUND.CFG"
         dest: "{DEST_APP_DIR}"
     - replace:
         path: "{DEST_APP_DIR}/RESOURCE.INI"

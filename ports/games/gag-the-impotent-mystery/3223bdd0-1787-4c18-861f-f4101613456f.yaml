@@ -64,7 +64,7 @@ installer:
                 - version: "Russian Edition Version 2.51"
           - copy:
               src:
-                - "{SRC_FILES_DIR}/GAG.EXE"
+                - "{PORT_FILES_DIR}/GAG.EXE"
               dest: "{APP_DIR}"
           - gen_run_script:
               path: "{APP_DIR}/GAG.EXE"

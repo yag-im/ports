@@ -48,5 +48,5 @@ installer:
               path: "{APP_DIR}/DS.BAT"
     - copy:
         # modified DS.BAT (added exit at the end)
-        src: "{SRC_FILES_DIR}/DS.BAT"
+        src: "{PORT_FILES_DIR}/DS.BAT"
         dest: "{DEST_APP_DIR}"

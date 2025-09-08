@@ -51,5 +51,5 @@ installer:
               path: "{APP_DIR}/LEGEND.BAT"
     - copy:
         # modified DS.BAT (added exit at the end)
-        src: "{SRC_FILES_DIR}/LEGEND.BAT"
+        src: "{PORT_FILES_DIR}/LEGEND.BAT"
         dest: "{DEST_APP_DIR}"

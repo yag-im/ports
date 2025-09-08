@@ -61,7 +61,7 @@ installer:
           - "ANGEL/PCX/LOADICON.PCX"
           - "ANGEL/PCX/SAVEICON.PCX"
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - "DIG.INI"

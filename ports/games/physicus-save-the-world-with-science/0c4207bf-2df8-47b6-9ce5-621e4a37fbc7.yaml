@@ -77,7 +77,7 @@ installer:
           - umount:
               letter: "{SECOND_CD_DRIVE_LETTER}"
           - copy:
-              src: "{SRC_FILES_DIR}/{item}"
+              src: "{PORT_FILES_DIR}/{item}"
               dest: "{APP_DIR}"
               loop:
                 - PHYDEL.INI

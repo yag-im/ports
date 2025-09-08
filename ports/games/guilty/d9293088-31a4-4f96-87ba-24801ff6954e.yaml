@@ -48,7 +48,7 @@ installer:
     # GUILTY.BAT: custom launcher with EXIT at the end
     # LANGUAGE.EXE: language selector from first part of this game
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - GUILTY.BAT

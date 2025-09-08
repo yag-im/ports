@@ -58,7 +58,7 @@ installer:
               path: "Explorer.exe"
               exit: false
           - copy:
-              src: "{SRC_FILES_DIR}/Tex.ini"
+              src: "{PORT_FILES_DIR}/Tex.ini"
               dest: "{APP_DIR}"
           - run:
               # after reboot, make sure it runs fine

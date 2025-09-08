@@ -42,7 +42,7 @@ installer:
         dest: "{DEST_APP_DIR}"
         copy_tree: True
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - "RIDDLE.CFG"

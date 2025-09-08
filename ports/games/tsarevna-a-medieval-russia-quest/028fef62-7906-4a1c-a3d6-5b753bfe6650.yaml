@@ -55,7 +55,7 @@ installer:
                 - "{FIRST_CD_DRIVE}/resource/*.vol"
               dest: "{APP_DIR}"
           - copy:
-              src: "{SRC_FILES_DIR}/sibart.cfg"
+              src: "{PORT_FILES_DIR}/sibart.cfg"
               dest: "{APP_DIR}"
           - run: # TODO: we need to run this game after install cos it alwalys fails on the very first run
               path: "{APP_DIR}/sibart.exe"

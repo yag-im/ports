@@ -58,7 +58,7 @@ installer:
           - gen_run_script:
               path: "{APP_DIR}/V2.EXE"
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_DIR}/C/VOYEURII"
         loop:
           - "DIG.INI"

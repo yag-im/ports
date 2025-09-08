@@ -144,5 +144,5 @@ installer:
           - umount:
               letter: "{FIRST_FD_DRIVE_LETTER}"
     - copy:
-        src: "{SRC_FILES_DIR}/RUN.BAT"
+        src: "{PORT_FILES_DIR}/RUN.BAT"
         dest: "{DEST_DIR}/C/DAUGHTER"

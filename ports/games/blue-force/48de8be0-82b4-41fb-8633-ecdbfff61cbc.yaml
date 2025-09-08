@@ -39,7 +39,7 @@ installer:
         path: "{DEST_APP_DIR}"
         state: directory
     - copy:
-        src: "{SRC_FILES_DIR}/TSAGE.CFG"
+        src: "{PORT_FILES_DIR}/TSAGE.CFG"
         dest: "{DEST_APP_DIR}"
     - dosbox:
         conf:

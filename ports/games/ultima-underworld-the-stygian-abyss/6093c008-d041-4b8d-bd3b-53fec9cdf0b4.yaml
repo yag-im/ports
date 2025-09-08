@@ -44,5 +44,5 @@ installer:
           - gen_run_script:
               path: "{APP_DIR}/UW.EXE"
     - copy:
-        src: "{SRC_FILES_DIR}/UW.CFG"
+        src: "{PORT_FILES_DIR}/UW.CFG"
         dest: "{DEST_APP_DIR}/DATA"
