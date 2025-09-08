@@ -42,7 +42,7 @@ installer:
         path: "{DEST_DIR}/C/INNOCENT"
         state: directory
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_DIR}/C/INNOCENT"
         loop:
           - INNOCENT.INI
@@ -51,7 +51,7 @@ installer:
         path: "{DEST_APP_DIR}/DRV"
         state: directory
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}/DRV"
         loop:
           - CT-VOICE.DRV
@@ -65,7 +65,7 @@ installer:
     #
     # IUC.BAT: orig launcher with EXIT at the end
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - IUC_PROG.*

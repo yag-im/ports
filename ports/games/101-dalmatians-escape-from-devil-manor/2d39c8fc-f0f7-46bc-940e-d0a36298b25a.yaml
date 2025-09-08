@@ -48,5 +48,5 @@ installer:
           - gen_run_script:
               path: "{APP_DIR}/WDALMAT.EXE"
     - copy:
-        src: "{SRC_FILES_DIR}/HMISET.CFG"
+        src: "{PORT_FILES_DIR}/HMISET.CFG"
         dest: "{DEST_APP_DIR}"

@@ -53,7 +53,7 @@ installer:
         src: "{DEST_APP_DIR}/CONVICT.OSM"
         dest: "{DEST_DIR}/{APP_DRIVE_LETTER}/THIEF"
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - install.cfg

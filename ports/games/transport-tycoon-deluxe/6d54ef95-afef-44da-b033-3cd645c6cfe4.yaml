@@ -50,7 +50,7 @@ installer:
               args:
                 - "{FIRST_CD_DRIVE}"
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - "SOUND.CFG"

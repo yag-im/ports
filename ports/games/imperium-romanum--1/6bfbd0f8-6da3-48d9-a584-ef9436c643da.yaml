@@ -41,7 +41,7 @@ installer:
           - gen_run_script:
               path: "{APP_DIR}/IMPERIUM.EXE"
     - copy:
-        src: "{SRC_FILES_DIR}/{item}"
+        src: "{PORT_FILES_DIR}/{item}"
         dest: "{DEST_APP_DIR}"
         loop:
           - "SOUND.CFG"

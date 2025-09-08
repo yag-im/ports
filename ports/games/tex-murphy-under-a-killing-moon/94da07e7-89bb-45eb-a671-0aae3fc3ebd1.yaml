@@ -51,7 +51,7 @@ installer:
         src: "{item}"
         dest: "{DEST_APP_DIR}"
         loop:
-          - "{SRC_FILES_DIR}/CONFIG.INI"
+          - "{PORT_FILES_DIR}/CONFIG.INI"
     - file:
         path: "{DEST_APP_DIR}/STATUS.DAT"
         state: absent # with STATUS.DAT file, all CDs drives settings are being reset on the first run

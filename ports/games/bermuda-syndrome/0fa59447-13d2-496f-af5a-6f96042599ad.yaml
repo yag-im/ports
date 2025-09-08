@@ -49,5 +49,5 @@ installer:
         path: "{DEST_APP_DIR}"
         state: directory
     - copy:
-        src: "{SRC_FILES_DIR}/BERMUDA.INI"
+        src: "{PORT_FILES_DIR}/BERMUDA.INI"
         dest: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/WINDOWS"
