@@ -34,6 +34,7 @@ class QemuWin9xConf(QemuConf):
     color_bits: int = BASE_COLOR_BITS
     screen_width: int = BASE_SCREEN_WIDTH
     audio_device: str = BASE_AUDIO_DEVICE
+    reg_file_encoding: str = "utf-8"
 
 
 class QemuWin9x(Qemu[QemuWin9xConf]):

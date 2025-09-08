@@ -92,7 +92,10 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
         raise ValueError(f"unknown runner: {app_descr.runner.name}")
     final_vars["SRC_FILES_DIR"] = str(Path(os.environ.get("PORTS_ROOT_PATH")) / "games" / app_descr.app_slug / "files")
     final_vars["descr"] = asdict(app_descr)
-    final_vars |= load_vars("lib.dosbox.const")
+    if app_descr.runner.name in ("dosbox"):
+        final_vars |= load_vars("lib.dosbox.const")
+    elif app_descr.runner.name in ("qemu"):
+        final_vars |= load_vars("lib.qemu.const")
     installer_vars = installer.get("vars", None)
     if installer_vars:
         final_vars |= installer_vars

@@ -12,4 +12,5 @@ qemu-system-x86_64 \
   -monitor vc \
   -audiodev pa,id=pa1 \
   -device ${audiodev},audiodev=pa1 \
-  -usbdevice tablet
+  -usbdevice tablet \
+  -device VGA

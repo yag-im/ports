@@ -1,7 +1,11 @@
 import glob
+import re
 import shutil
 import subprocess
-from pathlib import Path
+from pathlib import (
+    Path,
+    PureWindowsPath,
+)
 from subprocess import CalledProcessError
 from typing import (
     Dict,
@@ -126,3 +130,14 @@ def is_iso_image(file_path: Path):
         f.seek(0x8001)  # 32769 bytes offset
         signature = f.read(5)
         return signature == b"CD001"
+
+
+def windows_path(path: PureWindowsPath) -> str:
+    return str(path).replace("/", "\\")
+
+
+def is_windows_path(path: str) -> bool:
+    if not path or not isinstance(path, str):
+        return False
+    drive_pattern = re.compile(r"^[a-zA-Z]:[\\/].*")
+    return bool(drive_pattern.match(path))
