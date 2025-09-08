@@ -27,6 +27,7 @@ from lib.const import (
 )
 from lib.guestfs import copy as guestfs_copy
 from lib.guestfs import replace_string_in_file as guestfs_replace_string_in_file
+from lib.guestfs import rm as guestfs_rm
 from lib.qemu.const import (
     APP_DRIVE,
 )
@@ -60,6 +61,7 @@ class QemuConf:
     color_bits: int
     screen_width: int
     audio_device: str
+    reg_file_encoding: str
     _lang: str = BASE_LANG
     # some games require CD swaps and therefore a switch to qemu monitor;
     # after returning from monitor, mouse grab may not work in a full-screen mode;
@@ -214,6 +216,8 @@ class Qemu((Protocol[T])):
                 "-vga",
                 "virtio",
             ]
+        elif self.conf.flavor == QemuFlavor.WIN98SE:
+            cmd += ["-device", "VGA"]
         run_cmd(cmd, cwd=self.root_dir)
 
     def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
@@ -236,6 +240,12 @@ class Qemu((Protocol[T])):
         )
         output_path.chmod(output_path.stat().st_mode | stat.S_IEXEC)
         return output_path
+
+    def rm(self, path: PureWindowsPath):
+        img_path = self._get_mounted_image_path(path.drive.rstrip(":").upper())
+        file_path = "/" + str(path.relative_to(path.anchor)).replace("\\", "/")
+        print(f"removing file: '{file_path}' from image drive: '{img_path}'")
+        guestfs_rm(img_path, file_path)
 
     def _get_mounted_image_path(self, letter: str) -> Path | None:
         for mp in self.mount_points:
@@ -281,7 +291,16 @@ class Qemu((Protocol[T])):
         print(f"Replaced '{old}' with '{new}' in {guest_path}")
 
     def upd_reg(self, reg_dict: dict[str, list[dict[str, str]]]) -> None:
-        with tempfile.NamedTemporaryFile(mode="w+t", newline="\r\n", encoding="utf-16", suffix=".reg") as f:
+        def _norm_subkey(subkey):
+            subkey = subkey.replace("\\", "\\\\")
+            if subkey == "@":
+                return subkey
+            else:
+                return f'"{subkey}"'
+
+        with tempfile.NamedTemporaryFile(
+            mode="w+t", newline="\r\n", encoding=self.conf.reg_file_encoding, suffix=".reg"
+        ) as f:
             if self.conf.flavor == QemuFlavor.WINXPSP3:
                 f.write("Windows Registry Editor Version 5.00\n\n")
             elif self.conf.flavor == QemuFlavor.WIN98SE:
@@ -291,7 +310,6 @@ class Qemu((Protocol[T])):
                 f.write(f"[{norm_k}]\n")
                 for sv in v:
                     ((subkey, val),) = sv.items()
-                    subkey = subkey.replace("\\", "\\\\")
                     if isinstance(val, str):
                         val = val.replace("\\", "\\\\")  # escape
                         val = f'"{val}"'  # quote
@@ -302,16 +320,20 @@ class Qemu((Protocol[T])):
                         val = str(val).replace("\\", "\\\\")
                         val = f'"{val}"'  # quote
                     elif isinstance(val, (bytes, bytearray)):
-                        val = f"hex:{val.hex()}"
+                        val = "hex:" + ",".join(f"{b:02x}" for b in val)
                     else:
                         raise ValueError(f"unrecognized val type: {val}")
-                    f.write(f'"{subkey}"={val}\n')
+                    f.write(f"{_norm_subkey(subkey)}={val}\n")
                 f.write("\n")
             f.flush()
 
             self.copy(
                 os.path.abspath(f.name),
-                PureWindowsPath(APP_DRIVE),
+                APP_DRIVE,
             )
 
             self.run_exec("regedit", args=["/s", APP_DRIVE / os.path.basename(f.name)])
+
+            self.rm(
+                APP_DRIVE / os.path.basename(f.name),
+            )

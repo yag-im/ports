@@ -17,24 +17,24 @@ The `vars` section defines custom variables that you can use in your installer:
 
 In addition to the custom variables you define, a set of global variables available for use is listed below:
 
-    Name                   Description            Env         Example
-    DEST_DIR               Destination dir        Host        $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd
+    Name                   Description            Context     Example
     SRC_DIR                Source directory       Host        $DATA_DIR//apps_src/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd
-    DEST_APP_DIR           Destination app dir    Host        dynamic, e.g. for dosbox and wine it's: $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd/D/APP, for scummvm - drive letter is omitted
-    SRC_FILES_DIR          Source files dir       Host        $PORTS_ROOT_PATH/games/voyeur-ii/files
-    SYSTEM_DRIVE_LETTER    System drive letter    NA          C
-    APP_DRIVE_LETTER       App drive letter       NA          D
-    FIRST_CD_DRIVE_LETTER  First CD drive letter  NA          E
-    SECOND_CD_DRIVE_LETTER Second CD drive letter NA          F
-    THIRD_CD_DRIVE_LETTER  Third CD drive letter  NA          G
-    FOURTH_CD_DRIVE_LETTER Fourth CD drive letter NA          H
-    FIFTH_CD_DRIVE_LETTER  Fifth CD drive letter  NA          I
-    SYSTEM_DRIVE           System drive           DosBox      C:\
-    APP_DRIVE              App drive              DosBox      D:\
-    APP_DIR                App dir                DosBox      D:\APP
-    FIRST_CD_DRIVE         First CD drive dir     DosBox      E:\
-    SECOND_CD_DRIVE        Second CD drive dir    DosBox      F:\
-    THIRD_CD_DRIVE         Third CD drive dir     DosBox      G:\
+    DEST_DIR               Destination dir        Host        $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd
+    APP_DIR                Destination app dir    Host        dynamic, e.g. for dosbox and wine it's: $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd/D/APP, for scummvm - drive letter is omitted
+    PORT_FILES_DIR         Ports' files dir       Host        $PORTS_ROOT_PATH/games/voyeur-ii/files
+    SYSTEM_DRIVE_LETTER    System drive letter    Guest (win) C
+    APP_DRIVE_LETTER       App drive letter       Guest (win) D
+    FIRST_CD_DRIVE_LETTER  First CD drive letter  Guest (win) E
+    SECOND_CD_DRIVE_LETTER Second CD drive letter Guest (win) F
+    THIRD_CD_DRIVE_LETTER  Third CD drive letter  Guest (win) G
+    FOURTH_CD_DRIVE_LETTER Fourth CD drive letter Guest (win) H
+    FIFTH_CD_DRIVE_LETTER  Fifth CD drive letter  Guest (win) I
+    SYSTEM_DRIVE           System drive           Guest (win) C:\
+    APP_DRIVE              App drive              Guest (win) D:\
+    FIRST_CD_DRIVE         First CD drive         Guest (win) E:\
+    SECOND_CD_DRIVE        Second CD drive        Guest (win) F:\
+    THIRD_CD_DRIVE         Third CD drive         Guest (win) G:\
+    APP_DIR                App dir                Guest (win) D:\APP
 
 ## Loops
 

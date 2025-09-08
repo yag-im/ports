@@ -6,6 +6,18 @@ from pathlib import Path
 import guestfs
 
 
+def rm(image_path: Path, guest_path: str):
+    g = guestfs.GuestFS(python_return_dict=True)
+    g.add_drive(str(image_path))
+    g.launch()
+    partitions = g.list_partitions()
+    g.mount(partitions[0], "/")
+    g.rm_rf(str(guest_path))
+    g.sync()
+    g.umount_all()
+    g.close()
+
+
 def replace_string_in_file(image_path: Path, guest_path: str, old, new):
     """
     Replace a string in a file inside a guest filesystem using libguestfs.
@@ -77,6 +89,7 @@ def copy(src_img_path: Path | None, src_file_path: Path, dst_img_path: Path | No
             else:
                 g_dst.mkdir_p(str(dst_path.parent))
                 g_dst.write(str(dst_path), f.read_bytes())
+        g_dst.sync()
         g_dst.umount_all()
         g_dst.close()
         return
@@ -84,27 +97,53 @@ def copy(src_img_path: Path | None, src_file_path: Path, dst_img_path: Path | No
     # Guest -> Host
     if src_img_path is not None and dst_img_path is None:
         g_src = guestfs.GuestFS()
-        g_src.add_drive(str(src_img_path))
+        g_src.add_drive_ro(str(src_img_path))
         g_src.launch()
         partitions_src = g_src.list_partitions()
         if not partitions_src:
-            raise RuntimeError(f"No partitions found in {src_img_path}")
-        g_src.mount(partitions_src[0], "/")
+            # check if it's an iso image
+            filesystems_src = g_src.list_filesystems()
+            if filesystems_src and filesystems_src[0][1] in {"iso9660", "udf"}:
+                # important: even DVDs (udf) we should mount as CDs (iso) to avoid guestfs ufs driver issues,
+                # e.g. for LIGHTBRINGER.ISO it hangs in infinite loop with error on ls() and find() commands
+                g_src.mount_vfs("ro", "iso9660", filesystems_src[0][0], "/")
+            else:
+                raise RuntimeError(f"No devices/partitions found in {src_img_path}")
+        else:
+            g_src.mount(partitions_src[0], "/")
+        # new code
+        all_matches = []
+        src_file_path = to_guestfs_path(src_file_path)
+        if g_src.is_file(src_file_path):
+            all_matches = [src_file_path]
+        elif g_src.is_dir(src_file_path):
+            all_matches = g_src.find(src_file_path)
+            all_matches = [
+                src_file_path + f for f in all_matches
+            ]  # note: find returns files without "/" prefix for root path search, for the rest it comes with "/"
+        else:  # glob pattern "*"
+            all_files = g_src.find("/")
+            all_files = ["/" + f for f in all_files]  # because find returns files without prefix for "/" search
+            all_matches = [f for f in all_files if fnmatch.fnmatch(f, src_file_path)]
+        for f in all_matches:
+            if "*" in src_file_path:
+                base = Path(src_file_path).parent
+                target_file_path = dst_file_path
+            elif g_src.is_file(src_file_path):
+                base = Path(src_file_path).parent
+                target_file_path = dst_file_path
+            else:  # directory copy
+                base = Path(src_file_path)
+                target_file_path = dst_file_path / base.name
+            rel_path = Path(f).relative_to(base)
+            # destination path on host
+            target = target_file_path / rel_path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if g_src.is_file(f):
+                # Copy file contents
+                with open(target, "wb") as out:
+                    out.write(g_src.read_file(f))
 
-        src_pattern = to_guestfs_path(src_file_path)
-        all_files = g_src.find("/")
-        all_files = ["/" + f for f in all_files]  # because find returns files without prefix
-        matched_files = [f for f in all_files if fnmatch.fnmatch(f, src_pattern)]
-        if not matched_files:
-            raise FileNotFoundError(f"No files match {src_file_path} in {src_img_path}")
-
-        for src_file in matched_files:
-            rel_path = Path(src_file).relative_to(Path(to_guestfs_path(src_file_path)).parent)
-            dst_base = Path(dst_file_path) if dst_file_path else Path(rel_path.parent)
-            dst_path = dst_base / rel_path.name
-            dst_path.parent.mkdir(parents=True, exist_ok=True)
-            if g_src.is_file(src_file):
-                dst_path.write_bytes(g_src.read_file(src_file))
         g_src.umount_all()
         g_src.close()
         return

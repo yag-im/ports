@@ -38,12 +38,13 @@ qemu-system-x86_64 \
   -audiodev pa,id=pa1 \
   -device AC97,audiodev=pa1 \
   -display sdl \
+  -device VGA \
   -usbdevice tablet
 
 # Format C: and D: and create primary partitions on both drives;
 # Choose "Stock" image (micro image lacks PCI devices: https://github.com/oerg866/win98-quickinstall/issues/25, TODO)
 # Choose "Full harwdare detection", otherwise OS will fail with protection error message on first boot
-# After installation, shut-down immeditately, tune OS and install drivers from deps.iso below
+# After installation, shut-down immeditately to run next step: tune OS and install drivers from deps.iso below
 
 # deps install
 qemu-system-x86_64 \
@@ -56,4 +57,5 @@ qemu-system-x86_64 \
   -audiodev pa,id=pa1 \
   -device AC97,audiodev=pa1 \
   -display sdl \
+  -device VGA \
   -usbdevice tablet
