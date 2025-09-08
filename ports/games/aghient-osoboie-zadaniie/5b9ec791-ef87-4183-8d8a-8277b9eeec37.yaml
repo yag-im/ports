@@ -40,9 +40,9 @@ installer:
         flavor: WINXPSP3
         tasks:
           - mount:
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
-              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE}/Setup.exe"
+              path: "{FIRST_CD_DRIVE}Setup.exe"
           - gen_run_script:
-              path: "{APP_DIR}/Agent.exe"
+              path: '{APP_DIR}\Agent.exe'

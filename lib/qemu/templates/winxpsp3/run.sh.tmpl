@@ -4,15 +4,14 @@ CUR_DIR=$(cd `dirname $0` && pwd)
 cd $CUR_DIR
 
 qemu-system-x86_64 \
+  -nodefaults \
   ${mounts} \
   -enable-kvm \
   -cpu "${cpu}" \
   -m ${memory} \
   -display ${display} \
-  -monitor vc \
+  -vga virtio \
   -audiodev pa,id=pa1 \
   -device ${audiodev},audiodev=pa1 \
   -usbdevice tablet \
-  -vga virtio \
-  -net nic,model=rtl8139 \
-  -net user
+  -monitor vc

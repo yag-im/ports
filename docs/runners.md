@@ -269,10 +269,12 @@ Run: `runners/winxp/install.sh` script.
 
 ### After install tweaks
 
-- Set a 800x600 resolution (because of virtio glitch, which resets resolution to 640x480)
-- Format drive D: in FAT32
-- Reboot once manually (to unlock pagefile) and remove `C:\pagefile.sys` file
-- Set master volume to max level
+- Set a 800x600 resolution (because of virtio glitch, which resets resolution to 640x480);
+- Format drive D: in FAT32; optional: name D drive as "DATA", name C drive as "SYSTEM";
+- Reboot once manually (to unlock pagefile) and remove `C:\pagefile.sys` file;
+- Set volume to max level for all audio devices; mute recording;
+- Time: disable synchronization with remote server; disable auto daylight saving;
+- Hide language panel / make "En" a default language.
 
 ## qemu
 
@@ -280,15 +282,10 @@ Run: `runners/winxp/install.sh` script.
 
 #### Prerequisite
 
-Video drivers: https://bearwindows.zcm.com.au/vbe9x.htm:
-
-    - http://www.navozhdeniye.narod.ru/140214.zip
-
 Create iso image with dependencies:
 
     cd /mnt/data/runners/src/win9x/win98se-en/qemu
     genisoimage -o deps.iso deps
-
 
 # FAQ
 

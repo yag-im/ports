@@ -179,7 +179,7 @@ class Qemu((Protocol[T])):
                 # qemu supports only iso cdrom images
                 with tempfile.TemporaryDirectory() as td:
                     tmp_iso_image = Path(td) / "tmp.iso"
-                    run_cmd(["iat", image_path, tmp_iso_image])
+                    run_cmd(["iat", "-i", image_path, "-o", tmp_iso_image, "--iso"])
                     move(tmp_iso_image, image_path)
         index = len(self.mount_points) if index is None else index
         letter = letter or chr(ord("A")) + index + 2
@@ -190,34 +190,27 @@ class Qemu((Protocol[T])):
         )
 
     def _run_qemu(self) -> None:
-        cmd = ["qemu-system-x86_64"]
+        cmd = ["qemu-system-x86_64", "-nodefaults"]
         for mp in self.mount_points:
             cmd.append("-drive")
             cmd.append(mp.qemu_drive_mount_option_relative_to(self.root_dir))
+        cmd += ["-enable-kvm", "-cpu", str(self.conf.cpu), "-m", str(self.conf.memory), "-display", "sdl"]
+        # order of devices is important even with -nodefaults, so can't just append at the end
+        if self.conf.flavor == QemuFlavor.WINXPSP3:
+            cmd += ["-vga", "virtio"]
+        elif self.conf.flavor == QemuFlavor.WIN98SE:
+            cmd += ["-device", "VGA"]
         cmd += [
-            "-enable-kvm",
-            "-cpu",
-            str(self.conf.cpu),
-            "-m",
-            str(self.conf.memory),
-            "-display",
-            "sdl",
-            "-monitor",
-            "vc",
             "-audiodev",
             "pa,id=pa1",
             "-device",
             f"{self.conf.audio_device},audiodev=pa1",
             "-usbdevice",
             "tablet",
+            "-monitor",
+            "vc",
         ]
-        if self.conf.flavor == QemuFlavor.WINXPSP3:
-            cmd += [
-                "-vga",
-                "virtio",
-            ]
-        elif self.conf.flavor == QemuFlavor.WIN98SE:
-            cmd += ["-device", "VGA"]
+
         run_cmd(cmd, cwd=self.root_dir)
 
     def gen_run_script(self, exec_path: PureWindowsPath) -> Path:

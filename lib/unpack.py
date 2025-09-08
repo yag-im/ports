@@ -89,7 +89,7 @@ def unpack_disc_image(src: Path, dest: Path, extract_files: list[str] = None, cr
         # create intermediate ISO
         with tempfile.TemporaryDirectory() as td:
             tmp_iso_image = Path(td) / "tmp.iso"
-            run_cmd(["iat", src, tmp_iso_image])
+            run_cmd(["iat", "-i", src, "-o", tmp_iso_image, "--iso"])
             run_7z(tmp_iso_image, dest, extract_files)
     else:
         raise ValueError(f"Unrecognized image format: {image_format}")

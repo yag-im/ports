@@ -2,7 +2,6 @@ descr:
   distro:
     files:
       - GOSHA.mdf
-      - Vlyapli.exe
     format: 1CD
     url: https://archive.org/details/gosha_202112
   igdb_slug: vlyapli
@@ -36,18 +35,19 @@ descr:
 installer:
   tasks:
     - copy:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
     - qemu:
         flavor: WINXPSP3
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}"
           - run:
-              path: "{FIRST_CD_DRIVE}/Game/setup.exe"
+              path: '{FIRST_CD_DRIVE}Game\setup.exe'
+              cd_images_as_letters: true
           - copy:
-              src: "{SRC_DIR}/{descr[distro][files][1]}"
+              src: "{SRC_DIR}/Vlyapli.exe"
               dest: "{APP_DIR}"
           - gen_run_script:
-              path: "{APP_DIR}/Vlyapli.exe"
+              path: '{APP_DIR}\Vlyapli.exe'
