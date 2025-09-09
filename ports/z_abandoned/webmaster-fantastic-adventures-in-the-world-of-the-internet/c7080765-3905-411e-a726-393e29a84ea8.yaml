@@ -22,12 +22,14 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: true
+      lock_pointer: false
   runner:
-    # game fails to start in wine and qemu due to 256 colors requirement
-    name: dosbox-x
-    ver: 2024.12.04
-  ts_added: 2025-08-20 19:07:03 America/Los_Angeles
+    # wine: game fails to start due to 256 colors requirement
+    # dosbox: in WIN95 there are many glitches (video skips, sound drops); in WIN98 it hangs or crashes
+    # qemu: WIN98 - runs fine, but only once... TODO: check reg/file changes
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-08 08:07:03 America/Los_Angeles
   uuid: c7080765-3905-411e-a726-393e29a84ea8
   year_released: 1999
 installer:
@@ -36,13 +38,16 @@ installer:
         src: "{SRC_DIR}"
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
-    - dosbox:
-        app_drive_size: 5
-        flavor: WIN98SE # in WIN95 there are many glitches (video skips, sound drops); in WIN98 it hangs or crashes
+    - qemu:
+        flavor: WIN98SE
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: Explorer.exe
+              exit: false
+
           # - run:
           #     # select FULL install, ESSENTIAL pack is missing required "Animation Image Decompression" tools
           #     path: "{FIRST_CD_DRIVE}/QuickTime Installer/QuickTimeInstaller.exe"
