@@ -7,6 +7,10 @@ from lib.unpack import (
     unpack_archive,
     unpack_disc_image,
 )
+from lib.utils import (
+    is_iso_image,
+    is_raw_cd_img,
+)
 
 HINT_FLOPPY = "floppy"
 
@@ -28,7 +32,11 @@ def run(task: dict, app_descr: AppDesc) -> None:
         if hint == HINT_FLOPPY:
             # floppy images can have "img" extensions (like CDs), so using a hint here
             unpack_archive(src, dest, files)
-        elif src.suffix.lower()[1:] in ["iso", "nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:
+        elif (
+            src.suffix.lower()[1:] in ["iso", "nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]
+            or is_iso_image(src)
+            or is_raw_cd_img(src)
+        ):
             unpack_disc_image(src, dest, files)
         else:
             unpack_archive(src, dest, files)

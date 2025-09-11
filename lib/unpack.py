@@ -5,6 +5,8 @@ from subprocess import CalledProcessError
 
 from lib.utils import (
     copy,
+    is_iso_image,
+    is_raw_cd_img,
     move,
     run_cmd,
 )
@@ -83,9 +85,9 @@ def unpack_disc_image(src: Path, dest: Path, extract_files: list[str] = None, cr
 
     image_format = src.suffix.lower()[1:]
 
-    if image_format == "iso":
+    if image_format == "iso" or is_iso_image(src):
         run_7z(src, dest, extract_files)
-    elif image_format in ["nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"]:  # cd image
+    elif image_format in ["nrg", "mdf", "pdi", "cdi", "bin", "cue", "b5i", "img"] or is_raw_cd_img(src):  # cd image
         # create intermediate ISO
         with tempfile.TemporaryDirectory() as td:
             tmp_iso_image = Path(td) / "tmp.iso"
