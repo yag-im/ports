@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - CRUS_CD1.img
+      - CRUS_CD2.img
+      - CRUS_CD3.img
+    format: 3CD
+    url: https://d2.myabandonware.com/t/1d524793-ec6e-456b-b3d6-9786bc3f1db8/Crusader-Adventure-Out-of-Time_Win-3x_EN_Win3xO-release.zip
+  igdb_slug: crusader-adventure-out-of-time
+  lang: en
+  media_assets:
+  name: "Crusader: Adventure Out of Time"
+  platform: win
+  publisher: Europress Software
+  refs:
+    ag_id:
+    lutris_id: crusader-adventure-out-of-time
+    mg_id: 17838
+    pcgw_id:
+    qz_id: 4094
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-11 06:13:05 America/Los_Angeles
+  uuid: b92c6f5c-e9f9-4e3b-a2e6-733247ff5fe5
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}INSTALL.EXE"
+          - gen_run_script:
+              path: '{APP_DIR}\INDEX\CRUSADER\CRUSAD31.exe'

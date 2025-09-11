@@ -132,6 +132,14 @@ def is_iso_image(file_path: Path):
         return signature == b"CD001"
 
 
+def is_raw_cd_img(file_path: Path):
+    with open(file_path, "rb") as f:
+        # sector 16, after 16 bytes sync+header
+        f.seek(16 * 2352 + 16 + 1)
+        signature = f.read(5)
+        return signature == b"CD001"
+
+
 def windows_path(path: PureWindowsPath) -> str:
     return str(path).replace("/", "\\")
 
