@@ -52,4 +52,4 @@ installer:
           #     # select FULL install, ESSENTIAL pack is missing required "Animation Image Decompression" tools
           #     path: "{FIRST_CD_DRIVE}/QuickTime Installer/QuickTimeInstaller.exe"
           - gen_run_script:
-              path: "{FIRST_CD_DRIVE}/Webmaster.exe"
+              path: "{FIRST_CD_DRIVE}Webmaster.exe"

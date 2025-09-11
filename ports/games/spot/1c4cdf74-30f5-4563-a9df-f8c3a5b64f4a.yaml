@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Spot CD.img
+    format: 1CD
+    url: https://www.old-games.ru/game/download/12600.html
+  igdb_slug: spot
+  lang: ru
+  media_assets:
+  name: Пятно
+  platform: win
+  publisher: 'UD RAN "Nauka i Obrazovaniie"'
+  refs:
+    ag_id:
+    lutris_id: spot
+    mg_id:
+    pcgw_id:
+    qz_id: 318
+  reqs:
+    color_bits: 24 # 24 bits is highly recommended in README
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-09 20:05:28 America/Los_Angeles
+  uuid: 1c4cdf74-30f5-4563-a9df-f8c3a5b64f4a
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}QUICKTIM.EXE"
+          - run:
+              path: "Explorer.exe"
+              exit: false
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}SPOT.EXE"
