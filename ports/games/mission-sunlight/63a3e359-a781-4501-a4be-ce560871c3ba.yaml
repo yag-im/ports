@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Mission Sunlight (1998)(Media Factory).iso
+    format: 1CD
+    url: https://archive.org/download/mission-sunlight/Mission%20Sunlight%20%281998%29%28Media%20Factory%29.iso
+  igdb_slug: mission-sunlight
+  lang: en
+  media_assets:
+  name: Mission Sunlight
+  platform: win
+  publisher: Index+
+  refs:
+    ag_id:
+    lutris_id: mission-sunlight
+    mg_id: 100362
+    pcgw_id:
+    qz_id: 744
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true # otherwise cursor goes crazy within a game
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-10 19:33:55 America/Los_Angeles
+  uuid: 63a3e359-a781-4501-a4be-ce560871c3ba
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}dx/dx5eng.exe"
+          - run:
+              # it won't let you choose exact destination dir, so install into {APP_DRIVE}
+              # choose "minimal install"
+              path: "{FIRST_CD_DRIVE}Setup.exe"
+          - gen_run_script:
+              path: "{APP_DRIVE}/Mission/Mission.exe"
