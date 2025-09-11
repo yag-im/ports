@@ -18,6 +18,8 @@ from lib.qemu.qemu import (
     QemuFlavor,
 )
 
+# pylint: disable=useless-parent-delegation
+
 BASE_CPU = "pentium2-v1"
 BASE_MEMORY = 256
 
@@ -35,6 +37,7 @@ class QemuWin9xConf(QemuConf):
     screen_width: int = BASE_SCREEN_WIDTH
     audio_device: str = BASE_AUDIO_DEVICE
     reg_file_encoding: str = "utf-8"
+    pointer_device: str | None = None
 
 
 class QemuWin9x(Qemu[QemuWin9xConf]):

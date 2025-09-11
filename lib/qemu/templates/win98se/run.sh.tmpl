@@ -13,5 +13,7 @@ qemu-system-x86_64 \
   -device VGA \
   -audiodev pa,id=pa1 \
   -device ${audiodev},audiodev=pa1 \
-  -usbdevice tablet \
+% if 'pointerdev' in locals() and pointerdev not in (None, ''):
+  -usbdevice ${pointerdev} \
+% endif
   -monitor vc

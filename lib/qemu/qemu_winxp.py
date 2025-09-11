@@ -24,6 +24,8 @@ from lib.qemu.qemu import (
 )
 from lib.utils import template
 
+# pylint: disable=useless-parent-delegation
+
 BASE_CPU = "Skylake-Server,model-id=Intel"
 BASE_MEMORY = 1024
 
@@ -41,6 +43,7 @@ class QemuWinXpConf(QemuConf):
     screen_width: int = BASE_SCREEN_WIDTH
     audio_device: str = BASE_AUDIO_DEVICE
     reg_file_encoding: str = "utf-16"
+    pointer_device: str | None = None
 
 
 class QemuWinXp(Qemu[QemuWinXpConf]):

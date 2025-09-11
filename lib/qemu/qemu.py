@@ -62,6 +62,7 @@ class QemuConf:
     screen_width: int
     audio_device: str
     reg_file_encoding: str
+    pointer_device: str
     _lang: str = BASE_LANG
     # some games require CD swaps and therefore a switch to qemu monitor;
     # after returning from monitor, mouse grab may not work in a full-screen mode;
@@ -113,6 +114,7 @@ class Qemu((Protocol[T])):
         self.conf.lang = app_descr.lang
         self.mount_points: list[QemuMountPoint] = []
         self.templates_dir = CURRENT_DIR / "templates" / self.conf.flavor.value
+        self.conf.pointer_device = None if self.app_descr.app_reqs.ua.lock_pointer else "tablet"
 
         # copy bundled system drive image: bundles/qemu/winxp-$LANG/C -> root_dir/C
         cp(
@@ -205,11 +207,14 @@ class Qemu((Protocol[T])):
             "pa,id=pa1",
             "-device",
             f"{self.conf.audio_device},audiodev=pa1",
-            "-usbdevice",
-            "tablet",
             "-monitor",
             "vc",
         ]
+        if self.conf.pointer_device:
+            cmd += [
+                "-usbdevice",
+                f"{self.conf.pointer_device}",
+            ]
 
         run_cmd(cmd, cwd=self.root_dir)
 
@@ -225,6 +230,7 @@ class Qemu((Protocol[T])):
             "display": display,
             "audiodev": self.conf.audio_device,
             "flavor": self.conf.flavor.name,
+            "pointerdev": self.conf.pointer_device,
         }
         template(
             self.templates_dir / "run.sh.tmpl",
