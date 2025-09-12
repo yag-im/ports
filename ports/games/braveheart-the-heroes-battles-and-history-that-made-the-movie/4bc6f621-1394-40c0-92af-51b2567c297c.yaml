@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - "Braveheart_ The Heroes, Battles and History the Made the Movie!.iso"
+    format: 1CD
+    url: https://archive.org/details/braveheart-the-heroes-battles-and-history-the-made-the-movie
+  igdb_slug: braveheart-the-heroes-battles-and-history-that-made-the-movie
+  lang: en
+  media_assets:
+    cover:
+      image_id: 4bc6f621-1394-40c0-92af-51b2567c297c
+    screenshots: []
+  name: "Braveheart: The Heroes, Battles And History The Made The Movie!"
+  platform: win
+  publisher: Midisoft Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-11 15:20:48 America/Los_Angeles
+  uuid: 4bc6f621-1394-40c0-92af-51b2567c297c
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
+          - gen_run_script:
+              path: '{APP_DIR}\BRAVE.EXE'
