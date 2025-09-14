@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Voodoo Kid (InfoGrames).ISO
+    format: 1CD
+    url: https://archive.org/download/Voodoo_Kid_InfoGrames/Voodoo%20Kid%20%28InfoGrames%29.ISO
+  igdb_slug: voodoo-kid
+  lang: en
+  media_assets:
+  name: Voodoo Kid
+  platform: win
+  publisher: Infogrames Entertainment
+  refs:
+    ag_id: voodoo-kid
+    lutris_id: voodoo-kid
+    mg_id: 16006
+    pcgw_id: Voodoo_Kid
+    qz_id: 507
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-13 18:15:27 America/Los_Angeles
+  uuid: 8c134114-a977-4618-888b-4c748f4b44af
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}INSTALL\WIN32S\DISK1\SETUP.EXE' # no freecell please!
+          - run:
+              path: '{FIRST_CD_DRIVE}INSTALL\WINGFL\SETUP.EXE' # online runtime libs and no dev kit
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}VOODOO31.EXE"
