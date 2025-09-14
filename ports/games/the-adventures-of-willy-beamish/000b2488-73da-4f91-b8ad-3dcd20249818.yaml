@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - Willy Beamish (1992) (Dynamix) (MS-DOS CD) (Back up).iso
+    format: 1CD
+    url: https://archive.org/download/the-adventures-of-willy-beamish-1992-dynamix-ms-dos-cd-rom-talkie-version/Willy%20Beamish%20%281992%29%20%28Dynamix%29%20%28MS-DOS%20CD%29%20%28Back%20up%29.iso
+  igdb_slug: the-adventures-of-willy-beamish
+  lang: en
+  media_assets:
+  name: The Adventures of Willy Beamish
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: the-adventures-of-willy-beamish
+    lutris_id: the-adventures-of-willy-beamish
+    mg_id: 1916
+    pcgw_id: The_Adventures_of_Willy_Beamish
+    qz_id: 306
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x # in vanilla dosbox it fails to start with "Unable to initialize hds! mode=4, port=544" (sound config issue?)
+    ver: 2024.12.04
+  ts_added: 2025-09-13 21:13:13 America/Los_Angeles
+  uuid: 000b2488-73da-4f91-b8ad-3dcd20249818
+  year_released: 1992
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - copy:
+        src: "{PORT_FILES_DIR}/RESOURCE.CFG"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WILLY.EXE'
+              args:
+                - '{APP_DIR}\resource.cfg'
