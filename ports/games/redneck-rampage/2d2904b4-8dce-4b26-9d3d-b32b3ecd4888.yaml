@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - redneck.cue
+      - redneck.bin
+    format: 1CD
+    url: https://archive.org/details/redneck-rampage-dos
+  igdb_slug: redneck-rampage
+  lang: en
+  media_assets:
+  name: Redneck Rampage
+  platform: dos
+  publisher: Interplay Productions
+  refs:
+    ag_id:
+    lutris_id: redneck-rampage
+    mg_id: 936
+    pcgw_id: Redneck_Rampage
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-09-14 08:29:40 America/Los_Angeles
+  uuid: 2d2904b4-8dce-4b26-9d3d-b32b3ecd4888
+  year_released: 1997
+installer:
+  tasks:
+    - copy: # we need orig filenames for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\RR.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/REDNECK.CFG"
+        dest: "{DEST_APP_DIR}"
