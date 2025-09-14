@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - HOD_GB.iso
+    format: 1CD
+    url: https://archive.org/download/heart-of-darkness-1998-eng.w/HOD_GB.iso
+  igdb_slug: heart-of-darkness
+  lang: en
+  media_assets:
+    cover:
+      image_id: bb98a210-8fcd-4897-944b-4dd46cf0867e
+    screenshots: []
+  name: Heart of Darkness
+  platform: win
+  publisher: Interplay Entertainment
+  refs:
+    ag_id:
+    lutris_id: heart-of-darkness
+    mg_id: 262
+    pcgw_id: Heart_of_Darkness
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-13 19:26:36 America/Los_Angeles
+  uuid: bb98a210-8fcd-4897-944b-4dd46cf0867e
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE # fails to start in WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}HeartOfDarkness.exe" # install DirectX 7 at the end
+          - gen_run_script:
+              path: '{APP_DIR}\HODWin32.exe'

@@ -43,9 +43,9 @@ installer:
         tasks:
           - mount:
               src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}Game\setup.exe'
-              cd_images_as_letters: true
           - copy:
               src: "{SRC_DIR}/Vlyapli.exe"
               dest: "{APP_DIR}"
