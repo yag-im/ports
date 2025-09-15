@@ -25,14 +25,14 @@ descr:
     ua:
       lock_pointer: true
   runner:
-    name: dosbox
-    ver: 0.74-3
+    name: dosbox-x
+    ver: 2024.12.04
   ts_added: 2025-09-14 08:29:40 America/Los_Angeles
   uuid: 2d2904b4-8dce-4b26-9d3d-b32b3ecd4888
   year_released: 1997
 installer:
   tasks:
-    - copy: # we need orig filenames for CD-audio
+    - copy: # we need to keep orig filenames for CD-audio
         src: "{item}"
         dest: "{DEST_DIR}"
         loop:
