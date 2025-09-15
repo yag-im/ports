@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Disney Presents Ariel's Story Studio (USA).bin
+    format: 1CD
+    url: https://archive.org/details/disney-presents-ariels-story-studio-usa
+  igdb_slug: ariels-story-studio
+  lang: en
+  media_assets:
+  name: Ariel's Story Studio
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: ariels-story-studio
+    mg_id: 60329
+    pcgw_id: Ariel%27s_Story_Studio
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-15 09:18:11 America/Los_Angeles
+  uuid: 545944c3-77a1-4ee3-815d-9e3114c064b8
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3 # setup hangs in WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}ARIEL_SS.EXE"
+              args:
+                - data\boot.stm
