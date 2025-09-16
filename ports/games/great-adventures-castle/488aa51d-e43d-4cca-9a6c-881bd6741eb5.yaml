@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Great Adventures by Fisher-Price - Castle (USA).bin
+    format: 1CD
+    url: https://archive.org/details/great-adventures-by-fisher-price-castle
+  igdb_slug: great-adventures-castle
+  lang: en
+  media_assets:
+  name: "Great Adventures: Castle"
+  platform: win
+  publisher: Fisher-Price
+  refs:
+    ag_id:
+    lutris_id: great-adventures-castle
+    mg_id: 120402
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-15 23:30:26 America/Los_Angeles
+  uuid: 488aa51d-e43d-4cca-9a6c-881bd6741eb5
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE" # choose "Run from CD" type of install
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}CASTLE\CASTLE.EXE'
+              args:
+                - CASTLE.BAP
