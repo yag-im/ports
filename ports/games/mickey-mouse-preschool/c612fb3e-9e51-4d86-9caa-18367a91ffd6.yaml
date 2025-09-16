@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - DisneyMickeyMousePreschool-Win95Mac.bin
+    format: 1CD
+    url: https://archive.org/download/Disney_Mickey_Mouse_Preschool_-_Win95-Mac_Eng
+  igdb_slug: mickey-mouse-preschool
+  lang: en
+  media_assets:
+  name: Mickey Mouse Preschool
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: mickey-mouse-preschool
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-15 10:16:11 America/Los_Angeles
+  uuid: c612fb3e-9e51-4d86-9caa-18367a91ffd6
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE # doesn't work in WINXP due to 256 colors requirement
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE" # directx fails to setup, but it's ok somehow...
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LAUNCHER.EXE'

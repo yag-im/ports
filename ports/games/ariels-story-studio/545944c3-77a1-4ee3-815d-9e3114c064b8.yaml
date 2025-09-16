@@ -18,7 +18,7 @@ descr:
     qz_id:
   reqs:
     color_bits: 8
-    midi: false
+    midi: true
     screen_height: 480
     screen_width: 640
     ua:
