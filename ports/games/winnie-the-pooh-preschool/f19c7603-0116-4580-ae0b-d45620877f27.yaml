@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Winnie the Pooh Preschool.iso
+    format: 1CD
+    url: https://archive.org/download/winnie-the-pooh-preschool/Winnie%20the%20Pooh%20Preschool.iso
+  igdb_slug: winnie-the-pooh-preschool
+  lang: en
+  media_assets:
+  name: "Winnie the Pooh: Preschool"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: winnie-the-pooh-preschool
+    mg_id: 29814
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-15 22:57:46 America/Los_Angeles
+  uuid: f19c7603-0116-4580-ae0b-d45620877f27
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}Setup\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PoohP.exe'
