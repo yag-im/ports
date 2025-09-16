@@ -301,5 +301,5 @@ Ctrl + Alt + 2, type: change ide1-cd1 F, then press Ctrl + Alt + 1
 
 ## guestfish: how to copy files to/from virtual drives?
 
-    guestfish --ro -a D -m /dev/sda1:/ download /APP/tex.ini /tmp/tex.ini
-    guestfish -a C -m /dev/sda1:/ upload /tmp/tex.ini /APP/tex.ini
+    guestfish --ro -a C -m /dev/sda1:/ download /WINDOWS/SYSTEM.INI /tmp/SYSTEM.INI
+    guestfish -a C -m /dev/sda1:/ upload /tmp/SYSTEM.INI /WINDOWS/SYSTEM.INI

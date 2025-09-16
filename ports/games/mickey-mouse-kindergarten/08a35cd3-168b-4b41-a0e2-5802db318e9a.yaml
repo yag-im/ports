@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - MickeyK.iso
+    format: 1CD
+    url: https://archive.org/download/mickeyk2000/MickeyK.iso
+  igdb_slug: mickey-mouse-kindergarten
+  lang: en
+  media_assets:
+  name: Mickey Mouse Kindergarten
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: mickey-mouse-kindergarten
+    mg_id: 121106
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-15 21:37:47 America/Los_Angeles
+  uuid: 08a35cd3-168b-4b41-a0e2-5802db318e9a
+  year_released: 2000
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}Setup\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MickeyK.exe'
