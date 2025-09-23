@@ -1,0 +1,63 @@
+descr:
+  distro:
+    files:
+      - SPQ_INST.iso
+      - CD2.bin
+    format: 2CD
+    # url: https://archive.org/details/RusOperClayGame (corrupted cd 2)
+    url: https://rutracker.org/forum/viewtopic.php?t=5442324
+  igdb_slug: agent-hlina
+  lang: ru
+  media_assets:
+    cover:
+      image_id: cf18ed7a-3c60-40dd-9b9b-2808ce2f80bf
+    screenshots: []
+  name: Операция "Пластилин"
+  platform: win
+  publisher: 1C Company
+  refs:
+    ag_id:
+    lutris_id: agent-hlina
+    mg_id: 179411
+    pcgw_id:
+    qz_id: 188
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-22 19:07:30 America/Los_Angeles
+  uuid: cf18ed7a-3c60-40dd-9b9b-2808ce2f80bf
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}inst\dx6eng.exe'
+          - run:
+              path: '{FIRST_CD_DRIVE}inst\dxmed60.exe'
+          - run:
+              path: '{FIRST_CD_DRIVE}inst\Install.exe'
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - mount:
+              # TODO: for CD2.bin: new iat (0.1.7) hangs on 96% and then very slow goes to 100% producing a corrupted iso image
+              # old iat (v0.1.3) produces a valid iso from CD2.bin so replace disk 2 image manually (at APP_DIR\F)
+              src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\Spq.exe'

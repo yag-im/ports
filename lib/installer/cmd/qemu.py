@@ -52,7 +52,8 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
             exec_path=PureWindowsPath(task.get("path")), do_exit=task.get("exit", True), args=task.get("args", None)
         )
     elif cmd == CMD_UMOUNT:
-        pass
+        remove = task.get("remove", True)
+        qemu.umount(drive_letter=task.get("letter"), remove=remove)
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 
