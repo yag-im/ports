@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Mad_Dog_McCree.iso
+    format: 1CD
+    url: https://d2.myabandonware.com/t/3e731b5b-4229-4812-b2f5-43f10f4a39d7/Mad-Dog-McCree_Win_EN_ISO-Version.zip
+  igdb_slug: mad-dog-mccree
+  lang: en
+  media_assets:
+  name: Mad Dog McCree
+  platform: win
+  publisher: Digital Leisure Inc.
+  refs:
+    ag_id:
+    lutris_id: mad-dog-mccree
+    mg_id: 457
+    pcgw_id: Mad_Dog_McCree
+    qz_id:
+  reqs:
+    color_bits: 32
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-23 13:43:23 America/Los_Angeles
+  uuid: 64704bc0-f1ca-4152-844f-44f515c75ee6
+  year_released: 2002
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}MDM.exe"
