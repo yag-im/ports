@@ -34,6 +34,7 @@ from lib.qemu.const import (
 from lib.utils import copy as cp
 from lib.utils import (
     is_iso_image,
+    rm,
     run_cmd,
     template,
 )
@@ -166,6 +167,13 @@ class Qemu((Protocol[T])):
     @abstractmethod
     def set_display_params(self, screen_width: int, screen_height: int, color_bits: int) -> None:
         pass
+
+    def umount(self, drive_letter: str, remove: bool = False) -> None:
+        mp = next((x for x in self.mount_points if x.letter == drive_letter), None)
+        if mp:
+            self.mount_points.remove(mp)
+        if remove:
+            rm(mp.image_path)
 
     def mount(
         self,
