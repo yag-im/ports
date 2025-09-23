@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Chuck Jones Peter and the Wolf (Time Warner Interactive) (1994).ISO
+    format: 1CD
+    url: https://archive.org/download/Chuck_Jones_Peter_and_the_Wolf_Time_Warner_Interactive_1994/Chuck%20Jones%20Peter%20and%20the%20Wolf%20%28Time%20Warner%20Interactive%29%20%281994%29.ISO
+  igdb_slug: chuck-jones-peter-and-the-wolf
+  lang: en
+  media_assets:
+    cover:
+      image_id: 6ccc210a-e85d-458f-9be3-8179d7dfa7da
+    screenshots: []
+  name: Chuck Jones' Peter and the Wolf
+  platform: win
+  publisher: Time Warner Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 200112
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-22 18:02:53 America/Los_Angeles
+  uuid: 6ccc210a-e85d-458f-9be3-8179d7dfa7da
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/PETER.EXE"
