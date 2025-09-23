@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Wishbone and the Amazing Odyssey (1996)(Palladium Interactive)[PC-Mac].iso
+    format: 1CD
+    url: https://archive.org/download/wishbone-and-the-amazing-odyssey/Wishbone%20and%20the%20Amazing%20Odyssey%20%281996%29%28Palladium%20Interactive%29%5BPC-Mac%5D.iso
+  igdb_slug: wishbone-and-the-amazing-odyssey
+  lang: en
+  media_assets:
+  name: Wishbone and the Amazing Odyssey
+  platform: win
+  publisher: Palladium Interactive
+  refs:
+    ag_id:
+    lutris_id: wishbone-and-the-amazing-odyssey
+    mg_id: 35575
+    pcgw_id: Wishbone_and_the_Amazing_Odyssey
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-23 15:22:26 America/Los_Angeles
+  uuid: ca79f105-5e21-4fb9-9f89-41b799415ebb
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
+          - gen_run_script:
+              path: '{APP_DIR}\ODYSSEY.EXE'
