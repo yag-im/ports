@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Adventures of Down Under Dan, The (1995)(Guildsoft).iso
+    format: 1CD
+    url: https://archive.org/download/adventures-of-down-under-dan/Adventures%20of%20Down%20Under%20Dan%2C%20The%20%281995%29%28Guildsoft%29.iso
+  igdb_slug: the-adventures-of-down-under-dan
+  lang: en
+  media_assets:
+  name: The Adventures of Down Under Dan
+  platform: dos
+  publisher: Guild Software
+  refs:
+    ag_id: the-adventures-of-down-under-dan
+    lutris_id: the-adventures-of-down-under-dan
+    mg_id: 22679
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: true
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-09-23 17:31:58 America/Los_Angeles
+  uuid: a3fd688a-2f11-4bbf-9efa-2e8a644033cd
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}INSTALL.EXE"
+          - gen_run_script:
+              path: '{APP_DIR}\CDE.EXE'
+              args:
+                - BLASTER=A220,I7,D1
