@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - CASPER.iso
+    format: 1CD
+    url: https://archive.org/download/CasperActivityCenter/CASPER.iso
+  igdb_slug: casper-animated-activity-center
+  lang: en
+  media_assets:
+    cover:
+      image_id: f2539254-6926-4339-a085-100d9a2faa1c
+    screenshots: []
+  name: "Casper: Animated Activity Center"
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 96184
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-27 11:40:50 America/Los_Angeles
+  uuid: f2539254-6926-4339-a085-100d9a2faa1c
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/CASPER16.EXE"
