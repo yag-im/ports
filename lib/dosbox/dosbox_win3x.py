@@ -9,6 +9,7 @@ from pathlib import (
 from typing import (
     Any,
     List,
+    Union,
 )
 
 from lib.app_desc import AppDesc
@@ -33,6 +34,16 @@ from lib.utils import (
     replace,
     rm,
 )
+
+XCOPY_CMD = "XCOPY"
+XCOPY_CMD_OPTIONS = [
+    "/E",
+    "/Y",
+    "/H",
+    "/R",
+]
+# TODO: option "/I" should be there (see XCOPY in dosbox) but it glitches: when trying to overwrite a single existing
+# file, it thinks dest is a dir and fails to copy
 
 
 @dataclass
@@ -73,6 +84,14 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
         system_ini_file_path = self.system_drive / "WINDOWS" / "SYSTEM.INI"
         replace(system_ini_file_path, "screen-size=[0-9]+", f"screen-size={screen_width}")
         replace(system_ini_file_path, "color-format=[0-9]+", f"color-format={color_bits}")
+
+    def copy(self, src: Union[Path, List[Path], PureWindowsPath, List[PureWindowsPath]], dst: PureWindowsPath) -> None:
+        if not isinstance(src, List):
+            src = [src]
+        cmds = []
+        for s in src:
+            cmds.append(DosCmdExec(XCOPY_CMD, [s, dst, *XCOPY_CMD_OPTIONS]))
+        self._run(cmds)
 
     def run(self, path: PureWindowsPath, args: List[Any] = None, runexit=True, mock=False) -> None:
         """Runs existing app in the Win311-flavored env"""
