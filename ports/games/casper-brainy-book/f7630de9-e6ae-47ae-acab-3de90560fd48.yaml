@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - CASPERBB.iso
+    format: 1CD
+    url: https://archive.org/download/CASPERBB/CASPERBB.iso
+  igdb_slug: casper-brainy-book
+  lang: en
+  media_assets:
+  name: Casper Brainy Book
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: casper-brainy-book
+    mg_id: 200018
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-26 22:17:06 America/Los_Angeles
+  uuid: f7630de9-e6ae-47ae-acab-3de90560fd48
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE"
+          - copy:
+              # original PLSWAIT.BMP file is corrupted and causes an error message to be displayed on startup
+              src: '{FIRST_CD_DRIVE}SUPPORT\PLSWA~0.BMP'
+              dest: '{APP_DIR}\PLSWAIT.BMP'
+          - gen_run_script:
+              path: '{APP_DIR}\CASPER.EXE'
