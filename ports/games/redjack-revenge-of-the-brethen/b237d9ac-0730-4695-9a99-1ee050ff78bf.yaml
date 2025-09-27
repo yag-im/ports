@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - RJDisk1.iso
+      - RJDisk2.iso
+      - RJDisk3.iso
+    format: 3CD
+    url: https://archive.org/details/redjack_202207
+  igdb_slug: redjack-revenge-of-the-brethen
+  lang: en
+  media_assets:
+  name: "Redjack: Revenge of the Brethen"
+  platform: win
+  publisher: THQ
+  refs:
+    ag_id: redjack-revenge-of-the-brethren
+    lutris_id: redjack-revenge-of-the-brethren
+    mg_id: 4720
+    pcgw_id: Redjack:_Revenge_of_the_Brethren
+    qz_id: 542
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-09-25 11:06:15 America/Los_Angeles
+  uuid: b237d9ac-0730-4695-9a99-1ee050ff78bf
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 100
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/RedJack.exe"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/REDJACK.EXE"

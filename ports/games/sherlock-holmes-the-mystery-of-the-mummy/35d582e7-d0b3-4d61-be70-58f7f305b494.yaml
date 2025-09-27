@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - AdventureCompany-SherlockHolmesTheMysteryOfTheMummy-Eng-Win98.iso
+    format: 1CD
+    url: https://archive.org/download/Adventure_Company_Sherlock_Holmes_The_Mystery_Of_The_Mummy_Win98_2002_Eng/AdventureCompany-SherlockHolmesTheMysteryOfTheMummy-Eng-Win98.iso
+  igdb_slug: sherlock-holmes-the-mystery-of-the-mummy
+  lang: en
+  media_assets:
+  name: "Sherlock Holmes: The Mystery of the Mummy"
+  platform: win
+  publisher: The Adventure Company
+  refs:
+    ag_id: mystery-of-the-mummy
+    lutris_id: sherlock-holmes-the-mystery-of-the-mummy
+    mg_id: 7910
+    pcgw_id: Sherlock_Holmes:_The_Mystery_of_the_Mummy
+    qz_id: 107
+  reqs:
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-09-26 15:24:00 America/Los_Angeles
+  uuid: 35d582e7-d0b3-4d61-be70-58f7f305b494
+  year_released: 2002
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+    - wine:
+        os_ver: winxp
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: "TMOTM_CD"
+          - run:
+              path: "{FIRST_CD_DRIVE}SHSetup.exe"
+          - gen_run_script:
+              path: '{APP_DIR}\game.exe'

@@ -94,8 +94,10 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     final_vars["descr"] = asdict(app_descr)
     if "dosbox" in app_descr.runner.name:
         final_vars |= load_vars("lib.dosbox.const")
-    elif app_descr.runner.name in ("qemu"):
+    elif app_descr.runner.name == "qemu":
         final_vars |= load_vars("lib.qemu.const")
+    elif app_descr.runner.name == "wine":
+        final_vars |= load_vars("lib.wine.const")
     installer_vars = installer.get("vars", None)
     if installer_vars:
         final_vars |= installer_vars
