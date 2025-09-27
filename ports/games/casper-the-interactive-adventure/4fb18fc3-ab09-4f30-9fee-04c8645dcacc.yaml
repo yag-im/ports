@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Casper.iso
+    format: 1CD
+    url: https://archive.org/download/casper_202301/Casper.iso
+  igdb_slug: casper-the-interactive-adventure
+  lang: en
+  media_assets:
+  name: "Casper: The Interactive Adventure"
+  platform: win
+  publisher: Morning Star Multimedia
+  refs:
+    ag_id:
+    lutris_id: casper-the-interactive-adventure
+    mg_id: 166483
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # as per setup.exe dialog that's the best depth
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-09-27 12:40:33 America/Los_Angeles
+  uuid: 4fb18fc3-ab09-4f30-9fee-04c8645dcacc
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUPEX.EXE"
+          - gen_run_script:
+              # TODO: no way to define {APP_DIR}
+              path: '{SYSTEM_DRIVE}\Program Files\MorningStar\Casper\Casper.exe'
