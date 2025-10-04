@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - advsatcd.iso
+    format: 1CD
+    url: https://archive.org/download/advsatcd/advsatcd.iso
+  igdb_slug: adventure-at-the-chateau-dor
+  lang: en
+  media_assets:
+  name: Adventure at the Chateau d'Or
+  platform: win
+  publisher: Karma Labs
+  refs:
+    ag_id:
+    lutris_id: adventure-at-the-chateau-dor
+    mg_id: 4765
+    pcgw_id:
+    qz_id: 41
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    # in wine game periodically hangs
+    name: qemu
+    ver: latest
+  ts_added: 2025-10-04 10:12:40 America/Los_Angeles
+  uuid: 26f6f7b6-4c19-455d-ad33-d0e63bc79dd6
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe' # can't find QT4, that's OK, will install manually on next step
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install QuickTime4\QuickTimeInstaller.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\chateau.exe'
