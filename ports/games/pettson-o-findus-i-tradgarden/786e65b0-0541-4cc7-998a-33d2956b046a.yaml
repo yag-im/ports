@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - PETTSON2.iso
+    format: 1CD
+    url: https://archive.org/download/pettson-findus-tradgarden-ny-version/PETTSON2.iso
+  igdb_slug: pettson-o-findus-i-tradgarden
+  lang: sv
+  media_assets:
+  name: Pettson o Findus i Trädgården
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: pettson-o-findus-i-tradgarden
+    mg_id: 12425
+    pcgw_id: Pettson_o_Findus_i_trädgården
+    qz_id: 411
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-04 12:57:23 America/Los_Angeles
+  uuid: 786e65b0-0541-4cc7-998a-33d2956b046a
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\PETTSON2.EXE'
