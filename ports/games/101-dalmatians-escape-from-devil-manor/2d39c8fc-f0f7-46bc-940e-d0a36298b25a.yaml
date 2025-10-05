@@ -43,10 +43,10 @@ installer:
               cd_images_as_letters: true
           - run:
               # proceed with a minimal CD installation, skip QT install
-              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: "{APP_DIR}/WDALMAT.EXE"
+              path: '{APP_DIR}\WDALMAT.EXE'
     - copy:
         src: "{PORT_FILES_DIR}/HMISET.CFG"
         dest: "{DEST_APP_DIR}"
