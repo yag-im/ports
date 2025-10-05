@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Nancy Drew - Stay Tuned for Danger (USA, Canada) (Rerelease).bin
+    format: 1CD
+    url: https://archive.org/details/20220119_20220119_0400
+  igdb_slug: nancy-drew-stay-tuned-for-danger
+  lang: en
+  media_assets:
+  name: "Nancy Drew: Stay Tuned for Danger"
+  platform: win
+  publisher: DreamCatcher Interactive
+  refs:
+    ag_id: nancy-drew-stay-tuned-for-danger
+    lutris_id: nancy-drew-stay-tuned-for-danger
+    mg_id: 2425
+    pcgw_id: Nancy_Drew:_Stay_Tuned_for_Danger
+    qz_id: 133
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-10-04 19:14:26 America/Los_Angeles
+  uuid: 4b79fed6-8a9c-4a9b-a20f-59e72ced23ea
+  year_released: 2001
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CDSound
+          - CDVideo
+          - HDSound
+          - Game
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Nancy_Drew:_Stay_Tuned_for_Danger
+        tasks:
+          - gen_run_script:
+              game: nancy:nancy2
+              path: "{DEST_APP_DIR}"
