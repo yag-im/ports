@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Ghost Dogs.mdf
+    format: 1CD
+    url: https://archive.org/details/nancy.-drew.-mystery.-7.-ghost.-dogs.of.-moon.-lake.-v-1.0.2007.-her.-interactive.-cd.-7z
+  igdb_slug: nancy-drew-ghost-dogs-of-moon-lake
+  lang: en
+  media_assets:
+  name: "Nancy Drew: Ghost Dogs of Moon Lake"
+  platform: win
+  publisher: Her Interactive
+  refs:
+    ag_id: nancy-drew-ghost-dogs-of-moon-lake
+    lutris_id: nancy-drew-ghost-dogs-of-moon-lake
+    mg_id: 7816
+    pcgw_id: Nancy_Drew:_Ghost_Dogs_of_Moon_Lake
+    qz_id: 165
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    # scummvm 2.9.1 is not able to detect sound and video in this distribution from archive.org
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-10-05 19:08:12 America/Los_Angeles
+  uuid: cd630319-9176-42bb-91e8-a71e9736c081
+  year_released: 2002
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Game.exe'
