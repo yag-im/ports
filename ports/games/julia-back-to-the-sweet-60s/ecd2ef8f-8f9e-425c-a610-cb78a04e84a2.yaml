@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Julia1.mdf
+    format: 1CD
+    url: https://www.myabandonware.com/game/julia-back-to-the-sweet-60-s-gt5#download
+  igdb_slug: julia-back-to-the-sweet-60s
+  lang: en
+  media_assets:
+    cover:
+      image_id: ecd2ef8f-8f9e-425c-a610-cb78a04e84a2
+    screenshots: []
+  name: "Julia: Back to the Sweet 60's"
+  platform: win
+  publisher: Limesoft
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 95825
+    pcgw_id:
+    qz_id: 55
+  reqs:
+    color_bits: 16 # from readme
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-10-07 12:44:06 America/Los_Angeles
+  uuid: ecd2ef8f-8f9e-425c-a610-cb78a04e84a2
+  year_released: 2001
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Julia1.exe'
