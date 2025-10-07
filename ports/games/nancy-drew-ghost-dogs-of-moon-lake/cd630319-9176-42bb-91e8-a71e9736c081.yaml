@@ -44,5 +44,7 @@ installer:
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - run:
               path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
           - gen_run_script:
               path: '{APP_DIR}\Game.exe'
