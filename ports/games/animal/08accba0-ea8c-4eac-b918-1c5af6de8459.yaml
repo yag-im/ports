@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - ANIMAL.bin
+    format: 1CD
+    url: https://archive.org/details/animal-peperami
+  igdb_slug: animal
+  lang: en
+  media_assets:
+  name: Animal
+  platform: dos
+  publisher: Microtime
+  refs:
+    ag_id:
+    lutris_id: animal
+    mg_id: 21168
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-10-09 19:22:48 America/Los_Angeles
+  uuid: 08accba0-ea8c-4eac-b918-1c5af6de8459
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/ANIMAL.COM"
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "DIG.INI"
