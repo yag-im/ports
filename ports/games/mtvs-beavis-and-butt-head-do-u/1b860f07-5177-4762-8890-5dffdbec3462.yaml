@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - BUILD_32.mdf
+    format: 1CD
+    url: https://archive.org/details/MTVs_Beavis_and_Butt-Head_Do_U_USA
+  igdb_slug: mtvs-beavis-and-butt-head-do-u
+  lang: en
+  media_assets:
+  name: "MTV's Beavis and Butt-Head: Do U."
+  platform: win
+  publisher: GT Interactive Software
+  refs:
+    ag_id: beavis-butt-head-do-u
+    lutris_id: beavis-and-butt-head-do-u
+    mg_id: 3504
+    pcgw_id: Beavis_and_Butt-Head_Do_U.
+    qz_id: 592
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true # otherwise mouse doesn't work on the left side
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-10-11 12:11:57 America/Los_Angeles
+  uuid: 1b860f07-5177-4762-8890-5dffdbec3462
+  year_released: 1998
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\BEAVIS.EXE'

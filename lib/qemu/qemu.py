@@ -44,7 +44,7 @@ CURRENT_DIR = Path(__file__).resolve().parent
 BASE_LANG = "en"
 KNOWN_LANG = {BASE_LANG, "ru"}
 
-BASE_FULLSCREEN = True
+BASE_FULLSCREEN_ENABLED = True
 
 
 class QemuFlavor(StrEnum):
@@ -67,7 +67,7 @@ class QemuConf:
     _lang: str = BASE_LANG
     # some games require CD swaps and therefore a switch to qemu monitor;
     # after returning from monitor, mouse grab may not work in a full-screen mode;
-    fullscreen: bool = BASE_FULLSCREEN
+    fullscreen: bool = BASE_FULLSCREEN_ENABLED
 
     @property
     def lang(self):
