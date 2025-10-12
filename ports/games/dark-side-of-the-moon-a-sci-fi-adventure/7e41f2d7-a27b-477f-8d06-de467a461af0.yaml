@@ -1,0 +1,64 @@
+descr:
+  distro:
+    files:
+      - DSotM D1.iso
+      - DSotM D2.iso
+      - DSotM D3.iso
+      - DSotM D4.iso
+      - DSotM D5.iso
+      - DSotM D6.iso
+    format: 6CD
+    url: https://archive.org/details/dsot-m-d-3
+  igdb_slug: dark-side-of-the-moon-a-sci-fi-adventure
+  lang: en
+  media_assets:
+  name: "Dark Side of the Moon: A Sci-Fi Adventure"
+  platform: win
+  publisher: SouthPeak Interactive
+  refs:
+    ag_id: dark-side-of-the-moon
+    lutris_id: dark-side-of-the-moon
+    mg_id: 3107
+    pcgw_id: Dark Side of the Moon
+    qz_id: 431
+  reqs:
+    # from readme
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-11 20:31:03 America/Los_Angeles
+  uuid: 7e41f2d7-a27b-477f-8d06-de467a461af0
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 180
+        tasks:
+          - mount:
+              # TODO: get rid of Ctrl+F4 swap
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FIFTH_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SIXTH_CD_DRIVE_LETTER}"
+          - run:
+              # proceed with minimal install
+              path: '{FIRST_CD_DRIVE}\DSOM.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DSOM.exe'
+              exit: false
