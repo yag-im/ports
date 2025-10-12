@@ -42,6 +42,7 @@ installer:
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
     - dosbox:
+        # doesn't run in qemu/WINXP
         flavor: WIN95OSR25
         app_drive_size: 180
         tasks:
