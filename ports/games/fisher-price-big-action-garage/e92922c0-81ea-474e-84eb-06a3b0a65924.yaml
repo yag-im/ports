@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - FPGARAGE.iso
+    format: 1CD
+    url: https://archive.org/details/FPGARAGE
+  igdb_slug: fisher-price-big-action-garage
+  lang: en
+  media_assets:
+  name: "Fisher-Price: Big Action Garage"
+  platform: win
+  publisher: Fisher-Price
+  refs:
+    ag_id:
+    lutris_id: fisher-price-big-action-garage
+    mg_id: 32239
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 256 colors recommended during setup
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-10-11 21:53:29 America/Los_Angeles
+  uuid: e92922c0-81ea-474e-84eb-06a3b0a65924
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\GARAGE.EXE'
