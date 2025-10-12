@@ -29,6 +29,7 @@ In addition to the custom variables you define, a set of global variables availa
     THIRD_CD_DRIVE_LETTER  Third CD drive letter  Guest (win) G
     FOURTH_CD_DRIVE_LETTER Fourth CD drive letter Guest (win) H
     FIFTH_CD_DRIVE_LETTER  Fifth CD drive letter  Guest (win) I
+    SIXTH_CD_DRIVE_LETTER  Sixth CD drive letter  Guest (win) J
     SYSTEM_DRIVE           System drive           Guest (win) C:\
     APP_DRIVE              App drive              Guest (win) D:\
     FIRST_CD_DRIVE         First CD drive         Guest (win) E:\
