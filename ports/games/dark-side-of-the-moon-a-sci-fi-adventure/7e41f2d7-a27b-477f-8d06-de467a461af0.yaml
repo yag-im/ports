@@ -30,8 +30,9 @@ descr:
     ua:
       lock_pointer: true
   runner:
-    name: dosbox-x
-    ver: 2024.12.04
+    # in dosbox-x videos are slow and sound is chunky
+    name: qemu
+    ver: latest
   ts_added: 2025-10-11 20:31:03 America/Los_Angeles
   uuid: 7e41f2d7-a27b-477f-8d06-de467a461af0
   year_released: 1998
@@ -41,25 +42,25 @@ installer:
         src: "{SRC_DIR}"
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
-    - dosbox:
-        # doesn't run in qemu/WINXP
-        flavor: WIN95OSR25
-        app_drive_size: 180
+    - qemu:
+        # doesn't run in WINXP due to directx issues
+        flavor: WIN98SE
         tasks:
           - mount:
-              # TODO: get rid of Ctrl+F4 swap
+              # TODO: get rid of CD swaps during gameplay
               letter: "{FIRST_CD_DRIVE_LETTER}"
-              src:
-                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
-                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
-                - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
-                - "{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}"
-                - "{DEST_DIR}/{FIFTH_CD_DRIVE_LETTER}"
-                - "{DEST_DIR}/{SIXTH_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - run:
               # proceed with minimal install
               path: '{FIRST_CD_DRIVE}\DSOM.exe'
               exit: false
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              remove: false
+          - mount:
+              # game asks for the CD #2 at start, so mounting it here
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\DSOM.exe'
+              path: '{APP_DIR}\launch32.exe'
               exit: false

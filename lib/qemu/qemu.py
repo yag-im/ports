@@ -184,6 +184,7 @@ class Qemu((Protocol[T])):
         letter: str | None = None,
         image_format: str | None = None,
     ):
+        # TODO: fails to mount another drive to already mounted letter requiring an explicit umount. Bug?
         if media == "cdrom":
             if not is_iso_image(image_path):
                 # qemu supports only iso cdrom images
@@ -226,6 +227,7 @@ class Qemu((Protocol[T])):
 
         run_cmd(cmd, cwd=self.root_dir)
 
+    # check implementations for a run script inside OS
     def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
         output_path = self.root_dir / "run.sh"
         display = "sdl,full-screen=on,gl=on" if self.conf.fullscreen else "gtk,show-menubar=off,full-screen=off,gl=on"
