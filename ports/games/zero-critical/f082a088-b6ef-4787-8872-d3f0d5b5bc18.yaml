@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Zero C.cue
+      - Zero C.bin
+    format: 1CD
+    url: https://archive.org/details/zero-critical
+  igdb_slug: zero-critical
+  lang: en
+  media_assets:
+  name: Zero Critical
+  platform: win
+  publisher: Bethesda Softworks
+  refs:
+    ag_id: zero-critical
+    lutris_id: zero-critical
+    mg_id: 3219
+    pcgw_id:
+    qz_id: 1361
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-13 19:40:48 America/Los_Angeles
+  uuid: f082a088-b6ef-4787-8872-d3f0d5b5bc18
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 75
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Zero Critical.exe'
