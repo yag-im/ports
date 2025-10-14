@@ -95,6 +95,6 @@ class QemuWin9x(Qemu[QemuWin9xConf]):
             args = [str(a) for a in args]
         return self.run_on_startup(exec_path, do_exit=do_exit, mock=mock, work_dir=work_dir, args=args)
 
-    def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
-        self.run_exec(exec_path, mock=True)
+    def gen_run_script(self, exec_path: PureWindowsPath, do_exit: bool = True) -> Path:
+        self.run_exec(exec_path, do_exit=do_exit, mock=True)
         return super().gen_run_script(exec_path)
