@@ -40,7 +40,7 @@ installer:
           - "{SRC_DIR}/{descr[distro][files][1]}"
     - dosbox:
         flavor: WIN95OSR25
-        app_drive_size: 75
+        app_drive_size: 75 # APP consumes around 50MB
         tasks:
           - mount:
               src: "{DEST_DIR}/{descr[distro][files][0]}"
