@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Posel Bohů 1998 Vyrida CD RIP.iso
+    format: 1CD
+    url: https://archive.org/download/messenger-of-the-gods-posel-bohu-1998/Posel%20Boh%C5%AF%201998%20Vyrida%20CD%20RIP.iso
+  igdb_slug: posel-bohu
+  lang: cs
+  media_assets:
+    cover:
+      image_id: c87e5a43-8260-4e43-8859-47fffb62f601
+    screenshots: []
+  name: Posel Bohů
+  platform: win
+  publisher: Future Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 57183
+    pcgw_id: Posel_Bohů
+    qz_id: 200
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-10-14 21:12:29 America/Los_Angeles
+  uuid: c87e5a43-8260-4e43-8859-47fffb62f601
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\Posel-install.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Posel.exe'
