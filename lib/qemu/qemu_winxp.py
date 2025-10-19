@@ -115,9 +115,9 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
             cmd += args
         return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, work_dir=work_dir)
 
-    def gen_run_script(self, exec_path: PureWindowsPath) -> Path:
+    def gen_run_script(self, exec_path: PureWindowsPath, do_exit: bool = True) -> Path:
         # just copying RUNEXIT.BAT for apps' exec into D: drive, no runs
-        self.run_exec(exec_path, mock=True, work_dir=PureWindowsPath(APP_DRIVE))
+        self.run_exec(exec_path, do_exit=do_exit, mock=True, work_dir=PureWindowsPath(APP_DRIVE))
         self.upd_reg(
             {
                 "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon": [

@@ -89,6 +89,13 @@ class QemuMountPoint:
     format: str | None = None
 
     def qemu_drive_mount_option_relative_to(self, p_base: Path | None = None):
+        """
+        TODO: bug - first CD appears as F and second as E, chatgpt suggests a fix:
+        -drive file=E,if=none,id=cd1,media=cdrom
+        -device ide-cd,drive=cd1,bus=ide.1,unit=0
+        -drive file=F,if=none,id=cd2,media=cdrom
+        -device ide-cd,drive=cd2,bus=ide.1,unit=1
+        """
         if p_base:
             rel_path = self.image_path.relative_to(p_base)
         else:
