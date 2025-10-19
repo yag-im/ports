@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - NiBiRu - Age of Secrets (USA, Canada) (Disc 1).bin
+      - NiBiRu - Age of Secrets (USA, Canada) (Disc 2).bin
+    format: 2CD
+    url: https://archive.org/details/nibiru-age-of-secrets-usa
+  igdb_slug: nibiru-age-of-secrets
+  lang: en
+  media_assets:
+  name: "Nibiru: Age of Secrets"
+  platform: win
+  publisher: The Adventure Company
+  refs:
+    ag_id: nibiru-age-of-secrets
+    lutris_id: nibiru-age-of-secrets
+    mg_id: 17158
+    pcgw_id: NiBiRu_Age_of_Secrets
+    qz_id: 439
+  reqs:
+    color_bits: 32
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    # in wine app shows a better graphic, but in a headless mode have resolution issues
+    name: qemu
+    ver: latest
+  ts_added: 2025-10-15 19:53:33 America/Los_Angeles
+  uuid: 3000b252-dec1-4259-9362-7bdd577ac4eb
+  year_released: 2005
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - umount:
+              letter: "{SECOND_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\nibiru.exe'
