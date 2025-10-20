@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Synnergist (Europe).bin
+    format: 1CD
+    url: https://archive.org/details/SynnergistEurope
+  igdb_slug: synnergist
+  lang: en
+  media_assets:
+  name: Synnergist
+  platform: dos
+  publisher: 21st Century Entertainment
+  refs:
+    ag_id: synnergist
+    lutris_id: synnergist
+    mg_id: 9029
+    pcgw_id: Synnergist
+    qz_id: 830
+  reqs:
+    color_bits: 8
+    midi: true
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-10-19 09:21:15 America/Los_Angeles
+  uuid: 12c9a6be-b42c-4c9a-bf6e-9a2d744d1fbf
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - SYN/*
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "SYN.CFG"
+    - dosbox:
+        conf:
+          fullscreen: true
+          cycles: 6000 # with more mouse cursor blinks and leaves traces at the bottom
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{APP_DIR}\SYNN.EXE'
