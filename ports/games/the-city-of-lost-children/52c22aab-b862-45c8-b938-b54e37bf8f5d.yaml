@@ -1,0 +1,67 @@
+descr:
+  distro:
+    files:
+      # converted extensions in uppercase to comply with CUE content
+      - TCOLC.CUE
+      - TCOLC.BIN
+    format: 1CD
+    url: https://www.old-games.ru/game/download/get.php?fileid=34676&modal=1
+  igdb_slug: the-city-of-lost-children
+  lang: en
+  media_assets:
+  name: The City of Lost Children
+  platform: dos
+  publisher: Psygnosis
+  refs:
+    ag_id: the-city-of-lost-children
+    lutris_id: the-city-of-lost-children
+    mg_id: 3842
+    pcgw_id:
+    qz_id: 815
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-10-22 18:57:48 America/Los_Angeles
+  uuid: 52c22aab-b862-45c8-b938-b54e37bf8f5d
+  year_released: 1996
+installer:
+  tasks:
+    - copy: # we need to keep orig filenames for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATAS
+          - GLOBE
+          - LANGE
+          - CITE.EXE
+          - DOS4GW.EXE
+          - SBPRO.DIG
+          - TEXDATA.*
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\CITE.EXE'
+              args:
+                - "L:E"
+                - "M:E"
+    - copy:
+        src: "{PORT_FILES_DIR}/DIG.INI"
+        dest: "{DEST_APP_DIR}"
