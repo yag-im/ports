@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - ALFRED.cue
+      - ALFRED.bin
+    format: 1CD
+    url: https://www.abandonsocios.org/index.php?topic=6852.0
+  igdb_slug: alfred-pelrock
+  lang: es
+  media_assets:
+  name: Alfred Pelrock
+  platform: dos
+  publisher: Digital Dreams Multimedia
+  refs:
+    ag_id:
+    lutris_id: alfred-pelrock
+    mg_id: 14161
+    pcgw_id:
+    qz_id: 582
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-10-23 15:22:37 America/Los_Angeles
+  uuid: 5922a076-322d-4751-b12a-ba830ee2b3ab
+  year_released: 1996
+installer:
+  tasks:
+    - copy: # we need to keep orig filenames for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALAR.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\ALFRED.COM'
+    - copy:
+        src: "{PORT_FILES_DIR}/SOUND.CFG"
+        dest: "{DEST_APP_DIR}"
