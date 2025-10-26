@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - cd1.bin
+      - cd2.bin
+    format: 2CD
+    url: https://www.myabandonware.com/game/shine-fb1#download
+  igdb_slug: shine
+  lang: de
+  media_assets:
+  name: Shine
+  platform: win
+  publisher: BMG Interactive
+  refs:
+    ag_id:
+    lutris_id: shine
+    mg_id: 18828
+    pcgw_id:
+    qz_id: 5112
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-26 09:28:34 America/Los_Angeles
+  uuid: 08613275-118f-4404-9f5e-e968f97289d1
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\SHINE\SHINE.EXE'
