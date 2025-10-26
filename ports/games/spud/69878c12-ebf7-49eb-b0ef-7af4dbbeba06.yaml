@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      - Spud CD1.img
+      - Spud CD2.img
+    format: 2CD
+    url: https://archive.org/details/msdos_Spud_1996
+  igdb_slug: spud
+  lang: en
+  media_assets:
+  name: Spud!
+  platform: dos
+  publisher: Alternative Software Ltd
+  refs:
+    ag_id: spud
+    lutris_id: spud
+    mg_id: 7914
+    pcgw_id: Spud!
+    qz_id: 285
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-10-26 08:06:34 America/Los_Angeles
+  uuid: 69878c12-ebf7-49eb-b0ef-7af4dbbeba06
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+          cycles: fixed 10000 # on max characters' animation is too fast
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}SPUD1\slaov'
+              args:
+                - spud
+                - "{FIRST_CD_DRIVE}spud"
+                - "{SYSTEM_DRIVE}spud1"
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/SPUD1"
+        loop:
+          - "DIG.INI"
