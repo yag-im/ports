@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+    format: 3FD
+    url: https://archive.org/details/003286-KingsQuestQuestForTheCrown
+  igdb_slug: king-s-quest-quest-for-the-crown
+  lang: en
+  media_assets:
+  name: "King's Quest: Quest for the Crown"
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: king-s-quest-quest-for-the-crown
+    mg_id: 122
+    pcgw_id: King%27s_Quest:_Quest_for_the_Crown
+    qz_id: 618
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-10-26 15:21:54 America/Los_Angeles
+  uuid: 6d7042c2-493a-4fe6-8f9e-1117b37a4ab4
+  year_released: 1991
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=King%27s_Quest
+        tasks:
+          - gen_run_script:
+              game: sci:kq1sci
+              path: "{DEST_APP_DIR}"
