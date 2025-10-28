@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Kq1vga41c.exe
+    format: installer (exe)
+    url: https://agdinteractive.com/countdl.php?action=download&game=11
+  igdb_slug: king-s-quest-quest-for-the-crown
+  lang: en
+  media_assets:
+  name: "King's Quest: Quest for the Crown"
+  platform: win
+  publisher: AGD Interactive
+  refs:
+    ag_id:
+    lutris_id: king-s-quest-quest-for-the-crown
+    mg_id: 122
+    pcgw_id: King%27s_Quest:_Quest_for_the_Crown
+    qz_id: 618
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 240
+    screen_width: 320
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-10-26 19:44:10 America/Los_Angeles
+  uuid: 90c1f903-3ad9-463f-9c0f-6d9e935a98ea
+  year_released: 2010
+installer:
+  tasks:
+    - file:
+        path: "{DEST_APP_DIR}"
+        state: directory
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - wine:
+        os_ver: win95
+        tasks:
+          - run:
+              path: '{APP_DIR}\{descr[distro][files][0]}'
+          - gen_run_script:
+              path: '{APP_DIR}\Kq1vga.exe'
+    - file:
+        path: "{DEST_APP_DIR}/{descr[distro][files][0]}"
+        state: absent
