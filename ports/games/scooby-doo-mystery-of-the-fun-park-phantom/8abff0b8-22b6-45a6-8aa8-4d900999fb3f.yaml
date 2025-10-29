@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - SCOOBY_DOO.iso
+    format: 1CD
+    url: https://archive.org/details/scoobydoofpf99
+  igdb_slug: scooby-doo-mystery-of-the-fun-park-phantom
+  lang: en
+  media_assets:
+  name: "Scooby-Doo! Mystery of the Fun Park Phantom"
+  platform: win
+  publisher: SouthPeak Interactive
+  refs:
+    ag_id:
+    lutris_id: scooby-doo-mystery-of-the-fun-park-phantom
+    mg_id: 3194
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    # in qemu mouse cursor goes wild
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-28 06:59:18 America/Los_Angeles
+  uuid: 8abff0b8-22b6-45a6-8aa8-4d900999fb3f
+  year_released: 1999
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        # WIN95 has some DX 6 incompatibilities
+        flavor: WIN98SE
+        app_drive_size: 50
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # proceed with compact install; install DX 6 at the end
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Scooby.exe'
