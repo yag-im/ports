@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Babes in Toyland - An Interactive Adventure (1997)(MGM)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/babes-in-toyland-game/Babes%20in%20Toyland%20-%20An%20Interactive%20Adventure%20%281997%29%28MGM%29%5BMac-PC%5D.iso
+  igdb_slug: babes-in-toyland
+  lang: en
+  media_assets:
+  name: Babes in Toyland
+  platform: win
+  publisher: MGM Interactive
+  refs:
+    ag_id:
+    lutris_id: babes-in-toyland
+    mg_id: 30213
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-30 16:12:44 America/Los_Angeles
+  uuid: 4ce34f40-e26c-4471-8d3b-23d38ab30309
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BABES31.EXE'

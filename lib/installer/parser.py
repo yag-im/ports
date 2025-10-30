@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 
 from lib.app_desc import AppDesc
@@ -64,7 +65,8 @@ class Parser:
             raise ValueError(f"unknown cmd: {cmd}")
 
     def run(self, app_descr: AppDesc, installer: dict) -> None:
-        Path(app_descr.dst_path()).mkdir(parents=True, exist_ok=True)
+        shutil.rmtree(app_descr.dst_path(), ignore_errors=True)
+        Path(app_descr.dst_path()).mkdir(parents=True, exist_ok=False)
         prepare_tasks(app_descr, installer)
         tasks: list[dict] = installer.get("tasks")
         for task in tasks:
