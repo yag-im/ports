@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - INDIAN.iso
+    format: 1CD
+    url: https://archive.org/download/indian_20220523/INDIAN.iso
+  igdb_slug: the-indian-in-the-cupboard
+  lang: en
+  media_assets:
+  name: The Indian in the Cupboard
+  platform: win
+  publisher: Viacom New Media
+  refs:
+    ag_id:
+    lutris_id: the-indian-in-the-cupboard
+    mg_id: 10189
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-28 20:48:05 America/Los_Angeles
+  uuid: f6d11f68-58b6-4232-9fc6-43191fd4e5d9
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 20
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # installs only data files, exec remains on CD
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\INDIAN.EXE'
