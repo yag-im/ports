@@ -1,0 +1,75 @@
+descr:
+  distro:
+    files:
+      - Rama Disk 1.iso
+      - Rama Disk 2.iso
+      - Rama Disk 3.iso
+    format: 3CD
+    url: https://archive.org/details/rama-sierra-online-1996
+  igdb_slug: rama
+  lang: en
+  media_assets:
+  name: Rama
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: rama
+    lutris_id: rama
+    mg_id: 1255
+    pcgw_id: Rama
+    qz_id: 236
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-10-30 20:52:40 America/Los_Angeles
+  uuid: 7c6f2c2d-1c49-43b0-99ff-19793ec6452e
+  year_released: 1996
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - audio
+          - robot
+          - vmd
+          - RESOURCE.SFX
+          - RESMAP.001
+          - RESMDT.001
+          - RESSCI.001
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.001"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - audio
+          - robot
+          - vmd
+          - RESMAP.002
+          - RESMDT.002
+          - RESSCI.002
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - audio
+          - robot
+          - vmd
+          - RESMAP.003
+          - RESMDT.003
+          - RESSCI.003
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=RAMA
+        tasks:
+          - gen_run_script:
+              game: sci:rama
+              path: "{DEST_APP_DIR}"
