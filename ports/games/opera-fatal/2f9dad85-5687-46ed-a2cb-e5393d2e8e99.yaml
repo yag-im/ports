@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Opera Fatal (1996)(Heureka-Klett)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/opera-fatal/Opera%20Fatal%20%281996%29%28Heureka-Klett%29%5BMac-PC%5D.iso
+  igdb_slug: opera-fatal
+  lang: en
+  media_assets:
+  name: Opera Fatal
+  platform: win
+  publisher: HEUREKA-Klett-Softwareverlag GmbH
+  refs:
+    ag_id: opera-fatal
+    lutris_id: opera-fatal
+    mg_id: 15949
+    pcgw_id: Opera_Fatal
+    qz_id: 4101
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-10-31 20:26:51 America/Los_Angeles
+  uuid: 2f9dad85-5687-46ed-a2cb-e5393d2e8e99
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\OPERA.EXE'
