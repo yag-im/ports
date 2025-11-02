@@ -28,10 +28,54 @@ descr:
     screen_width: 640
     ua:
       lock_pointer: false
+    loading_duration: 36
   runner:
     name: wine
-    ver: "9.0"
+    ver: "10.0"
   ts_added: 2024-08-25 21:40:00 America/Los_Angeles
   uuid: e1009de8-b0be-444f-b251-7221cbd4ca3f
   year_released: 1997
-installer: null
+installer:
+  # this app is fun: installs only on win95/xp, runs only on win7 with quicktime7
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              # install into D:\APP, skip quicktime 3.0 install at the end
+              path: '{FIRST_CD_DRIVE}\Install.exe'
+          - winetricks:
+              cmd: win7
+          - winetricks:
+              cmd: quicktime76 # disable auto-updates after install, set Safe Mode (GDI only) on Advanced tab
+          - gen_run_script:
+              path: '{APP_DIR}\titanic.exe'
+    - move:
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/DATA1"
+        dest: "{DEST_APP_DIR}/data"
+    - move:
+        src: "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}/DATA2"
+        dest: "{DEST_APP_DIR}/data"
+    - move:
+        src: "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}/DATA3"
+        dest: "{DEST_APP_DIR}/data"
+    - file:
+        path: "{item}"
+        state: absent
+        loop:
+          - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - Lingo.ini
+          - Titanic.ini
