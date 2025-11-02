@@ -38,4 +38,4 @@ echo "curl --request POST \
   --header 'user-agent: vscode-restclient' \
   --data-binary '@/workspaces/ports/ports/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml'"
 echo "after local testing, run:"
-echo "/workspaces/ports/scripts/publish.sh $IGDB_SLUG $APP_RELEASE_UUID"
+echo "/workspaces/ports/scripts/publish.sh --igdb-slug=$IGDB_SLUG --release-id=$APP_RELEASE_UUID"

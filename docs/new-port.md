@@ -121,7 +121,7 @@ and app bundle installed into:
 
 Invoke:
 
-    scripts/publish.sh $IGDB_SLUG $APP_RELEASE_UUID
+    scripts/publish.sh --igdb-slug=$IGDB_SLUG --release-id=$APP_RELEASE_UUID
 
 This performs steps below:
 
