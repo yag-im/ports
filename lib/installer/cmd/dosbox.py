@@ -37,6 +37,7 @@ CMD_MOUNT = "mount"
 CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
 CMD_UMOUNT = "umount"
+CMD_EXTRACT = "extract"
 
 
 def exec_regedit(dbox: DosBoxWin9x, task: dict):
@@ -119,6 +120,11 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
         else:
             letter = task.get("letter")
             dbox.umount(letter, remove)
+    elif cmd == CMD_EXTRACT:
+        src = transform_str_path(task.get("src"))
+        dest = transform_str_path(task.get("dest"))
+        files = task.get("files", None)
+        dbox.extract(src, dest, files)
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 
