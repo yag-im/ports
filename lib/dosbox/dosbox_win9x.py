@@ -33,6 +33,7 @@ from lib.dosbox.misc import (
     DosCmdExec,
     DosMountPointHDD,
 )
+from lib.unpack import unpack_archive
 from lib.utils import copy as cp
 from lib.utils import (
     rm,
@@ -194,6 +195,14 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             else:
                 raise ValueError(f"unrecognized copy param type: {s}")
         self._run(cmds)
+
+    def extract(self, src: Path, dst: PureWindowsPath, files: List[str] = None) -> None:
+        """Extracts files from source host path into the dosbox' mounted image drive."""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            unpack_archive(src, tmp_path, extract_files=files)
+            # copy creates missing dst directory automatically
+            self.copy(tmp_path, dst)
 
     def run(
         self, path: PureWindowsPath, args: List[Any] = None, mock=False, runexit=True, umount_x=True, workdir=None

@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - Master of Dimensions CD1.iso
+      - Master of Dimensions CD2.iso
+    format: 2CD
+    url: https://www.old-games.ru/game/download/5737.html
+  igdb_slug: master-of-dimensions
+  lang: en
+  media_assets:
+  name: Master of Dimensions
+  platform: win
+  publisher: Eidos Interactive
+  refs:
+    ag_id: master-of-dimensions
+    lutris_id: master-of-dimensions
+    mg_id: 9028
+    pcgw_id: Master_of_Dimensions
+    qz_id: 4099
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-01 12:49:55 America/Los_Angeles
+  uuid: 467ade63-455a-4551-9730-8a6af91a98e5
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          cycles: fixed 20000 # without this app crashes inside the dockerized dosbox and works on the hosts' dosbox!
+        app_drive_size: 20
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # install directx at the end
+          - extract:
+              src: "{SRC_DIR}/Master_of_Dimensions_Patch.rar"
+              dest: '{APP_DIR}\PATCH'
+          - run:
+              path: '{APP_DIR}\PATCH\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Program\wadvent.exe'
+              args:
+                - "-h"
