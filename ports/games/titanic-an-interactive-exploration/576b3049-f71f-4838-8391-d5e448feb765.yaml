@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Titanic - An Interactive Exploration (USA).cue
+      - Titanic - An Interactive Exploration (USA).bin
+    format: 1CD
+    url: https://archive.org/download/philips_cd-i/Titanic%20-%20An%20Interactive%20Exploration%20%28USA%29.zip
+  igdb_slug: titanic-an-interactive-exploration
+  lang: en
+  media_assets:
+  name: "Titanic: An Interactive Exploration"
+  platform: philips-cd-i
+  publisher: Philips Interactive Media
+  refs:
+    ag_id:
+    lutris_id: titanic-an-interactive-exploration
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-11-02 14:50:36 America/Los_Angeles
+  uuid: 576b3049-f71f-4838-8391-d5e448feb765
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: same_cdi
+              file: "{descr[distro][files][0]}"
