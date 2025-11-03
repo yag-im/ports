@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - Bill and Ben.iso
+    format: 1CD
+    url: https://archive.org/download/billandben/Bill%20and%20Ben.iso
+  igdb_slug: bill-and-ben-flowerpot-fun
+  lang: en
+  media_assets:
+    cover:
+      image_id: de0b0e74-a3a9-473d-816d-c63c555b0b97
+    screenshots: []
+  name: "Bill & Ben: Flowerpot Fun!"
+  platform: win
+  publisher: BBC Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # 16 or 24 as per exec message
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-11-02 21:50:25 America/Los_Angeles
+  uuid: de0b0e74-a3a9-473d-816d-c63c555b0b97
+  year_released: 2001
+installer:
+  vars:
+    PATCH_PATH: "{SRC_DIR}/bb.exe" # unofficial wrong cd fix
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE # fails to start in WINXP (media player incompatibility?)
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - copy:
+              src: "{PATCH_PATH}"
+              dest: '{APP_DIR}\BBC Bill and Ben'
+          - gen_run_script:
+              path: '{APP_DIR}\BBC Bill and Ben\bb.exe'
