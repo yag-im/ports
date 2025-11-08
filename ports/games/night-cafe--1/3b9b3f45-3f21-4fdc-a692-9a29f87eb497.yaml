@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Night Cafe (1997)(Emme)(EN-FR)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/night-cafe/Night%20Cafe%20%281997%29%28Emme%29%28EN-FR%29%5BMac-PC%5D.iso
+  igdb_slug: night-cafe--1
+  lang: en
+  media_assets:
+  name: Night Cafe
+  platform: win
+  publisher: EMME Interactive SA
+  refs:
+    ag_id: night-cafe
+    lutris_id: night-cafe--1
+    mg_id: 21991
+    pcgw_id:
+    qz_id: 791
+  reqs:
+    color_bits: 8 # startup msg
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-08 08:26:05 America/Los_Angeles
+  uuid: 3b9b3f45-3f21-4fdc-a692-9a29f87eb497
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\NCAFE\CAFE31.EXE'
