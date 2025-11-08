@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - PRINCESS.iso
+    format: 1CD
+    url: https://archive.org/download/princesscrabwin/PRINCESS.iso
+  igdb_slug: magic-tales-the-princess-and-the-crab
+  lang: en
+  media_assets:
+    cover:
+      image_id: 4edb763f-667e-4f5b-9226-e43155266809
+    screenshots: []
+  name: "Magic Tales: The Princess and the Crab"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 124453
+    pcgw_id: The_Princess_and_the_Crab
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-03 20:27:35 America/Los_Angeles
+  uuid: 4edb763f-667e-4f5b-9226-e43155266809
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PROGRAMS\PRINCESS.EXE'
+              exit: false
