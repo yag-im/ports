@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Zero Zone (1998)(Cryo Interactive).iso
+    format: 1CD
+    url: https://archive.org/download/zero-zone/Zero%20Zone%20%281998%29%28Cryo%20Interactive%29.iso
+  igdb_slug: zero-zone
+  lang: en
+  media_assets:
+  name: Zero Zone
+  platform: win
+  publisher: Cryo Interactive
+  refs:
+    ag_id: zero-zone
+    lutris_id: zero-zone
+    mg_id: 4886
+    pcgw_id:
+    qz_id: 790
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-11-08 09:25:01 America/Los_Angeles
+  uuid: 7101efc9-8bcc-4377-851e-eea16927a459
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ZeroZone.EXE' # game runs only from CD
