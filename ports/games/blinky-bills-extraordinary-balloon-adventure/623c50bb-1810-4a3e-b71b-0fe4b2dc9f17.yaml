@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - BALLOON.iso
+    format: 1CD
+    url: https://archive.org/download/balloon1997/BALLOON.iso
+  igdb_slug: blinky-bills-extraordinary-balloon-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: 623c50bb-1810-4a3e-b71b-0fe4b2dc9f17
+    screenshots: []
+  name: Blinky Bill's Extraordinary Balloon Adventure
+  platform: win
+  publisher: Roadshow Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from MANUAL.PDF on CD
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-09 09:02:16 America/Los_Angeles
+  uuid: 623c50bb-1810-4a3e-b71b-0fe4b2dc9f17
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Balloon.exe'
