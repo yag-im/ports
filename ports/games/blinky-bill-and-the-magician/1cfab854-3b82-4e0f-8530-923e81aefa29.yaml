@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Blinky.iso
+    format: 1CD
+    url: https://archive.org/download/blinkymagician/Blinky.iso
+  igdb_slug: blinky-bill-and-the-magician
+  lang: en
+  media_assets:
+    cover:
+      image_id: 1cfab854-3b82-4e0f-8530-923e81aefa29
+    screenshots: []
+  name: Blinky Bill and the Magician
+  platform: win
+  publisher: Roadshow Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 59962
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-09 12:45:24 America/Los_Angeles
+  uuid: 1cfab854-3b82-4e0f-8530-923e81aefa29
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MAGICIAN.EXE'
