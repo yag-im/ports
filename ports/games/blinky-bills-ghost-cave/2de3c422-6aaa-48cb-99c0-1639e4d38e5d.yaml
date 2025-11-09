@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - GHOST.iso
+    format: 1CD
+    url: https://archive.org/details/ghost1996
+  igdb_slug: blinky-bills-ghost-cave
+  lang: en
+  media_assets:
+  name: Blinky Bill's Ghost Cave
+  platform: win
+  publisher: Roadshow Interactive
+  refs:
+    ag_id:
+    lutris_id: blinky-bills-ghost-cave
+    mg_id: 196304
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from MANUAL.PDF on CD
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-09 10:00:52 America/Los_Angeles
+  uuid: 2de3c422-6aaa-48cb-99c0-1639e4d38e5d
+  year_released: 1997
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BLINKY.EXE'
