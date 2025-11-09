@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Snow White and the Seven Hansels (1998)(Tivola)(en-de)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/snow-white-and-the-seven-hansels/Snow%20White%20and%20the%20Seven%20Hansels%20%281998%29%28Tivola%29%28en-de%29%5BMac-PC%5D.iso
+  igdb_slug: snow-white-and-the-seven-hansels
+  lang: en-de
+  media_assets:
+    cover:
+      image_id: 96092d59-ef68-4960-82f9-958b71693dc0
+    screenshots: []
+  name: Snow White and the Seven Hansels
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 177598
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-09 13:05:47 America/Los_Angeles
+  uuid: 96092d59-ef68-4960-82f9-958b71693dc0
+  year_released: 1998
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SNW7HAN.EXE'
