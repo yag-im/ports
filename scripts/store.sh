@@ -36,9 +36,10 @@ AWS_BUCKET_NAME=yag-im-ports
 # first host is a master appstor node (us-east-1)
 APPSTOR_HOSTS="192.168.12.200,192.168.13.200"
 APPSTOR_USER=debian
-APPSTOR_APPS_PATH=/opt/yag/data/appstor/apps
-APPSTOR_CLONES_PATH=/opt/yag/data/appstor/clones
-APPSTOR_TMP_PATH=/tmp
+APPSTOR_DATA_PATH=/opt/yag/data/appstor
+APPSTOR_APPS_PATH=$APPSTOR_DATA_PATH/apps
+APPSTOR_CLONES_PATH=$APPSTOR_DATA_PATH/clones
+APPSTOR_TMP_PATH=$APPSTOR_DATA_PATH/tmp
 
 APP_ARCH_NAME=""
 
