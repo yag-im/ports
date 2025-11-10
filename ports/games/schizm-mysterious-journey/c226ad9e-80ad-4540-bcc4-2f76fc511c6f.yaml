@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Schizm - Mysterious Journey (USA) (Side A).iso
+      - Schizm - Mysterious Journey (USA) (Side B).iso
+    format: DVD-10
+    url: https://archive.org/details/schizm-mysterious-journey-usa
+  igdb_slug: schizm-mysterious-journey
+  lang: en
+  media_assets:
+  name: "Schizm: Mysterious Journey"
+  platform: win
+  publisher: LK Avalon
+  refs:
+    ag_id: schizm-mysterious-journey
+    lutris_id: schizm-mysterious-journey
+    mg_id: 4688
+    pcgw_id: Schizm:_Mysterious_Journey
+    qz_id: 85
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-11-09 20:54:29 America/Los_Angeles
+  uuid: c226ad9e-80ad-4540-bcc4-2f76fc511c6f
+  year_released: 2001
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Schizm
+          - setup.exe
+          - setup.pak
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Schizm
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Schizm:_Mysterious_Journey
+        tasks:
+          - gen_run_script:
+              game: vcruise:schizm
+              path: "{DEST_APP_DIR}"
+              lang: en
