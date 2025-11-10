@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Reah.Face.the.Unknown.dvd1.of.2.iso
+      - Reah.Face.the.Unknown.dvd2.of.2.iso
+    format: DVD-10
+    url: https://rutracker.org/forum/viewtopic.php?t=2802884
+  igdb_slug: reah-face-the-unknown
+  lang: en
+  media_assets:
+  name: "Reah: Face the Unknown"
+  platform: win
+  publisher: LK Avalon
+  refs:
+    ag_id: reah-face-the-unknown
+    lutris_id: reah-face-the-unknown
+    mg_id: 1684
+    pcgw_id: Reah:_Face_the_Unknown
+    qz_id: 86
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2025-11-09 13:48:06 America/Los_Angeles
+  uuid: 896fbc69-dc95-4c07-b24c-728a2746a536
+  year_released: 1998
+installer:
+  tasks:
+    - extract:
+        src: "{item}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Reah/*
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Reah:_Face_the_Unknown
+        tasks:
+          - gen_run_script:
+              game: vcruise:reah
+              path: "{DEST_APP_DIR}"
+              lang: en
