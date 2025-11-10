@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Welcome_to_Bodyland_Time-Life_1994.iso
+    format: 1CD
+    url: https://archive.org/download/Welcome_to_Bodyland_Time-Life_1994/Welcome_to_Bodyland_Time-Life_1994.iso
+  igdb_slug: welcome-to-bodyland
+  lang: en
+  media_assets:
+  name: Welcome to Bodyland
+  platform: win
+  publisher: IVI Publishing, Inc.
+  refs:
+    ag_id:
+    lutris_id: welcome-to-bodyland
+    mg_id: 221954
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-09 20:24:15 America/Los_Angeles
+  uuid: 9154d218-de78-4658-9688-4fdc4ee5d7dc
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BODYLAND.EXE'
