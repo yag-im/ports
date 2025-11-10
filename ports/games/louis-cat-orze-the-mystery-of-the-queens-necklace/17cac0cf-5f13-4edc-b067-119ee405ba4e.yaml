@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Louis Cat Orze - The Mystery of the Queen's Necklace (1995)(IVI).iso
+    format: 1CD
+    url: https://archive.org/download/louis-cat-orze-mystery-queens-necklace/Louis%20Cat%20Orze%20-%20The%20Mystery%20of%20the%20Queen%27s%20Necklace%20%281995%29%28IVI%29.iso
+  igdb_slug: louis-cat-orze-the-mystery-of-the-queens-necklace
+  lang: en
+  media_assets:
+    cover:
+      image_id: 17cac0cf-5f13-4edc-b067-119ee405ba4e
+    screenshots: []
+  name: "Louis Cat Orze: The Mystery of the Queen's Necklace"
+  platform: win
+  publisher: IVI Publishing, Inc.
+  refs:
+    ag_id: louis-cat-orze
+    lutris_id:
+    mg_id: 204198
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from README.WRI on CD
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-09 19:52:21 America/Los_Angeles
+  uuid: 17cac0cf-5f13-4edc-b067-119ee405ba4e
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\LOUIS.EXE'
