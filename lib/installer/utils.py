@@ -100,6 +100,8 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
         final_vars |= load_vars("lib.wine.const")
     installer_vars = installer.get("vars", None)
     if installer_vars:
+        for k, v in installer_vars.items():
+            installer_vars[k] = subs_vars_in_task_val(v, final_vars)
         final_vars |= installer_vars
     final_vars["item"] = "{item}"  # TODO: this is silly, just to avoid format exception for loop items
     return final_vars
