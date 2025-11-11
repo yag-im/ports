@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - BLOWN.bin
+    format: 1CD
+    url: https://archive.org/details/BlownAway1995
+  igdb_slug: blown-away
+  lang: en
+  media_assets:
+  name: Blown Away
+  platform: win
+  publisher: IVI Publishing, Inc.
+  refs:
+    ag_id: blown-away
+    lutris_id: blown-away
+    mg_id: 4702
+    pcgw_id:
+    qz_id: 9485
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-10 20:47:49 America/Los_Angeles
+  uuid: 03e91544-8972-45dd-90b5-2d4cc67cfae8
+  year_released: 1995
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BLOWNAWY.EXE'
