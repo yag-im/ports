@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - talvi.zip
+    format: exec
+    url: https://web.archive.org/web/20040427125455/http://d.chotard.free.fr/talvi/index.htm
+  igdb_slug: talvi
+  lang: en
+  media_assets:
+    cover:
+      image_id: 17f90be5-f3fc-4d4d-b6e7-855ad38d8bd7
+    screenshots: []
+  name: T'alvi
+  platform: win
+  publisher: Plasma Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id: 1016
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2025-11-09 21:56:30 America/Los_Angeles
+  uuid: 17f90be5-f3fc-4d4d-b6e7-855ad38d8bd7
+  year_released: 2001
+installer:
+  vars:
+    SETUP_DIR: "{DEST_APP_DIR}/setup"
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{SETUP_DIR}"
+    - wine:
+        tasks:
+          - run:
+              path: '{APP_DIR}\setup\talvisetup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\T''alvi.exe'
+    - file: # cleanup
+        path: "{SETUP_DIR}"
+        state: absent
