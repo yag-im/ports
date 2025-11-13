@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Manhole, The - CD-ROM Masterpiece Edition (USA).cue
+      - Manhole, The - CD-ROM Masterpiece Edition (USA) (Track 1).bin
+      - Manhole, The - CD-ROM Masterpiece Edition (USA) (Track 2).bin
+      - Manhole, The - CD-ROM Masterpiece Edition (USA) (Track 3).bin
+      - Manhole, The - CD-ROM Masterpiece Edition (USA) (Track 4).bin
+      - Manhole, The - CD-ROM Masterpiece Edition (USA) (Track 5).bin
+      - Manhole, The - CD-ROM Masterpiece Edition (USA) (Track 6).bin
+    format: 1CD
+    url: https://archive.org/download/20230516_20230516/Manhole%2C%20The%20-%20CD-ROM%20Masterpiece%20Edition%20%28USA%29.zip
+  igdb_slug: the-manhole-masterpiece-edition
+  lang: en
+  media_assets:
+  name: "The Manhole: Masterpiece Edition"
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: the-manhole-masterpiece-edition
+    mg_id: 416
+    pcgw_id: The_Manhole
+    qz_id: 1537
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-13 11:18:44 America/Los_Angeles
+  uuid: 170985a1-3a30-4c93-80aa-7a93e57910af
+  year_released: 1994
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{descr[distro][files][0]}"
+          - "{descr[distro][files][1]}"
+          - "{descr[distro][files][2]}"
+          - "{descr[distro][files][3]}"
+          - "{descr[distro][files][4]}"
+          - "{descr[distro][files][5]}"
+          - "{descr[distro][files][6]}"
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MANHOLE.EXE'
