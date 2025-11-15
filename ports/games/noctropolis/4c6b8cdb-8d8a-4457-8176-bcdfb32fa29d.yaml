@@ -1,0 +1,91 @@
+descr:
+  distro:
+    files:
+      - DARK.cue
+      - DARK (Track 01).bin
+      - DARK (Track 02).bin
+      - DARK (Track 03).bin
+      - DARK (Track 04).bin
+      - DARK (Track 05).bin
+      - DARK (Track 06).bin
+      - DARK (Track 07).bin
+      - DARK (Track 08).bin
+      - DARK (Track 09).bin
+      - DARK (Track 10).bin
+      - DARK (Track 11).bin
+    format: 1CD
+    url: https://archive.org/details/noctropolis_usa
+  igdb_slug: noctropolis
+  lang: en
+  media_assets:
+  name: Noctropolis
+  platform: dos
+  publisher: Electronic Arts
+  refs:
+    ag_id: noctropolis
+    lutris_id: noctropolis
+    mg_id: 1511
+    pcgw_id: Noctropolis
+    qz_id: 295
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox # in vanilla dosbox, cdrom is not recognized during setup (but we hardcopy files anyway); in dosbox-x mouse doesn't work
+    ver: 0.74-3
+  ts_added: 2025-11-14 21:42:46 America/Los_Angeles
+  uuid: 4c6b8cdb-8d8a-4457-8176-bcdfb32fa29d
+  year_released: 1994
+  tags:
+    - comic book
+    - live actors
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{descr[distro][files][0]}"
+          - "{descr[distro][files][1]}"
+          - "{descr[distro][files][2]}"
+          - "{descr[distro][files][3]}"
+          - "{descr[distro][files][4]}"
+          - "{descr[distro][files][5]}"
+          - "{descr[distro][files][6]}"
+          - "{descr[distro][files][7]}"
+          - "{descr[distro][files][8]}"
+          - "{descr[distro][files][9]}"
+          - "{descr[distro][files][10]}"
+          - "{descr[distro][files][11]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DARK.EXE
+          - DARKRUN.EXE
+          - FLASH.GIF
+          - INSTALL.EXE
+          - INSTALL.GPH
+          - PASDRV.EXE
+          - SBDRV.EXE
+          - UNIVBE.EXE
+    - dosbox:
+        conf:
+          fullscreen: true
+          cycles: fixed 6000 # otherwise cursor blinks too much
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: '{APP_DIR}\DARK.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "CHECK.SUM"
+          - "INSTALL.CFG"
