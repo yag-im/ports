@@ -40,6 +40,7 @@ class AppDesc:
     release_uuid: str
     runner: Runner
     year_released: int
+    tags: list[str] | None = None
 
     def src_path(self):
         return Path(APPS_SRC_DIR) / self.app_slug / self.release_uuid
@@ -72,4 +73,5 @@ class AppDesc:
                 ver=app_descr["runner"]["ver"],
             ),
             year_released=app_descr["year_released"],
+            tags=app_descr.get("tags", None),
         )
