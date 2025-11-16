@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Superhero League of Hoboken (USA).bin
+    format: 1CD
+    url: https://archive.org/details/superhero-league-of-hoboken-usa
+  igdb_slug: superhero-league-of-hoboken
+  lang: en
+  media_assets:
+  name: Superhero League of Hoboken
+  platform: dos
+  publisher: Legend Entertainment
+  refs:
+    ag_id: superhero-league-of-hoboken
+    lutris_id: superhero-league-of-hoboken
+    mg_id: 1559
+    pcgw_id: Superhero_League_of_Hoboken
+    qz_id: 342
+  reqs:
+    # 320x200 as per installer
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-11-15 08:24:01 America/Los_Angeles
+  uuid: c64c286a-985d-46b4-b7d9-492136a3265e
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - "HOBOKEN/*"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\SLH.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - INSTALL.ED
+          - LEGEND.INI
