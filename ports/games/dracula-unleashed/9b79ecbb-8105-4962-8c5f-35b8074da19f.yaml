@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Dracula_Unleashed.bin
+    format: 1CD
+    url: https://archive.org/details/msdos_Dracula_Unleashed_1993
+  igdb_slug: dracula-unleashed
+  lang: en
+  media_assets:
+  name: Dracula Unleashed
+  platform: dos
+  publisher: Viacom New Media
+  refs:
+    ag_id:
+    lutris_id: dracula-unleashed
+    mg_id: 460
+    pcgw_id: Dracula_Unleashed
+    qz_id: 2593
+  reqs:
+    # from README.TXT
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-11-16 14:46:12 America/Los_Angeles
+  uuid: 9b79ecbb-8105-4962-8c5f-35b8074da19f
+  year_released: 1993
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DRACULA.EXE'
+              args:
+                - "-VESA" # for SVGA mode (max resolution)
