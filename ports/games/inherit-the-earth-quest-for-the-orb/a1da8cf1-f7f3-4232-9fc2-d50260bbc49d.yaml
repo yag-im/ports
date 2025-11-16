@@ -1,0 +1,59 @@
+descr:
+  distro:
+    files:
+      - ite.cue
+      - ite.BIN
+    format: 1CD
+    url: https://archive.org/details/msdos_Inherit_the_Earth_-_Quest_for_the_Orb_1994
+  igdb_slug: inherit-the-earth-quest-for-the-orb
+  lang: en
+  media_assets:
+  name: "Inherit the Earth: Quest for the Orb"
+  platform: dos
+  publisher: Nightdive Studios
+  refs:
+    ag_id: inherit-the-earth-quest-for-the-orb
+    lutris_id: nherit-the-earth-quest-for-the-orb
+    mg_id: 4008
+    pcgw_id: Inherit_the_Earth:_Quest_for_the_Orb
+    qz_id: 587
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-11-16 09:09:09 America/Los_Angeles
+  uuid: a1da8cf1-f7f3-4232-9fc2-d50260bbc49d
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy: # we need to keep orig filenames for CD-audio
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - GAME/DRIVERS
+          - GAME/ITE.EXE
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\ITE.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/ITE.PRF"
+        dest: "{DEST_APP_DIR}"
