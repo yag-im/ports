@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - DRAGON.iso
+    format: 1CD
+    url: https://archive.org/details/dragonslaircdromdos
+    # https://archive.org/details/dragonslairusa - no sound in any dosbox
+    # https://www.reddit.com/r/dosgaming/comments/1oz6pxl/help_needed_dragons_lair_1993_1cd/
+  igdb_slug: dragon-s-lair
+  lang: en
+  media_assets:
+  name: Dragon's Lair
+  platform: dos
+  publisher: ReadySoft
+  refs:
+    ag_id:
+    lutris_id: dragon-s-lair
+    mg_id: 1503
+    pcgw_id: Dragon%27s_Lair
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox # fails to start in dosbox-x; in dosbox-staging requires: vga_render_per_scanline = off
+    ver: 0.74-3
+  ts_added: 2025-11-16 15:27:08 America/Los_Angeles
+  uuid: 7e69192f-d077-4f67-ad2f-5ad3bfba414e
+  year_released: 1994
+  tags:
+    - fmv
+    - cartoon
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DL.EXE'
+    - file:
+        path: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/DLCDROM"
+        state: directory
+    - copy:
+        # DLADJUST.DAT from https://myrient.erista.me/files/eXo/eXoDOS/Full%20Release/eXo/eXoDOS/Dragon%27s%20Lair%20%281993%29.zip
+        src: "{PORT_FILES_DIR}/DLADJUST.DAT"
+        dest: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/DLCDROM"
