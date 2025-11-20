@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - Byzantine - The Betrayal (USA) (Disc 1).bin
+      - Byzantine - The Betrayal (USA) (Disc 2).bin
+      - Byzantine - The Betrayal (USA) (Disc 3).bin
+      - Byzantine - The Betrayal (USA) (Disc 4).bin
+      - Byzantine - The Betrayal (USA) (Disc 5).bin
+      - Byzantine - The Betrayal (USA) (Disc 6).bin
+    format: 6CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/Byzantine%20-%20The%20Betrayal%20%28USA%29%20%28Disc%201%29.zip
+  igdb_slug: byzantine-the-betrayal
+  lang: en
+  media_assets:
+  name: "Byzantine: The Betrayal"
+  platform: win
+  publisher: Discovery Communications, Inc.
+  refs:
+    ag_id: byzantine-the-betrayal
+    lutris_id: byzantine-the-betrayal
+    mg_id: 3784
+    pcgw_id:
+    qz_id: 3200
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-19 20:14:53 America/Los_Angeles
+  uuid: 1e423b09-64a5-4828-99d2-827f77415366
+  year_released: 1997
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FIFTH_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SIXTH_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\BETRAYAL.EXE'
