@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - The Cassandra Galleries CD1.bin
+      - The Cassandra Galleries CD2.bin
+    format: 2CD
+    url: https://archive.org/details/the-cassandra-galleries-cd-1
+  igdb_slug: the-cassandra-galleries
+  lang: en
+  media_assets:
+  name: The Cassandra Galleries
+  platform: win
+  publisher: Corel Corporation
+  refs:
+    ag_id: the-cassandra-galleries
+    lutris_id: the-cassandra-galleries
+    mg_id: 3975
+    pcgw_id:
+    qz_id: 2912
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-18 20:24:54 America/Los_Angeles
+  uuid: 3eae4fd6-46f6-4706-b9cd-0ac81a23286d
+  year_released: 1997
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\GOWIN16.EXE'
