@@ -13,6 +13,7 @@ from lib.installer.cmd.replace import run as exec_replace
 from lib.installer.cmd.retroarch import run as exec_retroarch
 from lib.installer.cmd.scummvm import run as exec_scummvm
 from lib.installer.cmd.shell import run as exec_shell
+from lib.installer.cmd.template import run as exec_template
 from lib.installer.cmd.wine import run as exec_wine
 from lib.installer.utils import prepare_tasks
 
@@ -27,6 +28,7 @@ CMD_REPLACE = "replace"
 CMD_RETROARCH = "retroarch"
 CMD_SCUMMVM = "scummvm"
 CMD_SHELL = "shell"
+CMD_TEMPLATE = "template"
 CMD_WINE = "wine"
 
 
@@ -59,6 +61,8 @@ class Parser:
             exec_scummvm(task, app_descr)
         elif cmd == CMD_SHELL:
             exec_shell(task)
+        elif cmd == CMD_TEMPLATE:
+            exec_template(task)
         elif cmd == CMD_WINE:
             exec_wine(task, app_descr)
         else:

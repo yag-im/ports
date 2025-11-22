@@ -91,6 +91,9 @@ def enrich_vars(app_descr: AppDesc, installer: dict) -> dict:
     else:
         raise ValueError(f"unknown runner: {app_descr.runner.name}")
     final_vars["PORT_FILES_DIR"] = str(Path(os.environ.get("PORTS_ROOT_PATH")) / "games" / app_descr.app_slug / "files")
+    final_vars["PORT_TEMPLATES_DIR"] = str(
+        Path(os.environ.get("PORTS_ROOT_PATH")) / "games" / app_descr.app_slug / "templates"
+    )
     final_vars["descr"] = asdict(app_descr)
     if "dosbox" in app_descr.runner.name:
         final_vars |= load_vars("lib.dosbox.const")

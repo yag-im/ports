@@ -11,7 +11,6 @@ from typing import (
     Any,
     Dict,
     List,
-    Union,
 )
 
 from lib.app_desc import AppDesc
@@ -23,7 +22,10 @@ from lib.dosbox.const import (
     SYSTEM_DRIVE,
     SYSTEM_DRIVE_LETTER,
 )
-from lib.dosbox.dosbox import DosBox
+from lib.dosbox.dosbox import (
+    X_DRIVE_LETTER,
+    DosBox,
+)
 from lib.dosbox.dosbox_conf import (
     DosBoxConf,
     DosBoxFlavor,
@@ -36,18 +38,8 @@ from lib.dosbox.misc import (
 from lib.unpack import unpack_archive
 from lib.utils import copy as cp
 from lib.utils import (
-    rm,
     template,
 )
-
-X_DRIVE_LETTER = "X"
-X_DRIVE_DIR = PureWindowsPath("X:\\")
-
-LCOPY_CMD = "LCOPY"
-LCOPY_CMD_OPTIONS = ["/Y", "/R", "/A", "/V", "/B", "/C", "/S", "/D"]
-
-XCOPY_CMD = "XCOPY"
-XCOPY_CMD_OPTIONS = ["/I", "/E", "/Y", "/H", "/R"]
 
 BASE_SCREEN_WIDTH = 640
 BASE_SCREEN_HEIGHT = 480
@@ -82,11 +74,6 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             ]
         )
 
-        # x-drive is used as a gate to pass files from the host into the DosBox image drives
-        self.x_drive = self.root_dir / X_DRIVE_LETTER
-        self.x_drive.mkdir(exist_ok=False)
-        self.mount(DosMountPointHDD(X_DRIVE_LETTER, self.x_drive))
-
         if (
             self.app_descr.app_reqs.screen_width != BASE_SCREEN_WIDTH
             or self.app_descr.app_reqs.color_bits != BASE_COLOR_BITS
@@ -96,12 +83,6 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 self.app_descr.app_reqs.screen_height,
                 self.app_descr.app_reqs.color_bits,
             )
-
-    def __del__(self):
-        if self.x_drive.is_dir():
-            self.umount(X_DRIVE_LETTER)
-            rm(self.x_drive)
-        self.gen_conf()  # regenerating config as per current state
 
     def regedit(self, reg_dict: Dict[str, List[Dict[str, str]]]) -> None:
         with tempfile.NamedTemporaryFile(mode="w+t", dir=self.x_drive, newline="\r\n") as f:
@@ -138,63 +119,6 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 ]
             }
         )
-
-    def copy(self, src: Union[Path, List[Path], PureWindowsPath, List[PureWindowsPath]], dst: PureWindowsPath) -> None:
-        """Copies files from source host path (Path) or image drive (PureWindowPath) into another image drive mounted
-        into the dosbox instance.
-
-        LCOPY options:
-            /Y: turn off prompting
-            /R: overwrite existing read-only files
-            /A: copy hidden files
-            /V: do not use extended memory (mandatory for dosbox-x)
-            /B: do not abort operation by pressing any key
-            /C: disable cache
-            /S: copy subdirectories
-            /D: do not create subdirectories when recursing (/S)
-
-        TODO: only LCOPY preserves LFNs, but it fails to copy data from mounted dirs, so we have to use XCOPY to copy
-        from X drive.
-        TODO: directories copy doesn't work, e.g. "LCOPY D1 D2" will produce an empty /D2/D1 directory.
-        You need to create /D2/D1 beforehand and use "LCOPY D1/* D2/D1" syntax instead.
-        """
-        if not isinstance(src, List):
-            src = [src]
-        cmds = []
-        # we might want to remove /D in certain cases:
-        # - when copying SRC/* into DST we want to preserve subdirectories with all files inside (by removing /D)
-        # - when copying a single file (SRC/file.ext) into DST, we need to keep /D, otherwise
-        # LCOPY will recreate the whole structure of SRC at DST (bug: https://github.com/oglueck/lfntools/issues/1)
-        # another bug has been discovered: when using /S and trying to copy a single file, LCOPY will also try to
-        # copy all subdirs on the src drive into destination and /D won't help. So we need to remove /S for files.
-        lcopy_cmd_options = LCOPY_CMD_OPTIONS.copy()
-        if len(src) > 1 or "*" in str(src[0]):
-            # when there are multiple sources, destination is always a folder.
-            # also handle case when there is only one source and it contains "*"
-            # we need to created it for safety
-            self.md(dst)
-        for s in src:
-            if "/D" not in lcopy_cmd_options:
-                lcopy_cmd_options.append("/D")
-            # removing /D for "*" copies (when src contains *, dest is always a folder)
-            if "*" in str(s):
-                lcopy_cmd_options.remove("/D")
-            if "/S" not in lcopy_cmd_options:
-                lcopy_cmd_options.append("/S")
-            # removing /S for files due to a bug (see above)
-            if "." in str(s):
-                lcopy_cmd_options.remove("/S")
-            if isinstance(s, Path):
-                # copy from host into dosbox
-                cp(s, self.x_drive)
-                # warning: LFNs are not supported by XCOPY, and LCOPY can't work with mounted folders, only images
-                cmds.append(DosCmdExec(XCOPY_CMD, [X_DRIVE_DIR / s.name, dst, *XCOPY_CMD_OPTIONS]))
-            elif isinstance(s, PureWindowsPath):
-                # intra-dosbox copy
-                cmds.append(DosCmdExec(LCOPY_CMD, [s, dst, *lcopy_cmd_options]))
-            else:
-                raise ValueError(f"unrecognized copy param type: {s}")
-        self._run(cmds)
 
     def extract(self, src: Path, dst: PureWindowsPath, files: List[str] = None) -> None:
         """Extracts files from source host path into the dosbox' mounted image drive."""

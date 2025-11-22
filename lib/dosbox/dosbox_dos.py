@@ -9,7 +9,6 @@ from pathlib import (
 from typing import (
     Any,
     List,
-    Union,
 )
 
 from lib.app_desc import AppDesc
@@ -28,10 +27,10 @@ from lib.dosbox.misc import (
     DosCmdExec,
     DosMountPointHDD,
 )
-from lib.utils import copy
+from lib.utils import (
+    copy,
+)
 
-XCOPY_CMD = "XCOPY"
-XCOPY_CMD_OPTIONS = ["/I", "/E", "/Y", "/H", "/R"]
 MAX_DOS_MEMORY = 16
 
 
@@ -63,14 +62,6 @@ class DosBoxDos(DosBox[DosBoxConf]):
                 RUNNERS_BUNDLES_BASE_DIR / self.conf.mod.value / "ULTRASND",
                 self.system_drive,
             )
-
-    def copy(self, src: Union[Path, List[Path], PureWindowsPath, List[PureWindowsPath]], dst: PureWindowsPath) -> None:
-        if not isinstance(src, List):
-            src = [src]
-        cmds = []
-        for s in src:
-            cmds.append(DosCmdExec(XCOPY_CMD, [s, dst, *XCOPY_CMD_OPTIONS]))
-        self._run(cmds)
 
     def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False, cd=None, pre_exec=None) -> None:
         if args is None:

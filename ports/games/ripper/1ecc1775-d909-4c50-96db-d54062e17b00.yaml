@@ -26,11 +26,50 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: false
+      lock_pointer: true
   runner:
     name: dosbox
     ver: 0.74-3
   ts_added: 2024-05-20 04:36:00 America/Los_Angeles
   uuid: 1ecc1775-d909-4c50-96db-d54062e17b00
   year_released: 1996
-installer: null
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - copy:
+              src: "{SRC_DIR}/patches/rip103.exe"
+              dest: '{APP_DIR}\rip103.exe'
+          - run:
+              path: '{APP_DIR}\rip103.exe'
+          - copy:
+              src: "{SRC_DIR}/patches/rip105.exe"
+              dest: "{APP_DIR}"
+          - run:
+              path: '{APP_DIR}\rip105.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\RIPPER.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - SETTINGS.DEF
+    - template:
+        src: "{PORT_TEMPLATES_DIR}/take2.ini.tmpl"
+        dest: "{DEST_APP_DIR}/TAKE2.INI"
+        params:
+          first_cd_letter: "{FIRST_CD_DRIVE_LETTER}"
+        newline: "\r\n"
