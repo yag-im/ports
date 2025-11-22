@@ -21,11 +21,27 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: false
+      lock_pointer: true
   runner:
     name: dosbox
     ver: 0.74-3
   ts_added: 2024-06-10 00:12:00 America/Los_Angeles
   uuid: 929da93c-340f-4094-abf5-805f88f65f6f
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\FABLE.EXE'
