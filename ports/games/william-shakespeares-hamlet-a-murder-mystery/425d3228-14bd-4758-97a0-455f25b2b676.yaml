@@ -1,0 +1,59 @@
+descr:
+  distro:
+    files:
+      - Hamlet - A Murder Mystery.iso
+    format: 1CD
+    url: https://archive.org/download/hamlet-a-murder-mystery/Hamlet%20-%20A%20Murder%20Mystery.iso
+  igdb_slug: william-shakespeares-hamlet-a-murder-mystery
+  lang: en
+  media_assets:
+  name: "William Shakespeare's Hamlet: A Murder Mystery"
+  platform: win
+  publisher: EMME Interactive SA
+  refs:
+    ag_id: hamlet-a-murder-mystery
+    lutris_id: william-shakespeares-hamlet-a-murder-mystery
+    mg_id: 22037
+    pcgw_id:
+    qz_id: 761
+  reqs:
+    # from app start message
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-11-21 20:04:49 America/Los_Angeles
+  uuid: 425d3228-14bd-4758-97a0-455f25b2b676
+  year_released: 1997
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - qemu:
+        flavor: WINXPSP3 # BSODs in WIN98SE on startup
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - copy:
+              src: "{SRC_DIR}/extras/mpmcdnt.exe" # required video codec
+              dest: "{APP_DRIVE}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - run:
+              path: '{APP_DRIVE}\mpmcdnt.exe'
+          - copy:
+              src: "{PORT_FILES_DIR}/mvicodec.ini" # required video codec settings
+              dest: '{SYSTEM_DRIVE}\WINDOWS'
+          - gen_run_script:
+              path: '{APP_DIR}\PMHamlet.exe'
