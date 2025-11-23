@@ -23,11 +23,35 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: false
+      lock_pointer: true
   runner:
     name: dosbox
     ver: 0.74-3
   ts_added: 2024-09-29 10:44:50 America/Los_Angeles
   uuid: 3d40f299-4415-429d-ac81-1e199dea783c
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - TWINSEN/*
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\TWINSEN.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/DIG.INI"
+        dest: "{DEST_APP_DIR}/DRIVERS"
