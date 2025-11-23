@@ -35,10 +35,7 @@ installer:
     # the only supported installation path
     APP_DIR: C:\\VOYEURII
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - file:
         path: "{DEST_DIR}/C/VOYEURII"
         state: directory

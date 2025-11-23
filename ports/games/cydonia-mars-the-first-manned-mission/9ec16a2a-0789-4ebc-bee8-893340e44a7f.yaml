@@ -35,10 +35,7 @@ installer:
   # For example, try using a comm cable with a comm port on the right side of the spaceship at the very
   # beginning. Test with Wine 10.0 once it's released.
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - extract:
         src: "{SRC_DIR}/Cydonia-Mars-The-First-Manned-Mission_Patch_Win_EN_Patch.zip"
         dest: "{DEST_DIR}"

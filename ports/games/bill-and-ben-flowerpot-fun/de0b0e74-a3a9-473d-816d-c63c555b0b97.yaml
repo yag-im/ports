@@ -36,10 +36,7 @@ installer:
   vars:
     PATCH_PATH: "{SRC_DIR}/bb.exe" # unofficial wrong cd fix
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - qemu:
         flavor: WIN98SE # fails to start in WINXP (media player incompatibility?)
         tasks:

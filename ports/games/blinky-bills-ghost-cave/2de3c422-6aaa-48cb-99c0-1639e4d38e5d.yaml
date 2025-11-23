@@ -32,10 +32,7 @@ descr:
   year_released: 1997
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         flavor: WIN311
         tasks:

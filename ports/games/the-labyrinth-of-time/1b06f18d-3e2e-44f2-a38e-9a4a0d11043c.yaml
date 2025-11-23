@@ -31,10 +31,7 @@ descr:
   year_released: 1993
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         tasks:
           - mount:
