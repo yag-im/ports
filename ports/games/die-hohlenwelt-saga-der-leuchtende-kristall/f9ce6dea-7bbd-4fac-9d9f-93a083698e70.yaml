@@ -1,8 +1,8 @@
 descr:
   distro:
     files:
-      - HW.BIN
       - HW.CUE
+      - HW.BIN
     format: 1CD
     url: https://archive.org/details/hw_20210302
   igdb_slug: die-hohlenwelt-saga-der-leuchtende-kristall
@@ -22,11 +22,33 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: false
+      lock_pointer: true
   runner:
     name: dosbox
     ver: 0.74-3
   ts_added: 2024-08-24 20:44:00 America/Los_Angeles
   uuid: f9ce6dea-7bbd-4fac-9d9f-93a083698e70
   year_released: 1994
-installer: null
+installer:
+  tasks:
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\HW.EXE'
+    - copy:
+        # for a valid music device (CD Audio) we need to copy config
+        src: "{PORT_FILES_DIR}/HW.CFG"
+        dest: "{DEST_APP_DIR}"
