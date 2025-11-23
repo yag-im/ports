@@ -197,7 +197,7 @@ class Qemu((Protocol[T])):
                 # qemu supports only iso cdrom images
                 with tempfile.TemporaryDirectory() as td:
                     tmp_iso_image = Path(td) / "tmp.iso"
-                    run_cmd(["iat", "-i", image_path, "-o", tmp_iso_image, "--iso"])
+                    run_cmd(["poweriso", "convert", image_path, "-o", tmp_iso_image, "-ot", "iso"])
                     move(tmp_iso_image, image_path)
         index = len(self.mount_points) if index is None else index
         letter = letter or chr(ord("A")) + index + 2

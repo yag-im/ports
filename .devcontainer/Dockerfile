@@ -12,10 +12,6 @@ ARG USERNAME=vscode
 # common
 RUN apt-get update \
     && apt install --no-install-recommends -y \
-        genisoimage \
-        libguestfs-tools \
-        libguestfs-dev \
-        mtools \
         pulseaudio
 RUN usermod -aG audio,video,pulse ${USERNAME}
 RUN mkdir /run/user/1000 && chown -R ${USERNAME} /run/user/1000
@@ -186,7 +182,6 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         7zip \
         gettext \
-        iat \
         innoextract \
         iputils-ping \
         unrar-free \
@@ -207,3 +202,15 @@ RUN apt-get update \
         qemu-utils
 # TODO: this doesn't work; we have to set vscode group to 106 explicitly to match hosts' kvm group id
 RUN usermod -aG kvm ${USERNAME}
+
+# common
+RUN apt install --no-install-recommends -y \
+        genisoimage \
+        libguestfs-tools \
+        libguestfs-dev \
+        mtools
+
+WORKDIR /tmp
+RUN curl https://poweriso.com/poweriso-x64-1.6.tar.gz -o poweriso-x64-1.6.tar.gz \
+    && tar zxvf poweriso-x64-1.6.tar.gz
+    && cp poweriso-x64 /usr/local/bin/poweriso
