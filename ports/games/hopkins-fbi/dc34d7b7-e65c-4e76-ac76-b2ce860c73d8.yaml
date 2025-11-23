@@ -25,7 +25,7 @@ descr:
       lock_pointer: false
   runner:
     name: scummvm
-    ver: 2.9.0
+    ver: 2.9.1 # crashes in factory elevator in 2.9.0
   ts_added: 2025-03-19 03:14:32.115859 America/Los_Angeles
   uuid: dc34d7b7-e65c-4e76-ac76-b2ce860c73d8
   year_released: 1998

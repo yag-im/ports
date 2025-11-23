@@ -29,4 +29,18 @@ descr:
   ts_added: 2024-09-13 03:04:00 America/Los_Angeles
   uuid: f001a797-94a1-4ac1-b5cb-dc75c4156808
   year_released: 1995
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\TBRA.BAT'
+    - copy:
+        src: "{PORT_FILES_DIR}/TBRA.BAT"
+        dest: "{DEST_APP_DIR}"
