@@ -21,11 +21,43 @@ descr:
     screen_height: 480
     screen_width: 640
     ua:
-      lock_pointer: false
+      lock_pointer: true
   runner:
     name: dosbox
     ver: 0.74-3
   ts_added: 2024-09-08 16:31:00 America/Los_Angeles
   uuid: dcc3263e-c462-40ff-9f0a-45c3b15497ea
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - umount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{APP_DIR}\PICTURE.EXE'
+              args:
+                - '{APP_DIR}\WESTERN'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "DIG.INI"
+          - "MDI.INI"
+    - extract: # can't copy from dosbox section - copied file exceeds free disk space on FAT16 (266MB)
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - ENGLISH.PDI/WESTERN
