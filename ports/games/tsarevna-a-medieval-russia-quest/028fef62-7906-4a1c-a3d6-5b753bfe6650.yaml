@@ -34,10 +34,7 @@ descr:
 installer:
   # TODO: also runs in wine, but is too fast (use cpulimit -l nn -e wine-preloader & ?)
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         app_drive_size: 20
         conf:

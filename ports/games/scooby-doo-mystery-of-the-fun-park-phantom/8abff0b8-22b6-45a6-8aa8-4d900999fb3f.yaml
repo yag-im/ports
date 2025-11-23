@@ -32,10 +32,7 @@ descr:
   year_released: 1999
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         # WIN95 has some DX 6 incompatibilities
         flavor: WIN98SE

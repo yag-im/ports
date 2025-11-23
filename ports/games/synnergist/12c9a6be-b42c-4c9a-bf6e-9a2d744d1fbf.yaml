@@ -31,10 +31,7 @@ descr:
   year_released: 1996
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_APP_DIR}"

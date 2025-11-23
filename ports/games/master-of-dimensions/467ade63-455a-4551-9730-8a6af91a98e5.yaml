@@ -33,10 +33,7 @@ descr:
   year_released: 1996
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         conf:
           cycles: fixed 20000 # without this app crashes inside the dockerized dosbox and works on the hosts' dosbox!

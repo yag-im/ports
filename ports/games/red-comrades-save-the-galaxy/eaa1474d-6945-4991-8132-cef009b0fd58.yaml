@@ -36,10 +36,7 @@ descr:
 # TODO: supported in ScummVM?
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         app_drive_size: 2000
         flavor: WIN95OSR21

@@ -31,10 +31,7 @@ descr:
   year_released: 2003
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
+    - copy_src_cd_images:
     - dosbox:
         conf:
           cycles: fixed 97240 # to prevent sound distortion
