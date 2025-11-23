@@ -32,12 +32,7 @@ descr:
   year_released: 1995
 installer:
   tasks:
-    - copy:
-        src: "{item}"
-        dest: "{DEST_DIR}"
-        loop:
-          - "{SRC_DIR}/{descr[distro][files][0]}"
-          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - copy_src_cd_images:
     - extract:
         src: "{DEST_DIR}/{descr[distro][files][1]}"
         dest: "{DEST_APP_DIR}"

@@ -31,16 +31,14 @@ descr:
   year_released: 1997
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_DIR}"
+    - copy_src_cd_images:
     - dosbox:
         conf:
           fullscreen: true
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - run:
               path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
           - gen_run_script:

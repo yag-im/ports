@@ -31,11 +31,9 @@ descr:
   year_released: 1995
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_DIR}"
+    - copy_src_cd_images:
     - extract:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
         dest: "{DEST_APP_DIR}"
         files:
           - BIOFORGE/BIOFORGE.EXE
@@ -56,8 +54,8 @@ installer:
           fullscreen: true
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - gen_run_script:
               path: "{APP_DIR}/BIOFORGE.EXE"
     - copy:

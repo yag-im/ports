@@ -34,14 +34,7 @@ descr:
   year_released: 1996
 installer:
   tasks:
-    - copy:
-        src: "{item}"
-        dest: "{DEST_DIR}"
-        loop:
-          - "{SRC_DIR}/{descr[distro][files][0]}"
-          - "{SRC_DIR}/{descr[distro][files][1]}"
-          - "{SRC_DIR}/{descr[distro][files][2]}"
-          - "{SRC_DIR}/{descr[distro][files][3]}"
+    - copy_src_cd_images:
     - file:
         path: "{DEST_APP_DIR}/PCX"
         state: directory

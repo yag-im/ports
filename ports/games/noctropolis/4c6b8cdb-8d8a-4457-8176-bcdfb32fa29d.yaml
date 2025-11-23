@@ -45,22 +45,7 @@ descr:
     - live actors
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}/{item}"
-        dest: "{DEST_DIR}"
-        loop:
-          - "{descr[distro][files][0]}"
-          - "{descr[distro][files][1]}"
-          - "{descr[distro][files][2]}"
-          - "{descr[distro][files][3]}"
-          - "{descr[distro][files][4]}"
-          - "{descr[distro][files][5]}"
-          - "{descr[distro][files][6]}"
-          - "{descr[distro][files][7]}"
-          - "{descr[distro][files][8]}"
-          - "{descr[distro][files][9]}"
-          - "{descr[distro][files][10]}"
-          - "{descr[distro][files][11]}"
+    - copy_src_cd_images:
     - extract:
         src: "{SRC_DIR}/{descr[distro][files][1]}"
         dest: "{DEST_APP_DIR}"
