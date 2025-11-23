@@ -32,12 +32,7 @@ descr:
   year_released: 1994
 installer:
   tasks:
-    - copy:
-        src: "{item}"
-        dest: "{DEST_DIR}"
-        loop:
-          - "{SRC_DIR}/{descr[distro][files][0]}"
-          - "{SRC_DIR}/{descr[distro][files][1]}"
+    - copy_src_cd_images:
     - retroarch:
         tasks:
           - gen_run_script:

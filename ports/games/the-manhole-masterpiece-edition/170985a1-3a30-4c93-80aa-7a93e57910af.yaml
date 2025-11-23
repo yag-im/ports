@@ -37,17 +37,7 @@ descr:
   year_released: 1994
 installer:
   tasks:
-    - copy:
-        src: "{SRC_DIR}/{item}"
-        dest: "{DEST_DIR}"
-        loop:
-          - "{descr[distro][files][0]}"
-          - "{descr[distro][files][1]}"
-          - "{descr[distro][files][2]}"
-          - "{descr[distro][files][3]}"
-          - "{descr[distro][files][4]}"
-          - "{descr[distro][files][5]}"
-          - "{descr[distro][files][6]}"
+    - copy_src_cd_images:
     - dosbox:
         flavor: WIN311
         tasks:
