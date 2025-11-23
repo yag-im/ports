@@ -115,16 +115,19 @@ def unwind_loops(root: dict, variables: dict) -> None:
     for t in root["tasks"]:
         cmd = list(t.keys())[0]
         task_body = t[cmd]
-        if "tasks" in task_body:
-            task_body["tasks"] = unwind_loops(task_body, variables)
-        fmt_task = subst_vars(task_body, variables)
-        if "loop" in fmt_task:
-            for item in fmt_task["loop"]:
-                fmt_item = subst_vars(fmt_task, variables={"item": item})
-                del fmt_item["loop"]
-                unw_tasks.append({cmd: fmt_item})
+        if task_body:
+            if "tasks" in task_body:
+                task_body["tasks"] = unwind_loops(task_body, variables)
+            fmt_task = subst_vars(task_body, variables)
+            if "loop" in fmt_task:
+                for item in fmt_task["loop"]:
+                    fmt_item = subst_vars(fmt_task, variables={"item": item})
+                    del fmt_item["loop"]
+                    unw_tasks.append({cmd: fmt_item})
+            else:
+                unw_tasks.append({cmd: fmt_task})
         else:
-            unw_tasks.append({cmd: fmt_task})
+            unw_tasks.append({cmd: None})
     return unw_tasks
 
 
