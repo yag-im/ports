@@ -127,7 +127,7 @@ def unwind_loops(root: dict, variables: dict) -> None:
             else:
                 unw_tasks.append({cmd: fmt_task})
         else:
-            unw_tasks.append({cmd: None})
+            unw_tasks.append({cmd: {}})
     return unw_tasks
 
 
