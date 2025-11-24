@@ -17,9 +17,9 @@ descr:
     pcgw_id: King%27s_Quest:_Quest_for_the_Crown
     qz_id: 618
   reqs:
-    color_bits: 8
+    color_bits: 32
     midi: false
-    screen_height: 240
+    screen_height: 200
     screen_width: 320
     ua:
       lock_pointer: true
@@ -32,18 +32,18 @@ descr:
 installer:
   tasks:
     - file:
-        path: "{DEST_APP_DIR}"
+        path: "{DEST_DIR}/{APP_DRIVE_LETTER}"
         state: directory
     - copy:
         src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_APP_DIR}"
+        dest: "{DEST_DIR}/{APP_DRIVE_LETTER}"
     - wine:
         os_ver: win95
         tasks:
           - run:
-              path: '{APP_DIR}\{descr[distro][files][0]}'
+              path: '{APP_DRIVE}\{descr[distro][files][0]}'
           - gen_run_script:
               path: '{APP_DIR}\Kq1vga.exe'
     - file:
-        path: "{DEST_APP_DIR}/{descr[distro][files][0]}"
+        path: "{DEST_DIR}/{APP_DRIVE_LETTER}/{descr[distro][files][0]}"
         state: absent
