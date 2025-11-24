@@ -153,12 +153,12 @@ ssh -i "$BASTION_KEY_PATH" \
 if $RM_CLONES; then
     echo "Clones removal enabled. Cleaning up clones on all hosts."
     for HOST in "${APPSTOR_HOSTS_ARRAY[@]}"; do
-        echo "  - Removing clones for $IGDB_SLUG on host $HOST"
+        echo "  - Removing clones for $IGDB_SLUG/$RELEASE_ID on host $HOST"
         ssh -i "$BASTION_KEY_PATH" \
             -o ServerAliveInterval=10 \
             -J "$BASTION_USER@$BASTION_HOST:$BASTION_PORT" \
             "$APPSTOR_USER@$HOST" \
-            "find \"$APPSTOR_CLONES_PATH\" -type d -name '$IGDB_SLUG' -exec rm -rf {} +"
+            "find \"$APPSTOR_CLONES_PATH\" -type d -name '$RELEASE_ID' -exec rm -rf {} +"
     done
 fi
 
