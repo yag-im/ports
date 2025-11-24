@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - PuttPuttPBS.iso
+    format: 1CD
+    url: https://archive.org/download/PuttPuttPBS/PuttPuttPBS.iso
+  igdb_slug: putt-putt-pep-s-birthday-surprise
+  lang: en
+  media_assets:
+  name: "Putt-Putt: Pep's Birthday Surprise"
+  platform: win
+  publisher: Atari, Inc.
+  refs:
+    ag_id:
+    lutris_id: putt-putt-peps-birthday-surprise
+    mg_id: 11848
+    pcgw_id: Putt-Putt:_Pep%27s_Birthday_Surprise
+    qz_id: 1463
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-11-23 21:24:37 America/Los_Angeles
+  uuid: 086d573d-9a52-4e66-ab30-3d0e1dab9fcf
+  year_released: 2003
+  tags:
+    - putt-putt
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}SETUP.EXE" # you'll have to switch to a higher resolution to close the registration window (click "Never Register" at the end)
+          - gen_run_script:
+              path: '{APP_DIR}\PuttPuttPBS.exe'
