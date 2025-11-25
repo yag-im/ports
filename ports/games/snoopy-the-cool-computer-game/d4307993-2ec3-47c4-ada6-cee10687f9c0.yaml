@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Snoopy.tzx.zip
+    format: tape
+    url: https://www.worldofspectrum.org//pub/sinclair/games/s/Snoopy.tzx.zip
+  igdb_slug: snoopy-the-cool-computer-game
+  lang: en
+  media_assets:
+  name: "Snoopy: The Cool Computer Game"
+  platform: zxs
+  publisher: The Edge
+  refs:
+    ag_id:
+    lutris_id: snoopy-the-cool-computer-game
+    mg_id: 11595
+    pcgw_id: Snoopy:_The_Cool_Computer_Game
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-11-24 21:12:05 America/Los_Angeles
+  uuid: d4307993-2ec3-47c4-ada6-cee10687f9c0
+  year_released: 1989
+  tags:
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: fuse
+              file: "{descr[distro][files][0]}"
