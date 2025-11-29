@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Puppet Motel (1998)(Voyager Company)[PC-Mac].iso
+    format: 1CD
+    url: https://archive.org/download/puppet-motel-1998/Puppet%20Motel%20%281998%29%28Voyager%20Company%29%5BPC-Mac%5D.iso
+  igdb_slug: laurie-andersons-puppet-motel
+  lang: en
+  media_assets:
+  name: Laurie Anderson's Puppet Motel
+  platform: win
+  publisher: Voyager Company
+  refs:
+    ag_id: puppet-motel
+    lutris_id: laurie-andersons-puppet-motel
+    mg_id: 40829
+    pcgw_id:
+    qz_id: 900
+  reqs:
+    # from readme
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-28 18:06:38 America/Los_Angeles
+  uuid: b8164832-4e04-43fb-8776-05289fc79110
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\PUPPET.EXE'
