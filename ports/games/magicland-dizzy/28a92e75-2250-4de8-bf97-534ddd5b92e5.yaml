@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - MagiclandDizzy.tzx.zip
+    format: tape
+    url: https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0009336/MagiclandDizzy.tzx.zip
+  igdb_slug: magicland-dizzy
+  lang: en
+  media_assets:
+  name: Magicland Dizzy
+  platform: zxs
+  publisher: Codemasters
+  refs:
+    ag_id:
+    lutris_id: magicland-dizzy
+    mg_id: 15204
+    pcgw_id: Magicland_Dizzy
+    qz_id: 2393
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  ts_added: 2025-11-29 10:44:57 America/Los_Angeles
+  uuid: 28a92e75-2250-4de8-bf97-534ddd5b92e5
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: fuse
+              file: "{descr[distro][files][0]}"
