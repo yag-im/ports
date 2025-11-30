@@ -56,6 +56,7 @@ def copy_cd_images_as_letters(src_dir: Path, dst_dir: Path, files: list[str], fi
 
 
 def fstr(tmpl: str, variables: dict) -> str:
+    # make sure 'descr' key is part of variables for nested access
     return tmpl.format(**variables)
 
 

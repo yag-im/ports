@@ -1,0 +1,67 @@
+descr:
+  distro:
+    files:
+      - disk01.img
+      - disk02.img
+      - disk03.img
+      - disk04.img
+      - disk05.img
+    format: 5FD
+    url: https://archive.org/details/002081-Spellcasting101SorcerersGetAllTheGirls
+  igdb_slug: spellcasting-101-sorcerers-get-all-the-girls
+  lang: en
+  media_assets:
+  name: "Spellcasting 101: Sorcerers get all the Girls"
+  platform: dos
+  publisher: Legend Entertainment
+  refs:
+    ag_id: spellcasting-101-sorcerers-get-all-the-girls
+    lutris_id: spellcasting-101-sorcerers-get-all-the-girls
+    mg_id: 1027
+    pcgw_id: Spellcasting_101:_Sorcerers_Get_All_the_Girls
+    qz_id: 315
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x # vanilla dosbox doesn't support multi-FD mounts
+    ver: 2024.12.04
+  ts_added: 2025-11-30 14:33:21 America/Los_Angeles
+  uuid: 5d7fa3f1-d69e-4912-a3a5-8df6d945bd54
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - file:
+        path: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        state: directory
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+          - "{SRC_DIR}/{descr[distro][files][4]}"
+    - dosbox:
+        tasks:
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}"
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.BAT' # hit Ctrl+F4 multiple times when requested
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\S101\S101.EXE'
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
