@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - jeu-00072-black_sect-pcdos.7z
+    format: 3FD
+    url: https://www.abandonware-france.org/telechargement/1574/
+  igdb_slug: black-sect
+  lang: fr
+  media_assets:
+  name: La Secte Noire
+  platform: dos
+  publisher: Lankhor
+  refs:
+    ag_id:
+    lutris_id: black-sect
+    mg_id: 2571
+    pcgw_id:
+    qz_id: 478
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-11-30 12:16:40 America/Los_Angeles
+  uuid: 0784ff88-6c08-433d-88f8-304e37baf293
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - BlackS/*
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/BS.BAT"
