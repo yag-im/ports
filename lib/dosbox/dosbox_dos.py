@@ -63,7 +63,9 @@ class DosBoxDos(DosBox[DosBoxConf]):
                 self.system_drive,
             )
 
-    def run(self, path: PureWindowsPath, args: List[Any] = None, mock=False, cd=None, pre_exec=None) -> None:
+    def run(
+        self, path: PureWindowsPath, args: List[Any] = None, mock=False, cd=None, pre_exec=None, runexit=True
+    ) -> None:
         if args is None:
             args = []
         cmds = []
@@ -73,4 +75,4 @@ class DosBoxDos(DosBox[DosBoxConf]):
             for cmd in pre_exec:
                 cmds.append(cmd)
         cmds.append(DosCmdExec(path, args, cd))
-        self._run(cmds, mock=mock)
+        self._run(cmds, mock=mock, runexit=runexit)

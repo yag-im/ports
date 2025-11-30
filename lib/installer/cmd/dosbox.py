@@ -48,6 +48,7 @@ def exec_regedit(dbox: DosBoxWin9x, task: dict):
 
 def exec_run(dbox: DosBox, task: dict, mock=False):
     run_path = task.get("path")
+    runexit = task.get("exit", True)
     if run_path is None:
         raise ValueError("CMD_RUN: missing required field: 'path'")
     if isinstance(dbox, DosBoxDos):
@@ -55,15 +56,22 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
         pre_exec = task.get("pre_exec", None)
         if cd:
             cd = PureWindowsPath(cd)
-        dbox.run(path=PureWindowsPath(run_path), args=task.get("args", []), cd=cd, mock=mock, pre_exec=pre_exec)
+        dbox.run(
+            path=PureWindowsPath(run_path),
+            args=task.get("args", []),
+            cd=cd,
+            mock=mock,
+            pre_exec=pre_exec,
+            runexit=runexit,
+        )
     elif isinstance(dbox, DosBoxWin3x):
-        dbox.run(path=PureWindowsPath(run_path), args=task.get("args", []), runexit=task.get("exit", True), mock=mock)
+        dbox.run(path=PureWindowsPath(run_path), args=task.get("args", []), runexit=runexit, mock=mock)
     elif isinstance(dbox, DosBoxWin9x):
         workdir = task.get("workdir", None)
         dbox.run(
             path=PureWindowsPath(run_path),
             args=task.get("args", []),
-            runexit=task.get("exit", True),
+            runexit=runexit,
             mock=mock,
             umount_x=task.get("unmount_x", True),
             workdir=workdir,

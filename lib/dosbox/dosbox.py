@@ -143,6 +143,7 @@ class DosBox(Protocol[T]):
         self,
         cmds=Union[DosCmdExec, list[DosCmdExec], str, list[str]],
         mock=False,
+        runexit=True,
     ):
         """Runs command(s) inside the dos env. For internal use only.
         Create wrapper functions to call _run (see "md" implementation).
@@ -153,6 +154,7 @@ class DosBox(Protocol[T]):
             cmds = [cmds]
         # gen conf
         self.run_cmds = []
+        self.runexit = runexit
         for c in cmds:
             if isinstance(c, DosCmdExec):
                 for c_ in c.iter():
@@ -192,7 +194,8 @@ class DosBox(Protocol[T]):
         autoexec_cmds = self.conf.gen_mount_cmds(self.root_dir)
         for c in self.run_cmds:
             autoexec_cmds.append(c)
-        autoexec_cmds.append("EXIT")
+        if self.runexit:
+            autoexec_cmds.append("EXIT")
         default_sensitivity = AUTOLOCK_MOUSE_SENSITIVITY if self.conf.autolock else BASE_MOUSE_SENSITIVITY
         tmpl_params = {
             "autolock": str(self.conf.autolock).lower(),
