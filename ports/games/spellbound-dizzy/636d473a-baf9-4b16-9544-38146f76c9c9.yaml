@@ -1,21 +1,21 @@
 descr:
   distro:
     files:
-      - MagiclandDizzy.tzx.zip
+      - SpellboundDizzy.tzx.zip
     format: tape
-    url: https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0009336/MagiclandDizzy.tzx.zip
-  igdb_slug: magicland-dizzy
+    url: https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0009337/SpellboundDizzy.tzx.zip
+  igdb_slug: spellbound-dizzy
   lang: en
   media_assets:
-  name: Magicland Dizzy
+  name: Spellbound Dizzy
   platform: zxs
   publisher: Codemasters
   refs:
     ag_id:
-    lutris_id: magicland-dizzy
-    mg_id: 15204
-    pcgw_id: Magicland_Dizzy
-    qz_id: 2393
+    lutris_id: spellbound-dizzy
+    mg_id: 3140
+    pcgw_id:
+    qz_id: 2394
   reqs:
     color_bits: 8
     midi: false
@@ -26,8 +26,8 @@ descr:
   runner:
     name: retroarch
     ver: "1.21.0"
-  ts_added: 2025-11-29 10:44:57 America/Los_Angeles
-  uuid: 28a92e75-2250-4de8-bf97-534ddd5b92e5
+  ts_added: 2025-11-30 18:55:28 America/Los_Angeles
+  uuid: 636d473a-baf9-4b16-9544-38146f76c9c9
   year_released: 1990
   tags:
     - dizzy series
