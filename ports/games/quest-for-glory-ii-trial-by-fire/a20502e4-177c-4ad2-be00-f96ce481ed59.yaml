@@ -8,7 +8,7 @@ descr:
       - Quest for Glory II - Trial by Fire (v1.105, Int. 12.7.90) (1.2M) (Disk 4 of 5) [!].ima
     format: 5FD
     url: https://archive.org/download/20220303_20220303_0527/Quest%20for%20Glory%20II%20-%20Trial%20by%20Fire%20%28v1.105%2C%20Int.%2012.7.90%29%20%281.2M%2B360K%29.zip
-    ver: 1.105, 12.7.90
+    # ver: 1.105, 12.7.90
   igdb_slug: quest-for-glory-ii-trial-by-fire
   lang: en
   media_assets:
@@ -35,6 +35,7 @@ descr:
   uuid: a20502e4-177c-4ad2-be00-f96ce481ed59
   year_released: 1990
   tags:
+    - quest-for-glory series
 installer:
   tasks:
     - file:
