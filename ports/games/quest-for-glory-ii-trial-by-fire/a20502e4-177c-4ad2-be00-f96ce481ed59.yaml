@@ -1,0 +1,74 @@
+descr:
+  distro:
+    files:
+      - Quest for Glory II - Trial by Fire (v1.105, Int. 12.7.90) (360K) (Disk 5 of 5 - Startup Disk).ima
+      - Quest for Glory II - Trial by Fire (v1.105, Int. 12.7.90) (1.2M) (Disk 1 of 5) [!].ima
+      - Quest for Glory II - Trial by Fire (v1.105, Int. 12.7.90) (1.2M) (Disk 2 of 5) [!].ima
+      - Quest for Glory II - Trial by Fire (v1.105, Int. 12.7.90) (1.2M) (Disk 3 of 5) [!].ima
+      - Quest for Glory II - Trial by Fire (v1.105, Int. 12.7.90) (1.2M) (Disk 4 of 5) [!].ima
+    format: 5FD
+    url: https://archive.org/download/20220303_20220303_0527/Quest%20for%20Glory%20II%20-%20Trial%20by%20Fire%20%28v1.105%2C%20Int.%2012.7.90%29%20%281.2M%2B360K%29.zip
+    ver: 1.105, 12.7.90
+  igdb_slug: quest-for-glory-ii-trial-by-fire
+  lang: en
+  media_assets:
+  name: "Quest for Glory II: Trial by Fire"
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: quest-for-glory-ii-trial-by-fire
+    lutris_id: quest-for-glory-ii-trial-by-fire
+    mg_id: 169
+    pcgw_id: Quest_for_Glory_II:_Trial_by_Fire
+    qz_id: 276
+  reqs:
+    color_bits: 4
+    midi: false
+    screen_height: 200
+    screen_width: 320
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x # vanilla dosbox doesn't support multi-FD mounts
+    ver: 2024.12.04
+  ts_added: 2025-11-30 16:01:02 America/Los_Angeles
+  uuid: a20502e4-177c-4ad2-be00-f96ce481ed59
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - file:
+        path: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        state: directory
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+          - "{SRC_DIR}/{descr[distro][files][4]}"
+    - dosbox:
+        tasks:
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}"
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.BAT'
+              # when asked to select drive, print "D"
+              # hit Ctrl+F4 multiple times when requested
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\TRIAL\SIERRA.COM'
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+    - copy:
+        # sound drv: sound blaster doesn't work; adlib seems works fine
+        src: "{PORT_FILES_DIR}/RESOURCE.CFG"
+        dest: "{DEST_APP_DIR}"
