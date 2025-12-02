@@ -1,0 +1,67 @@
+descr:
+  distro:
+    files:
+      - Les Manley in - Search for the King (1990) (v1.1) (720K) (Disk 1) [!].ima
+      - Les Manley in - Search for the King (1990) (v1.1) (720K) (Disk 2) [!].ima
+      - Les Manley in - Search for the King (1990) (v1.1) (720K) (Disk 3) [!].ima
+    format: 3FD
+    url: https://archive.org/details/20230427
+    # ver: 1.1
+  igdb_slug: les-manley-in-search-for-the-king
+  lang: en
+  media_assets:
+  name: "Les Manley in: Search for the King"
+  platform: dos
+  publisher: Accolade
+  refs:
+    ag_id:
+    lutris_id: les-manley-in-search-for-the-king
+    mg_id: 3173
+    pcgw_id: Les_Manley_in:_Search_for_the_King
+    qz_id: 848
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-12-01 19:23:42 America/Los_Angeles
+  uuid: 52af7540-26a3-493a-962a-624aff8bacf7
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - file:
+        path: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        state: directory
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}"
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.EXE' # hit Ctrl+F4 multiple times when requested
+          - gen_run_script:
+              path: '{APP_DIR}\KING.BAT'
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+    - copy:
+        src: "{PORT_FILES_DIR}/KING.BAT"
+        dest: "{DEST_APP_DIR}"
