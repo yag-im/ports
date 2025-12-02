@@ -7,6 +7,7 @@ from enum import StrEnum
 from pathlib import Path
 from typing import Union
 
+from lib.dosbox.const import APP_DRIVE_LETTER
 from lib.dosbox.misc import (
     DosMountPoint,
     DosMountPointType,
@@ -51,6 +52,7 @@ class DosBoxConf:
     scaler: str = "none"
     sensitivity: int | None = None
     gus: bool = False
+    app_drive_size: int | None = None  # in MB
 
     @property
     def lang(self):
@@ -116,6 +118,8 @@ class DosBoxConf:
                     mount_part += " -t floppy"
                 if m.label:
                     mount_part += f" -label {m.label}"
+                if self.app_drive_size and m.letter.upper() == APP_DRIVE_LETTER:
+                    mount_part += f" -freesize {self.app_drive_size}"
                 cmds += [mount_part]
             else:
                 mount_part = f"IMGMOUNT {m.letter} {m.relative_to(base_dir).path_str()}"

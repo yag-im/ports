@@ -1,0 +1,83 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+      - disk5.img
+      - disk6.img
+      - disk7.img
+      - disk8.img
+    format: 8FD
+    url: https://archive.org/details/003497-AlteredDestiny
+  igdb_slug: altered-destiny
+  lang: en
+  media_assets:
+  name: Altered Destiny
+  platform: dos
+  publisher: Accolade
+  refs:
+    ag_id: altered-destiny
+    lutris_id: altered-destiny
+    mg_id: 92
+    pcgw_id: Altered_Destiny
+    qz_id: 6250
+  reqs:
+    color_bits: 4
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-11-30 19:09:27 America/Los_Angeles
+  uuid: d692e8ed-4395-4b5c-8db0-5d3df897f3a2
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - file:
+        path: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        state: directory
+    - copy:
+        src: "{item}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        loop:
+          - "{SRC_DIR}/{descr[distro][files][0]}"
+          - "{SRC_DIR}/{descr[distro][files][1]}"
+          - "{SRC_DIR}/{descr[distro][files][2]}"
+          - "{SRC_DIR}/{descr[distro][files][3]}"
+          - "{SRC_DIR}/{descr[distro][files][4]}"
+          - "{SRC_DIR}/{descr[distro][files][5]}"
+          - "{SRC_DIR}/{descr[distro][files][6]}"
+          - "{SRC_DIR}/{descr[distro][files][7]}"
+    - dosbox:
+        conf:
+          fullscreen: true
+          app_drive_size: 20 # default size (256) overflows and game refuses to install
+        tasks:
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][5]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][6]}"
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][7]}"
+              type: floppy
+          - run:
+              path: "{FIRST_FD_DRIVE}/INSTALL.EXE" # hit Ctrl+F4 multiple times when requested
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\AD.BAT'
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+    - copy:
+        src: "{PORT_FILES_DIR}/AD.BAT"
+        dest: "{DEST_APP_DIR}"
