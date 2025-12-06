@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Blobjob, The (1999)(Sampo).cue # updated with right bin name
+      - Blobjob, The (1999)(Sampo).bin
+    format: 1CD
+    url: https://archive.org/details/the-blobjob
+  igdb_slug: the-blobjob
+  lang: en
+  media_assets:
+  name: The Blobjob
+  platform: win
+  publisher: Sampo Oy
+  refs:
+    ag_id:
+    lutris_id: the-blobjob
+    mg_id: 46367
+    pcgw_id:
+    qz_id: 9484
+  reqs:
+    # from cd back cover
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-12-05 20:50:45 America/Los_Angeles
+  uuid: 4f830b77-cf33-48bd-8b7f-0fb4a179e0c0
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\START.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\START.EXE'
