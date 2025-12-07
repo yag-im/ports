@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - COMER1.bin
+      - COMER2.bin
+      - Comer3.bin
+      - Comer4.bin
+    format: 4CD
+    url: https://archive.org/details/comer-as-1998-win
+  igdb_slug: comer
+  lang: en
+  media_assets:
+  name: Comer
+  platform: win
+  publisher: Shine Studio
+  refs:
+    ag_id: comer
+    lutris_id: comer
+    mg_id: 22087
+    pcgw_id:
+    qz_id: 4104
+  reqs:
+    # cd box recommends 800x600, 24 bit, but dosbox crashes on app init with videodriver error report
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-12-07 08:59:30 America/Los_Angeles
+  uuid: b5d8a551-d368-46dd-a67f-edf9301f4c9a
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # in WIN98 game fails to start due to IV4 codec problem
+        # installation takes 7MB
+        app_drive_size: 20
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - run:
+              path: '{FIRST_CD_DRIVE}\IV5PLAY.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\COMER.EXE'
+              exit: false
