@@ -8,7 +8,7 @@ descr:
     format: 4CD
     url: https://archive.org/details/comer-as-1998-win
   igdb_slug: comer
-  lang: en
+  lang: en # TODO: contains also chinese voices
   media_assets:
   name: Comer
   platform: win

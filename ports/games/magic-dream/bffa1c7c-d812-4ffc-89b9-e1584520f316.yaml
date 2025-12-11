@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - MDREAM.CUE
+      - MDREAM.BIN
+    format: 1CD
+    url: https://www.old-games.ru/game/download/7806.html
+  igdb_slug: magic-dream
+  lang: ru
+  media_assets:
+    cover:
+      image_id: bffa1c7c-d812-4ffc-89b9-e1584520f316
+    screenshots: []
+  name: Волшебный Сон
+  platform: win
+  publisher: Nikita
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 225997
+    pcgw_id:
+    qz_id: 2339
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+    loading_duration: 19
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-12-10 18:59:57 America/Los_Angeles
+  uuid: bffa1c7c-d812-4ffc-89b9-e1584520f316
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR21
+        # game requires: ~75MB
+        app_drive_size: 100
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\MDREAM.EXE'
