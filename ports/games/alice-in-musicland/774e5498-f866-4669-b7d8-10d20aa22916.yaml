@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - ALICE.ISO
+    format: 1CD
+    url: https://www.old-games.ru/game/11136.html
+  igdb_slug: alice-in-musicland
+  lang: en # also ru version included
+  media_assets:
+    cover:
+      image_id: 774e5498-f866-4669-b7d8-10d20aa22916
+    screenshots: []
+  name: Alice in Musicland
+  platform: win
+  publisher: 'So\USE Interactive Entertainment'
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-12-10 20:32:06 America/Los_Angeles
+  uuid: 774e5498-f866-4669-b7d8-10d20aa22916
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # officially runs even in WIN311; in WINXP shows a missing library warning on startup
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "explorer.exe"
+              exit: false
+          - run:
+              path: "{FIRST_CD_DRIVE}/DRIVERS/QINSTALL.EXE"
+          - gen_run_script:
+              path: "{FIRST_CD_DRIVE}/ALICE.EXE"
