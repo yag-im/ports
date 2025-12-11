@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Алмазный Птах.iso
+    format: 1CD
+    url: https://www.old-games.ru/game/7679.html
+  igdb_slug: almaznyy-ptakh
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 7a597d9f-c8d1-441f-969a-b7156c326d3d
+    screenshots: []
+  name: Алмазный Птах
+  platform: win
+  publisher: 'So\USE Interactive Entertainment'
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme
+    color_bits: 24
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-12-10 19:59:34 America/Los_Angeles
+  uuid: 7a597d9f-c8d1-441f-969a-b7156c326d3d
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # officially runs even in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/DIAMBIRD/SETUP.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/DIAMBIRD.EXE"
