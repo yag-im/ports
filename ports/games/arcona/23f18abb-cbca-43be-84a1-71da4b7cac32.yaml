@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Arcona.rar
+    format: archive
+    url: https://www.old-games.ru/game/1835.html
+  igdb_slug: arcona
+  lang: ru
+  media_assets:
+    cover:
+      image_id: 23f18abb-cbca-43be-84a1-71da4b7cac32
+    screenshots: []
+  name: Аркона
+  platform: win
+  publisher: Artefact
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-12-11 15:32:08 America/Los_Angeles
+  uuid: 23f18abb-cbca-43be-84a1-71da4b7cac32
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - extract:
+              src: "{SRC_DIR}/{descr[distro][files][0]}"
+              dest: "{APP_DIR}"
+          - gen_run_script:
+              path: '{APP_DIR}\QUEST.EXE'

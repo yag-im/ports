@@ -66,7 +66,7 @@ def unpack_archive(src: Path, dest: Path, extract_files: list[str] = None, creat
             run_cmd(["unshield", "-d", Path(td), "-D", "2", "x", str(src)])
             move(tmp_path / "Program_Executable_Files", dest, copy_tree=True)
     elif image_format == "rar":
-        cmd = ["unrar", "-x", str(src)]
+        cmd = ["unrar", "x", str(src)]
         if extract_files:
             cmd += extract_files
         cmd.append(str(dest))

@@ -184,7 +184,6 @@ RUN apt-get update \
         gettext \
         innoextract \
         iputils-ping \
-        unrar-free \
         unshield \
         uuid-runtime
 
@@ -212,5 +211,10 @@ RUN apt install --no-install-recommends -y \
 
 WORKDIR /tmp
 RUN curl https://poweriso.com/poweriso-x64-1.6.tar.gz -o poweriso-x64-1.6.tar.gz \
-    && tar zxvf poweriso-x64-1.6.tar.gz
+    && tar zxvf poweriso-x64-1.6.tar.gz \
     && cp poweriso-x64 /usr/local/bin/poweriso
+
+RUN sed -i '/^Components:/ s/$/ contrib non-free/' /etc/apt/sources.list.d/debian.sources \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y \
+        unrar

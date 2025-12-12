@@ -5,6 +5,7 @@ from pathlib import (
 
 from lib.app_desc import AppDesc
 from lib.installer.const import FIRST_CD_DRIVE_LETTER
+from lib.installer.utils import transform_str_path
 from lib.qemu.qemu import (
     Qemu,
     QemuFlavor,
@@ -24,6 +25,7 @@ CMD_MOUNT = "mount"
 CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
 CMD_UMOUNT = "umount"
+CMD_EXTRACT = "extract"
 
 
 def exec_subtask(task: dict, qemu: Qemu) -> None:
@@ -54,6 +56,11 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
     elif cmd == CMD_UMOUNT:
         remove = task.get("remove", True)
         qemu.umount(drive_letter=task.get("letter"), remove=remove)
+    elif cmd == CMD_EXTRACT:
+        src = transform_str_path(task.get("src"))
+        dest = transform_str_path(task.get("dest"))
+        files = task.get("files", None)
+        qemu.extract(src, dest, files)
     else:
         raise ValueError(f"unrecognized command: {cmd}")
 

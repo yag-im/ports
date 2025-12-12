@@ -43,9 +43,6 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "explorer.exe"
-              exit: false
-          - run:
               path: "{FIRST_CD_DRIVE}/DRIVERS/QINSTALL.EXE"
           - gen_run_script:
               path: "{FIRST_CD_DRIVE}/ALICE.EXE"
