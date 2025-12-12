@@ -15,6 +15,7 @@ from pathlib import (
 from shutil import move
 from typing import (
     Any,
+    List,
     Protocol,
     TypeVar,
 )
@@ -31,6 +32,7 @@ from lib.guestfs import rm as guestfs_rm
 from lib.qemu.const import (
     APP_DRIVE,
 )
+from lib.unpack import unpack_archive
 from lib.utils import copy as cp
 from lib.utils import (
     is_iso_image,
@@ -353,3 +355,11 @@ class Qemu((Protocol[T])):
             self.rm(
                 APP_DRIVE / os.path.basename(f.name),
             )
+
+    def extract(self, src: Path, dst: PureWindowsPath, files: List[str] = None) -> None:
+        """Extracts files from source host path into the qemu' mounted image drive."""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            unpack_archive(src, tmp_path, extract_files=files)
+            # copy creates missing dst directory automatically
+            self.copy(tmp_path / "*", dst)

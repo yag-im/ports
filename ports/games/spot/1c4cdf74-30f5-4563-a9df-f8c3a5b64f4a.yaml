@@ -40,7 +40,7 @@ installer:
               cd_images_as_letters: true
           - run:
               path: "{FIRST_CD_DRIVE}QUICKTIM.EXE"
-          - run:
+          - run: # TODO: do we need this?
               path: "Explorer.exe"
               exit: false
           - gen_run_script:
