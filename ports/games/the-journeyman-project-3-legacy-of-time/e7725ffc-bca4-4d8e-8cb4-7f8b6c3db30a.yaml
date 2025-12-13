@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - J3_DVD.ISO
+    format: 1DVD
+    url: https://archive.org/download/j-3-dvd/J3_DVD.ISO
+  igdb_slug: the-journeyman-project-3-legacy-of-time
+  lang: en
+  media_assets:
+  name: "The Journeyman Project 3: Legacy of Time"
+  platform: win
+  publisher: Red Orb Entertainment
+  refs:
+    ag_id: the-journeyman-project-3-legacy-of-time
+    lutris_id: the-journeyman-project-3-legacy-of-time
+    mg_id: 680
+    pcgw_id: The_Journeyman_Project_3:_Legacy_of_Time
+    qz_id: 308
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+    loading_duration: 14
+  runner:
+    name: dosbox-x # in qemu, cursor has white square shape; also movements are too quick and sound is crackling
+    ver: 2024.12.04
+  ts_added: 2025-12-13 08:10:50 America/Los_Angeles
+  uuid: e7725ffc-bca4-4d8e-8cb4-7f8b6c3db30a
+  year_released: 1998
+  tags:
+    - journeyman series
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 100 # requires 66MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LEGACY.EXE'
