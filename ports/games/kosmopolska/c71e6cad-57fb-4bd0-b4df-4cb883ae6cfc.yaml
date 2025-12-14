@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Kosmopolska CD1.iso
+      - Kosmopolska CD2.iso
+      - Kosmopolska CD3.iso
+      - Kosmopolska CD4.iso
+    format: 4CD
+    url: https://www.old-games.ru/game/9390.html
+  igdb_slug: kosmopolska
+  lang: se
+  media_assets:
+  name: Kosmopolska
+  platform: win
+  publisher: Vision Park AB
+  refs:
+    ag_id:
+    lutris_id: kosmopolska
+    mg_id: 58213
+    pcgw_id:
+    qz_id: 6205
+  reqs:
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04
+  ts_added: 2025-12-13 17:36:23 America/Los_Angeles
+  uuid: c71e6cad-57fb-4bd0-b4df-4cb883ae6cfc
+  year_released: 1997
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 50 # app needs 30MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Kosmopolska.exe'
+          - run:
+              path: '{FIRST_CD_DRIVE}\redist\Qt32.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Kosmopol.exe'
