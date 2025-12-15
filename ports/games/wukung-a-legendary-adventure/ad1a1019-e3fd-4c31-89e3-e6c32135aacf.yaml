@@ -37,7 +37,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        flavor: WIN311 # in WIN9X, requires a manual memory size adjustment to 8MB
         tasks:
           - mount:
               src: "{DEST_DIR}"
