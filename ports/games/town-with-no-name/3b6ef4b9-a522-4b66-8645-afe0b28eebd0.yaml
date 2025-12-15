@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - TOWN_WITH_NO_NAME.cue
+      - TOWN_WITH_NO_NAME.bin
+    format: 1CD
+    url: https://archive.org/details/town-with-no-name-msdos
+  igdb_slug: town-with-no-name
+  lang: en
+  media_assets:
+  name: Town With No Name
+  platform: dos
+  publisher: Prism Leisure Corporation Plc
+  refs:
+    ag_id:
+    lutris_id: town-with-no-name
+    mg_id: 7593
+    pcgw_id:
+    qz_id: 3962
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-staging # fails to start in vanilla dosbox and dosbox-x
+    ver: 0.82.0
+  ts_added: 2025-12-14 19:13:03 America/Los_Angeles
+  uuid: 3b6ef4b9-a522-4b66-8645-afe0b28eebd0
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: false
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\TOWN\DTVPLAY'
+              args:
+                - -CE
+                - -c
+                - LANGUAGE_DIR=english/
