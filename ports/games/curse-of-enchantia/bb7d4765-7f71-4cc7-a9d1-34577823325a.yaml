@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Enchantia.bin
+    format: 1CD
+    url: https://myrient.erista.me/files/eXo/eXoDOS/Full%20Release/eXo/eXoDOS/Curse%20of%20Enchantia%20%281992%29.zip
+  igdb_slug: curse-of-enchantia
+  lang: en
+  media_assets:
+  name: Curse of Enchantia
+  platform: dos
+  publisher: Core Design
+  refs:
+    ag_id: curse-of-enchantia
+    lutris_id: curse-of-enchantia
+    mg_id: 2409
+    pcgw_id:
+    qz_id: 373
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 200
+    screen_width: 320
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2025-12-14 15:32:06 America/Los_Angeles
+  uuid: bb7d4765-7f71-4cc7-a9d1-34577823325a
+  year_released: 1992
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\CURSE.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - CURSE.CFG
