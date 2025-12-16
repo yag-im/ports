@@ -27,7 +27,7 @@ descr:
     # vanilla dosbox won't work with CT-VOICE.DRV v3.x required for SFX in this game
     # https://www.vogons.org/viewtopic.php?p=946743#p946743
     name: dosbox-staging
-    ver: 0.82.0
+    ver: 0.82.2
   ts_added: 2025-01-25 17:07:44 America/Los_Angeles
   uuid: fcdc887e-aa72-4887-8152-32466b08b462
   year_released: 1994

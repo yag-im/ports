@@ -25,7 +25,7 @@ descr:
       lock_pointer: true
   runner:
     name: dosbox-staging
-    ver: 0.82.0
+    ver: 0.82.2
   ts_added: 2024-11-01 18:38:57 America/Los_Angeles
   uuid: a2a4c587-3182-46de-893c-b96e90832f2b
   year_released: 1995

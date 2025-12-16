@@ -26,7 +26,7 @@ descr:
       lock_pointer: true
   runner:
     name: dosbox-staging # fails to start in vanilla dosbox and dosbox-x
-    ver: 0.82.0
+    ver: 0.82.2
   ts_added: 2025-12-14 19:13:03 America/Los_Angeles
   uuid: 3b6ef4b9-a522-4b66-8645-afe0b28eebd0
   year_released: 1993
@@ -35,8 +35,6 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        conf:
-          fullscreen: false
         tasks:
           - mount:
               src: "{DEST_DIR}/{descr[distro][files][0]}"
