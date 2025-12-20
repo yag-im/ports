@@ -4,7 +4,7 @@ ARG DEBIAN_VER=trixie
 FROM mcr.microsoft.com/devcontainers/python:3.11-${DEBIAN_VER}
 
 ARG DOSBOX_VER=0.74-3-5
-ARG DOSBOX_X_VER=2024.12.04
+ARG DOSBOX_X_VER=2025.12.01
 ARG DEBIAN_VER
 ARG DEBIAN_FRONTEND=noninteractive
 ARG USERNAME=vscode
@@ -14,7 +14,7 @@ RUN apt-get update \
     && apt install --no-install-recommends -y \
         pulseaudio
 RUN usermod -aG audio,video,pulse ${USERNAME}
-RUN mkdir /run/user/1000 && chown -R ${USERNAME} /run/user/1000
+RUN mkdir -p /run/user/1000 && chown -R ${USERNAME} /run/user/1000
 RUN mkdir -p /home/${USERNAME}/.config/pulse/ \
     && echo "default-server=unix:/tmp/pulseaudio.socket" > /home/${USERNAME}/.config/pulse/client.conf
 RUN chown -R ${USERNAME} /home/${USERNAME}

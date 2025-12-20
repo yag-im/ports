@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - SHR_MATH.ISO
+    format: 1CD
+    url: https://archive.org/download/shrmath/SHR_MATH.ISO
+  igdb_slug: schoolhouse-rock-math-rock
+  lang: en
+  media_assets:
+  name: "Schoolhouse Rock!: Math Rock"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 119806
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2025-12-20 09:22:35 America/Los_Angeles
+  uuid: eccb60e1-2933-4675-8052-00b91eb00c38
+  year_released: 1996
+  tags:
+    - schoolhouse-rock
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\SHRM.EXE'
