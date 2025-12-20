@@ -1,19 +1,19 @@
 descr:
   distro:
     files:
-      - SHR_MATH.ISO
+      - AMERICA.iso
     format: 1CD
-    url: https://archive.org/download/shrmath/SHR_MATH.ISO
-  igdb_slug: schoolhouse-rock-math-rock
+    url: https://archive.org/download/americarock1996/AMERICA.iso
+  igdb_slug: schoolhouse-rock-america-rock
   lang: en
   media_assets:
-  name: "Schoolhouse Rock!: Math Rock"
+  name: "Schoolhouse Rock!: America Rock"
   platform: win
   publisher: Creative Wonders
   refs:
     ag_id:
-    lutris_id: schoolhouse-rock-math-rock
-    mg_id: 119806
+    lutris_id: schoolhouse-rock-america-rock
+    mg_id: 119810
     pcgw_id:
     qz_id:
   reqs:
@@ -26,8 +26,8 @@ descr:
   runner:
     name: dosbox-x
     ver: 2025.12.01
-  ts_added: 2025-12-20 09:22:35 America/Los_Angeles
-  uuid: eccb60e1-2933-4675-8052-00b91eb00c38
+  ts_added: 2025-12-20 10:58:33 America/Los_Angeles
+  uuid: 15433414-a65e-441c-8679-8130624d1a92
   year_released: 1996
   tags:
     - schoolhouse-rock
@@ -43,4 +43,4 @@ installer:
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
           - gen_run_script:
-              path: '{APP_DIR}\SHRM.EXE'
+              path: '{APP_DIR}\SHRA.EXE'
