@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - GRAMMARROCK.ISO
+    format: 1CD
+    url: https://archive.org/download/GRAMMARROCK/GRAMMARROCK.ISO
+  igdb_slug: schoolhouse-rock-grammar-rock
+  lang: en
+  media_assets:
+  name: Schoolhouse Rock! Grammar Rock
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id: schoolhouse-rock-grammar-rock
+    mg_id: 113955
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2025-12-26 09:38:23 America/Los_Angeles
+  uuid: 9cf463c2-e0e6-4b57-b804-72af15bf86dc
+  year_released: 1995
+  tags:
+    - schoolhouse-rock
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\CWONDERS\GRAMMAR\START.EXE'
