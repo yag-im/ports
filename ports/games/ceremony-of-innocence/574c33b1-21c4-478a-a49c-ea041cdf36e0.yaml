@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - CEREMONY.cue
+      - CEREMONY.bin
+    format: 1CD
+    url: https://archive.org/details/ceremony-of-innocence-uk-1998-win-mac
+  igdb_slug: ceremony-of-innocence
+  lang: en
+  media_assets:
+  name: Ceremony of Innocence
+  platform: win
+  publisher: Real World Multimedia
+  refs:
+    ag_id: ceremony-of-innocence
+    lutris_id: ceremony-of-innocence
+    mg_id: 27931
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from CD cover
+    color_bits: 16
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+    loading_duration: 11
+  runner:
+    name: dosbox-x # BSODs/fails to start in qemu
+    ver: 2025.12.01
+  ts_added: 2025-12-25 22:25:50 America/Los_Angeles
+  uuid: 574c33b1-21c4-478a-a49c-ea041cdf36e0
+  year_released: 1997
+  tags:
+    - arthouse
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "explorer.exe" # TODO: {FIRST_CD_DRIVE}\ceremony.exe (CD-autorun) fails to run without explorer.exe
+              # autorun installs dx, qtime, rsx audio and restarts pc
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Ceremony\ceremony.exe'
