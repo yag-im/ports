@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - EXPLORE1.ISO
+    format: 1CD
+    url: https://archive.org/download/explorationstation1997/EXPLORE1.ISO
+  igdb_slug: schoolhouse-rock-exploration-station
+  lang: en
+  media_assets:
+    cover:
+      image_id: 9d247d1f-49b7-42e9-81e9-ed5ef6455271
+    screenshots: []
+  name: "SchoolHouse Rock!: Exploration Station"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 119847
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2025-12-26 10:44:04 America/Los_Angeles
+  uuid: 9d247d1f-49b7-42e9-81e9-ed5ef6455271
+  year_released: 1996
+  tags:
+    - schoolhouse-rock
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\EXPLORE\SHRS.EXE'
