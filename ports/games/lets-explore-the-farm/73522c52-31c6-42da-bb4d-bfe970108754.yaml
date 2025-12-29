@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - THE_FARM.ISO
+    format: 1CD
+    url: https://archive.org/download/THEFARM1995/THE_FARM.ISO
+  igdb_slug: lets-explore-the-farm
+  lang: en
+  media_assets:
+  name: Let's Explore the Farm
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: lets-explore-the-farm
+    mg_id: 21015
+    pcgw_id: Let%27s_Explore_the_Farm_(Junior_Field_Trips)
+    qz_id:
+  reqs:
+    color_bits: 8
+    midi: false
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2025-12-29 10:52:08 America/Los_Angeles
+  uuid: 73522c52-31c6-42da-bb4d-bfe970108754
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\FARM.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_DIR}/C/WINDOWS"
+        loop:
+          - "HEGAMES.INI" # to skip startup reg window and CD test
