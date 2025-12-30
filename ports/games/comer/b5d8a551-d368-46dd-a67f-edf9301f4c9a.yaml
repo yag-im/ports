@@ -22,7 +22,6 @@ descr:
   reqs:
     # cd box recommends 800x600, 24 bit, but dosbox crashes on app init with videodriver error report
     color_bits: 16
-    midi: false
     screen_height: 480
     screen_width: 640
     ua:

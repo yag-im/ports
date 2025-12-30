@@ -21,7 +21,6 @@ descr:
     qz_id: 110
   reqs:
     color_bits: 8
-    midi: false
     screen_height: 200
     screen_width: 320
     ua:

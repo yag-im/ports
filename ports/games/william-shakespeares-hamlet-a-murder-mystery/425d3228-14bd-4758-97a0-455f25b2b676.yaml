@@ -19,7 +19,6 @@ descr:
   reqs:
     # from app start message
     color_bits: 16
-    midi: false
     screen_height: 480
     screen_width: 640
     ua:

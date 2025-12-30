@@ -21,7 +21,6 @@ descr:
     qz_id: 504
   reqs:
     color_bits: 16 # fails to start properly with 8 bits in all envs
-    midi: false
     screen_height: 480
     screen_width: 640
     ua:

@@ -19,7 +19,6 @@ descr:
     qz_id: 664
   reqs:
     color_bits: 24
-    midi: false
     screen_height: 600
     screen_width: 800
     ua:
