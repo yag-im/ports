@@ -18,7 +18,6 @@ descr:
     qz_id: 318
   reqs:
     color_bits: 24 # 24 bits is highly recommended in README
-    midi: false
     screen_height: 480
     screen_width: 640
     ua:

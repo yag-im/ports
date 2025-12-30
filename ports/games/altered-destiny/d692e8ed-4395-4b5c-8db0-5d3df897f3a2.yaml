@@ -25,7 +25,6 @@ descr:
     qz_id: 6250
   reqs:
     color_bits: 4
-    midi: false
     screen_height: 480
     screen_width: 640
     ua:

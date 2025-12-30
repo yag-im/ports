@@ -23,7 +23,6 @@ descr:
     qz_id: 276
   reqs:
     color_bits: 4
-    midi: false
     screen_height: 200
     screen_width: 320
     ua:

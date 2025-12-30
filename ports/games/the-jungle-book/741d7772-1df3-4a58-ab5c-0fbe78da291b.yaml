@@ -17,7 +17,6 @@ descr:
     qz_id: null
   reqs:
     color_bits: 8
-    midi: false
     screen_height: 480
     screen_width: 640
     ua:
