@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - MATHQUEST.ISO
+    format: 1CD
+    url: https://archive.org/download/MATHQUEST/MATHQUEST.ISO
+  igdb_slug: disney-learning-math-quest-with-aladdin
+  lang: en
+  media_assets:
+  name: "Disney Learning: Math Quest with Aladdin"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disney-learning-math-quest-with-aladdin
+    mg_id: 31202
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2025-12-31 20:47:24 America/Los_Angeles
+  uuid: bebf649d-1b0c-4186-8928-0d62e387408e
+  year_released: 1997
+  tags:
+    - disney-learning
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\RT4.EXE'
+              exit: false # TODO
