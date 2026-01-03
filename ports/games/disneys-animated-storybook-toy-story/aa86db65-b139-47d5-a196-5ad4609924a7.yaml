@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - "Disney's Animated Storybook - Toy Story (Disney_Pixar) [Mac-PC] (1996).iso"
+    format: 1CD
+    url: https://archive.org/download/DisneysAnimatedStorybookToyStoryDisneyPixarMacPC1996/Disney%27s%20Animated%20Storybook%20-%20Toy%20Story%20%28Disney%3APixar%29%20%5BMac-PC%5D%20%281996%29.iso
+  igdb_slug: disneys-animated-storybook-toy-story
+  lang: en
+  media_assets:
+  name: "Disney's Animated Storybook - Toy Story"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-animated-storybook-toy-story
+    mg_id: 79676
+    pcgw_id: Disney%27s_Animated_Storybook:_Toy_Story
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: false
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-03 13:08:59 America/Los_Angeles
+  uuid: aa86db65-b139-47d5-a196-5ad4609924a7
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\TSASB.EXE'
