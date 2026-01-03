@@ -24,8 +24,6 @@ descr:
     midi: true
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: false
   runner:
     name: wine
     ver: '9.0'

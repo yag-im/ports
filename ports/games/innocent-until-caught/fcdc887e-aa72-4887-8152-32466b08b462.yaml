@@ -20,8 +20,6 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: true
   runner:
     # vanilla dosbox won't work with CT-VOICE.DRV v3.x required for SFX in this game
     # https://www.vogons.org/viewtopic.php?p=946743#p946743

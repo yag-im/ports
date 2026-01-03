@@ -20,8 +20,6 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: true
     loading_duration: 20
   runner:
     name: dosbox-x # fails to run in wine and qemu due to 256 colors requirement

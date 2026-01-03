@@ -20,8 +20,6 @@ descr:
     color_bits: 8
     screen_height: 400 # should be 350, but xorg doesn't support lower than 640x400
     screen_width: 640
-    ua:
-      lock_pointer: true
   runner:
     name: dosbox # in scummvm 2.9.1 click on the e.g. diskette icon makes no effect
     ver: 0.74-3

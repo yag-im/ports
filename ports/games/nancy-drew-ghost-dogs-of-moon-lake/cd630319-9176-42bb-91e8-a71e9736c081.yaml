@@ -20,8 +20,6 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: false
   runner:
     # scummvm 2.9.1 is not able to detect sound and video in this distribution from archive.org
     name: wine

@@ -23,8 +23,6 @@ descr:
     color_bits: 8
     screen_height: 600
     screen_width: 800
-    ua:
-      lock_pointer: false
   runner:
     name: dosbox-x
     ver: 2024.12.04

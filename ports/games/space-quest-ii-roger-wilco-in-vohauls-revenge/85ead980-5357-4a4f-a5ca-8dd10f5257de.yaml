@@ -20,8 +20,6 @@ descr:
     color_bits: 16
     screen_height: 768
     screen_width: 1024
-    ua:
-      lock_pointer: false
   runner:
     name: scummvm
     ver: 2.9.0

@@ -31,8 +31,6 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: true
   runner:
     name: dosbox # in vanilla dosbox, cdrom is not recognized during setup (but we hardcopy files anyway); in dosbox-x mouse doesn't work
     ver: 0.74-3

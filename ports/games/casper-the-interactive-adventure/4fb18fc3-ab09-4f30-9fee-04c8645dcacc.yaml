@@ -20,8 +20,6 @@ descr:
     color_bits: 8 # as per setup.exe dialog that's the best depth
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: false
   runner:
     name: qemu
     ver: latest

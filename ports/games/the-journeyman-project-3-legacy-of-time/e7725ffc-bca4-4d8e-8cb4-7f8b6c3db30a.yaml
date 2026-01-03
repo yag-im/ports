@@ -20,8 +20,6 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: true
     loading_duration: 14
   runner:
     name: dosbox-x # in qemu, cursor has white square shape; also movements are too quick and sound is crackling
