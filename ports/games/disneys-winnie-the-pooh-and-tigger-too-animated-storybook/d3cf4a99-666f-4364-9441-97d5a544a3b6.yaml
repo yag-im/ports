@@ -22,7 +22,7 @@ descr:
     screen_width: 640
     ua:
       lock_pointer: true
-    loading_duration: 11
+    loading_duration: 18
   runner:
     name: dosbox-x
     ver: 2025.12.01
