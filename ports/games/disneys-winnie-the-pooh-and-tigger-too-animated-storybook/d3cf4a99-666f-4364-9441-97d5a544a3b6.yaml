@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - TiggerToo.iso
+    format: 1CD
+    url: https://archive.org/download/TiggerToo/TiggerToo.iso
+  igdb_slug: disneys-winnie-the-pooh-and-tigger-too-animated-storybook
+  lang: en
+  media_assets:
+  name: "Disney's Winnie the Pooh & Tigger Too: Animated Storybook"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-winnie-the-pooh-and-tigger-too-animated-storybook
+    mg_id: 32173
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+    loading_duration: 11
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-02 19:11:35 America/Los_Angeles
+  uuid: d3cf4a99-666f-4364-9441-97d5a544a3b6
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE # fails to start in WIN95
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\Program Files\Disney Interactive\Winnie the Pooh and Tigger Too\Tigger2.exe' # can't change during setup (no install dir choice)
