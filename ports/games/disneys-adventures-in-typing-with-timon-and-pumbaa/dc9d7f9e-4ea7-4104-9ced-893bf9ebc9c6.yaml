@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Adventures in Typing with Timon & Pumbaa (Disney Interactive) (1998).iso
+    format: 1CD
+    url: https://archive.org/download/AdventuresInTypingWithTimonPumbaaDisneyInteractive1998/Adventures%20in%20Typing%20with%20Timon%20%26%20Pumbaa%20%28Disney%20Interactive%29%20%281998%29.iso
+  igdb_slug: disneys-adventures-in-typing-with-timon-and-pumbaa
+  lang: en
+  media_assets:
+  name: "Disney's Adventures in Typing with Timon & Pumbaa"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-adventures-in-typing-with-timon-and-pumbaa
+    mg_id: 34834
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox-x # fails to start in qemu (both 9x and XP)
+    ver: 2025.12.01
+  ts_added: 2026-01-02 17:15:23 America/Los_Angeles
+  uuid: dc9d7f9e-4ea7-4104-9ced-893bf9ebc9c6
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\typing.exe'
