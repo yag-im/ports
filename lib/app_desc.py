@@ -1,6 +1,7 @@
 import os
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 
 APPS_BUNDLE_DIR = Path(os.getenv("DATA_DIR")) / "apps"
 APPS_SRC_DIR = Path(os.getenv("DATA_DIR")) / "apps_src"
@@ -12,7 +13,7 @@ class AppDesc:
     class AppReqs:
         @dataclass
         class UaReqs:
-            lock_pointer: bool
+            lock_pointer: Optional[bool]
 
         color_bits: int
         midi: bool

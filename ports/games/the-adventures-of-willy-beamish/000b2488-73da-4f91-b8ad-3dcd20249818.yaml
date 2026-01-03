@@ -20,8 +20,6 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
-    ua:
-      lock_pointer: true
   runner:
     name: dosbox-x # in vanilla dosbox it fails to start with "Unable to initialize hds! mode=4, port=544" (sound config issue?)
     ver: 2024.12.04

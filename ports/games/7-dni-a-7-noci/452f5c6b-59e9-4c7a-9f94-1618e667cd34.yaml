@@ -24,8 +24,6 @@ descr:
     color_bits: 8
     screen_height: 200
     screen_width: 320
-    ua:
-      lock_pointer: true
   runner:
     name: dosbox-x # there is no sound in vanilla dosbox for this game!
     ver: "2024.12.04"

@@ -20,8 +20,6 @@ descr:
     color_bits: 32
     screen_height: 600
     screen_width: 800
-    ua:
-      lock_pointer: false
   runner:
     # in win95 game crashes
     name: qemu

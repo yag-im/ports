@@ -20,8 +20,6 @@ descr:
     color_bits: 8
     screen_height: 200
     screen_width: 320
-    ua:
-      lock_pointer: true
   runner:
     name: dosbox
     ver: 0.74-3

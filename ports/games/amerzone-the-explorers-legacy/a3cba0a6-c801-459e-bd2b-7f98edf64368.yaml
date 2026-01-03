@@ -20,8 +20,6 @@ descr:
     color_bits: 16
     screen_height: 600
     screen_width: 800
-    ua:
-      lock_pointer: false
   runner:
     name: wine
     ver: "10.0"
