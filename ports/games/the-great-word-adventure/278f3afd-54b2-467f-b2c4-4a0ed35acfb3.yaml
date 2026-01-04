@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - TUNEWORD.ISO
+    format: 1CD
+    url: https://archive.org/download/TUNEWORD/TUNEWORD.ISO
+  igdb_slug: the-great-word-adventure
+  lang: en
+  media_assets:
+  name: The Great Word Adventure
+  platform: win
+  publisher: 7th Level
+  refs:
+    ag_id:
+    lutris_id: the-great-word-adventure
+    mg_id: 203041
+    pcgw_id: The_Great_Word_Adventure
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-04 10:12:07 America/Los_Angeles
+  uuid: 278f3afd-54b2-467f-b2c4-4a0ed35acfb3
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 10
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\WORD.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\Greatwrd\Word.bin'
