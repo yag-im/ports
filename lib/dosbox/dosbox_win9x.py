@@ -1,3 +1,4 @@
+import re
 import tempfile
 from dataclasses import (
     dataclass,
@@ -149,12 +150,15 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             shell_cmds.append(f'"{path}"')
             if args:
                 shell_cmds.append(" ".join([str(a) for a in args]))
+            # Normalize any run of "\" characters to exactly 2 backslashes.
+            # Examples: "\" -> "\\"
+            shell_cmds_str = re.sub(r"\\+", r"\\", " ".join([str(cmd) for cmd in shell_cmds]))
             tmp_file_path = Path(tmp_dir) / "SYSTEM.INI"
             template(
                 self.templates_dir / "system.ini.tmpl",
                 tmp_file_path,
                 params={
-                    "shell": " ".join([str(cmd) for cmd in shell_cmds]),
+                    "shell": shell_cmds_str,
                 },
                 newline="\r\n",
             )
