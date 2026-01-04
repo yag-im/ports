@@ -19,7 +19,7 @@ class AppDesc:
         midi: bool
         screen_height: int
         screen_width: int
-        ua: UaReqs
+        ua: Optional[UaReqs]
 
     @dataclass
     class Distro:
@@ -57,7 +57,7 @@ class AppDesc:
                 midi=app_descr["reqs"]["midi"] if "midi" in app_descr["reqs"] else None,
                 screen_height=app_descr["reqs"]["screen_height"],
                 screen_width=app_descr["reqs"]["screen_width"],
-                ua=AppDesc.AppReqs.UaReqs(lock_pointer=app_descr["reqs"]["ua"]["lock_pointer"]),
+                ua=AppDesc.AppReqs.UaReqs(lock_pointer=app_descr["reqs"].get("ua", {}).get("lock_pointer", None)),
             ),
             app_slug=app_slug,
             distro=AppDesc.Distro(

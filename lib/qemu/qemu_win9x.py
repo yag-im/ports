@@ -1,3 +1,4 @@
+import re
 from dataclasses import (
     dataclass,
     field,
@@ -71,8 +72,10 @@ class QemuWin9x(Qemu[QemuWin9xConf]):
             shell_cmds.append(f'/C:"{work_dir}"')
         shell_cmds.append(f'"{exec_path}"')
         if args:
-            shell_cmds.append(" ".join([str(a) for a in args]))
-        shell_cmds_str = " ".join(shell_cmds).replace("\\", r"\\")
+            shell_cmds.append(" ".join(map(str, args)))
+        # Normalize any run of "\" characters to exactly four backslashes.
+        # Examples: "\" -> "\\\\", "\\\\\\\\" -> "\\\\"
+        shell_cmds_str = re.sub(r"\\+", r"\\\\", " ".join(shell_cmds))
         self.replace_string_in_file(
             SYSTEM_DRIVE / "WINDOWS" / "SYSTEM.INI",
             r"(?im)^shell=.*\r\n",
@@ -95,6 +98,6 @@ class QemuWin9x(Qemu[QemuWin9xConf]):
             args = [str(a) for a in args]
         return self.run_on_startup(exec_path, do_exit=do_exit, mock=mock, work_dir=work_dir, args=args)
 
-    def gen_run_script(self, exec_path: PureWindowsPath, do_exit: bool = True) -> Path:
-        self.run_exec(exec_path, do_exit=do_exit, mock=True)
+    def gen_run_script(self, exec_path: PureWindowsPath, do_exit: bool = True, args: list[Any] | None = None) -> Path:
+        self.run_exec(exec_path, do_exit=do_exit, mock=True, args=args)
         return super().gen_run_script(exec_path)

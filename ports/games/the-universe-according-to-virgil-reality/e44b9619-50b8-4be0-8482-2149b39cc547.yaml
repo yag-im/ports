@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Universe According to Virgil Reality, The (1996)(7th Level).iso
+    format: 1CD
+    url: https://archive.org/download/universe-according-to-virgil-reality/Universe%20According%20to%20Virgil%20Reality%2C%20The%20%281996%29%287th%20Level%29.iso
+  igdb_slug: the-universe-according-to-virgil-reality
+  lang: en
+  media_assets:
+  name: The Universe According to Virgil Reality
+  platform: win
+  publisher: 7th Level
+  refs:
+    ag_id:
+    lutris_id: the-universe-according-to-virgil-reality
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-03 15:42:28 America/Los_Angeles
+  uuid: e44b9619-50b8-4be0-8482-2149b39cc547
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\VIRGIL.EXE'
+              exit: False # otherwise closes immediately
+              args:
+                - '{FIRST_CD_DRIVE}\VIRGIL\VIRGIL.BIN'
