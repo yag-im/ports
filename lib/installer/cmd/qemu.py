@@ -34,7 +34,9 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
     if cmd == CMD_COPY:
         qemu.copy(Path(task.get("src")), Path(task.get("dest")))
     elif cmd == CMD_GEN_RUN_SCRIPT:
-        qemu.gen_run_script(exec_path=PureWindowsPath(task.get("path")), do_exit=task.get("exit", True))
+        qemu.gen_run_script(
+            exec_path=PureWindowsPath(task.get("path")), do_exit=task.get("exit", True), args=task.get("args", None)
+        )
     elif cmd == CMD_MOUNT:
         src = Path(task.get("src"))
         cd_images_as_letters = task.get("cd_images_as_letters", False)
