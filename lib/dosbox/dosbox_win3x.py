@@ -1,3 +1,4 @@
+import re
 from dataclasses import (
     dataclass,
     field,
@@ -85,5 +86,7 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
         app_exec = [path, *args]
         if runexit:
             app_exec.insert(0, "RUNEXIT.EXE")
+        # path or args containing path may have "\" characters that need to be collapsed into single "\"
+        app_exec = [re.sub(r"\\+", r"\\", str(ae)) for ae in app_exec]
         cmds.append(DosCmdExec("C:\\WINDOWS\\WIN", app_exec))
         self._run(cmds, mock=mock)
