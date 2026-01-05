@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - 7thLevel_LilHowie-WordMath_1996_Win31-Win95.iso
+    format: 1CD
+    url: https://archive.org/download/Lil-Howie-The-Great-Word-Adventure-1-The-Great-Math-Adventure-7th-level-1996-windows-31-95/7thLevel_LilHowie-WordMath_1996_Win31-Win95.iso
+  igdb_slug: the-great-math-adventure
+  lang: en
+  media_assets:
+  name: The Great Math Adventure
+  platform: win
+  publisher: 7th Level
+  refs:
+    ag_id:
+    lutris_id: the-great-math-adventure
+    mg_id: 201548
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-04 16:41:01 America/Los_Angeles
+  uuid: 80fb5863-6e98-4de2-8906-07b9191da559
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\MATH.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\MATH\MATH.BIN'
