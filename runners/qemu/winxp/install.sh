@@ -7,16 +7,16 @@ OS_FLAVOR=winxpsp3
 LANG=""
 
 if [[ $# -lt 1 ]]; then
-  echo "Usage: $0 [en|ru]"
+  echo "Usage: $0 [en|ru|ja]"
   exit 1
 fi
 
 case "$1" in
-  en|ru)
+  en|ru|ja)
     LANG="$1"
     ;;
   *)
-    echo "Usage: $0 [en|ru]"
+    echo "Usage: $0 [en|ru|ja]"
     exit 1
     ;;
 esac

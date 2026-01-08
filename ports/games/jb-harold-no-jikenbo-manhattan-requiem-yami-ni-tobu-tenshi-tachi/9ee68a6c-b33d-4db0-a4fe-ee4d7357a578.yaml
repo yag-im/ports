@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - MANREQ.ISO
+    format: 1CD
+    url: https://archive.org/download/jbharoldwin95/MANREQ.ISO
+  igdb_slug: jb-harold-no-jikenbo-manhattan-requiem-yami-ni-tobu-tenshi-tachi
+  lang: ja
+  media_assets:
+  name: "J.B. Harold no Jikenbo: Manhattan Requiem - Yami ni Tobu Tenshi-tachi"
+  platform: win
+  publisher: Riverhillsoft
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 45910
+    pcgw_id:
+    qz_id: 9467
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-05 19:46:25 America/Los_Angeles
+  uuid: 9ee68a6c-b33d-4db0-a4fe-ee4d7357a578
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\MANREQ\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\MANREQ.EXE'

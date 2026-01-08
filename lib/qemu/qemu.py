@@ -44,7 +44,7 @@ from lib.utils import (
 CURRENT_DIR = Path(__file__).resolve().parent
 
 BASE_LANG = "en"
-KNOWN_LANG = {BASE_LANG, "ru"}
+KNOWN_LANG = {BASE_LANG, "ru", "ja"}
 
 BASE_FULLSCREEN_ENABLED = True
 
@@ -77,7 +77,6 @@ class QemuConf:
 
     @lang.setter
     def lang(self, new_value):
-        # only BASE_LANG and "ru" versions are supported
         self._lang = new_value if new_value in KNOWN_LANG else BASE_LANG
 
 
