@@ -84,13 +84,22 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
             if work_dir:
                 dest_path = work_dir
             else:
-                dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
-                if self.conf.lang == "ru":
-                    dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
+                if self.conf.flavor == QemuFlavor.WINXPSP3:
+                    dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
+                    if self.conf.lang == "ru":
+                        dest_path = (
+                            f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
+                        )
+                    elif self.conf.lang == "ja":
+                        dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\スタート メニュー\\プログラム\\スタートアップ"
                 elif self.conf.flavor == QemuFlavor.WIN98SE:
                     dest_path = f"{SYSTEM_DRIVE}\\Windows\\Start Menu\\Programs\\StartUp"
                     if self.conf.lang == "ru":
                         dest_path = f"{SYSTEM_DRIVE}\\Windows\\Главное меню\\Программы\\Автозагрузка"
+                    elif self.conf.lang == "ja":
+                        dest_path = f"{SYSTEM_DRIVE}\\Windows\\スタート メニュー\\プログラム\\スタートアップ"
+                else:
+                    raise ValueError(f"Unsupported flavor: {self.conf.flavor}")
             self.copy(
                 tmp_runexit_bat,
                 PureWindowsPath(dest_path),
