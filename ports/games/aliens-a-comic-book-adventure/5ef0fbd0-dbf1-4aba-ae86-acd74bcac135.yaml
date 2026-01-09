@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Aliens CD 1-2.iso
+      - Aliens CD 2-2.iso
+    format: 2CD
+    url: https://myrient.erista.me/files/eXo/eXoDOS/Full%20Release/eXo/eXoDOS/Aliens%20-%20A%20Comic%20Book%20Adventure%20%281995%29.zip
+    # patch v1.03: https://archive.org/download/ALIENS03/ALIENS03.ZIP
+  igdb_slug: aliens-a-comic-book-adventure
+  lang: en
+  media_assets:
+  name: "Aliens: A Comic Book Adventure"
+  platform: dos
+  publisher: Mindscape
+  refs:
+    ag_id: aliens-a-comic-book-adventure
+    lutris_id: aliens-a-comic-book-adventure
+    mg_id: 1516
+    pcgw_id: Aliens:_A_Comic_Book_Adventure
+    qz_id: 9471
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-01-08 08:04:37 America/Los_Angeles
+  uuid: 5ef0fbd0-dbf1-4aba-ae86-acd74bcac135
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - extract:
+        # 1.03 patch (solves blinking cursor and other issues)
+        src: "{SRC_DIR}/ALIENS03.ZIP"
+        dest: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/ALIENS"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.BAT'
+          - run:
+              path: '{SYSTEM_DRIVE}\ALIENS\ALIEN103.EXE' # patch installer
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\ALIENS\ALIENSP2.EXE'
