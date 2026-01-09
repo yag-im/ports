@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Karma - Curse of the 12 Caves (USA).cue
+      - Karma - Curse of the 12 Caves (USA).bin
+    format: 1CD
+    url: https://archive.org/download/karma-curse-of-the-12-caves-usa/Karma%20-%20Curse%20of%20the%2012%20Caves%20%28USA%29.zip
+    # patch url: https://dl2.old-games.su:42443/get/Bk7UsglTMaSqDdE-xd6WcA==,1768105460/pc/karma_curse_of_the_12_caves/files/disciscc_dll.rar
+  igdb_slug: karma-curse-of-the-12-caves
+  lang: en
+  media_assets:
+  name: "Karma: Curse of the 12 Caves"
+  platform: win
+  publisher: Patra
+  refs:
+    ag_id:
+    lutris_id: karma-curse-of-the-12-caves
+    mg_id: 11736
+    pcgw_id:
+    qz_id: 4102
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-08 20:11:04 America/Los_Angeles
+  uuid: a7e9e7e7-fcfb-4369-bb8a-00fae5d6a34d
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - extract:
+        # installer libraryfile was missed on original CD
+        src: "{SRC_DIR}/disciscc_dll.rar"
+        dest: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/WINDOWS/SYSTEM"
+    - dosbox:
+        conf:
+          cycles: fixed 30000 # otherwise videos are too fast
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # installer is glitchy and forcefully adds "karma" folder into path
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\KARMA\KARMA.EXE'
