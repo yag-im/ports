@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Qin - Tomb of the Middle Kingdom (USA).cue
+      - Qin - Tomb of the Middle Kingdom (USA).bin
+    format: 1CD
+    url: https://archive.org/details/Nova_Qin_USA
+  igdb_slug: qin-tomb-of-the-middle-kingdom
+  lang: en
+  media_assets:
+  name: "Qin: Tomb of the Middle Kingdom"
+  platform: win
+  publisher: Time Warner Interactive
+  refs:
+    ag_id: qin-tomb-of-the-middle-kingdom
+    lutris_id: qin-tomb-of-the-middle-kingdom
+    mg_id: 3772
+    pcgw_id:
+    qz_id: 4100
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-10 18:34:45 America/Los_Angeles
+  uuid: f2ba3d68-941a-4199-9fea-5c70c159d7ad
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\QIN.EXE'
