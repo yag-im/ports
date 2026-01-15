@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - RWMATH.cue
+      - RWMATH.bin
+    format: 1CD
+    url: https://archive.org/details/math-for-the-real-world
+  igdb_slug: math-for-the-real-world
+  lang: en
+  media_assets:
+  name: Math for the Real World
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: math-for-the-real-world
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-12 18:31:15 America/Los_Angeles
+  uuid: 059b5a97-2481-4b98-b4e7-3ec581aca2b4
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\RWMath16.EXE'
+              cd: "{FIRST_CD_DRIVE}resource"
+              args:
+                - '{FIRST_CD_DRIVE}resource\rwmath.bap'
