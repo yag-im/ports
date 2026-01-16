@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - DINO16B14.ISO
+    format: 1CD
+    url: https://archive.org/download/3-D_Dinosaur_Adventure_OEM/DINO16B14.rar/DINO16B14.ISO
+  igdb_slug: 3-d-dinosaur-adventure
+  lang: en
+  media_assets:
+  name: 3-D Dinosaur Adventure
+  platform: dos
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: 3-d-dinosaur-adventure
+    mg_id: 44857
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-01-15 09:14:39 America/Los_Angeles
+  uuid: 73eab31b-6b73-45bc-8b7b-6a04092eacb9
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL1.EXE'
+          - gen_run_script:
+              # from DINO3D.BAT
+              path: '{APP_DIR}\KA.COM'
+              args:
+                - '-520k'
+                - kav.pgm
+                - '-lD:\APP'
+                - '-rE:\DINO3D'
+                - '-fD:\APP'
