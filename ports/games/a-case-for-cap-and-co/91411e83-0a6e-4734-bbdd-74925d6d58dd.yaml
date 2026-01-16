@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Case for Cap and Co, A (1997)(Tivola)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/a-case-for-cap-and-co/Case%20for%20Cap%20and%20Co%2C%20A%20%281997%29%28Tivola%29%5BMac-PC%5D.iso
+  igdb_slug: a-case-for-cap-and-co
+  lang: en
+  media_assets:
+  name: A Case for Cap & Co
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id:
+    lutris_id: a-case-for-cap-and-co
+    mg_id: 199999
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-15 19:59:52 America/Los_Angeles
+  uuid: 91411e83-0a6e-4734-bbdd-74925d6d58dd
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # this will also start the game. Create a new user, then find a way to exit
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CAP\CAP31.EXE'
+    # because installation ends with game run and user has to enter some name to proceed further
+    - file:
+        path: "{DEST_APP_DIR}/CAP/SCORES.DXR"
+        state: absent
