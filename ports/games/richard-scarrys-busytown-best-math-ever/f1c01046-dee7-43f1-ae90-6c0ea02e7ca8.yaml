@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Richard Scarry's Busytown - Best Math Program Ever (USA).bin
+    format: 1CD
+    url: https://archive.org/details/richard-scarrys-busytown-best-math-program-ever
+  igdb_slug: richard-scarrys-busytown-best-math-ever
+  lang: en
+  media_assets:
+  name: "Richard Scarry’s Busytown: Best Math Ever"
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: richard-scarrys-busytown-best-math-ever
+    mg_id: 79678
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 5
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-16 14:01:17 America/Los_Angeles
+  uuid: f1c01046-dee7-43f1-ae90-6c0ea02e7ca8
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RSMATH31.EXE'
