@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - HTW.iso
+    format: 1CD
+    url: https://archive.org/download/htw1994/HTW.iso
+  igdb_slug: richard-scarrys-how-things-work-in-busytown
+  lang: en
+  media_assets:
+  name: Richard Scarry's How Things Work In Busytown
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: richard-scarrys-how-things-work-in-busytown
+    mg_id: 93564
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-17 10:11:41 America/Los_Angeles
+  uuid: 0981edc0-7b8c-4645-ae51-77563651f96a
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        # in WIN311 this release crashes after intro
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # will crash at the end because of absense of explorer.exe, it's ok
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\HTW\HTW.EXE'
+              args:
+                - '/p{APP_DIR}\HTW.PRE'
