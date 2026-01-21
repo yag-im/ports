@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Elroy Goes Bugzerk (1995)(Headbone)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/elroy-goes-bugzerk/Elroy%20Goes%20Bugzerk%20%281995%29%28Headbone%29%5BMac-PC%5D.iso
+  igdb_slug: elroy-goes-bugzerk
+  lang: en
+  media_assets:
+  name: Elroy Goes Bugzerk
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id: elroy-goes-bugzerk
+    mg_id: 49859
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-20 18:27:30 America/Los_Angeles
+  uuid: 53daa051-4ec6-4551-a404-abf2fa5ca3e2
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BUGZERK.EXE'
