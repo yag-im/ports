@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - ArtRageous - The Amazing World of Art (1995)(Softkey).iso
+    format: 1CD
+    url: https://archive.org/download/artrageous/ArtRageous%20-%20The%20Amazing%20World%20of%20Art%20%281995%29%28Softkey%29.iso
+  igdb_slug: artrageous
+  lang: en
+  media_assets:
+  name: ArtRageous!
+  platform: win
+  publisher: Future Vision Multimedia
+  refs:
+    ag_id:
+    lutris_id: artrageous
+    mg_id: 26617
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-22 14:06:32 America/Los_Angeles
+  uuid: 5bb03b07-53b8-4dac-a919-63c1facfa4e7
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ART.EXE'
