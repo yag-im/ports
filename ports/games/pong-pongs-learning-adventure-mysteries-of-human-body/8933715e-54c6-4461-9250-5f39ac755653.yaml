@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Пятачок сдает экзамен по анатомии.iso
+    format: 1CD
+    url: https://legendsworld.net/adventure/game/11193
+  igdb_slug: pong-pongs-learning-adventure-mysteries-of-human-body
+  lang: ru
+  media_assets:
+  name: "Pong Pong's Learning Adventure: Mysteries of Human Body"
+  platform: win
+  publisher: Buka Entertainment
+  refs:
+    ag_id:
+    lutris_id: pong-pongs-learning-adventure-mysteries-of-human-body
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # min res: 800x600
+    color_bits: 32
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-20 19:58:35 America/Los_Angeles
+  uuid: 8933715e-54c6-4461-9250-5f39ac755653
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Pong5.exe'
