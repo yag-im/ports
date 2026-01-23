@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - CHITTY.ISO
+    format: 1CD
+    url: https://archive.org/download/CHITTY/CHITTY.ISO
+  igdb_slug: chitty-chitty-bang-bangs-adventure-in-tinker-town
+  lang: en
+  media_assets:
+    cover:
+      image_id: 51880e21-252e-4231-8299-9a55b02a50f9
+    screenshots: []
+  name: Chitty Chitty Bang Bang's Adventure in Tinker Town
+  platform: win
+  publisher: MGM Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-22 19:33:03 America/Los_Angeles
+  uuid: 51880e21-252e-4231-8299-9a55b02a50f9
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\chitty.exe'
