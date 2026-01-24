@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - DETECTV1_1.ISO
+    format: 1CD
+    url: https://archive.org/download/DETECTV11/DETECTV1_1.ISO
+  igdb_slug: detective-barbie-in-the-mystery-of-the-carnival-caper
+  lang: en
+  media_assets:
+  name: Detective Barbie in The Mystery of the Carnival Caper
+  platform: win
+  publisher: Mattel Media
+  refs:
+    ag_id:
+    lutris_id: detective-barbie-in-the-mystery-of-the-carnival-caper
+    mg_id: 51326
+    pcgw_id: Detective_Barbie_in_The_Mystery_of_the_Carnival_Caper
+    qz_id:
+  reqs:
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-24 13:42:38 America/Los_Angeles
+  uuid: 542c08ab-241d-4cff-b00a-55b669a17c92
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # crashes on start in WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BDETECT.EXE'

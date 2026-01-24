@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - MADELINE.iso
+    format: 1CD
+    url: https://archive.org/download/madelinemps/MADELINE.iso
+  igdb_slug: madeline-and-the-magnificent-puppet-show-a-learning-journey
+  lang: en
+  media_assets:
+    cover:
+      image_id: ba02d8dd-63ab-484b-bd5e-e13d8f20af9a
+    screenshots: []
+  name: "Madeline and the Magnificent Puppet Show: A Learning Journey"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id: madeline-and-the-magnificent-puppet-show-a-learning-journey
+    mg_id: 120046
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-24 13:24:51 America/Los_Angeles
+  uuid: ba02d8dd-63ab-484b-bd5e-e13d8f20af9a
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # TODO: setup resets GDIOnly=0 setting in WIN.INI; flip it back to GDIOnly=1 to skip video tests.
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\APP\MATE.EXE'
