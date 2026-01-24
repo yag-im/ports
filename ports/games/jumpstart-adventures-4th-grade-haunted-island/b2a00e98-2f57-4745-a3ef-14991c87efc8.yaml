@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - JS4G.ISO
+    format: 1CD
+    url: https://archive.org/download/jumpstart-adventures-4th-grade-haunted-island-1998-variant/JS4G.ISO
+  igdb_slug: jumpstart-adventures-4th-grade-haunted-island
+  lang: en
+  media_assets:
+  name: "JumpStart Adventures 4th Grade: Haunted Island"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 17926
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-24 09:27:54 America/Los_Angeles
+  uuid: b2a00e98-2f57-4745-a3ef-14991c87efc8
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\4G\4G.EXE'
