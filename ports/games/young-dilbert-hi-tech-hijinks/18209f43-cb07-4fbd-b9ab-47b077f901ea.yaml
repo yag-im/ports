@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Hi-Tech Hijinks (USA).bin
+    format: 1CD
+    url: https://archive.org/details/hi-tech-hijinks/
+  igdb_slug: young-dilbert-hi-tech-hijinks
+  lang: en
+  media_assets:
+  name: Young Dilbert Hi-Tech Hijinks
+  platform: win
+  publisher: KnowWonder
+  refs:
+    ag_id:
+    lutris_id: young-dilbert-hi-tech-hijinks
+    mg_id: 9913
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-23 13:14:49 America/Los_Angeles
+  uuid: 18209f43-cb07-4fbd-b9ab-47b077f901ea
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\HIJINKS.EXE'
