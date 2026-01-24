@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - MEA.iso
+    format: 1CD
+    url: https://archive.org/download/mea1996/MEA.iso
+  igdb_slug: madeline-european-adventures
+  lang: en
+  media_assets:
+  name: "Madeline: European Adventures"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: madeline-european-adventures
+    mg_id: 108797
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-24 10:54:51 America/Los_Angeles
+  uuid: 1935b6c7-cdfb-45f9-bace-f1d5a10cd4c3
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MADEURO.EXE'
