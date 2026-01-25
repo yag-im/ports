@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Kitchen.iso
+    format: 1CD
+    url: https://archive.org/download/kitchendreamworks/Kitchen.iso
+  igdb_slug: someones-in-the-kitchen
+  lang: en
+  media_assets:
+    cover:
+      image_id: 8e7eb9b4-855a-4b40-98ca-3e3539a02059
+    screenshots: []
+  name: Someone's in the Kitchen!
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: someones-in-the-kitchen
+    mg_id: 37069
+    pcgw_id:
+    qz_id:
+  reqs:
+    # optimal as per startup message
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-25 12:55:26 America/Los_Angeles
+  uuid: 8e7eb9b4-855a-4b40-98ca-3e3539a02059
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RECIPE.EXE'
