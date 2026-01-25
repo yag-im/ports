@@ -49,7 +49,7 @@ def exec_subtask(task: dict, wine: Wine) -> None:
     elif cmd == CMD_GEN_RUN_SCRIPT:
         path = PureWindowsPath(task.get("path"))
         chdir = task.get("chdir", True)
-        wine.gen_run_script(app_exec=path.name, work_dir=path.parent, chdir=chdir)
+        wine.gen_run_script(app_exec=path, work_dir=path.parent, chdir=chdir)
     elif cmd == CMD_WINETRICKS:
         cmd_ = task.get("cmd")
         quiet = task.get("quiet", False)

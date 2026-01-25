@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - 01-data-track.iso
+    format: 1CD
+    url: https://archive.org/download/BarbieAdventureRidingClubGame/01-data-track.iso
+  igdb_slug: barbie-adventure-riding-club
+  lang: en
+  media_assets:
+  name: "Barbie Adventure: Riding Club"
+  platform: win
+  publisher: Mattel Media
+  refs:
+    ag_id:
+    lutris_id: barbie-adventure-riding-club
+    mg_id: 5218
+    pcgw_id: Barbie_Adventure:_Riding_Club
+    qz_id:
+  reqs:
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-24 18:58:59 America/Los_Angeles
+  uuid: 30f8cc7f-610a-4196-9a63-ea6b6621a2a0
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # graphic glitches in winxp
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Program\Barbie Riding Club.exe'
