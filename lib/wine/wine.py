@@ -212,7 +212,7 @@ class Wine:
             pre_run = []
         output_path = self.root_dir / "run.sh"
         tmpl_params = {
-            "app_exec": app_exec,
+            "app_exec": str(app_exec).replace("\\", "\\\\"),
             "virtual_desktop": self.virtual_desktop.value if self.virtual_desktop else None,
             "pre_run": pre_run,
             "resolution": self.resolution,
