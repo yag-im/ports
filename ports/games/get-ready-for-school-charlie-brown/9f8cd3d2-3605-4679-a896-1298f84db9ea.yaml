@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Get Ready for School, Charlie Brown!.iso
+    format: 1CD
+    url: https://archive.org/download/get-ready-for-school-charlie-brown/Get%20Ready%20for%20School%2C%20Charlie%20Brown%21.iso
+  igdb_slug: get-ready-for-school-charlie-brown
+  lang: en
+  media_assets:
+  name: Get Ready For School, Charlie Brown
+  platform: win
+  publisher: Virgin Entertainment
+  refs:
+    ag_id:
+    lutris_id: get-ready-for-school-charlie-brown
+    mg_id: 68724
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-26 19:43:18 America/Los_Angeles
+  uuid: 9f8cd3d2-3605-4679-a896-1298f84db9ea
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PEANUTS.EXE'
