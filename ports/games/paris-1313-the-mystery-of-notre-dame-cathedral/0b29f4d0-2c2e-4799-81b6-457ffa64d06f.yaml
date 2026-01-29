@@ -1,9 +1,13 @@
 descr:
   distro:
     files:
-      - Paris1313.iso
+      - Paris 1313 - The Mystery of Notre Dame Cathedral (Europe).cue
+      - Paris 1313 - The Mystery of Notre Dame Cathedral (Europe) (Track 1).bin
+      - Paris 1313 - The Mystery of Notre Dame Cathedral (Europe) (Track 2).bin
+      - Paris 1313 - The Mystery of Notre Dame Cathedral (Europe) (Track 3).bin
+      - Paris 1313 - The Mystery of Notre Dame Cathedral (Europe) (Track 4).bin
     format: 1CD
-    url: https://d2.myabandonware.com/t/055675c8-6237-496b-99ba-1223af47168f/Paris-1313-The-Mystery-of-Notre-Dame-Cathedral_Win_EN-FR_ISO-Version.zip
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/P/Paris%201313%20-%20The%20Mystery%20of%20Notre%20Dame%20Cathedral%20%28Europe%29.zip
   igdb_slug: paris-1313-the-mystery-of-notre-dame-cathedral
   lang: en
   media_assets:
@@ -21,9 +25,9 @@ descr:
     screen_height: 600
     screen_width: 800
   runner:
-    # it runs in wine, but all videos are skipped
+    # it runs in wine, and qemu but all videos are skipped
     name: dosbox-x
-    ver: 2024.12.04
+    ver: 2025.12.01
   ts_added: 2025-08-18 07:45:07 America/Los_Angeles
   uuid: 0b29f4d0-2c2e-4799-81b6-457ffa64d06f
   year_released: 1999
@@ -36,17 +40,14 @@ installer:
         flavor: WIN98SE
         tasks:
           - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
               letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              # select typical install (CD is required for audio anyway)
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
           - copy:
-              src:
-                - "{FIRST_CD_DRIVE}/Data/*"
-              dest: "{APP_DIR}"
-          - copy:
-              # without a NoCD(?) patch app crashes
+              # without a NoCD(?) patch app crashes on startup
               src: "{SRC_DIR}/paris.exe"
               dest: "{APP_DIR}"
           - gen_run_script:
-              path: "{APP_DIR}/paris.exe"
-          - umount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
+              path: '{APP_DIR}\paris.exe'
