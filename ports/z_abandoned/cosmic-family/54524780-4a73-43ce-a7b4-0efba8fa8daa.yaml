@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - cosmicf.img
+    format: 1CD
+    url: https://archive.org/details/CosmicFamily1997PCCDSpanish
+  igdb_slug: cosmic-family
+  lang: es
+  media_assets:
+  name: Cosmic Family
+  platform: win
+  publisher: Ubisoft Barcelona
+  refs:
+    ag_id:
+    lutris_id: cosmic-family
+    mg_id: 48800
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-30 09:24:57 America/Los_Angeles
+  uuid: 54524780-4a73-43ce-a7b4-0efba8fa8daa
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              # TODO: actually '{SYSTEM_DRIVE}\WINDOWS\UbiSoft\UBISETUP.EXE -play COSMIC' should run the app, but it fails without explorer, so using hack which somehow works
+              # TODO2: fails to start with "sound device not available" error on second start
+              path: '{FIRST_CD_DRIVE}\UBISETUP.EXE -play COSMIC'
+              exit: false
