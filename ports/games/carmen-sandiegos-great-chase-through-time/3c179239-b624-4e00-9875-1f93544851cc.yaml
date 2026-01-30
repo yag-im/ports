@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Carmen Sandiego's Great Chase Through Time (USA) (Disc 1) (Rerelease).bin
+      - Carmen Sandiego's Great Chase Through Time (USA) (Disc 2) (Rerelease).bin
+    format: 2CD
+    url: https://archive.org/details/carmen-sandiegos-great-chase-through-time-usa
+  igdb_slug: carmen-sandiegos-great-chase-through-time
+  lang: en
+  media_assets:
+  name: Carmen Sandiego's Great Chase Through Time
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: carmen-sandiegos-great-chase-through-time
+    mg_id: 220194
+    pcgw_id: Carmen_Sandiego%27s_Great_Chase_through_Time
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-29 13:26:44 America/Los_Angeles
+  uuid: 3c179239-b624-4e00-9875-1f93544851cc
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\_SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TIME16.EXE'
