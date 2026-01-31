@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - BABAYAGA.iso
+    format: 1CD
+    url: https://archive.org/download/babayagawin/BABAYAGA.iso
+  igdb_slug: magic-tales-baba-yaga-and-the-magic-geese
+  lang: en
+  media_assets:
+  name: "Magic Tales: Baba Yaga and the Magic Geese"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: magic-tales-baba-yaga-and-the-magic-geese
+    mg_id: 124450
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-30 20:23:11 America/Los_Angeles
+  uuid: 682b83c1-c166-4f29-a6bc-3e10f5e463a8
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PROGRAMS\PLAY.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\BABAYAGA\BOOK.INI'
