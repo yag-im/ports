@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - JumpStart 2nd Grade.iso
+    format: 1CD
+    url: https://archive.org/download/js2ndgrade/JumpStart%202nd%20Grade.iso
+  igdb_slug: jumpstart-2nd-grade
+  lang: en
+  media_assets:
+  name: JumpStart 2nd Grade
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-2nd-grade
+    mg_id: 17718
+    pcgw_id: JumpStart_2nd_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-31 10:45:50 America/Los_Angeles
+  uuid: fb3ef108-2651-4956-bce9-6b50f77b2ee9
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\2G.EXE'
