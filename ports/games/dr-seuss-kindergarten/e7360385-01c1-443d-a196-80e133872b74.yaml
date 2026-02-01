@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - seusskg.iso
+    format: 1CD
+    url: https://archive.org/download/seusskg_202503/seusskg.iso
+    # ver: 2.0
+  igdb_slug: dr-seuss-kindergarten
+  lang: en
+  media_assets:
+  name: Dr. Seuss Kindergarten
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: dr-seuss-kindergarten
+    mg_id: 158182
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-01 10:56:11 America/Los_Angeles
+  uuid: e7360385-01c1-443d-a196-80e133872b74
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SEUSSK16.EXE'
