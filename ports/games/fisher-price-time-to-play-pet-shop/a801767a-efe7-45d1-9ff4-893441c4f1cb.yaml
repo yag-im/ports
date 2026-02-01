@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Fisher-Price Time to Play Pet Shop (USA) (Rerelease).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/F/Fisher-Price%20Time%20to%20Play%20Pet%20Shop%20%28USA%29%20%28Rerelease%29.zip
+  igdb_slug: fisher-price-time-to-play-pet-shop
+  lang: en
+  media_assets:
+  name: "Fisher-Price: Time To Play - Pet Shop"
+  platform: win
+  publisher: Fisher-Price
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 245638
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-01-31 17:54:32 America/Los_Angeles
+  uuid: a801767a-efe7-45d1-9ff4-893441c4f1cb
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PET31.EXE'

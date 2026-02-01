@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - DKMMHIS2.ISO
+    format: 1CD
+    url: https://archive.org/download/dkmmhis2/DKMMHIS2.ISO
+  igdb_slug: eyewitness-history-of-the-world-2-0
+  lang: en
+  media_assets:
+    cover:
+      image_id: 87e2bdc2-495a-46ea-9387-809a954925a3
+    screenshots: []
+  name: Eyewitness History of the World 2.0
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-01-31 18:59:45 America/Los_Angeles
+  uuid: 87e2bdc2-495a-46ea-9387-809a954925a3
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # requires QT version which works only in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\DKSETUP\SETUP.EXE' # will also install QT
+          - gen_run_script:
+              path: '{APP_DIR}\History2.exe'
