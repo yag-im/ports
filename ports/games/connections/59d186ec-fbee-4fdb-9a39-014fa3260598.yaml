@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - CONNECT.bin
+      - CONNECT2.bin
+    format: 2CD
+    url: https://archive.org/details/connections-pc-game
+  igdb_slug: connections
+  lang: en
+  media_assets:
+  name: Connections
+  platform: win
+  publisher: Discovery Channel Multimedia
+  refs:
+    ag_id:
+    lutris_id: connections
+    mg_id: 3976
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-01 08:45:57 America/Los_Angeles
+  uuid: 59d186ec-fbee-4fdb-9a39-014fa3260598
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\CONNECT.EXE'
