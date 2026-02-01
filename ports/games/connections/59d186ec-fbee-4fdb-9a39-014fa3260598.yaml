@@ -18,7 +18,8 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
-    color_bits: 8
+    # 16-bit is recommended in README
+    color_bits: 16
     screen_height: 480
     screen_width: 640
   runner:
