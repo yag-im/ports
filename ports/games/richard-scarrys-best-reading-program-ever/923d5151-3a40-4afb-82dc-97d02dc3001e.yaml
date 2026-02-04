@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Richard Scarry's Busytown - Best Reading Program Ever (USA).bin
+    format: 1CD
+    url: https://archive.org/details/ISBN0671563319
+  igdb_slug: richard-scarrys-best-reading-program-ever
+  lang: en
+  media_assets:
+    cover:
+      image_id: 923d5151-3a40-4afb-82dc-97d02dc3001e
+    screenshots: []
+  name: "The Busy World of Richard Scarry: Best Reading Program Ever"
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: richard-scarrys-best-reading-program-ever
+    mg_id: 119882
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-03 18:50:50 America/Los_Angeles
+  uuid: 923d5151-3a40-4afb-82dc-97d02dc3001e
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\RSREAD31.EXE'
