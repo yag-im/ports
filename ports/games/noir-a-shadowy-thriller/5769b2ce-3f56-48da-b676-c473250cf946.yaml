@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - noir1.iso
+      - noir2.iso
+    format: 2CD
+    url: https://archive.org/details/noir-a-shadowy-thriller
+  igdb_slug: noir-a-shadowy-thriller
+  lang: en
+  media_assets:
+  name: "Noir: A Shadowy Thriller"
+  platform: win
+  publisher: Cyberdreams
+  refs:
+    ag_id: noir-a-shadowy-thriller
+    lutris_id: noir-a-shadowy-thriller
+    mg_id: 4509
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 7
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-05 10:54:50 America/Los_Angeles
+  uuid: 5769b2ce-3f56-48da-b676-c473250cf946
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\NOIR.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          # for full-screen videos
+          - PREFRNCE.TXT

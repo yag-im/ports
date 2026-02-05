@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - BUSYTOWN.ISO
+    format: 1CD
+    url: https://archive.org/download/busytown99version/BUSYTOWN.ISO
+  igdb_slug: richard-scarrys-busytown--1
+  lang: en
+  media_assets:
+  name: Richard Scarry's Busytown
+  platform: win
+  publisher: Simon & Schuster
+  refs:
+    ag_id:
+    lutris_id: richard-scarrys-busytown--1
+    mg_id: 32522
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 16 bit recommended in readme
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-04 18:34:20 America/Los_Angeles
+  uuid: b99ee74d-f4d4-463a-bc53-110817363e0f
+  year_released: 1999
+  tags:
+    - richard-scarry
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\BusyTown.exe'
