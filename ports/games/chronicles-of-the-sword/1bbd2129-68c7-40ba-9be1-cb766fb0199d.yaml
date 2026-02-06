@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      # NOTE: patched CUEs with proper BIN refs
+      - Chronicles of the Sword (Psygnosis)(Disc 1).CUE
+      - Chronicles of the Sword (Psygnosis)(Disc 1).BIN
+      - Chronicles of the Sword (Psygnosis)(Disc 2).CUE
+      - Chronicles of the Sword (Psygnosis)(Disc 2).BIN
+    format: 2CD
+    url: https://archive.org/details/Chronicles_of_the_Sword_Psygnosis
+  igdb_slug: chronicles-of-the-sword
+  lang: en
+  media_assets:
+  name: Chronicles of the Sword
+  platform: dos
+  publisher: Psygnosis
+  refs:
+    ag_id:
+    lutris_id: chronicles-of-the-sword
+    mg_id: 3467
+    pcgw_id:
+    qz_id: 2998
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x # double-voice issue in vanilla dosbox: https://www.vogons.org/viewtopic.php?t=13840&start=40
+    ver: 2025.12.01
+  ts_added: 2026-02-06 09:04:49 America/Los_Angeles
+  uuid: 1bbd2129-68c7-40ba-9be1-cb766fb0199d
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{descr[distro][files][2]}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\COTS.EXE'
