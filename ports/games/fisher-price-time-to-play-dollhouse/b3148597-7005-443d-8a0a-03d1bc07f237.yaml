@@ -20,6 +20,7 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_time: 10
   runner:
     name: dosbox-x
     ver: 2025.12.01
@@ -31,10 +32,13 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        flavor: WIN95OSR25 # raises script errors in WIN311
         tasks:
           - mount:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # sometimes fails to start; double-click on desktop and run explorer.exe
+              exit: false
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\FILES\START16.EXE'
+              path: '{APP_DIR}\DOLLHOUSE\START32.EXE'

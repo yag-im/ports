@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - ABOD_V1.0.iso
+    format: 1CD
+    url: https://archive.org/download/ABODV1.0/ABOD_V1.0.iso
+  igdb_slug: adventures-with-barbie-ocean-discovery
+  lang: en
+  media_assets:
+  name: "Adventures with Barbie: Ocean Discovery"
+  platform: win
+  publisher: Vivendi Universal
+  refs:
+    ag_id:
+    lutris_id: adventures-with-barbie-ocean-discovery
+    mg_id: 206327
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 15
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-06 12:59:28 America/Los_Angeles
+  uuid: c10989c5-a5a7-4f81-9a42-13853b6dc8ca
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ABOD.EXE'
+# qemu WINXP - fails to start
+# dosbox WIN311 - fails to start
+# dosbox WIN311 setup / pure DOS run - fastest, but crashes
+# dosbox WIN9X - runs, but slow and no underwater raytracing :)
