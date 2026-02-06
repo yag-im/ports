@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Dame Was Loaded, The (1996)(Philips)(Disc 1 of 2).iso
+      - Dame Was Loaded, The (1996)(Philips)(Disc 2 of 2).iso
+    format: 2CD
+    url: https://archive.org/details/the-dame-was-loaded
+  igdb_slug: the-dame-was-loaded
+  lang: en
+  media_assets:
+  name: The Dame Was Loaded
+  platform: dos
+  publisher: Philips Interactive Media
+  refs:
+    ag_id: the-dame-was-loaded
+    lutris_id: the-dame-was-loaded
+    mg_id: 4976
+    pcgw_id: The_Dame_Was_Loaded
+    qz_id: 224
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-02-05 19:37:48 America/Los_Angeles
+  uuid: f7bae0a1-5ddf-47bb-98c0-a87c22949fd3
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\DAME.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - THEVOICE.CFG
