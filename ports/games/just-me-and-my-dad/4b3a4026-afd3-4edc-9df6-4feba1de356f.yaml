@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - JMMD0216.ISO
+    format: 1CD
+    url: https://archive.org/download/jmmd-0216/JMMD0216.ISO
+  igdb_slug: just-me-and-my-dad
+  lang: en
+  media_assets:
+    cover:
+      image_id: 4b3a4026-afd3-4edc-9df6-4feba1de356f
+    screenshots: []
+  name: Just Me and My Dad
+  platform: win
+  publisher: Big Tuna New Media
+  refs:
+    ag_id:
+    lutris_id: just-me-and-my-dad
+    mg_id: 221770
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 08:56:22 America/Los_Angeles
+  uuid: 4b3a4026-afd3-4edc-9df6-4feba1de356f
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # installs only QT
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DAD.EXE'
