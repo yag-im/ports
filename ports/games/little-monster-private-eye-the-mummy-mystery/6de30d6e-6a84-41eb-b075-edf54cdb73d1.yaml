@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - The Mummy Mystery.ISO
+    format: 1CD
+    url: https://archive.org/download/the-mummy-mystery/The%20Mummy%20Mystery.ISO
+  igdb_slug: little-monster-private-eye-the-mummy-mystery
+  lang: en
+  media_assets:
+  name: "Little Monster Private Eye: The Mummy Mystery"
+  platform: win
+  publisher: Infogrames
+  refs:
+    ag_id:
+    lutris_id: little-monster-private-eye-the-mummy-mystery
+    mg_id: 19762
+    pcgw_id:
+    qz_id:
+  reqs:
+    # README.TXT
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-07 09:45:13 America/Los_Angeles
+  uuid: 6de30d6e-6a84-41eb-b075-edf54cdb73d1
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\LMMM.EXE'
