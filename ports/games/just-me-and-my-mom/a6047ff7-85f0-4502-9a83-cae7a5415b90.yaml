@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - JMMM0822.bin
+    format: 1CD
+    url: https://archive.org/details/jmmm-0822
+  igdb_slug: just-me-and-my-mom
+  lang: en
+  media_assets:
+    cover:
+      image_id: a6047ff7-85f0-4502-9a83-cae7a5415b90
+    screenshots: []
+  name: Just Me and my Mom
+  platform: win
+  publisher: Big Tuna New Media
+  refs:
+    ag_id:
+    lutris_id: just-me-and-my-mom
+    mg_id: 221761
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 09:24:24 America/Los_Angeles
+  uuid: a6047ff7-85f0-4502-9a83-cae7a5415b90
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MOM.EXE'

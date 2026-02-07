@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - JMMG981201.bin
+    format: 1CD
+    url: https://archive.org/details/jmmg-981201
+  igdb_slug: just-me-and-my-grandpa
+  lang: en
+  media_assets:
+  name: Just Me and My Grandpa
+  platform: win
+  publisher: Big Tuna New Media
+  refs:
+    ag_id:
+    lutris_id: just-me-and-my-grandpa
+    mg_id: 221773
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 09:10:37 America/Los_Angeles
+  uuid: 10792b71-73cd-4eb8-aeb0-1fcdc7169e15
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # installs but fails to start in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\JMMG.EXE'
