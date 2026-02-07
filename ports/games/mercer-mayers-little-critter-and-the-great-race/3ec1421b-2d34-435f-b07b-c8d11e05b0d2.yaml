@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - RACE.bin
+    format: 1CD
+    url: https://archive.org/details/race_20221216
+  igdb_slug: mercer-mayers-little-critter-and-the-great-race
+  lang: en
+  media_assets:
+  name: Mercer Mayer's Little Critter and the Great Race
+  platform: win
+  publisher: Infogrames Interactive
+  refs:
+    ag_id:
+    lutris_id: mercer-mayers-little-critter-and-the-great-race
+    mg_id: 28905
+    pcgw_id:
+    qz_id:
+  reqs:
+    # README.TXT
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-07 09:31:58 America/Los_Angeles
+  uuid: 3ec1421b-2d34-435f-b07b-c8d11e05b0d2
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\TGR.EXE'
