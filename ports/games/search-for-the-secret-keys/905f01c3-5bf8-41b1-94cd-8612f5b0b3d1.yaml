@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Secret Keys.iso
+    format: 1CD
+    url: https://archive.org/download/103499DisneyLearningAdventureSearchForTheSecretKeysMacintoshOther/Secret%20Keys.iso
+  igdb_slug: search-for-the-secret-keys
+  lang: en
+  media_assets:
+  name: Search for the Secret Keys
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: search-for-the-secret-keys
+    mg_id: 32728
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-07 10:12:44 America/Los_Angeles
+  uuid: 905f01c3-5bf8-41b1-94cd-8612f5b0b3d1
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - copy:
+              # https://www.abandonware-france.org/ltf_abandon/ltf_jeu.php?id=3723&fic=liens
+              # app fails to start without patched exec
+              src: "{SRC_DIR}/patch/Les Cles Perdues.exe"
+              dest: "{APP_DIR}"
+          - gen_run_script:
+              path: '{APP_DIR}\Les Cles Perdues.exe'
