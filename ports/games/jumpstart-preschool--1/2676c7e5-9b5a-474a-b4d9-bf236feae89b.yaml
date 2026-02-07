@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - JumpStart Presch.iso
+    format: 1CD
+    url: https://archive.org/download/jumpstartpresch/JumpStart%20Presch.iso
+  igdb_slug: jumpstart-preschool--1
+  lang: en
+  media_assets:
+  name: JumpStart Preschool
+  platform: win
+  publisher: Knowledge Adventure Inc.
+  refs:
+    ag_id:
+    lutris_id: jumpstart-preschool--1
+    mg_id: 207822
+    pcgw_id: JumpStart_Preschool
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-07 08:36:51 America/Los_Angeles
+  uuid: 2676c7e5-9b5a-474a-b4d9-bf236feae89b
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # blank screen in winxp
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\PRSCHL99\PRSCHL99.EXE'
