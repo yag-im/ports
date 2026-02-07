@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - BarbieSuperSports.iso
+    format: 1CD
+    url: https://archive.org/download/BarbieSuperSports_201902/BarbieSuperSports.iso
+  igdb_slug: barbie-super-sports
+  lang: en
+  media_assets:
+  name: Barbie Super Sports
+  platform: win
+  publisher: Mattel Interactive
+  refs:
+    ag_id:
+    lutris_id: barbie-super-sports
+    mg_id: 206282
+    pcgw_id: Barbie:_Super_Sports
+    qz_id:
+  reqs:
+    # README.TXT
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-07 11:50:02 America/Los_Angeles
+  uuid: b4ea9b42-ae26-4af6-bbfe-a56bcf681e9c
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SPORTS.EXE'
