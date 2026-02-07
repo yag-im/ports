@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - BARBIEFD.ISO
+    format: 1CD
+    url: https://archive.org/download/BARBIEFD/BARBIEFD.ISO
+  igdb_slug: barbie-fashion-designer
+  lang: en
+  media_assets:
+  name: "Barbie: Fashion Designer"
+  platform: win
+  publisher: Mattel Media
+  refs:
+    ag_id:
+    lutris_id: barbie-fashion-designer
+    mg_id: 9979
+    pcgw_id:
+    qz_id:
+  reqs:
+    # README.TXT
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 10:43:56 America/Los_Angeles
+  uuid: 9beac0cd-4620-4527-acd2-a9b04d225977
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\DESIGN.EXE'
