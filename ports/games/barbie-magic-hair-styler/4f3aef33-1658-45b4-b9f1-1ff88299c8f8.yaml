@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - BMHSV1_2.ISO
+    format: 1CD
+    url: https://archive.org/download/BMHSV12/BMHSV1_2.ISO
+  igdb_slug: barbie-magic-hair-styler
+  lang: en
+  media_assets:
+  name: "Barbie: Magic Hair Styler"
+  platform: win
+  publisher: Mattel Media
+  refs:
+    ag_id:
+    lutris_id: barbie-magic-hair-styler
+    mg_id: 9978
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 10:53:40 America/Los_Angeles
+  uuid: 4f3aef33-1658-45b4-b9f1-1ff88299c8f8
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Barbie Magic Hair Styler.exe'
