@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Yoho Ahoy.iso
+    format: 1CD
+    url: https://archive.org/download/yohoahoy/Yoho%20Ahoy.iso
+  igdb_slug: yoho-ahoy-all-aboard
+  lang: en
+  media_assets:
+    cover:
+      image_id: ce7277a1-43fa-4149-a295-80c7ee2b7518
+    screenshots: []
+  name: "Yoho Ahoy: All Aboard!"
+  platform: win
+  publisher: BBC Worldwide
+  refs:
+    ag_id:
+    lutris_id: yoho-ahoy-all-aboard
+    mg_id: 81983
+    pcgw_id:
+    qz_id:
+  reqs:
+    # text doesn't fit into 640x480
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-08 11:58:21 America/Los_Angeles
+  uuid: ce7277a1-43fa-4149-a295-80c7ee2b7518
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - copy:
+              src: '{FIRST_CD_DRIVE}\*'
+              dest: "{APP_DIR}"
+          - copy:
+              src: "{SRC_DIR}/patch/YohoAhoy.exe"
+              dest: "{APP_DIR}"
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\YohoAhoy.exe'
