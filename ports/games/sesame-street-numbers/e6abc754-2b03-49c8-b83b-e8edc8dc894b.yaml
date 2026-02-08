@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - NUMBERS.iso
+    format: 1CD
+    url: https://archive.org/download/ssnumbers1998/NUMBERS.iso
+  igdb_slug: sesame-street-numbers
+  lang: en
+  media_assets:
+    cover:
+      image_id: e6abc754-2b03-49c8-b83b-e8edc8dc894b
+    screenshots: []
+  name: "Sesame Street: Numbers"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id: sesame-street-numbers
+    mg_id: 109686
+    pcgw_id:
+    qz_id:
+  reqs:
+    # README.HLP
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 19:34:55 America/Los_Angeles
+  uuid: e6abc754-2b03-49c8-b83b-e8edc8dc894b
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\NUMBERS\CWRUN.EXE'
+              args:
+                - Numbers
+                - MainExe
+              exit: false
