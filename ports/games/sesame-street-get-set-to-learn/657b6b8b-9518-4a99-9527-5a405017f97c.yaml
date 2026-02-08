@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - GETSET.iso
+    format: 1CD
+    url: https://archive.org/download/GETSET/GETSET.iso
+  igdb_slug: sesame-street-get-set-to-learn
+  lang: en
+  media_assets:
+  name: "Sesame Street: Get Set to Learn"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id: sesame-street-get-set-to-learn
+    mg_id: 1764
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-07 21:27:39 America/Los_Angeles
+  uuid: 657b6b8b-9518-4a99-9527-5a405017f97c
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # installs only wing and win32s
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RUN32\MMM32.EXE'
