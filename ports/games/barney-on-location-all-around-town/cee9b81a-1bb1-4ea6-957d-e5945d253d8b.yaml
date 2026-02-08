@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Barney On Locati.iso
+    format: 1CD
+    url: https://archive.org/download/barney-on-locati/Barney%20On%20Locati.iso
+  igdb_slug: barney-on-location-all-around-town
+  lang: en
+  media_assets:
+  name: "Barney: On Location - All Around Town"
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: barney-on-location-all-around-town
+    mg_id: 8534
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-08 10:19:46 America/Los_Angeles
+  uuid: cee9b81a-1bb1-4ea6-957d-e5945d253d8b
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\BARNEY.EXE'
