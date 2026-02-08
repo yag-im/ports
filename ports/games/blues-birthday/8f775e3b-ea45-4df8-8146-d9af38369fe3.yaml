@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Blue's Clues - Blue's Birthday - Red Disc.iso
+    format: 2CD
+    url: https://archive.org/download/BluesCluesBirthdayAdventure/Blue%27s%20Clues%20-%20Blue%27s%20Birthday%20-%20Red%20Disc.iso
+  igdb_slug: blues-birthday
+  lang: en
+  media_assets:
+  name: "Blue's Clues: Blue's Birthday Adventure (Red Disc)"
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-birthday
+    mg_id: 31131
+    pcgw_id: Blue%27s_Birthday_Adventure
+    qz_id:
+  reqs:
+    # from readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-08 13:27:35 America/Los_Angeles
+  uuid: 8f775e3b-ea45-4df8-8146-d9af38369fe3
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Blue''sBirthday-Red.exe' # on the first run - installs app (required) and tests CD
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Blue''sBirthday-Red.exe'
