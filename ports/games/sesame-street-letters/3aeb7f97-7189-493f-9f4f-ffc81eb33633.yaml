@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - LETTERS.iso
+    format: 1CD
+    url: https://archive.org/download/ssletters1998/LETTERS.iso
+  igdb_slug: sesame-street-letters
+  lang: en
+  media_assets:
+    cover:
+      image_id: 3aeb7f97-7189-493f-9f4f-ffc81eb33633
+    screenshots: []
+  name: "Sesame Street: Letters"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: sesame-street-letters
+    mg_id: 65449
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-08 10:59:06 America/Los_Angeles
+  uuid: 3aeb7f97-7189-493f-9f4f-ffc81eb33633
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LETTERS\CWRUN.EXE'
+              args:
+                - Letters
+                - MainExe
+              exit: false
