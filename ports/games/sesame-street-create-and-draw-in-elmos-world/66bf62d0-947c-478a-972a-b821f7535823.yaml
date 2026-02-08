@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - 24139.iso
+    format: 1CD
+    url: https://archive.org/download/24139/24139.iso
+  igdb_slug: sesame-street-create-and-draw-in-elmos-world
+  lang: en
+  media_assets:
+    cover:
+      image_id: 66bf62d0-947c-478a-972a-b821f7535823
+    screenshots: []
+  name: Sesame Street Create & Draw in Elmo's world
+  platform: win
+  publisher: Mattel Media
+  refs:
+    ag_id:
+    lutris_id: sesame-street-create-and-draw-in-elmos-world
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-08 10:39:30 America/Los_Angeles
+  uuid: 66bf62d0-947c-478a-972a-b821f7535823
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\burn\EWorld.exe'
