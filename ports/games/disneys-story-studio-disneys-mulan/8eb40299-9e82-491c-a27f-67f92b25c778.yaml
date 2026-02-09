@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - MULAN_ASB.ISO
+    format: 1CD
+    url: https://archive.org/download/MULANASB/MULAN_ASB.ISO
+  igdb_slug: disneys-story-studio-disneys-mulan
+  lang: en
+  media_assets:
+  name: "Disney's Story Studio: Disney's Mulan"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-story-studio-disneys-mulan
+    mg_id: 47570
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-08 18:57:31 America/Los_Angeles
+  uuid: 8eb40299-9e82-491c-a27f-67f92b25c778
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\MULAN.EXE'
