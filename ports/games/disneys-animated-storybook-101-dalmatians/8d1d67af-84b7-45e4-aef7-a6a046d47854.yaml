@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - DALMATIANS.ISO
+    format: 1CD
+    url: https://archive.org/download/101DALMATIANS_ASB/DALMATIANS.ISO
+  igdb_slug: disneys-animated-storybook-101-dalmatians
+  lang: en
+  media_assets:
+  name: "Disney's Animated Storybook: 101 Dalmatians"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-animated-storybook-101-dalmatians
+    mg_id: 128919
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-08 18:22:40 America/Los_Angeles
+  uuid: 8d1d67af-84b7-45e4-aef7-a6a046d47854
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\101_ASB.EXE'
