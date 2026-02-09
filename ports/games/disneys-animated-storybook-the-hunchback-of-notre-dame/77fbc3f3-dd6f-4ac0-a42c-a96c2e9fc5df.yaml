@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - HUNCHBACK.ISO
+    format: 1CD
+    url: https://archive.org/download/HUNCHBACK1996/HUNCHBACK.ISO
+  igdb_slug: disneys-animated-storybook-the-hunchback-of-notre-dame
+  lang: en
+  media_assets:
+  name: "Disney's Animated Storybook: The Hunchback of Notre Dame"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-animated-storybook-the-hunchback-of-notre-dame
+    mg_id: 128921
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-08 18:38:57 America/Los_Angeles
+  uuid: 77fbc3f3-dd6f-4ac0-a42c-a96c2e9fc5df
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\HB_ASB.EXE'
