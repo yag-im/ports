@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Tweenies_RTP.iso
+    format: 1CD
+    url: https://archive.org/download/tweeniesrtp/Tweenies_RTP.iso
+  igdb_slug: tweenies-ready-to-play
+  lang: en
+  media_assets:
+    cover:
+      image_id: c8c61dc4-73ca-4c4e-9df3-0f2e4241f8d5
+    screenshots: []
+  name: "Tweenies: Ready To Play"
+  platform: win
+  publisher: BBC Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 173559
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-08 18:00:11 America/Los_Angeles
+  uuid: c8c61dc4-73ca-4c4e-9df3-0f2e4241f8d5
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BBC Tweenies - Ready To Play.exe'
+              exit: false
