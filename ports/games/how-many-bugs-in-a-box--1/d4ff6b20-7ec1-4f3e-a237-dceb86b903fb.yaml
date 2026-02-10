@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - How Many Bugs in a Box.cdr
+    format: 1CD
+    url: https://archive.org/download/How_Many_Bugs_in_a_Box/How%20Many%20Bugs%20in%20a%20Box.cdr
+  igdb_slug: how-many-bugs-in-a-box--1
+  lang: en
+  media_assets:
+  name: How Many Bugs in a Box
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: how-many-bugs-in-a-box--1
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-10 13:13:55 America/Los_Angeles
+  uuid: d4ff6b20-7ec1-4f3e-a237-dceb86b903fb
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\START.EXE'
