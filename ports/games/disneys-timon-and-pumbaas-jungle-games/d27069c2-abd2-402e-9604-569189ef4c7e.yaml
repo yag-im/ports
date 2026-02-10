@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - JUNGLE_ADVENTURE.ISO
+    format: 1CD
+    url: https://archive.org/download/jungleadventure/JUNGLE_ADVENTURE.ISO
+  igdb_slug: disneys-timon-and-pumbaas-jungle-games
+  lang: en
+  media_assets:
+  name: "Disney's Timon & Pumbaa's Jungle Games"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-timon-and-pumbaas-jungle-games
+    mg_id: 18933
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-09 19:32:22 America/Los_Angeles
+  uuid: d27069c2-abd2-402e-9604-569189ef4c7e
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\JUNGLE.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}JUNGLE\JUNGLE.BIN'
