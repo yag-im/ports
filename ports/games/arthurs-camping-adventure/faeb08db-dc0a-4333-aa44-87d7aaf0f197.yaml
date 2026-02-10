@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Arthurc.iso
+    format: 1CD
+    url: https://archive.org/download/Arthurc/Arthurc.iso
+  igdb_slug: arthurs-camping-adventure
+  lang: en
+  media_assets:
+  name: Arthur's Camping Adventure
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: arthurs-camping-adventure
+    mg_id: 71135
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-10 10:42:15 America/Los_Angeles
+  uuid: faeb08db-dc0a-4333-aa44-87d7aaf0f197
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ARTHUR.EXE'
