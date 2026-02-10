@@ -7,9 +7,12 @@ descr:
   igdb_slug: arthurs-math-games
   lang: en
   media_assets:
+    cover:
+      image_id: f9b8b68a-df44-4e0b-8a5d-27278d19bf95
+    screenshots: []
   name: Arthur's Math Games
   platform: win
-  publisher: Microsoft Corporation
+  publisher: The Learning Company
   refs:
     ag_id:
     lutris_id: arthurs-math-games
