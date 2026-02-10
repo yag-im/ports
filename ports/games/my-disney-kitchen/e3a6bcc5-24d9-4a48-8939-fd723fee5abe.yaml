@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - My Disney Kitchen (Disney Interactive) (2002).iso
+    format: 1CD
+    url: https://archive.org/download/MyDisneyKitchenDisneyInteractive1998/My%20Disney%20Kitchen%20%28Disney%20Interactive%29%20%282002%29.iso
+  igdb_slug: my-disney-kitchen
+  lang: en
+  media_assets:
+  name: My Disney Kitchen
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: my-disney-kitchen
+    mg_id: 80292
+    pcgw_id: My_Disney_Kitchen
+    qz_id:
+  reqs:
+    # 16-bit requied on CD cover
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-10 13:34:57 America/Los_Angeles
+  uuid: e3a6bcc5-24d9-4a48-8939-fd723fee5abe
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MDKitchen.exe'
