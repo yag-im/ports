@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - James Discovers Math (1995)(Broderbund)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/james-discovers-math/James%20Discovers%20Math%20%281995%29%28Broderbund%29%5BMac-PC%5D.iso
+  igdb_slug: james-discovers-math
+  lang: en
+  media_assets:
+    cover:
+      image_id: 83f8076b-7941-449c-89b6-8d1377bbf494
+    screenshots: []
+  name: James Discovers Math
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: james-discovers-math
+    mg_id: 187682
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-10 11:29:35 America/Los_Angeles
+  uuid: 83f8076b-7941-449c-89b6-8d1377bbf494
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JAMES.EXE'
