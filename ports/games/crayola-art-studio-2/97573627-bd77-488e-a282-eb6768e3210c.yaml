@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - ART_STUDIO2.ISO
+    format: 1CD
+    url: https://archive.org/download/art-studio-2/ART_STUDIO2.ISO
+  igdb_slug: crayola-art-studio-2
+  lang: en
+  media_assets:
+    cover:
+      image_id: 97573627-bd77-488e-a282-eb6768e3210c
+    screenshots: []
+  name: Crayola Art Studio 2
+  platform: win
+  publisher: Micrografx
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # app crashes in dosbox-x in wordgame
+    ver: latest
+  ts_added: 2026-02-10 14:24:44 America/Los_Angeles
+  uuid: 97573627-bd77-488e-a282-eb6768e3210c
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\STUDIO2\STUDIO2.EXE'
+              exit: false
