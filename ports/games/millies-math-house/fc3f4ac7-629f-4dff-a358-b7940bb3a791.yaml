@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - MILLIE.ISO
+    format: 1CD
+    url: https://archive.org/download/milliemathhouse/MILLIE.ISO
+  igdb_slug: millies-math-house
+  lang: en
+  media_assets:
+  name: Millie's Math House
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: millies-math-house
+    mg_id: 34976
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-10 13:05:13 America/Los_Angeles
+  uuid: fc3f4ac7-629f-4dff-a358-b7940bb3a791
+  year_released: 1992
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MILLIE.EXE'
