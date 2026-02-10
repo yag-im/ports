@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - CANDYLND.iso
+    format: 1CD
+    url: https://archive.org/download/CANDYLND/CANDYLND.iso
+  igdb_slug: candy-land-adventure--1
+  lang: en
+  media_assets:
+  name: Candy Land Adventure
+  platform: win
+  publisher: Hasbro
+  refs:
+    ag_id:
+    lutris_id: candy-land-adventure--1
+    mg_id: 174263
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-09 19:39:43 America/Los_Angeles
+  uuid: 12391b0e-4d67-45d6-adab-7ae97b2dd579
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DATA\CANDYW31.EXE'
