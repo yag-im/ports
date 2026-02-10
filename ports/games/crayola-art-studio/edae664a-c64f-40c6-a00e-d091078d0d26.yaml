@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - CRAYOLAARTSTUDIO1.iso
+    format: 1CD
+    url: https://archive.org/download/crayolaartstudio-1/CRAYOLAARTSTUDIO1.iso
+  igdb_slug: crayola-art-studio
+  lang: en
+  media_assets:
+    cover:
+      image_id: edae664a-c64f-40c6-a00e-d091078d0d26
+    screenshots: []
+  name: Crayola Art Studio
+  platform: win
+  publisher: Micrografx
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-10 14:04:03 America/Los_Angeles
+  uuid: edae664a-c64f-40c6-a00e-d091078d0d26
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\START.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\WINDOWS\CRAYOLA\LAUNCH.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\PROGRAM\STUDIO.EXE'
