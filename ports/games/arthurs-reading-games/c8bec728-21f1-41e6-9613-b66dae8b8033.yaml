@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - ARTHURR2.BIN
+    format: 1CD
+    url: https://archive.org/details/ArthursReadingGames2000
+  igdb_slug: arthurs-reading-games
+  lang: en
+  media_assets:
+  name: Arthur's Reading Games
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: arthurs-reading-games
+    mg_id: 92113
+    pcgw_id:
+    qz_id:
+  reqs:
+    # app exec errors with lower res
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-09 19:49:32 America/Los_Angeles
+  uuid: c8bec728-21f1-41e6-9613-b66dae8b8033
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LIBRARY.EXE'
