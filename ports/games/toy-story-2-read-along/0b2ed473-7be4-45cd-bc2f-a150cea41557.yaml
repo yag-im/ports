@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - TS2MMRAL.ISO
+    format: 1CD
+    url: https://archive.org/download/ts-2-mmral_202305/TS2MMRAL.ISO
+  igdb_slug: toy-story-2-read-along
+  lang: en
+  media_assets:
+    cover:
+      image_id: 0b2ed473-7be4-45cd-bc2f-a150cea41557
+    screenshots: []
+  name: Toy Story 2 Read-Along
+  platform: win
+  publisher: Walt Disney Records
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 16 bit recommended in readme
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-10 11:05:15 America/Los_Angeles
+  uuid: 0b2ed473-7be4-45cd-bc2f-a150cea41557
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PLAYME.EXE'
