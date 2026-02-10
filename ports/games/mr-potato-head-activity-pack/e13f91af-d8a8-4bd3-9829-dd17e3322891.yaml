@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - MRPACTCD.iso
+    format: 1CD
+    url: https://archive.org/download/MRPACTCD/MRPACTCD.iso
+  igdb_slug: mr-potato-head-activity-pack
+  lang: en
+  media_assets:
+  name: Mr. Potato Head Activity Pack
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: mr-potato-head-activity-pack
+    mg_id: 214278
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-09 19:25:46 America/Los_Angeles
+  uuid: e13f91af-d8a8-4bd3-9829-dd17e3322891
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\MRPACTPK.EXE'
