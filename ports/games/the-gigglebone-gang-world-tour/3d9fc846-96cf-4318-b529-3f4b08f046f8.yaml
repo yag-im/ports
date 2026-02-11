@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Gigglebone Gang World Tour, The (1997)(Headbone)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/gigglebone-gang-world-tour/Gigglebone%20Gang%20World%20Tour%2C%20The%20%281997%29%28Headbone%29%5BMac-PC%5D.iso
+  igdb_slug: the-gigglebone-gang-world-tour
+  lang: en
+  media_assets:
+    cover:
+      image_id: 3d9fc846-96cf-4318-b529-3f4b08f046f8
+    screenshots: []
+  name: "The Gigglebone Gang: World Tour"
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 201511
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-10 17:54:11 America/Los_Angeles
+  uuid: 3d9fc846-96cf-4318-b529-3f4b08f046f8
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WRLDTR16.EXE'
