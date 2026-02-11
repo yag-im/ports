@@ -34,7 +34,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WIN98SE
+        flavor: WIN98SE # fails to find CD on startup in winxp
         tasks:
           - mount:
               src: "{DEST_DIR}"
