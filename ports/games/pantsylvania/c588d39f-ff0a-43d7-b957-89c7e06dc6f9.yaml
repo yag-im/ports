@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Pantsylvania (1997)(Headbone)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/pantsylvania/Pantsylvania%20%281997%29%28Headbone%29%5BMac-PC%5D.iso
+  igdb_slug: pantsylvania
+  lang: en
+  media_assets:
+  name: "The Gigglebone Gang: Pantsylvania"
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id: pantsylvania
+    mg_id: 201503
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-10 16:05:21 America/Los_Angeles
+  uuid: c588d39f-ff0a-43d7-b957-89c7e06dc6f9
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PANTS.EXE'
