@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - CRAYOLAMAGIC.ISO
+    format: 1CD
+    url: https://archive.org/download/CRAYOLAMAGIC/CRAYOLAMAGIC.ISO
+  igdb_slug: magic-wardrobe
+  lang: en
+  media_assets:
+  name: Magic Wardrobe
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id:
+    lutris_id: magic-wardrobe
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # app exec requirement
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-10 15:55:03 America/Los_Angeles
+  uuid: 589a24cc-bde5-44eb-8b72-dd42f1269a38
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # dues to 256 colors requirement
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Magic Wardrobe\Program\WARDROBE.EXE'
