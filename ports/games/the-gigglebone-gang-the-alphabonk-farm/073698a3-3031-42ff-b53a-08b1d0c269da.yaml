@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Alphabonk Farm (1997)(Headbone)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/alphabonk-farm/Alphabonk%20Farm%20%281997%29%28Headbone%29%5BMac-PC%5D.iso
+  igdb_slug: the-gigglebone-gang-the-alphabonk-farm
+  lang: en
+  media_assets:
+    cover:
+      image_id: 073698a3-3031-42ff-b53a-08b1d0c269da
+    screenshots: []
+  name: "The Gigglebone Gang: The AlphaBonk Farm"
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id: the-gigglebone-gang-the-alphabonk-farm
+    mg_id: 79816
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-11 18:55:30 America/Los_Angeles
+  uuid: 073698a3-3031-42ff-b53a-08b1d0c269da
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ALPHBNK.EXE'
