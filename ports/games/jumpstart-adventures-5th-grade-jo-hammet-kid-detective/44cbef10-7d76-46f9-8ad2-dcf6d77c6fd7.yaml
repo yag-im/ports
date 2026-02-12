@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Jumpstart5thGrade.iso
+    format: 1CD
+    url: https://archive.org/download/jumpstart-5thgrade/Jumpstart5thGrade.iso
+  igdb_slug: jumpstart-adventures-5th-grade-jo-hammet-kid-detective
+  lang: en
+  media_assets:
+  name: "JumpStart Adventures 5th Grade: Jo Hammet, Kid Detective"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-adventures-5th-grade-jo-hammet-kid-detective
+    mg_id: 17987
+    pcgw_id: JumpStart_5th_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 15:22:59 America/Los_Angeles
+  uuid: 44cbef10-7d76-46f9-8ad2-dcf6d77c6fd7
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\5G\5G.EXE'
