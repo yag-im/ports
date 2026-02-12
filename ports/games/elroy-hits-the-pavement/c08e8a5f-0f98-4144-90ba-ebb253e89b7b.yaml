@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Elroy Hits the Pavement (1996)(Headbone)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/elroy-hits-the-pavement/Elroy%20Hits%20the%20Pavement%20%281996%29%28Headbone%29%5BMac-PC%5D.iso
+  igdb_slug: elroy-hits-the-pavement
+  lang: en
+  media_assets:
+  name: Elroy Hits the Pavement
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id: elroy-hits-the-pavement
+    mg_id: 49860
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 10:12:28 America/Los_Angeles
+  uuid: c08e8a5f-0f98-4144-90ba-ebb253e89b7b
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PAVEMENT.EXE'
