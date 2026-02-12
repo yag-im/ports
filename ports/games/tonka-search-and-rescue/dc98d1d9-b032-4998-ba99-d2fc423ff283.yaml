@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Tonka - Search & Rescue (1997)(Hasbro)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/tonka-search-and-rescue/Tonka%20-%20Search%20%26%20Rescue%20%281997%29%28Hasbro%29%5BMac-PC%5D.iso
+  igdb_slug: tonka-search-and-rescue
+  lang: en
+  media_assets:
+  name: Tonka Search and Rescue
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: tonka-search-and-rescue
+    mg_id: 23501
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-12 14:13:04 America/Los_Angeles
+  uuid: dc98d1d9-b032-4998-ba99-d2fc423ff283
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\TONKA_SR.EXE'
+              args:
+                - 'data\boot.stm'
