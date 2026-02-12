@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - CANDYLAND.ISO
+    format: 1CD
+    url: https://archive.org/download/candyland_202408/CANDYLAND.ISO
+  igdb_slug: candy-land
+  lang: en
+  media_assets:
+    cover:
+      image_id: 2835f1ec-7987-46a3-a76b-6dfb85bce63a
+    screenshots: []
+  name: Candy Land
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 42977
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 32 bits is recommended in readme
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 12
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-12 11:41:27 America/Los_Angeles
+  uuid: 2835f1ec-7987-46a3-a76b-6dfb85bce63a
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # crashes in XP after first board move
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CandyLnd.exe'

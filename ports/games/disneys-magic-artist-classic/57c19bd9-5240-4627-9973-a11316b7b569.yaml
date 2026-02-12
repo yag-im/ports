@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - MICKEYMA.ISO
+    format: 1CD
+    url: https://archive.org/download/MICKEYMA/MICKEYMA.ISO
+  igdb_slug: disneys-magic-artist-classic
+  lang: en
+  media_assets:
+    cover:
+      image_id: 57c19bd9-5240-4627-9973-a11316b7b569
+    screenshots: []
+  name: Disney's Magic Artist Classic
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-12 12:24:06 America/Los_Angeles
+  uuid: 57c19bd9-5240-4627-9973-a11316b7b569
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # crashes in XP at startup
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Disney''s Magic Artist.exe'
