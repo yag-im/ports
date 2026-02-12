@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - TONKA S&R2.ISO
+    format: 1CD
+    url: https://archive.org/download/TONKASR2/TONKA%20S%26R2.ISO
+  igdb_slug: tonka-search-and-rescue-2
+  lang: en
+  media_assets:
+  name: Tonka Search & Rescue 2
+  platform: win
+  publisher: Infogrames
+  refs:
+    ag_id:
+    lutris_id: tonka-search-and-rescue-2
+    mg_id: 32254
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-12 14:35:01 America/Los_Angeles
+  uuid: 256ecbe2-fab5-464c-81f3-9b115c65d229
+  year_released: 2002
+  tags:
+    - tonka
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\TONKA.EXE'
