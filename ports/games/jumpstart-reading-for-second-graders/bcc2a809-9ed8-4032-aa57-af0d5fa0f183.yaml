@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - JS2R.iso
+    format: 1CD
+    url: https://archive.org/download/js2r1998/JS2R.iso
+  igdb_slug: jumpstart-reading-for-second-graders
+  lang: en
+  media_assets:
+  name: JumpStart Reading for Second Graders
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-reading-for-second-graders
+    mg_id: 220167
+    pcgw_id: JumpStart_Reading_for_Second_Graders
+    qz_id:
+  reqs:
+    # help.htm
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 15:31:45 America/Los_Angeles
+  uuid: bcc2a809-9ed8-4032-aa57-af0d5fa0f183
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # WIN311 is not supported by this app
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\JSR2G\JSR2G.EXE'
