@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Infinity City (1997)(Headbone)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/infinity-city/Infinity%20City%20%281997%29%28Headbone%29%5BMac-PC%5D.iso
+  igdb_slug: infinity-city
+  lang: en
+  media_assets:
+  name: "The Gigglebone Gang: Infinity City"
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id: infinity-city
+    mg_id: 201440
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-11 19:30:20 America/Los_Angeles
+  uuid: 71ed7a18-d496-4f0c-858b-cf73cfa35b16
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\INFINITY.EXE'
