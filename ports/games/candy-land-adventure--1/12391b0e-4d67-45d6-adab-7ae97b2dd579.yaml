@@ -31,7 +31,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        flavor: WIN95OSR25 # this game crashes in WIN311 (CANDYW31.EXE)
         tasks:
           - mount:
               src: "{DEST_DIR}"
@@ -39,4 +39,4 @@ installer:
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\DATA\CANDYW31.EXE'
+              path: '{FIRST_CD_DRIVE}\DATA\CANDYW95.EXE'
