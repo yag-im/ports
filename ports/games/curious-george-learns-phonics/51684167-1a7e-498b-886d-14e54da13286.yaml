@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - CGLP.ISO
+    format: 1CD
+    url: https://archive.org/download/cglp1997/CGLP.ISO
+  igdb_slug: curious-george-learns-phonics
+  lang: en
+  media_assets:
+  name: Curious George Learns Phonics
+  platform: win
+  publisher: Pearson Software
+  refs:
+    ag_id:
+    lutris_id: curious-george-learns-phonics
+    mg_id: 26781
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 14:48:59 America/Los_Angeles
+  uuid: 51684167-1a7e-498b-886d-14e54da13286
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # installs, but crashes in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\CGLP.EXE'
