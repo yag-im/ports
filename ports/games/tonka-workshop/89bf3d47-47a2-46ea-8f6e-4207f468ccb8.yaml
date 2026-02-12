@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - TONKA_W.ISO
+    format: 1CD
+    url: https://archive.org/download/tonka-w/TONKA_W.ISO
+  igdb_slug: tonka-workshop
+  lang: en
+  media_assets:
+  name: Tonka WorkShop
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-12 12:48:29 America/Los_Angeles
+  uuid: 89bf3d47-47a2-46ea-8f6e-4207f468ccb8
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          # - run:
+          #     path: 'EXPLORER.EXE'
+          #     exit: false
+          - run:
+              path: '{FIRST_CD_DRIVE}\WIN95\TW_AUTO.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\TONKA_W.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\DATA\BOOT.STM'
