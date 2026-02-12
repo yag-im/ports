@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Jumpstart 1st Grade Math.iso.cue
+      - Jumpstart 1st Grade Math.iso.bin
+    format: 1CD
+    url: https://archive.org/details/jumpstart-1st-grade-math.iso
+  igdb_slug: jumpstart-1st-grade-math
+  lang: en
+  media_assets:
+  name: JumpStart 1st Grade Math
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-1st-grade-math
+    mg_id: 220168
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 15:05:59 America/Los_Angeles
+  uuid: 7915596c-d732-4f4a-b482-5a8bb124f1aa
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\JS1GM.EXE'
