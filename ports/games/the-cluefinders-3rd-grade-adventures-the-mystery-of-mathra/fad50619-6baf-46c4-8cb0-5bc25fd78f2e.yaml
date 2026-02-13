@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - 3RDADV.iso
+    format: 1CD
+    url: https://archive.org/download/cluefinders3rd/3RDADV.iso
+  igdb_slug: the-cluefinders-3rd-grade-adventures-the-mystery-of-mathra
+  lang: en
+  media_assets:
+  name: "The ClueFinders 3rd Grade Adventures: The Mystery of Mathra"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-cluefinders-3rd-grade-adventures-the-mystery-of-mathra
+    mg_id: 17742
+    pcgw_id: The_ClueFinders_3rd_Grade_Adventures:_Mystery_of_Mathra
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 16:37:29 America/Los_Angeles
+  uuid: fad50619-6baf-46c4-8cb0-5bc25fd78f2e
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\3rdadv32.exe'
