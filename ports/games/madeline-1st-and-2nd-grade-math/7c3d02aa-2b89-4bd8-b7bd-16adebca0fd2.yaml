@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Madmath2.iso
+    format: 2CD
+    url: https://archive.org/details/madmath12
+  igdb_slug: madeline-1st-and-2nd-grade-math
+  lang: en
+  media_assets:
+    cover:
+      image_id: 53e3d83a-a583-4219-add9-fd9b96757b4d
+    screenshots: []
+  name: Madeline 1st and 2nd Grade Math (Disc 2)
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-13 13:25:43 America/Los_Angeles
+  uuid: 7c3d02aa-2b89-4bd8-b7bd-16adebca0fd2
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MADMATH2.EXE'
+# TODO: app BSODs on the very first run and works fine on all subsequent runs
