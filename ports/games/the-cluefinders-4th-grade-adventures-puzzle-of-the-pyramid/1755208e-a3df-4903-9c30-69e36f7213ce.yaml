@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Cluefinders 4th Grade Adventures.iso
+    format: 1CD
+    url: https://archive.org/download/cluefinders-4th-grade-adventures/Cluefinders%204th%20Grade%20Adventures.iso
+  igdb_slug: the-cluefinders-4th-grade-adventures-puzzle-of-the-pyramid
+  lang: en
+  media_assets:
+  name: "The ClueFinders 4th Grade Adventures: Puzzle of the Pyramid"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-cluefinders-4th-grade-adventures-puzzle-of-the-pyramid
+    mg_id: 18127
+    pcgw_id: The_ClueFinders_4th_Grade_Adventures:_Puzzle_of_the_Pyramid
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 15
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 18:44:59 America/Los_Angeles
+  uuid: 1755208e-a3df-4903-9c30-69e36f7213ce
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\4thadv32.exe'
