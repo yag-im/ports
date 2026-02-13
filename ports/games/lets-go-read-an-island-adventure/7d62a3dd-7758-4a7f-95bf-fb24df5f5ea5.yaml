@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - ISLAND.iso
+    format: 1CD
+    url: https://archive.org/download/lets-go-read-an-island-adventure/ISLAND.iso
+  igdb_slug: lets-go-read-an-island-adventure
+  lang: en
+  media_assets:
+  name: "Let's Go Read: An Island Adventure"
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: lets-go-read-an-island-adventure
+    mg_id: 83085
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 12
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-12 19:31:10 America/Los_Angeles
+  uuid: 7d62a3dd-7758-4a7f-95bf-fb24df5f5ea5
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE # installs in WIN311, but crashes with exception after intro; in WIN95 crashes with SWAPI.DLL error
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # installs IBM ViaVoice (for in-game voice control?); cancel it
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ISLAND.EXE'
