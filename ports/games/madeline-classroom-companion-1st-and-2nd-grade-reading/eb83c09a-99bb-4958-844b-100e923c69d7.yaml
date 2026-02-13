@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - MADREAD2.ISO
+    format: 2CD
+    url: https://archive.org/details/madread12
+  igdb_slug: madeline-classroom-companion-1st-and-2nd-grade-reading
+  lang: en
+  media_assets:
+    cover:
+      image_id: f5a49d03-87a3-4c43-aa64-2c6d2be85e6b
+    screenshots: []
+  name: "Madeline: Classroom Companion - 1st & 2nd Grade Reading (Disc 2)"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-13 10:46:18 America/Los_Angeles
+  uuid: eb83c09a-99bb-4958-844b-100e923c69d7
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MREAD2\MADREAD2.EXE'
