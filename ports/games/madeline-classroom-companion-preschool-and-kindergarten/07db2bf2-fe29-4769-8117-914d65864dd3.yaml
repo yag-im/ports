@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - MADCCK.iso
+    format: 2CD
+    url: https://archive.org/download/MADCCP/MADCCK.iso
+  igdb_slug: madeline-classroom-companion-preschool-and-kindergarten
+  lang: en
+  media_assets:
+    cover:
+      image_id: a5fea1dd-b526-4fd4-957c-d0ecaf9cde72
+    screenshots: []
+  name: "Madeline: Classroom Companion - Preschool & Kindergarten (Kindergarten CD)"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 120060
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-13 14:39:11 America/Los_Angeles
+  uuid: 07db2bf2-fe29-4769-8117-914d65864dd3
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP_K.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MCCK\MCCK.EXE'
