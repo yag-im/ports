@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - GameOfLife.iso
+    format: 1CD
+    url: https://archive.org/download/gameoflife1998/GameOfLife.iso
+  igdb_slug: the-game-of-life--2
+  lang: en
+  media_assets:
+  name: The Game of Life
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: the-game-of-life--2
+    mg_id: 2340
+    pcgw_id: The_Game_of_Life
+    qz_id:
+  reqs:
+    # readme.txt min requirements
+    color_bits: 8
+    screen_height: 600
+    screen_width: 800
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-14 13:08:56 America/Los_Angeles
+  uuid: a22d0b70-88f0-4531-a2b3-d87d19f54b08
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LIFE.EXE'
+              exit: false
