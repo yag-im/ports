@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - RRR2CD.iso
+    format: 1CD
+    url: https://archive.org/download/rrr2cd/RRR2CD.iso
+  igdb_slug: reader-rabbits-reading-2
+  lang: en
+  media_assets:
+    cover:
+      image_id: ce0d3386-1e4a-4000-8e7b-e04a6c31ada9
+    screenshots: []
+  name: Reader Rabbit's Reading 2
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 119930
+    pcgw_id: Reader_Rabbit%27s_Reading_2
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-14 11:25:43 America/Los_Angeles
+  uuid: ce0d3386-1e4a-4000-8e7b-e04a6c31ada9
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRR216.EXE'
