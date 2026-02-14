@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Sesame Street - Elmo's Preschool Deluxe (USA) (Disc 1) (Elmo's Preschool).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Sesame%20Street%20-%20Elmo%27s%20Preschool%20Deluxe%20%28USA%29%20%28Disc%201%29%20%28Elmo%27s%20Preschool%29.zip
+  igdb_slug: sesame-street-elmos-preschool-deluxe
+  lang: en
+  media_assets:
+    cover:
+      image_id: 72e30a82-a602-4438-9f1e-652ba880f708
+    screenshots: []
+  name: Sesame Street - Elmo's Preschool Deluxe (Elmo's Preschool)
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-14 12:19:39 America/Los_Angeles
+  uuid: 72e30a82-a602-4438-9f1e-652ba880f708
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RUN\ELMO.EXE'
