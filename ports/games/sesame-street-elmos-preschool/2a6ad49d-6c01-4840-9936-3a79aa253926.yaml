@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Sesame Street - Elmo's Preschool (USA).cue
+      - Sesame Street - Elmo's Preschool (USA) (Track 1).bin
+      - Sesame Street - Elmo's Preschool (USA) (Track 2).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Sesame%20Street%20-%20Elmo%27s%20Preschool%20%28USA%29.zip
+  igdb_slug: sesame-street-elmos-preschool
+  lang: en
+  media_assets:
+    cover:
+      image_id: 2a6ad49d-6c01-4840-9936-3a79aa253926
+    screenshots: []
+  name: Sesame Street - Elmo's Preschool
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 56178
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-14 11:47:06 America/Los_Angeles
+  uuid: 2a6ad49d-6c01-4840-9936-3a79aa253926
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RUN\ELMO.EXE'
