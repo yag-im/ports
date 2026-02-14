@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Noah's Ark Activity Center.iso
+    format: 1CD
+    url: https://archive.org/download/NoahsArkActivityCenter/Noah%27s%20Ark%20Activity%20Center.iso
+  igdb_slug: the-beginners-bible-noahs-ark-activity-center
+  lang: en
+  media_assets:
+    cover:
+      image_id: f3969b1c-9b95-4040-b06e-d96e12eb6020
+    screenshots: []
+  name: "The Beginners Bible: Noah's Ark Activity Center"
+  platform: win
+  publisher: Brighter Child
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 12
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-13 15:26:23 America/Los_Angeles
+  uuid: f3969b1c-9b95-4040-b06e-d96e12eb6020
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\NOAH.EXE'
+# TODO: On the first run, after the player enters their name, the application prompts for the location of the stage1
+# file (located in E:\DATA). After the path is provided, the prompt does not appear on subsequent runs.
+#
+# Also it works fine when run from {APP_DIR}\autorun.exe (creates process from noah.exe; no command-line parameters are
+# passed under the debugger.)

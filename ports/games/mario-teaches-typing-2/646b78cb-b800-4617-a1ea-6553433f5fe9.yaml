@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Mario Teaches Typing 2 (1997)(Interplay)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/mario-teaches-typing-2/Mario%20Teaches%20Typing%202%20%281997%29%28Interplay%29%5BMac-PC%5D.iso
+  igdb_slug: mario-teaches-typing-2
+  lang: en
+  media_assets:
+  name: Mario Teaches Typing 2
+  platform: win
+  publisher: Interplay Productions
+  refs:
+    ag_id:
+    lutris_id: mario-teaches-typing-2
+    mg_id: 12195
+    pcgw_id: Mario_Teaches_Typing_2
+    qz_id:
+  reqs:
+    color_bits:
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-13 14:57:54 America/Los_Angeles
+  uuid: 646b78cb-b800-4617-a1ea-6553433f5fe9
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MARIO\RUNMARIO.EXE'
+              exit: false

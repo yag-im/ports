@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - Rayman Activity Centre (UK).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Rayman%20Activity%20Centre%20%28UK%29.zip
+  igdb_slug: rayman-activity-center
+  lang: en
+  media_assets:
+  name: Rayman Activity Center
+  platform: win
+  publisher: Ubisoft Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id: Rayman_Activity_Center
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-13 16:22:45 America/Los_Angeles
+  uuid: 50979fbe-af3a-436f-9f53-bf24ca230b04
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: explorer.exe
+              exit: false
+          # somehow setup can't be run without explorer.exe?
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          #     exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\WINDOWS\UbiSoft\UBISETUP.EXE'
+              args:
+                - -play
+                - RAYEVEIL
+              exit: false
+# TODO: this game requires chdir (to C:\WINDOWS\UbiSoft) which is not supported from SYSTEM.INI/shell without RUNEXIT.
+# Provide RUN-NON-EXIT with chdir
+# Currently runs through the shortcut in startup dir (temp fix)
