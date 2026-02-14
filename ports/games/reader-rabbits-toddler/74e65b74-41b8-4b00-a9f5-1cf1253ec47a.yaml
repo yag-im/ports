@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Rr_toddler.iso
+    format: 1CD
+    url: https://archive.org/download/rrtoddler_1997/Rr_toddler.iso
+  igdb_slug: reader-rabbits-toddler
+  lang: en
+  media_assets:
+  name: Reader Rabbit's Toddler
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbits-toddler
+    mg_id: 1227
+    pcgw_id: Reader_Rabbit_Toddler
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-14 11:34:52 America/Los_Angeles
+  uuid: 74e65b74-41b8-4b00-a9f5-1cf1253ec47a
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRTW32.EXE'
