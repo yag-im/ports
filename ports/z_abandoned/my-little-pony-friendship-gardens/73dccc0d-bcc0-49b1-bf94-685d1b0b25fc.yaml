@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - My Little Pony - Friendship Gardens (USA) (Rev 1).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/My%20Little%20Pony%20-%20Friendship%20Gardens%20%28USA%29%20%28Rev%201%29.zip
+  igdb_slug: my-little-pony-friendship-gardens
+  lang: en
+  media_assets:
+  name: "My Little Pony: Friendship Gardens"
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: my-little-pony-friendship-gardens
+    mg_id: 60644
+    pcgw_id: My_Little_Pony:_Friendship_Gardens
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine
+    ver: "10.0"
+  ts_added: 2026-02-15 10:09:06 America/Los_Angeles
+  uuid: 73dccc0d-bcc0-49b1-bf94-685d1b0b25fc
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # proceed with compact install
+          - gen_run_script:
+              path: '{APP_DIR}\PONY.EXE'
+# original, rev1 and re-release (2000) of this game fails to run in wine, qemu and dosbox (black screen, audio only in some configs)
