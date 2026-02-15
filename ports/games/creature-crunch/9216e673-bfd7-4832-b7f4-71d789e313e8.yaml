@@ -17,13 +17,14 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
-    # 24-bit highly recommended
-    color_bits: 24
+    # 24-bit min is highly recommended
+    color_bits: 32
     screen_height: 480
     screen_width: 640
+    loading_duration: 10
   runner:
-    name: qemu
-    ver: latest
+    name: dosbox-x
+    ver: 2025.12.01
   ts_added: 2026-02-15 11:08:06 America/Los_Angeles
   uuid: 9216e673-bfd7-4832-b7f4-71d789e313e8
   year_released: 1996
@@ -31,15 +32,22 @@ descr:
 installer:
   tasks:
     - copy_src_cd_images:
-    - qemu:
-        flavor: WINXPSP3
+    - dosbox:
+        flavor: WIN98SE
         tasks:
           - mount:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
-          - run:
-              path: '{FIRST_CD_DRIVE}\STARTUP.EXE'
-              exit: false
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\STARTUP.EXE'
+              path: '{FIRST_CD_DRIVE}\PIXCEL\PIXRUN.EXE'
+              args:
+                - '"Crunch"'
+                - "{FIRST_CD_DRIVE_LETTER}:"
+                - "{APP_DRIVE_LETTER}:"
+                - '" "'
+                - 32
+                - 36
+                - DEBUG
               exit: false
+# TODO: seems loading of a saved game is only possible from start menu (E:\STARTUP.EXE), but this menu is not operational
+# without explorer.exe
