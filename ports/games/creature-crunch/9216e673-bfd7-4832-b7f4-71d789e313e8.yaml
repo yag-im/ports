@@ -39,6 +39,7 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - gen_run_script:
+              # params extracted from procmon.exe
               path: '{FIRST_CD_DRIVE}\PIXCEL\PIXRUN.EXE'
               args:
                 - '"Crunch"'
