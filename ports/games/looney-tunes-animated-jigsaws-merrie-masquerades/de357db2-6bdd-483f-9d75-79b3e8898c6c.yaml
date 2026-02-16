@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - MERRIE.ISO
+    format: 1CD
+    url: https://archive.org/download/looney-tunes-animated-jigsaws-merrie-masquerades/MERRIE.ISO
+  igdb_slug: looney-tunes-animated-jigsaws-merrie-masquerades
+  lang: en
+  media_assets:
+    cover:
+      image_id: de357db2-6bdd-483f-9d75-79b3e8898c6c
+    screenshots: []
+  name: "Looney Tunes Animated Jigsaws: Merrie Masquerades"
+  platform: win
+  publisher: SouthPeak Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-16 13:03:36 America/Los_Angeles
+  uuid: de357db2-6bdd-483f-9d75-79b3e8898c6c
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MMAJ.EXE'
+              exit: false
