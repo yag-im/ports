@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Goldilocks.cue
+      - Goldilocks.img
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/d0cbfe5c-d4aa-4e77-a7c5-c3d727e277e8/Goldilocks-and-the-Three-Bears_Win-3x_EN_CD.zip
+  igdb_slug: goldilocks-and-the-three-bears
+  lang: en
+  media_assets:
+    cover:
+      image_id: 5ca9f2ae-3350-4807-a5da-706ced8edcd4
+    screenshots: []
+  name: Goldilocks and the Three Bears
+  platform: win
+  publisher: Europress Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 150604
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-15 22:08:43 America/Los_Angeles
+  uuid: 5ca9f2ae-3350-4807-a5da-706ced8edcd4
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][1]}"
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              args:
+                - "/RUN"
+              exit: false
+# The app runs only under QEMU with WINXPSP3.
+# CD audio is essential for this game, as all book text is recorded on the disc.
+# In DOSBox-X (despite CD audio support), the app crashes on startup across all modes and OS versions.
