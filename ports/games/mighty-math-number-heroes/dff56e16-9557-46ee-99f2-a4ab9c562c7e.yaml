@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Heroes.iso
+    format: 1CD
+    url: https://archive.org/download/mmnh-numberheroes/Heroes.iso
+  igdb_slug: mighty-math-number-heroes
+  lang: en
+  media_assets:
+  name: Mighty Math Number Heroes
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: mighty-math-number-heroes
+    mg_id: 21323
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 7
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 09:55:13 America/Los_Angeles
+  uuid: dff56e16-9557-46ee-99f2-a4ab9c562c7e
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\HEROES.EXE'
