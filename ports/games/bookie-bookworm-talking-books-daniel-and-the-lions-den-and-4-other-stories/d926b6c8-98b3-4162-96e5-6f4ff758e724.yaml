@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Bookie Bookworm - Talking Books - Daniel and the Lions' Den & 4 Other Stories (1995).iso
+    format: 1CD
+    url: https://archive.org/download/bookie-bookworm-talking-books-daniel-and-the-lions-den-4-other-stories-1995/Bookie%20Bookworm%20-%20Talking%20Books%20-%20Daniel%20and%20the%20Lions%27%20Den%20%26%204%20Other%20Stories%20%281995%29.iso
+  igdb_slug: bookie-bookworm-talking-books-daniel-and-the-lions-den-and-4-other-stories
+  lang: en
+  media_assets:
+  name: "Bookie Bookworm Talking Books: Daniel and the Lions' Den & 4 Other Stories"
+  platform: win
+  publisher: HarperCollins Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-02-16 11:48:42 America/Los_Angeles
+  uuid: d926b6c8-98b3-4162-96e5-6f4ff758e724
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BOOKIE.EXE'
