@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Bill Nye the Science Guy - Stop the Rock! (1996)(Pacific Interactive)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/stop-the-rock/Bill%20Nye%20the%20Science%20Guy%20-%20Stop%20the%20Rock%21%20%281996%29%28Pacific%20Interactive%29%5BMac-PC%5D.iso
+  igdb_slug: bill-nye-the-science-guy-stop-the-rock
+  lang: en
+  media_assets:
+  name: "Bill Nye the Science Guy: Stop the Rock"
+  platform: win
+  publisher: Pacific Interactive
+  refs:
+    ag_id:
+    lutris_id: bill-nye-the-science-guy-stop-the-rock
+    mg_id: 71854
+    pcgw_id: Bill_Nye_the_Science_Guy:_Stop_the_Rock!
+    qz_id:
+  reqs:
+    # 8-bit looks bit uglier?
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-15 19:08:14 America/Los_Angeles
+  uuid: c6ca5547-296d-45e5-8ed4-26bd7bf6eaf9
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ROCK31.EXE'
