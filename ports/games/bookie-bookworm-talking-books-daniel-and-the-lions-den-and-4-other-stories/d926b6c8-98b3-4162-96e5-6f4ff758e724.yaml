@@ -7,6 +7,9 @@ descr:
   igdb_slug: bookie-bookworm-talking-books-daniel-and-the-lions-den-and-4-other-stories
   lang: en
   media_assets:
+    cover:
+      image_id: d926b6c8-98b3-4162-96e5-6f4ff758e724
+    screenshots: []
   name: "Bookie Bookworm Talking Books: Daniel and the Lions' Den & 4 Other Stories"
   platform: win
   publisher: HarperCollins Interactive

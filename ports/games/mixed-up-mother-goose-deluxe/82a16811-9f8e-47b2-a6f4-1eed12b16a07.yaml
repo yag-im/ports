@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Mixed-Up Mother Goose Deluxe (USA) (En,Es) (Rev 1).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Mixed-Up%20Mother%20Goose%20Deluxe%20%28USA%29%20%28En%2CEs%29%20%28Rev%201%29.zip
+    # ver: rev1
+  igdb_slug: mixed-up-mother-goose-deluxe
+  lang: en
+  media_assets:
+    cover:
+      image_id: 82a16811-9f8e-47b2-a6f4-1eed12b16a07
+    screenshots: []
+  name: Mixed-Up Mother Goose Deluxe
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 3327
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  ts_added: 2026-02-16 12:06:55 America/Los_Angeles
+  uuid: 82a16811-9f8e-47b2-a6f4-1eed12b16a07
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Mixed-Up_Mother_Goose
+        tasks:
+          - gen_run_script:
+              game: sci:mothergoosehires
+              path: "{DEST_APP_DIR}"
+              lang: en
