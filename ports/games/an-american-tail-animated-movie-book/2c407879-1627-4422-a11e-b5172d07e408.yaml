@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - AMERTAIL.iso
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/65ce3af4-8378-4ccf-baae-1ccb770f6590/An-American-Tail-Animated-MovieBook_Win_EN_ISO.zip
+  igdb_slug: an-american-tail-animated-movie-book
+  lang: en
+  media_assets:
+  name: "An American Tail: Animated Movie Book"
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 152045
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme.hlp
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 13:38:29 America/Los_Angeles
+  uuid: 2c407879-1627-4422-a11e-b5172d07e408
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\AMER32.EXE'
