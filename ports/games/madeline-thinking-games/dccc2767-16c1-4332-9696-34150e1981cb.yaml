@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Madeline.iso
+    format: 1CD
+    url: https://archive.org/download/madeline_202302/Madeline.iso
+  igdb_slug: madeline-thinking-games
+  lang: en
+  media_assets:
+  name: "Madeline: Thinking Games"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id: madeline-thinking-games
+    mg_id: 81843
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 09:27:24 America/Los_Angeles
+  uuid: dccc2767-16c1-4332-9696-34150e1981cb
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\MADTG\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MADTG\MADTG.EXE'
