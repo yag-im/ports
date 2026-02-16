@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - CGELA.iso
+    format: 1CD
+    url: https://archive.org/download/cgela_202102/CGELA.iso
+  igdb_slug: curious-george-early-learning-adventure
+  lang: en
+  media_assets:
+  name: Curious George Early Learning Adventure
+  platform: win
+  publisher: Houghton Mifflin Interactive
+  refs:
+    ag_id:
+    lutris_id: curious-george-early-learning-adventure
+    mg_id: 75880
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-15 19:24:42 America/Los_Angeles
+  uuid: f581a38f-84f3-40c3-a87f-c5f1d253f634
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # crashes in WIN311 after a few seconds of gameplay
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\CGELA.EXE'
