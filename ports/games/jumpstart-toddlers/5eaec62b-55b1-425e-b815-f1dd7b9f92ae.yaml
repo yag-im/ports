@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - TODDLERS.iso
+    format: 1CD
+    url: https://archive.org/download/TODDLERS/TODDLERS.iso
+  igdb_slug: jumpstart-toddlers
+  lang: en
+  media_assets:
+  name: JumpStart Toddlers
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-toddlers
+    mg_id: 118966
+    pcgw_id: JumpStart_Toddlers
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 09:18:25 America/Los_Angeles
+  uuid: 5eaec62b-55b1-425e-b815-f1dd7b9f92ae
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\TODDLER.EXE'
+              exit: false
