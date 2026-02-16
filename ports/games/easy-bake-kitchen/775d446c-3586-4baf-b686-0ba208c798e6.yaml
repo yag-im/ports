@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - EASYBAKE.iso
+    format: 1CD
+    url: https://archive.org/download/EASYBAKE/EASYBAKE.iso
+  igdb_slug: easy-bake-kitchen
+  lang: en
+  media_assets:
+  name: Easy Bake Kitchen
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: easy-bake-kitchen
+    mg_id: 9914
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-16 10:45:52 America/Los_Angeles
+  uuid: 775d446c-3586-4baf-b686-0ba208c798e6
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\EasyBake.exe'
