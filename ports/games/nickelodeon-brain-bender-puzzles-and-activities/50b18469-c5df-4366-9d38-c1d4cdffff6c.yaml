@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - BrainBender.iso
+    format: 1CD
+    url: https://archive.org/download/BrainBender/BrainBender.iso
+  igdb_slug: nickelodeon-brain-bender-puzzles-and-activities
+  lang: en
+  media_assets:
+  name: Nickelodeon Brain Bender Puzzles & Activities
+  platform: win
+  publisher: Mattel Media
+  refs:
+    ag_id:
+    lutris_id: nickelodeon-brain-bender-puzzles-and-activities
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # high color is required in readme
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-16 11:01:04 America/Los_Angeles
+  uuid: 50b18469-c5df-4366-9d38-c1d4cdffff6c
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Brain.exe'
+              args:
+                - Main
