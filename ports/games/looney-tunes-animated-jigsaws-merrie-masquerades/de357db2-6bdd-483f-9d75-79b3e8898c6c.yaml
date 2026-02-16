@@ -35,7 +35,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WIN98SE
+        flavor: WIN98SE # fails to run in WINXP due to DirectX requirements
         tasks:
           - mount:
               src: "{DEST_DIR}"

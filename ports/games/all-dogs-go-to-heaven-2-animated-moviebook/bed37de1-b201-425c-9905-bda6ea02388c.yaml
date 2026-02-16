@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - ALL_DOGS.ISO
+    format: 1CD
+    url: https://archive.org/download/all-dogs-go-to-heaven-2-animated-moviebook/All_Dogs_Go_To_Heaven_2_Animated_moviebook.zip/ALL_DOGS.ISO
+  igdb_slug: all-dogs-go-to-heaven-2-animated-moviebook
+  lang: en
+  media_assets:
+    cover:
+      image_id: bed37de1-b201-425c-9905-bda6ea02388c
+    screenshots: []
+  name: All Dogs Go To Heaven 2 Animated Moviebook
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 227535
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 13:24:02 America/Los_Angeles
+  uuid: bed37de1-b201-425c-9905-bda6ea02388c
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # from created program group icons, install windows video manually
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ALLDOGS.EXE'
