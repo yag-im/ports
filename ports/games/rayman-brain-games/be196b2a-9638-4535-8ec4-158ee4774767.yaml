@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - algwr.cue
+      - algwr.BIN
+    format: 1CD
+    url: https://archive.org/details/msdos_Amazing_Learning_Games_with_Rayman_1996
+  igdb_slug: rayman-brain-games
+  lang: en
+  media_assets:
+  name: Rayman Brain Games
+  platform: dos
+  publisher: Ubi Soft Entertainment
+  refs:
+    ag_id:
+    lutris_id: rayman-brain-games
+    mg_id: 56490
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-02-15 16:23:05 America/Los_Angeles
+  uuid: be196b2a-9638-4535-8ec4-158ee4774767
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    # TODO: poweriso fails to convert this BIN to iso to extract files; tmp workaround: copy these files manually
+    # - extract:
+    #     src: "{DEST_DIR}/{descr[distro][files][1]}"
+    #     dest: "{DEST_APP_DIR}"
+    #     files:
+    #       - "rayedu/conclu.dat"
+    #       - "rayedu/intro.dat"
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RAYEDU\RAYEDU.EXE'
+              args:
+                - ver=USA
+                - bat=C:\EDUUSA.BAT
+                - save=D:\APP
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "EDUUSA.CFG"
