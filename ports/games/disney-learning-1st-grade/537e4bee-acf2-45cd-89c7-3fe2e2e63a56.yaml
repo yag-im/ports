@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Disney-Pixar Buzz Lightyear 1st Grade (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/D/Disney-Pixar%20Buzz%20Lightyear%201st%20Grade%20%28USA%29.zip
+  igdb_slug: disney-learning-1st-grade
+  lang: en
+  media_assets:
+  name: Disney-Pixar's Buzz Lightyear 1st Grade
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disney-learning-1st-grade
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-17 13:13:45 America/Los_Angeles
+  uuid: 537e4bee-acf2-45cd-89c7-3fe2e2e63a56
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LAUNCHER.EXE'
