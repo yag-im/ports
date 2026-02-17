@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - CrunchlingAdventure.iso
+    format: 1CD
+    url: https://archive.org/download/CrunchlingAdventure/CrunchlingAdventure.iso
+  igdb_slug: capn-crunchs-crunchling-adventure
+  lang: en
+  media_assets:
+  name: Cap'n Crunch's Crunchling Adventure
+  platform: win
+  publisher: Quaker Oats
+  refs:
+    ag_id:
+    lutris_id: capn-crunchs-crunchling-adventure
+    mg_id: 2787
+    pcgw_id: Cap%27n_Crunch%27s_Crunchling_Adventure
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-17 13:51:55 America/Los_Angeles
+  uuid: f4a3e301-f92b-410a-bd4b-1ae3895b29ac
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CRUNCH.EXE'
+              exit: false
