@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Saggy.bin
+    format: 1CD
+    url: https://archive.org/details/the-saggy-baggy-elephant-cd
+  igdb_slug: a-little-golden-book-the-saggy-baggy-elephant
+  lang: en
+  media_assets:
+    cover:
+      image_id: 45dd7f90-48f0-4538-a25a-7520ef8458c6
+    screenshots: []
+  name: "a Little Golden Book: The Saggy Baggy Elephant"
+  platform: win
+  publisher: Encore Software Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-16 20:23:05 America/Los_Angeles
+  uuid: 45dd7f90-48f0-4538-a25a-7520ef8458c6
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\pc.exe'
