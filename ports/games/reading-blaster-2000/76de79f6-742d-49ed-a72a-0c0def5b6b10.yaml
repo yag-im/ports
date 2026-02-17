@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Reading Blaster 2000.iso
+    format: 1CD
+    url: https://archive.org/download/reading-blaster-2000_202204/Reading%20Blaster%202000.iso
+  igdb_slug: reading-blaster-2000
+  lang: en
+  media_assets:
+  name: Reading Blaster 2000
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: reading-blaster-2000
+    mg_id: 243787
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 22:51:55 America/Los_Angeles
+  uuid: 76de79f6-742d-49ed-a72a-0c0def5b6b10
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\RB2K16.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\RB2000\RESOURCE\RB2K.BAP'
