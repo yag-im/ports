@@ -31,7 +31,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN95OSR25 # this game crashes in WIN311 (CANDYW31.EXE)
+        flavor: WIN95OSR25 # this game crashes in WIN311 (CANDYW31.EXE): https://discord.com/channels/1251206620822638684/1251209459271860277/1471348241797873765
         tasks:
           - mount:
               src: "{DEST_DIR}"

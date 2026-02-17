@@ -21,6 +21,7 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 15
   runner:
     name: qemu
     ver: latest
@@ -32,12 +33,14 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WINXPSP3
+        # reported a crash in WINXPSP3: https://discord.com/channels/1251206620822638684/1473150611448135843
+        flavor: WIN98SE
         tasks:
           - mount:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false # because it needs to install DirectX in WIN9X at the end
           - gen_run_script:
               path: '{APP_DIR}\RTABB.EXE'
