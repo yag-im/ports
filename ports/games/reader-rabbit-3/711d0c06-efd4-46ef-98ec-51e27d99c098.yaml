@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Reader_Rabbit_3_1993.zip
+    format: 2FD
+    url: https://archive.org/download/msdos_Reader_Rabbit_3_1993/Reader_Rabbit_3_1993.zip
+  igdb_slug: reader-rabbit-3
+  lang: en
+  media_assets:
+  name: Reader Rabbit 3
+  platform: dos
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 17899
+    pcgw_id: Reader_Rabbit_3
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-02-16 22:43:33 America/Los_Angeles
+  uuid: 711d0c06-efd4-46ef-98ec-51e27d99c098
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - ReadRab3/*
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/READER3.EXE"
