@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Interactive Storybook_ The Secret of the Hunchback.iso
+    format: 1CD
+    url: https://archive.org/download/interactive-storybook-the-secret-of-the-hunchback/Interactive%20Storybook%3A%20The%20Secret%20of%20the%20Hunchback.iso
+  igdb_slug: the-secret-of-the-hunchback
+  lang: en
+  media_assets:
+    cover:
+      image_id: c1254c08-c205-48b5-95ca-6ff887c87430
+    screenshots: []
+  name: The Secret of the Hunchback
+  platform: win
+  publisher: UAV Corp.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 220955
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-16 22:21:33 America/Los_Angeles
+  uuid: c1254c08-c205-48b5-95ca-6ff887c87430
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\HUNCH.EXE'
