@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Rugrats Adventure Game PC CD-ROM.iso
+    format: 1CD
+    url: https://archive.org/download/rugrats-adventure-game-pc-cd-rom/Rugrats%20Adventure%20Game%20PC%20CD-ROM.iso
+  igdb_slug: rugrats-adventure-game
+  lang: en
+  media_assets:
+  name: Rugrats Adventure Game
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: rugrats-adventure-game
+    mg_id: 31611
+    pcgw_id: Rugrats_Adventure_Game
+    qz_id:
+  reqs:
+    # from readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 13
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-17 14:56:04 America/Los_Angeles
+  uuid: 9ffa5a99-bc19-41b5-bd70-5c60823d7121
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RUGRATS.EXE'
