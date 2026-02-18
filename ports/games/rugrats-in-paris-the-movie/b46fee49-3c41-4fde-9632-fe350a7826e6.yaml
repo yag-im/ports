@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Rugrats in Paris The Movie Game.iso
+    format: 1CD
+    url: https://archive.org/download/RugratsInParisTheMovieGame_201903/Rugrats%20in%20Paris%20The%20Movie%20Game.iso
+  igdb_slug: rugrats-in-paris-the-movie
+  lang: en
+  media_assets:
+  name: "Rugrats in Paris: The Movie"
+  platform: win
+  publisher: Mattel Interactive
+  refs:
+    ag_id:
+    lutris_id: rugrats-in-paris-the-movie
+    mg_id: 9893
+    pcgw_id: Rugrats_in_Paris:_The_Movie
+    qz_id:
+  reqs:
+    # min requirements per readme.txt
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-17 18:22:28 America/Los_Angeles
+  uuid: b46fee49-3c41-4fde-9632-fe350a7826e6
+  year_released: 2000
+  tags:
+    - rugrats
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Rugrats In Paris.exe'
