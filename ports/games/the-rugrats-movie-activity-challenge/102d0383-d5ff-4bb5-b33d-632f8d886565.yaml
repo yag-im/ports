@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - RugratsActivityChallenge.iso
+    format: 1CD
+    url: https://archive.org/download/RugratsActivityChallenge/RugratsActivityChallenge.iso
+  igdb_slug: the-rugrats-movie-activity-challenge
+  lang: en
+  media_assets:
+  name: "The Rugrats Movie: Activity Challenge"
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: the-rugrats-movie-activity-challenge
+    mg_id: 36136
+    pcgw_id: The_Rugrats_Movie:_Activity_Challenge
+    qz_id:
+  reqs:
+    # high and true color suppoted as per readme.txt
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-17 18:41:40 America/Los_Angeles
+  uuid: 102d0383-d5ff-4bb5-b33d-632f8d886565
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\rrac.exe'
