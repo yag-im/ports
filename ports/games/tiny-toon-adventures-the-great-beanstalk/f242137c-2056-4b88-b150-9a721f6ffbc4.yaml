@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - BUSTER.CUE
+      - BUSTER.BIN
+    format: 1CD
+    url: https://archive.org/details/msdos_Tiny_Toon_Adventures_-_The_Great_Beanstalk_1996
+  igdb_slug: tiny-toon-adventures-the-great-beanstalk
+  lang: en
+  media_assets:
+  name: "Tiny Toon Adventures: The Great Beanstalk"
+  platform: win
+  publisher: Funsoft
+  refs:
+    ag_id:
+    lutris_id: tiny-toon-adventures-the-great-beanstalk
+    mg_id: 9091
+    pcgw_id: Tiny_Toon_Adventures:_Buster_and_the_Beanstalk
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  ts_added: 2026-02-19 15:40:43 America/Los_Angeles
+  uuid: f242137c-2056-4b88-b150-9a721f6ffbc4
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\dossetup\install.exe'
+          - gen_run_script:
+              path: '{APP_DRIVE}\BUSTER.BAT' # loads mouse driver; otherwise mouse is still
