@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Rugrats Mystery Adventures.iso
+    format: 1CD
+    url: https://archive.org/download/RugratsMysteryAdventures/Rugrats%20Mystery%20Adventures.iso
+  igdb_slug: the-rugrats-mystery-adventures
+  lang: en
+  media_assets:
+  name: The Rugrats Mystery Adventures
+  platform: win
+  publisher: Mattel Interactive
+  refs:
+    ag_id:
+    lutris_id: the-rugrats-mystery-adventures
+    mg_id: 36132
+    pcgw_id: Rugrats:_Mystery_Adventures
+    qz_id:
+  reqs:
+    # high and true color suppoted as per readme.txt
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-18 19:45:19 America/Los_Angeles
+  uuid: 9fa4b9b1-dc3d-4644-8ca5-7d4e20c888de
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRMyst.exe'
