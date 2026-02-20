@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-      - LOUIE.iso
+      - LOUIE.CUE
     format: 1CD
-    url: https://oldgamesdownload.com/fisher-price-read-play-louie-lumbfield-and-his-heroic-wet-dog/
+    url: https://archive.org/details/louielumpfieldandhisheroicwetdog
   igdb_slug: fisher-price-read-and-play-louie-lumbfield-and-his-heroic-wet-dog
   lang: en
   media_assets:
@@ -39,8 +39,8 @@ installer:
         flavor: WIN311
         tasks:
           - mount:
-              src: "{DEST_DIR}"
-              cd_images_as_letters: true
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
