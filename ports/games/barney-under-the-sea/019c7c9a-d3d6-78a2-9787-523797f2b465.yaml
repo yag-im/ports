@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - BarneyUnderTheSea.iso
+    format: 1CD
+    url: https://archive.org/download/BarneyUnderTheSea/BarneyUnderTheSea.iso
+  igdb_slug: barney-under-the-sea
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019c7c9a-d3d6-78a2-9787-523797f2b465
+    screenshots: []
+  name: Barney Under the Sea
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 70025
+    pcgw_id:
+    qz_id:
+  reqs:
+    # must as per readme.txt
+    color_bits: 8
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu # setup crashes in dosbox-x win9x
+    ver: latest
+  ts_added: 2026-02-20 11:50:47 America/Los_Angeles
+  uuid: 019c7c9a-d3d6-78a2-9787-523797f2b465
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SEA.EXE'
+              exit: false
+
+# TODO: on the first run, game launched the setup again, but then after rebot it runs fine

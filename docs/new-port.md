@@ -15,7 +15,7 @@ Run:
 
     scripts/setup.sh $IGDB_SLUG
 
-This step performs following actions:
+This script performs following actions:
 
 - generates a new release uuid;
 - creates empty dir for app source files:

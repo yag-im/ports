@@ -11,7 +11,7 @@ set -u
 
 APPS_SRC_ROOT_DIR=$DATA_DIR/apps_src
 
-export APP_RELEASE_UUID=`uuidgen`
+export APP_RELEASE_UUID=`uuidgen --time-v7`
 export TZ="America/Los_Angeles"
 export CURRENT_DATETIME="$(date +"%Y-%m-%d %H:%M:%S") America/Los_Angeles"
 export IGDB_SLUG=$1
