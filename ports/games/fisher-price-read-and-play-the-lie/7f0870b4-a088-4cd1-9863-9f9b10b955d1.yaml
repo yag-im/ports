@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Fisher-Price - Read & Play - The Lie (USA).cue
+    format: 1CD
+    url: https://archive.org/details/fisher-price-read-and-play-the-lie
+  igdb_slug: fisher-price-read-and-play-the-lie
+  lang: en
+  media_assets:
+    cover:
+      image_id: 7f0870b4-a088-4cd1-9863-9f9b10b955d1
+    screenshots: []
+  name: "Fisher-Price Read & Play: The Lie"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 93608
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-19 20:30:05 America/Los_Angeles
+  uuid: 7f0870b4-a088-4cd1-9863-9f9b10b955d1
+  year_released: 1995
+  tags:
+    - fisher-price-read-and-play
+    - puddle-books
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\FBI\THELIE\START.EXE'
