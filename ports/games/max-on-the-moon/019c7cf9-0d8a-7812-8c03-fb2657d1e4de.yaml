@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Max_Moon.iso
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/616fbdb8-f6eb-43e5-b77b-068fc6b3ec43/Max-on-the-Moon_Win_EN-FR-DE-ES_ISO-Version.zip
+    # https://archive.org/download/max-moon/Max_Moon.iso - all EXEcs are corrupted on this image
+  igdb_slug: max-on-the-moon
+  lang: multi
+  media_assets:
+  name: Max on the Moon
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id:
+    lutris_id: max-on-the-moon
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 256 colors is an exec requirement
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-20 13:33:42 America/Los_Angeles
+  uuid: 019c7cf9-0d8a-7812-8c03-fb2657d1e4de
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # setup is using DE lang, but in game 3 more languages are available
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MAX5\MAX32.EXE'
