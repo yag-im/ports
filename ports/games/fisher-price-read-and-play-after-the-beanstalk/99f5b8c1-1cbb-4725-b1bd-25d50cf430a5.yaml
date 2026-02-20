@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Fisher-Price - Read & Play - After the Beanstalk (USA).cue
+    format: 1CD
+    url: https://archive.org/download/fisher-price-read-play-after-the-beanstalk/Fisher-Price%20-%20Read%20%26%20Play%20-%20After%20the%20Beanstalk%20%28USA%29.7z
+  igdb_slug: fisher-price-read-and-play-after-the-beanstalk
+  lang: en
+  media_assets:
+    cover:
+      image_id: 99f5b8c1-1cbb-4725-b1bd-25d50cf430a5
+    screenshots: []
+  name: "Fisher Price Read & Play: After the Beanstalk"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 163493
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-19 16:06:47 America/Los_Angeles
+  uuid: 99f5b8c1-1cbb-4725-b1bd-25d50cf430a5
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\FBI\BEANS\START.EXE'
