@@ -30,6 +30,8 @@ descr:
   uuid: 99f5b8c1-1cbb-4725-b1bd-25d50cf430a5
   year_released: 1996
   tags:
+    - fisher-price-read-and-play
+    - puddle-books
 installer:
   tasks:
     - copy_src_cd_images:
