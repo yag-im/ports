@@ -22,7 +22,7 @@ This script performs following actions:
     $DATA_DIR/apps_src/$IGDB_SLUG/$APP_RELEASE_UUID;
 - creates an app installer template:
     $PORTS_ROOT_DIR/games/$IGDB_SLUG/$APP_RELEASE_UUID.yaml
-- updates vscode launch script (for local debugging):
+- updates vscode launch script (for local running/debugging):
     $PORTS_ROOT_DIR/.vscode/launch.json
 - generates requests.http (to simplify local publishing):
     $PORTS_ROOT_DIR/scripts/tmp/requests.http
@@ -52,7 +52,7 @@ Unpack all archived sources (iso, mdf etc) into the local app sources storage, e
 
 and remove original archives.
 
-**Step 2.2 (optional, when localized media assets are available)**
+**Step 2.2 (optional, when localized media assets are required and/or standard assets are unavailable on IGDB)**
 
 Download any available localized media assets (such as covers and screenshots) into the $DATA_DIR/media directory. The
 default assets should be accessible from IGDB, so start by checking the game's page to ensure it includes a cover and
@@ -100,7 +100,7 @@ or from IDE (recommended):
 
     Select "yag cli" in the launcher menu and hit "F5" (start debugging).
 
-$PORTS_ROOT_DIR/.vscode/launch.json will be updated for you by the setup.sh script on step 1.
+Note: $PORTS_ROOT_DIR/.vscode/launch.json will be updated for you by the setup.sh script ran on step 1.
 
 **Step 4.2**
 
