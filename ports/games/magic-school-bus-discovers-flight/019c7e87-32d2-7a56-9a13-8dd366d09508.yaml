@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - MSB_Flight.ISO
+    format: 1CD
+    url: https://archive.org/download/msb-flight/MSB_Flight.ISO
+  igdb_slug: magic-school-bus-discovers-flight
+  lang: en
+  media_assets:
+  name: "Scholastic's The Magic School Bus Discovers Flight: Activity Center"
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: magic-school-bus-discovers-flight
+    mg_id: 9870
+    pcgw_id: Magic_School_Bus_Discovers_Flight
+    qz_id:
+  reqs:
+    # per readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-20 20:48:35 America/Los_Angeles
+  uuid: 019c7e87-32d2-7a56-9a13-8dd366d09508
+  year_released: 2001
+  tags:
+    - magic-school-bus
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MSBFlght.exe'
