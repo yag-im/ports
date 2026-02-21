@@ -7,6 +7,9 @@ descr:
   igdb_slug: math-workshop-deluxe
   lang: en
   media_assets:
+    cover:
+      image_id: 019c7d68-d33b-70aa-92af-df81ba2d0029
+    screenshots: []
   name: Math Workshop Deluxe
   platform: win
   publisher: Brøderbund Software
