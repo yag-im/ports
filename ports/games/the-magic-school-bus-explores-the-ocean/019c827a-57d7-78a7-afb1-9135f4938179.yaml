@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Scholastic's The Magic School Bus Explores the Ocean (USA).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Scholastic%27s%20The%20Magic%20School%20Bus%20Explores%20the%20Ocean%20%28USA%29.zip
+  igdb_slug: the-magic-school-bus-explores-the-ocean
+  lang: en
+  media_assets:
+  name: Scholastic's The Magic School Bus Explores the Ocean
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-the-ocean
+    mg_id: 34861
+    pcgw_id: Scholastic%27s_The_Magic_School_Bus_Explores_the_Ocean
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-21 15:13:01 America/Los_Angeles
+  uuid: 019c827a-57d7-78a7-afb1-9135f4938179
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\mskids\MSBOcean\system\msbsea.exe'
