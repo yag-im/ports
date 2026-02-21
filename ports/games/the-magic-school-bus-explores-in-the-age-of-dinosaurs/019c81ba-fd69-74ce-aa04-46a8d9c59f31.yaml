@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Scholastic's The Magic School Bus Explores in the Age of Dinosaurs (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Scholastic%27s%20The%20Magic%20School%20Bus%20Explores%20in%20the%20Age%20of%20Dinosaurs%20%28USA%29.zip
+  igdb_slug: the-magic-school-bus-explores-in-the-age-of-dinosaurs
+  lang: en
+  media_assets:
+  name: Scholastic's The Magic School Bus Explores in the Age of Dinosaurs
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-in-the-age-of-dinosaurs
+    mg_id: 21424
+    pcgw_id: Scholastic%27s_The_Magic_School_Bus_Explores_in_the_Age_of_Dinosaurs
+    qz_id:
+  reqs:
+    # from help file
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-21 11:44:01 America/Los_Angeles
+  uuid: 019c81ba-fd69-74ce-aa04-46a8d9c59f31
+  year_released: 1996
+  tags:
+    - magic-school-bus
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\Program Files\Microsoft Kids\MSB Dino\MSBDinos.exe'
