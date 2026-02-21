@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - MSBANIML.iso
+    format: 1CD
+    url: https://archive.org/download/MSBANIML/MSBANIML.iso
+  igdb_slug: the-magic-school-bus-explores-the-world-of-animals
+  lang: en
+  media_assets:
+  name: Scholastic's The Magic School Bus Explores the World of Animals
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-the-world-of-animals
+    mg_id: 9865
+    pcgw_id: Magic_School_Bus_Explores_the_World_of_Animals
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-21 11:15:53 America/Los_Angeles
+  uuid: 019c81a1-3cf4-7375-bf52-295d3027e0ad
+  year_released: 1999
+  tags:
+    - magic-school-bus
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MSBAniml.exe'
