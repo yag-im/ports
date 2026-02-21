@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Scholastic's The Magic School Bus Explores Inside the Earth (USA).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Scholastic%27s%20The%20Magic%20School%20Bus%20Explores%20Inside%20the%20Earth%20%28USA%29.zip
+  igdb_slug: the-magic-school-bus-explores-inside-the-earth
+  lang: en
+  media_assets:
+  name: Scholastic's The Magic School Bus Explores Inside the Earth
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-inside-the-earth
+    mg_id: 24819
+    pcgw_id: Scholastic%27s_The_Magic_School_Bus_Explores_Inside_the_Earth
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-21 11:30:17 America/Los_Angeles
+  uuid: 019c81ae-692a-7b96-93d2-dc32674a8f95
+  year_released: 1996
+  tags:
+    - magic-school-bus
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\MSKids\MSBEARTH\MSBEARTH.EXE'
