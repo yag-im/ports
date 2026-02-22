@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Disney's Active Play - A Bug's Life (1998).iso
+    format: 1CD
+    url: https://archive.org/download/disneys-active-play-a-bugs-life-1998/Disney%27s%20Active%20Play%20-%20A%20Bug%27s%20Life%20%281998%29.iso
+  igdb_slug: disneys-a-bugs-life-active-play
+  lang: en
+  media_assets:
+  name: "Disney's A Bug's Life: Active Play"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-a-bugs-life-active-play
+    mg_id: 162074
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits:
+    screen_height:
+    screen_width:
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-22 15:15:01 America/Los_Angeles
+  uuid: 019c87a2-889e-72df-8594-02e3d92fe4b6
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\BugsLife.exe'

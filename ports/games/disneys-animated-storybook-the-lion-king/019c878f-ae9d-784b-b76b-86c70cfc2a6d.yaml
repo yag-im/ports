@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - THE_LION_KING.ISO
+    format: 1CD
+    url: https://archive.org/download/THELIONKING_ASB/THE_LION_KING.ISO
+  igdb_slug: disneys-animated-storybook-the-lion-king
+  lang: en
+  media_assets:
+  name: "Disney's Animated Storybook: The Lion King"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-animated-storybook-the-lion-king
+    mg_id: 121090
+    pcgw_id: Disney%27s_Animated_Storybook:_The_Lion_King
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-22 14:54:26 America/Los_Angeles
+  uuid: 019c878f-ae9d-784b-b76b-86c70cfc2a6d
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LIONKING.EXE'
