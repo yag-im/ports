@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Star Wars - Math - Jabba's Game Galaxy (USA).bin
+    format: 1CD
+    url: https://archive.org/details/starwarsmathjabbasgamegalaxyusa
+  igdb_slug: star-wars-math-jabbas-game-galaxy
+  lang: en
+  media_assets:
+  name: "Star Wars Math: Jabba's Game Galaxy"
+  platform: win
+  publisher: Lucas Learning
+  refs:
+    ag_id:
+    lutris_id: star-wars-math-jabbas-game-galaxy
+    mg_id: 4558
+    pcgw_id: Star_Wars_Math:_Jabba%27s_Game_Galaxy
+    qz_id:
+  reqs:
+    # readme.txt gives no recommendations
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-22 08:29:29 America/Los_Angeles
+  uuid: 019c862f-4098-7349-a6ab-4e46e17585dd
+  year_released: 2000
+  tags:
+    - star-wars
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\LAUNCH.EXE' # proceed with minimal install
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Star Wars Math.exe'
