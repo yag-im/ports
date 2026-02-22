@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Disney's Activity Center - Toy Story.iso
+    format: 1CD
+    url: https://archive.org/download/DisneysActivityCenterToyStory/Disney%27s%20Activity%20Center%20-%20Toy%20Story.iso
+  igdb_slug: toy-story-activity-center
+  lang: en
+  media_assets:
+  name: Toy Story Activity Center
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: toy-story-activity-center
+    mg_id: 119619
+    pcgw_id:
+    qz_id:
+  reqs:
+    # installer requirement
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-22 14:24:16 America/Los_Angeles
+  uuid: 019c8774-10a0-7b67-b91b-a7aedba8d5f5
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TSAC.EXE'
