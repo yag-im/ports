@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Tesoro.cue
+    format: 1CD
+    url: https://archive.org/details/tesoro_isla_alcachofa_pc_cd
+    # there was also a patched tesoro.exe, what for?
+  igdb_slug: el-tesoro-de-isla-alcachofa
+  lang: es
+  media_assets:
+  name: El Tesoro de Isla Alcachofa
+  platform: win
+  publisher: Erbe Software
+  refs:
+    ag_id:
+    lutris_id: el-tesoro-de-isla-alcachofa
+    mg_id: 20860
+    pcgw_id: El_Tesoro_de_Isla_Alcachofa
+    qz_id: 584
+  reqs:
+    # help recommends 32MB RAM, SVGA
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 17
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-22 08:48:07 America/Los_Angeles
+  uuid: 019c8640-4f98-7526-ac27-93b182fc80a3
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 300 # app requires 253MB of disk space
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # installs Intel Indeo and DX7.0
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TESORO.EXE'
+              args:
+                - "_$_$_"
+                - "D"
