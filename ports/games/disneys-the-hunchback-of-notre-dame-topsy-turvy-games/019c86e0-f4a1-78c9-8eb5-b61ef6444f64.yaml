@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - TOPSY_TURVY.ISO
+    format: 1CD
+    url: https://archive.org/download/topsyturvy/TOPSY_TURVY.ISO
+  igdb_slug: disneys-the-hunchback-of-notre-dame-topsy-turvy-games
+  lang: en
+  media_assets:
+  name: "Disney's The Hunchback of Notre Dame: Topsy Turvy Games"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-the-hunchback-of-notre-dame-topsy-turvy-games
+    mg_id: 16569
+    pcgw_id: The_Hunchback_of_Notre_Dame:_Topsy_Turvy_Games
+    qz_id:
+  reqs:
+    # installer recommends 800x600
+    color_bits: 8
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-22 11:43:35 America/Los_Angeles
+  uuid: 019c86e0-f4a1-78c9-8eb5-b61ef6444f64
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TOPSY.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\TOPSY\COPYRITE.BIN'
