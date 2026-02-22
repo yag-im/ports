@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - POCAHONTAS.ISO
+    format: 1CD
+    url: https://archive.org/download/POCAHONTAS_ASB/POCAHONTAS.ISO
+  igdb_slug: disneys-animated-storybook-pocahontas
+  lang: en
+  media_assets:
+  name: "Disney's Animated Storybook: Pocahontas"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-animated-storybook-pocahontas
+    mg_id: 125030
+    pcgw_id: Disney%27s_Animated_Storybook:_Pocahontas
+    qz_id:
+  reqs:
+    # from help
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-22 11:55:29 America/Los_Angeles
+  uuid: 019c86eb-d783-704a-be33-03a12c10d0f3
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\POCA_ASB.EXE'
