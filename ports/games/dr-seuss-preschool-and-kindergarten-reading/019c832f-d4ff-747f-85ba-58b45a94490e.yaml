@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Dr. Seuss Preschool and Kindergarten Reading (USA) (Disc 2) (Printable Workbook and Interactive Storybook).bin
+    format: 2CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/D/Dr.%20Seuss%20Preschool%20and%20Kindergarten%20Reading%20%28USA%29%20%28Disc%202%29%20%28Printable%20Workbook%20and%20Interactive%20Storybook%29.zip
+  igdb_slug: dr-seuss-preschool-and-kindergarten-reading
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019c82ce-dea6-7a91-9c50-5791f913e5dd
+    screenshots: []
+  name: Dr. Seuss Preschool and Kindergarten Reading (Disc 2)
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # supports high and true color as per readme.txt
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-21 18:31:15 America/Los_Angeles
+  uuid: 019c832f-d4ff-747f-85ba-58b45a94490e
+  year_released: 1999
+  tags:
+    - dr-seuss
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # setup also suggests to install Green Egg and Ham
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Seusspkr_wbk\PKRwbk32.exe' # when running from {APP_DIR}, can't find Workbook.dxr

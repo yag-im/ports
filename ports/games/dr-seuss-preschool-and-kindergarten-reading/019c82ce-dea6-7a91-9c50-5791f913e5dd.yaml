@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Dr. Seuss Preschool and Kindergarten Reading (USA) (Disc 1) (Reading).bin
+    format: 2CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/D/Dr.%20Seuss%20Preschool%20and%20Kindergarten%20Reading%20%28USA%29%20%28Disc%201%29%20%28Reading%29.zip
+  igdb_slug: dr-seuss-preschool-and-kindergarten-reading
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019c82ce-dea6-7a91-9c50-5791f913e5dd
+    screenshots: []
+  name: Dr. Seuss Preschool and Kindergarten Reading (Disc 1)
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-21 16:45:21 America/Los_Angeles
+  uuid: 019c82ce-dea6-7a91-9c50-5791f913e5dd
+  year_released: 1999
+  tags:
+    - dr-seuss
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # the only game which installs both QT2 and QT3 (!) + DX 6.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SeussPKR.EXE'
