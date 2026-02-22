@@ -1,42 +1,43 @@
 descr:
   distro:
     files:
-      - CGABC.iso
+      - CGRWS.iso
     format: 1CD
-    url: https://archive.org/download/cgabc1996/CGABC.iso
-  igdb_slug: curious-george-abc-adventure
+    url: https://archive.org/download/CGRWS/CGRWS.iso
+  igdb_slug: curious-george-reads-writes-and-spells-for-grades-1-and-2
   lang: en
   media_assets:
     cover:
-      image_id: 019c86b7-3871-7ca3-8828-6877125d92e9
+      image_id: 019c86c4-0f3a-7204-a2c0-70b345dcb7d6
     screenshots: []
-  name: Curious George ABC Adventure
+  name: Curious George Reads, Writes, & Spells for Grades 1 & 2
   platform: win
   publisher: Houghton Mifflin Interactive
   refs:
     ag_id:
     lutris_id:
-    mg_id: 75881
-    pcgw_id: Curious_George_ABC_Adventure
+    mg_id: 71310
+    pcgw_id: Curious_George_Reads,_Writes,_%26_Spells_for_Grades_1_%26_2
     qz_id:
   reqs:
+    # readme.txt
     color_bits: 8
     screen_height: 480
     screen_width: 640
-    loading_duration: 10
+    loading_duration: 7
   runner:
     name: dosbox-x
     ver: 2025.12.01
-  ts_added: 2026-02-22 10:58:00 America/Los_Angeles
-  uuid: 019c86b7-3871-7ca3-8828-6877125d92e9
-  year_released: 1996
+  ts_added: 2026-02-22 11:12:01 America/Los_Angeles
+  uuid: 019c86c4-0f3a-7204-a2c0-70b345dcb7d6
+  year_released: 1999
   tags:
     - curious-george
 installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN95OSR25 # installs but fails in WIN311
+        flavor: WIN95OSR25
         tasks:
           - mount:
               src: "{DEST_DIR}"
@@ -45,4 +46,4 @@ installer:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\cgabc.exe'
+              path: '{APP_DIR}\cgrws.exe'
