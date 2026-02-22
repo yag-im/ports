@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - SIMBAAP.iso
+    format: 1CD
+    url: https://archive.org/download/SIMBAAP/SIMBAAP.iso
+  igdb_slug: disneys-active-play-the-lion-king-ii-simbas-pride
+  lang: en
+  media_assets:
+  name: "Disney's Active Play: The Lion King II - Simba's Pride"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disneys-active-play-the-lion-king-ii-simbas-pride
+    mg_id: 67707
+    pcgw_id: The_Lion_King_II:_Simba%27s_Pride_-_Active_Play
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  ts_added: 2026-02-22 14:08:50 America/Los_Angeles
+  uuid: 019c8765-f027-7a4b-a3be-95523692e7c0
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\Program Files\Disney Interactive\Disneys Active Play Simbas Pride\simba.exe'
