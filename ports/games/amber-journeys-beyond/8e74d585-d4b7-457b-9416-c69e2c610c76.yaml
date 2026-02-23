@@ -37,6 +37,6 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
           - gen_run_script:
-              path: "{APP_DIR}/AMBER_JB.EXE"
+              path: '{APP_DIR}\AMBER_JB.EXE'

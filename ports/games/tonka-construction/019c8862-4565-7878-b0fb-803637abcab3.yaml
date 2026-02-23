@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - TONKA.ISO
+    format: 1CD
+    url: https://archive.org/download/tonka1996/TONKA.ISO
+  igdb_slug: tonka-construction
+  lang: en
+  media_assets:
+  name: Tonka Construction
+  platform: win
+  publisher: Playskool
+  refs:
+    ag_id:
+    lutris_id: tonka-construction
+    mg_id: 14902
+    pcgw_id: Tonka_Construction
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c8862-4565-7878-b0fb-803637abcab3
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DATA\TONKA.EXE'

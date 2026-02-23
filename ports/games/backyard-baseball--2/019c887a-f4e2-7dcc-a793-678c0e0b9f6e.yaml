@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - BASEBALL.ISO
+    format: 1CD
+    url: https://archive.org/download/HEbackyardbaseball1997/BASEBALL.ISO
+  igdb_slug: backyard-baseball--2
+  lang: en
+  media_assets:
+  name: Backyard Baseball
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: backyard-baseball--2
+    mg_id: 56578
+    pcgw_id: Backyard_Baseball
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c887a-f4e2-7dcc-a793-678c0e0b9f6e
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - copy:
+              # to prevent cdtest
+              src: "{PORT_FILES_DIR}/hegames.ini"
+              dest: '{SYSTEM_DRIVE}\WINDOWS'
+          # no installation required in win9x (as per readme.txt)
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BASEBALL.EXE'
