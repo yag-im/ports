@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Microsoft-MyPersonalTutor-AlphabetPlayhouse-Win95.iso
+    format: 1CD
+    url: https://archive.org/download/Microsoft_My_Personal_Tutor_Alphabet_Playhouse_Win95_1997_Eng/Microsoft-MyPersonalTutor-AlphabetPlayhouse-Win95.iso
+  igdb_slug: microsoft-my-personal-tutor-alphabet-playhouse
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019c87bd-3149-7ea1-91df-af682fe702e8
+    screenshots: []
+  name: "Microsoft: My Personal Tutor Alphabet Playhouse"
+  platform: win
+  publisher: Microsoft
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  ts_added: 2026-02-22 15:44:09 America/Los_Angeles
+  uuid: 019c87bd-3149-7ea1-91df-af682fe702e8
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\Program Files\Microsoft My Personal Tutor\Alphabet Playhouse\ABCHouse.exe'
