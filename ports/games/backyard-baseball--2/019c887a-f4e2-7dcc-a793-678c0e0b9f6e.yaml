@@ -43,3 +43,4 @@ installer:
           # no installation required in win9x (as per readme.txt)
           - gen_run_script:
               path: '{FIRST_CD_DRIVE}\BASEBALL.EXE'
+              exit: false
