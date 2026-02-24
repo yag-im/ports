@@ -1,16 +1,16 @@
 descr:
   distro:
     files:
-      - TS2MMRAL.ISO
+      - 102 Dalmatians CD Read-Along.ISO
     format: 1CD
-    url: https://archive.org/download/ts-2-mmral_202305/TS2MMRAL.ISO
-  igdb_slug: toy-story-2-read-along
+    url: https://archive.org/download/102-dalmatians-cd-read-along/102%20Dalmatians%20CD%20Read-Along.ISO
+  igdb_slug: 102-dalmatians-read-along
   lang: en
   media_assets:
     cover:
-      image_id: 0b2ed473-7be4-45cd-bc2f-a150cea41557
+      image_id: 019c8dc3-3c9b-7470-a445-6b88f657db53
     screenshots: []
-  name: Toy Story 2 Read-Along
+  name: 102 Dalmatians Read-Along
   platform: win
   publisher: Walt Disney Records
   refs:
@@ -20,16 +20,14 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
-    # 16 bit recommended in readme
     color_bits: 16
     screen_height: 480
     screen_width: 640
   runner:
     name: qemu
     ver: latest
-  ts_added: 2026-02-10 11:05:15 America/Los_Angeles
-  uuid: 0b2ed473-7be4-45cd-bc2f-a150cea41557
-  year_released: 1999
+  uuid: 019c8dc3-3c9b-7470-a445-6b88f657db53
+  year_released: 2000
   tags:
     - read-along
 installer:
