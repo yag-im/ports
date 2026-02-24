@@ -50,7 +50,7 @@ ARG PACKAGES_DIR=/tmp/packages
 ARG SRC_DIR=/tmp/src
 
 ARG NUM_BUILD_WORKERS=8
-ARG WINE_VER=10.0
+ARG WINE_VER=11.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
