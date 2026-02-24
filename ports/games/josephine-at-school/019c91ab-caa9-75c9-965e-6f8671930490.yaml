@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Josephine at School.iso
+    format: 1CD
+    url: https://www.macintoshrepository.org/4621-josephine-at-school
+    # requires unar to unpack sit file in linux
+  igdb_slug: josephine-at-school
+  lang: multi # only 4 scandinavian languages
+  media_assets:
+  name: Josephine at School
+  platform: win
+  publisher: Pinjata AS
+  refs:
+    ag_id:
+    lutris_id: josephine-at-school
+    mg_id: 191665
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c91ab-caa9-75c9-965e-6f8671930490
+  year_released: 1999
+  tags:
+    - josephine
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PLAY.EXE'
+              exit: false
