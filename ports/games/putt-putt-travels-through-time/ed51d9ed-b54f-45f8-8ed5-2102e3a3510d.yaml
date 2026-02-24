@@ -1,7 +1,7 @@
 descr:
   distro:
     files:
-    - changeme
+      - changeme
     format: changeme
     url: exoscummvm
   igdb_slug: putt-putt-travels-through-time
@@ -22,7 +22,7 @@ descr:
     screen_width: 640
   runner:
     name: scummvm
-    ver: 2.9.0
+    ver: 2.9.1
   ts_added: 2025-03-19 03:14:41.192213 America/Los_Angeles
   uuid: ed51d9ed-b54f-45f8-8ed5-2102e3a3510d
   year_released: 1997
