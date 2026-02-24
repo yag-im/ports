@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Disney's Cinderella's Dollhouse (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/D/Disney%27s%20Cinderella%27s%20Dollhouse%20%28USA%29.zip
+  igdb_slug: cinderellas-dollhouse
+  lang: en
+  media_assets:
+  name: Cinderella's Dollhouse
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: cinderellas-dollhouse
+    mg_id: 34052
+    pcgw_id: Cinderella%27s_Dollhouse
+    qz_id:
+  reqs:
+    # min requirements as per readme
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c8df3-6c1f-7fe7-b812-4de925114fee
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also install QT4 and DX8
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\DOLLHOUSE.EXE'

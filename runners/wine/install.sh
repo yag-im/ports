@@ -10,7 +10,7 @@ CUR_DIR=$(cd `dirname $0` && pwd)
 # USER is important when creating "Documents" etc folders inside the WINEPREFIX
 export USER=gamer
 export WINEARCH=win32
-export WINE_VER=10.0
+export WINE_VER=11.0
 export WINEPREFIX="$DATA_DIR/runners/bundles/wine/$WINE_VER/$WINEARCH"
 export WINEDLLOVERRIDES='mscoree=d,mshtml=d'
 
