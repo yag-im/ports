@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Bellinis SWE.iso
+    format: 1CD
+    url: https://archive.org/download/bellinis-bikini/Bellinis%20Bikini.7z/Bellinis%20SWE.iso
+  igdb_slug: bellinis-bikini
+  lang: sv
+  media_assets:
+  name: Bellinis Bikini
+  platform: win
+  publisher: Savannah Entertainment
+  refs:
+    ag_id:
+    lutris_id: bellinis-bikini
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 16 bit is minimum
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 19
+  runner:
+    name: dosbox-x # in qemu sound is choppy; in wine app crashes on startup
+    ver: 2025.12.01
+  uuid: 019c929e-7ed7-7909-b17d-1b72fc07eb3b
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 150 # app requires min 130
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\QuickTimeInstaller.exe' # requires manual installation BEFORE main installer
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Bellinis Bikini\Bellinis Bikini.exe'
