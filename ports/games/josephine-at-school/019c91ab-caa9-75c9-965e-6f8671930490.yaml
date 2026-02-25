@@ -6,7 +6,7 @@ descr:
     url: https://www.macintoshrepository.org/4621-josephine-at-school
     # requires unar to unpack sit file in linux
   igdb_slug: josephine-at-school
-  lang: multi # only 4 scandinavian languages
+  lang: sv
   media_assets:
   name: Josephine at School
   platform: win
@@ -21,6 +21,7 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 12
   runner:
     name: dosbox-x
     ver: 2025.12.01
@@ -38,5 +39,5 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\PLAY.EXE'
-              exit: false
+              path: '{FIRST_CD_DRIVE}\SJOS_W95.EXE'
+# TODO: there are 3 more languages available, but somehow PLAY.EXE (selector) is not able to start app when clicking on a flag (just a black screen)
