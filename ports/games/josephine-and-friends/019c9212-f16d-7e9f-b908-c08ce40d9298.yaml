@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Josefine og Gjengen.iso
+    format: 1CD
+    url: https://archive.org/details/josefine-og-gjengen_20200902
+  igdb_slug: josephine-and-friends
+  lang: sv
+  media_assets:
+  name: Josephine and Friends
+  platform: win
+  publisher: Pinjata AS
+  refs:
+    ag_id:
+    lutris_id: josephine-and-friends
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019c9212-f16d-7e9f-b908-c08ce40d9298
+  year_released: 1999
+  tags:
+    - josephine
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # installs/runs only in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Josefine.exe'
