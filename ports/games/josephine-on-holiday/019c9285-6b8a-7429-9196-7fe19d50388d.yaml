@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - JOSEFINE.ISO
+    format: 1CD
+    url: https://archive.org/download/josefine_on_holiday/JOSEFINE.ISO
+  igdb_slug: josephine-on-holiday
+  lang: multi
+  media_assets:
+  name: Josephine on Holiday
+  platform: win
+  publisher: Pinjata AS
+  refs:
+    ag_id:
+    lutris_id: josephine-on-holiday
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019c9285-6b8a-7429-9196-7fe19d50388d
+  year_released: 1997
+  tags:
+    - josephine
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\JOSEFINE.EXE'
