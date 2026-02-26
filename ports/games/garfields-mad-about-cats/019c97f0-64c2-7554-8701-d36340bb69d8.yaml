@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Garfield's Mad About Cats.iso
+    format: 1CD
+    url: https://archive.org/download/garfields-mad-about-cats/Garfield%27s%20Mad%20About%20Cats.iso
+  igdb_slug: garfields-mad-about-cats
+  lang: en
+  media_assets:
+  name: Garfield's Mad About Cats
+  platform: win
+  publisher: Brighter Minds Media, Inc.
+  refs:
+    ag_id:
+    lutris_id: garfields-mad-about-cats
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 16-bit mentioned on cover
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019c97f0-64c2-7554-8701-d36340bb69d8
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Garfield Setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Garfield Start.exe'
