@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - XTerrain.iso
+    format: 1CD
+    url: https://archive.org/download/XTerrain/XTerrain.iso
+    # ver: 1.0.1c
+  igdb_slug: math-blaster-cross-terrain-challenge
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019c97cf-f685-7807-8ddb-fd1ca7f2c47b
+    screenshots: []
+  name: "Math Blaster: Cross Terrain Challenge"
+  platform: win
+  publisher: Knowledge Adventure, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 210274
+    pcgw_id:
+    qz_id:
+  reqs:
+    # min settings, per readme.txt
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019c97cf-f685-7807-8ddb-fd1ca7f2c47b
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\XTerrain\XTerrain.exe'
