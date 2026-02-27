@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit 1 UK.iso
+    format: 1CD
+    url: https://archive.org/download/51-x-9270-gx-0-l.-ac-sx-466/Reader%20Rabbit%201%20UK.iso
+    # installing Reader Rabbit 1 v2.01
+  igdb_slug: reader-rabbits-get-ready-for-reading-ages-4-6
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019c9d20-7048-75a1-831a-df73ae278064
+    screenshots: []
+  name: Reader Rabbit's Get Ready for Reading Ages 4-6
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c9d20-7048-75a1-831a-df73ae278064
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RR1CD16.EXE'
