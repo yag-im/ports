@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - JSKG98.ISO
+    format: 1CD
+    url: https://archive.org/download/jumpstart-kindergarten-version-2.1-1997-variant/JSKG98.ISO
+  igdb_slug: jumpstart-kindergarten--1
+  lang: en
+  media_assets:
+  name: JumpStart Kindergarten
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-kindergarten--1
+    mg_id: 149958
+    pcgw_id: JumpStart_Kindergarten
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c9d36-c437-7966-9431-c2053befe355
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRM46_16.EXE'
