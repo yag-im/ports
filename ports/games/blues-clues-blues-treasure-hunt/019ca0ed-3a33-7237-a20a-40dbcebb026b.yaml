@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - BluesTHunt-disk1.iso
+      - BluesTHunt-disc2.iso
+    format: 2CD
+    url: https://archive.org/details/BluesTHunt
+  igdb_slug: blues-clues-blues-treasure-hunt
+  lang: en
+  media_assets:
+  name: Blue's Treasure Hunt
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-clues-blues-treasure-hunt
+    mg_id: 21110
+    pcgw_id: Blue%27s_Treasure_Hunt
+    qz_id:
+  reqs:
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  uuid: 019ca0ed-3a33-7237-a20a-40dbcebb026b
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - data
+          - Blue'sTreasureHunt.(b)
+          - Blue'sTreasureHunt-Disc1.(a)
+          - Blue'sTreasureHunt-Disc1.HE0
+          - Blue'sTreasureHunt-Disc1.he2
+          - Blue'sTreasureHunt-Disc1.he4
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - data
+          - Blue'sTreasureHunt.(b)
+          - Blue'sTreasureHunt-Disc2.(a)
+          - Blue'sTreasureHunt-Disc2.HE0
+          - Blue'sTreasureHunt-Disc2.he2
+          - Blue'sTreasureHunt-Disc2.he4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Blue%27s_Treasure_Hunt
+        tasks:
+          - gen_run_script:
+              game: scumm:BluesTreasureHunt
+              path: "{DEST_APP_DIR}"
+              lang: en
