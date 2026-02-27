@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - JSFG_READING.cue
+    format: 1CD
+    url: https://archive.org/details/jsfgreading
+    # v1.1
+  igdb_slug: jumpstart-1st-grade-reading
+  lang: en
+  media_assets:
+  name: JumpStart 1st Grade Reading
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-1st-grade-reading
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c9d01-0ce2-79f1-972b-37f2e37b5f5e
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\JSFR.EXE'
+              exit: false
