@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - RRMATH46.iso
+    format: 1CD
+    url: https://oldgamesdownload.com/reader-rabbit-math-adventures-ages-4-6/
+    # v3.0
+  igdb_slug: reader-rabbit-math-adventures-ages-4-6
+  lang: en
+  media_assets:
+  name: Reader Rabbit Math Adventures Ages 4-6
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-math-adventures-ages-4-6
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c9d2a-947a-7c6a-a37b-2d573bbc5728
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRM46_16.EXE'
