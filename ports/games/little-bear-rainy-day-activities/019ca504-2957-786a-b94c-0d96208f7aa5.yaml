@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - LilBear.iso
+    format: 1CD
+    url: https://archive.org/download/LilBear/LilBear.iso
+  igdb_slug: little-bear-rainy-day-activities
+  lang: en
+  media_assets:
+  name: "Maurice Sendak's Little Bear: Rainy Day Activities"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: little-bear-rainy-day-activities
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 3
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ca504-2957-786a-b94c-0d96208f7aa5
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs DX 8
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LittleBear.exe'
