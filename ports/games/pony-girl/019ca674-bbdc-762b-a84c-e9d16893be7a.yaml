@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - FullFartIStallet.bin
+    format: 1CD
+    url: https://archive.org/details/full-fart-i-stallet
+  igdb_slug: pony-girl
+  lang: multi
+  media_assets:
+    cover:
+      image_id: 019ca674-bbdc-762b-a84c-e9d16893be7a
+    screenshots: []
+  name: Pony Girl
+  platform: win
+  publisher: Stabenfeldt AB
+  refs:
+    ag_id:
+    lutris_id: pony-girl
+    mg_id: 187059
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ca674-bbdc-762b-a84c-e9d16893be7a
+  year_released: 2003
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # due to DX8.0 requirements which says it doesn't work on NT systems
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe' # proceed with Compact install; inc: QT5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PennyHorse.exe'
+              exit: false
