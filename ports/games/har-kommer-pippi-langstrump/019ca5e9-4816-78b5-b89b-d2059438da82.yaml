@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - PIPPICD.bin
+    format: 1CD
+    url: https://archive.org/details/har-kommer-pippi-langstrump_202412
+    # https://archive.org/details/har-kommer-pippi-langstrump-sweden - fails to start / corrupted
+  igdb_slug: har-kommer-pippi-langstrump
+  lang: sv
+  media_assets:
+  name: Här Kommer Pippi Långstrump
+  platform: win
+  publisher: Pan Interactive
+  refs:
+    ag_id:
+    lutris_id: har-kommer-pippi-langstrump
+    mg_id: 90972
+    pcgw_id: Här_kommer_Pippi_Långstrump
+    qz_id:
+  reqs:
+    # in 640x480 part of the screen is invisible
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: wine # in qemu sound is drizzling
+    ver: "10.0"
+  uuid: 019ca5e9-4816-78b5-b89b-d2059438da82
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: "Pippicd"
+          - run:
+              path: '{FIRST_CD_DRIVE}\PIPPI.EXE' # only installs QT4
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PIPPI.EXE'
