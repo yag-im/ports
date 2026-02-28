@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Maurice Sendak's Little Bear Toddler Discovery Adventures (Mattel)(2000).ISO
+    format: 1CD
+    url: https://archive.org/download/Maurice_Sendaks_Little_Bear_Toddler_Discovery_Adventures_Mattel_2000/Maurice%20Sendak%27s%20Little%20Bear%20Toddler%20Discovery%20Adventures%20%28Mattel%29%282000%29.ISO
+  igdb_slug: maurice-sendaks-little-bear-toddler-discovery-adventures
+  lang: en
+  media_assets:
+  name: "Maurice Sendak's Little Bear: Toddler Discovery Adventures"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: maurice-sendaks-little-bear-toddler-discovery-adventures
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ca4f8-3554-7cc4-b95d-8e122c7e5fe5
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # fails to start in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs DX 7
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LBT.EXE'
