@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Lbkindta.iso
+    format: 1CD
+    url: https://archive.org/download/Lbkindta/Lbkindta.iso
+  igdb_slug: maurice-sendaks-little-bear-kindergarten-thinking-adventures
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ca520-6dba-7f09-b2be-ea8f181b7855
+    screenshots: []
+  name: "Maurice Sendak's Little Bear: Kindergarten Thinking Adventures"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ca520-6dba-7f09-b2be-ea8f181b7855
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Disc1\LBSTART.EXE'
