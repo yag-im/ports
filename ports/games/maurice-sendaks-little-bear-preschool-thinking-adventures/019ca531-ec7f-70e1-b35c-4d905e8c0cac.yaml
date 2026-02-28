@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - LBPRETA.ISO
+    format: 1CD
+    url: https://archive.org/download/lbpreta2000/LBPRETA.ISO
+  igdb_slug: maurice-sendaks-little-bear-preschool-thinking-adventures
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ca531-ec7f-70e1-b35c-4d905e8c0cac
+    screenshots: []
+  name: "Maurice Sendak's Little Bear: Preschool Thinking Adventures"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ca531-ec7f-70e1-b35c-4d905e8c0cac
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Disc1\LBSTART.EXE'
