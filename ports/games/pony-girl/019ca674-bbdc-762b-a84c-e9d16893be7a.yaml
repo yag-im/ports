@@ -23,21 +23,26 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
+    loading_duration: 12
   runner:
-    name: qemu
-    ver: latest
+    name: wine # TODO: in qemu win98 app runs locally, but not in the cloud; in qemu winxp app crashes on start
+    # in wine app crashes when pressing Esc during intro videos :(
+    ver: "10.0"
   uuid: 019ca674-bbdc-762b-a84c-e9d16893be7a
   year_released: 2003
   tags:
 installer:
   tasks:
-    - copy_src_cd_images:
-    - qemu:
-        flavor: WIN98SE # due to DX8.0 requirements which says it doesn't work on NT systems
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
         tasks:
           - mount:
-              src: "{DEST_DIR}"
-              cd_images_as_letters: true
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - run:
               path: '{FIRST_CD_DRIVE}\Setup.exe' # proceed with Compact install; inc: QT5
               exit: false
