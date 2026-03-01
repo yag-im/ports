@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - NUMBERLAND.ISO
+    format: 1CD
+    url: https://archive.org/download/NUMBERLAND/NUMBERLAND.ISO
+  igdb_slug: stuart-little-his-adventures-in-numberland
+  lang: en
+  media_assets:
+  name: "Stuart Little: His Adventures in Numberland"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: stuart-little-his-adventures-in-numberland
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine
+    ver: "11.0"
+  uuid: 019ca75f-89f6-79f3-b3c5-efd0b11b9e70
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95 # otherwise DX of the required version can't be installed
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run: # TODO: install from setup.exe -> menu doesn't work, somehow explorer.exe is required?
+              path: "EXPLORER.EXE"
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\stuart_n.exe'
