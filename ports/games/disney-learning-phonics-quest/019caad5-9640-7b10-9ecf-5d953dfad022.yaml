@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Phonics.iso
+    format: 1CD
+    url: https://archive.org/download/phonicsquestdisney/Phonics.iso
+  igdb_slug: disney-learning-phonics-quest
+  lang: en
+  media_assets:
+  name: "Disney Learning: Phonics Quest"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: disney-learning-phonics-quest
+    mg_id: 121210
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019caad5-9640-7b10-9ecf-5d953dfad022
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Phonics.exe'
