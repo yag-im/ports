@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Blue's Art Time.iso
+    format: 1CD
+    url: https://archive.org/download/BluesArtTime2000/Blue%27s%20Art%20Time.iso
+  igdb_slug: blues-art-time-activities
+  lang: en
+  media_assets:
+  name: Blue's Art Time Activities
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-art-time-activities
+    mg_id: 30820
+    pcgw_id: Blue%27s_Art_Time_Activities
+    qz_id:
+  reqs:
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  uuid: 019ca73f-8a40-7a99-a4af-545ca2274df9
+  year_released: 2000
+  tags:
+    - blue
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Game/Data
+          - Game/ArtTime.(a)
+          - Game/ArtTime.(b)
+          - Game/ArtTime.HE0
+          - Game/ArtTime.HE2
+          - Game/ARTTIME.HE4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Blue%27s_Art_Time_Activities
+        tasks:
+          - gen_run_script:
+              game: scumm:arttime
+              path: "{DEST_APP_DIR}"
+              lang: en
