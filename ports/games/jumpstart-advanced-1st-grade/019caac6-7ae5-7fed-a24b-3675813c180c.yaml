@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Jumpstart Advanced 1st Grade.iso
+    format: 1CD
+    url: https://archive.org/download/img-2399/Jumpstart%20Advanced%201st%20Grade.iso
+  igdb_slug: jumpstart-advanced-1st-grade
+  lang: en
+  media_assets:
+  name: JumpStart Advanced 1st Grade
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-advanced-1st-grade
+    mg_id: 120094
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019caac6-7ae5-7fed-a24b-3675813c180c
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # also adds QT 5.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JS Advanced 1st Grade\JSA1G.exe'
