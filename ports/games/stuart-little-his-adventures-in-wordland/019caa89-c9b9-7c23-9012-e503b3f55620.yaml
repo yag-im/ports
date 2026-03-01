@@ -1,18 +1,22 @@
 descr:
   distro:
     files:
-      - NUMBERLAND.ISO
+      - WORDLAND.ISO
     format: 1CD
-    url: https://archive.org/download/NUMBERLAND/NUMBERLAND.ISO
-  igdb_slug: stuart-little-his-adventures-in-numberland
+    # TODO: possible needs merging with stuart-little-his-adventures-in-numberland (2CD release?)
+    url: https://archive.org/download/WORDLAND/WORDLAND.ISO
+  igdb_slug: stuart-little-his-adventures-in-wordland
   lang: en
   media_assets:
-  name: "Stuart Little: His Adventures in Numberland"
+    cover:
+      image_id: 019caa89-c9b9-7c23-9012-e503b3f55620
+    screenshots: []
+  name: "Stuart Little: His Adventures in Wordland"
   platform: win
   publisher: The Learning Company
   refs:
     ag_id:
-    lutris_id: stuart-little-his-adventures-in-numberland
+    lutris_id:
     mg_id:
     pcgw_id:
     qz_id:
@@ -23,7 +27,7 @@ descr:
   runner:
     name: wine
     ver: "11.0"
-  uuid: 019ca75f-89f6-79f3-b3c5-efd0b11b9e70
+  uuid: 019caa89-c9b9-7c23-9012-e503b3f55620
   year_released: 2002
   tags:
 installer:
@@ -42,4 +46,4 @@ installer:
               path: "EXPLORER.EXE" # also installs DX
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\stuart_n.exe'
+              path: '{APP_DIR}\stuadv2.exe'
