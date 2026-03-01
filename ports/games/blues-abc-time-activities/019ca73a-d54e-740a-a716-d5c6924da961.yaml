@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - ABC Time.iso
+    format: 1CD
+    url: https://archive.org/download/ABCTime/ABC%20Time.iso
+  igdb_slug: blues-abc-time-activities
+  lang: en
+  media_assets:
+  name: Blue's ABC Time Activities
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-abc-time-activities
+    mg_id: 1226
+    pcgw_id: Blue%27s_ABC_Time_Activities
+    qz_id:
+  reqs:
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  uuid: 019ca73a-d54e-740a-a716-d5c6924da961
+  year_released: 1999
+  tags:
+    - blue
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Data
+          - BluesABCTime.he0
+          - BluesABCTime.(a)
+          - BluesABCTime.(b)
+          - BluesABCTime.he2
+          - BluesABCTime.he4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Blue%27s_123_Time_Activities
+        tasks:
+          - gen_run_script:
+              game: scumm:BluesABCtime
+              path: "{DEST_APP_DIR}"
+              lang: en
