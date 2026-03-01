@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - AfterSchool.iso
+    format: 1CD
+    url: https://archive.org/download/after-school/AfterSchool.iso
+  igdb_slug: franklin-the-turtle-after-school
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cab6f-5778-7de1-898d-e0a5bd02ce38
+    screenshots: []
+  name: "Franklin the Turtle: After School"
+  platform: win
+  publisher: Mindscape
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 48175
+    pcgw_id: Franklin_the_Turtle:_After_School
+    qz_id:
+  reqs:
+    # image is centered and visible only in 800x600 mode
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cab6f-5778-7de1-898d-e0a5bd02ce38
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\QuickTime\QuickTimeFullInstaller.exe'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Windows\Franklin After School.exe'
