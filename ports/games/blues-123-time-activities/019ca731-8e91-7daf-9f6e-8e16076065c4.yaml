@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Blue's 123 Time.iso
+    format: 1CD
+    url: https://archive.org/download/Blues123Time/Blue%27s%20123%20Time.iso
+  igdb_slug: blues-123-time-activities
+  lang: en
+  media_assets:
+  name: Blue's 123 Time Activities
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-123-time-activities
+    mg_id: 5135
+    pcgw_id: Blue%27s_123_Time_Activities
+    qz_id:
+  reqs:
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  uuid: 019ca731-8e91-7daf-9f6e-8e16076065c4
+  year_released: 1999
+  tags:
+    - blue
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - DATA
+          - Blues123time.(a)
+          - Blues123time.(b)
+          - Blues123time.HE0
+          - Blues123time.he2
+          - Blues123time.he4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Blue%27s_123_Time_Activities
+        tasks:
+          - gen_run_script:
+              game: scumm:Blues123time
+              path: "{DEST_APP_DIR}"
+              lang: en

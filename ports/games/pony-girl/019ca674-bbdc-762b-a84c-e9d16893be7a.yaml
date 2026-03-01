@@ -23,7 +23,6 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
-    loading_duration: 12
   runner:
     name: wine # TODO: in qemu win98 app runs locally, but not in the cloud; in qemu winxp app crashes on start
     # in wine app crashes when pressing Esc during intro videos :(
