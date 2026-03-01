@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Reading Blaser Ages 6-7 Planet of the Lost Things.iso
+    format: 1CD
+    url: https://archive.org/download/reading-blaser-ages-6-7-planet-of-the-lost-things/Reading%20Blaser%20Ages%206-7%20Planet%20of%20the%20Lost%20Things.iso
+    # v1.2.1c
+  igdb_slug: reading-blaster-mission-2-planet-of-the-lost-things
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cab47-4369-73ea-a43d-a2beb6e000f2
+    screenshots: []
+  name: "Reading Blaster Mission 2: Planet Of The Lost Things"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: reading-blaster-mission-2-planet-of-the-lost-things
+    mg_id: 96366
+    pcgw_id: Reading_Blaster_Mission_2:_Planet_of_the_Lost_Things
+    qz_id:
+  reqs:
+    color_bits: 16 # per readme
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cab47-4369-73ea-a43d-a2beb6e000f2
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Reading Blaster 6-7\rb6-7.exe'
