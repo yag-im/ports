@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Blue's Reading T.iso
+    format: 1CD
+    url: https://archive.org/download/BluesReadingTime/Blue%27s%20Reading%20T.iso
+  igdb_slug: blues-reading-time-activities
+  lang: en
+  media_assets:
+  name: Blue's Reading Time Activities
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-reading-time-activities
+    mg_id: 21111
+    pcgw_id: Blue%27s_Reading_Time_Activities
+    qz_id:
+  reqs:
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  uuid: 019ca744-bee9-7f37-9400-99dad24a7453
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Game/Data
+          - Game/Blue's Reading Time.(a)
+          - Game/Blue's Reading Time.(b)
+          - Game/Blue's Reading Time.HE0
+          - Game/Blue's Reading Time.he2
+          - Game/Blue's Reading Time.he4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Blue%27s_Reading_Time_Activities
+        tasks:
+          - gen_run_script:
+              game: scumm:readtime
+              path: "{DEST_APP_DIR}"
+              lang: en
