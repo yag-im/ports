@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - MM3_SF.img
+    format: 1CD
+    url: https://oldgamesdownload.com/skipper-skeeto-the-revenge-of-mr-shade/
+  igdb_slug: skipper-and-skeeto-the-revenge-of-mr-shade
+  lang: fi
+  media_assets:
+    cover:
+      image_id: 019cb1da-4234-7481-9e41-d7dbfd3e7ba3
+    screenshots: []
+  name: "Skipper & Skeeto: The Revenge of Mr. Shade" # "Manu ja Matti: Herra Varjon Kosto"
+  platform: win
+  publisher: Ivanoff Interactive
+  refs:
+    ag_id:
+    lutris_id: skipper-and-skeeto-the-revenge-of-mr-shade
+    mg_id:
+    pcgw_id: Skipper_%26_Skeeto:_The_Revenge_of_Mr._Shade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cb1da-4234-7481-9e41-d7dbfd3e7ba3
+  year_released: 1998
+  tags:
+    - skipper-and-skeeto
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs DX 6
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\mm3.exe'
+# BSODs in dosbox-x win95osr25 on app start
