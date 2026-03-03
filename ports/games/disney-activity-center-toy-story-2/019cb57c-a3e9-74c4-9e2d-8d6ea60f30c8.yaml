@@ -21,8 +21,9 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
+    loading_duration: 10
   runner:
-    name: dosbox-x
+    name: dosbox-x # mouse cursor is too fast in qemu (both xp and 9x)
     ver: 2025.12.01
   uuid: 019cb57c-a3e9-74c4-9e2d-8d6ea60f30c8
   year_released: 2000

@@ -26,6 +26,8 @@ descr:
   ts_added: 2025-10-04 12:57:23 America/Los_Angeles
   uuid: 786e65b0-0541-4cc7-998a-33d2956b046a
   year_released: 1998
+  tags:
+    - pettson-and-findus
 installer:
   tasks:
     - copy_src_cd_images:
