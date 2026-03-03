@@ -25,7 +25,7 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
-    loading_duration: 14
+    loading_duration: 19
   runner:
     name: dosbox-x
     ver: 2025.12.01

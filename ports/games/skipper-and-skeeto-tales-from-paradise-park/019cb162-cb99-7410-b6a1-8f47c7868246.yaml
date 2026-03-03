@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Topi y Teo en el Parque Paraiso.iso
+    format: 1CD
+    url: https://oldgamesdownload.com/skipper-skeeto-tales-from-paradise-park/
+  igdb_slug: skipper-and-skeeto-tales-from-paradise-park
+  lang: es # installer is in en
+  media_assets:
+  name: "Skipper & Skeeto: Tales from Paradise Park"
+  platform: win
+  publisher: GSP
+  refs:
+    ag_id:
+    lutris_id: skipper-and-skeeto-tales-from-paradise-park
+    mg_id: 91730
+    pcgw_id: Skipper_%26_Skeeto:_Tales_from_Paradise_Park
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cb162-cb99-7410-b6a1-8f47c7868246
+  year_released: 1995
+  tags:
+    - skipper-and-skeeto
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\START16.EXE'
