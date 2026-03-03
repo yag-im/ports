@@ -1,13 +1,17 @@
 descr:
   distro:
     files:
-      - Bellinis SWE.iso
+      - BBELLIN.iso
     format: 1CD
-    url: https://archive.org/download/bellinis-bikini/Bellinis%20Bikini.7z/Bellinis%20SWE.iso
+    url: https://download.macintoshgarden.org/games/BBELLIN.toast
+    # renamed toast to iso
   igdb_slug: bellinis-bikini
-  lang: sv
+  lang: fi
   media_assets:
-  name: Bellinis Bikini
+    cover:
+      image_id: 019caf3a-a760-7af5-8070-2c68077ab679
+    screenshots: []
+  name: "Bellinin Bikinit"
   platform: win
   publisher: Savannah Entertainment
   refs:
@@ -21,11 +25,11 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
-    loading_duration: 19
+    loading_duration: 14
   runner:
-    name: dosbox-x # in qemu sound is choppy; in wine app crashes at startup
+    name: dosbox-x
     ver: 2025.12.01
-  uuid: 019c929e-7ed7-7909-b17d-1b72fc07eb3b
+  uuid: 019caf3a-a760-7af5-8070-2c68077ab679
   year_released: 1999
   tags:
     - bellini
@@ -42,6 +46,6 @@ installer:
           - run:
               path: '{FIRST_CD_DRIVE}\QuickTimeInstaller.exe' # requires manual installation of QT4 BEFORE main installer
           - run:
-              path: '{FIRST_CD_DRIVE}\Install.exe'
+              path: '{FIRST_CD_DRIVE}\Bellinin setup.exe'
           - gen_run_script:
-              path: '{APP_DIR}\Bellinis Bikini\Bellinis Bikini.exe'
+              path: '{APP_DIR}\Bellinin bikinit\Bellinin bikinit.exe'
