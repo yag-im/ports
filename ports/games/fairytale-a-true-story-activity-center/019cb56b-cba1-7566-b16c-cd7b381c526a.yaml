@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - FAIRYTALE.iso
+    format: 1CD
+    url: https://archive.org/download/fairytale1997/FAIRYTALE.iso
+  igdb_slug: fairytale-a-true-story-activity-center
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cb56b-cba1-7566-b16c-cd7b381c526a
+    screenshots: []
+  name: "FairyTale: A True Story - Activity Center"
+  platform: win
+  publisher: Knowledge Adventure, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 76790
+    pcgw_id: FairyTale:_A_True_Story_-_Activity_Center
+    qz_id:
+  reqs:
+    # from readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cb56b-cba1-7566-b16c-cd7b381c526a
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs QT 2.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\FAIRIES.EXE'
