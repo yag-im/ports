@@ -23,9 +23,10 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 15
   runner:
-    name: qemu
-    ver: latest
+    name: dosbox-x
+    ver: 2025.12.01
   uuid: 019cb1da-4234-7481-9e41-d7dbfd3e7ba3
   year_released: 1998
   tags:
@@ -33,15 +34,16 @@ descr:
 installer:
   tasks:
     - copy_src_cd_images:
-    - qemu:
-        flavor: WINXPSP3
+    - dosbox:
+        flavor: WIN95OSR25
         tasks:
           - mount:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs DX 6
-              exit: false
           - gen_run_script:
               path: '{APP_DIR}\mm3.exe'
-# BSODs in dosbox-x win95osr25 on app start
+# in dosbox-x win95osr25 on the very first app run it BSODS; copy from clones
+# qemu, winxp - mouse problems (mouse is too fast)
+# in any other runners/oses app fails to start
