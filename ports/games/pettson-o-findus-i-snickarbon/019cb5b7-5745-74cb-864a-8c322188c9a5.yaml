@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - PETTSON.iso
+    format: 1CD
+    url: https://archive.org/download/pettson-findus-i-snickarbon/PETTSON.iso
+  igdb_slug: pettson-o-findus-i-snickarbon
+  lang: sv
+  media_assets:
+  name: Pettson o Findus i Snickarbon
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: pettson-o-findus-i-snickarbon
+    mg_id: 91517
+    pcgw_id: Pettson_o_Findus_i_snickarbon
+    qz_id: 410
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cb5b7-5745-74cb-864a-8c322188c9a5
+  year_released: 1996
+  tags:
+    - pettson-and-findus
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\PETTSON.EXE'
