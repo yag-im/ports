@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - M422FS.img
+    format: 1CD
+    url: https://oldgamesdownload.com/skipper-skeeto-the-shadow-of-mr-shade/
+  igdb_slug: skipper-and-skeeto-the-shadow-of-mr-shade
+  lang: fi
+  media_assets:
+    cover:
+      image_id: 019cb549-caf0-744b-8a66-598cf34f30b1
+    screenshots: []
+  name: "Skipper & Skeeto: The Shadow of Mr. Shade" # Manu ja Matti: Herra Varjon Salaisuus
+  platform: win
+  publisher: Ivanoff Interactive
+  refs:
+    ag_id:
+    lutris_id: skipper-and-skeeto-the-shadow-of-mr-shade
+    mg_id:
+    pcgw_id: Skipper_%26_Skeeto:_The_Shadow_of_Mr._Shade
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cb549-caf0-744b-8a66-598cf34f30b1
+  year_released: 1999
+  tags:
+    - skipper-and-skeeto
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MM4.EXE'
