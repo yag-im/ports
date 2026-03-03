@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Pettson3 (Windows).iso
+    format: 1CD
+    url: https://archive.org/download/pettson-findus-mucklornas-varld_202403/Pettson3%20%28Windows%29.iso
+    # this iso contains a "Crack" folder, so it's non-official?
+  igdb_slug: pettson-o-findus-och-mucklornas-varld
+  lang: sv
+  media_assets:
+  name: Pettson o Findus och Mucklornas Värld
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: pettson-o-findus-och-mucklornas-varld
+    mg_id: 15837
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cb5a5-2e9e-7c24-a937-1f4fdd16d0ae
+  year_released: 2002
+  tags:
+    - pettson-and-findus
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Pettson3.exe'
+              exit: false
+          - copy:
+              src: '{FIRST_CD_DRIVE}\Crack\Pettson3.exe' # nocd fix
+              dest: "{APP_DIR}"
+          - gen_run_script:
+              path: '{APP_DIR}\Pettson3.exe'
