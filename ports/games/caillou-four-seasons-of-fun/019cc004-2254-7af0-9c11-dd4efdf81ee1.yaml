@@ -1,19 +1,22 @@
 descr:
   distro:
     files:
-      - Caillou's Magic.iso
+      - Seasons of Fun.iso
     format: 1CD
-    url: https://archive.org/download/caillousmagic/Caillou%27s%20Magic.iso
-  igdb_slug: caillou-magic-playhouse
+    url: https://archive.org/download/seasonsoffun2002/Seasons%20of%20Fun.iso
+  igdb_slug: caillou-four-seasons-of-fun
   lang: en
   media_assets:
-  name: "Caillou: Magic Playhouse"
+    cover:
+      image_id: 019cc004-2254-7af0-9c11-dd4efdf81ee1
+    screenshots: []
+  name: "Caillou: Four Seasons of Fun"
   platform: win
   publisher: Riverdeep Interactive Learning
   refs:
     ag_id:
-    lutris_id: caillou-magic-playhouse
-    mg_id: 28679
+    lutris_id: caillou-four-seasons-of-fun
+    mg_id: 27966
     pcgw_id:
     qz_id:
   reqs:
@@ -23,8 +26,8 @@ descr:
   runner:
     name: qemu
     ver: latest
-  uuid: 019cbce0-8f44-7cc0-afd4-878edb49d8b2
-  year_released: 2001
+  uuid: 019cc004-2254-7af0-9c11-dd4efdf81ee1
+  year_released: 2002
   tags:
 installer:
   tasks:
@@ -36,7 +39,7 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs QT 5
+              path: '{FIRST_CD_DRIVE}\INSTALL\SETUP32.EXE' # also installs QT 6
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\Start.exe'
+              path: '{APP_DIR}\Caillou(R) Four Seasons of Fun\Caillou 4.exe'
