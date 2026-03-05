@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Rolie Olie.iso
+    format: 1CD
+    url: https://archive.org/download/rolieolie/Rolie%20Olie.iso
+  igdb_slug: rolie-polie-olie-the-search-for-spot
+  lang: en
+  media_assets:
+  name: "Rolie Polie Olie: The Search for Spot"
+  platform: win
+  publisher: Disney Interactive
+  refs:
+    ag_id:
+    lutris_id: rolie-polie-olie-the-search-for-spot
+    mg_id:
+    pcgw_id: Rolie_Polie_Olie:_The_Search_for_Spot
+    qz_id:
+  reqs:
+    # readme.txt: 16-bit is required
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 15
+  runner:
+    name: qemu # TODO: no cd found error in wine, even when label is set to ROLIE_OLIE
+    ver: latest
+  uuid: 019cbbf7-eefa-7f59-8673-5f7b8eb8776e
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # not loading in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE' # installs QT 5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Rolie1.exe'
