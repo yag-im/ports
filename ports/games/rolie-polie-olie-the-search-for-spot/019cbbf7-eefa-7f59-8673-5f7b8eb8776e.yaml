@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-      - Rolie Olie.iso
+      - Rolie Olie.mdf
     format: 1CD
-    url: https://archive.org/download/rolieolie/Rolie%20Olie.iso
+    url: https://oldgamesdownload.com/playhouse-disney-rolie-polie-olie/
   igdb_slug: rolie-polie-olie-the-search-for-spot
   lang: en
   media_assets:
@@ -21,7 +21,6 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
-    loading_duration: 15
   runner:
     name: qemu # TODO: no cd found error in wine, even when label is set to ROLIE_OLIE
     ver: latest
@@ -32,7 +31,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WIN98SE # not loading in XP
+        flavor: WINXPSP3
         tasks:
           - mount:
               src: "{DEST_DIR}"
