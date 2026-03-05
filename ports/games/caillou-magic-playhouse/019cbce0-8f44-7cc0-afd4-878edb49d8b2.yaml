@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Caillou's Magic.iso
+    format: 1CD
+    url: https://archive.org/download/caillousmagic/Caillou%27s%20Magic.iso
+  igdb_slug: caillou-magic-playhouse
+  lang: en
+  media_assets:
+  name: "Caillou: Magic Playhouse"
+  platform: win
+  publisher: Riverdeep Interactive Learning
+  refs:
+    ag_id:
+    lutris_id: caillou-magic-playhouse
+    mg_id: 28679
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cbce0-8f44-7cc0-afd4-878edb49d8b2
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # also installs QT 5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Start.exe'
