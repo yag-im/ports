@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - MULLEFLYG.iso
+    format: 1CD
+    url: https://archive.org/download/mulle-meck-flygplan/MULLEFLYG.iso
+    # unofficial iso (with patch)
+  igdb_slug: bygg-flygplan-med-mulle-meck
+  lang: sv
+  media_assets:
+  name: Bygg Flygplan med Mulle Meck
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: bygg-flygplan-med-mulle-meck
+    mg_id: 60968
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cc051-78e2-77f2-9853-18b3a8dc6009
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # select full install (because of a patch); DX 7.0a
+              exit: false
+          - copy:
+              src: '{FIRST_CD_DRIVE}\Crack\*' # actually we don't need large data *.up files
+              dest: "{APP_DIR}"
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\Start_Mulle.exe'
+              exit: false # because after intro it executes MulleMeck.exe
+# qemu: mouse jupming issues
+# dosbox: too slow
+# wine: can't run MulleMeck.exe
