@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - My Teacher is an Alien (1997)(Byron Preiss Multimedia).iso
+    format: 1CD
+    url: https://archive.org/download/my-teacher-is-an-alien-cdrom/My%20Teacher%20is%20an%20Alien%20%281997%29%28Byron%20Preiss%20Multimedia%29.iso
+  igdb_slug: my-teacher-is-an-alien
+  lang: en
+  media_assets:
+  name: My Teacher is an Alien
+  platform: win
+  publisher: Simon and Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: my-teacher-is-an-alien
+    mg_id: 157029
+    pcgw_id: Bruce_Coville%27s_My_Teacher_is_an_Alien
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc4d5-554c-7c3e-a83d-93a504c4ac2e
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Teacher.exe'
