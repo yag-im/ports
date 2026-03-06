@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Star Wars - Yoda's Challenge (USA).bin
+    format: 1CD
+    url: https://archive.org/details/20230618_20230618_0815
+  igdb_slug: star-wars-yodas-challenge-activity-center
+  lang: en
+  media_assets:
+  name: "Star Wars: Yoda's Challenge Activity Center"
+  platform: win
+  publisher: Lucas Learning
+  refs:
+    ag_id:
+    lutris_id: star-wars-yodas-challenge-activity-center
+    mg_id: 4559
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 0197f934-68f8-7195-acff-abfd7a11aa82
+  year_released: 1999
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              # proceed with a minimal install, skip directx install in wine
+              path: '{FIRST_CD_DRIVE}\Launch.exe' # hangs at the end in qemu:xp but it's fine
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Yoda''s Challenge.exe'
+
+# TODO: there is a "haisenbug" observed in this game in wine: it complains on DirectX version mismatch when running on a faster CPU.
+# Temp workaround: add `export WINEDEBUG=+warn,+loaddll`` into the run.sh to slow down the wine.
