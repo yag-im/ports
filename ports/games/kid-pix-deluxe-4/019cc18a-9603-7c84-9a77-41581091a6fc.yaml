@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Kid Pix Deluxe 4 (The Learning Company) (2004).iso
+    format: 1CD
+    url: https://archive.org/download/KidPixDeluxe4TheLearningCompany2004/Kid%20Pix%20Deluxe%204%20%28The%20Learning%20Company%29%20%282004%29.iso
+  igdb_slug: kid-pix-deluxe-4
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cc18a-9603-7c84-9a77-41581091a6fc
+    screenshots: []
+  name: Kid Pix Deluxe 4
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 71435
+    pcgw_id:
+    qz_id:
+  reqs:
+    # in 640x480 installer window is not fully visible
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cc18a-9603-7c84-9a77-41581091a6fc
+  year_released: 2004
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 6
+          - gen_run_script:
+              path: '{APP_DIR}\KP.exe'

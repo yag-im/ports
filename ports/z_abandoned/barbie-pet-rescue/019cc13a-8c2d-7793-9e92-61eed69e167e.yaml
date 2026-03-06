@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Barbie - Pet Rescue (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/B/Barbie%20-%20Pet%20Rescue%20%28USA%29.zip
+  igdb_slug: barbie-pet-rescue
+  lang: en
+  media_assets:
+  name: Barbie Pet Rescue
+  platform: win
+  publisher: Mattel Interactive
+  refs:
+    ag_id:
+    lutris_id: barbie-pet-rescue
+    mg_id: 5184
+    pcgw_id: Barbie_Pet_Rescue
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cc13a-8c2d-7793-9e92-61eed69e167e
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 7.0
+          - gen_run_script:
+              path: '{APP_DIR}\PR.exe'
+
+# qemu: winxp - crashes after intro
+# qemu: win98se - severe sound hickups
+# wine: crashes after user clicks on the laptop and signs in
+# dosbox-x: win95/98 - hangs before intro video
