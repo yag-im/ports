@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - MULLEHUS.iso
+    format: 1CD
+    url: https://archive.org/download/mulle-meck-hus/MULLEHUS.iso
+  igdb_slug: bygg-hus-med-mulle-meck
+  lang: sv
+  media_assets:
+  name: "Bygg Hus med Mulle Meck"
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: bygg-hus-med-mulle-meck
+    mg_id: 52441
+    pcgw_id: Bygg_Hus_med_Mulle_Meck
+    qz_id:
+  reqs:
+    # 800x600: min installer requirement
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cc113-febc-7434-8445-ea5286927429
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - run:
+              path: '{FIRST_CD_DRIVE}\QuickTime\QuickTimeInstaller.exe' # somehow it's not part of setup.exe
+          - gen_run_script:
+              path: '{APP_DIR}\MulleHus.exe'
