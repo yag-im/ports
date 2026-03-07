@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Häxerier och Trollkonster.iso
+    format: 1CD
+    url: https://archive.org/download/haxerier-och-trollkonster/Ha%CC%88xerier%20och%20Trollkonster.iso
+  igdb_slug: haxerier-och-trollkonster
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cc6db-8e95-78e1-a849-4a50b5bcc4dc
+    screenshots: []
+  name: Häxerier och Trollkonster
+  platform: win
+  publisher: Ahead Multimedia AB
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc6db-8e95-78e1-a849-4a50b5bcc4dc
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install.exe' # QT 2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\AHEAD\Witches\Witches.EXE'
