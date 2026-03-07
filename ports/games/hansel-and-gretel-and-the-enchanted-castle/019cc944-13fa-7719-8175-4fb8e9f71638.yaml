@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Hansel y Gretel y el Castillo Encantado (Argentina) (En,Ja,Fr,De,Es).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/H/Hansel%20y%20Gretel%20y%20el%20Castillo%20Encantado%20%28Argentina%29%20%28En%2CJa%2CFr%2CDe%2CEs%29.zip
+    # v1.00
+  igdb_slug: hansel-and-gretel-and-the-enchanted-castle
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cc944-13fa-7719-8175-4fb8e9f71638
+    screenshots: []
+  name: Hansel and Gretel and the Enchanted Castle
+  platform: dos
+  publisher: Terraglyph Interactive Studios
+  refs:
+    ag_id:
+    lutris_id: hansel-and-gretel-and-the-enchanted-castle
+    mg_id: 113236
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019cc944-13fa-7719-8175-4fb8e9f71638
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\DOSINST.BAT'
+          - gen_run_script:
+              path: '{APP_DIR}\hag.exe'
