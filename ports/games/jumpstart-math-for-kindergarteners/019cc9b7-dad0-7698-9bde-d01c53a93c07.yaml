@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - JSKGM.iso
+    format: 1CD
+    url: https://archive.org/download/JSKGM/JSKGM.iso
+  igdb_slug: jumpstart-math-for-kindergarteners
+  lang: en
+  media_assets:
+  name: JumpStart Math for Kindergarteners
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-math-for-kindergarteners
+    mg_id: 176942
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc9b7-dad0-7698-9bde-d01c53a93c07
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\JSKGM\JSKGM.EXE'
+# TODO: app BSODs on the very first run.
+# workaround: copy cloned version into apps manually
