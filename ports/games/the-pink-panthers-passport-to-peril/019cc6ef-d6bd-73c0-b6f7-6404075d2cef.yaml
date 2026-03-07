@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Rosa Pantern i Resa pa Egen Risk (Sweden).bin
+    format: 1CD
+    url: https://archive.org/download/rosa-pantern-i-resa-pa-egen-risk-sweden/Rosa%20Pantern%20i%20Resa%20pa%20Egen%20Risk%20%28Sweden%29.7z
+  igdb_slug: the-pink-panthers-passport-to-peril
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cc6ef-d6bd-73c0-b6f7-6404075d2cef
+    screenshots: []
+  name: Rosa Pantern i Resa på Egen Risk
+  platform: win
+  publisher: Ahead Multimedia AB
+  refs:
+    ag_id: the-pink-panther-passport-to-peril
+    lutris_id: the-pink-panther-passport-to-peril
+    mg_id: 7995
+    pcgw_id: The_Pink_Panther%27s_Passport_to_Peril
+    qz_id: 241
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  uuid: 019cc6ef-d6bd-73c0-b6f7-6404075d2cef
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - INSTALL/PPTP.BRO
+          - INSTALL/PPTP.EXE
+          - PPTP.ORB
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=The_Pink_Panther:_Passport_to_Peril
+        tasks:
+          - gen_run_script:
+              game: pink:peril
+              lang: se
+              path: "{DEST_APP_DIR}"
