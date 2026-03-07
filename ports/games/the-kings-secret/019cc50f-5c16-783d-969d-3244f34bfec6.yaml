@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - KINGS.bin
+    format: 1CD
+    url: https://archive.org/download/kings_202402/KINGS.7z
+  igdb_slug: the-kings-secret
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cc50f-5c16-783d-969d-3244f34bfec6
+    screenshots: []
+  name: Kungens Hemlighet
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 62975
+    pcgw_id:
+    qz_id:
+  reqs:
+    # cover info
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc50f-5c16-783d-969d-3244f34bfec6
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\KINGS.EXE'
+# TODO: installer asks for a license key
+# tmp workaround: manually copy files from https://archive.org/download/kings_202402/Kungens%20Hemlighet%20Install.7z into APP dir
