@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Reading Blaster Ages 9-12 (English) Version 1.0.2c.BIN
+    format: 1CD
+    url: https://archive.org/details/reading-blaster-ages-9-12-english-version-1.0.2c
+    # v1.0.2c
+  igdb_slug: reading-blaster-ages-9-12
+  lang: en
+  media_assets:
+  name: "Reading Blaster: Ages 9-12"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: reading-blaster-ages-9-12
+    mg_id: 210280
+    pcgw_id: Reading_Blaster:_Ages_9-12
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc997-1cad-7ec1-bf21-954ed7227d3d
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RBM.EXE'
