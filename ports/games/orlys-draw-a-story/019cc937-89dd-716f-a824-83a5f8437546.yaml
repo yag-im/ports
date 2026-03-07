@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Orly's Draw-A-Story (USA).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/O/Orly%27s%20Draw-A-Story%20%28USA%29.zip
+  igdb_slug: orlys-draw-a-story
+  lang: en
+  media_assets:
+  name: Orly's Draw-A-Story
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: orlys-draw-a-story
+    mg_id: 140066
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc937-89dd-716f-a824-83a5f8437546
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ORLY.EXE'
