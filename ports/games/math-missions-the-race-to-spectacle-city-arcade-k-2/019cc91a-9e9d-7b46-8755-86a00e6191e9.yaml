@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Math Missions Race to the Spectacle Arcade.iso
+    format: 1CD
+    url: https://archive.org/download/mathmissionsracetothespectaclearcade/Math%20Missions%20Race%20to%20the%20Spectacle%20Arcade.iso
+  igdb_slug: math-missions-the-race-to-spectacle-city-arcade-k-2
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cc91a-9e9d-7b46-8755-86a00e6191e9
+    screenshots: []
+  name: "Math Missions: Race To The Spectacle City Arcade"
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cc91a-9e9d-7b46-8755-86a00e6191e9
+  year_released: 2006
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\MathMissionsGrades_K_2_Setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MathMissionsGradesK-2.exe'
