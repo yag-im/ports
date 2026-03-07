@@ -40,4 +40,4 @@ installer:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\Haunter.exe'
+              path: '{APP_DIR}\Haunted.exe'
