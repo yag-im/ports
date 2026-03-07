@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - My Favorite Monster (Simon and Schuster Interactive)(The Cute Company)(1994).ISO
+    format: 1CD
+    url: https://archive.org/download/My_Favorite_Monster_Simon_and_Schuster_Interactive_The_Cute_Company_1994/My%20Favorite%20Monster%20%28Simon%20and%20Schuster%20Interactive%29%28The%20Cute%20Company%29%281994%29.ISO
+  igdb_slug: my-favorite-monster
+  lang: en
+  media_assets:
+  name: My Favorite Monster
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: my-favorite-monster
+    mg_id: 230024
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc979-3cdb-75ae-90e2-de0a97db292e
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\monster.exe'
