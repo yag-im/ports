@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Spell It Deluxe (USA).bin
+    format: 1CD
+    url: https://archive.org/details/spell_it_deluxe
+    # v1.0c
+  igdb_slug: spell-it-deluxe
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cc9ae-c9ac-7a22-95a6-92001d1f52f8
+    screenshots: []
+  name: Spell It Deluxe
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 256 colors is min requirement per readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cc9ae-c9ac-7a22-95a6-92001d1f52f8
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WIN31\SID.EXE'
