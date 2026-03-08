@@ -34,4 +34,4 @@ RUNNERS_SRC_BASE_DIR = RUNNERS_BASE_DIR / "src"
 CONF_NAME = "dosbox.conf"
 
 # win9x flavor
-DEFAULT_APP_DRIVE_SIZE = 100  # desired app drive image size, in MB
+DEFAULT_APP_DRIVE_SIZE = 10  # desired app drive image size, in MB
