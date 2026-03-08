@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Amazon Trail 3rd Edition - Rainforest Adventures (The Learning Company) (1998).iso
+    format: 1CD
+    url: https://archive.org/download/AmazonTrail3rdEditionRainforestAdventuresTheLearningCompany1998/Amazon%20Trail%203rd%20Edition%20-%20Rainforest%20Adventures%20%28The%20Learning%20Company%29%20%281998%29.iso
+    # v1.0
+  igdb_slug: amazon-trail-3rd-edition-rainforest-adventures
+  lang: en
+  media_assets:
+  name: "Amazon Trail 3rd Edition: Rainforest Adventures"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: amazon-trail-3rd-edition-rainforest-adventures
+    mg_id: 26207
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # in fosbox-x videos are very slow
+    ver: latest
+  uuid: 019cce8b-7e48-7c54-9986-710ee804659b
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 3, DX 5; fails to run in XP
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\amazon3.exe'
