@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Jumpstart 1st Grade for 2000.iso
+    format: 1CD
+    url: https://archive.org/download/jumpstart-1st-grade-for-2000/Jumpstart%201st%20Grade%20for%202000.iso
+  igdb_slug: jumpstart-1st-grade
+  lang: en
+  media_assets:
+  name: JumpStart 1st Grade 2000
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-1st-grade
+    mg_id: 120389
+    pcgw_id: JumpStart_1st_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ccf18-3e45-758f-93ae-445d94e53e08
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # in XP a 256-color warning is displayed at startup
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JS1G2000\JS1G2000.EXE'
