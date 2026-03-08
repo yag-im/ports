@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Awesome Animated Monster Maker - Ultra Edition (1997)(Houghton Mifflin)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/awesome-animated-monster-maker-ultra-edition/Awesome%20Animated%20Monster%20Maker%20-%20Ultra%20Edition%20%281997%29%28Houghton%20Mifflin%29%5BMac-PC%5D.iso
+  igdb_slug: awesome-animated-monster-maker
+  lang: en
+  media_assets:
+  name: "Awesome Animated Monster Maker: Ultra Edition"
+  platform: win
+  publisher: ImaginEngine Corp.
+  refs:
+    ag_id:
+    lutris_id: awesome-animated-monster-maker
+    mg_id: 199628
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ccf7d-6e09-7788-bba3-ffa0dbe69a20
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MMUltra.exe'
