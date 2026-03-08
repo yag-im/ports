@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - RNS.ISO
+    format: 1CD
+    url: https://archive.org/download/rns1997/RNS.ISO
+    # v1.0 8/27/1997
+  igdb_slug: rocketts-new-school
+  lang: en
+  media_assets:
+  name: Rockett's New School
+  platform: win
+  publisher: Purple Moon
+  refs:
+    ag_id:
+    lutris_id: rocketts-new-school
+    mg_id: 109252
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ccf86-c167-74f3-851b-451f20d0cb5a
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # requires 12MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Rockett''s New School.exe'
