@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Great Green Mouse Disaster, The (1996)(Ahead Multimedia)[M5][PC-Mac].iso
+    format: 1CD
+    url: https://archive.org/download/great-green-mouse-disaster-cdrom/Great%20Green%20Mouse%20Disaster%2C%20The%20%281996%29%28Ahead%20Multimedia%29%5BM5%5D%5BPC-Mac%5D.iso
+  igdb_slug: the-great-green-mouse-disaster
+  lang: en
+  media_assets:
+  name: The Great Green Mouse Disaster
+  platform: win
+  publisher: Ahead Multimedia AB
+  refs:
+    ag_id:
+    lutris_id: the-great-green-mouse-disaster
+    mg_id: 117823
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ccfa3-5dde-7575-ad9c-05e3be158193
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # QT 2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\AHEAD\KMDGM\KMDGM.EXE'
