@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Math Shop Deluxe (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Math%20Shop%20Deluxe%20%28USA%29.zip
+    # ages 8-13
+  igdb_slug: math-shop-deluxe
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cd033-a35d-7489-a315-641822f7e4e3
+    screenshots: []
+  name: Math Shop Deluxe
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2024.12.04 # BSODs in 2025.12.01 in win311 and win9x modes!
+  uuid: 019cd033-a35d-7489-a315-641822f7e4e3
+  year_released: 1998
+  tags:
+    - math
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # installs QT of unk version (2.x?)
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Mathshop.exe'
+
+# qemu: won't start in win98 and xp due to missing (corrupted?) fonts
+# wine: doesn't work
