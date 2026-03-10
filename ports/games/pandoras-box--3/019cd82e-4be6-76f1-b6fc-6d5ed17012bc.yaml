@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - PANDORA.iso
+    format: 1CD
+    url: https://archive.org/download/pandora_202102/PANDORA.iso
+  igdb_slug: pandoras-box--3
+  lang: en
+  media_assets:
+  name: Pandora's Box
+  platform: win
+  publisher: Microsoft Game Studios
+  refs:
+    ag_id:
+    lutris_id: pandoras-box--3
+    mg_id: 1550
+    pcgw_id: Microsoft_Pandora%27s_Box
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cd82e-4be6-76f1-b6fc-6d5ed17012bc
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe' # run app once after install to accept lic agrmnt
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\pandora.exe'
+              exit: false
