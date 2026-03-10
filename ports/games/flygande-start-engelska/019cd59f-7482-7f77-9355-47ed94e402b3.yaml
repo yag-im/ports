@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Flygande Start - Engelska (Sweden).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/F/Flygande%20Start%20-%20Engelska%20%28Sweden%29.zip
+    # https://archive.org/details/flygande-start-engelska/ - corrupted image
+    # age: 5-8
+  igdb_slug: flygande-start-engelska
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cd59f-7482-7f77-9355-47ed94e402b3
+    screenshots: []
+  name: Flygande Start - Engelska
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 12
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd59f-7482-7f77-9355-47ed94e402b3
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 10 # requires 2MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\FSENG.EXE'
