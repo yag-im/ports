@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - RMANSION.ISO
+    format: 1CD
+    url: https://archive.org/download/rmansion_202003/RMANSION.ISO
+  igdb_slug: reading-mansion
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cd874-307c-7987-ab0e-188138a3164d
+    screenshots: []
+  name: Reading Mansion
+  platform: win
+  publisher: Great Wave Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd874-307c-7987-ab0e-188138a3164d
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX5, skip all custom items (e.g. network, utility modules and demos)
+          - gen_run_script:
+              path: '{APP_DIR}\RMANSION.EXE'
