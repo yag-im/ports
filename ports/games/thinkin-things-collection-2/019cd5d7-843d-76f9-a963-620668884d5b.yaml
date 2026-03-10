@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Thinkin Things Collection 2.iso
+    format: 1CD
+    url: https://archive.org/download/ThinkinThingsCollection2/Thinkin%20Things%20Collection%202.iso
+  igdb_slug: thinkin-things-collection-2
+  lang: en
+  media_assets:
+  name: Thinkin' Things Collection 2
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: thinkin-things-collection-2
+    mg_id: 22110
+    pcgw_id: Thinkin%27_Things_Collection_2
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd5d7-843d-76f9-a963-620668884d5b
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TT2.EXE'
