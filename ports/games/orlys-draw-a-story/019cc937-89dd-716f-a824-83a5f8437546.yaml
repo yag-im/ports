@@ -20,6 +20,7 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 10
   runner:
     name: dosbox-x
     ver: 2025.12.01
@@ -30,7 +31,8 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        app_drive_size: 20 # 11MB is required
+        flavor: WIN95OSR25 # reported crash in WIN311: https://discord.com/channels/1251206620822638684/1251209459271860277/1480601011101110382
         tasks:
           - mount:
               src: "{DEST_DIR}/{descr[distro][files][0]}"
@@ -39,4 +41,4 @@ installer:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\ORLY.EXE'
+              path: '{APP_DIR}\Orly32.exe'
