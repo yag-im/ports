@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - FARM.ISO
+    format: 1CD
+    url: https://archive.org/download/funonthefarmwithbarney/FARM.ISO
+  igdb_slug: fun-on-the-farm-with-barney
+  lang: en
+  name: Fun on the Farm with Barney
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: fun-on-the-farm-with-barney
+    mg_id: 223864
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt: 256 colors or higher, min 800x600
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cd568-c661-7182-99fa-31c591909b95
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\Program Files\Microsoft ActiMates\Barney\Barney.exe'
+              args:
+                - '-T"Fun on the Farm with Barney"'
+                - '{FIRST_CD_DRIVE}Title\Farm.bin'
