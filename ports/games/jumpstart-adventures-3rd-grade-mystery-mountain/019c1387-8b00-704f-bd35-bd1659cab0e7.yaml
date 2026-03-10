@@ -20,18 +20,19 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 10
   runner:
     name: dosbox-x
     ver: 2025.12.01
-  ts_added: 2026-01-31 10:09:36 America/Los_Angeles
-  uuid: 71b1554b-9c47-404f-bd35-bd1659cab0e7
+  uuid: 019c1387-8b00-704f-bd35-bd1659cab0e7
   year_released: 1996
   tags:
 installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        app_drive_size: 20 # requires 10
+        flavor: WIN95OSR25 # reported sign in issue in WIN311: https://discord.com/channels/1251206620822638684/1480967710367285268/1480970370554265724
         tasks:
           - mount:
               src: "{DEST_DIR}"
