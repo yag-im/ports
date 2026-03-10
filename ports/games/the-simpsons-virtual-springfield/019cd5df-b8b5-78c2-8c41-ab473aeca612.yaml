@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Simpsons, The - Virtual Springfield (USA, Europe).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Simpsons%2C%20The%20-%20Virtual%20Springfield%20%28USA%2C%20Europe%29.zip
+    # v1.0
+  igdb_slug: the-simpsons-virtual-springfield
+  lang: en
+  media_assets:
+  name: "The Simpsons: Virtual Springfield"
+  platform: win
+  publisher: Fox Interactive
+  refs:
+    ag_id:
+    lutris_id: the-simpsons-virtual-springfield
+    mg_id: 2500
+    pcgw_id: The_Simpsons:_Virtual_Springfield
+    qz_id:
+  reqs:
+    color_bits: 8 # crashes in 16bit mode!
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd5df-b8b5-78c2-8c41-ab473aeca612
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        # app requires 640Kb
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "EXPLORER.EXE" # SETUP.EXE runs properly only from explorer.exe; DX 3a
+              exit: false
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\SETUP.EXE' # runs only from explorer.exe; DX 3.a
+          #     exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\VIRTUAL.EXE'
