@@ -21,6 +21,7 @@ descr:
     color_bits: 8 # crashes in 16bit mode!
     screen_height: 480
     screen_width: 640
+    loading_duration: 8
   runner:
     name: dosbox-x
     ver: 2025.12.01
@@ -38,10 +39,10 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "EXPLORER.EXE" # SETUP.EXE runs properly only from explorer.exe; DX 3a
+              path: "EXPLORER.EXE" # SETUP.EXE runs properly only from explorer.exe
               exit: false
           # - run:
-          #     path: '{FIRST_CD_DRIVE}\SETUP.EXE' # runs only from explorer.exe; DX 3.a
+          #     path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 3a
           #     exit: false
           - gen_run_script:
               path: '{APP_DIR}\VIRTUAL.EXE'
