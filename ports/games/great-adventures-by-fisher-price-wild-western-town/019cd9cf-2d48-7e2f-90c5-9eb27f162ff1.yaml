@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Great Adventures by Fisher-Price - Wild Western Town (USA).bin
+    format: 1CD
+    url: https://archive.org/details/great-adventures-by-fisher-price-wild-western-town
+  igdb_slug: great-adventures-by-fisher-price-wild-western-town
+  lang: en
+  media_assets:
+  name: "Great Adventures by Fisher-Price: Wild Western Town"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: great-adventures-by-fisher-price-wild-western-town
+    mg_id: 35573
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd9cf-2d48-7e2f-90c5-9eb27f162ff1
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\wtown95.EXE'
