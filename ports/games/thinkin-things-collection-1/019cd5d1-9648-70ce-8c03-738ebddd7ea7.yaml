@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Thinkin' Things Collection 1 (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/T/Thinkin%27%20Things%20Collection%201%20%28USA%29.zip
+  igdb_slug: thinkin-things-collection-1
+  lang: en
+  media_assets:
+  name: Thinkin' Things Collection 1
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: thinkin-things-collection-1
+    mg_id: 4589
+    pcgw_id: Thinkin%27_Things_Collection_1
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd5d1-9648-70ce-8c03-738ebddd7ea7
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TT1.EXE'
