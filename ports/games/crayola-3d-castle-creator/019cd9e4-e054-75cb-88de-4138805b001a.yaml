@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Crayola - 3D Castle Creator (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/C/Crayola%20-%203D%20Castle%20Creator%20%28USA%29.zip
+  igdb_slug: crayola-3d-castle-creator
+  lang: en
+  media_assets:
+  name: Crayola 3D Castle Creator
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id:
+    lutris_id: crayola-3d-castle-creator
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # required per readme
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cd9e4-e054-75cb-88de-4138805b001a
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 50 # 35MB is required
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "EXPLORER.EXE"
+              exit: false
+          - run:
+              path: '{FIRST_CD_DRIVE}\launcher.exe' # DX5.0
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Exe\Castle.exe'
