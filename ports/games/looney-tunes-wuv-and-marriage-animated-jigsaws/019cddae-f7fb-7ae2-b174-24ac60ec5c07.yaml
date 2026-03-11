@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - WuvAndMarriage_LooneyTunes-AnimJigsaws.iso
+    format: 1CD
+    url: https://archive.org/download/wuv-and-marriage-looney-tunes-anim-jigsaws/WuvAndMarriage_LooneyTunes-AnimJigsaws.iso
+  igdb_slug: looney-tunes-wuv-and-marriage-animated-jigsaws
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cddae-f7fb-7ae2-b174-24ac60ec5c07
+    screenshots: []
+  name: "Looney Tunes: Wuv & Marriage: Animated Jigsaws"
+  platform: win
+  publisher: SouthPeak Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cddae-f7fb-7ae2-b174-24ac60ec5c07
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\WMAJ\LAUNCH32.EXE' # installs DX6
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WMAJ\LAUNCH32.EXE'
+              exit: false
