@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Treasure MathStorm! (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/T/Treasure%20MathStorm%21%20%28USA%29.zip
+    # v1.0
+  igdb_slug: treasure-mathstorm
+  lang: en
+  media_assets:
+  name: Treasure MathStorm!
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: treasure-mathstorm
+    mg_id: 12203
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdb7a-b4da-7672-8ce9-5d8de680f05d
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\TMSWINCD\TMSWINCD.EXE'
