@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Storybook Weaver Deluxe (USA) (v1.1).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Storybook%20Weaver%20Deluxe%20%28USA%29%20%28v1.1%29.zip
+    # v1.1
+  igdb_slug: storybook-weaver-deluxe
+  lang: en
+  media_assets:
+  name: Storybook Weaver Deluxe
+  platform: win
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id: storybook-weaver-deluxe
+    mg_id: 12082
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdad5-1959-7a89-b608-6fab89b09b44
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SBW.EXE'

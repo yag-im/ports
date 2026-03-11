@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Castle Explorer (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/C/Castle%20Explorer%20%28USA%29.zip
+  igdb_slug: castle-explorer
+  lang: en
+  media_assets:
+  name: Castle Explorer
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id: castle-explorer--1
+    mg_id: 59947
+    pcgw_id:
+    qz_id:
+  reqs:
+    # 16-bit is a strict suggestion
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdae4-7570-7f57-b5a5-b52c43804611
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CASTLE.EXE'

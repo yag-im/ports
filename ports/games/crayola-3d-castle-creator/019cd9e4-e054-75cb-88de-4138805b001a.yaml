@@ -37,9 +37,6 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "EXPLORER.EXE"
-              exit: false
-          - run:
               path: '{FIRST_CD_DRIVE}\launcher.exe' # DX5.0
               exit: false
           - gen_run_script:
