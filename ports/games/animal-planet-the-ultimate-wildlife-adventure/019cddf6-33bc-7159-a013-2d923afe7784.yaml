@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - AnimalPlanetMultimediaWildlifeAdventure-Win31.iso
+    format: 1CD
+    url: https://archive.org/download/Discovery_Channel_Animal_Planet_Wildlife_Adventure_-_Windows95_ENG/AnimalPlanetMultimediaWildlifeAdventure-Win31.iso
+  igdb_slug: animal-planet-the-ultimate-wildlife-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cddf6-33bc-7159-a013-2d923afe7784
+    screenshots: []
+  name: "Animal Planet: The Ultimate Wildlife Adventure!"
+  platform: win
+  publisher: Discovery Channel Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cddf6-33bc-7159-a013-2d923afe7784
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # min install requires 10MB
+        flavor: WIN95OSR25 # mouse moves too "sharply" in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\code\planet.exe'
