@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Adventures of Ninja Nanny and Sherrloch Sheltie, The (1993)(Silicon Alley).iso
+    format: 1CD
+    url: https://archive.org/download/ninja-nanny-sherrloch-sheltie/Adventures%20of%20Ninja%20Nanny%20and%20Sherrloch%20Sheltie%2C%20The%20%281993%29%28Silicon%20Alley%29.iso
+    # age: 12+
+  igdb_slug: no-11-downing-street-the-adventures-of-ninja-nanny-and-sherrlock-sheltie
+  lang: en
+  media_assets:
+  name: "No. 11 Downing Street: The Adventures of Ninja Nanny & Sherrlock Sheltie"
+  platform: win
+  publisher: Silicon Alley
+  refs:
+    ag_id:
+    lutris_id: no-11-downing-street-the-adventures-of-ninja-nanny-and-sherrlock-sheltie
+    mg_id: 106347
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdea6-d432-7338-a656-6bf3c368d568
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\NINJA\TBOOK.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\NINJA\dustjkt.tbk'
