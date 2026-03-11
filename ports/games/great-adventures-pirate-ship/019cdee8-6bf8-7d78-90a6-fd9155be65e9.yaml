@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - FPPirates.iso
+    format: 1CD
+    url: https://archive.org/download/fppirates1996/FPPirates.iso
+  igdb_slug: great-adventures-pirate-ship
+  lang: en
+  media_assets:
+  name: "Great Adventures: Pirate Ship"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: great-adventures-pirate-ship
+    mg_id: 108264
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdee8-6bf8-7d78-90a6-fd9155be65e9
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # fails to run in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\START32.EXE'
