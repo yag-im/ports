@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit - 1st Grade (USA).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Reader%20Rabbit%20-%201st%20Grade%20%28USA%29.zip
+    # v1.0
+  igdb_slug: reader-rabbit-1st-grade
+  lang: en
+  media_assets:
+  name: Reader Rabbit 1st Grade
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-1st-grade
+    mg_id: 60543
+    pcgw_id: Reader_Rabbit:_1st_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdb5e-0830-7081-85c0-cf3f782f8a50
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRF.EXE'

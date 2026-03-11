@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Treasure Cove! (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/T/Treasure%20Cove%21%20%28USA%29.zip
+    # v2.0
+  igdb_slug: treasure-cove--1
+  lang: en
+  media_assets:
+  name: Treasure Cove!
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: treasure-cove--1
+    mg_id: 11384
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cdb75-57a5-7852-a098-0653bf7718f3
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TCVWIN.EXE'
