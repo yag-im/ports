@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Simon the Sorcerer (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Simon%20the%20Sorcerer%20%28USA%29.zip
+  igdb_slug: simon-the-sorcerer
+  lang: en
+  media_assets:
+  name: Simon the Sorcerer
+  platform: dos
+  publisher: Adventure Soft
+  refs:
+    ag_id: simon-the-sorcerer1
+    lutris_id: simon-the-sorcerer
+    mg_id: 495
+    pcgw_id: Simon_the_Sorcerer
+    qz_id: 566
+  reqs:
+    color_bits: 8
+    screen_height: 200
+    screen_width: 320
+  runner:
+    name: scummvm
+    ver: "2.9.1"
+  uuid: 019cde92-06de-79b6-bdbe-d7eafe92626b
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - EFFECTS.VOC
+          - GAMEPC
+          - ICON.DAT
+          - MT_FM.IBK
+          - SIMON.GME
+          - SIMON.VOC
+          - STRIPPED.TXT
+          - TBLLIST
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Simon_the_Sorcerer
+        tasks:
+          - gen_run_script:
+              game: agos:simon1
+              path: "{DEST_APP_DIR}"
+              lang: en
