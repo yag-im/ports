@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - TillbakaTillHistorien.iso
+    format: 1CD
+    url: https://archive.org/download/tillbaka-till-historien/TillbakaTillHistorien.iso
+  igdb_slug: tillbaka-till-historien
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cde2c-970b-74b3-a416-b81b1f0c8e25
+    screenshots: []
+  name: Tillbaka Till Historien
+  platform: win
+  publisher: Bajoum Interactive AB
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cde2c-970b-74b3-a416-b81b1f0c8e25
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Quicktime 402\QuickTimeInstaller.exe'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\startsvea.exe'
