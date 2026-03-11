@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Enable trace mode for debugging
-# set -x
+set -x
 
 # ==============================================================================
 # SCRIPT CONFIGURATION
