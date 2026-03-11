@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Miss Spider's Tea Party (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Miss%20Spider%27s%20Tea%20Party%20%28USA%29.zip
+  igdb_slug: miss-spiders-tea-party
+  lang: en
+  media_assets:
+  name: Miss Spider's Tea Party
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: miss-spiders-tea-party
+    mg_id: 5161
+    pcgw_id: Miss_Spider%27s_Tea_Party
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019cdec2-b730-7e15-adad-69084df2d2a4
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # don't click Finish at the end as it runs the app
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MSPIDER.EXE'
