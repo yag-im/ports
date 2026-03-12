@@ -22,7 +22,7 @@ descr:
     screen_height: 480
     screen_width: 640
   runner:
-    name: qemu # in fosbox-x videos are very slow
+    name: qemu # in dosbox-x videos are very slow
     ver: latest
   uuid: 019cce8b-7e48-7c54-9986-710ee804659b
   year_released: 1998
