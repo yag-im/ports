@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - TRACKER.bin
+    format: 1CD
+    url: https://archive.org/details/tracker_202211
+  igdb_slug: tracker-finds-a-new-home
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ce43d-84b4-73ff-9362-e443203b7bc2
+    screenshots: []
+  name: Tracker Finds A New Home
+  platform: win
+  publisher: Hoffmann + Associates Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt says 16-bit color, but app complains it should be 8
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 9
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce43d-84b4-73ff-9362-e443203b7bc2
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # because of a 8-bit color warning on app startup
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\programs\tracker.exe'
