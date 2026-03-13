@@ -1,0 +1,38 @@
+descr:
+  distro:
+    files:
+      - Living Books - Mercer Mayer's Just Grandma and Me (USA).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/L/Living%20Books%20-%20Mercer%20Mayer%27s%20Just%20Grandma%20and%20Me%20%28USA%29.zip
+  igdb_slug: living-books-just-grandma-and-me--1
+  lang: en
+  media_assets:
+  name: "Living Books: Just Grandma and Me"
+  platform: win
+  publisher: "Br\xF8derbund Software"
+  refs:
+    ag_id:
+    lutris_id: living-books-just-grandma-and-me--1
+    mg_id: 17688
+    pcgw_id: Just_Grandma_and_Me
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01955f25-5f9c-7482-bb0a-b87f02315e2b
+  year_released: 1992
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\GRANDMA\GRANDMA.EXE'
