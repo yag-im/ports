@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Rockett's Secret Invitation (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Rockett%27s%20Secret%20Invitation%20%28USA%29.zip
+  igdb_slug: rocketts-secret-invitation
+  lang: en
+  media_assets:
+  name: Rockett's Secret Invitation
+  platform: win
+  publisher: Purple Moon
+  refs:
+    ag_id:
+    lutris_id: rocketts-secret-invitation
+    mg_id: 119408
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce4d8-a0f8-7ff0-81ad-6977d2b99c71
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # requires 12MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Rockett''s Secret Invitation\Rockett''s Secret Invitation.exe'
