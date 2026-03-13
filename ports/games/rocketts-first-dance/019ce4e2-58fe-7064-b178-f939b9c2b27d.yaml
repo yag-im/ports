@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Rockett's First Dance (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Rockett%27s%20First%20Dance%20%28USA%29.zip
+  igdb_slug: rocketts-first-dance
+  lang: en
+  media_assets:
+  name: Rockett's First Dance
+  platform: win
+  publisher: Purple Moon
+  refs:
+    ag_id:
+    lutris_id: rocketts-first-dance
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce4e2-58fe-7064-b178-f939b9c2b27d
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # requires 12MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Rockett''s First Dance\Rockett''s First Dance.exe'
