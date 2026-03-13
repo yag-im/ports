@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - "American Girls Premiere, The (USA) (Disc 1) (Installer, Tutorials, Director's Guide, Sample Plays).bin"
+      - American Girls Premiere, The (USA) (Disc 2) (Program).bin
+    format: 2CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/A/American%20Girls%20Premiere%2C%20The%20%28USA%29%20%28Disc%201%29%20%28Installer%2C%20Tutorials%2C%20Director%27s%20Guide%2C%20Sample%20Plays%29.zip
+  igdb_slug: the-american-girls-premiere
+  lang: en
+  media_assets:
+  name: The American Girls Premiere
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-american-girls-premiere
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.wri
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce506-a2e7-7eca-bc9e-9bfa4b4f1a70
+  year_released: 1997
+  tags:
+installer:
+  # app installs from CD1, runds from CD2
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # min 15MB is required
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1.1
+              exit: false
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\AMGirls.exe'
