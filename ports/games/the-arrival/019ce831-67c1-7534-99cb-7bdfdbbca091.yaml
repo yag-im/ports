@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - "Arrival, The - CD-ROM Adventure (USA) (Disc 1).cue"
+      - "Arrival, The - CD-ROM Adventure (USA) (Disc 2).cue"
+      - "Arrival, The - CD-ROM Adventure (USA) (Disc 3).cue"
+    format: 3CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/A/Arrival%2C%20The%20-%20CD-ROM%20Adventure%20%28USA%29%20%28Disc%201%29.zip
+    # https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/A/Arrival%2C%20The%20-%20CD-ROM%20Adventure%20%28USA%29%20%28Disc%202%29.zip
+    # https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/A/Arrival%2C%20The%20-%20CD-ROM%20Adventure%20%28USA%29%20%28Disc%203%29.zip
+  igdb_slug: the-arrival
+  lang: en
+  media_assets:
+  name: The Arrival
+  platform: win
+  publisher: LIVE Interactive
+  refs:
+    ag_id:
+    lutris_id: the-arrival
+    mg_id: 1278
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce831-67c1-7534-99cb-7bdfdbbca091
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE # BSODs in WIN95OSR25
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{descr[distro][files][0]}"
+                - "{DEST_DIR}/{descr[distro][files][1]}"
+                - "{DEST_DIR}/{descr[distro][files][2]}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/setup.exe" # DX3
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/arrival.exe"
