@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Rockett's Camp Adventures (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Rockett%27s%20Camp%20Adventures%20%28USA%29.zip
+  igdb_slug: rocketts-camp-adventures
+  lang: en
+  media_assets:
+  name: Rockett's Camp Adventures
+  platform: win
+  publisher: Purple Moon
+  refs:
+    ag_id:
+    lutris_id: rocketts-camp-adventures
+    mg_id: 36966
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt: the only rockett series game requiring 16 bit color
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce4f1-7b1d-7cd6-8ab0-ba6834da1fc8
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 50 # requires 24MB, but readme says 50MB required
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # somehow doesn't start on its own; installs DX6
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Rockett.exe'
