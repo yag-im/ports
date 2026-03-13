@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - "Paint 'n Play Pony (1998)(Crayola)[Mac-PC].iso"
+    format: 1CD
+    url: https://archive.org/download/paint-n-play-pony/Paint%20%27n%20Play%20Pony%20%281998%29%28Crayola%29%5BMac-PC%5D.iso
+  igdb_slug: crayola-paint-n-play-pony
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ce8e4-c953-7338-93cf-5f90296c8283
+    screenshots: []
+  name: "Crayola Paint 'n Play Pony"
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id:
+    lutris_id: crayola-paint-n-play-pony
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce8e4-c953-7338-93cf-5f90296c8283
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # 12MB required
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\IBMINS\LAUNCHER.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Paint ''n Play Pony\Pony.exe'
