@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Scooter's Magic Castle & Eagle Eye Mysteries in London (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Scooter%27s%20Magic%20Castle%20%26%20Eagle%20Eye%20Mysteries%20in%20London%20%28USA%29.zip
+  igdb_slug: scooters-magic-castle
+  lang: en
+  media_assets:
+  name: "Scooter's Magic Castle"
+  platform: dos
+  publisher: Electronic Arts
+  refs:
+    ag_id:
+    lutris_id: scooters-magic-castle
+    mg_id: 32377
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019ce5a7-5113-7543-9aa5-48aac35abc45
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\eakids\scootcd\scootcd.exe'
+              args:
+                - /ms3
+                - /ss2
+                - /vv
+                - /c
