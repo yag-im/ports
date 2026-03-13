@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Mystery at Greveholm, The (Europe) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Mystery%20at%20Greveholm%2C%20The%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CSv%2CNo%2CDa%2CFi%29.zip
+  igdb_slug: the-mystery-at-greveholm
+  lang: en
+  media_assets:
+  name: "The Mystery at Greveholm"
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id: the-mystery-at-greveholm
+    mg_id: 30111
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ce943-07fc-7eba-97c9-03a505b62e31
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Greve16.exe'
