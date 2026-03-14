@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - The Witness (1982) (Infocom).zip
+    format: 1FD
+    url: https://archive.org/download/525-dos-games-from-the-1980s-majorgeeks/525%20Dos%20Games.zip/The%20Witness%20%281982%29%20%28Infocom%29.zip
+  igdb_slug: the-witness--1
+  lang: en
+  media_assets:
+  name: The Witness
+  platform: dos
+  publisher: Infocom
+  refs:
+    ag_id:
+    lutris_id: the-witness--1
+    mg_id: 61
+    pcgw_id: The_Witness_(1983)
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  uuid: 01959a8d-ebcf-7c3a-9438-84bd411662ab
+  year_released: 1983
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - Data/Witness.dat
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=The_Witness
+        tasks:
+          - gen_run_script:
+              game: glk:thewitness
+              path: "{DEST_APP_DIR}"
+              lang: en
