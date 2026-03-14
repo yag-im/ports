@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Hakan Brakan (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/H/Hakan%20Brakan%20%28Sweden%29.zip
+  igdb_slug: hakan-brakan
+  lang: sv
+  media_assets:
+  name: Håkan Bråkan
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ced7f-1c27-7de9-b58d-58e21de64662
+  year_released: 2003
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\QuickTime\QuickTimeInstaller.exe'
+          - run:
+              path: '{FIRST_CD_DRIVE}\start.exe' # run app once after install so it don't ask about full screen on the next run
+              # TODO: warning! winxp can't recognize sw characters so after install rename dir and exec to: '{APP_DIR}\hakan\hakan.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\hakan\hakan.exe'
