@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Kaspar i Nudadalen (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/K/Kaspar%20i%20Nudadalen%20%28Sweden%29.zip
+  igdb_slug: kaspar-i-nudadalen
+  lang: sv
+  media_assets:
+  name: Kaspar i Nudådalen
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id: kaspar-i-nudadalen
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine # crackling sound in qemu winxp
+    ver: "10.0"
+  uuid: 019cee21-d416-7704-a904-69737a862a3c
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\quicktime\QuickTimeInstaller.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\NudC%dalen_normal.exe'
+    - copy:
+        src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/setup/se/to_pc_hd"
+        dest: "{DEST_APP_DIR}"
+# TODO: '{APP_DIR}\NudC%dalen.exe' (without normal prefix) allows to start in a fullscreenmode , but crashes on startup
+# _normal.exe runs in a smaller window

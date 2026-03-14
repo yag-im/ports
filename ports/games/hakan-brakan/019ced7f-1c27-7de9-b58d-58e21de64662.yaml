@@ -7,6 +7,9 @@ descr:
   igdb_slug: hakan-brakan
   lang: sv
   media_assets:
+    cover:
+      image_id: 019ced7f-1c27-7de9-b58d-58e21de64662
+    screenshots: []
   name: Håkan Bråkan
   platform: win
   publisher: Pan Vision
