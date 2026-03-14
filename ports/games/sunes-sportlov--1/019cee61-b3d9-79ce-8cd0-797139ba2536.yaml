@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Sunes Sportlov (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Sunes%20Sportlov%20%28Sweden%29.zip
+  igdb_slug: sunes-sportlov--1
+  lang: sv
+  media_assets:
+  name: Sunes Sportlov
+  platform: win
+  publisher: Rabén Multimedia
+  refs:
+    ag_id:
+    lutris_id: sunes-sportlov--1
+    mg_id: 180477
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cee61-b3d9-79ce-8cd0-797139ba2536
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SUNE_31.EXE'
