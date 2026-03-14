@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Mystery at Greveholm 3, The - The Old Legend (Europe) (En,Sv,No,Da,Fi).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Mystery%20at%20Greveholm%203%2C%20The%20-%20The%20Old%20Legend%20%28Europe%29%20%28En%2CSv%2CNo%2CDa%2CFi%29.zip
+  igdb_slug: the-mystery-at-greveholm-3-the-old-legend
+  lang: en
+  media_assets:
+  name: "The Mystery at Greveholm 3: The Old Legend"
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id: the-mystery-at-greveholm-3-the-old-legend
+    mg_id: 43284
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine # chocking sound in qemu; super slow in dosbox-x
+    ver: "10.0"
+  uuid: 019cea36-88a6-75b0-991f-e75307b82b07
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE' # QT4.0
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Mystery at Greveholm 3\Greveholm3'
