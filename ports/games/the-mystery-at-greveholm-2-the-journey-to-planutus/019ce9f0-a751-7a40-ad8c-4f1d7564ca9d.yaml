@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Mystery at Greveholm 2, The - Journey to Planutus (Scandinavia) (En,Sv,No,Da,Fi).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Mystery%20at%20Greveholm%202%2C%20The%20-%20Journey%20to%20Planutus%20%28Scandinavia%29%20%28En%2CSv%2CNo%2CDa%2CFi%29.zip
+  igdb_slug: the-mystery-at-greveholm-2-the-journey-to-planutus
+  lang: en
+  media_assets:
+  name: "The Mystery at Greveholm 2: The Journey to Planutus"
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id: the-mystery-at-greveholm-2-the-journey-to-planutus
+    mg_id: 43399
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # crashes in dosbox-x win9x
+    ver: latest
+  uuid: 019ce9f0-a751-7a40-ad8c-4f1d7564ca9d
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE' # QT3.0
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Planutus.exe'
