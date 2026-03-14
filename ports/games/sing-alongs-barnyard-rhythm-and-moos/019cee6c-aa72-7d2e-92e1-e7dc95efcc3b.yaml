@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Moo.iso
+    format: 1CD
+    url: https://archive.org/download/moo1995/Moo.iso
+  igdb_slug: sing-alongs-barnyard-rhythm-and-moos
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cee6c-aa72-7d2e-92e1-e7dc95efcc3b
+    screenshots: []
+  name: "Sing-Alongs: Barnyard Rhythm & Moos"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cee6c-aa72-7d2e-92e1-e7dc95efcc3b
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.02 skip install
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\START.EXE'
