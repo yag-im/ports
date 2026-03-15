@@ -40,7 +40,6 @@ installer:
           - mount:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
-
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
           - run:

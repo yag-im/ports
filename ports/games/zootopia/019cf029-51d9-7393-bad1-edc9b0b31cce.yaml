@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Zootopia (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/Z/Zootopia%20%28USA%29.zip
+  igdb_slug: zootopia
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cf029-51d9-7393-bad1-edc9b0b31cce
+    screenshots: []
+  name: Zootopia
+  platform: win
+  publisher: KidSoft
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cf029-51d9-7393-bad1-edc9b0b31cce
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          # do not install QT2.0 from CD, it's broken!
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ZOOTOPIA.EXE'
