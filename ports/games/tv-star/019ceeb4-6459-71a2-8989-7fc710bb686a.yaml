@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - TV Star (Europe).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/T/TV%20Star%20%28Europe%29.zip
+  igdb_slug: tv-star
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ceeb4-6459-71a2-8989-7fc710bb686a
+    screenshots: []
+  name: TV Star
+  platform: win
+  publisher: Monte Cristo
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    loading_duration: 12
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ceeb4-6459-71a2-8989-7fc710bb686a
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 700 # uses 564MB; CD is still required during game!
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - run:
+              path: '{APP_DIR}\install\redist\directx\dxsetup.exe'
+          - run:
+              path: '{APP_DIR}\install\iv5play.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Wannabe.exe'
+
+# crashes in qemu\XP and 98 right away
