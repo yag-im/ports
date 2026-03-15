@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - I Spy Spooky Mansion (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/I/I%20Spy%20Spooky%20Mansion%20%28USA%29.zip
+  igdb_slug: i-spy-spooky-mansion--1
+  lang: en
+  media_assets:
+  name: I Spy Spooky Mansion
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: i-spy-spooky-mansion--1
+    mg_id: 62946
+    pcgw_id: I_Spy:_Spooky_Mansion
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cf37a-37f1-7ec7-99b4-749dc292faac
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 10 # uses 4MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\_Spooky.exe'
