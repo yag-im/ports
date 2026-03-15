@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - JumpStart Spanish (USA).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/J/JumpStart%20Spanish%20%28USA%29.zip
+  igdb_slug: jumpstart-spanish
+  lang: en
+  media_assets:
+  name: JumpStart Spanish
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-spanish
+    mg_id: 232737
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cf3c8-48b7-78dd-8bcb-7ae495894857
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 10 # uses: 3MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # install in "Learn: Spanish, Instructions: English" mode
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JSSPAN.EXE'
