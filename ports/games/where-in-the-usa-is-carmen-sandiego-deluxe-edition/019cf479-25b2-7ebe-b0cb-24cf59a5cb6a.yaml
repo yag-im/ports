@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Where in the U.S.A. Is Carmen Sandiego Deluxe (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/W/Where%20in%20the%20U.S.A.%20Is%20Carmen%20Sandiego%20Deluxe%20%28USA%29.zip
+    # v1.0
+  igdb_slug: where-in-the-usa-is-carmen-sandiego-deluxe-edition
+  lang: en
+  media_assets:
+  name: "Where in the U.S.A. is Carmen Sandiego?: Deluxe Edition"
+  platform: dos
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: where-in-the-usa-is-carmen-sandiego-deluxe-edition
+    mg_id: 23714
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019cf479-25b2-7ebe-b0cb-24cf59a5cb6a
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\CARMEN.BAT' # TODO: it just runs '{FIRST_CD_DRIVE}\CARMEN.EXE', but it fails to start alone
