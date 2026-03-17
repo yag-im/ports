@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Alcohol 101 (1997)(University of Illinois)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/alcohol-101/Alcohol%20101%20%281997%29%28University%20of%20Illinois%29%5BMac-PC%5D.iso
+  igdb_slug: alcohol-101
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019cfd3b-3aa4-7eac-9b04-b3d94ec36e63
+    screenshots: []
+  name: Alcohol 101
+  platform: win
+  publisher: The Century Council
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from CD booklet
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cfd3b-3aa4-7eac-9b04-b3d94ec36e63
+  year_released: 1997
+  tags:
+    - mature # because one of the questions asks for age, and 17 is the minimum selectable option
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # script error on Esc in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTAL32.EXE' # QT2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\ALC_101\start95.exe' # setup ignores destination folder
