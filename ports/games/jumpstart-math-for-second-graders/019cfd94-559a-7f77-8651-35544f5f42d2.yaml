@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - FSMATTE.ISO
+    format: 1CD
+    url: https://archive.org/download/FSMATTE/FSMATTE.ISO
+  igdb_slug: jumpstart-math-for-second-graders
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cfd94-559a-7f77-8651-35544f5f42d2
+    screenshots: []
+  name: "Flygande Start: Matte"
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 76811
+    pcgw_id: JumpStart_2nd_Grade_Math
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cfd94-559a-7f77-8651-35544f5f42d2
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 25 # uses 17MB
+        flavor: WIN95OSR25 # SV version is newer than original EN and fails to install in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JS2GM\JS2GM.EXE'
