@@ -26,6 +26,8 @@ descr:
   ts_added: 2025-03-12 03:56:30.830599 America/Los_Angeles
   uuid: 2ea93062-5822-4dcd-b2e9-9746355f70c2
   year_released: 1999
+  tags:
+    - mature
 installer:
   tasks:
     # use lang: ru

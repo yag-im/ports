@@ -31,6 +31,7 @@ descr:
   uuid: 5d7fa3f1-d69e-4912-a3a5-8df6d945bd54
   year_released: 1990
   tags:
+    - mature
 installer:
   tasks:
     - file:
