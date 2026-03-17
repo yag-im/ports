@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Fest i Mumindalen (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/F/Fest%20i%20Mumindalen%20%28Sweden%29.zip
+  igdb_slug: the-great-moomin-party
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cf9d1-6326-74b1-a7a2-72c8ee0c97a7
+    screenshots: []
+  name: Fest i Mumindalen
+  platform: win
+  publisher: TATI Mixedia
+  refs:
+    ag_id:
+    lutris_id: suuri-muumijuhla
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cf9d1-6326-74b1-a7a2-72c8ee0c97a7
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\MUMIN31\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Mumin31.EXE'
