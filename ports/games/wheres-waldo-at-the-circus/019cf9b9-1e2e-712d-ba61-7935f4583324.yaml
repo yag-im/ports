@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Where's Waldo At the Circus (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/W/Where%27s%20Waldo%20At%20the%20Circus%20%28USA%29.zip
+  igdb_slug: wheres-waldo-at-the-circus
+  lang: en
+  media_assets:
+  name: Where's Waldo at the Circus
+  platform: win
+  publisher: WarnerActive
+  refs:
+    ag_id:
+    lutris_id: wheres-waldo-at-the-circus
+    mg_id: 86105
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cf9b9-1e2e-712d-ba61-7935f4583324
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\WALDO.EXE'
+# run app once after install as there is a funny "frame rate" (?) test on the first run
