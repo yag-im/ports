@@ -26,5 +26,7 @@ descr:
   ts_added: 2025-03-17 02:06:04.733743 America/Los_Angeles
   uuid: 3076fb84-b773-43df-9f22-26508d14341a
   year_released: 1992
+  tags:
+    - mature
 installer:
   tasks:

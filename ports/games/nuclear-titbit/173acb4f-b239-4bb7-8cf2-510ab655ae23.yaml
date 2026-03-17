@@ -26,6 +26,8 @@ descr:
   ts_added: 2025-08-31 07:32:08 America/Los_Angeles
   uuid: 173acb4f-b239-4bb7-8cf2-510ab655ae23
   year_released: 2003
+  tags:
+    - mature
 installer:
   tasks:
     - copy_src_cd_images:

@@ -25,4 +25,6 @@ descr:
   ts_added: 2024-08-22 14:26:00 America/Los_Angeles
   uuid: 65bd2c47-b6b0-449e-ab31-7c7ed1a3ed08
   year_released: 1999
+  tags:
+    - mature
 installer: null

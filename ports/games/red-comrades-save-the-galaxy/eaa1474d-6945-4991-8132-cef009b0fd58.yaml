@@ -27,6 +27,8 @@ descr:
   ts_added: 2024-09-02 18:54:00 America/Los_Angeles
   uuid: eaa1474d-6945-4991-8132-cef009b0fd58
   year_released: 1998
+  tags:
+    - mature
 # objects transparency issues on latest wine: https://hehabuctb.blogspot.com/2016/01/linux-wine.html
 # fix transparency and fonts issues before releasing
 # can't run old wine (1.6.2.-petka) on modern Debian
