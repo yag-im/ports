@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-    - changeme
+      - changeme
     format: changeme
     url: exoscummvm
   igdb_slug: elvira-ii-the-jaws-of-cerberus
   lang: en
   media_assets:
-  name: 'Elvira II: The Jaws of Cerberus'
+  name: "Elvira II: The Jaws of Cerberus"
   platform: dos
   publisher: Accolade
   refs:
