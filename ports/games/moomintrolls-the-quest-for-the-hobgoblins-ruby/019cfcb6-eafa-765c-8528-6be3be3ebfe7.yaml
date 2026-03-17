@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Mumintrollen - Jakten pa trollkarlens rubin (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Mumintrollen%20-%20Jakten%20pa%20trollkarlens%20rubin%20%28Sweden%29.zip
+  igdb_slug: moomintrolls-the-quest-for-the-hobgoblins-ruby
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cfcb6-eafa-765c-8528-6be3be3ebfe7
+    screenshots: []
+  name: "Mummitrollet: Jakten på Trollmannens Rubin"
+  platform: win
+  publisher: Nordic Softsales AB
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 246856
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 12
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cfcb6-eafa-765c-8528-6be3be3ebfe7
+  year_released: 1998
+  tags:
+    - kids
+    - moomins
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Mumin3.EXE'

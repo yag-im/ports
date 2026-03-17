@@ -28,6 +28,7 @@ descr:
   uuid: 019cf37a-37f1-7ec7-99b4-749dc292faac
   year_released: 1999
   tags:
+    - kids
 installer:
   tasks:
     - copy_src_cd_images:

@@ -26,6 +26,7 @@ descr:
   uuid: 019cee21-d416-7704-a904-69737a862a3c
   year_released: 2001
   tags:
+    - kids
 installer:
   tasks:
     - extract:

@@ -29,6 +29,8 @@ descr:
   uuid: 019cf9d1-6326-74b1-a7a2-72c8ee0c97a7
   year_released: 1996
   tags:
+    - kids
+    - moomins
 installer:
   tasks:
     - copy_src_cd_images:
