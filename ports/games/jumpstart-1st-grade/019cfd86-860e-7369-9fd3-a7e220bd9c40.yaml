@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Flygande Start - Foersta Klass (Sweden).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/F/Flygande%20Start%20-%20Foersta%20Klass%20%28Sweden%29.zip
+  igdb_slug: jumpstart-1st-grade
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cfd86-860e-7369-9fd3-a7e220bd9c40
+    screenshots: []
+  name: Flygande Start - Foersta Klass
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: jumpstart-1st-grade
+    mg_id: 26222
+    pcgw_id: JumpStart_1st_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cfd86-860e-7369-9fd3-a7e220bd9c40
+  year_released: 1995
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\FG.EXE'
