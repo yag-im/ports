@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Flygande Start - Andra klass (Sweden) (1997).cue
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/F/Flygande%20Start%20-%20Andra%20klass%20%28Sweden%29%20%281997%29.zip
+  igdb_slug: jumpstart-2nd-grade
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cfd62-bd08-71ca-8494-3a8773922dd4
+    screenshots: []
+  name: "Flygande Start: Andra Klass"
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: jumpstart-2nd-grade
+    mg_id: 17718
+    pcgw_id: JumpStart_2nd_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cfd62-bd08-71ca-8494-3a8773922dd4
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\2G.EXE'
