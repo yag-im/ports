@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Are You Afraid of the Dark - The Tale of Orpheo's Curse (USA, Europe).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/A/Are%20You%20Afraid%20of%20the%20Dark%20-%20The%20Tale%20of%20Orpheo%27s%20Curse%20%28USA%2C%20Europe%29.zip
+  igdb_slug: are-you-afraid-of-the-dark-the-tale-of-orpheo-s-curse
+  lang: en
+  media_assets:
+  name: Are You Afraid of the Dark? The Tale of Orpheo's Curse
+  platform: dos
+  publisher: Viacom New Media
+  refs:
+    ag_id: are-you-afraid-of-the-dark-the-tale-of-orpheos-curse
+    lutris_id: are-you-afraid-of-the-dark-the-tale-of-orpheo-s-curse
+    mg_id: 9583
+    pcgw_id: Are_You_Afraid_of_the_Dark%3F_The_Tale_of_Orpheo%27s_Curse
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019cf975-0769-75d4-8f50-636244877f7b
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - md:
+              path: "{APP_DIR}"
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\AFRAID'
+              args:
+                - '{FIRST_CD_DRIVE}\AFRAID.DTA'
+                - '-dp'
+                - '{APP_DIR}'
