@@ -1,7 +1,7 @@
 descr:
   distro:
     files:
-    - changeme
+      - changeme
     format: changeme
     url: exoscummvm
   igdb_slug: plumbers-don-t-wear-ties

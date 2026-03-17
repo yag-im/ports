@@ -1,7 +1,7 @@
 descr:
   distro:
     files:
-    - changeme
+      - changeme
     format: CD
     url: exoscummvm
   igdb_slug: fascination

@@ -1,7 +1,7 @@
 descr:
   distro:
     files:
-    - changeme
+      - changeme
     format: Floppy
     url: exoscummvm
   igdb_slug: rex-nebular-and-the-cosmic-gender-bender
