@@ -1,15 +1,18 @@
 descr:
   distro:
     files:
-      - 3RDADV.iso
+      - Äventyrana.bin
     format: 1CD
-    url: https://archive.org/download/cluefinders3rd/3RDADV.iso
+    url: https://archive.org/details/aventyrarna-trean-regnskogsmysteriet
   igdb_slug: the-cluefinders-3rd-grade-adventures-the-mystery-of-mathra
-  lang: en
+  lang: sv
   media_assets:
-  name: "The ClueFinders 3rd Grade Adventures: The Mystery of Mathra"
+    cover:
+      image_id: 019cfeac-6e85-74c9-8c8b-9a0504a672b7
+    screenshots: []
+  name: "Äventyrarna Trean: Regnskogsmysteriet"
   platform: win
-  publisher: The Learning Company
+  publisher: Mindscape
   refs:
     ag_id:
     lutris_id: the-cluefinders-3rd-grade-adventures-the-mystery-of-mathra
@@ -24,8 +27,7 @@ descr:
   runner:
     name: dosbox-x
     ver: 2025.12.01
-  ts_added: 2026-02-12 16:37:29 America/Los_Angeles
-  uuid: fad50619-6baf-46c4-8cb0-5bc25fd78f2e
+  uuid: 019cfeac-6e85-74c9-8c8b-9a0504a672b7
   year_released: 1998
   tags:
     - cluefinders
@@ -42,4 +44,4 @@ installer:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\3rdadv32.exe'
+              path: '{APP_DIR}\avt3an32.exe'
