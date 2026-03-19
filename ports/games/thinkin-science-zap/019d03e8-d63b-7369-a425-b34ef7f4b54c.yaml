@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Thinkin' Science Series - Zap! (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/T/Thinkin%27%20Science%20Series%20-%20Zap%21%20%28USA%29.zip
+    # v1.0
+  igdb_slug: thinkin-science-zap
+  lang: en
+  media_assets:
+  name: "Thinkin' Science Series: Zap!"
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: thinkin-science-zap
+    mg_id: 16243
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d03e8-d63b-7369-a425-b34ef7f4b54c
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 10 # uses 4MB
+        flavor: WIN95OSR25 # unhandled exception in WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ZAP.EXE'
