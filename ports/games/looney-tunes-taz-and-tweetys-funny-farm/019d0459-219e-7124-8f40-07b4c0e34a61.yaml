@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Looney Tunes - Taz and Tweety's Funny Farm (The Learning Company)(1999).ISO
+    format: 1CD
+    url: https://archive.org/download/Looney_Tunes_Taz_and_Tweetys_Funny_Farm_The_Learning_Company_1999/Looney%20Tunes%20-%20Taz%20and%20Tweety%27s%20Funny%20Farm%20%28The%20Learning%20Company%29%281999%29.ISO
+  igdb_slug: looney-tunes-taz-and-tweetys-funny-farm
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d0459-219e-7124-8f40-07b4c0e34a61
+    screenshots: []
+  name: Looney Tunes Taz and Tweety's Funny Farm
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d0459-219e-7124-8f40-07b4c0e34a61
+  year_released: 1999
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # app_drive_size: 200 # uses 170MB
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX7.0
+          - gen_run_script:
+              path: '{APP_DIR}\Create A World - Funny Farm.exe'
+              args:
+                - English
