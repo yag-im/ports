@@ -46,3 +46,4 @@ installer:
           - gen_run_script:
               path: '{APP_DIR}\PYRAMID.EXE'
               exit: false
+# TODO: move under "Pyramid: Challenge of the Pharaoh's Dream" EN title
