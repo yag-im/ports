@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - JumpStart Animal Adventures (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/J/JumpStart%20Animal%20Adventures%20%28USA%29.zip
+  igdb_slug: jumpstart-animal-adventures
+  lang: en
+  media_assets:
+  name: "JumpStart: Animal Adventures"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-animal-adventures
+    mg_id: 28910
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d0737-6f55-72a5-b373-3b4cf5ed00b1
+  year_released: 2002
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe' # QT5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JumpStart Animal Adventures\JSAnimals.exe'
