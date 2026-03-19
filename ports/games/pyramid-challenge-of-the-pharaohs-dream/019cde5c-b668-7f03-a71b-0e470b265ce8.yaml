@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - PYRAMID1.bin
+      - PYRAMID2.bin
+    format: 2CD
+    url: https://archive.org/details/pyramiden-gatan-vid-nilens-strand/
+  igdb_slug: pyramid-challenge-of-the-pharaohs-dream
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019cde5c-b668-7f03-a71b-0e470b265ce8
+    screenshots: []
+  name: "Pyramiden: Gåtan vid Nilens Strand"
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: pyramid-challenge-of-the-pharaohs-dream
+    mg_id: 43077
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019cde5c-b668-7f03-a71b-0e470b265ce8
+  year_released: 1996
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+                - "{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\PYRAMID.EXE'
+              exit: false

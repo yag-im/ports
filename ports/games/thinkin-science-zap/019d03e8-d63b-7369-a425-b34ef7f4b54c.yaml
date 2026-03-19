@@ -27,6 +27,7 @@ descr:
   uuid: 019d03e8-d63b-7369-a425-b34ef7f4b54c
   year_released: 1998
   tags:
+    - kids
 installer:
   tasks:
     - copy_src_cd_images:

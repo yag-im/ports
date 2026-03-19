@@ -1,23 +1,23 @@
 descr:
   distro:
     files:
-      - PYRAMID1.bin
-      - PYRAMID2.bin
+      - Pyramiden - Faraoens store drøm D1.iso
+      - Pyramiden - Faraoens store drøm D2.iso
     format: 2CD
-    url: https://archive.org/details/pyramiden-gatan-vid-nilens-strand/
-  igdb_slug: pyramiden-gatan-vid-nilens-strand
-  lang: sv
+    url: https://archive.org/details/pyramiden-faraoens-store-drom-d-2
+  igdb_slug: pyramid-challenge-of-the-pharaohs-dream
+  lang: nb
   media_assets:
     cover:
-      image_id: 019cde5c-b668-7f03-a71b-0e470b265ce8
+      image_id: 019d0424-69cb-7f40-8ad6-36a161e5229a
     screenshots: []
-  name: "Pyramiden: Gåtan vid Nilens Strand"
+  name: "Pyramiden: Faraoens store drøm"
   platform: win
-  publisher: Levande Böcker
+  publisher: Knowledge Adventure
   refs:
     ag_id:
-    lutris_id:
-    mg_id:
+    lutris_id: pyramid-challenge-of-the-pharaohs-dream
+    mg_id: 43077
     pcgw_id:
     qz_id:
   reqs:
@@ -27,9 +27,10 @@ descr:
   runner:
     name: dosbox-x
     ver: 2025.12.01
-  uuid: 019cde5c-b668-7f03-a71b-0e470b265ce8
+  uuid: 019d0424-69cb-7f40-8ad6-36a161e5229a
   year_released: 1996
   tags:
+    - kids
 installer:
   tasks:
     - copy_src_cd_images:
@@ -46,4 +47,3 @@ installer:
           - gen_run_script:
               path: '{APP_DIR}\PYRAMID.EXE'
               exit: false
-# TODO: move under "Pyramid: Challenge of the Pharaoh's Dream" EN title
