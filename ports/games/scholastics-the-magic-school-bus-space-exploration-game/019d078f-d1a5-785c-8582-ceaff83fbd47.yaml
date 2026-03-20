@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Magic School Bus, The (5) [!].bin
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/482c4b99-037d-4d33-b101-bcb27b406a99/Scholastics-The-Magic-School-Bus-Space-Exploration-Game_Genesis_EN.zip
+  igdb_slug: scholastics-the-magic-school-bus-space-exploration-game
+  lang: en
+  media_assets:
+  name: "Scholastic's The Magic School Bus: Space Exploration Game"
+  platform: genesis-slash-megadrive
+  publisher: Sega
+  refs:
+    ag_id:
+    lutris_id: scholastics-the-magic-school-bus-space-exploration-game
+    mg_id: 39525
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: "1.21.0"
+  uuid: 019d078f-d1a5-785c-8582-ceaff83fbd47
+  year_released: 1995
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}"
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: genesis_plus_gx
+              file: "{descr[distro][files][0]}"
