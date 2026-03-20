@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Trazan & Banarne.iso
+    format: 1CD
+    url: https://archive.org/download/trazan-banarne_202504/Trazan%20%26%20Banarne.iso
+  igdb_slug: trazan-and-banarne-presenterar-speltajm
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d0c75-fef0-7d1c-a204-641d3662695e
+    screenshots: []
+  name: "Trazan & Banarne presenterar: Speltajm"
+  platform: win
+  publisher: Vision Park AB
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d0c75-fef0-7d1c-a204-641d3662695e
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\QuickTime\Installera QuickTime.exe' # QT4
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Trazan & Banarne.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Trazan & Banarne\Trazan & Banarne.exe'
