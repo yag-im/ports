@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Julens Hjaeltar (Sweden).bin
+    format: 1CD
+    url: https://archive.org/details/julens-hjaltar
+  igdb_slug: julens-hjaltar
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d0e30-689a-76d0-928f-b1ae84fe4b85
+    screenshots: []
+  name: Julens Hjältar
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 37786
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d0e30-689a-76d0-928f-b1ae84fe4b85
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\SETUP.EXE' # QT4
+              exit: false # TODO: rename exec and dir to '{APP_DIR}\julens\julens.exe' because of SV characters in filename
+          - gen_run_script:
+              path: '{APP_DIR}\julens\julens.exe'
