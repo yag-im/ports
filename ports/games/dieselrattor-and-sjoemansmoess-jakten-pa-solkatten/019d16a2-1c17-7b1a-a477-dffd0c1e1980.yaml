@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - Dieselrattor & Sjoemansmoess - Jakten pa solkatten (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/D/Dieselrattor%20%26%20Sjoemansmoess%20-%20Jakten%20pa%20solkatten%20%28Sweden%29.zip
+  igdb_slug: dieselrattor-and-sjoemansmoess-jakten-pa-solkatten
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d16a2-1c17-7b1a-a477-dffd0c1e1980
+    screenshots: []
+  name: "Dieselråttor & Sjömansmöss: Jakten på Solkatten"
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine # sound distortion in qemu\xp\win98
+    ver: "10.0"
+  uuid: 019d16a2-1c17-7b1a-a477-dffd0c1e1980
+  year_released: 2002
+  tags:
+    - edutainment
+    - kids
+    - julkalender
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{APP_DRIVE_LETTER}"
+        files:
+          - "Program/QuickTime" # all files in this folder are required
+    - wine:
+        tasks:
+          - run:
+              path: '{APP_DRIVE}\QuickTime\QuickTimeInstaller.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Media\Dieselråttor & Sjömansmöss.exe'
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - "Filer/*"
+    - copy:
+        src: "{PORT_FILES_DIR}/dieselrattor.dir" # APP dir ptr
+        dest: "{DEST_DIR}/.wine/drive_c/windows"
