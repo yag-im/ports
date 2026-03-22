@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - ClueFinders, The - Math Ages 9-12 (USA) (Rev 1).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/C/ClueFinders%2C%20The%20-%20Math%20Ages%209-12%20%28USA%29%20%28Rev%201%29.zip
+    # v1.0 (rev1)
+  igdb_slug: cluefinders-math-adventures-mystery-of-the-himalayas
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d166d-50be-7aca-b88e-f1c4d3ce8f60
+    screenshots: []
+  name: "The ClueFinders' Math Ages 9-12"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: cluefinders-math-adventures-mystery-of-the-himalayas
+    mg_id: 119962
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d166d-50be-7aca-b88e-f1c4d3ce8f60
+  year_released: 1998
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 25 # uses 18
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\tcfm32.exe'
