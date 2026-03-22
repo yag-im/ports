@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - I Spy School Days (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/I/I%20Spy%20School%20Days%20%28USA%29.zip
+  igdb_slug: i-spy-school-days
+  lang: en
+  media_assets:
+  name: I Spy School Days
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: i-spy-school-days
+    mg_id: 81742
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x # because of 256-color warning in qemu\XP
+    ver: 2025.12.01
+  uuid: 019d168c-8550-7000-855e-e9d1fddbdc2d
+  year_released: 2000
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\runISPY.exe'
+              exit: false # runs in bg
