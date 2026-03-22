@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - NKSCD98.ISO
+    format: 1CD
+    url: https://archive.org/download/narkarusellernasover/Files/NKSCD98.ISO
+  igdb_slug: nar-karusellerna-sover
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d13d5-10a2-71d8-b026-6754fd053efe
+    screenshots: []
+  name: När Karusellerna Sover
+  platform: win
+  publisher: Svt
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # black screen when starting from dosbox-x system.ini without explorer.exe
+    ver: latest
+  uuid: 019d13d5-10a2-71d8-b026-6754fd053efe
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\NKSStart.exe'
+              exit: false # runs in background
