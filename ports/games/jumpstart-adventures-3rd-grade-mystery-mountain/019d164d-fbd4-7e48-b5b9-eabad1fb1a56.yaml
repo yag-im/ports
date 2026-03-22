@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Flygande Start - Aeventyr fran 3-e Klass (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/F/Flygande%20Start%20-%20Aeventyr%20fran%203-e%20Klass%20%28Sweden%29.zip
+  igdb_slug: jumpstart-adventures-3rd-grade-mystery-mountain
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d164d-fbd4-7e48-b5b9-eabad1fb1a56
+    screenshots: []
+  name: Flygande Start 3:e Klass
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: jumpstart-adventures-3rd-grade-mystery-mountain
+    mg_id: 17720
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 30
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d164d-fbd4-7e48-b5b9-eabad1fb1a56
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # requires 10
+        flavor: WIN95OSR25 # reported sign in issue in WIN311 EN: https://discord.com/channels/1251206620822638684/1480967710367285268/1480970370554265724
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\3G.EXE'
