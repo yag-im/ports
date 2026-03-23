@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - MULLEBAT (Windows).iso
+    format: 1CD
+    url: https://archive.org/download/mulle-meck-batar/MULLEBAT%20%28Windows%29.iso
+  igdb_slug: bygg-batar-med-mulle-meck
+  lang: sv
+  media_assets:
+  name: Bygg Båtar med Mulle Meck
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: bygg-batar-med-mulle-meck
+    mg_id: 65424
+    pcgw_id: Bygg_Båtar_med_Mulle_Meck
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d18a0-ac76-72d6-8ebd-4d1b1fa2e0d1
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX6
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Mullebat.exe'
