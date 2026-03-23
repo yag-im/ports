@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Bjoernes Magasin (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/B/Bjoernes%20Magasin%20%28Sweden%29.zip
+  igdb_slug: bjornes-magasin
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d188c-3aea-73a7-a5fb-4c73ded169ec
+    screenshots: []
+  name: Björnes Magasin
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: bjornes-magasin
+    mg_id: 32382
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d188c-3aea-73a7-a5fb-4c73ded169ec
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Björne.exe' # QT5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Bjorne.exe' # TODO: rename exec from Björne.exe to Bjorne.exe
