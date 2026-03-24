@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Chefren's Pyramid (Sweden) (En,Fr,De,It,Nl,Sv,No,Da,Fi,Is) (v3.2) (Education License).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/C/Chefren%27s%20Pyramid%20%28Sweden%29%20%28En%2CFr%2CDe%2CIt%2CNl%2CSv%2CNo%2CDa%2CFi%2CIs%29%20%28v3.2%29%20%28Education%20License%29.zip
+    # v3.2
+  igdb_slug: chefrens-pyramid
+  lang: sv
+  media_assets:
+  name: Chefrens Pyramid
+  platform: win
+  publisher: Alega Skolmateriel AB
+  refs:
+    ag_id:
+    lutris_id: chefrens-pyramid
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # install warn when set to 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # in dosbox-x win9x error message when clicking on paper inside the pyramid: "Upgraded from wrong version"
+    ver: latest
+  uuid: 019d1dba-5723-7fe3-b5c8-7828df243cd3
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        # 2MB min install
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Chefren3.exe'
