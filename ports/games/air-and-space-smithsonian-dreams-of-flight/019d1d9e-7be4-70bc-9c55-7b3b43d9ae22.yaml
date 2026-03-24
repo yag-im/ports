@@ -34,7 +34,7 @@ installer:
     - copy_src_cd_images:
     - dosbox:
         flavor: WIN311
-        app_drive_size: 10 # uses 1.5MB
+        # app_drive_size: 10 # uses 1.5MB
         tasks:
           - mount:
               src: "{DEST_DIR}"
