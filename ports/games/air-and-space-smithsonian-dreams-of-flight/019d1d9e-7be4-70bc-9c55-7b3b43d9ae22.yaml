@@ -40,7 +40,7 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 2.03, skip install
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 2.03, skip install as we have 2.1.2 in WIN311
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\DOF.EXE'

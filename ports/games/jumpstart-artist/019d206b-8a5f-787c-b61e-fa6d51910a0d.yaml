@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - JumpStart Artist (USA) (v1.10).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/J/JumpStart%20Artist%20%28USA%29%20%28v1.10%29.zip
+    # v1.10
+  igdb_slug: jumpstart-artist
+  lang: en
+  media_assets:
+  name: JumpStart Artist
+  platform: win
+  publisher: Knowledge Adventure Inc.
+  refs:
+    ag_id:
+    lutris_id: jumpstart-artist
+    mg_id: 209950
+    pcgw_id: JumpStart_Artist
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d206b-8a5f-787c-b61e-fa6d51910a0d
+  year_released: 2005
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # 15MB min install
+        flavor: WIN98SE # black screen in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "EXPLORER.EXE"
+              exit: false # TODO: INSTALL.EXE won't start without EXPLORER
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          #     exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Jsartist\JSArtist.exe'
