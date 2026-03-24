@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - dof.iso
+    format: 1CD
+    url: https://archive.org/download/dof_20210410/dof.iso
+  igdb_slug: air-and-space-smithsonian-dreams-of-flight
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d1d9e-7be4-70bc-9c55-7b3b43d9ae22
+    screenshots: []
+  name: Air and Space Smithsonian Dreams of Flight
+  platform: win
+  publisher: Creative Multimedia Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d1d9e-7be4-70bc-9c55-7b3b43d9ae22
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        app_drive_size: 10 # uses 1.5MB
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 2.03, skip install
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\DOF.EXE'
