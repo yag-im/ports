@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Robinson (Scandinavia) (Sv,Fi).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Robinson%20%28Scandinavia%29%20%28Sv%2CFi%29.zip
+  igdb_slug: new-robinson
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d20eb-052f-7415-9bfa-65677938d25b
+    screenshots: []
+  name: Robinson
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id: new-robinson
+    mg_id: 225769
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d20eb-052f-7415-9bfa-65677938d25b
+  year_released: 2000
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # TODO: blinking cursor
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE' # DX6
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Robinson\ROBY.EXE'
+# qemu: black screen in XP, blinking cursor in WIN98SE;
+# dosbox-x: win9x: hang in menu
+# wine: render device access issues
