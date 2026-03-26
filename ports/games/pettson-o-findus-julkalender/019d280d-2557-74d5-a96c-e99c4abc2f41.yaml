@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Pettson o Findus - Julkalender (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/P/Pettson%20o%20Findus%20-%20Julkalender%20%28Sweden%29.zip
+  igdb_slug: pettson-o-findus-julkalender
+  lang: sv
+  media_assets:
+  name: "Pettson o Findus: Julkalender"
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: pettson-o-findus-julkalender
+    mg_id:
+    pcgw_id: Pettson_o_Findus_julkalender
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d280d-2557-74d5-a96c-e99c4abc2f41
+  year_released: 1997
+  tags:
+    - edutainment
+    - kids
+    - julkalender
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PETWIN3.EXE'
