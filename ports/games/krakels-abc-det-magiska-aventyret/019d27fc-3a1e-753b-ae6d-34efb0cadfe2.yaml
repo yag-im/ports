@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Krakels ABC - Det Magiska Aventyret (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/K/Krakels%20ABC%20-%20Det%20Magiska%20Aventyret%20%28Sweden%29.zip
+    # age: 8-10
+  igdb_slug: krakels-abc-det-magiska-aventyret
+  lang: sv
+  media_assets:
+  name: "Krakels ABC: Det Magiska Äventyret"
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: krakels-abc-det-magiska-aventyret
+    mg_id: 188109
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # readme
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d27fc-3a1e-753b-ae6d-34efb0cadfe2
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX6
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\KRAKEL3.EXE'
