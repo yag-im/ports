@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Inget Knussel, Sa Emil i Loenneberga (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/I/Inget%20Knussel%2C%20Sa%20Emil%20i%20Loenneberga%20%28Sweden%29.zip
+  igdb_slug: inget-knussel-sa-emil-i-lonneberga--1
+  lang: sv
+  media_assets:
+  name: Inget Knussel, Sa Emil I Lönneberga
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: inget-knussel-sa-emil-i-lonneberga--1
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d2804-ea71-7b74-a912-5f00a9a590b0
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\EMIL16.EXE'
