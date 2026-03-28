@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit's Thinking Adventures Ages 4-6 (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Reader%20Rabbit%27s%20Thinking%20Adventures%20Ages%204-6%20%28USA%29.zip
+  igdb_slug: reader-rabbit-thinking-adventures-ages-4-6
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d3533-8876-7b10-a75c-1aadf47dfc8d
+    screenshots: []
+  name: "Reader Rabbit: Thinking Adventures Ages 4-6"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-thinking-adventures-ages-4-6
+    mg_id: 146221
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d3533-8876-7b10-a75c-1aadf47dfc8d
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # DX5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\rrta32.exe'
+              exit: false
