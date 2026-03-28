@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Pettsons julspel (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/P/Pettsons%20julspel%20%28Sweden%29.zip
+  igdb_slug: pettsons-julspel
+  lang: en
+  media_assets:
+  name: Pettsons julspel
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: pettsons-julspel
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # MSVCRT DLL error on startup in dosbox-x WIN95OSR25
+    ver: latest
+  uuid: 019d3557-80a0-776a-9a45-23cd54e12140
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\julstart.exe'
