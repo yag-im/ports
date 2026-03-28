@@ -45,4 +45,3 @@ installer:
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\rrta32.exe'
-              exit: false
