@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - TYPE_TO_LEARN.ISO
+    format: 1CD
+    url: https://archive.org/download/type-to-learn/TYPE_TO_LEARN.ISO
+  igdb_slug: type-to-learn
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d3b6c-331e-7e4b-8ec8-b9cd9aa1b5a3
+    screenshots: []
+  name: Type to Learn
+  platform: win
+  publisher: Sunburst Communications
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # reqs on cd cover
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d3b6c-331e-7e4b-8ec8-b9cd9aa1b5a3
+  year_released: 1999
+  tags:
+    - kids
+    - educational
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\EXECCD.EXE'
+              args: '{FIRST_CD_DRIVE}\TYPE\typeh16.exe'
+              exit: false
