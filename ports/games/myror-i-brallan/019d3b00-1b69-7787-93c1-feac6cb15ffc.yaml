@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Myror i Brallan (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Myror%20i%20Brallan%20%28Sweden%29.zip
+  igdb_slug: myror-i-brallan
+  lang: en
+  media_assets:
+  name: Myror i Brallan
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id: myror-i-brallan
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # app warn on startup
+    color_bits: 32
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d3b00-1b69-7787-93c1-feac6cb15ffc
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MIBStart.exe'
+              exit: false # otherwise exits after intro, or run MIBData\MIB.EXE directly
