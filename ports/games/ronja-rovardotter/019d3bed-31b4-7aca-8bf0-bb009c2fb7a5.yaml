@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - RONJA.iso
+    format: 1CD
+    url: https://archive.org/download/ronja_202211/RONJA.iso
+  igdb_slug: ronja-rovardotter
+  lang: sv
+  media_assets:
+  name: Ronja Rövardotter
+  platform: win
+  publisher: Rabén Multimedia
+  refs:
+    ag_id:
+    lutris_id: ronja-rovardotter
+    mg_id: 41823
+    pcgw_id: Ronja_Rövardotter
+    qz_id: 496
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine # crashes on start in dosbox-x and qemu in all flavors
+    ver: "11.0"
+  uuid: 019d3bed-31b4-7aca-8bf0-bb009c2fb7a5
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # DX6
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\GAME.EXE'
