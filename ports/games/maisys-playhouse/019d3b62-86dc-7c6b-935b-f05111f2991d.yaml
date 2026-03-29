@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Maisy's Playhouse (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/M/Maisy%27s%20Playhouse%20%28USA%29.zip
+  igdb_slug: maisys-playhouse
+  lang: en
+  media_assets:
+  name: Maisy's Playhouse
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id: maisys-playhouse
+    mg_id: 32367
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d3b62-86dc-7c6b-935b-f05111f2991d
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Maisy1\Maisy.exe'
+              args:
+                - Data.mfx
