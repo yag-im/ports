@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit - 1st Grade - Capers on Cloud Nine! (USA).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/R/Reader%20Rabbit%20-%201st%20Grade%20-%20Capers%20on%20Cloud%20Nine%21%20%28USA%29.zip
+    # v1.0
+  igdb_slug: reader-rabbit-1st-grade-capers-on-cloud-nine
+  lang: en
+  media_assets:
+  name: "Reader Rabbit 1st Grade: Capers on Cloud Nine"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-1st-grade-capers-on-cloud-nine
+    mg_id: 86773
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d3b13-2c8b-7a5d-8ead-31b4d3010424
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # blank screen in XP
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\1st Grade Capers on Cloud Nine.exe'
