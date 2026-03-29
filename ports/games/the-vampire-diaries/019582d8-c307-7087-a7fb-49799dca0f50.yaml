@@ -1,0 +1,62 @@
+descr:
+  distro:
+    files:
+      - DISK_1.ISO
+      - DISK_2.ISO
+      - DISK_3.ISO
+    format: 3CD
+    url: https://archive.org/details/disk-3_20250827
+  igdb_slug: the-vampire-diaries
+  lang: en
+  media_assets:
+  name: The Vampire Diaries
+  platform: win
+  publisher: American Laser Games
+  refs:
+    ag_id: the-vampire-diaries
+    lutris_id: the-vampire-diaries
+    mg_id: 24234
+    pcgw_id: The_Vampire_Diaries
+    qz_id: 130
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  uuid: 019582d8-c307-7087-a7fb-49799dca0f50
+  year_released: 1996
+  tags:
+    - fmv
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CDSOUND
+          - CDVIDEO
+          - HDSOUND
+          - HDVIDEO
+          - ART
+          - FONT
+          - IFF
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CDSOUND
+          - CDVIDEO
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CDSOUND
+          - CDVIDEO
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=The_Vampire_Diaries
+        tasks:
+          - gen_run_script:
+              game: nancy:vampirediaries
+              path: "{DEST_APP_DIR}"
