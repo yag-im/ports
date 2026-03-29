@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Secret Island of Dr. Quandary, The (Europe).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/S/Secret%20Island%20of%20Dr.%20Quandary%2C%20The%20%28Europe%29.zip
+    # v1.0
+  igdb_slug: the-secret-island-of-dr-quandary
+  lang: en
+  media_assets:
+  name: The Secret Island of Dr. Quandary
+  platform: dos
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id: the-secret-island-of-dr-quandary
+    mg_id: 30065
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019d3b22-0f11-7aa1-8b08-2c2c3628bf1f
+  year_released: 1995
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\QISLAND.EXE'
