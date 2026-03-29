@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Mavis Beacon Teaches Typing 8 (Education Properties)(2001).ISO
+    format: 1CD
+    url: https://www.myabandonware.com/game/mavis-beacon-teaches-typing-version-8-t96
+  igdb_slug: mavis-beacon-teaches-typing-version-8
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d374e-fbbb-7c6d-886e-fa67d0697a0b
+    screenshots: []
+  name: Mavis Beacon Teaches Typing Version 8
+  platform: win
+  publisher: Mindscape
+  refs:
+    ag_id:
+    lutris_id: mavis-beacon-teaches-typing-version-8
+    mg_id: 103825
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # choppy sound in dosbox-x in both win311 and win9x
+    ver: latest
+  uuid: 019d374e-fbbb-7c6d-886e-fa67d0697a0b
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # app_drive_size: 30 # uses 25MB
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\mavis.exe'
