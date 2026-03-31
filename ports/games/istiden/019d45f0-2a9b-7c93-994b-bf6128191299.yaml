@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Istiden (Sweden).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/I/Istiden%20%28Sweden%29.zip
+  igdb_slug: istiden
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d45f0-2a9b-7c93-994b-bf6128191299
+    screenshots: []
+  name: Istiden
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 49133
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d45f0-2a9b-7c93-994b-bf6128191299
+  year_released: 2002
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\Istiden\Istiden.exe'
