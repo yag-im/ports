@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Drakulas hemlighet (Sweden) (Rerelease).bin
+    format: 1CD
+    url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/D/Drakulas%20hemlighet%20%28Sweden%29%20%28Rerelease%29.zip
+  igdb_slug: draculas-secret
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d4612-4994-71ee-bad2-db7d1e788530
+    screenshots: []
+  name: Drakulas Hemlighet
+  platform: win
+  publisher: Hoffmann + Associates Inc.
+  refs:
+    ag_id:
+    lutris_id: draculas-secret
+    mg_id: 20754
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d4612-4994-71ee-bad2-db7d1e788530
+  year_released: 1998
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DRACULA.EXE'
