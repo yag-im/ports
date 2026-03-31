@@ -35,7 +35,6 @@ installer:
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
     - wine:
-        flavor: WINXPSP3
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

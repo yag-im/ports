@@ -37,6 +37,6 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE}Setup.exe"
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
           - gen_run_script:
               path: '{APP_DIR}\Agent.exe'
