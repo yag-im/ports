@@ -12,7 +12,7 @@ descr:
   publisher: Knowledge Adventure
   refs:
     ag_id:
-    lutris_id:
+    lutris_id: jumpstart-math-for-second-graders
     mg_id: 76811
     pcgw_id: JumpStart_2nd_Grade_Math
     qz_id:
@@ -20,18 +20,21 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 8
   runner:
     name: dosbox-x
     ver: 2025.12.01
-  ts_added: 2026-02-12 15:15:15 America/Los_Angeles
-  uuid: ed961b3e-8fe2-425b-86b0-ef4393da5d1e
+  uuid: 019c526b-afb8-725b-86b0-ef4393da5d1e
   year_released: 1997
   tags:
+    - kids
+    - edutainment
 installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        app_drive_size: 25 # uses 16MB
+        flavor: WIN95OSR25 # reported crash in WIN311: https://discord.com/channels/1251206620822638684/1251209459271860277/1489371742500683838
         tasks:
           - mount:
               src: "{DEST_DIR}"
