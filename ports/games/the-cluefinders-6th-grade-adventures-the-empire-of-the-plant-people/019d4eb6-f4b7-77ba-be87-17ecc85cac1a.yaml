@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - CFsixth.iso
+    format: 1CD
+    url: https://archive.org/download/CFsixth/CFsixth.iso
+  igdb_slug: the-cluefinders-6th-grade-adventures-the-empire-of-the-plant-people
+  lang: en
+  media_assets:
+  name: "The ClueFinders 6th Grade Adventures: The Empire of the Plant People"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-cluefinders-6th-grade-adventures-the-empire-of-the-plant-people
+    mg_id: 44742
+    pcgw_id: The_ClueFinders_6th_Grade_Adventures:_Empire_of_the_Plant_People
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d4eb6-f4b7-77ba-be87-17ecc85cac1a
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 30 # uses 20
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 6.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CF6.exe'
+
+# TODO: BSODs on the first run as many other games in this series.
