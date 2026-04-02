@@ -22,8 +22,8 @@ descr:
     screen_width: 640
     loading_duration: 10
   runner:
-    name: dosbox-x
-    ver: 2025.12.01
+    name: qemu # slow in dosbox-x
+    ver: latest
   uuid: 019d4eb6-f4b7-77ba-be87-17ecc85cac1a
   year_released: 1999
   tags:
@@ -32,9 +32,9 @@ descr:
 installer:
   tasks:
     - copy_src_cd_images:
-    - dosbox:
-        app_drive_size: 30 # uses 20
-        flavor: WIN95OSR25
+    - qemu:
+        #app_drive_size: 30 # uses 20
+        flavor: WINXPSP3
         tasks:
           - mount:
               src: "{DEST_DIR}"
@@ -45,4 +45,4 @@ installer:
           - gen_run_script:
               path: '{APP_DIR}\CF6.exe'
 
-# TODO: BSODs on the first run as many other games in this series.
+# dosbox-x TODO: BSODs on the first run as many other games in this series.
