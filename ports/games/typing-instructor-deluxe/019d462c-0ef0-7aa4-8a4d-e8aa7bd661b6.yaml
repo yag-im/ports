@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - typing istructor deluxe 17 setup.zip
+    format: 1CD
+    url: https://archive.org/details/typing-istructor-deluxe-17-typer-shark-abyss # v17
+    # url: https://myrient.erista.me/files/Redump/IBM%20-%20PC%20compatible/T/Typing%20Instructor%20Deluxe%20%28USA%29.zip
+    # v7
+    # corrupts the registry on the first run and fails to start on the second - virus?
+  igdb_slug: typing-instructor-deluxe
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d462c-0ef0-7aa4-8a4d-e8aa7bd661b6
+    screenshots: []
+  name: Typing Instructor Deluxe
+  platform: win
+  publisher: Individual Software
+  refs:
+    ag_id:
+    lutris_id: typing-instructor-deluxe
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d462c-0ef0-7aa4-8a4d-e8aa7bd661b6
+  year_released: 2009
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - extract:
+              src: "{SRC_DIR}/{descr[distro][files][0]}"
+              dest: "{APP_DRIVE}"
+          - run:
+              path: '{APP_DRIVE}\TypingInstructor\setup.exe'
+              exit: false
+          # TODO: rm '{APP_DRIVE}\TypingInstructor' after full install to save space
+          - gen_run_script:
+              path: '{APP_DIR}\TypingInstructor.exe'
+# in dosbox-x win95, fails with an "IE 4.1 is required" error
+# TODO: in qemu and wine most of the games are crashing
