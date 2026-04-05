@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - MSBSOLAR.iso
+    format: 1CD
+    url: https://archive.org/download/MSBSOLAR/MSBSOLAR.iso
+  igdb_slug: the-magic-school-bus-explores-the-solar-system
+  lang: en
+  media_assets:
+  name: The Magic School Bus Explores the Solar System
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-the-solar-system
+    mg_id: 81741
+    pcgw_id: Scholastic%27s_The_Magic_School_Bus_Explores_the_Solar_System
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d5e80-8eff-72e3-bb2a-575dd27c59f6
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MSBSOLAR\msbsolar.exe'
