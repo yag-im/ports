@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Rummel & Rabalder - Jakten pa Kapten Hanssons Guld (Sweden) (Rerelease) (2001-01-19).bin
+    format: 1CD
+    url: https://archive.org/details/rummel-rabalder-jakten-pa-kapten-hanssons-guld-sweden-rerelease-2001-01-19
+  igdb_slug: rummel-and-rabalder-jakten-pa-kapten-hanssons-guld
+  lang: sv
+  media_assets:
+  name: "Rummel & Rabalder: Jakten på Kapten Hanssons Guld"
+  platform: win
+  publisher: 4vision
+  refs:
+    ag_id:
+    lutris_id: rummel-and-rabalder-jakten-pa-kapten-hanssons-guld
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d5f9d-826c-7649-b9e8-f4f627193172
+  year_released: 2001
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # "surface creation failed" error in WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ROR.EXE'
