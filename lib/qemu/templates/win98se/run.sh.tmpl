@@ -9,8 +9,9 @@ qemu-system-x86_64 \
   -enable-kvm \
   -cpu "${cpu}" \
   -m ${memory} \
+  -M pc,hpet=off,acpi=on,usb=on,accel=kvm \
   -display ${display} \
-  -device VGA \
+  -device VGA,vgamem_mb=64 \
   -audiodev pa,id=pa1 \
   -device ${audiodev},audiodev=pa1 \
 % if 'pointerdev' in locals() and pointerdev not in (None, ''):

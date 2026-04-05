@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - jonssonligan_jakten_pa_mjolner.iso
+    format: 1CD
+    url: https://archive.org/download/jonssonligan_jakten_pa_mjolner/jonssonligan_jakten_pa_mjolner.iso
+  igdb_slug: jonssonligan-jakten-pa-mjolner
+  lang: sv
+  media_assets:
+  name: "Jönssonligan: Jakten på Mjölner"
+  platform: win
+  publisher: IQ Media Nordic
+  refs:
+    ag_id:
+    lutris_id: jonssonligan-jakten-pa-mjolner
+    mg_id: 69698
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d5988-3eff-701c-b6f8-bea733a31709
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - jönssonligan
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        conf:
+          audio_device: sb16 # sound distortion on AC97
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\setup.exe' # QT4; also always installs into Program Files
+          #     exit: false
+          - run:
+              path: "explorer.exe"
+              exit: false
+          # TODO: manually move '{SYSTEM_DRIVE}\Program Files\Jönssonligan\Jakten på Mjölner\*'
+          # into {APP_DIR} and rename exec
+          - gen_run_script:
+              path: '{APP_DIR}\Jonssonligan.exe'
+              exit: false

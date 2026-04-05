@@ -57,9 +57,7 @@ Copy LCOPY.EXE into C:\UTILS. (skip for QEMU)
 
 Make "En" a default input language (in non-En versions).
 
-From DOS:
-
-Update C:\MSDOS.SYS:
+Update C:\MSDOS.SYS (remove readonly attribute temporarly):
 
     ...
     [options]
@@ -87,7 +85,8 @@ Add/Remove programs -> Windows Setup:
 
 Update "Display" driver with one from deps.iso (140214/064MB)
 
-Updae AC97 Audio Driver
+Update AC97 Audio Driver
+Install "Sound Blaster 16 or AWE32" driver from WIN98 CD (to resolve distorted sound issue in some games)
 
 Delete C:\WINCD and C:\DRIVERS
 

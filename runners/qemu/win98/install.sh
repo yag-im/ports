@@ -27,25 +27,27 @@ cd $RUNNER_BUNDLE
 qemu-img create -f qcow2 C 1G
 qemu-img create -f qcow2 D 5G
 
+# TODO: with scsi drives windows shutdown hangs (bad for UX when user exits any game)
 qemu-system-x86_64 \
   -nodefaults \
   -drive file=C,if=ide,index=0,media=disk,format=qcow2 \
   -drive file=D,if=ide,index=1,media=disk,format=qcow2 \
-  -drive file=$RUNNER_SRC/$OS_FLAVOR-$LANG/qemu/win98qi_v0.9.6_ALL.iso,if=ide,index=2,media=cdrom \
+  -drive file=$RUNNER_SRC/$OS_FLAVOR-$LANG/qemu/win98qi_v1.0.1a_ALL.iso,if=ide,index=2,media=cdrom \
   --boot d \
   -enable-kvm \
   -cpu pentium2-v1 \
   -m 256 \
+  -M pc,hpet=off,acpi=on,usb=on,accel=kvm \
   -display sdl \
-  -device VGA \
+  -device VGA,vgamem_mb=64 \
   -audiodev pa,id=pa1 \
   -device AC97,audiodev=pa1 \
   -usbdevice tablet
 
-# Format C: and D: and create primary partitions on both drives;
-# Choose "Stock" image (micro image lacks PCI devices: https://github.com/oerg866/win98-quickinstall/issues/25, TODO)
-# Choose "Full harwdare detection", otherwise OS will fail with protection error message on first boot
-# After installation, shut-down immeditately to run next step: tune OS and install drivers from deps.iso below
+# Choose "Windows 98SE, 98Lite Micro" image
+# Format C: and D: and create primary partitions on both drives (new -> primary -> write -> quit)
+# After first reboot, install "Sound Blaster 16 or AWE32" driver (secondary audio for certain games)
+# Shut-down to run next step: tune OS and install drivers from deps.iso below
 
 # deps install
 qemu-system-x86_64 \
@@ -56,8 +58,9 @@ qemu-system-x86_64 \
   -enable-kvm \
   -cpu pentium2-v1 \
   -m 256 \
+  -M pc,hpet=off,acpi=on,usb=on,accel=kvm \
   -display sdl \
-  -device VGA \
+  -device VGA,vgamem_mb=64 \
   -audiodev pa,id=pa1 \
   -device AC97,audiodev=pa1 \
   -usbdevice tablet
