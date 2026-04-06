@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Magnus & Myggan - Den stora skattjakten (Sweden).bin
+    format: 1CD
+    url: https://archive.org/details/magnus-myggan-den-stora-skattjakten-sweden
+  igdb_slug: skipper-and-skeeto-the-great-treasure-hunt
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d6082-e8a3-7825-a05d-d79e3f5e2dbb
+    screenshots: []
+  name: "Magnus & Myggan - Den stora skattjakten"
+  platform: win
+  publisher: Games4Kids
+  refs:
+    ag_id:
+    lutris_id: skipper-and-skeeto-the-great-treasure-hunt
+    mg_id: 109958
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d6082-e8a3-7825-a05d-d79e3f5e2dbb
+  year_released: 2006
+  tags:
+    - skipper-and-skeeto
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # installer crashes in dosbox-x WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\mm2run.exe'
