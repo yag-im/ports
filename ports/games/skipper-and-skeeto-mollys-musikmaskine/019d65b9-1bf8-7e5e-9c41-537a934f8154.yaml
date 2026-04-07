@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Magnus och Myggan 5 - Mollys Musikmaskin.iso
+    format: 1CD
+    url: https://nostalgi.zip/
+  igdb_slug: skipper-and-skeeto-mollys-musikmaskine
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d65b9-1bf8-7e5e-9c41-537a934f8154
+    screenshots: []
+  name: "Magnus & Myggan: Mollys Musikmaskin"
+  platform: win
+  publisher: Ivanoff Interactive
+  refs:
+    ag_id:
+    lutris_id: skipper-and-skeeto-mollys-musikmaskine
+    mg_id:
+    pcgw_id: Skipper_%26_Skeeto:_Molly%27s_Music_Machine
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d65b9-1bf8-7e5e-9c41-537a934f8154
+  year_released: 2000
+  tags:
+    - skipper-and-skeeto
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MM5.EXE'
