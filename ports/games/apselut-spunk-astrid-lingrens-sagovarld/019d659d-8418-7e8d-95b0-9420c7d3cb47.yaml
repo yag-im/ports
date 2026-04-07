@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Apselut spunk - Astrid Lingrens Sagovärld.iso
+    format: 1CD
+    url: https://nostalgi.zip/
+  igdb_slug: apselut-spunk-astrid-lingrens-sagovarld
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d659d-8418-7e8d-95b0-9420c7d3cb47
+    screenshots: []
+  name: "Apselut spunk: Astrid Lindgrens sagovärld"
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d659d-8418-7e8d-95b0-9420c7d3cb47
+  year_released: 2006
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Apselut spunk.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Apselut spunk.exe'
