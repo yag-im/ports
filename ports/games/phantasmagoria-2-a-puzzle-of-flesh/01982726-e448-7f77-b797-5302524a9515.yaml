@@ -1,0 +1,93 @@
+descr:
+  distro:
+    files:
+      - Phantasmagoria - A Puzzle of Flesh (USA) (Disc 1).bin
+      - Phantasmagoria - A Puzzle of Flesh (USA) (Disc 2).bin
+      - Phantasmagoria - A Puzzle of Flesh (USA) (Disc 3).bin
+      - Phantasmagoria - A Puzzle of Flesh (USA) (Disc 4).bin
+      - Phantasmagoria - A Puzzle of Flesh (USA) (Disc 5).bin
+    format: 5CD
+    url: https://archive.org/details/PhantasmagoriaAPuzzleOfFleshUSA
+  igdb_slug: phantasmagoria-2-a-puzzle-of-flesh
+  lang: en
+  media_assets:
+  name: "Phantasmagoria 2: A Puzzle of Flesh"
+  platform: win
+  publisher: Sierra Entertainment
+  refs:
+    ag_id: phantasmagoria-a-puzzle-of-flesh
+    lutris_id: phantasmagoria-2-a-puzzle-of-flesh
+    mg_id: 1216
+    pcgw_id: Phantasmagoria_2:_A_Puzzle_of_Flesh
+    qz_id: 181
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2.9.1
+  uuid: 01982726-e448-7f77-b797-5302524a9515
+  year_released: 1996
+  tags:
+    - mature
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.001"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.001"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.002"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.002"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.003"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.003"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][3]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.004"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.004"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][4]}"
+        dest: "{DEST_APP_DIR}"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.SFX"
+        dest: "{DEST_APP_DIR}/RESSFX.005"
+    - move:
+        src: "{DEST_APP_DIR}/RESOURCE.AUD"
+        dest: "{DEST_APP_DIR}/RESAUD.005"
+    - file:
+        path: "{item}"
+        state: absent
+        loop:
+          - "{DEST_APP_DIR}/DIRECTX"
+          - "{DEST_APP_DIR}/*.EXE"
+          - "{DEST_APP_DIR}/*.DLL"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Phantasmagoria_2
+        tasks:
+          - gen_run_script:
+              game: sci:phantasmagoria2
+              path: "{DEST_APP_DIR}"
