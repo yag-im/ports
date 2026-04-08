@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - NancyScarlet.bin
+    format: 1CD
+    url: https://archive.org/details/NancyScarlet
+  igdb_slug: nancy-drew-secret-of-the-scarlet-hand
+  lang: en
+  media_assets:
+  name: "Nancy Drew: Secret of the Scarlet Hand"
+  platform: win
+  publisher: Her Interactive
+  refs:
+    ag_id:
+    lutris_id: nancy-drew-secret-of-the-scarlet-hand
+    mg_id: 7103
+    pcgw_id: Nancy_Drew:_Secret_of_the_Scarlet_Hand
+    qz_id: 180
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2026.2.0 # reported crash in 2.9.1: https://discord.com/channels/1251206620822638684/1251209459271860277/1491219413431488522
+  uuid: 01964f45-90b3-7c6a-a1a1-af6284adf612
+  year_released: 2002
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        files:
+          - CDSound
+          - CDVideo
+          - data*
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Nancy_Drew:_Secret_of_the_Scarlet_Hand
+        tasks:
+          - gen_run_script:
+              game: nancy:nancy6
+              path: "{DEST_APP_DIR}"
