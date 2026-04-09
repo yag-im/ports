@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Barna Hedenhös på Stockholmen.iso
+    format: 1CD
+    url: https://archive.org/download/barna-hedenhos-pa-stockholmen/Barna%20Hedenho%CC%88s%20pa%CC%8A%20Stockholmen.iso
+  igdb_slug: barna-hedenhos-pa-stockholmen
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d73b1-4d0e-753f-8246-6f516ec04ecd
+    screenshots: []
+  name: Barna Hedenhös På Stockholmen
+  platform: win
+  publisher: Bonnier Multimedia
+  refs:
+    ag_id:
+    lutris_id: barna-hedenhos-pa-stockholmen
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d73b1-4d0e-753f-8246-6f516ec04ecd
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install.exe' # QT 2.21
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Hedenhos.exe'
