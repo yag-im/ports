@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Äventyrarna Femman Vulkanöns Gåta.iso
+    format: 1CD
+    url: https://nostalgi.zip/
+  igdb_slug: cluefinders-5th-grade-adventures-the-secret-of-the-living-volcano
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d737a-a323-7318-8ee5-91444ab6f817
+    screenshots: []
+  name: "Äventyrarna Femman: Vulkanöns gåta"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: cluefinders-5th-grade-adventures-the-secret-of-the-living-volcano
+    mg_id: 76789
+    pcgw_id: The_ClueFinders_5th_Grade_Adventures:_Secret_of_the_Living_Volcano
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d737a-a323-7318-8ee5-91444ab6f817
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - cluefinders
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - copy:
+              src: '{FIRST_CD_DRIVE}\CRACK\5THAD32.EXE'
+              dest: '{APP_DIR}'
+          - gen_run_script:
+              path: '{APP_DIR}\5THAD32.EXE'
