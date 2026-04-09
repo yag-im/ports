@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - BackpackerJr.bin
+    format: 1CD
+    url: https://archive.org/details/backpacker-junior
+  igdb_slug: backpacker-junior
+  lang: multi # sv, en
+  media_assets:
+  name: BackPacker Junior
+  platform: win
+  publisher: IQ Media Nordic
+  refs:
+    ag_id:
+    lutris_id: backpacker-junior
+    mg_id: 16990
+    pcgw_id: Backpacker_Junior
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d734f-a05c-743c-94c3-246a1e9fcd07
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 25 # uses 17MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "EXPLORER.EXE"
+              exit: false
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\Install BP Junior.exe' # doesn't work from autorun
+          #     exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BPJunior.exe'
