@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Payuta och isguden.iso
+    format: 1CD
+    url: https://nostalgi.zip/
+  igdb_slug: payuta-and-the-ice-god
+  lang: sv
+  media_assets: # TODO: sv cover is missing
+  name: Payuta och Isguden
+  platform: win
+  publisher: Ubisoft Entertainment
+  refs:
+    ag_id:
+    lutris_id: payuta-and-the-ice-god
+    mg_id: 97172
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d73c2-8aab-7705-a844-a26fbc61cb3a
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\WINDOWS\UbiSoft\UBISET16.EXE'
+              args:
+                - -play
+                - Payuta
+              exit: false
