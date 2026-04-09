@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Crazy Paint_ Back to the Drawing Board.iso
+    format: 1CD
+    url: https://archive.org/download/crazy-paint-back-to-the-drawing-board_202203/Crazy%20Paint%3A%20Back%20to%20the%20Drawing%20Board.iso
+  igdb_slug: crazy-paint-back-to-the-drawing-board
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d7460-b437-716c-aaa6-67b41c589e4a
+    screenshots: []
+  name: "Crazy Paint: Back To The Drawing Board"
+  platform: win
+  publisher: Warner Bros. Interactive Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d7460-b437-716c-aaa6-67b41c589e4a
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 60 # uses 50MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX6
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CrazyPaint.exe'

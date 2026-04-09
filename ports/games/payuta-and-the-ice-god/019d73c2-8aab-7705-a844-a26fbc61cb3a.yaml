@@ -6,7 +6,11 @@ descr:
     url: https://nostalgi.zip/
   igdb_slug: payuta-and-the-ice-god
   lang: sv
-  media_assets: # TODO: sv cover is missing
+  media_assets:
+    cover:
+      image_id: 019d73c2-8aab-7705-a844-a26fbc61cb3a
+      # TODO: sv cover is missing
+    screenshots: []
   name: Payuta och Isguden
   platform: win
   publisher: Ubisoft Entertainment
