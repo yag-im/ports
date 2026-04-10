@@ -17,24 +17,30 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
+    # higher res make it run in a window
     color_bits: 16
     screen_height: 480
     screen_width: 640
   runner:
-    name: qemu # crashes in dosbox-x win9x
-    ver: latest
+    name: wine # crashes in dosbox-x win9x;
+    # reported crash in qemu winxp: https://discord.com/channels/1251206620822638684/1251209459271860277/1491401816666013797
+    ver: "11.0"
   uuid: 019ce9f0-a751-7a40-ad8c-4f1d7564ca9d
   year_released: 1999
   tags:
 installer:
   tasks:
-    - copy_src_cd_images:
-    - qemu:
-        flavor: WINXPSP3
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        virtual_desktop: 640x480 # screen shifts without this
         tasks:
           - mount:
-              src: "{DEST_DIR}"
-              cd_images_as_letters: true
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              label: PLANUTUS
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP\SETUP.EXE' # QT3.0
               exit: false
