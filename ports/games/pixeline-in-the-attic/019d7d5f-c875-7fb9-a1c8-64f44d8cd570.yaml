@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Pixelina CD.iso
+    format: 1CD
+    url: https://archive.org/download/pixelina_pa_farmors_vind_swe/Pixelina%20CD.iso
+  igdb_slug: pixeline-in-the-attic
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d7d5f-c875-7fb9-a1c8-64f44d8cd570
+    screenshots: []
+  name: Pixelina på farmors vind
+  platform: win
+  publisher: Studio 1-2
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d7d5f-c875-7fb9-a1c8-64f44d8cd570
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe' # TODO: rename target path manually after install (replace sv char: å)
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Pa farmors vind\Pa farmors vind.exe'
