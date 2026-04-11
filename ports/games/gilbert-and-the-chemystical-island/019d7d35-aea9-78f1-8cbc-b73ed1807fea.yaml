@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - GILBERT.bin
+    format: 1CD
+    url: https://archive.org/details/gilbert_202601
+    # v1.0
+  igdb_slug: gilbert-and-the-chemystical-island
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d7d35-aea9-78f1-8cbc-b73ed1807fea
+    screenshots: []
+  name: Gilbert och den kemystiska ön
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: gilbert-and-the-chemystical-island
+    mg_id:
+    pcgw_id: Gilbert_and_the_Chemystical_Island
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d7d35-aea9-78f1-8cbc-b73ed1807fea
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - regedit:
+              path: "HKEY_LOCAL_MACHINE\\SOFTWARE\\pir\\Gilbert\\1.0"
+              values:
+                - FullScreenVideo: 1
+                - MusicVolume: 6
+                - SoundVolume: 6
+          - gen_run_script:
+              path: '{APP_DIR}\Gilbert.exe'
