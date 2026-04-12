@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - SavannahKids.bin
+    format: 1CD
+    url: https://archive.org/details/rasmus-nalle-som-lantbrevbarare
+  igdb_slug: rasmus-klump-som-landpost--1
+  lang: multi # 4 scandinavian + de
+  media_assets:
+    cover:
+      image_id: 019d82b4-5f59-7b63-8371-d699697adc1f
+    screenshots: []
+  name: "Rasmus Nalle: som lantbrevbärare"
+  platform: win
+  publisher: Savannah Entertainment
+  refs:
+    ag_id:
+    lutris_id: rasmus-klump-som-landpost--1
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d82b4-5f59-7b63-8371-d699697adc1f
+  year_released: 2002
+  tags:
+    - kids
+    - rasmus-klump
+    - rasmus-nalle
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Savannahkids.exe'
