@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Bille & Trille - Nu är det jul igen (DRMFREE).iso
+    format: 1CD
+    url: https://archive.org/details/bille-trille-nu-ar-det-jul-igen-c-savannahkids-2001-drmfree
+  igdb_slug: bille-and-trille-nu-er-det-jul-igen
+  lang: multi # 4 scandinavian lang
+  media_assets:
+  name: "Bille & Trille: Nu er det Jul igen"
+  platform: win
+  publisher: Nordic Softsales AB
+  refs:
+    ag_id:
+    lutris_id: bille-and-trille-nu-er-det-jul-igen
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d8298-af80-7458-ba2f-6156f3fd7722
+  year_released: 2002
+  tags:
+    - kids
+    - bille-and-trille
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Savannahkids.exe'
