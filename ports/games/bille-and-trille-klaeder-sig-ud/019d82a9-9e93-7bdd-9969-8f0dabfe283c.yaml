@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Savannahkids.bin
+    format: 1CD
+    url: https://archive.org/details/bille-trille-klar-ut-sig
+  igdb_slug: bille-and-trille-klaeder-sig-ud
+  lang: multi # 4 scandinavic languages
+  media_assets:
+  name: "Bille & Trille: Klär ut sig"
+  platform: win
+  publisher: Nordic Softsales AB
+  refs:
+    ag_id:
+    lutris_id: bille-and-trille-klaeder-sig-ud
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d82a9-9e93-7bdd-9969-8f0dabfe283c
+  year_released: 2002
+  tags:
+    - kids
+    - bille-and-trille
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Savannahkids.exe'
