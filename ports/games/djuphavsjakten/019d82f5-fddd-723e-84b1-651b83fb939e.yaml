@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - DJUPHAVS.bin
+    format: 1CD
+    url: https://archive.org/details/djuphavsjakten_202508
+  igdb_slug: djuphavsjakten
+  lang: sv
+  media_assets:
+  name: Djuphavsjakten
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: djuphavsjakten
+    mg_id: 56540
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # add runtime req
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d82f5-fddd-723e-84b1-651b83fb939e
+  year_released: 1999
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # due to 256 color req
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\HAVSJAKT.EXE'
