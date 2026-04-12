@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Eva och Adam Ny i klassen.iso
+    format: 1CD
+    url: https://archive.org/details/EvaOchAdam-Ny-i-Klassen-livbs
+  igdb_slug: eva-och-adam-ny-i-klassen
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d831c-3b63-7984-bcf0-812e9c5e217e
+    screenshots: []
+  name: "Eva och Adam: Ny i klassen"
+  platform: win
+  publisher: Bonnier Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # screen doesn't fit into 640x480
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d831c-3b63-7984-bcf0-812e9c5e217e
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Eva&Adam.exe'
