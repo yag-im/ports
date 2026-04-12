@@ -28,6 +28,7 @@ descr:
   uuid: 019ce9f0-a751-7a40-ad8c-4f1d7564ca9d
   year_released: 1999
   tags:
+    - kids
 installer:
   tasks:
     - extract:
