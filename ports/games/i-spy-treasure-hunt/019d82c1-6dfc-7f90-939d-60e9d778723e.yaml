@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - TREASURE_HUNT.bin
+    format: 1CD
+    url: https://archive.org/details/i_spy_treasure_hunt
+  igdb_slug: i-spy-treasure-hunt
+  lang: en
+  media_assets:
+  name: I Spy Treasure Hunt
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: i-spy-treasure-hunt
+    mg_id: 28450
+    pcgw_id: I_Spy:_Treasure_Hunt
+    qz_id:
+  reqs:
+    color_bits: 16 # readme.txt
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d82c1-6dfc-7f90-939d-60e9d778723e
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+    - i-spy
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Run_Treasure.exe'
