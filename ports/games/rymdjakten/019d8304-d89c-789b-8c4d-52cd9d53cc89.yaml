@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - RYMDJAKT.bin
+    format: 1CD
+    url: https://archive.org/details/rymdjakten_202411
+  igdb_slug: rymdjakten
+  lang: sv
+  media_assets:
+  name: Rymdjakten
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: rymdjakten
+    mg_id: 242569
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d8304-d89c-789b-8c4d-52cd9d53cc89
+  year_released: 1998
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RYMDJAKT.EXE'
