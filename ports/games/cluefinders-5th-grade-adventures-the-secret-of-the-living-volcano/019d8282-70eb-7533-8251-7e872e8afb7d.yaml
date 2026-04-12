@@ -1,16 +1,13 @@
 descr:
   distro:
     files:
-      - Äventyrarna Femman Vulkanöns Gåta.iso
+      - ClueFinders, The - 5th Grade Adventures - The Secret of the Living Volcano (USA) (Alt).bin
     format: 1CD
-    url: https://nostalgi.zip/
+    url: https://archive.org/details/nova_cluefinders5th-alt_usa_202304
   igdb_slug: cluefinders-5th-grade-adventures-the-secret-of-the-living-volcano
-  lang: sv
+  lang: en
   media_assets:
-    cover:
-      image_id: 019d737a-a323-7318-8ee5-91444ab6f817
-    screenshots: []
-  name: "Äventyrarna Femman: Vulkanöns gåta"
+  name: "ClueFinders 5th Grade Adventures: The Secret of the Living Volcano"
   platform: win
   publisher: The Learning Company
   refs:
@@ -26,7 +23,7 @@ descr:
   runner:
     name: qemu
     ver: latest
-  uuid: 019d737a-a323-7318-8ee5-91444ab6f817
+  uuid: 019d8282-70eb-7533-8251-7e872e8afb7d
   year_released: 1999
   tags:
     - kids
@@ -44,11 +41,5 @@ installer:
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
-          - copy:
-              src: '{FIRST_CD_DRIVE}\CRACK\5THAD32.EXE'
-              dest: "{APP_DIR}"
           - gen_run_script:
               path: '{APP_DIR}\5THAD32.EXE'
-# TODO: reported crash in all emulators and os for this sv version when entering a yellow submarine
-# https://discord.com/channels/1251206620822638684/1251209459271860277/1492805016174596126
-# SafeDisc protection?
