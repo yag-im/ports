@@ -42,3 +42,6 @@ installer:
               path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
           - gen_run_script:
               path: '{APP_DIR}\OREGON.EXE'
+    - copy:
+        src: "{PORT_FILES_DIR}/OT.CFG" # sets Adlib sound driver; reported crashes with SB driver: https://discord.com/channels/1251206620822638684/1251209459271860277/1493060447694225459
+        dest: "{DEST_APP_DIR}"
