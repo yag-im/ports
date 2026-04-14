@@ -26,5 +26,7 @@ descr:
   ts_added: 2025-03-11 03:54:42.689073 America/Los_Angeles
   uuid: 9302dc58-d87c-4cfa-9553-54133bae35a5
   year_released: 1997
+  tags:
+    - kids
 installer:
   tasks:

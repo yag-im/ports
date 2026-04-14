@@ -26,6 +26,8 @@ descr:
   ts_added: 2025-08-17 09:56:51 America/Los_Angeles
   uuid: 8bb4d7e8-8203-4fc0-a04b-6541344f47ff
   year_released: 1998
+  tags:
+    - kids
 installer:
   tasks:
     - extract:
