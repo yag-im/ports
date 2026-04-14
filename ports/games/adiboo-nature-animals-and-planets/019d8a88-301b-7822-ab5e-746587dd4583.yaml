@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - AdibooMagicalPlayland_US.iso
+      - Adiboo Nature Animals and Plants.iso # generated manually, as original archive contained a folder with files
+    format: 2CD
+    url: https://www.myabandonware.com/game/adiboo-magical-playland-dys
+  igdb_slug: adiboo-nature-animals-and-planets
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d8a88-301b-7822-ab5e-746587dd4583
+    screenshots: []
+  name: "Adiboo: Nature, Animals & Planets"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: adiboo-nature-animals-and-planets
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d8a88-301b-7822-ab5e-746587dd4583
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+    - adiboo
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 100
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true # two CDs mounted separately, to avoid Ctrl+F4
+          - run:
+              path: "EXPLORER.EXE"
+              exit: false
+          # shift time to below 01/01/2026 (https://wiki.scummvm.org/index.php?title=Gob/DEV6_Information)
+          # and proceed with setup (installs DX6)
+          # do not add "New Application"
+          - gen_run_script:
+              path: '{APP_DRIVE}\KA\ADIBOO\WLOADER.EXE'
