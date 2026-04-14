@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Clifford_the_Big_Red_Dog_Thinking_Adventures_Scholastic_2000.iso
+    format: 1CD
+    url: https://archive.org/download/Clifford_the_Big_Red_Dog_Thinking_Adventures_Scholastic_2000/Clifford_the_Big_Red_Dog_Thinking_Adventures_Scholastic_2000.iso
+  igdb_slug: clifford-the-big-red-dog-thinking-adventures
+  lang: en
+  media_assets:
+  name: "Clifford the Big Red Dog: Thinking Adventures"
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: clifford-the-big-red-dog-thinking-adventures
+    mg_id: 29002
+    pcgw_id: Clifford_the_Big_Red_Dog:_Thinking_Adventures
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d8e0d-e8e0-7fc4-a5b7-d34ce54623c1
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 40 # uses 31MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: 'explorer.exe' # setup fails to run without explorer
+              exit: false
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\setup.exe'
+          #     exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Clifford.exe'
