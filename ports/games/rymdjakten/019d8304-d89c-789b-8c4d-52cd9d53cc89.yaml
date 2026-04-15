@@ -17,12 +17,16 @@ descr:
     pcgw_id: Rymdjakten
     qz_id:
   reqs:
+    # exec requirement 8 bit color (warning otherwise)
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 10
   runner:
-    name: qemu
-    ver: latest
+    # reported crash in qemu/win98se: https://discord.com/channels/1251206620822638684/1493724948638859294/1493878015128502333
+    # 256 color warning in wine, but otherwise support level is "Gold"
+    name: dosbox-x
+    ver: 2025.12.01
   uuid: 019d8304-d89c-789b-8c4d-52cd9d53cc89
   year_released: 1998
   tags:
@@ -30,8 +34,8 @@ descr:
 installer:
   tasks:
     - copy_src_cd_images:
-    - qemu:
-        flavor: WIN98SE
+    - dosbox:
+        flavor: WIN95OSR25
         tasks:
           - mount:
               src: "{DEST_DIR}"
