@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Clifford the Big Red Dog - Phonics (USA).bin
+    format: 1CD
+    url: https://archive.org/details/redump-id-83826
+  igdb_slug: clifford-the-big-red-dog-phonics
+  lang: en
+  media_assets:
+  name: "Clifford the Big Red Dog: Phonics"
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: clifford-the-big-red-dog-phonics
+    mg_id: 32602
+    pcgw_id: Clifford_the_Big_Red_Dog:_Phonics
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d8efe-1cb2-72d9-97e9-f58ca9e53150
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CWC.exe'
