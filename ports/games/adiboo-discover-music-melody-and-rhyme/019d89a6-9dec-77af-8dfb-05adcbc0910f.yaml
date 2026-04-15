@@ -26,43 +26,44 @@ descr:
     screen_height: 480
     screen_width: 640
   runner:
-    name: qemu
-    ver: latest
+    name: scummvm
+    ver: 2026.2.0
   uuid: 019d89a6-9dec-77af-8dfb-05adcbc0910f
   year_released: 2000
   tags:
     - kids
     - edutainment
+# reported crash in qemu: https://discord.com/channels/1251206620822638684/1493418010499874977/1493748532992147507
+# installer:
+#   tasks:
+#     - copy_src_cd_images:
+#     - qemu:
+#         # app_drive_size: 50 # uses 25MB
+#         flavor: WIN98SE # observed hangs in WINXPSP3
+#         tasks:
+#           - mount:
+#               src: "{DEST_DIR}"
+#               cd_images_as_letters: true # two CDs mounted separately, to avoid Ctrl+F4
+#           - run:
+#               path: "EXPLORER.EXE"
+#               exit: false
+#           # shift time to below 01/01/2026 (https://wiki.scummvm.org/index.php?title=Gob/DEV6_Information)
+#           # and proceed with setup (installs DX6)
+#           # do not add "New Application" (music), as next time music intro will be skipped
+#           - gen_run_script:
+#               path: '{APP_DRIVE}\KA\ADIBOO\WLOADER.EXE'
 installer:
   tasks:
-    - copy_src_cd_images:
-    - qemu:
-        # app_drive_size: 50 # uses 25MB
-        flavor: WIN98SE # observed hangs in WINXPSP3
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}/music"
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Adibou_2
         tasks:
-          - mount:
-              src: "{DEST_DIR}"
-              cd_images_as_letters: true # two CDs mounted separately, to avoid Ctrl+F4
-          - run:
-              path: "EXPLORER.EXE"
-              exit: false
-          # shift time to below 01/01/2026 (https://wiki.scummvm.org/index.php?title=Gob/DEV6_Information)
-          # and proceed with setup (installs DX6)
-          # do not add "New Application" (music), as next time music intro will be skipped
           - gen_run_script:
-              path: '{APP_DRIVE}\KA\ADIBOO\WLOADER.EXE'
-  # installer:
-  #   tasks:
-  #     - extract:
-  #         src: "{SRC_DIR}/{descr[distro][files][0]}"
-  #         dest: "{DEST_APP_DIR}"
-  #     - extract:
-  #         src: "{SRC_DIR}/{descr[distro][files][1]}"
-  #         dest: "{DEST_APP_DIR}/music"
-  #     - scummvm:
-  #         # https://wiki.scummvm.org/index.php?title=Adibou_2
-  #         tasks:
-  #           - gen_run_script:
-  #               lang: gb
-  #               game: gob:adibou2
-  #               path: "{DEST_APP_DIR}"
+              lang: gb
+              game: gob:adibou2
+              path: "{DEST_APP_DIR}"
