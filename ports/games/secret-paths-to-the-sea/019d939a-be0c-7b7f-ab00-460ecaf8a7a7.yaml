@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Secret Paths to the Sea (1998)(Purple Moon)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/secret-paths-to-the-sea/Secret%20Paths%20to%20the%20Sea%20%281998%29%28Purple%20Moon%29%5BMac-PC%5D.iso
+  igdb_slug: secret-paths-to-the-sea
+  lang: en
+  media_assets:
+  name: "Secret Paths to the Sea"
+  platform: win
+  publisher: Purple Moon
+  refs:
+    ag_id:
+    lutris_id: secret-paths-to-the-sea
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d939a-be0c-7b7f-ab00-460ecaf8a7a7
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 25 # uses 19MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe' # DX5
+              exit: false
+              # TODO: after DX reboot, run app once to dismiss reg dialog
+          - gen_run_script:
+              path: '{APP_DIR}\Seapaths.exe'
