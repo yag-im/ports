@@ -32,6 +32,21 @@ descr:
   tags:
     - kids
     - edutainment
+# installer:
+#   tasks:
+#     - extract:
+#         src: "{SRC_DIR}/{descr[distro][files][0]}"
+#         dest: "{DEST_APP_DIR}"
+#     - extract:
+#         src: "{SRC_DIR}/{descr[distro][files][1]}"
+#         dest: "{DEST_APP_DIR}/mazes"
+#     - scummvm:
+#         # https://wiki.scummvm.org/index.php?title=Adibou_2
+#         tasks:
+#           - gen_run_script:
+#               lang: gb
+#               game: gob:adibou2
+#               path: "{DEST_APP_DIR}"
 installer:
   tasks:
     - copy_src_cd_images:
