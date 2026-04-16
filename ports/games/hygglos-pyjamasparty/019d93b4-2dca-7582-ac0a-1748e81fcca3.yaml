@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Hygglo.iso
+    format: 1CD
+    url: https://archive.org/download/Hygglo/Hygglo.iso
+  igdb_slug: hygglos-pyjamasparty
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019d93b4-2dca-7582-ac0a-1748e81fcca3
+    screenshots: []
+  name: Hygglos Pyjamasparty
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    # qemu:winxp complains on system file changes and app fails to start; qemu:win98se jumping mouse cursor
+    # wine: missing files on cd startup error
+    # dosbox-x:win9x: missing files on cd startup error
+    # dosbox-x:win311: jumping mouse cursor
+    ver: 2025.12.01
+  uuid: 019d93b4-2dca-7582-ac0a-1748e81fcca3
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        # app_drive_size: 50 # uses 6, but fails to install even on 25
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\data\hugglyso.exe'
+              args:
+                - in
