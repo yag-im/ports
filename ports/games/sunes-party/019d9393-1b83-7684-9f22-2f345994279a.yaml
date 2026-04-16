@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - SunesParty.iso
+    format: 1CD
+    url: https://archive.org/download/sunes-party/SunesParty.iso
+  igdb_slug: sunes-party
+  lang: sv
+  media_assets:
+  name: Sunes Party
+  platform: win
+  publisher: Rabén Multimedia
+  refs:
+    ag_id:
+    lutris_id: sunes-party
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d9393-1b83-7684-9f22-2f345994279a
+  year_released: 1996
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SUNE.EXE'
