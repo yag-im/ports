@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - TKKG1.iso
+    format: 1CD
+    url: https://archive.org/download/tkkg-1-jennifer-is-missing/TKKG1.iso
+  igdb_slug: tkkg-jennifer-is-missing
+  lang: multi # en, de
+  media_assets:
+    cover:
+      image_id: 019d9d39-d1f5-77da-829c-c2a359e60663
+    screenshots: []
+  name: "TKKG: Jennifer is Missing"
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id: tkkg-jennifer-is-missing
+    mg_id: 227912
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d9d39-d1f5-77da-829c-c2a359e60663
+  year_released: 1997
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/TKKG_1/TKKG1_31.EXE"
