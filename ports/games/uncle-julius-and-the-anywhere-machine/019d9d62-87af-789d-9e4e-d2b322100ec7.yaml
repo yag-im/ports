@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - awm_inst32.exe
+    format: archive
+    url: http://ahacentral.com/aha/software/dld/awm_inst32.exe
+    # v1.7.3
+    # https://familygames.com/regcode
+    # gamer
+    # yag.im
+    # RT937421
+  igdb_slug: uncle-julius-and-the-anywhere-machine
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019d9d62-87af-789d-9e4e-d2b322100ec7
+    screenshots: []
+  name: Uncle Julius and the Anywhere Machine
+  platform: win
+  publisher: AHA! Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 151325
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d9d62-87af-789d-9e4e-d2b322100ec7
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 20 # uses 12MB
+        tasks:
+          - copy:
+              src: "{SRC_DIR}/awm_inst32.exe"
+              dest: "{APP_DRIVE}"
+          - run:
+              path: '{APP_DRIVE}\awm_inst32.exe'
+              exit: false
+          # TODO: rm awm_inst32.exe after install
+          - gen_run_script:
+              path: '{APP_DIR}\ANYWHERE.EXE'
