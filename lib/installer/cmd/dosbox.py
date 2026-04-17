@@ -27,6 +27,7 @@ from lib.dosbox.misc import (
     DosMountPoint,
     DosMountPointType,
 )
+from lib.guestfs import copy as guestfs_copy
 from lib.installer.const import FIRST_CD_DRIVE_LETTER
 from lib.installer.utils import transform_str_path
 
@@ -92,7 +93,16 @@ def exec_subtask(task: dict, app_descr: AppDesc, dbox: DosBox) -> None:
         transformed_srcs = []
         for src_ in src:
             transformed_srcs.append(transform_str_path(src_))
-        dbox.copy(transformed_srcs, transform_str_path(task.get("dest")))
+        transformed_dest = transform_str_path(task.get("dest"))
+        if isinstance(transformed_dest, PureWindowsPath):
+            # dbox.copy fails to copy files with long paths, so falling back to guestfs copy
+            drive_letter = transformed_dest.drive.rstrip(":").upper()
+            mount_point = dbox.conf.mount_points.get(drive_letter)
+            if mount_point and not isinstance(mount_point.path, list) and mount_point.path.is_file():
+                for src_ in transformed_srcs:
+                    guestfs_copy(None, src_, mount_point.path, Path(str(transformed_dest)))
+        else:
+            dbox.copy(transformed_srcs, transformed_dest)
     elif cmd == CMD_GEN_RUN_SCRIPT:
         exec_run(dbox, task, mock=True)
     elif cmd == CMD_MD:

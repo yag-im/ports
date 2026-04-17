@@ -27,6 +27,8 @@ descr:
   year_released: 2000
   tags:
     - cluefinders
+    - kids
+    - edutainment
 installer:
   tasks:
     - copy_src_cd_images:
