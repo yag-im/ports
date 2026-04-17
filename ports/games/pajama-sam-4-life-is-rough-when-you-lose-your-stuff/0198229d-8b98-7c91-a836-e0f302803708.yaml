@@ -17,28 +17,27 @@ descr:
     pcgw_id: Pajama_Sam_4:_Life_Is_Rough_When_You_Lose_Your_Stuff!
     qz_id: 1457
   reqs:
-    color_bits: 24
+    # from readme.txt
+    color_bits: 16
     screen_height: 480
     screen_width: 640
   runner:
-    name: wine
-    ver: "10.0"
-  ts_added: 2025-07-19 12:16:47 America/Los_Angeles
-  uuid: 89bae0df-3d7f-4c91-a836-e0f302803708
+    name: qemu
+    # reported keyboard issues in wine: https://discord.com/channels/1251206620822638684/1251206620822638687/1494762020904501358
+    ver: latest
+  uuid: 0198229d-8b98-7c91-a836-e0f302803708
   year_released: 2003
 installer:
   tasks:
-    - extract:
-        src: "{SRC_DIR}"
-        dest: "{DEST_DIR}"
-        cd_images_as_letters: true
-    - wine:
-        os_ver: winxp
+    - copy_src_cd_images:
+    - qemu:
+        os_ver: WINXPSP3
         tasks:
           - mount:
-              letter: "{FIRST_CD_DRIVE_LETTER}"
-              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
           - run:
-              path: "{FIRST_CD_DRIVE}/SETUP.EXE"
+              path: "{FIRST_CD_DRIVE}/SETUP.EXE" # shutdown pc after setup is complete as atari reg window is uncloseable
+              exit: false
           - gen_run_script:
               path: "{APP_DIR}/PajamaLRS.exe"
