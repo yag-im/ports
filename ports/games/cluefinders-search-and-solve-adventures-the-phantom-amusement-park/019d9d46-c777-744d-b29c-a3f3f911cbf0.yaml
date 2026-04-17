@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - CF Search.iso
+    format: 1CD
+    url: https://archive.org/download/cfsearch/CF%20Search.iso
+  igdb_slug: cluefinders-search-and-solve-adventures-the-phantom-amusement-park
+  lang: en
+  media_assets:
+  name: "ClueFinders Search and Solve Adventures: The Phantom Amusement Park"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: cluefinders-search-and-solve-adventures-the-phantom-amusement-park
+    mg_id:
+    pcgw_id: The_ClueFinders_Search_and_Solve_Adventures:_The_Phantom_Amusement_Park
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019d9d46-c777-744d-b29c-a3f3f911cbf0
+  year_released: 2000
+  tags:
+    - cluefinders
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          # uses 30MB of space
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CFSEARCH.EXE'
