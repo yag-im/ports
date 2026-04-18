@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Oregon Trail II - 25th Anniversary Limited Edition (USA).bin
+    format: 1CD
+    url: https://archive.org/details/Nova_OregonTrail2_USA
+    # v1.3
+  igdb_slug: oregon-trail-ii-25th-anniversary-limited-edition
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019da125-3c5a-7c5f-b16c-d49a6f02e540
+    screenshots: []
+  name: "Oregon Trail II: 25th Anniversary Limited Edition"
+  platform: win
+  publisher: SoftKey Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 47575
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019da125-3c5a-7c5f-b16c-d49a6f02e540
+  year_released: 1996
+  tags:
+    - oregon-trail
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\OTII16.EXE'
