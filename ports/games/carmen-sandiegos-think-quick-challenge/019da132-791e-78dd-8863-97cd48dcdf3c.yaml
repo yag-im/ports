@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Carmen Sandiego's Think Quick Challenge (USA) (Alt).bin
+    format: 1CD
+    url: https://archive.org/details/378245W-CD
+  igdb_slug: carmen-sandiegos-think-quick-challenge
+  lang: en
+  media_assets:
+  name: Carmen Sandiego's Think Quick Challenge
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: carmen-sandiegos-think-quick-challenge
+    mg_id: 198104
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019da132-791e-78dd-8863-97cd48dcdf3c
+  year_released: 1999
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CarmenTQ.exe'
