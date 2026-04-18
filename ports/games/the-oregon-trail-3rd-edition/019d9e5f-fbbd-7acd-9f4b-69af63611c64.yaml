@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Oregon Trail 3rd Edition, The - Pioneer Adventures (USA) (Disc 1) (Rerelease) (19981117).bin
+      - Oregon Trail 3rd Edition, The - Pioneer Adventures (USA) (Disc 2) (Alt).bin
+      - Oregon Trail 3rd Edition, The - Pioneer Adventures (USA) (Disc 3) (Alt 2).bin
+    format: 3CD
+    url: https://archive.org/details/OTA744BE-CD1
+    # https://archive.org/details/OTA744BE-CD2
+    # https://archive.org/details/OTA744BE-CD3
+    # v1.2
+  igdb_slug: the-oregon-trail-3rd-edition
+  lang: en
+  media_assets:
+  name: "The Oregon Trail: 3rd Edition - Pioneer Adventures"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-oregon-trail-3rd-edition
+    mg_id: 1437
+    pcgw_id: The_Oregon_Trail:_3rd_Edition
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019d9e5f-fbbd-7acd-9f4b-69af63611c64
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 50 # uses 38MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ot3.exe'
