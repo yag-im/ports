@@ -20,13 +20,14 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
-    color_bits: 8
-    screen_height: 480
-    screen_width: 640
-    loading_duration: 11
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
   runner:
-    name: dosbox-x
-    ver: 2025.12.01
+    name: wine
+    ver: "11.0"
   uuid: 019da1a9-da54-7795-a3c4-7b3d841e95a8
   year_released: 2000
   tags:
@@ -34,18 +35,21 @@ descr:
     - famous-five
 installer:
   tasks:
-    - copy_src_cd_images:
-    - dosbox:
-        app_drive_size: 25 # uses 18MB
-        flavor: WIN95OSR25
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        # app_drive_size: 25 # uses 18MB
         tasks:
           - mount:
-              src: "{DEST_DIR}"
-              cd_images_as_letters: true
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
           - run:
-              path: "{FIRST_CD_DRIVE}\\Setup.exe" # DX7
+              path: '{FIRST_CD_DRIVE}\Setup.exe' # DX7
               exit: false
           - gen_run_script:
-              path: "{APP_DIR}\\Famous Five 2.exe"
+              path: '{APP_DIR}\Famous Five 2.exe'
 
-# TODO: BSODs on the very first run
+# TODO: BSODs on the very first run in dosbox-x
+# reported crash in dosbox-x win95osr25: https://discord.com/channels/1251206620822638684/1251209459271860277/1495496815401898126
