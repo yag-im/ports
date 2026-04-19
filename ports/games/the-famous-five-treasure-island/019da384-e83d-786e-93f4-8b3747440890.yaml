@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - FAMOUS5.img
+    format: 1CD
+    url: https://archive.org/details/famous-five-ravensburger
+  igdb_slug: the-famous-five-treasure-island
+  lang: en
+  media_assets:
+  name: "The Famous Five: Treasure Island"
+  platform: win
+  publisher: Ravensburger Interactive Media GmbH
+  refs:
+    ag_id:
+    lutris_id: the-famous-five-treasure-island
+    mg_id: 179277
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "11.0"
+  uuid: 019da384-e83d-786e-93f4-8b3747440890
+  year_released: 1999
+  tags:
+    - kids
+    - famous-five
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX7
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\5freunde.EXE'
+
+# qemu:win98se - jumping mouse cursor issue
+# dosbox-x:win9x - video artefacts, non-playable
+# wine: no intro
