@@ -24,6 +24,7 @@ descr:
     color_bits: 8
     screen_height: 480
     screen_width: 640
+    loading_duration: 7
   runner:
     name: dosbox-x
     ver: 2025.12.01
@@ -37,13 +38,15 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN311
+        app_drive_size: 15 # uses 9
+        flavor: WIN95OSR25
         tasks:
           - mount:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1.1
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\OTII16.EXE'
+              path: '{APP_DIR}\OTII32.EXE'
+# reported crash in WIN311: https://discord.com/channels/1251206620822638684/1251209459271860277/1495255219947438291
