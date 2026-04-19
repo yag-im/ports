@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - FamFiveSecMission.bin
+    format: 1CD
+    url: https://archive.org/details/famous-five-ravensburger
+  igdb_slug: the-famous-five-five-on-a-secret-mission
+  lang: en
+  media_assets:
+  name: "The Famous Five: Five on a Secret Mission"
+  platform: win
+  publisher: Ravensburger Interactive Media GmbH
+  refs:
+    ag_id:
+    lutris_id: the-famous-five-five-on-a-secret-mission
+    mg_id: 46893
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: wine
+    ver: "11.0"
+  uuid: 019da64f-1239-74c7-9389-ec7d87c2516c
+  year_released: 2001
+  tags:
+    - kids
+    - famous-five
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\FF5.exe'
+              exit: false # runs in bg
