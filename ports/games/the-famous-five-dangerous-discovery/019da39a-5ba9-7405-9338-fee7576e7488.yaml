@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Famous Five 4 - Dangerous Discovery.bin
+    format: 1CD
+    url: https://archive.org/details/famous-five-ravensburger
+  igdb_slug: the-famous-five-dangerous-discovery
+  lang: en
+  media_assets:
+  name: "The Famous Five: Dangerous Discovery"
+  platform: win
+  publisher: Ravensburger Interactive Media GmbH
+  refs:
+    ag_id:
+    lutris_id: the-famous-five-dangerous-discovery
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: wine
+    ver: "11.0"
+  uuid: 019da39a-5ba9-7405-9338-fee7576e7488
+  year_released: 2001
+  tags:
+    - kids
+    - famous-five
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX7
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\FF4.exe'
+              exit: false # cos runs in bg

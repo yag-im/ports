@@ -22,3 +22,7 @@ wine start /wait "${work_dir}${app_exec}" explorer /desktop=yag,${virtual_deskto
 wine start /wait "${work_dir}${app_exec}"
     % endif
 % endif
+
+% if not runexit:
+sleep 9999999
+% endif
