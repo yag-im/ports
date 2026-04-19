@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - FBEAR.ISO
+    format: 1CD
+    url: https://archive.org/download/fatty-bears-birthday-surprise-1995/FBEAR.ISO
+  igdb_slug: fatty-bear-s-birthday-surprise
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019da696-cad2-7834-a6cd-f43cdb678acb
+    screenshots: []
+  name: "Fatty Bear's Birthday Surprise"
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: fatty-bear-s-birthday-surprise
+    mg_id: 8552
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019da696-cad2-7834-a6cd-f43cdb678acb
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\FBEAR.EXE'
+
+# BSODs on the first run; also runs CD test
