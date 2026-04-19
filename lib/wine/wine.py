@@ -211,6 +211,7 @@ class Wine:
         pre_run: List[str] = None,
         work_dir: str = str(APP_DIR),
         chdir: bool = True,
+        runexit: bool = False,
     ) -> Path:
         if pre_run is None:
             pre_run = []
@@ -225,6 +226,7 @@ class Wine:
             "work_dir": str(work_dir).replace("\\", "\\\\"),
             "lang": self._get_lang(),
             "chdir": chdir,
+            "runexit": runexit,
         }
         template(CURRENT_DIR / "templates" / "run.sh.tmpl", output_path, params=tmpl_params)
         output_path.chmod(output_path.stat().st_mode | stat.S_IEXEC)
