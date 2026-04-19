@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Famous Five 3 - Kidnapped.bin
+    format: 1CD
+    url: https://archive.org/details/famous-five-ravensburger
+  igdb_slug: the-famous-five-kidnapped
+  lang: multi # en,de
+  media_assets:
+  name: "The Famous Five: Kidnapped!"
+  platform: win
+  publisher: Ravensburger Interactive Media GmbH
+  refs:
+    ag_id:
+    lutris_id: the-famous-five-kidnapped
+    mg_id: 47036
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true # required!
+  runner:
+    name: wine
+    ver: "11.0"
+  uuid: 019da1c2-0682-70c9-b786-d245fb0f511a
+  year_released: 2000
+  tags:
+    - kids
+    - famous-five
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "EXPLORER.EXE" # TODO: rename exec after install
+              exit: false
+          # - run:
+          #     path: "{FIRST_CD_DRIVE}\\SETUP.EXE"
+          #     exit: false
+          - gen_run_script:
+              path: "{APP_DIR}\\Famous Five 3.exe"
+
+# TODO:
+# BSODs on first run
+# wine: better performance but no intro video
+# dosbox-x: video artifacts (shifted textures) in any mode
+# qemu - winxp: fails to start; 98se - jumping mouse cursor
