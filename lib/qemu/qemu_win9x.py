@@ -39,6 +39,7 @@ class QemuWin9xConf(QemuConf):
     audio_device: str = BASE_AUDIO_DEVICE
     reg_file_encoding: str = "utf-8"
     pointer_device: str | None = None
+    enable_kvm: bool = True
 
 
 class QemuWin9x(Qemu[QemuWin9xConf]):

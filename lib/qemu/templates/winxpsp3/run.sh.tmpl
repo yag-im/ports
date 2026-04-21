@@ -6,7 +6,9 @@ cd $CUR_DIR
 qemu-system-x86_64 \
   -nodefaults \
   ${mounts} \
+% if enable_kvm:
   -enable-kvm \
+% endif
   -cpu "${cpu}" \
   -m ${memory} \
   -display ${display} \
