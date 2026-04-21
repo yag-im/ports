@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - BUSYTOWN_BEST_CHRISTMAS_EVER.iso
+    format: 1CD
+    url: https://archive.org/download/busytown-best-christmas-ever/BUSYTOWN_BEST_CHRISTMAS_EVER.iso
+    # v1.0
+  igdb_slug: richard-scarrys-busytown-best-christmas-ever
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019db14a-48e1-7031-a128-4459aab8170e
+    screenshots: []
+  name: "Richard Scarry's Busytown: Best Christmas Ever"
+  platform: win
+  publisher: Simon & Schuster Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019db14a-48e1-7031-a128-4459aab8170e
+  year_released: 1998
+  tags:
+    - richard-scarry
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE # hangs in WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BESTXMAS.EXE'
