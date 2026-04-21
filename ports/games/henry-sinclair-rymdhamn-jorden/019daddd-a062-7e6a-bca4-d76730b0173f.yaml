@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Rymdhamn.bin
+    format: 1CD
+    url: https://archive.org/details/Rymdhamn
+  igdb_slug: henry-sinclair-rymdhamn-jorden
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019daddd-a062-7e6a-bca4-d76730b0173f
+    screenshots: []
+  name: "Henry Sinclair: Rymdhamn Jorden"
+  platform: win
+  publisher: Korkeken Interactive Studio
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 15 # due to disabled kvm
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019daddd-a062-7e6a-bca4-d76730b0173f
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        conf:
+          enable_kvm: false # otherwise game runs very fast
+        flavour: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\Program Files\Vision Park\Henry Sinclair\StartaRymdhamn.exe'
+              exit: false
+
+# too fast in qemu:winxp; black screen in qemu:win98se
+# crashes in dosbox-x: win9x
+# wine: too fast

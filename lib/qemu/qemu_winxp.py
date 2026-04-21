@@ -44,6 +44,7 @@ class QemuWinXpConf(QemuConf):
     audio_device: str = BASE_AUDIO_DEVICE
     reg_file_encoding: str = "utf-16"
     pointer_device: str | None = None
+    enable_kvm: bool = True
 
 
 class QemuWinXp(Qemu[QemuWinXpConf]):

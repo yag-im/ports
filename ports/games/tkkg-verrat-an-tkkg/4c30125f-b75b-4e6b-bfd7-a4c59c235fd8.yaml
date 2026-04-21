@@ -3,16 +3,16 @@ descr:
     files:
       - TKKG5.iso
     format: 1CD
-    url: https://archive.org/details/tkkg-5
+    url: https://archive.org/download/tkkg-5/TKKG5.iso
   igdb_slug: tkkg-verrat-an-tkkg
-  lang: en
+  lang: multi # en,de
   media_assets:
   name: "TKKG: Verrat an TKKG"
   platform: win
   publisher: Tivola Verlag GmbH
   refs:
     ag_id:
-    lutris_id:
+    lutris_id: tkkg-verrat-an-tkkg
     mg_id:
     pcgw_id:
     qz_id: 909

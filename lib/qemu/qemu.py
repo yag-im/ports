@@ -66,6 +66,7 @@ class QemuConf:
     audio_device: str
     reg_file_encoding: str
     pointer_device: str
+    enable_kvm: bool = True
     _lang: str = BASE_LANG
     # some games require CD swaps and therefore a switch to qemu monitor;
     # after returning from monitor, mouse grab may not work in a full-screen mode;
@@ -213,7 +214,9 @@ class Qemu((Protocol[T])):
         for mp in self.mount_points:
             cmd.append("-drive")
             cmd.append(mp.qemu_drive_mount_option_relative_to(self.root_dir))
-        cmd += ["-enable-kvm", "-cpu", str(self.conf.cpu), "-m", str(self.conf.memory), "-display", "sdl"]
+        cmd += ["-cpu", str(self.conf.cpu), "-m", str(self.conf.memory), "-display", "sdl"]
+        if self.conf.enable_kvm:
+            cmd.append("-enable-kvm")
         # order of devices is important even with -nodefaults, so can't just append at the end
         if self.conf.flavor == QemuFlavor.WINXPSP3:
             cmd += ["-vga", "virtio"]
@@ -249,6 +252,7 @@ class Qemu((Protocol[T])):
             "audiodev": self.conf.audio_device,
             "flavor": self.conf.flavor.name,
             "pointerdev": self.conf.pointer_device,
+            "enable_kvm": self.conf.enable_kvm,
         }
         template(
             self.templates_dir / "run.sh.tmpl",

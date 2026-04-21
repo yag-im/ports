@@ -192,6 +192,9 @@ high clock-rate CPUs in cloud environments. You can slow wine down using:
 
 or something similar
 
+Q: How to slow down game in qemu?
+A: Remove "-enable-kvm" from cmd line parameters.
+
 Q: How to upgrade existing port?
 A: Run setup.sh, then publish.sh with `--rm-clones` option. This will remove all cloned copies of the port.
 

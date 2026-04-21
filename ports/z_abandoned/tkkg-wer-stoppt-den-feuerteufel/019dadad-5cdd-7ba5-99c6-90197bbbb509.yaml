@@ -1,0 +1,56 @@
+descr:
+  distro:
+    files:
+      - Tkkg7.iso
+    format: 1CD
+    url: https://archive.org/download/tkkg-7/Tkkg7.iso
+  igdb_slug: tkkg-wer-stoppt-den-feuerteufel
+  lang: multi # en, de
+  media_assets:
+  name: "TKKG: Fire!"
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id: tkkg-wer-stoppt-den-feuerteufel
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine
+    ver: "11.0"
+  uuid: 019dadad-5cdd-7ba5-99c6-90197bbbb509
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+    - tkkg
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}"
+        dest: "{DEST_DIR}"
+        cd_images_as_letters: true
+    - wine:
+        # app_drive_size: 15 # uses 10MB
+        os_ver: win31
+        tasks:
+          - mount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+              src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "explorer.exe"
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TKKG 7.EXE'
+
+# crashes in dosbox:win9x
+# can't install in win311
+# doesn't start in qemu:winxp, win98se
+# wine: fails to start
