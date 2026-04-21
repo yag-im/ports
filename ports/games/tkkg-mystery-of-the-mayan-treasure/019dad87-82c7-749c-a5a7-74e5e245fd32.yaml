@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Case for TKKG, A - The Mystery of the Mayan Treasure (USA) (En,De).cue
+    format: 1CD
+    url: https://archive.org/details/Nova_TTKGMayanTreasure_USA
+  igdb_slug: tkkg-mystery-of-the-mayan-treasure
+  lang: multi # en, de
+  media_assets:
+    cover:
+      image_id: 019dad87-82c7-749c-a5a7-74e5e245fd32
+    screenshots: []
+  name: "TKKG: Mystery of the Mayan Treasure"
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id: tkkg-mystery-of-the-mayan-treasure
+    mg_id: 107687
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019dad87-82c7-749c-a5a7-74e5e245fd32
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+    - tkkg
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}/{descr[distro][files][0]}"
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/TKKG_3/TKKG3_31.EXE"
