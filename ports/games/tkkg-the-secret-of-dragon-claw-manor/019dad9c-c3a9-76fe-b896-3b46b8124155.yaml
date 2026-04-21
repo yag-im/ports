@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - TKKG4.ISO
+    format: 1CD
+    url: https://archive.org/download/tkkg-4/TKKG4.ISO
+  igdb_slug: tkkg-the-secret-of-dragon-claw-manor
+  lang: multi # en, de
+  media_assets:
+    cover:
+      image_id: 019dad9c-c3a9-76fe-b896-3b46b8124155
+    screenshots: []
+  name: "TKKG: The Secret of Dragon Claw Manor"
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019dad9c-c3a9-76fe-b896-3b46b8124155
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - tkkg
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: "{FIRST_CD_DRIVE}/INSTALL.EXE"
+              exit: false
+          - gen_run_script:
+              path: "{APP_DIR}/TKKG_4/TKKG4_31.EXE"
