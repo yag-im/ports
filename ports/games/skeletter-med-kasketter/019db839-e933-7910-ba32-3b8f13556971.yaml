@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - the-mad-magician-the-doggone-dognapping.iso
+    format: 1CD
+    url: https://archive.org/download/the-doggone-dognapping/the-mad-magician-the-doggone-dognapping.iso
+  igdb_slug: skeletter-med-kasketter
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019db839-e933-7910-ba32-3b8f13556971
+    screenshots: []
+  name: "The Mad Magician: The Doggone Dognapping"
+  platform: win
+  publisher: Savannah Entertainment
+  refs:
+    ag_id:
+    lutris_id: skeletter-med-kasketter
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # due to 256 colors req warning msg
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019db839-e933-7910-ba32-3b8f13556971
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # due to 256 colors req, XP shows a warning msg
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\StartPC.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\StartPC.exe'
