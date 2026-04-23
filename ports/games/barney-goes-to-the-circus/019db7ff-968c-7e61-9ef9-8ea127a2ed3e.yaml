@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - CIRCUS.ISO
+    format: 1CD
+    url: https://archive.org/download/barneygoestothecircus/CIRCUS.ISO
+  igdb_slug: barney-goes-to-the-circus
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019db7ff-968c-7e61-9ef9-8ea127a2ed3e
+    screenshots: []
+  name: Barney Goes to the Circus
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 219047
+    pcgw_id:
+    qz_id:
+  reqs:
+    # from readme
+    color_bits: 8
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu # setup crashes in dosbox-x
+    ver: latest
+  uuid: 019db7ff-968c-7e61-9ef9-8ea127a2ed3e
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+    - barney
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\CIRCUS.EXE' # setup just sets a username
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\CIRCUS.EXE'
+              exit: false
