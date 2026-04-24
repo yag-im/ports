@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Microsoft Encarta - 1994 Edition.iso
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/56fb541e-9fb3-4fe5-a8b2-f4bc66f1dab1/MindMaze_Win-3x_EN_Encarta-1994-Edition.zip
+  igdb_slug: mindmaze
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019dbd45-657d-78a2-9875-26a2791ebc2f
+    screenshots: []
+  name: Microsoft Encarta (MindMaze)
+  platform: win
+  publisher: Microsoft Home
+  refs:
+    ag_id:
+    lutris_id: mindmaze
+    mg_id: 51797
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019dbd45-657d-78a2-9875-26a2791ebc2f
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\encart94.exe'
