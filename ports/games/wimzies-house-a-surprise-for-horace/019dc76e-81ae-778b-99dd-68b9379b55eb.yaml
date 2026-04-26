@@ -42,6 +42,6 @@ installer:
               src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\HORACE.EXE'
+              path: '{FIRST_CD_DRIVE}\HORACE.EXE' # installs QT?
           - gen_run_script:
               path: '{FIRST_CD_DRIVE}\HORACE.EXE'
