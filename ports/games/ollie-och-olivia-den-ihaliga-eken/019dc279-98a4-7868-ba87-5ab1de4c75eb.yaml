@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - Ontto Tammi.iso
+    format: 1CD
+    url: https://www.macintoshrepository.org/4412-olli-ja-olivia-ontto-tammi
+  igdb_slug: ollie-och-olivia-den-ihaliga-eken
+  lang: fi
+  media_assets:
+    cover:
+      image_id: 019dc279-98a4-7868-ba87-5ab1de4c75eb
+    screenshots: []
+  name: "Olli & Olivia: Ontto tammi"
+  platform: win
+  publisher: Nordisk Film
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019dc279-98a4-7868-ba87-5ab1de4c75eb
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Movies\QuickTime\QuickTimeInstaller.exe' # TODO: do we need this?
+          - copy:
+              src: '{FIRST_CD_DRIVE}\*'
+              dest: "{APP_DIR}"
+          - copy:
+              src: '{APP_DIR}\olewinx.drv' # start.exe is protected with "Protect CD VOB" (checks CD TOC), but why should we run it lol :)
+              dest: '{APP_DIR}\Ollie.exe'
+          - umount:
+              letter: "{FIRST_CD_DRIVE_LETTER}"
+          - gen_run_script:
+              path: '{APP_DIR}\Ollie.exe'
