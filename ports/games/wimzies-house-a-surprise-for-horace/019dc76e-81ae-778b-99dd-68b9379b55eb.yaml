@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - HORACE.ISO
+    format: 1CD
+    url: https://archive.org/download/wimziehorace/HORACE.ISO
+  igdb_slug: wimzies-house-a-surprise-for-horace
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019dc76e-81ae-778b-99dd-68b9379b55eb
+    screenshots: []
+  name: "Wimzie's House: A Surprise for Horace"
+  platform: win
+  publisher: Simon & Schuster
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # crashes in dosbox-x
+    ver: latest
+  uuid: 019dc76e-81ae-778b-99dd-68b9379b55eb
+  year_released: 1999
+  tags:
+    - kids
+    - edutainemnt
+    - fmv
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\HORACE.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\HORACE.EXE'
