@@ -74,19 +74,37 @@ def copy(src_img_path: Path | None, src_file_path: Path, dst_img_path: Path | No
             raise RuntimeError(f"No partitions found in {dst_img_path}")
         g_dst.mount(partitions_dst[0], "/")
 
-        src_files = list(src_file_path.parent.glob(src_file_path.name))
+        has_wildcard = any(c in src_file_path.name for c in "*?[")
+        if has_wildcard:
+            src_files = list(src_file_path.parent.glob(src_file_path.name))
+        else:
+            src_files = [src_file_path]
+        # cp semantics: dst is treated as a directory if
+        #   - multiple sources match (wildcard or not), OR
+        #   - dst is not provided (use source's parent dir name), OR
+        #   - dst already exists in the guest as a directory.
+        # Otherwise (single source, dst is a file path) dst is the exact target path.
+        dst_exists_as_dir = bool(dst_file_path) and g_dst.is_dir(to_guestfs_path(dst_file_path))
+        treat_dst_as_dir = has_wildcard or len(src_files) > 1 or dst_exists_as_dir
         for f in src_files:
-            rel_path = f.relative_to(src_file_path.parent)
-            dst_base = Path(to_guestfs_path(dst_file_path)) if dst_file_path else Path(f.parent.name)
-            dst_path = dst_base / rel_path
+            if dst_file_path:
+                dst_base = Path(to_guestfs_path(dst_file_path))
+            else:
+                dst_base = Path("/") / f.parent.name
             if f.is_dir():
+                # Directory copy: replicate tree under dst_base/<f.name>/
+                root = dst_base / f.name
+                g_dst.mkdir_p(str(root))
                 for sub in f.rglob("*"):
                     rel_sub = sub.relative_to(f)
-                    dst_sub_path = dst_base / rel_path / rel_sub
-                    g_dst.mkdir_p(str(dst_sub_path.parent))
-                    if sub.is_file():
+                    dst_sub_path = root / rel_sub
+                    if sub.is_dir():
+                        g_dst.mkdir_p(str(dst_sub_path))
+                    else:
+                        g_dst.mkdir_p(str(dst_sub_path.parent))
                         g_dst.write(str(dst_sub_path), sub.read_bytes())
             else:
+                dst_path = dst_base / f.name if treat_dst_as_dir or not dst_file_path else dst_base
                 g_dst.mkdir_p(str(dst_path.parent))
                 g_dst.write(str(dst_path), f.read_bytes())
         g_dst.sync()
