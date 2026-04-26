@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Time Warp of Dr. Brain, The (USA) (En,Fr,De) (Alt).bin
+    format: 1CD
+    url: https://archive.org/details/time-warp-of-dr.-brain-the-usa-en-fr-de-alt
+  igdb_slug: the-time-warp-of-dr-brain
+  lang: multi # en, de, fr
+  media_assets:
+  name: The Time Warp of Dr. Brain
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: the-time-warp-of-dr-brain
+    mg_id: 6885
+    pcgw_id: The_Time_Warp_of_Dr._Brain
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019dcae9-252b-76fe-a01e-605eeab0a613
+  year_released: 1996
+  tags:
+    - edutainemnt
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\DRBRAIN4\DRBRAIN4.EXE'
