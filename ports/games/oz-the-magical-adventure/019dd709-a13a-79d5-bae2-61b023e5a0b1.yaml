@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - OZ The Magical Adventure.iso
+    format: 1CD
+    url: https://archive.org/download/oz-the-magical-adventure/OZ%20The%20Magical%20Adventure.iso
+    # most of the images of this app on archive.org are broken and won't start
+  igdb_slug: oz-the-magical-adventure
+  lang: en
+  media_assets:
+  name: "Oz: The Magical Adventure"
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id: oz-the-magical-adventure
+    mg_id: 29139
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019dd709-a13a-79d5-bae2-61b023e5a0b1
+  year_released: 2000
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 4: select full install! otherwise it will crash with video decompression error
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Oz - TMA.exe'
