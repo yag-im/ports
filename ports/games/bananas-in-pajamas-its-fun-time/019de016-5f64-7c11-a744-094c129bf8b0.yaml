@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - BANANAS.ISO
+    format: 1CD
+    url: https://archive.org/download/bananas_202403/BANANAS.ISO
+  igdb_slug: bananas-in-pajamas-its-fun-time
+  lang: en
+  media_assets:
+  name: "Bananas in Pajamas: It's Fun Time"
+  platform: win
+  publisher: Australian Broadcasting Corporation
+  refs:
+    ag_id:
+    lutris_id: bananas-in-pajamas-its-fun-time
+    mg_id: 223833
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019de016-5f64-7c11-a744-094c129bf8b0
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BIP16.EXE'
