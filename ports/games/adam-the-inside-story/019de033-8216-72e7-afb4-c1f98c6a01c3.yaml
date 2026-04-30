@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - ADAMSoftware-ADAM-TheInsideStory-Win31.iso
+    format: 1CD
+    url: https://archive.org/download/A.D.A.M._Software_A.D.A.M._The_Inside_Story_Win31_1999_Eng/ADAMSoftware-ADAM-TheInsideStory-Win31.iso
+  igdb_slug: adam-the-inside-story
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019de033-8216-72e7-afb4-c1f98c6a01c3
+    screenshots: []
+  name: A.D.A.M. The Inside Story
+  platform: win
+  publisher: Columbia Healthcare Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019de033-8216-72e7-afb4-c1f98c6a01c3
+  year_released: 1996
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # uses 14MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # QT 2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\inside.exe'
