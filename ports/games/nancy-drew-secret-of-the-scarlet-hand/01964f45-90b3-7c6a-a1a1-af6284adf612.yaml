@@ -17,26 +17,31 @@ descr:
     pcgw_id: Nancy_Drew:_Secret_of_the_Scarlet_Hand
     qz_id: 180
   reqs:
-    color_bits: 8
+    # app reqs
+    color_bits: 16
     screen_height: 480
     screen_width: 640
   runner:
-    name: scummvm
-    ver: 2026.2.0 # reported crash in 2.9.1: https://discord.com/channels/1251206620822638684/1251209459271860277/1491219413431488522
+    name: qemu
+    ver: latest
   uuid: 01964f45-90b3-7c6a-a1a1-af6284adf612
   year_released: 2002
 installer:
   tasks:
-    - extract:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_APP_DIR}"
-        files:
-          - CDSound
-          - CDVideo
-          - data*
-    - scummvm:
-        # https://wiki.scummvm.org/index.php?title=Nancy_Drew:_Secret_of_the_Scarlet_Hand
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # fails to start in XP
         tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
           - gen_run_script:
-              game: nancy:nancy6
-              path: "{DEST_APP_DIR}"
+              path: '{APP_DIR}\Game.exe'
+
+# https://wiki.scummvm.org/index.php?title=Nancy_Drew:_Secret_of_the_Scarlet_Hand
+# scummvm: too many reported crashes and custom patches required:
+# reported crash in 2.9.1: https://discord.com/channels/1251206620822638684/1251209459271860277/1491219413431488522
+# +2 more (bugs and regressions)

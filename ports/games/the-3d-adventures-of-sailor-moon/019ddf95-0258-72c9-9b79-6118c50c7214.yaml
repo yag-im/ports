@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - 3DASM.ISO
+    format: 1CD
+    url: https://archive.org/download/3-dasm/3DASM.ISO
+  igdb_slug: the-3d-adventures-of-sailor-moon
+  lang: en
+  media_assets:
+  name: The 3D Adventures of Sailor Moon
+  platform: win
+  publisher: 3VR New Media
+  refs:
+    ag_id:
+    lutris_id: the-3d-adventures-of-sailor-moon
+    mg_id: 25063
+    pcgw_id: The_3D_Adventures_of_Sailor_Moon
+    qz_id:
+  reqs:
+    color_bits: 16 # recommended
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ddf95-0258-72c9-9b79-6118c50c7214
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\sailor.exe'
