@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - SKYISLAN.BIN
+    format: 1CD
+    url: https://archive.org/details/SKYISLAND
+  igdb_slug: thinkin-things-sky-island-mysteries
+  lang: en
+  media_assets:
+  name: "Thinkin' Things: Sky Island Mysteries"
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: thinkin-things-sky-island-mysteries
+    mg_id: 41853
+    pcgw_id: Thinkin%27_Things:_Sky_Island_Mysteries
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019de5c8-5d75-7399-af20-df04ba25c5e8
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SKYISLAN.EXE'
