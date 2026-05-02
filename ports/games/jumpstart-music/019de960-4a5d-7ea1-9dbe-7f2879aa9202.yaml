@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - JumpStart Music (USA).bin
+    format: 1CD
+    url: https://archive.org/details/jumpstart-music
+  igdb_slug: jumpstart-music
+  lang: en
+  media_assets:
+  name: JumpStart Music
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-music
+    mg_id: 17958
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019de960-4a5d-7ea1-9dbe-7f2879aa9202
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # requires 3 but fails to install on 10
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Jsmusic\jsmusic.exe'
