@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+    format: 4FD
+    url: https://archive.org/details/001127-ConquestsOfCamelotTheSearchForTheGrail
+  igdb_slug: conquests-of-camelot-the-search-for-the-grail
+  lang: en
+  media_assets:
+  name: "Conquests of Camelot: The Search for the Grail"
+  platform: dos
+  publisher: Sierra Online
+  refs:
+    ag_id: conquests-of-camelot-the-search-for-the-grail
+    lutris_id: conquests-of-camelot-the-search-for-the-grail
+    mg_id: 1408
+    pcgw_id: Conquests_of_Camelot:_The_Search_for_the_Grail
+    qz_id: 2118
+  reqs:
+    color_bits: 8
+    screen_height: 200
+    screen_width: 320
+  runner:
+    name: scummvm
+    ver: 2026.2.0
+  uuid: 01956956-8710-70b4-bd3e-6790a7e87808
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][3]}"
+        dest: "{DEST_APP_DIR}"
+        hint: floppy
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Conquests_of_Camelot
+        tasks:
+          - gen_run_script:
+              game: sci:camelot
+              path: "{DEST_APP_DIR}"
