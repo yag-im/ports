@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Inspector-Gadget-Mission-1---Global-Terror_DOS_EN.zip
+    format: 1FD
+    url: https://archive.org/download/inspector-gadget-mission-1-global-terror-dos-en/Inspector-Gadget-Mission-1---Global-Terror_DOS_EN.zip
+  igdb_slug: inspector-gadget-mission-1-global-terror
+  lang: en
+  media_assets:
+  name: "Inspector Gadget: Mission 1 - Global Terror!"
+  platform: dos
+  publisher: Azeroth Inc.
+  refs:
+    ag_id: inspector-gadget-mission-1-global-terror
+    lutris_id: inspector-gadget-mission-1-global-terror
+    mg_id: 31539
+    pcgw_id: Inspector_Gadget:_Mission_1_–_Global_Terror!
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019df600-5f20-7cd0-be03-984fa3fa094b
+  year_released: 1992
+  tags:
+    - kids
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_APP_DIR}"
+    - dosbox:
+        conf:
+          fullscreen: true
+          cycles: fixed 6000
+        tasks:
+          - gen_run_script:
+              path: "{APP_DIR}/GADGET.EXE"
+              pre_exec:
+                # otherwise no music will be played
+                - CONFIG -set "mididevice=default"
+                - CONFIG -set "mpu401=none"
+    - copy:
+        src: "{PORT_FILES_DIR}/{item}"
+        dest: "{DEST_APP_DIR}"
+        loop:
+          - "OPTIONS"
