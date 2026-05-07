@@ -2,11 +2,14 @@ descr:
   distro:
     files:
       - Inspector-Gadget-Mission-1---Global-Terror_DOS_EN.zip
-    format: 1FD
+    format: 4FD
     url: https://archive.org/download/inspector-gadget-mission-1-global-terror-dos-en/Inspector-Gadget-Mission-1---Global-Terror_DOS_EN.zip
   igdb_slug: inspector-gadget-mission-1-global-terror
   lang: en
   media_assets:
+    cover:
+      image_id: 019df600-5f20-7cd0-be03-984fa3fa094b
+    screenshots: []
   name: "Inspector Gadget: Mission 1 - Global Terror!"
   platform: dos
   publisher: Azeroth Inc.

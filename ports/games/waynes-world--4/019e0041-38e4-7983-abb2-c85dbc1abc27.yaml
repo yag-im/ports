@@ -1,0 +1,67 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+      - disk5.img
+    format: 5FD
+    url: https://archive.org/details/001467-WaynesWorld
+  igdb_slug: waynes-world--4
+  lang: en
+  media_assets:
+  name: Wayne's World
+  platform: dos
+  publisher: Capstone Software
+  refs:
+    ag_id: waynes-world
+    lutris_id: waynes-world--4
+    mg_id: 12708
+    pcgw_id: Wayne%27s_World
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 200
+    screen_width: 320
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019e0041-38e4-7983-abb2-c85dbc1abc27
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][0]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][1]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][2]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][3]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        hint: floppy
+    - extract:
+        src: "{SRC_DIR}/{descr[distro][files][4]}"
+        dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+        hint: floppy
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
+              src:
+                - "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
+              type: floppy
+          - run:
+              path: "{FIRST_FD_DRIVE}/INSTALL.EXE"
+          - gen_run_script:
+              path: "{APP_DIR}/WW.EXE"
