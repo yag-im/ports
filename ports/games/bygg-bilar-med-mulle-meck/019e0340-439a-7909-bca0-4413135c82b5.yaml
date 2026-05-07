@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Bygg biler med Mulle Mekk.iso
+    format: 1CD
+    url: https://archive.org/download/bygg-biler-med-mulle-mekk/Bygg%20biler%20med%20Mulle%20Mekk.iso
+  igdb_slug: bygg-bilar-med-mulle-meck
+  lang: nb
+  media_assets:
+    cover:
+      image_id: 019e0340-439a-7909-bca0-4413135c82b5
+    screenshots: []
+  name: Bygg Biler med Mulle Meck
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: bygg-bilar-med-mulle-meck
+    mg_id: 65424
+    pcgw_id: Bygg_Bilar_med_Mulle_Meck
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e0340-439a-7909-bca0-4413135c82b5
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\MULLE32.EXE'
