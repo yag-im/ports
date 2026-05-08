@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - IMOWIN.iso
+    format: 1CD
+    url: https://archive.org/download/IMOWIN/IMOWIN.iso
+  igdb_slug: magic-tales-imo-and-the-king
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e054a-8c03-72e9-8e84-a488854d63db
+    screenshots: []
+  name: "Magic Tales: Imo and the King"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 124456
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e054a-8c03-72e9-8e84-a488854d63db
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PROGRAMS\PLAY.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\IMO\BOOK.INI'
+              exit: false
