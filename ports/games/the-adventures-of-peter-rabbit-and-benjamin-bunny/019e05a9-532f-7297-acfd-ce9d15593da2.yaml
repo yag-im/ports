@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - PeterRabbit.bin
+    format: 1CD
+    url: https://archive.org/details/PeterRabbit_201809
+  igdb_slug: the-adventures-of-peter-rabbit-and-benjamin-bunny
+  lang: en
+  media_assets:
+  name: The Adventures of Peter Rabbit & Benjamin Bunny
+  platform: win
+  publisher: Mindscape, Inc.
+  refs:
+    ag_id:
+    lutris_id: the-adventures-of-peter-rabbit-and-benjamin-bunny
+    mg_id: 100380
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e05a9-532f-7297-acfd-ce9d15593da2
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\AUTORN16.EXE'
+              exit: false
