@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Software of the Month Club (250) (Snoopy's Campfire Stories).ISO
+    format: 1CD
+    url: https://archive.org/details/snoopy-s-campfire-stories-win-en-iso
+  igdb_slug: snoopys-campfire-stories
+  lang: en
+  media_assets:
+  name: Snoopy's Campfire Stories
+  platform: win
+  publisher: Virgin Sound and Vision
+  refs:
+    ag_id:
+    lutris_id: snoopys-campfire-stories
+    mg_id: 21137
+    pcgw_id: Snoopy%27s_Campfire_Stories
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e053e-c7a7-7812-8dbb-3d2911c56617
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+    - snoopy
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\CAMPFIRE.EXE'
