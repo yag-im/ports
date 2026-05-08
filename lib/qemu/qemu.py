@@ -296,6 +296,22 @@ class Qemu((Protocol[T])):
 
         guestfs_copy(src_img_path, src_file_path, dst_img_path, dst_file_path)
 
+    def move(self, src: Path, dest: Path):
+        """Move file/dir from src to dest. src and dest can each be either a host
+        path or a guest path (PureWindowsPath with a drive letter).
+
+        If src contains a wildcard (e.g. ``/A/*``), the parent directory (``/A``)
+        is removed after the copy rather than the literal wildcard path."""
+        self.copy(src, dest)
+        src_str = str(src)
+        has_wildcard = any(c in src_str for c in "*?[")
+        if PureWindowsPath(src).drive != "":
+            rm_path = PureWindowsPath(src).parent if has_wildcard else PureWindowsPath(src)
+            self.rm(rm_path)
+        else:
+            rm_path = Path(src).parent if has_wildcard else Path(src)
+            rm(rm_path)
+
     def replace_string_in_file(self, guest_path: PureWindowsPath, old, new):
         """
         Replace a string in a file inside a guest filesystem using libguestfs.

@@ -22,6 +22,7 @@ from lib.qemu.qemu_winxp import (
 CMD_COPY = "copy"
 CMD_GEN_RUN_SCRIPT = "gen_run_script"
 CMD_MOUNT = "mount"
+CMD_MOVE = "move"
 CMD_REGEDIT = "regedit"
 CMD_RUN = "run"
 CMD_UMOUNT = "umount"
@@ -33,6 +34,8 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
     task = task[cmd]
     if cmd == CMD_COPY:
         qemu.copy(Path(task.get("src")), Path(task.get("dest")))
+    elif cmd == CMD_MOVE:
+        qemu.move(Path(task.get("src")), Path(task.get("dest")))
     elif cmd == CMD_GEN_RUN_SCRIPT:
         qemu.gen_run_script(
             exec_path=PureWindowsPath(task.get("path")), do_exit=task.get("exit", True), args=task.get("args", None)
