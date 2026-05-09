@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Kid Pix Studio Deluxe (USA).bin
+    format: 1CD
+    url: https://archive.org/details/redump-id-120945
+    # https://archive.org/download/kid-pix-studio-deluxe-macintosh - unreadable image, fake redump?
+  igdb_slug: kid-pix-studio-deluxe
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e0ad9-88bb-7639-9657-afcb4fe6a761
+    screenshots: []
+  name: Kid Pix Studio Deluxe
+  platform: win
+  publisher: Broderbund
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 17752
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e0ad9-88bb-7639-9657-afcb4fe6a761
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Picker.exe'
