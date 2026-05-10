@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Gahan Wilson's The Ultimate Haunted House (1994)(Microsoft Home).iso
+    format: 1CD
+    url: https://archive.org/download/gahan-wilsons-ultimate-haunted-house/Gahan%20Wilson%27s%20The%20Ultimate%20Haunted%20House%20%281994%29%28Microsoft%20Home%29.iso
+  igdb_slug: the-ultimate-haunted-house
+  lang: en
+  media_assets:
+  name: Gahan Wilson's The Ultimate Haunted House
+  platform: win
+  publisher: Microsoft Home
+  refs:
+    ag_id:
+    lutris_id: the-ultimate-haunted-house
+    mg_id: 7070
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e0f82-75cd-712c-a328-fdb08c1a4002
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\HHOUSE\HAUNTED.EXE'
+              exit: false
