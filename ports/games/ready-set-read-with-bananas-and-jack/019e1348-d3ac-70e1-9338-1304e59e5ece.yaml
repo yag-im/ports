@@ -1,0 +1,57 @@
+descr:
+  distro:
+    files:
+      - Ready-Set-Read-with-Bananas-Jack_Win-3x_EN_v101.zip
+    format: 4FD
+    url: https://www.myabandonware.com/game/ready-set-read-with-bananas-jack-10cq
+  igdb_slug: ready-set-read-with-bananas-and-jack
+  lang: en
+  media_assets:
+  name: 'Ready, Set, Read with Bananas & Jack'
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: ready-set-read-with-bananas-and-jack
+    mg_id: 113536
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e1348-d3ac-70e1-9338-1304e59e5ece
+  year_released: 1993
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/TMP'
+        state: directory
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/TMP'
+        files:
+          - BR/RSR.001
+          - BR/RSR.002
+          - BR/RSR.003
+          - BR/RSR.004
+          - BR/SETUP.EXE
+    - dosbox:
+        flavor: WIN311
+        conf:
+          fullscreen: true
+        tasks:
+          - run:
+              path: '{SYSTEM_DRIVE}/TMP/SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}/br.exe'
+    - file:
+        path: '{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/TMP'
+        state: absent
