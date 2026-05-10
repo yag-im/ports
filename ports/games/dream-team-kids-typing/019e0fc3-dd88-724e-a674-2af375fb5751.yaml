@@ -1,9 +1,11 @@
 descr:
   distro:
     files:
-      - Dream Team - Kid's Typing (1993)(Sierra)[Mac-PC].iso
+      - Kid's Typing (USA) (Rerelease).bin
     format: 1CD
-    url: https://archive.org/download/dream-team-kids-typing/Dream%20Team%20-%20Kid%27s%20Typing%20%281993%29%28Sierra%29%5BMac-PC%5D.iso
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FK%2FKid%27s%20Typing%20(USA)%20(Rerelease).zip
+    # url: https://archive.org/download/dream-team-kids-typing/Dream%20Team%20-%20Kid%27s%20Typing%20%281993%29%28Sierra%29%5BMac-PC%5D.iso
+    # reported crashes in win9x when father watches TV; KB doesn't work in win311
   igdb_slug: dream-team-kids-typing
   lang: en
   media_assets:
@@ -32,11 +34,11 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN95OSR25 # in WIN311 KB doesn't work
+        flavor: WIN311
         tasks:
           - mount:
               src: '{DEST_DIR}'
               cd_images_as_letters: true
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\KTYPE\KIDSTYPE.EXE'
+              path: '{FIRST_CD_DRIVE}\KTYPE.EXE'
               exit: false
