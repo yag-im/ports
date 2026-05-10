@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - The Berenstain Bears - Treehouse Classroom.cue
+      - The Berenstain Bears - Treehouse Classroom.bin
+    format: 1CD
+    url: https://archive.org/details/the-berenstain-bears-treehouse-classroom
+  igdb_slug: the-berenstain-bears-treehouse-classroom
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e0f72-37c1-7c13-9495-a3604715cbfc
+    screenshots: []
+  name: 'The Berenstain Bears: Treehouse Classroom'
+  platform: dos
+  publisher: Compton's New Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 238426
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019e0f72-37c1-7c13-9495-a3604715cbfc
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\BEAR.EXE'
+# TODO: execute once to select sound card. Writes changes to binary files.
