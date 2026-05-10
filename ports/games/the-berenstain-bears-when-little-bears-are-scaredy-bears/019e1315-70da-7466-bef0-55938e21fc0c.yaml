@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - scaredy_bears.iso
+    format: 1CD
+    url: https://archive.org/details/scaredy_bears
+  igdb_slug: the-berenstain-bears-when-little-bears-are-scaredy-bears
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e1315-70da-7466-bef0-55938e21fc0c
+    screenshots: []
+  name: 'The Berenstain Bears: When Little Bears Are Scaredy Bears'
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 7
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e1315-70da-7466-bef0-55938e21fc0c
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - lifes-little-lessons
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\ScaredyBears.exe'
