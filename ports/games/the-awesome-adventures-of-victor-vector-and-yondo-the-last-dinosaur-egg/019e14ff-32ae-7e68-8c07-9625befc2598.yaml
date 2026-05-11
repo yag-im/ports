@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Awesome Adventures of Victor Vector & Yondo, The - The Last Dinosaur Egg (USA, Canada).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FAwesome%20Adventures%20of%20Victor%20Vector%20%26%20Yondo%2C%20The%20-%20The%20Last%20Dinosaur%20Egg%20(USA%2C%20Canada).zip
+    # ages: 8+
+  igdb_slug: the-awesome-adventures-of-victor-vector-and-yondo-the-last-dinosaur-egg
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e14ff-32ae-7e68-8c07-9625befc2598
+    screenshots: []
+  name: 'The Awesome Adventures of Victor Vector & Yondo: The Last Dinosaur Egg'
+  platform: win
+  publisher: Sanctuary Woods
+  refs:
+    ag_id:
+    lutris_id: the-awesome-adventures-of-victor-vector-and-yondo-the-last-dinosaur-egg
+    mg_id: 21266
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # dosbox-x: qtime errors on the intro video in both win311 and win9x
+    ver: latest
+  uuid: 019e14ff-32ae-7e68-8c07-9625befc2598
+  year_released: 1993
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DINOSAUR\DINOSAUR.EXE'
