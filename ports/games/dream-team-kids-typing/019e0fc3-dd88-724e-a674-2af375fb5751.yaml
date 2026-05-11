@@ -40,5 +40,5 @@ installer:
               src: '{DEST_DIR}'
               cd_images_as_letters: true
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\KTYPE.EXE'
+              path: '{FIRST_CD_DRIVE}\KTYPE\KTYPE.EXE'
               exit: false
