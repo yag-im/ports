@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Awesome Adventures of Victor Vector & Yondo, The - The Vampire's Coffin (USA) (Rerelease).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FAwesome%20Adventures%20of%20Victor%20Vector%20%26%20Yondo%2C%20The%20-%20The%20Vampire%27s%20Coffin%20(USA)%20(Rerelease).zip
+  igdb_slug: the-awesome-adventures-of-victor-vector-and-yondo-the-vampires-coffin
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e14d1-8b14-79c6-ba62-9f32a40cad6d
+    screenshots: []
+  name: "The Awesome Adventures of Victor Vector & Yondo: The Vampire's Coffin"
+  platform: win
+  publisher: Sanctuary Woods
+  refs:
+    ag_id:
+    lutris_id: the-awesome-adventures-of-victor-vector-and-yondo-the-vampires-coffin
+    mg_id: 21262
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e14d1-8b14-79c6-ba62-9f32a40cad6d
+  year_released: 1993
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          # TODO: one fake run to bypass QT compat error message on a real run
+          - run:
+              path: '{FIRST_CD_DRIVE}\VAMPIRE\VAMPIRE.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\VAMPIRE\VAMPIRE.EXE'
