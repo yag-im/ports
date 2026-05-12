@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Sesame Street - Reading Basics (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FS%2FSesame%20Street%20-%20Reading%20Basics%20(USA).zip
+  igdb_slug: elmos-reading-basics
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e1cf8-e775-7a58-9863-cabee602f096
+    screenshots: []
+  name: "Sesame Street: Elmo's Reading Basics"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e1cf8-e775-7a58-9863-cabee602f096
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+    - sesame-street
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # just to avoid Wing lib error messagebox on startup
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WORK\GSTR.EXE'
