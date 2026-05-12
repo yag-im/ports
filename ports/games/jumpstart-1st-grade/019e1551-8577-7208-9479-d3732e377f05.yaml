@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Lek og lær - 1. klasse.iso
+    format: 1CD
+    url: https://archive.org/download/lek-og-laer-1.-klasse/Lek%20og%20l%C3%A6r%20-%201.%20klasse.iso
+  igdb_slug: jumpstart-1st-grade
+  lang: nb
+  media_assets:
+    cover:
+      image_id: 019e1551-8577-7208-9479-d3732e377f05
+    screenshots: []
+  name: 'Lek & Lær: Første klasse'
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-1st-grade
+    mg_id: 26222
+    pcgw_id: JumpStart_1st_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e1551-8577-7208-9479-d3732e377f05
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+    - jumpstart
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\FG.EXE'
