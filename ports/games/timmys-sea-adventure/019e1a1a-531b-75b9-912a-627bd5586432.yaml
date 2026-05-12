@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Teo Aventura No Mar.iso
+    format: 1CD
+    url: https://archive.org/download/teo-aventura-no-mar/Teo%20Aventura%20No%20Mar.iso
+  igdb_slug: timmys-sea-adventure
+  lang: multi # EN, BR
+  media_assets:
+    cover:
+      image_id: 019e1a1a-531b-75b9-912a-627bd5586432
+    screenshots: []
+  name: Timmy's Sea Adventure
+  platform: win
+  publisher: FRAGMENT, s.r.o.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 220114
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e1a1a-531b-75b9-912a-627bd5586432
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          # TODO: after install, update Timmy4.ini: set LANGUAGES = ENG BRA
+          - gen_run_script:
+              path: '{APP_DIR}\TIMMY4.exe'
