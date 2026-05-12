@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - PLUMO.ISO
+    format: 1CD
+    url: https://archive.org/download/plumozoo-canada/PLUMO.ISO
+  igdb_slug: plumo-at-the-zoo
+  lang: en # CD contains multi lang
+  media_assets:
+  name: Plumo At The Zoo
+  platform: win
+  publisher: Micro-Intel
+  refs:
+    ag_id:
+    lutris_id: plumo-at-the-zoo
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e1d46-ee72-779d-8a61-ce89d36cd338
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PLUMOENG.EXE'
