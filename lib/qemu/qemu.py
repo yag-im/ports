@@ -44,7 +44,7 @@ from lib.utils import (
 CURRENT_DIR = Path(__file__).resolve().parent
 
 BASE_LANG = "en"
-KNOWN_LANG = {BASE_LANG, "ru", "ja"}
+KNOWN_LANG = {BASE_LANG, "ru", "ja", "sv"}
 
 BASE_FULLSCREEN_ENABLED = True
 
