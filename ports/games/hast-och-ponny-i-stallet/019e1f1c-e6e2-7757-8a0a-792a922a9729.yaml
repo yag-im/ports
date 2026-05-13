@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Haest och Ponny - I stallet (Sweden).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FH%2FHaest%20och%20Ponny%20-%20I%20stallet%20(Sweden).zip
+  igdb_slug: hast-och-ponny-i-stallet
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e1f1c-e6e2-7757-8a0a-792a922a9729
+    screenshots: []
+  name: Häst & Ponny - I stallet
+  platform: win
+  publisher: Rabén Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # app run
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e1f1c-e6e2-7757-8a0a-792a922a9729
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\STALLET\start31.exe'
