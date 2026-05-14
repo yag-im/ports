@@ -32,6 +32,7 @@ descr:
   tags:
     - kids
     - edutainment
+    - horses
 installer:
   tasks:
     - copy_src_cd_images:

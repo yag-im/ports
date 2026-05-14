@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Haest & Ponny - Varsagod och rid! (Sweden).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FH%2FHaest%20%26%20Ponny%20-%20Varsagod%20och%20rid!%20(Sweden).zip
+  igdb_slug: hast-och-ponny-varsagod-och-rid
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e1f2f-97c1-7218-9851-0746d2260287
+    screenshots: []
+  name: Häst & Ponny - Varsagod och rid!
+  platform: win
+  publisher: Norstedts Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # setup fails in dosbox-x
+    ver: latest
+  uuid: 019e1f2f-97c1-7218-9851-0746d2260287
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - horses
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\QTINSTAL\QT32INST.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\STARTA.EXE'
+              exit: false
