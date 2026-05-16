@@ -1,16 +1,13 @@
 descr:
   distro:
     files:
-      - the-mad-magician-the-doggone-dognapping.iso
+      - Skeletter_med_kasketter.iso # manually converted from toast file: dd if=Skeletter_med_kasketter.toast of=Skeletter_med_kasketter.iso bs=1M
     format: 1CD
-    url: https://archive.org/download/the-doggone-dognapping/the-mad-magician-the-doggone-dognapping.iso
+    url: https://www.macintoshrepository.org/19031-skeletter-med-kasketter-skeletons-with-hats-
   igdb_slug: skeletter-med-kasketter
-  lang: en
+  lang: sv
   media_assets:
-    cover:
-      image_id: 019db839-e933-7910-ba32-3b8f13556971
-    screenshots: []
-  name: "The Mad Magician: The Doggone Dognapping"
+  name: 'Skeletter med Kasketter'
   platform: win
   publisher: Savannah Entertainment
   refs:
@@ -27,7 +24,7 @@ descr:
   runner:
     name: qemu
     ver: latest
-  uuid: 019db839-e933-7910-ba32-3b8f13556971
+  uuid: 019e3160-7089-797b-9194-32ec3c3cd668
   year_released: 1998
   tags:
     - kids
@@ -39,7 +36,7 @@ installer:
         flavor: WIN98SE # due to 256 colors req, XP shows a warning msg
         tasks:
           - mount:
-              src: "{DEST_DIR}"
+              src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}\StartPC.exe'
