@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Kapsyljakt med Anki & Pytte (Sweden).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FK%2FKapsyljakt%20med%20Anki%20%26%20Pytte%20(Sweden).zip
+  igdb_slug: kapsyljakt-med-anki-and-pytte
+  lang: en
+  media_assets:
+  name: Kapsyljakt med Anki & Pytte
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: kapsyljakt-med-anki-and-pytte
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e2cf4-6899-7b87-81d3-66e5c9f8bc62
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Anki och Pytte'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Anki och Pytte.exe'
