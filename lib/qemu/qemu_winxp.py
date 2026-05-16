@@ -15,6 +15,7 @@ from typing import (
 from lib.app_desc import AppDesc
 from lib.qemu.const import (
     APP_DRIVE,
+    RUNNERS_SRC_BASE_DIR,
     SYSTEM_DRIVE,
 )
 from lib.qemu.qemu import (
@@ -45,6 +46,7 @@ class QemuWinXpConf(QemuConf):
     reg_file_encoding: str = "utf-16"
     pointer_device: str | None = None
     enable_kvm: bool = True
+    safe_disc: str | None = None
 
 
 class QemuWinXp(Qemu[QemuWinXpConf]):
@@ -63,6 +65,24 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
                 color_bits,
             ],
         )
+
+    def enable_safe_disc_emulation(self, safe_disc_ver: str) -> None:
+        if float(safe_disc_ver) >= 2.90:
+            # SafeDisc 2.x, 3.x: https://defacto2.net/f/a01fdf2
+            # SafeCast 2.2+
+            # SafeDisc 2.9+
+            self.conf.enable_kvm = False  # otherwise exec just silently exits
+            self.copy(
+                RUNNERS_SRC_BASE_DIR / "winxp" / "utils" / "SDLoader" / "SDLoader.dll",
+                "C:\\Windows\\System32\\SDLoader.dll",
+            )
+            self.upd_reg(
+                {
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows": [
+                        {"AppInit_DLLs": "SDLoader.dll"},
+                    ]
+                }
+            )
 
     def run_on_startup(
         self,

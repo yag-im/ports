@@ -38,7 +38,7 @@ installer:
               src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\Installera Anki och Pytte'
+              path: '{FIRST_CD_DRIVE}\Installera Anki och Pytte.exe'
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\Anki och Pytte.exe'
