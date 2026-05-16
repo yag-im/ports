@@ -40,6 +40,7 @@ class QemuWin9xConf(QemuConf):
     reg_file_encoding: str = "utf-8"
     pointer_device: str | None = None
     enable_kvm: bool = True
+    safe_disc: str | None = None
 
 
 class QemuWin9x(Qemu[QemuWin9xConf]):
