@@ -1,13 +1,16 @@
 descr:
   distro:
     files:
-      - Skeletter_med_kasketter.iso # manually converted from toast file: dd if=Skeletter_med_kasketter.toast of=Skeletter_med_kasketter.iso bs=1M
+      - Bellini 2 - De Skrattande Skeletten.iso
     format: 1CD
-    url: https://www.macintoshrepository.org/19031-skeletter-med-kasketter-skeletons-with-hats-
+    url: https://archive.org/details/bellini-de-skrattande-skeletten
   igdb_slug: skeletter-med-kasketter
-  lang: da
+  lang: sv
   media_assets:
-  name: 'Skeletter med Kasketter'
+    cover:
+      image_id: 019e318d-b0ed-77b9-8739-922d1b6f41fc
+    screenshots: []
+  name: De Skrattande Skeletten
   platform: win
   publisher: Savannah Entertainment
   refs:
@@ -24,8 +27,8 @@ descr:
   runner:
     name: qemu
     ver: latest
-  uuid: 019e3160-7089-797b-9194-32ec3c3cd668
-  year_released: 1998
+  uuid: 019e318d-b0ed-77b9-8739-922d1b6f41fc
+  year_released: 2001
   tags:
     - kids
     - edutainment
@@ -36,7 +39,7 @@ installer:
         flavor: WIN98SE # due to 256 colors req, XP shows a warning msg
         tasks:
           - mount:
-              src: '{DEST_DIR}'
+              src: "{DEST_DIR}"
               cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}\StartPC.exe'
