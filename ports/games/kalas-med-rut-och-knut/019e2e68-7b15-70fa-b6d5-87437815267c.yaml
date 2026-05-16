@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - rutochknut.iso
+    format: 1CD
+    url: https://archive.org/download/kalasmedrutochknut/rutochknut.iso
+  igdb_slug: kalas-med-rut-och-knut
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e2e68-7b15-70fa-b6d5-87437815267c
+    screenshots: []
+  name: Kalas med Rut och Knut
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    loading_duration: 20
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e2e68-7b15-70fa-b6d5-87437815267c
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        conf:
+          safe_disc: '2.90'
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Kalas med Rut och Knut.exe'

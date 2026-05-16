@@ -161,6 +161,8 @@ class Qemu((Protocol[T])):
                 self.app_descr.app_reqs.screen_height,
                 self.app_descr.app_reqs.color_bits,
             )
+        if self.conf.safe_disc:
+            self.enable_safe_disc_emulation(self.conf.safe_disc)
 
     @abstractmethod
     def run_exec(

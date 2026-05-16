@@ -1,4 +1,6 @@
+import os
 from pathlib import (
+    Path,
     PureWindowsPath,
 )
 
@@ -21,3 +23,7 @@ FIFTH_CD_DRIVE = PureWindowsPath(f"{FIFTH_CD_DRIVE_LETTER}:\\")
 SIXTH_CD_DRIVE = PureWindowsPath(f"{SIXTH_CD_DRIVE_LETTER}:\\")
 
 APP_DIR = APP_DRIVE / "APP"
+
+RUNNERS_BASE_DIR = Path(os.environ["DATA_DIR"]) / "runners"  # TODO: move to the base runners' class
+RUNNERS_BUNDLES_BASE_DIR = RUNNERS_BASE_DIR / "bundles"
+RUNNERS_SRC_BASE_DIR = RUNNERS_BASE_DIR / "src"
