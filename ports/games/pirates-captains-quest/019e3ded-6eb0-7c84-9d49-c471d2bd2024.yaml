@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Pirates - Captain's Quest (UK) (Covermount).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FP%2FPirates%20-%20Captain%27s%20Quest%20(UK)%20(Covermount).zip
+  igdb_slug: pirates-captains-quest
+  lang: en
+  media_assets:
+  name: Pirates - Captain's Quest
+  platform: win
+  publisher: Discovery Channel Multimedia
+  refs:
+    ag_id:
+    lutris_id: pirates-captains-quest
+    mg_id: 36055
+    pcgw_id: Pirates:_Captain%27s_Quest
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e3ded-6eb0-7c84-9d49-c471d2bd2024
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\PIRATES.EXE'
