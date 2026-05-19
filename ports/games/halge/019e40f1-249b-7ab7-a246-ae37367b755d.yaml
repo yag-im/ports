@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Hälge.iso
+    format: 1CD
+    url: https://archive.org/download/halge_202505/H%C3%A4lge.iso
+  igdb_slug: halge
+  lang: en # there are multiple langs to choose on CD
+  media_assets:
+    cover:
+      image_id: 019e40f1-249b-7ab7-a246-ae37367b755d
+    screenshots: []
+  name: Hälge
+  platform: win
+  publisher: Vision Park AB
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e40f1-249b-7ab7-a246-ae37367b755d
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # black screen in WINXP
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: 'explorer.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Halge\Halge.exe'
