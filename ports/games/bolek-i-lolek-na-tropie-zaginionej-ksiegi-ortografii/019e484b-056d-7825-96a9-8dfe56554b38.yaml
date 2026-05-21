@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - AIDEM.ISO
+    format: 1CD
+    url: https://mirror.polish-abandonware.pl/Gry/AidemMedia/Bolek%20i%20Lolek%20-%20Na%20tropie%20zaginionej%20ksi%C4%99gi%20ortografii.7z
+  igdb_slug: bolek-i-lolek-na-tropie-zaginionej-ksiegi-ortografii
+  lang: pl
+  media_assets:
+    cover:
+      image_id: 019e484b-056d-7825-96a9-8dfe56554b38
+    screenshots: []
+  name: 'Bolek i Lolek: Na tropie zaginionej księgi ortografii'
+  platform: win
+  publisher: Aidem Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e484b-056d-7825-96a9-8dfe56554b38
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BiLOrto.exe'
