@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Halvan - Haer kommer flygplanet (Sweden).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FH%2FHalvan%20-%20Haer%20kommer%20flygplanet%20(Sweden).zip
+  igdb_slug: halvan-har-kommer-flygplanet
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e51a3-6dbf-7763-b2a3-7c421a0d4471
+    screenshots: []
+  name: 'Halvan: Här kommer Flygplanet'
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 768
+    screen_width: 1024
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e51a3-6dbf-7763-b2a3-7c421a0d4471
+  year_released: 2005
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Halvan2.exe'
