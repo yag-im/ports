@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - smb-woodii.djungel.gamepack.swedish.bin
+    format: 1CD
+    url: https://www.old-games.ru/game/download/9332.html
+  igdb_slug: woodii-stavningsjakten
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e5060-912c-7013-8468-da2c9f7f14a1
+    screenshots: []
+  name: 'Woodii: Stavningsjakten'
+  platform: win
+  publisher: Active Media Group
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5060-912c-7013-8468-da2c9f7f14a1
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
