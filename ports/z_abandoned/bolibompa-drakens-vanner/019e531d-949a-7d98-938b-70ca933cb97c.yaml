@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Bolibompa - Drakens vaenner (Sweden).bin
+    format: 1CD
+    url: https://archive.org/details/bolibompa-drakens-vanner
+  igdb_slug: bolibompa-drakens-vanner
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e531d-949a-7d98-938b-70ca933cb97c
+    screenshots: []
+  name: 'Bolibompa: Drakens vänner'
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e531d-949a-7d98-938b-70ca933cb97c
+  year_released: 2001
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        conf:
+          safe_disc: '2.90'
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Bolibompa.exe'
+# SafeDisc 2.10.30 protection
