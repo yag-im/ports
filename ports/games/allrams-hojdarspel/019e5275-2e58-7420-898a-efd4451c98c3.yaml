@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Allrams Hoejdarspel (Sweden).bin
+    format: 1CD
+    url: https://archive.org/details/allrams_hojdarspel_202504
+  igdb_slug: allrams-hojdarspel
+  lang: sv
+  media_assets:
+  name: Allrams Höjdarspel
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id: allrams-hojdarspel
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5275-2e58-7420-898a-efd4451c98c3
+  year_released: 2004
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\start.exe'
+              exit: false
+          # TODO: there is QT 6 in setup folder, do we need it?
+          - gen_run_script:
+              # TODO: rename (change to "o")
+              path: '{APP_DIR}\Allrams Hojdarspel\Allrams hojdarspel.exe'
