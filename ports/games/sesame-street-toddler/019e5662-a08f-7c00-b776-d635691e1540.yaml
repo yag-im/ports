@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Sesame Street Toddler (USA) (Disc 2) (Elmo's Art Workshop).bin
+    format: 2CD
+    url: https://archive.org/details/Nova_SesameStreetToddler_USA
+  igdb_slug: sesame-street-toddler
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e5640-1aa4-7bcc-9733-d0fdc869e617
+    screenshots: []
+  name: "Sesame Street: Toddler (Disc 2: Elmo's Art Workshop)"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: sesame-street-toddler
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5662-a08f-7c00-b776-d635691e1540
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SSAW\SSAW.EXE'
