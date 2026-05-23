@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - My First Amazing History Explorer (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FM%2FMy%20First%20Amazing%20History%20Explorer%20(USA).zip
+  igdb_slug: my-first-amazing-history-explorer
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e529a-6d54-7e73-8004-605808cf4fdf
+    screenshots: []
+  name: My First Amazing History Explorer
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 51479
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # no diff with 16 bit
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 7
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e529a-6d54-7e73-8004-605808cf4fdf
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\histex.exe'

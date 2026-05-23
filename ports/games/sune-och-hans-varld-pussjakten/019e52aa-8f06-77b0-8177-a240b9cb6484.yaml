@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Sune och Hans Vaerld - Pussjakten (Sweden).bin
+    format: 1CD
+    url: https://archive.org/details/sune-och-hans-varld-pussjakten-sweden
+  igdb_slug: sune-och-hans-varld-pussjakten
+  lang: sv
+  media_assets:
+  name: 'Sune och Hans Värld: Pussjakten'
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id: sune-och-hans-varld-pussjakten
+    mg_id: 206612
+    pcgw_id: Sune_och_hans_Värld_-_Pussjakten
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e52aa-8f06-77b0-8177-a240b9cb6484
+  year_released: 2004
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\sune.exe'
