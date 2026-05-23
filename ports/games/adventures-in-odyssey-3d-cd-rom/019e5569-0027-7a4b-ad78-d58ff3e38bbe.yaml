@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - AIOAC.iso
+    format: 1CD
+    url: https://archive.org/download/adventures-in-odyssey-3-d-cd-rom-interactive-game/AIOAC.iso
+  igdb_slug: adventures-in-odyssey-3d-cd-rom
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e5569-0027-7a4b-ad78-d58ff3e38bbe
+    screenshots: []
+  name: Adventures in Odyssey 3-D CD-ROM
+  platform: win
+  publisher: Focus on the Family
+  refs:
+    ag_id:
+    lutris_id: adventures-in-odyssey-3d-cd-rom
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 600
+    screen_width: 800
+    ua:
+      lock_pointer: true
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5569-0027-7a4b-ad78-d58ff3e38bbe
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # app_drive_size: 100 # uses 75MB
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ODYSSEY.EXE'
+# qemu WINXPSP3: can't start
+# qemu WIN98SE: mouse pointer jumps without lock_pointer
+# dosbox-x win95 hangs in the first corridor at the beginning of the game
+# wine: graphic glitches (in library, text bubble doesn't fit screen)

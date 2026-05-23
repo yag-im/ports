@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Amazon Trail, The (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FAmazon%20Trail%2C%20The%20(USA).zip
+    # v1.1
+  igdb_slug: the-amazon-trail
+  lang: en
+  media_assets:
+  name: The Amazon Trail
+  platform: win
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id: the-amazon-trail
+    mg_id: 1013
+    pcgw_id: The_Amazon_Trail
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e55f6-e9de-74f9-bffe-22e541b95b72
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\amazon16.exe'

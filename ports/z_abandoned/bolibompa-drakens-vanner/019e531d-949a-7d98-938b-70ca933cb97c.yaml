@@ -35,8 +35,6 @@ installer:
     - copy_src_cd_images:
     - qemu:
         flavor: WINXPSP3
-        conf:
-          safe_disc: '2.90'
         tasks:
           - mount:
               src: '{DEST_DIR}'
