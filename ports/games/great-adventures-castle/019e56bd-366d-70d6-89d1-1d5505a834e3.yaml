@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - GreatAdventuresFisherPriceCastle.iso
+    format: 1CD
+    url: https://archive.org/download/GreatAdventuresFisherPriceCastle/GreatAdventuresFisherPriceCastle.iso
+  igdb_slug: great-adventures-castle
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e56bd-366d-70d6-89d1-1d5505a834e3
+    screenshots: []
+  name: 'Great Adventures: Castle'
+  platform: win
+  publisher: Fisher-Price
+  refs:
+    ag_id:
+    lutris_id: great-adventures-castle
+    mg_id: 120402
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e56bd-366d-70d6-89d1-1d5505a834e3
+  year_released: 1998
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT 2.1.2
+          - gen_run_script:
+              path: '{APP_DIR}\CASTLE16.EXE'
