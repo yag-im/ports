@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - Julkalendern2005.iso
+    format: 1CD
+    url: https://archive.org/download/julkalendern-2005/Julkalendern2005.iso
+    # TODO: redump avail
+  igdb_slug: en-decemberdrom
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e5add-8ca3-7ab6-ae37-b2d37ca57ebf
+    screenshots: []
+  name: En Decemberdröm
+  platform: win
+  publisher: Pan Vision
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5add-8ca3-7ab6-ae37-b2d37ca57ebf
+  year_released: 2005
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\START.EXE'
+              exit: false
+          - move: # TODO: due to the autostartup characters in a path limitations
+              src: '{APP_DIR}\En decemberdröm\*'
+              dest: '{APP_DIR}'
+          - move: # TODO: due to the autostartup characters in a path limitations
+              src: '{APP_DIR}\En decemberdröm.exe'
+              dest: '{APP_DIR}\end.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\end.exe'
