@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Josefin & Sofus i morotsparken (Sweden) (Sv,No).bin
+    format: 1CD
+    url: https://archive.org/details/josefin-sofus-i-morotsparken-sweden-svno
+  igdb_slug: josefin-och-sofus-i-morotsparken
+  lang: multi # sv and nb available to choose at startup
+  media_assets:
+    cover:
+      image_id: 019e5b47-484b-7c72-a6c4-fe0f26fdc13d
+    screenshots: []
+  name: Josefin & Sofus i Morotsparken
+  platform: win
+  publisher: Pinjata AS
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5b47-484b-7c72-a6c4-fe0f26fdc13d
+  year_released: 2005
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installer Data\QT\QuickTimeInstaller.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Installer Data\Josefine.exe'
