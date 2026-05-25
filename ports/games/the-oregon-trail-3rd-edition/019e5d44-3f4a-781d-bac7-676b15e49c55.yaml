@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Oregon Trail 3rd Edition, The - Pioneer Adventures (USA) (DVD-ROM).iso
+    format: 1DVD
+    url: https://archive.org/details/Nova_OregonTrail3rdEdDVD_USA
+    # redump, v. DVD 1.0
+  igdb_slug: the-oregon-trail-3rd-edition
+  lang: en
+  media_assets:
+  name: 'The Oregon Trail: 3rd Edition - Pioneer Adventures'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-oregon-trail-3rd-edition
+    mg_id: 1437
+    pcgw_id: The_Oregon_Trail:_3rd_Edition
+    qz_id:
+  reqs:
+    # 800x600x16 - readme and setup requirement
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e5d44-3f4a-781d-bac7-676b15e49c55
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # fails to copy all required files and create reg keys in WINXP
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\otdvd.exe'
