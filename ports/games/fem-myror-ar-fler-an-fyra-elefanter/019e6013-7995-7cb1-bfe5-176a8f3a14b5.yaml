@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Fem Myror Aer Fler Aen Fyra Elefanter - Foersta Delen (Sweden) (Rerelease).bin
+    format: 1CD
+    url: https://archive.org/details/fem-myror-ar-fler-an-fyra-elefanter-forsta-delen/
+    # redump (rerelease)
+  igdb_slug: fem-myror-ar-fler-an-fyra-elefanter
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 019e6013-7995-7cb1-bfe5-176a8f3a14b5
+    screenshots: []
+  name: Fem myror är fler än fyra elefanter
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 69636
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e6013-7995-7cb1-bfe5-176a8f3a14b5
+  year_released: 2007
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Fem myror 1\MyrStart.exe'
+              exit: false # exits otherwise
