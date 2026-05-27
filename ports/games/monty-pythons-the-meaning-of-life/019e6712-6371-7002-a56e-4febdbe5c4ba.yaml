@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Monty Python's The Meaning of Life (USA) (Disc 1).bin
+      - Monty Python's The Meaning of Life (USA) (Disc 2).bin
+    format: 2CD
+    url: https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FM%2FMonty%20Python%27s%20The%20Meaning%20of%20Life%20(USA)%20(Disc%201).zip
+    # https://minerva-archive.org/rom/?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FM%2FMonty%20Python%27s%20The%20Meaning%20of%20Life%20(USA)%20(Disc%202).zip
+  igdb_slug: monty-pythons-the-meaning-of-life
+  lang: en
+  media_assets:
+  name: Monty Python's the Meaning of Life
+  platform: win
+  publisher: 7th Level
+  refs:
+    ag_id: monty-pythons-the-meaning-of-life
+    lutris_id: monty-pythons-the-meaning-of-life
+    mg_id: 2310
+    pcgw_id: Monty_Python%27s_The_Meaning_of_Life
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e6712-6371-7002-a56e-4febdbe5c4ba
+  year_released: 1997
+  tags:
+    - monty-python
+    - fmv
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 50 # uses 42MB
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 5
+          - gen_run_script:
+              path: '{APP_DIR}\MOL.exe'
