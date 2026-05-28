@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Word Munchers Deluxe (USA) (Rerelease) (1999-02-18).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FW%2FWord%20Munchers%20Deluxe%20(USA)%20(Rerelease)%20(1999-02-18).zip
+  igdb_slug: word-munchers-deluxe
+  lang: en
+  media_assets:
+  name: Word Munchers Deluxe
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: word-munchers-deluxe
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e6c42-be37-728a-80c7-d31bf14dd8e5
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\WMUNCH16.EXE'

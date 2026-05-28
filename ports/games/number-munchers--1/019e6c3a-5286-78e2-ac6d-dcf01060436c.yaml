@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Number Munchers (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FN%2FNumber%20Munchers%20(USA).zip
+  igdb_slug: number-munchers--1
+  lang: en
+  media_assets:
+  name: Number Munchers
+  platform: dos
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id: number-munchers--1
+    mg_id: 4635
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019e6c3a-5286-78e2-ac6d-dcf01060436c
+  year_released: 1990
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\NM.EXE'
