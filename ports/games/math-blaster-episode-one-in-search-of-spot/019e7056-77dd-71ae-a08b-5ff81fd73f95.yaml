@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Math Blaster - Episode 1 - In Search of Spot (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FM%2FMath%20Blaster%20-%20Episode%201%20-%20In%20Search%20of%20Spot%20(USA).zip
+  igdb_slug: math-blaster-episode-one-in-search-of-spot
+  lang: en
+  media_assets:
+  name: 'Math Blaster: Episode One - In Search of Spot'
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: math-blaster-episode-one-in-search-of-spot
+    mg_id: 28804
+    pcgw_id: Math_Blaster:_Episode_1_-_In_Search_of_Spot
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e7056-77dd-71ae-a08b-5ff81fd73f95
+  year_released: 1993
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MB4.EXE'

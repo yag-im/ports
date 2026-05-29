@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Scholastic's The Magic School Bus Explores the Human Body (USA) (Rev 1).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FS%2FScholastic%27s%20The%20Magic%20School%20Bus%20Explores%20the%20Human%20Body%20(USA)%20(Rev%201).zip
+  igdb_slug: the-magic-school-bus-explores-the-human-body
+  lang: en
+  media_assets:
+  name: 'The Magic School Bus Explores the Human Body'
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-the-human-body
+    mg_id: 34821
+    pcgw_id: Scholastic%27s_The_Magic_School_Bus_Explores_the_Human_Body
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e70b7-1615-708a-936f-04c29e53501e
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\MSKIDS\MSBHUMAN\MSBHUMAN.EXE'
