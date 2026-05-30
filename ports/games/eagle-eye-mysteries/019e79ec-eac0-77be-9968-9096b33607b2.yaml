@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Peter Pan and Eagle Eye Mysteries (1994)(EA Kids)[compilation].iso
+    format: 1CD
+    url: https://archive.org/download/eagle-eye-mysteries-peter-pan-cd/Peter%20Pan%20and%20Eagle%20Eye%20Mysteries%20%281994%29%28EA%20Kids%29%5Bcompilation%5D.iso
+  igdb_slug: eagle-eye-mysteries
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e79ec-eac0-77be-9968-9096b33607b2
+    screenshots: []
+  name: 'Eagle Eye Mysteries: The Original'
+  platform: dos
+  publisher: EA*Kids
+  refs:
+    ag_id:
+    lutris_id: eagle-eye-mysteries
+    mg_id: 14171
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019e79ec-eac0-77be-9968-9096b33607b2
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - md:
+              path: '{SYSTEM_DRIVE}\EEMCDSAV'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\EEMCD.EXE'
+    - copy:
+        src: '{PORT_FILES_DIR}/{item}'
+        dest: '{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/EEMCDSAV'
+        loop:
+          - 'KD.CFG'
