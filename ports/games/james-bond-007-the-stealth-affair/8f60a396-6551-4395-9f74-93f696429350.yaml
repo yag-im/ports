@@ -40,8 +40,6 @@ installer:
           - "{SRC_DIR}/{descr[distro][files][1]}"
           - "{SRC_DIR}/{descr[distro][files][2]}"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/BOND.EXE"

@@ -39,7 +39,6 @@ installer:
           - ANNODOMI/*
     - dosbox:
         conf:
-          fullscreen: true
           cycles: fixed 40000 # to prevent sound distortion
         tasks:
           - gen_run_script:

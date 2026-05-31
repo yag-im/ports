@@ -34,8 +34,6 @@ installer:
         src: "{SRC_DIR}/{descr[distro][files][0]}"
         dest: "{DEST_APP_DIR}"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/OREGON.EXE"

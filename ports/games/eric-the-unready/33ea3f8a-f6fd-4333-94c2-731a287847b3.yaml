@@ -33,8 +33,6 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               src: "{DEST_DIR}"

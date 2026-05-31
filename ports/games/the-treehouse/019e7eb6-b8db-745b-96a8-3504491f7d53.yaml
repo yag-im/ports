@@ -43,8 +43,6 @@ installer:
           - '{SRC_DIR}/{descr[distro][files][0]}'
           - '{SRC_DIR}/{descr[distro][files][1]}'
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               letter: '{FIRST_FD_DRIVE_LETTER}'

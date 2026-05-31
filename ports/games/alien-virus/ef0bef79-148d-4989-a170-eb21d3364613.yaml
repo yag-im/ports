@@ -48,8 +48,6 @@ installer:
           - AV
           - DOS4GW
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

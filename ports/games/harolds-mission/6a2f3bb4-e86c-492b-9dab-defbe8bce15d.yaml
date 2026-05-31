@@ -34,8 +34,6 @@ installer:
         dest: "{DEST_APP_DIR}"
         hint: floppy
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/HAROLD.EXE"

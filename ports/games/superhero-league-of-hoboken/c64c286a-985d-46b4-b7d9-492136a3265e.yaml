@@ -36,8 +36,6 @@ installer:
         files:
           - "HOBOKEN/*"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: '{APP_DIR}\SLH.EXE'

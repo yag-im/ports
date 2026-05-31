@@ -37,8 +37,6 @@ installer:
           - "{SRC_DIR}/{descr[distro][files][0]}"
           - "{SRC_DIR}/{descr[distro][files][1]}"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/CASTLES.BAT"

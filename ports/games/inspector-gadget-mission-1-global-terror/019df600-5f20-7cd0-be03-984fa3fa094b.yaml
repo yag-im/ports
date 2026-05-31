@@ -37,7 +37,6 @@ installer:
         dest: "{DEST_APP_DIR}"
     - dosbox:
         conf:
-          fullscreen: true
           cycles: fixed 6000
         tasks:
           - gen_run_script:

@@ -37,8 +37,6 @@ installer:
         src: "{SRC_DIR}/ALIENS03.ZIP"
         dest: "{DEST_DIR}/{SYSTEM_DRIVE_LETTER}/ALIENS"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

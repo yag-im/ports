@@ -40,7 +40,6 @@ installer:
     - dosbox:
         conf:
           cycles: fixed 3000
-          fullscreen: true
         tasks:
           - mount:
               src: "{DEST_DIR}"

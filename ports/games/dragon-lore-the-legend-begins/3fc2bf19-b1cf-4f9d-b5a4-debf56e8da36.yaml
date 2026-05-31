@@ -46,7 +46,6 @@ installer:
     - dosbox:
         conf:
           cycles: fixed 6000
-          fullscreen: true
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

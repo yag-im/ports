@@ -36,8 +36,6 @@ installer:
         dest: "{DEST_DIR}"
         cd_images_as_letters: true
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/EMDOS.EXE"

@@ -42,7 +42,6 @@ installer:
           - "SYN.CFG"
     - dosbox:
         conf:
-          fullscreen: true
           cycles: 6000 # with more mouse cursor blinks and leaves traces at the bottom
         tasks:
           - mount:

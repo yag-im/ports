@@ -59,8 +59,6 @@ installer:
           - "{SRC_DIR}/{descr[distro][files][1]}"
           - "{SRC_DIR}/{descr[distro][files][2]}"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

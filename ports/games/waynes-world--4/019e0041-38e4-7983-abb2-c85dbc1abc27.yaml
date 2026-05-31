@@ -53,8 +53,6 @@ installer:
         dest: "{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}"
         hint: floppy
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               letter: "{FIRST_FD_DRIVE_LETTER}"

@@ -35,8 +35,6 @@ installer:
         files:
           - BlackS/*
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - gen_run_script:
               path: "{APP_DIR}/BS.BAT"

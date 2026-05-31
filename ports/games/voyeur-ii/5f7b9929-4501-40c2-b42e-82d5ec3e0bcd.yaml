@@ -37,8 +37,6 @@ installer:
         path: "{DEST_DIR}/C/VOYEURII"
         state: directory
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               src: "{DEST_DIR}"

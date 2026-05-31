@@ -47,8 +47,6 @@ installer:
         src: "{DEST_APP_DIR}/INITGAME"
         dest: "{DEST_APP_DIR}/GAMEDAT"
     - dosbox:
-        conf:
-          fullscreen: true
         tasks:
           - mount:
               src: "{DEST_DIR}"

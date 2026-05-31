@@ -57,7 +57,6 @@ installer:
           - UNIVBE.EXE
     - dosbox:
         conf:
-          fullscreen: true
           cycles: fixed 6000 # otherwise cursor blinks too much
         tasks:
           - mount:

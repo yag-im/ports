@@ -32,7 +32,6 @@ installer:
     - copy_src_cd_images:
     - dosbox:
         conf:
-          fullscreen: true
           cycles: fixed 10000 # on max characters' animation is too fast
         tasks:
           - mount:
