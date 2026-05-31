@@ -44,6 +44,8 @@ installer:
         loop:
           - "RIDDLE.CFG"
     - dosbox:
+        conf:
+          fullscreen: false
         tasks:
           - mount:
               src: "{DEST_DIR}"

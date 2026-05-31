@@ -57,6 +57,8 @@ installer:
           - "DIG.INI"
           - "PATH.INF"
     - dosbox:
+        conf:
+          fullscreen: false
         tasks:
           - mount:
               # TODO: fix Ctrl+F4 swap (patch ANGEL.EXE)

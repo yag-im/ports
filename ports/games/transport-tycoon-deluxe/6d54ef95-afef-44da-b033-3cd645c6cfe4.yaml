@@ -38,6 +38,8 @@ installer:
         src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/ENGLISH/MPSLABS.001"
         dest: "{DEST_APP_DIR}"
     - dosbox:
+        conf:
+          fullscreen: false
         tasks:
           - mount:
               letter: "{FIRST_CD_DRIVE_LETTER}"

@@ -41,6 +41,7 @@ installer:
     - dosbox:
         conf:
           gus: true
+          fullscreen: false
         tasks:
           - mount:
               src: "{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}"

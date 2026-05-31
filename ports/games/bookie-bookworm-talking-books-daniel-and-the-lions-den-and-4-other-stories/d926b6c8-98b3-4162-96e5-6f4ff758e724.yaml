@@ -34,6 +34,8 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
+        conf:
+          fullscreen: false
         tasks:
           - mount:
               src: "{DEST_DIR}"
