@@ -62,6 +62,8 @@ class DosBoxDos(DosBox[DosBoxConf]):
                 RUNNERS_BUNDLES_BASE_DIR / self.conf.mod.value / "ULTRASND",
                 self.system_drive,
             )
+        if self.conf.mod == DosBoxMod.ORIG:
+            self.conf.fullscreen = True
 
     def run(
         self, path: PureWindowsPath, args: List[Any] = None, mock=False, cd=None, pre_exec=None, runexit=True
