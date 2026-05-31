@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Time-Riders-in-American-History_DOS_EN.zip
+    format: 2FD
+    url: https://archive.org/details/TimeRidersInAmericanHistory
+    # TODO: tampered; contains some files dated 1999
+  igdb_slug: time-riders-in-american-history
+  lang: en
+  media_assets:
+  name: Time Riders in American History
+  platform: dos
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: time-riders-in-american-history
+    mg_id: 17145
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x # no sound in vanilla dosbox
+    ver: 2025.12.01
+  uuid: 019e7ece-dee3-7bfc-b411-08fdca18b095
+  year_released: 1992
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - time-riders-in-american-history/*
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\TR.EXE'

@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      - Treehouse, The (1993) (v1.2) (Brøderbund Software, Inc.) (1.44M) (Disk 1).ima
+      - Treehouse, The (1993) (v1.2) (Brøderbund Software, Inc.) (1.44M) (Disk 2).ima
+    format: 2FD
+    url: https://archive.org/download/20240119_20240119_0659/Treehouse%2C%20The%20%281993%29%20%28v1.2%29%20%28Br%C3%B8derbund%20Software%2C%20Inc.%29%20%281.44M%29.zip
+    # v1.2
+  igdb_slug: the-treehouse
+  lang: en
+  media_assets:
+  name: The Treehouse
+  platform: dos
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: the-treehouse
+    mg_id: 11866
+    pcgw_id:
+    qz_id:
+  reqs:
+    # installer
+    color_bits: 8
+    screen_height: 200
+    screen_width: 320
+  runner:
+    name: dosbox-x # vanilla dosbox doesn't support multi-FD mounts
+    ver: 2025.12.01
+  uuid: 019e7eb6-b8db-745b-96a8-3504491f7d53
+  year_released: 1993
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\SETUP.EXE' # hit Ctrl+F4 multiple times when requested
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TREEHSE.EXE'
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
