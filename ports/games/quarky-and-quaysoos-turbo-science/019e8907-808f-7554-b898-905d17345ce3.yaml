@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      - DISK01.IMA
+      - DISK02.IMA
+      - DISK03.IMA
+    format: 3FD
+    url: https://archive.org/details/quarky-quaysoos-turbo-science-3.5-1992
+  igdb_slug: quarky-and-quaysoos-turbo-science
+  lang: en
+  media_assets:
+  name: Quarky & Quaysoo's Turbo Science
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: quarky-and-quaysoos-turbo-science
+    mg_id: 9821
+    pcgw_id: Quarky_%26_Quaysoo%27s_Turbo_Science
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x # multi FD mount support
+    ver: 2025.12.01
+  uuid: 019e8907-808f-7554-b898-905d17345ce3
+  year_released: 1992
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        hint: floppy
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+    - dosbox:
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.COM'
+              exit: false
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\TURBOSCI\TURBOSCI.EXE'
