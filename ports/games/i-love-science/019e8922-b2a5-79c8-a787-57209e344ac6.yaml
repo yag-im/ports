@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - I Love Science! (Europe).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FI%2FI%20Love%20Science!%20(Europe).zip
+  igdb_slug: i-love-science
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e8922-b2a5-79c8-a787-57209e344ac6
+    screenshots: []
+  name: I Love Science!
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 96373
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e8922-b2a5-79c8-a787-57209e344ac6
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ILoveSci.EXE'
