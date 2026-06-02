@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - bodyfun.iso
+    format: 1CD
+    url: https://archive.org/download/dr-healthnsteins-body-fun/bodyfun.iso
+  igdb_slug: dr-healthnsteins-body-fun
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e8610-92c2-7102-aec0-4d88d66838ad
+    screenshots: []
+  name: Dr. Health'nstein's Body Fun
+  platform: win
+  publisher: StarPress Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e8610-92c2-7102-aec0-4d88d66838ad
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BODYFUN.EXE'
