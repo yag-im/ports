@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Dr Sulfur's Night Lab.iso
+    format: 1CD
+    url: https://archive.org/download/dr-sulfurs-night-lab/Dr%20Sulfur%27s%20Night%20Lab.iso
+  igdb_slug: dr-sulfurs-night-lab
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e8932-57c0-716c-ac39-d872d0084af9
+    screenshots: []
+  name: Dr Sulfur's Night Lab
+  platform: win
+  publisher: McGraw Hill Home Interactive
+  refs:
+    ag_id:
+    lutris_id: dr-sulfurs-night-lab
+    mg_id: 147813
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e8932-57c0-716c-ac39-d872d0084af9
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: 'EXPLORER.EXE'
+              exit: false
+          # fails to install without explorer
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          #     exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\sulfur.exe'
+              exit: false
+# TODO: fails to start in qemu/dosbox; fails to install in WINE
