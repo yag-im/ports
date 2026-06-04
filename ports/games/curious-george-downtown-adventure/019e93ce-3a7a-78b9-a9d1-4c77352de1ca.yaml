@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      # - Curious George - Downtown Adventure (USA).bin
+      - CuriousGeorgeDowntownAdventure.iso
+    format: 1CD
+    url: https://archive.org/download/CuriousGeorgeDowntownAdventure/CuriousGeorgeDowntownAdventure.iso
+    # https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FC%2FCurious%20George%20-%20Downtown%20Adventure%20(USA).zip
+    # v1.0c
+    # TODO: redump image - fails to copy files from image during setup
+  igdb_slug: curious-george-downtown-adventure
+  lang: en
+  media_assets:
+  name: 'Curious George: Downtown Adventure'
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: curious-george-downtown-adventure
+    mg_id: 28538
+    pcgw_id: Curious_George:_Downtown_Adventure
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e93ce-3a7a-78b9-a9d1-4c77352de1ca
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # min win98 is setup requirement
+        # app_drive_size: 100 # setup requirement
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: 'EXPLORER.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Curious George Downtown Adventure\CGTown.exe'
