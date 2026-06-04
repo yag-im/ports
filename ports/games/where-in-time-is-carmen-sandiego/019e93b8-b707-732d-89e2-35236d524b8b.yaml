@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - Where in Time Is Carmen Sandiego (USA) (Disc 1).cue
+      - Where in Time Is Carmen Sandiego (USA) (Disc 2).cue
+    format: 2CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FW%2FWhere%20in%20Time%20Is%20Carmen%20Sandiego%20(USA)%20(Disc%201).zip
+    # https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FW%2FWhere%20in%20Time%20Is%20Carmen%20Sandiego%20(USA)%20(Disc%202).zip
+    # v3.0
+  igdb_slug: where-in-time-is-carmen-sandiego
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e93b8-b707-732d-89e2-35236d524b8b
+    screenshots: []
+  name: Where in Time is Carmen Sandiego?
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: where-in-time-is-carmen-sandiego
+    mg_id: 220194
+    pcgw_id: Carmen_Sandiego%27s_Great_Chase_through_Time
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019e93b8-b707-732d-89e2-35236d524b8b
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - carmen-sandiego
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        # 5MB install
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{descr[distro][files][1]}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 3
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Time32.exe'
