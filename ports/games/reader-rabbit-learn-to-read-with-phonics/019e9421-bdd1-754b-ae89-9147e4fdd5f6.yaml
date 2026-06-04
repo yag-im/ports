@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit - Learn to Read with Phonics - 1st & 2nd Grade (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FR%2FReader%20Rabbit%20-%20Learn%20to%20Read%20with%20Phonics%20-%201st%20%26%202nd%20Grade%20(USA).zip
+  igdb_slug: reader-rabbit-learn-to-read-with-phonics
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019e9421-bdd1-754b-ae89-9147e4fdd5f6
+    screenshots: []
+  name: 'Reader Rabbit: Learn to Read with Phonics 1st and 2nd Grade'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 124230
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e9421-bdd1-754b-ae89-9147e4fdd5f6
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+    - reader-rabbit
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: "{DEST_DIR}"
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Play.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Learn to Read with Phonics 1st and 2nd Grade\Learn to Read Grades 1-2.exe'
