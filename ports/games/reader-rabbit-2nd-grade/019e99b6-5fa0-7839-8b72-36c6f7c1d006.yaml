@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit - 2nd Grade (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FR%2FReader%20Rabbit%20-%202nd%20Grade%20(USA).zip
+  igdb_slug: reader-rabbit-2nd-grade
+  lang: en
+  media_assets:
+  name: Reader Rabbit 2nd Grade
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-2nd-grade
+    mg_id: 44807
+    pcgw_id: Reader_Rabbit:_2nd_Grade
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019e99b6-5fa0-7839-8b72-36c6f7c1d006
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+    - reader-rabbit
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # app_drive_size: 40 # uses 37
+        flavor: WIN98SE # black screen in qemu:XP
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\PLAY.EXE' # QT5, DX
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Reader Rabbit 2nd Grade\2nd Grade Mis-cheese-ious Adventures.exe'
