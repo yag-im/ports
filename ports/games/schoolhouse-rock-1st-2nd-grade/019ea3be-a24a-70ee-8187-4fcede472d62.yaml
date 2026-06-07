@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Schoolhouse Rock! 1st & 2nd Grade (USA) (Disc 2) (2nd Grade).bin
+    format: 2CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FS%2FSchoolhouse%20Rock!%201st%20%26%202nd%20Grade%20(USA)%20(Disc%202)%20(2nd%20Grade).zip
+  igdb_slug: schoolhouse-rock-1st-2nd-grade
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ea3a1-631c-7c3b-a486-07474c97add6
+    screenshots: []
+  name: 'Schoolhouse Rock!: 1st & 2nd Grade Essentials (CD 2)'
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 119813
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ea3be-a24a-70ee-8187-4fcede472d62
+  year_released: 1997
+  tags:
+    - schoolhouse-rock
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SHR_1_2\SHR2.exe'
