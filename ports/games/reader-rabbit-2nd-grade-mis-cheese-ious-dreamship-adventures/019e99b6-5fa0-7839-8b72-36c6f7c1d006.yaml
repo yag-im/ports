@@ -4,15 +4,15 @@ descr:
       - Reader Rabbit - 2nd Grade (USA).bin
     format: 1CD
     url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FR%2FReader%20Rabbit%20-%202nd%20Grade%20(USA).zip
-  igdb_slug: reader-rabbit-2nd-grade
+  igdb_slug: reader-rabbit-2nd-grade-mis-cheese-ious-dreamship-adventures
   lang: en
   media_assets:
-  name: Reader Rabbit 2nd Grade
+  name: "Reader Rabbit 2nd Grade: Mis-Cheese-ious Dreamship Adventures!"
   platform: win
   publisher: The Learning Company
   refs:
     ag_id:
-    lutris_id: reader-rabbit-2nd-grade
+    lutris_id: reader-rabbit-2nd-grade-mis-cheese-ious-dreamship-adventures
     mg_id: 44807
     pcgw_id: Reader_Rabbit:_2nd_Grade
     qz_id:
@@ -24,7 +24,7 @@ descr:
     name: qemu
     ver: latest
   uuid: 019e99b6-5fa0-7839-8b72-36c6f7c1d006
-  year_released: 1998
+  year_released: 2002
   tags:
     - kids
     - edutainment

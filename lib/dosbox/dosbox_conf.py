@@ -61,7 +61,7 @@ class DosBoxConf:
     @lang.setter
     def lang(self, new_value):
         # only BASE_LANG and ru DOS versions are supported
-        self._lang = new_value if new_value in {BASE_LANG, "ru"} else BASE_LANG
+        self._lang = new_value if new_value in {BASE_LANG, "ru", "sv"} else BASE_LANG
 
     def mount(
         self,
