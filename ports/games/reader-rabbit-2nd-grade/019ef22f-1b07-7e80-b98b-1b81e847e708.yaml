@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit's 2nd Grade 1.0 (The Learning Company) (1998).bin
+    format: 1CD
+    url: https://archive.org/details/ReaderRabbits2ndGrade1.0TheLearningCompany1998
+    # v1.0
+  igdb_slug: reader-rabbit-2nd-grade
+  lang: en
+  media_assets:
+  name: Reader Rabbit 2nd Grade
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-2nd-grade
+    mg_id: 44807
+    pcgw_id: Reader_Rabbit:_2nd_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ef22f-1b07-7e80-b98b-1b81e847e708
+  year_released: 1998
+  tags:
+    - reader-rabbit
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\rr2gw32.exe'
