@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - BluesTHunt-disk1.iso
+    format: 2CD
+    url: https://archive.org/details/BluesTHunt
+  igdb_slug: blues-clues-blues-treasure-hunt
+  lang: en
+  media_assets:
+  name: Blue's Treasure Hunt (CD1)
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-clues-blues-treasure-hunt
+    mg_id: 21110
+    pcgw_id: Blue%27s_Treasure_Hunt
+    qz_id:
+  reqs:
+    # 8bit - exec requirement
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019f0615-7737-7ca0-ba91-7dee94d25a88
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - blues-clues
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\setup.exe'
+              exit: false
+              # run once to skip reg window and cd test
+          - gen_run_script:
+              path: '{APP_DIR}\Blues Treasure Hunt\Blue''sTreasureHunt.r32'
+              args:
+                - Blue'sTreasureHunt-Disc1
+
+# TODO: ShowStartupAgain=1 in C:\WINDOWS\hegames.ini - skip reg window

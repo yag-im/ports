@@ -56,3 +56,6 @@ installer:
               game: scumm:BluesTreasureHunt
               path: "{DEST_APP_DIR}"
               lang: en
+
+# Buggy, reported crashes in scummvm
+# https://discord.com/channels/1251206620822638684/1251209459271860277/1520178791471644836
