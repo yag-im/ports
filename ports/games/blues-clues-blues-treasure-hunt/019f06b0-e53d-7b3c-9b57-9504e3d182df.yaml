@@ -1,13 +1,13 @@
 descr:
   distro:
     files:
-      - BluesTHunt-disk1.iso
+      - BluesTHunt-disc2.iso
     format: 2CD
     url: https://archive.org/details/BluesTHunt
   igdb_slug: blues-clues-blues-treasure-hunt
   lang: en
   media_assets:
-  name: Blue's Treasure Hunt (CD 1)
+  name: Blue's Treasure Hunt (CD 2)
   platform: win
   publisher: Humongous Entertainment
   refs:
@@ -24,7 +24,7 @@ descr:
   runner:
     name: qemu
     ver: latest
-  uuid: 019f0615-7737-7ca0-ba91-7dee94d25a88
+  uuid: 019f06b0-e53d-7b3c-9b57-9504e3d182df
   year_released: 1999
   tags:
     - kids
@@ -46,6 +46,6 @@ installer:
           - gen_run_script:
               path: '{APP_DIR}\Blues Treasure Hunt\Blue''sTreasureHunt.r32'
               args:
-                - Blue'sTreasureHunt-Disc1
+                - Blue'sTreasureHunt-Disc2
 
 # TODO: ShowStartupAgain=1 in C:\WINDOWS\hegames.ini - skip reg window
