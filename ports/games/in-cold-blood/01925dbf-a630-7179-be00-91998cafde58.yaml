@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - ICB_CD1.mdf
+      - ICB_CD2.mdf
+      - ICB_CD3.mdf
+    format: 3CD
+    url: https://archive.org/details/in-cold-blood-2001-revolution-dreamcatcher-3-cd-set
+  igdb_slug: in-cold-blood
+  lang: en
+  media_assets:
+  name: In Cold Blood
+  platform: win
+  publisher: DreamCatcher Interactive
+  refs:
+    ag_id: 16533
+    lutris_id: in-cold-blood
+    mg_id: 3373
+    pcgw_id: In_Cold_Blood
+    qz_id: 89
+  reqs:
+    color_bits: 32
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine
+    ver: '11.0'
+  uuid: 01925dbf-a630-7179-be00-91998cafde58
+  year_released: 2001
+installer:
+  tasks:
+    - extract:
+        src: '{item}'
+        dest: '{DEST_APP_DIR}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+    - file:
+        path: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+        state: directory
+    - move:
+        src: '{DEST_APP_DIR}/movies'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+    # with "minimum" folder app just exits and empties "m" folder
+    - file:
+        path: '{DEST_APP_DIR}/engine/linc/minimum'
+        state: absent
+    - wine:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{APP_DIR}\engine\linc\engine.exe'
+    # game checks for CD presence by label
+    # 0x410EE8: JNZ <- NOP
+    - copy:
+        src: '{SRC_DIR}/patch/engine.exe'
+        dest: '{DEST_APP_DIR}/engine/linc'
