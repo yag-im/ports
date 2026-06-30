@@ -2,12 +2,13 @@ descr:
   distro:
     files:
       - BluesTHunt-disk1.iso
+      - BluesTHunt-disc2.iso
     format: 2CD
     url: https://archive.org/details/BluesTHunt
   igdb_slug: blues-clues-blues-treasure-hunt
   lang: en
   media_assets:
-  name: Blue's Treasure Hunt (CD 1)
+  name: Blue's Treasure Hunt
   platform: win
   publisher: Humongous Entertainment
   refs:
@@ -34,18 +35,19 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
+        # app_drive_size: 35 # uses 25
         flavor: WIN98SE
         tasks:
           - mount:
               src: '{DEST_DIR}'
               cd_images_as_letters: true
+              # auto discovery during CD switch
           - run:
-              path: '{FIRST_CD_DRIVE}\setup\setup.exe'
-              exit: false
-              # run once to skip reg window and cd test
+             path: '{FIRST_CD_DRIVE}\setup\setup.exe'
+             exit: false
+          # run once to skip reg window and cd test
+          # TODO: ShowStartupAgain=1 in C:\WINDOWS\hegames.ini - skip reg window
           - gen_run_script:
-              path: '{APP_DIR}\Blues Treasure Hunt\Blue''sTreasureHunt.r32'
-              args:
-                - Blue'sTreasureHunt-Disc1
-
-# TODO: ShowStartupAgain=1 in C:\WINDOWS\hegames.ini - skip reg window
+             path: '{APP_DIR}\Blues Treasure Hunt\Blue''sTreasureHunt.r32'
+             args:
+               - Blue'sTreasureHunt-Disc1
