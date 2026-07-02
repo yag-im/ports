@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Learning Adventure Series - I Can Be an Animal Doctor (Veterinarian)(Macmillan Digital Publishing)(1998).ISO
+    format: 1CD
+    url: https://archive.org/download/Learning_Adventure_Series_I_Can_Be_an_Animal_Doctor_Veterinarian_Macmillan_Digit/Learning%20Adventure%20Series%20-%20I%20Can%20Be%20an%20Animal%20Doctor%20%28Veterinarian%29%28Macmillan%20Digital%20Publishing%29%281998%29.ISO
+  igdb_slug: i-can-be-an-animal-doctor
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f24a6-360e-7c3f-9ec0-941529e0b9d6
+    screenshots: []
+  name: I Can Be an Animal Doctor
+  platform: win
+  publisher: Macmillan Digital Publishing
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 79674
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # app exec req
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f24a6-360e-7c3f-9ec0-941529e0b9d6
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              # TODO: manually move game shortcut to StartUp folder
+              # (E:\VET.C9A should be run from D:\APP cwd)
+          - gen_run_script:
+              path: 'EXPLORER.EXE'
+              exit: false
