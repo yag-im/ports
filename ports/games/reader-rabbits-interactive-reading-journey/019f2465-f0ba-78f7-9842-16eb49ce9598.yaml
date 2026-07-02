@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit's Interactive Reading Journey (USA).bin
+    format: 1CD
+    url: https://archive.org/details/reader-rabbits-interactive-reading-journey
+  igdb_slug: reader-rabbits-interactive-reading-journey
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f2465-f0ba-78f7-9842-16eb49ce9598
+    screenshots: []
+  name: Reader Rabbit's Interactive Reading Journey
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: reader-rabbits-interactive-reading-journey
+    mg_id: 145244
+    pcgw_id: Reader_Rabbit%27s_Interactive_Reading_Journey_1
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f2465-f0ba-78f7-9842-16eb49ce9598
+  year_released: 1994
+  tags:
+    - reader-rabbit
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRIRJ.EXE'
