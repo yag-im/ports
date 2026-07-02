@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - SLEEPINGCUB.iso
+    format: 1CD
+    url: https://archive.org/download/SLEEPINGCUBWIN/SLEEPINGCUB.iso
+  igdb_slug: magic-tales-sleeping-cubs-test-of-courage
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f23c9-5265-792f-8c02-6e54325d8ed3
+    screenshots: []
+  name: "Magic Tales: Sleeping Cub's Test of Courage"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 124458
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f23c9-5265-792f-8c02-6e54325d8ed3
+  year_released: 1996
+  tags:
+    - magic-tales
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PROGRAMS\SLEEPCUB.EXE'
+              exit: false
