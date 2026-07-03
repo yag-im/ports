@@ -48,4 +48,4 @@ installer:
               exit: false
           - gen_run_script:
               path: "{APP_DIR}/BTM.EXE"
-              workdir: "{FIRST_CD_DRIVE}" # otherwise BTM.EXE will just hang
+              work_dir: "{FIRST_CD_DRIVE}" # otherwise BTM.EXE will just hang

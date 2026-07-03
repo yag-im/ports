@@ -40,22 +40,14 @@ installer:
               src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
               letter: '{FIRST_CD_DRIVE_LETTER}'
           - run:
-              path: 'explorer.exe'
+              path: '{FIRST_CD_DRIVE}\setup.exe'
               exit: false
           - gen_run_script:
-              path: 'explorer.exe'
-              exit: false
-          # TODO: manually copy shortcut to the game exec into the StartUp folder
-
-          # - run:
-          #     path: '{FIRST_CD_DRIVE}\setup.exe'
-          #     exit: false
-          # - gen_run_script:
-          #     cwd: '{FIRST_CD_DRIVE}'
-          #     path: '{APP_DIR}\TIMMY2.EXE'
-          #     args:
-          #       - EMME
-          #       - /CFG:D:\APP\itamar2.ini
+              work_dir: '{FIRST_CD_DRIVE}'
+              path: '{APP_DIR}\TIMMY2.EXE'
+              args:
+                - EMME
+                - /CFG:D:\APP\itamar2.ini
 
 # TODO: audio CD; app crashes in dosbox-x (win311, win9x)
 # qemu: winxp - error at startup (16 bit driver)

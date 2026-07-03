@@ -41,7 +41,7 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
             exec_path=PureWindowsPath(task.get("path")),
             do_exit=task.get("exit", True),
             args=task.get("args", None),
-            cwd=PureWindowsPath(task.get("cwd")) if task.get("cwd") else None,
+            work_dir=PureWindowsPath(task.get("work_dir")) if task.get("work_dir") else None,
         )
     elif cmd == CMD_MOUNT:
         src = Path(task.get("src"))

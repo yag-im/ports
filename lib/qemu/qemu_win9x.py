@@ -62,7 +62,7 @@ class QemuWin9x(Qemu[QemuWin9xConf]):
         exec_path: str,
         do_exit: bool = True,
         mock: bool = False,
-        work_dir: PureWindowsPath | None = None,
+        work_dir: PureWindowsPath | None = None,  # cwd for exec
         args: list[Any] = None,
     ) -> None:
         if args is None:
@@ -91,7 +91,7 @@ class QemuWin9x(Qemu[QemuWin9xConf]):
         exec_path: PureWindowsPath | str,
         do_exit: bool = True,
         mock: bool = False,
-        work_dir: PureWindowsPath | None = None,
+        work_dir: PureWindowsPath | None = None,  # cwd for exec
         args: list[Any] | None = None,
     ) -> None:
         if isinstance(exec_path, str):
@@ -105,7 +105,7 @@ class QemuWin9x(Qemu[QemuWin9xConf]):
         exec_path: PureWindowsPath,
         do_exit: bool = True,
         args: list[Any] | None = None,
-        cwd: PureWindowsPath | None = None,  # pylint: disable=unused-argument
+        work_dir: PureWindowsPath | None = None,  # cwd for exec
     ) -> Path:
-        self.run_exec(exec_path, do_exit=do_exit, mock=True, args=args)
+        self.run_exec(exec_path, do_exit=do_exit, mock=True, work_dir=work_dir, args=args)
         return super().gen_run_script(exec_path)

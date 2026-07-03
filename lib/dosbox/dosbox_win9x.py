@@ -130,7 +130,7 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             self.copy(tmp_path, dst)
 
     def run(
-        self, path: PureWindowsPath, args: List[Any] = None, mock=False, runexit=True, umount_x=True, workdir=None
+        self, path: PureWindowsPath, args: List[Any] = None, mock=False, runexit=True, umount_x=True, work_dir=None
     ) -> None:
         """Runs existing app in the Win9x-flavored env (runs after Win9x is booted inside the DosBox instance).
 
@@ -145,8 +145,8 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
             shell_cmds = []
             if runexit:
                 shell_cmds.append("RUNEXIT.EXE")
-            if workdir:
-                shell_cmds.append(f'/C:"{workdir}"')
+            if work_dir:
+                shell_cmds.append(f'/C:"{work_dir}"')
             shell_cmds.append(f'"{path}"')
             if args:
                 shell_cmds.append(" ".join([str(a) for a in args]))

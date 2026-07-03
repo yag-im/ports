@@ -89,7 +89,7 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
         cmd: Union[str, list[str]],
         do_exit: bool = True,
         mock: bool = False,
-        work_dir: PureWindowsPath | None = None,
+        runexit_dir: PureWindowsPath | None = None,
     ) -> None:
         if isinstance(cmd, str):
             cmd = [cmd]
@@ -102,8 +102,8 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
                 params=tmpl_params,
                 newline="\r\n",
             )
-            if work_dir:
-                dest_path = work_dir
+            if runexit_dir:
+                dest_path = runexit_dir
             else:
                 if self.conf.flavor == QemuFlavor.WINXPSP3:
                     dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
@@ -135,27 +135,25 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
         mock: bool = False,
         work_dir: PureWindowsPath | None = None,  # runexit script dir
         args: list[Any] | None = None,
-        cwd: PureWindowsPath | None = None,
     ) -> None:
         if isinstance(exec_path, str):
             exec_path = PureWindowsPath(exec_path)
-
-        exec_dir = cwd if cwd is not None else exec_path.parent
+        exec_dir = work_dir if work_dir is not None else exec_path.parent
         cmd = ["start", "/wait", '""', "/D", f'"{str(exec_dir)}"', f'"{exec_path}"']
         if args:
             args = [str(a) for a in args]
             cmd += args
-        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, work_dir=work_dir)
+        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, runexit_dir=PureWindowsPath(APP_DRIVE))
 
     def gen_run_script(
         self,
         exec_path: PureWindowsPath,
         do_exit: bool = True,
         args: list[Any] | None = None,
-        cwd: PureWindowsPath | None = None,
+        work_dir: PureWindowsPath | None = None,  # cwd for exec
     ) -> Path:
         # just copying RUNEXIT.BAT for apps' exec into D: drive, no runs
-        self.run_exec(exec_path, do_exit=do_exit, mock=True, work_dir=PureWindowsPath(APP_DRIVE), args=args, cwd=cwd)
+        self.run_exec(exec_path, do_exit=do_exit, mock=True, work_dir=work_dir, args=args)
         self.upd_reg(
             {
                 "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon": [

@@ -68,14 +68,14 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
     elif isinstance(dbox, DosBoxWin3x):
         dbox.run(path=PureWindowsPath(run_path), args=task.get("args", []), runexit=runexit, mock=mock)
     elif isinstance(dbox, DosBoxWin9x):
-        workdir = task.get("workdir", None)
+        work_dir = task.get("work_dir", None)
         dbox.run(
             path=PureWindowsPath(run_path),
             args=task.get("args", []),
             runexit=runexit,
             mock=mock,
             umount_x=task.get("unmount_x", True),
-            workdir=workdir,
+            work_dir=work_dir,
         )
     else:
         raise ValueError(f"unrecognized dbox: {dbox}")
