@@ -38,7 +38,10 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
         qemu.move(Path(task.get("src")), Path(task.get("dest")))
     elif cmd == CMD_GEN_RUN_SCRIPT:
         qemu.gen_run_script(
-            exec_path=PureWindowsPath(task.get("path")), do_exit=task.get("exit", True), args=task.get("args", None)
+            exec_path=PureWindowsPath(task.get("path")),
+            do_exit=task.get("exit", True),
+            args=task.get("args", None),
+            cwd=PureWindowsPath(task.get("cwd")) if task.get("cwd") else None,
         )
     elif cmd == CMD_MOUNT:
         src = Path(task.get("src"))

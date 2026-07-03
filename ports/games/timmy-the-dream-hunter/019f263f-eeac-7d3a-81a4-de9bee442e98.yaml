@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      # - cd.cue
+      - cd.BIN
+    format: 1CD
+    url: https://archive.org/details/cd_20231222
+  igdb_slug: timmy-the-dream-hunter
+  lang: en
+  media_assets:
+  name: Timmy the Dream Hunter
+  platform: win
+  publisher: FlagTower Multimedia Inc.
+  refs:
+    ag_id:
+    lutris_id: timmy-the-dream-hunter
+    mg_id: 221547
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019f263f-eeac-7d3a-81a4-de9bee442e98
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              # src: '{DEST_DIR}/{descr[distro][files][0]}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: 'explorer.exe'
+              exit: false
+          - gen_run_script:
+              path: 'explorer.exe'
+              exit: false
+          # TODO: manually copy shortcut to the game exec into the StartUp folder
+
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\setup.exe'
+          #     exit: false
+          # - gen_run_script:
+          #     cwd: '{FIRST_CD_DRIVE}'
+          #     path: '{APP_DIR}\TIMMY2.EXE'
+          #     args:
+          #       - EMME
+          #       - /CFG:D:\APP\itamar2.ini
+
+# TODO: audio CD; app crashes in dosbox-x (win311, win9x)
+# qemu: winxp - error at startup (16 bit driver)
