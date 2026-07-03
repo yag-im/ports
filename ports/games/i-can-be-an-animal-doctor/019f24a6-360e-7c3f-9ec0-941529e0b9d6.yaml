@@ -23,6 +23,7 @@ descr:
     color_bits: 8 # app exec req
     screen_height: 480
     screen_width: 640
+    loading_duration: 10
   runner:
     name: dosbox-x
     ver: 2025.12.01

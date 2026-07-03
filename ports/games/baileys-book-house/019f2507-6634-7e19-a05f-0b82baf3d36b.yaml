@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Bailey's Book House (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FB%2FBailey%27s%20Book%20House%20(USA).zip
+  igdb_slug: baileys-book-house
+  lang: en
+  media_assets:
+  name: "Bailey's Book House"
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: baileys-book-house
+    mg_id: 34983
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f2507-6634-7e19-a05f-0b82baf3d36b
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Bailey\Bailey.exe'
