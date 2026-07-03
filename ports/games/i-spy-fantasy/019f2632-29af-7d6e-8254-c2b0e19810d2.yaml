@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - I Spy Fantasy (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FI%2FI%20Spy%20Fantasy%20(USA).zip
+  igdb_slug: i-spy-fantasy
+  lang: en
+  media_assets:
+  name: I Spy Fantasy
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: i-spy-fantasy
+    mg_id: 26551
+    pcgw_id: I_Spy:_Fantasy
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019f2632-29af-7d6e-8254-c2b0e19810d2
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+    - i-spy
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Fantasy Setup.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ispy_fantasy.exe'
