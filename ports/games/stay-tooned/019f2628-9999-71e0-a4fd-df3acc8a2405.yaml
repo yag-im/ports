@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Stay Tooned! (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FS%2FStay%20Tooned!%20(USA).zip
+  igdb_slug: stay-tooned
+  lang: en
+  media_assets:
+  name: Stay Tooned!
+  platform: win
+  publisher: Sierra
+  refs:
+    ag_id:
+    lutris_id: stay-tooned
+    mg_id: 12362
+    pcgw_id: Stay_Tooned!
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f2628-9999-71e0-a4fd-df3acc8a2405
+  year_released: 1996
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # skip system test as it crashes on cd test
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\TOONED\START16.EXE'

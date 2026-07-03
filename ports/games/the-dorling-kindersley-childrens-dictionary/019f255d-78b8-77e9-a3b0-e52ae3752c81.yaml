@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - DKMMDKCD.ISO
+    format: 1CD
+    url: https://archive.org/download/DKMMDKCD/DKMMDKCD.ISO
+  igdb_slug: the-dorling-kindersley-childrens-dictionary
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f255d-78b8-77e9-a3b0-e52ae3752c81
+    screenshots: []
+  name: "The Dorling Kindersley Children's Dictionary"
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f255d-78b8-77e9-a3b0-e52ae3752c81
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 30 # uses 26
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\dkcd.exe'

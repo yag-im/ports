@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - ELMOGLASS.ISO
+    format: 1CD
+    url: https://archive.org/download/ELMOGLASS/ELMOGLASS.ISO
+  igdb_slug: elmo-through-the-looking-glass
+  lang: en
+  media_assets:
+  name: 'Sesame Street: Elmo Through the Looking-Glass'
+  platform: win
+  publisher: Encore
+  refs:
+    ag_id:
+    lutris_id: elmo-through-the-looking-glass
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f2551-d8fb-70b7-b75c-b8f8ad8a70d5
+  year_released: 1998
+  tags:
+    - sesame-street
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RUN\ELMOGLAS.EXE'
