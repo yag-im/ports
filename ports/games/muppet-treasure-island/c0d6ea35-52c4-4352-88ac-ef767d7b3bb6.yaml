@@ -55,3 +55,4 @@ installer:
               game: mtropolis:mti
               lang: en
               path: "{DEST_APP_DIR}"
+# TODO: reported malfunction: https://discord.com/channels/1251206620822638684/1251209459271860277/1528237392551743641

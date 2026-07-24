@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Prisoner of Ice (Europe) (En,Fr,De,Nl,Sv).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FP%2FPrisoner%20of%20Ice%20(Europe)%20(En%2CFr%2CDe%2CNl%2CSv).zip
+  igdb_slug: prisoner-of-ice
+  lang: multi # En,Fr,De,Nl,Sv
+  media_assets:
+  name: Prisoner of Ice
+  platform: win
+  publisher: Infogrames
+  refs:
+    ag_id:
+    lutris_id: prisoner-of-ice
+    mg_id: 376
+    pcgw_id: Call_of_Cthulhu:_Prisoner_of_Ice
+    qz_id: 450
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # cursor visibility issues in dosbox-x
+    ver: latest
+  uuid: 019f9632-e349-7af3-868f-887ba75c65f1
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\WICE.EXE' # TODO: just creates a dir?
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WICE.EXE'
