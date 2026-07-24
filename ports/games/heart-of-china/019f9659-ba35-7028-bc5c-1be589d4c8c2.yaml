@@ -1,0 +1,74 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+      - disk5.img
+      - disk6.img
+      - disk7.img
+    format: 7FD
+    url: https://archive.org/details/003514-HeartOfChina
+  igdb_slug: heart-of-china
+  lang: en
+  media_assets:
+  name: Heart of China
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: heart-of-china
+    mg_id: 164
+    pcgw_id: Heart_of_China
+    qz_id: 415
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9659-ba35-7028-bc5c-1be589d4c8c2
+  year_released: 1991
+  tags:
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+          - '{SRC_DIR}/{descr[distro][files][3]}'
+          - '{SRC_DIR}/{descr[distro][files][4]}'
+          - '{SRC_DIR}/{descr[distro][files][5]}'
+          - '{SRC_DIR}/{descr[distro][files][6]}'
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][5]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][6]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.COM' # hit Ctrl+F4 multiple times when requested
+          - gen_run_script:
+              path: '{APP_DRIVE}\DYNAMIX\HOC\HOC.EXE'
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+    - copy:
+        src: '{PORT_FILES_DIR}/RESOURCE.CFG' # works only with adlib
+        dest: '{DEST_APP_DIR}'
