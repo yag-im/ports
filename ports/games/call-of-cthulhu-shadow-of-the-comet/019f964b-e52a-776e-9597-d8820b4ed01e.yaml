@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Call of Cthulhu - Shadow of the Comet (Europe) (En,Fr,De,Es,It) (Rerelease).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FC%2FCall%20of%20Cthulhu%20-%20Shadow%20of%20the%20Comet%20(Europe)%20(En%2CFr%2CDe%2CEs%2CIt)%20(Rerelease).zip
+  igdb_slug: call-of-cthulhu-shadow-of-the-comet
+  lang: multi
+  media_assets:
+  name: 'Call of Cthulhu: Shadow of the Comet'
+  platform: dos
+  publisher: Infogrames
+  refs:
+    ag_id:
+    lutris_id: call-of-cthulhu-shadow-of-the-comet
+    mg_id: 132
+    pcgw_id: Call_of_Cthulhu:_Shadow_of_the_Comet
+    qz_id: 449
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019f964b-e52a-776e-9597-d8820b4ed01e
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SHADOW.EXE'
