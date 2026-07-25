@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Arthur's 2nd Grade (USA) (Disc 1) (Rerelease).bin
+    format: 2CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FArthur%27s%202nd%20Grade%20(USA)%20(Disc%201)%20(Rerelease).zip
+  igdb_slug: arthurs-2nd-grade
+  lang: en
+  media_assets:
+  name: Arthur's 2nd Grade (Disc 1)
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 119999
+    pcgw_id: Arthur%27s_2nd_Grade
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019f9714-0c69-7218-afca-0b5b95bcc424
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ArthurS1.exe'
+# fails to install in win9x
