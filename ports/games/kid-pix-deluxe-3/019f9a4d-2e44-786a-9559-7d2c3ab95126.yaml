@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Kid Pix Deluxe 3 (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FK%2FKid%20Pix%20Deluxe%203%20(USA).zip
+  igdb_slug: kid-pix-deluxe-3
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f9a4d-2e44-786a-9559-7d2c3ab95126
+    screenshots: []
+  name: Kid Pix Deluxe 3
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 71434
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    loading_duration: 13
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019f9a4d-2e44-786a-9559-7d2c3ab95126
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # text to speech incompat with XP
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\KPD3.EXE'
