@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Cf4_5_ks2.iso
+    format: 1CD
+    url: https://archive.org/download/cf-years-45/Cf4_5_ks2.iso
+  igdb_slug: the-cluefinders-4th-grade-adventures-puzzle-of-the-pyramid
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f9a72-df5f-7a7f-a9fd-be678baab79e
+    screenshots: []
+  name: 'The ClueFinders Years 4 & 5 Adventures: Key Stage 2'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-cluefinders-4th-grade-adventures-puzzle-of-the-pyramid
+    mg_id: 18127
+    pcgw_id: The_ClueFinders_4th_Grade_Adventures:_Puzzle_of_the_Pyramid
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 15
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9a72-df5f-7a7f-a9fd-be678baab79e
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+    - cluefinders
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 10 # uses 1MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\4thadv32.exe'
