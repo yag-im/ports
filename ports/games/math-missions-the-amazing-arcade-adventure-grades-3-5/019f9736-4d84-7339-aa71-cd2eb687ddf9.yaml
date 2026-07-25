@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Math Missions - The Amazing Arcade Adventure (Grades 3-5) (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FM%2FMath%20Missions%20-%20The%20Amazing%20Arcade%20Adventure%20(Grades%203-5)%20(USA).zip
+  igdb_slug: math-missions-the-amazing-arcade-adventure-grades-3-5
+  lang: en
+  media_assets:
+  name: 'Math Missions: The Amazing Arcade Adventure Grades 3-5'
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: math-missions-the-amazing-arcade-adventure-grades-3-5
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019f9736-4d84-7339-aa71-cd2eb687ddf9
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+    - math
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              #path: '{FIRST_CD_DRIVE}\Autorun.exe'
+              path: explorer
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MathMissionsGrades3-5.exe'
+# typing issues in WINXP
