@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - SCIENCE_SLEUTHS1_PC.ISO
+    format: 1CD
+    url: https://archive.org/details/science-sleuths-1
+    # v1.05
+  igdb_slug: science-sleuths-vol-1-mysteries-of-the-blob-and-the-exploding-lawnmowers
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f9a37-45fc-7077-9dfa-c9e22ec0bec9
+    screenshots: []
+  name: 'Science Sleuths Vol. 1: Mysteries of the Blob and the Exploding Lawnmowers'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: science-sleuths-vol-1-mysteries-of-the-blob-and-the-exploding-lawnmowers
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9a37-45fc-7077-9dfa-c9e22ec0bec9
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SLEUTH.EXE'
