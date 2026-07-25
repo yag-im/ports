@@ -53,7 +53,7 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
     def __init__(self, root_dir: Path, app_descr: AppDesc, conf: QemuWinXpConf = QemuWinXpConf()) -> None:
         super().__init__(root_dir, app_descr, conf)
 
-    def set_display_params(self, screen_width: int, screen_height, color_bits: int):
+    def set_display_params(self, screen_width: int, screen_height: int, color_bits: int) -> None:
         self.run_exec(
             "QRES",
             args=[
@@ -84,15 +84,7 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
                 }
             )
 
-    def run_on_startup(
-        self,
-        cmd: Union[str, list[str]],
-        do_exit: bool = True,
-        mock: bool = False,
-        runexit_dir: PureWindowsPath | None = None,
-    ) -> None:
-        if isinstance(cmd, str):
-            cmd = [cmd]
+    def gen_runexit_script(self, cmd: list[str], do_exit: bool, dest_path: PureWindowsPath) -> None:
         with tempfile.TemporaryDirectory() as td:
             tmp_runexit_bat = Path(td) / "RUNEXIT.BAT"
             tmpl_params = {"cmd": "\r\n".join([str(c) for c in cmd]), "exit": do_exit}
@@ -102,29 +94,42 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
                 params=tmpl_params,
                 newline="\r\n",
             )
-            if runexit_dir:
-                dest_path = runexit_dir
-            else:
-                if self.conf.flavor == QemuFlavor.WINXPSP3:
-                    dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
-                    if self.conf.lang == "ru":
-                        dest_path = (
-                            f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
-                        )
-                    elif self.conf.lang == "ja":
-                        dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\スタート メニュー\\プログラム\\スタートアップ"
-                elif self.conf.flavor == QemuFlavor.WIN98SE:
-                    dest_path = f"{SYSTEM_DRIVE}\\Windows\\Start Menu\\Programs\\StartUp"
-                    if self.conf.lang == "ru":
-                        dest_path = f"{SYSTEM_DRIVE}\\Windows\\Главное меню\\Программы\\Автозагрузка"
-                    elif self.conf.lang == "ja":
-                        dest_path = f"{SYSTEM_DRIVE}\\Windows\\スタート メニュー\\プログラム\\スタートアップ"
-                else:
-                    raise ValueError(f"Unsupported flavor: {self.conf.flavor}")
-            self.copy(
-                tmp_runexit_bat,
-                PureWindowsPath(dest_path),
-            )
+            self.copy(tmp_runexit_bat, dest_path)
+
+    def run_on_startup(
+        self,
+        cmd: Union[str, list[str]],
+        do_exit: bool = True,
+        mock: bool = False,
+    ) -> None:
+        """Run a command on Windows startup by creating a RUNEXIT.BAT script in the startup folder.
+
+        Args:
+            cmd: The command to run on startup, either as a string or a list of strings.
+            do_exit: Whether to exit after running the command.
+            mock: If True, do not actually run QEMU.
+        """
+        if isinstance(cmd, str):
+            cmd = [cmd]
+        if self.conf.flavor == QemuFlavor.WINXPSP3:
+            dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Start Menu\\Programs\\Startup"
+            if self.conf.lang == "ru":
+                dest_path = f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\Главное меню\\Программы\\Автозагрузка"
+            elif self.conf.lang == "ja":
+                dest_path = (
+                    f"{SYSTEM_DRIVE}\\Documents and Settings\\gamer\\スタート メニュー\\プログラム\\スタートアップ"
+                )
+        elif self.conf.flavor == QemuFlavor.WIN98SE:
+            dest_path = f"{SYSTEM_DRIVE}\\Windows\\Start Menu\\Programs\\StartUp"
+            if self.conf.lang == "ru":
+                dest_path = f"{SYSTEM_DRIVE}\\Windows\\Главное меню\\Программы\\Автозагрузка"
+            elif self.conf.lang == "ja":
+                dest_path = f"{SYSTEM_DRIVE}\\Windows\\スタート メニュー\\プログラム\\スタートアップ"
+        else:
+            raise ValueError(f"Unsupported flavor: {self.conf.flavor}")
+
+        self.gen_runexit_script(cmd, do_exit, PureWindowsPath(dest_path))
+
         if not mock:
             self._run_qemu()
 
@@ -143,7 +148,7 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
         if args:
             args = [str(a) for a in args]
             cmd += args
-        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock, runexit_dir=PureWindowsPath(APP_DRIVE))
+        return self.run_on_startup(" ".join(cmd), do_exit=do_exit, mock=mock)
 
     def gen_run_script(
         self,
@@ -152,8 +157,15 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
         args: list[Any] | None = None,
         work_dir: PureWindowsPath | None = None,  # cwd for exec
     ) -> Path:
-        # just copying RUNEXIT.BAT for apps' exec into D: drive, no runs
-        self.run_exec(exec_path, do_exit=do_exit, mock=True, work_dir=work_dir, args=args)
+        # copies RUNEXIT.BAT into APP drive and updates Winlogon registry so it runs on startup
+        if isinstance(exec_path, str):
+            exec_path = PureWindowsPath(exec_path)
+        exec_dir = work_dir if work_dir is not None else exec_path.parent
+        cmd = ["start", "/wait", '""', "/D", f'"{str(exec_dir)}"', f'"{exec_path}"']
+        if args:
+            args = [str(a) for a in args]
+            cmd += args
+        self.gen_runexit_script(cmd, do_exit, PureWindowsPath(f"{APP_DRIVE}"))
         self.upd_reg(
             {
                 "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon": [
