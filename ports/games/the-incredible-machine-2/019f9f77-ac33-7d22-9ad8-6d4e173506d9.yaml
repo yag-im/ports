@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Incredible Machine 2, The (USA) (En,Fr,De,Es).cue
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FI%2FIncredible%20Machine%202%2C%20The%20(USA)%20(En%2CFr%2CDe%2CEs).zip
+  igdb_slug: the-incredible-machine-2
+  lang: en
+  media_assets:
+  name: The Incredible Machine 2
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: the-incredible-machine-2
+    mg_id: 1605
+    pcgw_id: The_Incredible_Machine_2
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9f77-ac33-7d22-9ad8-6d4e173506d9
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\TIM2.EXE'
+              args:
+                - '{APP_DIR}\RESOURCE.CFG'
+    - file:
+        path: '{DEST_APP_DIR}'
+        state: directory
+    - copy:
+        src: '{PORT_FILES_DIR}/{item}'
+        dest: '{DEST_APP_DIR}'
+        loop:
+          - 'RESOURCE.CFG'
