@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - I Spy (USA).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FI%2FI%20Spy%20(USA).zip
+    # somehow this and all AO versions of I Spy are "School Days" 1997 version
+  igdb_slug: i-spy
+  lang: en
+  media_assets:
+  name: I Spy
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: i-spy
+    mg_id: 81742
+    pcgw_id: I_Spy
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9f4f-bea0-700a-acfa-21a3d0c7f768
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+    - i-spy
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Ispy95.exe'
