@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Super Solvers - Midnight Rescue! (USA) (v1.12).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FS%2FSuper%20Solvers%20-%20Midnight%20Rescue!%20(USA)%20(v1.12).zip
+  igdb_slug: super-solvers-midnight-rescue
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019fa001-8fde-7575-a170-69cd55d20cc2
+    screenshots: []
+  name: 'Super Solvers: Midnight Rescue!'
+  platform: dos
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: super-solvers-midnight-rescue
+    mg_id: 6565
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fa001-8fde-7575-a170-69cd55d20cc2
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SSRWINCD.EXE'
