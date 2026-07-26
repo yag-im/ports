@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Incredible Machine, The - Version 3.0 (USA) (En,Fr,De,Es,It) (Rerelease).cue
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FI%2FIncredible%20Machine%2C%20The%20-%20Version%203.0%20(USA)%20(En%2CFr%2CDe%2CEs%2CIt)%20(Rerelease).zip
+  igdb_slug: the-incredible-machine-3
+  lang: en
+  media_assets:
+  name: The Incredible Machine 3
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id: the-incredible-machine-3
+    mg_id: 1605
+    pcgw_id: The_Incredible_Machine_3
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9f90-cc12-7a54-bc7e-2ce349972f67
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # skip tests and don't change dir (otherwise setup crashes)
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\TIMWIN\TIMWIN.EXE'
