@@ -1,0 +1,56 @@
+descr:
+  distro:
+    files:
+      - Pony Express Rider (USA) (Disc 1).bin
+      - Pony Express Rider (USA) (Disc 2).bin
+      - Pony Express Rider (USA) (Disc 3).bin
+    format: 3CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FP%2FPony%20Express%20Rider%20(USA)%20(Disc%201).zip
+    # https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FP%2FPony%20Express%20Rider%20(USA)%20(Disc%202).zip
+    # https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FP%2FPony%20Express%20Rider%20(USA)%20(Disc%203).zip
+    # v1.0
+  igdb_slug: pony-express-rider
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f9fc6-4736-711c-9bc5-23bc97206552
+    screenshots: []
+  name: Pony Express Rider
+  platform: win
+  publisher: McGraw Hill Home Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 15
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9fc6-4736-711c-9bc5-23bc97206552
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+          - run:
+              path: 'explorer.exe' # TODO: setup.exe fails without explorer
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PE.EXE'
