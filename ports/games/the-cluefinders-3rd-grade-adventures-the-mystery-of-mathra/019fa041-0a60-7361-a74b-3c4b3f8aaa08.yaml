@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - CF Years 3 & 4.iso
+    format: 1CD
+    url: https://archive.org/download/clue-finders-years-3-4-adventures/CF%20Years%203%20%26%204.iso
+  igdb_slug: the-cluefinders-3rd-grade-adventures-the-mystery-of-mathra
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019fa041-0a60-7361-a74b-3c4b3f8aaa08
+    screenshots: []
+  name: ClueFinders Years 3 & 4 Adventures
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-cluefinders-3rd-grade-adventures-the-mystery-of-mathra
+    mg_id: 17742
+    pcgw_id: The_ClueFinders_3rd_Grade_Adventures:_Mystery_of_Mathra
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fa041-0a60-7361-a74b-3c4b3f8aaa08
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+    - cluefinders
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DCOM, DX
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\3rdadv32.exe'
