@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Reading Blaster for 2nd Grade (USA) (Rerelease).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FR%2FReading%20Blaster%20for%202nd%20Grade%20(USA)%20(Rerelease).zip
+    # v1.0c
+  igdb_slug: reading-blaster-ages-6-8
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019f9ff0-72ea-7ad9-b22c-b16e917a8b4e
+    screenshots: []
+  name: 'Reading Blaster: Ages 6-8'
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 210279
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 11
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019f9ff0-72ea-7ad9-b22c-b16e917a8b4e
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # uses 15MB
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT3.0.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RB2.EXE'
