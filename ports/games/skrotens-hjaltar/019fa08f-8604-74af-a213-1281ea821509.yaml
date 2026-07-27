@@ -1,0 +1,53 @@
+descr:
+  distro:
+    files:
+      - Skrotens Hjältar.iso
+    format: 1CD
+    url: https://nostalgi.zip/download.html?name=Skrotens%20Hj%C3%A4ltar&bin=files%2FSkrotens%20Hj%C3%A4ltar%2FSKROT.bin&cue=files%2FSkrotens%20Hj%C3%A4ltar%2FSKROT.cue&iso_only=true
+  igdb_slug: skrotens-hjaltar
+  lang: sv
+  media_assets:
+  name: Skrotens Hjältar
+  platform: win
+  publisher: Young Genius
+  refs:
+    ag_id:
+    lutris_id: skrotens-hjaltar
+    mg_id: 37787
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # readme
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fa08f-8604-74af-a213-1281ea821509
+  year_released: 2000
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # hangs on startup in WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup\SETUP.EXE'
+          - move: # TODO: due to the autostartup characters in a path limitations
+              src: '{APP_DIR}\Skrotens hjältar\*'
+              dest: '{APP_DIR}'
+          - move: # TODO: due to the autostartup characters in a path limitations
+              src: '{APP_DIR}\Skrotens hjältar.exe'
+              dest: '{APP_DIR}\Skrotens.exe'
+          - gen_run_script:
+              path: '{APP_DIR}\Skrotens.exe'
+
+# https://archive.org/details/SKROTEN - broken release
+# can't start in qemu WinXP/9x
+# crashes a lot in dosbox-x win95
+# wine says no free space on any of disks
