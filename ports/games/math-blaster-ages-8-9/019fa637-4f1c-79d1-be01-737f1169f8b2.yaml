@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Math Blaster - Ages 7-9 (USA) (Rerelease).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FM%2FMath%20Blaster%20-%20Ages%207-9%20(USA)%20(Rerelease).zip
+    # v1.2c
+  igdb_slug: math-blaster-ages-8-9
+  lang: en
+  media_assets:
+  name: Math Blaster Ages 8-9
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: math-blaster-ages-8-9
+    mg_id: 162742
+    pcgw_id: Math_Blaster:_Ages_8-9
+    qz_id:
+  reqs:
+    # readme.txt (says 800x600, but there is a frame in this mode)
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fa637-4f1c-79d1-be01-737f1169f8b2
+  year_released: 2009
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # student record can't be found error in WINXPSP3
+        # app_drive_size: 120 # installer says 100MB is required, but installs only 5
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              path: 'explorer.exe' # install fails to work without explorer
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Math Blaster Ages 7-9\MB7-9.EXE'
+
+# crashes after signin in dosbox-x win95osr25
