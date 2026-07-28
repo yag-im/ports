@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Reading Blaster Vocabulary (USA) (Rerelease).bin
+    format: 1CD
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FR%2FReading%20Blaster%20Vocabulary%20(USA)%20(Rerelease).zip
+    # v2.0c
+  igdb_slug: reading-blaster-vocabulary
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019faa27-ebe7-7793-a9ab-4d2eb747f6b1
+    screenshots: []
+  name: Reading Blaster Vocabulary
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019faa27-ebe7-7793-a9ab-4d2eb747f6b1
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT3.0.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LRBVocab.exe'
+              exit: false # runs apps in BG
+# TODO: dosbox-x: crashes in WIN311 on startup; errors in WIN9x on startup due to missing sources?

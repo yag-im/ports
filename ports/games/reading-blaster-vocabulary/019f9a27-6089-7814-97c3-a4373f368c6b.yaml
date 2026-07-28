@@ -4,6 +4,7 @@ descr:
       - Reading Blaster Vocabulary (USA).bin
     format: 1CD
     url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FR%2FReading%20Blaster%20Vocabulary%20(USA).zip
+    # V1.0C, this seems to be a world blaster game actually
   igdb_slug: reading-blaster-vocabulary
   lang: en
   media_assets:
@@ -27,7 +28,7 @@ descr:
     name: dosbox-x
     ver: 2025.12.01
   uuid: 019f9a27-6089-7814-97c3-a4373f368c6b
-  year_released: 1998
+  year_released: 1997
   tags:
     - kids
     - edutainment
