@@ -1,9 +1,11 @@
 descr:
   distro:
     files:
-      - MULLEBAT (Windows).iso
+      - Bygg Batar med Mulle Meck (Sweden) (Rerelease) (2004-12-21).bin
     format: 1CD
-    url: https://archive.org/download/mulle-meck-batar/MULLEBAT%20%28Windows%29.iso
+    url: https://archive.org/details/bygg-batar-med-mulle-meck-sweden-rerelease-2004-12-21 # redump
+    # https://archive.org/download/mulle-meck-batar/MULLEBAT%20%28Windows%29.iso - 1998 release
+    # reported issue: https://discord.com/channels/1251206620822638684/1251209459271860277/1528416124495073376
   igdb_slug: bygg-batar-med-mulle-meck
   lang: sv
   media_assets:
@@ -24,7 +26,7 @@ descr:
     name: qemu
     ver: latest
   uuid: 019d18a0-ac76-72d6-8ebd-4d1b1fa2e0d1
-  year_released: 1998
+  year_released: 2004
   tags:
     - kids
     - edutainment
@@ -32,13 +34,15 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WIN98SE
+        flavor: WINXPSP3
+        conf:
+          safe_disc: '2.90' # only in 2004 rerelease
         tasks:
           - mount:
-              src: "{DEST_DIR}"
+              src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX6
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{FIRST_CD_DRIVE}\Mullebat.exe'
+              path: '{APP_DIR}\Mullebat.exe'
