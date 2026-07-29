@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - PLUMO.ISO
+    format: 1CD
+    url: https://archive.org/download/plumo_202407/PLUMO.ISO
+  igdb_slug: plumo-on-the-farm
+  lang: multi # en, fr
+  media_assets:
+  name: Plumo On The Farm
+  platform: win
+  publisher: Micro-Intel
+  refs:
+    ag_id:
+    lutris_id: plumo-on-the-farm
+    mg_id: 229003
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fafac-4f15-7a77-ae1f-67ac4e3384c0
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PLUMO.EXE'
