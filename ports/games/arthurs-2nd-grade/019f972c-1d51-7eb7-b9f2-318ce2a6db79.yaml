@@ -1,13 +1,17 @@
 descr:
   distro:
     files:
-      - Arthur's 2nd Grade (USA) (Disc 2) (Rerelease).bin
+      - Arthur's 2nd Grade (USA) (Disc 2) (Creativity) (2002).bin
     format: 1CD
-    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FArthur%27s%202nd%20Grade%20(USA)%20(Disc%202)%20(Rerelease).zip
+    url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FArthur%27s%202nd%20Grade%20(USA)%20(Disc%202)%20(Creativity)%20(2002).zip
+
+    # url: https://minerva-archive.org/rom?name=.%2FRedump%2FIBM%20-%20PC%20compatible%2FA%2FArthur%27s%202nd%20Grade%20(USA)%20(Disc%202)%20(Rerelease).zip
+    # reported crash in rerelease: https://discord.com/channels/1251206620822638684/1251209459271860277/1531781219359133818
+    # also rerelease version fails to install in win9x
   igdb_slug: arthurs-2nd-grade
   lang: en
   media_assets:
-  name: Arthur's 2nd Grade (Disc 2)
+  name: Arthur's 2nd Grade (CD2 - Activity Center)
   platform: win
   publisher: The Learning Company
   refs:
@@ -24,7 +28,7 @@ descr:
     name: qemu
     ver: latest
   uuid: 019f972c-1d51-7eb7-b9f2-318ce2a6db79
-  year_released: 2000
+  year_released: 2002
   tags:
     - kids
     - edutainment
@@ -32,7 +36,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WINXPSP3
+        flavor: WIN98SE
         tasks:
           - mount:
               src: '{DEST_DIR}'
