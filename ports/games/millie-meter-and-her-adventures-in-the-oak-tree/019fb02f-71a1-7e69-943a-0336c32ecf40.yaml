@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - MilliMetreOakTree.iso
+    format: 1CD
+    url: https://www.legendsworld.net/adventure/game/8986
+    # url: https://archive.org/download/milli-2/MILLI2.iso
+    # crashes after language selection in all OSes, broken image?
+  igdb_slug: millie-meter-and-her-adventures-in-the-oak-tree
+  lang: multi
+  media_assets:
+  name: Millie Meter and Her Adventures in the Oak Tree
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id:
+    lutris_id: millie-meter-and-her-adventures-in-the-oak-tree
+    mg_id: 29275
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # app check
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fb02f-71a1-7e69-943a-0336c32ecf40
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\START32.EXE'
