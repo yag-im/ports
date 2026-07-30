@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Big Helpers.iso
+    format: 1CD
+    url: https://archive.org/download/big-helpers_202309/Big%20Helpers.iso
+  igdb_slug: lifes-little-lessons-with-the-berenstain-bears-little-bears-make-big-helpers
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019fb43b-2e19-7646-9bde-9a3780f7a368
+    screenshots: []
+  name: "Life's Little Lessons with The Berenstain Bears: Little Bears Make Big Helpers"
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # setup screen is missing colors in 8bit
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fb43b-2e19-7646-9bde-9a3780f7a368
+  year_released: 1999
+  tags:
+    - kids
+    - edutaintment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # app_drive_size: 30 # uses 25
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BigHelpers.exe'
+# Asks for file locations after startup in dosbox-x: win95osr25

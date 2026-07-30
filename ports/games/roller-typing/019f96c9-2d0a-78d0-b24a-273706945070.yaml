@@ -20,12 +20,12 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
-    color_bits: 16
+    color_bits: 16 # readme says at least 8
     screen_height: 480
     screen_width: 640
   runner:
-    name: qemu
-    ver: latest
+    name: dosbox-x
+    ver: 2025.12.01
   uuid: 019f96c9-2d0a-78d0-b24a-273706945070
   year_released: 1999
   tags:
@@ -33,8 +33,9 @@ descr:
 installer:
   tasks:
     - copy_src_cd_images:
-    - qemu:
-        flavor: WINXPSP3
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 20 # requires 15
         tasks:
           - mount:
               src: '{DEST_DIR}'
@@ -43,3 +44,5 @@ installer:
               path: '{FIRST_CD_DRIVE}\Setup.exe'
           - gen_run_script:
               path: '{APP_DIR}\RBType.exe'
+# crashes in QEMU 9x/XP when video plays
+# TODO: crashes in dosbox-x on Esc press
