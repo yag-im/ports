@@ -7,7 +7,7 @@ descr:
     # url: https://archive.org/download/milli-2/MILLI2.iso
     # crashes after language selection in all OSes, broken image?
   igdb_slug: millie-meter-and-her-adventures-in-the-oak-tree
-  lang: multi
+  lang: multi # en, de, fr
   media_assets:
   name: Millie Meter and Her Adventures in the Oak Tree
   platform: win
