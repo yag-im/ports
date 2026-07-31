@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - FUZZOOLY.iso
+    format: 1CD
+    url: https://archive.org/download/fuzzooly1996/FUZZOOLY.iso
+  igdb_slug: fisher-price-read-play-a-day-at-the-beach-with-the-fuzzooly-family
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019fba31-2780-7305-82ee-50634184828d
+    screenshots: []
+  name: 'Fisher-Price Read & Play: A Day at the Beach with the Fuzzooly Family'
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 96151
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fba31-2780-7305-82ee-50634184828d
+  year_released: 1995
+  tags:
+    - kids
+    - edutaintment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\FBI\FUZZOOLY\START.EXE'
