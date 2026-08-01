@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Math Circus - Act 1 (1993).zip
+    format: 2FD
+    url: https://minerva-archive.org/rom?name=.%2FeXo%2FeXoDOS%2FFull%20Release%2FeXo%2FeXoDOS%2FMath%20Circus%20-%20Act%201%20(1993).zip
+  igdb_slug: math-circus-act-1
+  lang: en
+  media_assets:
+  name: 'Math Circus: Act 1'
+  platform: dos
+  publisher: Greygum Software
+  refs:
+    ag_id:
+    lutris_id: math-circus-act-1
+    mg_id: 119979
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019fbdea-6588-7091-b6b9-d4e7484051c9
+  year_released: 1993
+  tags:
+    - kids
+    - edutaintment
+    - math
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - MathCirc/*
+        hint: floppy
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\CIRCUS.EXE'
