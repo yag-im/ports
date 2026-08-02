@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Quest for Glory I - So You Want to be a Hero SCI (1992).zip
+    format: 6FD
+    url: https://minerva-archive.org/rom?name=.%2FeXo%2FeXoDOS%2FFull%20Release%2FeXo%2FeXoDOS%2FQuest%20for%20Glory%20I%20-%20So%20You%20Want%20to%20be%20a%20Hero%20SCI%20(1992).zip
+  igdb_slug: quest-for-glory-i-so-you-want-to-be-a-hero
+  lang: en
+  media_assets:
+  name: 'Quest for Glory I: So You Want to Be a Hero'
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: quest-for-glory-i-so-you-want-to-be-a-hero-sci-remake
+    lutris_id: quest-for-glory-i-so-you-want-to-be-a-hero
+    mg_id: 16075
+    pcgw_id: Quest_for_Glory:_So_You_Want_to_Be_a_Hero
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2026.2.0
+  uuid: 019fc382-8d2b-7f60-a1ed-58f8f83002aa
+  year_released: 1992
+  tags:
+    - quest-for-glory
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - QG1NEW/*
+        hint: floppy
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Quest_for_Glory
+        tasks:
+          - gen_run_script:
+              game: sci:qfg1vga
+              path: '{DEST_APP_DIR}'
+              lang: en
