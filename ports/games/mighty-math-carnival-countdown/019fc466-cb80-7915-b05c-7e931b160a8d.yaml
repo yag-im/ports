@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Mighty Math - Carnival Countdown (EdMark)(1996).ISO
+    format: 1CD
+    url: https://archive.org/download/Mighty_Math_Carnival_Countdown_EdMark_1996/Mighty%20Math%20-%20Carnival%20Countdown%20%28EdMark%29%281996%29.ISO
+  igdb_slug: mighty-math-carnival-countdown
+  lang: en
+  media_assets:
+  name: Mighty Math Carnival Countdown
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: mighty-math-carnival-countdown
+    mg_id: 235787
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fc466-cb80-7915-b05c-7e931b160a8d
+  year_released: 1996
+  tags:
+    - kids
+    - edutaintment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\COUNT\COUNT.EXE'
