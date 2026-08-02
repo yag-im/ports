@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Timelapse (USA) (Disc 1).bin
+      - Timelapse (USA, Europe) (Disc 2).bin
+      - Timelapse (USA, Europe) (Disc 3).bin
+      - Timelapse (USA, Europe) (Disc 4).bin
+    format: 4CD
+    url: https://archive.org/details/timelapse_usa_pc
+  igdb_slug: timelapse
+  lang: en
+  media_assets:
+  name: Timelapse
+  platform: win
+  publisher: GTE Entertainment
+  refs:
+    ag_id: timelapse
+    lutris_id: timelapse
+    mg_id: 2172
+    pcgw_id: Timelapse
+    qz_id: 539
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fc32a-a2a7-778c-b793-54315e51f457
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 50 # uses 44
+        tasks:
+          - mount:
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # TODO: run LAPSE.EXE once to set 16 bit sound (find out where changes are stored)
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TL.EXE'
