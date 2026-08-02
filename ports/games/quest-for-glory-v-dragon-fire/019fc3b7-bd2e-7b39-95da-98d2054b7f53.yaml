@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Quest for Glory V - Dragon Fire (USA) (Install CD).bin
+      - Quest for Glory V - Dragon Fire (USA) (Game CD).bin
+    format: 2CD
+    url: https://archive.org/details/QuestForGloryVDragonFireUSA
+  igdb_slug: quest-for-glory-v-dragon-fire
+  lang: en
+  media_assets:
+  name: 'Quest for Glory V: Dragon Fire'
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: quest-for-glory-v-dragon-fire
+    lutris_id: quest-for-glory-v-dragon-fire
+    mg_id: 174
+    pcgw_id: Quest_for_Glory_V:_Dragon_Fire
+    qz_id: 280
+  reqs:
+    color_bits: 16 # setup req
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine
+    ver: '11.0'
+  uuid: 019fc3b7-bd2e-7b39-95da-98d2054b7f53
+  year_released: 1998
+  tags:
+    - quest-for-glory
+installer:
+  tasks:
+    # app installs from CD1, plays from CD2.
+    # CD1 should stay mounted (for introduction menu option to play a movie)
+    # app recognizes CDs by labels so no CD switch is required
+    - extract:
+        src: '{SRC_DIR}'
+        dest: '{DEST_DIR}'
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+              label: QG5_INSTALL
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # proceed with min install, QT3.0.2
+              exit: false
+          - mount:
+              letter: '{SECOND_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+              label: QG5_GAME
+          - gen_run_script:
+              path: '{APP_DIR}\SIERRA\QFG5\QFG5.EXE'
+
+# dosbox-x: blinking artifacts in the first room
+# qemu: fails to start

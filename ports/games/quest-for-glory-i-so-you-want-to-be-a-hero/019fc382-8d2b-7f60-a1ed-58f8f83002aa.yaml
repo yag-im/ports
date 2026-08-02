@@ -15,7 +15,7 @@ descr:
     lutris_id: quest-for-glory-i-so-you-want-to-be-a-hero
     mg_id: 16075
     pcgw_id: Quest_for_Glory:_So_You_Want_to_Be_a_Hero
-    qz_id:
+    qz_id: 271
   reqs:
     color_bits: 8
     screen_height: 480
