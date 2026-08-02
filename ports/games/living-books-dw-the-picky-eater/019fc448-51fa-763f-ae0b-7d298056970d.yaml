@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Living Books - Marc Brown - D.W. the Picky Eater (USA).bin
+    format: 1CD
+    url: https://archive.org/download/20230516_20230516/Living%20Books%20-%20Marc%20Brown%20-%20D.W.%20the%20Picky%20Eater%20%28USA%29.zip
+  igdb_slug: living-books-dw-the-picky-eater
+  lang: en
+  media_assets:
+  name: 'Living Books: D.W. the Picky Eater'
+  platform: win
+  publisher: Living Books
+  refs:
+    ag_id:
+    lutris_id: living-books-dw-the-picky-eater
+    mg_id: 119886
+    pcgw_id: D.W._the_Picky_Eater
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fc448-51fa-763f-ae0b-7d298056970d
+  year_released: 1998
+  tags:
+    - kids
+    - edutaintment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PROGRAM\DW_16.EXE'
