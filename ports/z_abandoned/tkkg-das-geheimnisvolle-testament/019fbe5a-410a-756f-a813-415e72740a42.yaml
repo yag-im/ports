@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - TKKG_8.img
+    format: 1CD
+    url: https://archive.org/download/tkkg-8/TKKG_8.iso
+  igdb_slug: tkkg-das-geheimnisvolle-testament
+  lang: multi # en, de
+  media_assets:
+    cover:
+      image_id: 019fbe5a-410a-756f-a813-415e72740a42
+    screenshots: []
+  name: "TKKG: The Captain's Legacy"
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 264806
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # readme
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fbe5a-410a-756f-a813-415e72740a42
+  year_released: 2001
+  tags:
+    - kids
+    - tkkg
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 20 # uses 12
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              #path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              path: 'explorer.exe'
+              exit: false
+          # - gen_run_script:
+          #     path: '{APP_DIR}\TKKG 8.EXE'
+          #     exit: false

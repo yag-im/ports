@@ -22,7 +22,10 @@ from lib.dosbox.dosbox_win9x import (
     DosBoxWin9x,
     DosBoxWin9xConf,
 )
-from lib.dosbox.helpers import gen_cd_mount_points
+from lib.dosbox.helpers import (
+    gen_cd_mount_points,
+    to_short_path,
+)
 from lib.dosbox.misc import (
     DosMountPoint,
     DosMountPointType,
@@ -52,6 +55,8 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
     runexit = task.get("exit", True)
     if run_path is None:
         raise ValueError("CMD_RUN: missing required field: 'path'")
+    # convert LFN with spaces to 8.3 short filenames (e.g. 'D:\APP\TKKG 8.EXE' -> 'D:\APP\TKKG8~1.EXE')
+    run_path = to_short_path(run_path)
     if isinstance(dbox, DosBoxDos):
         cd = task.get("cd", None)
         pre_exec = task.get("pre_exec", None)
