@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - CF Years56.iso
+    format: 1CD
+    url: https://archive.org/download/cf-years-56/CF%20Years56.iso
+  igdb_slug: cluefinders-5th-grade-adventures-the-secret-of-the-living-volcano
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019fcad5-7f0c-7ae1-a02f-b8fe8c14033e
+    screenshots: []
+  name: The ClueFinders Years 5 & 6 Adventures
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: cluefinders-5th-grade-adventures-the-secret-of-the-living-volcano
+    mg_id: 76789
+    pcgw_id: The_ClueFinders_5th_Grade_Adventures:_Secret_of_the_Living_Volcano
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fcad5-7f0c-7ae1-a02f-b8fe8c14033e
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+    - cluefinders
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\5THAD32.EXE'

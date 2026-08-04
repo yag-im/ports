@@ -165,7 +165,7 @@ class QemuWinXp(Qemu[QemuWinXpConf]):
         if args:
             args = [str(a) for a in args]
             cmd += args
-        self.gen_runexit_script(cmd, do_exit, PureWindowsPath(f"{APP_DRIVE}"))
+        self.gen_runexit_script([" ".join(cmd)], do_exit, PureWindowsPath(f"{APP_DRIVE}"))
         self.upd_reg(
             {
                 "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon": [
