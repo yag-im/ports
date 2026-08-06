@@ -1,0 +1,40 @@
+descr:
+  distro:
+    files:
+      - Neuromancer (1988).zip
+    format: 1FD
+    url: https://minerva-archive.org/rom?id=1060689
+  igdb_slug: neuromancer
+  lang: en
+  media_assets:
+  name: Neuromancer
+  platform: dos
+  publisher: Interplay Productions
+  refs:
+    ag_id: neuromancer
+    lutris_id: neuromancer
+    mg_id: 687
+    pcgw_id: Neuromancer
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019fd4f5-cb4d-704a-947b-093ec79ea2a9
+  year_released: 1989
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - Neuro/*
+        hint: floppy
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\Neuro.exe'
