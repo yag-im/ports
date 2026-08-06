@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Bear's Sense of Adventure (USA).bin
+    format: 1CD
+    url: https://archive.org/details/Nova_BearsSenseofAdventure_USA # redump
+  igdb_slug: bear-in-the-big-blue-house-bears-sense-of-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019fd83b-597a-769c-abec-22d253267761
+    screenshots: []
+  name: "Bear in the Big Blue House: Bear's Sense of Adventure"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 166679
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fd83b-597a-769c-abec-22d253267761
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # screen issues in XP?
+        # app_drive_size: 60 # requires 50MB
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 6.1
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BEAR\BEAR.EXE'
