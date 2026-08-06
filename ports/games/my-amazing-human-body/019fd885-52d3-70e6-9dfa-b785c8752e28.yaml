@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - DKMMMAHB.iso
+    format: 1CD
+    url: https://archive.org/download/DKMMMAHB/DKMMMAHB.iso
+  igdb_slug: my-amazing-human-body
+  lang: en
+  media_assets:
+  name: My Amazing Human Body
+  platform: win
+  publisher: Dorling Kindersley
+  refs:
+    ag_id:
+    lutris_id: my-amazing-human-body
+    mg_id: 180332
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fd885-52d3-70e6-9dfa-b785c8752e28
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # BSOD in qemu:WIN98SE; QT issue in qemu:WINXPSP3
+        app_drive_size: 20 # uses 15MB
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # QT2.1.2
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MAHB.EXE'
