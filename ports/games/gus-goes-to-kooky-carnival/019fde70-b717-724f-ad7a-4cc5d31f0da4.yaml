@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Gus Goes to the Kooky Carnival (1995)(Modern Media Ventures).iso
+    format: 1CD
+    url: https://archive.org/download/gus-goes-to-the-kooky-carnival-win31/Gus%20Goes%20to%20the%20Kooky%20Carnival%20%281995%29%28Modern%20Media%20Ventures%29.iso
+    # v1.0
+  igdb_slug: gus-goes-to-kooky-carnival
+  lang: en
+  media_assets:
+  name: Gus Goes to Kooky Carnival
+  platform: win
+  publisher: Modern Media Ventures
+  refs:
+    ag_id:
+    lutris_id: gus-goes-to-kooky-carnival
+    mg_id: 203241
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fde70-b717-724f-ad7a-4cc5d31f0da4
+  year_released: 1995
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\CARNIVAL.EXE'
