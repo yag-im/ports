@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Roly.bin
+    format: 1CD
+    url: https://archive.org/details/rolypolysnanakorobiyaoki
+  igdb_slug: roly-polys-no-nanakorobi-yaoki
+  lang: en
+  media_assets:
+  name: Roly-Polys no Nanakorobi Yaoki
+  platform: win
+  publisher: Shinko Music Entertainment
+  refs:
+    ag_id:
+    lutris_id: roly-polys-no-nanakorobi-yaoki
+    mg_id: 115262
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fda11-2efc-7286-97f2-c2908469426d
+  year_released: 1997
+  tags:
+    - edutainment
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\kotowaza.exe'
