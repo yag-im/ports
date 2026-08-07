@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - ItamarWalls.bin
+    format: 1CD
+    url: https://archive.org/details/itamar-walls
+  igdb_slug: timmy-and-the-magic-pictures
+  lang: multi # en, hebrew
+  media_assets:
+    cover:
+      image_id: 019fda23-3fd4-764c-be9c-5029a54f7c0d
+    screenshots: []
+  name: Timmy and the Magic Pictures
+  platform: win
+  publisher: Compedia Software & Hardware Ltd.
+  refs:
+    ag_id:
+    lutris_id: timmy-and-the-magic-pictures
+    mg_id: 51686
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fda23-3fd4-764c-be9c-5029a54f7c0d
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          # - run:
+          #     path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          #     exit: false
+          - run:
+              path: 'explorer.exe' # add app shortcut to startup; without explorer game menu (top paper dropdown) doesn't work
+              exit: false
+          - gen_run_script:
+              path: 'explorer.exe'
+              exit: false
+          # - gen_run_script:
+          #     work_dir: '{FIRST_CD_DRIVE}'
+          #     path: '{APP_DIR}\TIMMY1.EXE'
+          #     args:
+          #       - EMME
+          #       - /CFG:D:\APP\timmy1.ini
+
+# TODO: audiocd, but it crashes in dosbox-x on startup in both WIN311/9X
+# also make sure auto-startup is disabled (should be in bundle setup); otherwise startup window appears in the middle of the game

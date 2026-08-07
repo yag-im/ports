@@ -26,6 +26,7 @@
     System properties:
         Performance -> File System -> Read-ahead optimization: None
         Search for new floppy drive: uncheck
+        Device Manager -> CD-ROM -> Properties -> Auto Insert Notification: disable
 
     Screen:
         Display properties -> Appearance -> Color: black
