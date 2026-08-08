@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Curious George Comes Home (USA) (OEM).cue
+    format: 1CD
+    url: Curious George Comes Home (USA) (OEM).zip # redump
+    # v2.1
+  igdb_slug: curious-george-comes-home
+  lang: en
+  media_assets:
+  name: Curious George Comes Home
+  platform: win
+  publisher: Houghton Mifflin Interactive
+  refs:
+    ag_id:
+    lutris_id: curious-george-comes-home
+    mg_id: 227652
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fde7a-55a2-7de0-b920-b4f4b39f1d60
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 15 # uses 11
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CG.EXE'
+# dosbox:WIN311 - error playing AudioCD, app crashes on init
+# dosbox:WIN95OSR25 - hangs on start
+# dosbox:WIN98SE - BSOD
+# also tried a BIN/CUE dump from legendsworld with same symptoms
