@@ -1,0 +1,83 @@
+descr:
+  distro:
+    files:
+      - disk01.img
+      - disk02.img
+      - disk03.img
+      - disk04.img
+      - disk05.img
+      - disk06.img
+      - disk07.img
+      - disk08.img
+      - disk09.img
+      - disk10.img
+    format: 10FD
+    url: https://archive.org/details/000170-TheColonelsBequest
+    # v1.000.046
+  igdb_slug: the-colonels-bequest
+  lang: en
+  media_assets:
+  name: The Colonel's Bequest
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: colonels-bequest-the-a-laura-bow-mystery
+    lutris_id: the-colonels-bequest
+    mg_id: 461
+    pcgw_id: The_Colonel%27s_Bequest
+    qz_id: 354
+  reqs:
+    color_bits: 8 # 16 colors max
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019fe9ba-6eb9-7eff-8aa6-8653cef54afa
+  year_released: 1989
+  tags:
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+          - '{SRC_DIR}/{descr[distro][files][3]}'
+          - '{SRC_DIR}/{descr[distro][files][4]}'
+          - '{SRC_DIR}/{descr[distro][files][5]}'
+          - '{SRC_DIR}/{descr[distro][files][6]}'
+          - '{SRC_DIR}/{descr[distro][files][7]}'
+          - '{SRC_DIR}/{descr[distro][files][8]}'
+          - '{SRC_DIR}/{descr[distro][files][9]}'
+    - dosbox:
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][5]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][6]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][7]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][8]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][9]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.EXE' # hit Ctrl+F4 multiple times when requested
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\CB\SIERRA.COM'
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+    - copy:
+        src: '{PORT_FILES_DIR}/RESOURCE.CFG'
+        dest: '{DEST_DIR}/{APP_DRIVE_LETTER}/SIERRA/CB'
