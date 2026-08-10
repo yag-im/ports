@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Clifford the Big Red Dog - Learning Activities (USA).bin
+    format: 1CD
+    url: Clifford the Big Red Dog - Learning Activities (USA).zip # redump
+  igdb_slug: clifford-the-big-red-dog-learning-activities
+  lang: en
+  media_assets:
+  name: 'Clifford the Big Red Dog: Learning Activities'
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: clifford-the-big-red-dog-learning-activities
+    mg_id: 109783
+    pcgw_id: Clifford_the_Big_Red_Dog:_Learning_Activities
+    qz_id:
+  reqs:
+    color_bits: 16 # readme
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019fe9ac-205c-7a56-ade2-31144eca3b21
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Clifford.exe'
