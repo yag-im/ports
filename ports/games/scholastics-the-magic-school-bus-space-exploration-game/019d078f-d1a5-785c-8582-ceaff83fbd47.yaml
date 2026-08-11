@@ -37,4 +37,3 @@ installer:
           - gen_run_script:
               core: genesis_plus_gx
               file: '{descr[distro][files][0]}'
-# Fire is on button A
