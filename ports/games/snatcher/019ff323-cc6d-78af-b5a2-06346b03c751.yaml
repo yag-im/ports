@@ -1,21 +1,21 @@
 descr:
   distro:
     files:
-      - Yumemi Mystery Mansion (Europe) (Made in EU).cue
+      - Snatcher (USA).cue
     format: 1CD
-    url: Yumemi Mystery Mansion (Europe) (Made in EU).zip # redump
-  igdb_slug: mansion-of-hidden-souls
+    url: Snatcher (USA).zip # redump
+  igdb_slug: snatcher
   lang: en
   media_assets:
-  name: Mansion of Hidden Souls
+  name: Snatcher
   platform: genesis-slash-megadrive
-  publisher: Vic Tokai
+  publisher: Konami
   refs:
     ag_id:
-    lutris_id: mansion-of-hidden-souls
-    mg_id: 12010
+    lutris_id: snatcher
+    mg_id:
     pcgw_id:
-    qz_id: 531
+    qz_id:
   reqs:
     color_bits: 8
     screen_height: 480
@@ -23,10 +23,9 @@ descr:
   runner:
     name: retroarch
     ver: '1.22.2'
-  uuid: 019fef30-5b19-7813-ba07-fbb2697efc6d
+  uuid: 019ff323-cc6d-78af-b5a2-06346b03c751
   year_released: 1993
   tags:
-    - fmv
 installer:
   tasks:
     - copy_src_cd_images:
