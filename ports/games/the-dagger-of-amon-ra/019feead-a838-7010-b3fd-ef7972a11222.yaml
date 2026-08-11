@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Laura Bow in the Dagger of Amon Ra (Europe).bin
+    format: 1CD
+    url: https://archive.org/details/laurabowinthedaggerofamonraeurope
+  igdb_slug: the-dagger-of-amon-ra
+  lang: en
+  media_assets:
+  name: The Dagger of Amon Ra
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: dagger-of-amon-ra-the-a-laura-bow-mystery
+    lutris_id: the-dagger-of-amon-ra
+    mg_id: 462
+    pcgw_id: The_Dagger_of_Amon_Ra
+    qz_id: 355
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019feead-a838-7010-b3fd-ef7972a11222
+  year_released: 1992
+  tags:
+    - laura-bow
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\SIERRA.EXE'
+    - copy:
+        src: '{PORT_FILES_DIR}/RESOURCE.CFG'
+        dest: '{DEST_APP_DIR}'
