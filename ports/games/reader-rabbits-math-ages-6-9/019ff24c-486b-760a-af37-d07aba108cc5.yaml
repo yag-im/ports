@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit's Math Ages 6-9 (USA).cue
+    format: 1CD
+    url: Reader Rabbit's Math Ages 6-9 (USA).zip # redump
+    # v1.00
+  igdb_slug: reader-rabbits-math-ages-6-9
+  lang: en
+  media_assets:
+  name: Reader Rabbit's Math Ages 6-9
+  platform: win
+  publisher: SoftKey International
+  refs:
+    ag_id:
+    lutris_id: reader-rabbits-math-ages-6-9
+    mg_id: 71043
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 10
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ff24c-486b-760a-af37-d07aba108cc5
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 25 # uses 17
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\RRM69_32.EXE'
