@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Ground Zero Texas.m3u # manually created
+      - Ground Zero Texas (USA) (Disc 1).cue
+      - Ground Zero Texas (USA) (Disc 1) (Track 1).bin
+      - Ground Zero Texas (USA) (Disc 1) (Track 2).bin
+      - Ground Zero Texas (USA) (Disc 2).cue
+      - Ground Zero Texas (USA) (Disc 2) (Track 1).bin
+      - Ground Zero Texas (USA) (Disc 2) (Track 2).bin
+    format: 2CD
+    url: Ground Zero Texas (USA) (Disc 1).zip
+    # Ground Zero Texas (USA) (Disc 2).zip
+  igdb_slug: ground-zero-texas
+  lang: en
+  media_assets:
+  name: Ground Zero Texas
+  platform: genesis-slash-megadrive
+  publisher: Sony Imagesoft
+  refs:
+    ag_id:
+    lutris_id: ground-zero-texas
+    mg_id: 23866
+    pcgw_id: Ground_Zero_Texas
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: '1.22.2'
+  uuid: 019feece-2df3-7047-9c8b-ae8c7c794b9c
+  year_released: 1993
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][1]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][2]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][3]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][4]}'
+        dest: '{DEST_DIR}'
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: genesis_plus_gx
+              file: '{descr[distro][files][0]}'
