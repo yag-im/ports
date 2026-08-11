@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Yumemi Mystery Mansion (Europe) (Made in EU).cue
+      - Yumemi Mystery Mansion (Europe) (Made in EU) (Track 1).bin
+      - Yumemi Mystery Mansion (Europe) (Made in EU) (Track 2).bin
+    format: 1CD
+    url: Yumemi Mystery Mansion (Europe) (Made in EU).zip # minerva
+  igdb_slug: mansion-of-hidden-souls
+  lang: en
+  media_assets:
+  name: Mansion of Hidden Souls
+  platform: genesis-slash-megadrive
+  publisher: Vic Tokai
+  refs:
+    ag_id:
+    lutris_id: mansion-of-hidden-souls
+    mg_id: 12010
+    pcgw_id:
+    qz_id: 531
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: '1.22.2'
+  uuid: 019fef30-5b19-7813-ba07-fbb2697efc6d
+  year_released: 1993
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][1]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][2]}'
+        dest: '{DEST_DIR}'
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: genesis_plus_gx
+              file: '{descr[distro][files][0]}'
