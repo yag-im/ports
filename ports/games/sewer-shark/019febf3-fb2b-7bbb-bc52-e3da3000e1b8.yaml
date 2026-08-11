@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Sewer Shark (USA).cue
+      - Sewer Shark (USA).bin
+    format: 1CD
+    url: Sewer Shark (USA).zip # redump
+  igdb_slug: sewer-shark
+  lang: en
+  media_assets:
+  name: Sewer Shark
+  platform: genesis-slash-megadrive
+  publisher: Sony Imagesoft
+  refs:
+    ag_id:
+    lutris_id: sewer-shark
+    mg_id: 7451
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: '1.22.2'
+  uuid: 019febf3-fb2b-7bbb-bc52-e3da3000e1b8
+  year_released: 1992
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][1]}'
+        dest: '{DEST_DIR}'
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: genesis_plus_gx
+              file: '{descr[distro][files][0]}'

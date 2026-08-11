@@ -22,7 +22,7 @@ descr:
     screen_width: 640
   runner:
     name: retroarch
-    ver: "1.21.0"
+    ver: '1.21.0'
   uuid: 019d078f-d1a5-785c-8582-ceaff83fbd47
   year_released: 1995
   tags:
@@ -30,10 +30,11 @@ descr:
 installer:
   tasks:
     - copy:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_DIR}"
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}'
     - retroarch:
         tasks:
           - gen_run_script:
               core: genesis_plus_gx
-              file: "{descr[distro][files][0]}"
+              file: '{descr[distro][files][0]}'
+# Fire is on button A
