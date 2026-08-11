@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Junibacken.zip
+    format: 1CD
+    url: https://archive.org/details/Junibacken
+  igdb_slug: junibacken
+  lang:
+  media_assets:
+  name: Lek och Läraktiviteter från Junibacken
+  platform: win
+  publisher:
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ff2b0-55ab-73ca-8835-b6b7f4fb30e0
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+    - dosbox:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MULLE32.EXE'
+# missing files in archive
+# unknown publisher

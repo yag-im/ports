@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Bygg fly med Mulle Mekk.iso
+    format: 1CD
+    url: https://archive.org/details/bygg-fly-med-mulle-mekk
+  igdb_slug: bygg-flygplan-med-mulle-meck
+  lang: nb
+  media_assets:
+  name: Bygg Fly med Mulle Mekk
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: bygg-flygplan-med-mulle-meck
+    mg_id: 60968
+    pcgw_id: Bygg_flygplan_med_Mulle_Meck
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 019ff294-fe97-721d-86e5-79be9ea0b7b5
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Start_Mulle.exe'
+              exit: false # because after intro it executes MulleMeck.exe
+# SafeDisk protection
