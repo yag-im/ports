@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Heart of the Alien - Out of This World Parts I and II (USA) (RE).cue
+    format: 1CD
+    url: Heart of the Alien - Out of This World Parts I and II (USA) (RE).zip # redump
+  igdb_slug: heart-of-the-alien
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ff38b-23e6-74c6-be88-02d3c6126bf8
+    screenshots: []
+  name: Heart of the Alien
+  platform: genesis-slash-megadrive
+  publisher: Tec Toy
+  refs:
+    ag_id:
+    lutris_id: heart-of-the-alien
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: '1.22.2'
+  uuid: 019ff38b-23e6-74c6-be88-02d3c6126bf8
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - retroarch:
+        tasks:
+          - gen_run_script:
+              core: genesis_plus_gx
+              file: '{descr[distro][files][0]}'
