@@ -31,7 +31,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        os_ver: WINXPSP3
+        flavor: WINXPSP3
         tasks:
           - mount:
               src: "{DEST_DIR}"

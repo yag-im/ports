@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - 20,000 Leagues - The Adventure Continues (USA) (Demo).bin
+    format: 1CD
+    url: 20,000 Leagues - The Adventure Continues (USA) (Demo).zip # redump
+  igdb_slug: 20-000-leagues-under-the-sea-the-adventure-continues
+  lang: en
+  media_assets:
+    cover:
+      image_id: 019ffe57-7ab1-7e03-a60d-11660c09ccd4
+    screenshots: []
+  name: '20,000 Leagues: The Adventure Continues (Demo)'
+  platform: win
+  publisher: SouthPeak Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # readme
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019ffe57-7ab1-7e03-a60d-11660c09ccd4
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # DX issue in qemu:WINXP, crashes in qemu: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\20KDEMO.EXE' # installs DX 5.0 and restarts
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\20KDEMO.EXE'
+              exit: false
+          # - gen_run_script:
+          #     path: '{SYSTEM_DRIVE}\WINDOWS\TEMP\VRBin\VRDMfc.exe'
+          #     exit: false
+          #     args:
+          #       - /rRunTimeSystem
+          #       - '{FIRST_CD_DRIVE_LETTER}:\20KDemo\launch32.ini'
+          #       - /hw393440
+          #       - '/sd{FIRST_CD_DRIVE_LETTER}:\20KDemo\'
