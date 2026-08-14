@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Big Thinkers! Kindergarten (USA).bin
+    format: 1CD
+    url: Big Thinkers! Kindergarten (USA).zip # redump
+  igdb_slug: big-thinkers-kindergarten
+  lang: en
+  media_assets:
+  name: 'Big Thinkers! Kindergarten'
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: big-thinkers-kindergarten
+    mg_id: 73005
+    pcgw_id: Big_Thinkers_Kindergarten
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0022a-5d66-75a2-893a-c9472b2b7aba
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\THINKERK.EXE'
+              exit: false
+    - copy:
+        src: '{PORT_FILES_DIR}/{item}'
+        dest: '{DEST_DIR}/C/WINDOWS'
+        loop:
+          - 'HEGAMES.INI' # to skip CD test and reg window at startup
