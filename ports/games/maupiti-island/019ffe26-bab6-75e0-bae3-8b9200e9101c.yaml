@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Maupiti Island (1990).zip
+    format: 2FD
+    url: exodos (Maupiti Island (1990).zip) # 1996 version (patched?)
+    # url: https://archive.org/details/002242-MaupitiIsland - orig 1991 game fails to start
+  igdb_slug: maupiti-island
+  lang: en
+  media_assets:
+  name: Maupiti Island
+  platform: dos
+  publisher: Lankhor
+  refs:
+    ag_id:
+    lutris_id: maupiti-island
+    mg_id: 2567
+    pcgw_id: Maupiti_Island
+    qz_id: 4785
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 019ffe26-bab6-75e0-bae3-8b9200e9101c
+  year_released: 1991
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - misland/*
+    - dosbox:
+        conf:
+          cycles: fixed 6000
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\MAUPITI.BAT'
+# TODO: sound interrupts once you exit the first room. Is this by design?
