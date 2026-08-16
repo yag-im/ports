@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Bamses Cirkus (Sweden).bin
+    format: 1CD
+    url: Bamses Cirkus (Sweden).zip # redump
+  igdb_slug: bamses-cirkus
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a00865-a82c-7ca3-a5bb-338befd2964b
+    screenshots: []
+  name: Bamses Cirkus
+  platform: win
+  publisher: Nordic Softsales AB
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # black border in 800x600
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a00865-a82c-7ca3-a5bb-338befd2964b
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\bamse.exe'
