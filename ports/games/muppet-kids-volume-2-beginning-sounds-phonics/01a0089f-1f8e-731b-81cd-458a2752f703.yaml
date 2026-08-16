@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - MuppetKidsBSP.iso
+    format: 1CD
+    url: https://archive.org/download/muppet-kids-bsp/MuppetKidsBSP.iso
+  igdb_slug: muppet-kids-volume-2-beginning-sounds-phonics
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0089f-1f8e-731b-81cd-458a2752f703
+    screenshots: []
+  name: 'Muppet Kids: Volume 2 - Beginning Sounds: Phonics'
+  platform: win
+  publisher: Brighter Minds Media, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 177363
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0089f-1f8e-731b-81cd-458a2752f703
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BEGINNIN\BRIGHT16.EXE'
