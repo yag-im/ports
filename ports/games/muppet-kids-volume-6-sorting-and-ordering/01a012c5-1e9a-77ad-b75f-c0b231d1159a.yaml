@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - MUPPETSSO.ISO
+    format: 1CD
+    url: https://archive.org/download/MUPPETSSO/MUPPETSSO.ISO
+  igdb_slug: muppet-kids-volume-6-sorting-and-ordering
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a012c5-1e9a-77ad-b75f-c0b231d1159a
+    screenshots: []
+  name: 'Muppet Kids: Volume 6 - Sorting and Ordering'
+  platform: win
+  publisher: Brighter Minds Media, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 206822
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a012c5-1e9a-77ad-b75f-c0b231d1159a
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\bright16.exe'
