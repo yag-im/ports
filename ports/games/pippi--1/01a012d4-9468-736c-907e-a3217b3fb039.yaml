@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Pippi (Sweden) (En,Ja,Fr,De,Es,It,Nl,Sv,No,Da,Fi) (Rerelease) (1997-05-19).bin
+    format: 1CD
+    url: Pippi (Sweden) (En,Ja,Fr,De,Es,It,Nl,Sv,No,Da,Fi) (Rerelease) (1997-05-19).zip # redump
+  igdb_slug: pippi--1
+  lang: multi
+  media_assets:
+  name: Pippi
+  platform: win
+  publisher: Ahead Multimedia AB
+  refs:
+    ag_id:
+    lutris_id: pippi--1
+    mg_id: 48582
+    pcgw_id: Pippi
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a012d4-9468-736c-907e-a3217b3fb039
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PIPPI.EXE'
