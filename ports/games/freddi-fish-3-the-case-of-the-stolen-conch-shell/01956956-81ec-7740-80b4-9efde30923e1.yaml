@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Freddi Fish 3 - The Case of the Stolen Conch Shell (USA).bin
+    format: 1CD
+    url: Freddi Fish 3 - The Case of the Stolen Conch Shell (USA).zip # redump
+  igdb_slug: freddi-fish-3-the-case-of-the-stolen-conch-shell
+  lang: en
+  media_assets:
+  name: 'Freddi Fish 3: The Case of the Stolen Conch Shell'
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id: freddi-fish-3-case-of-the-stolen-conch-shell
+    lutris_id: freddi-fish-3-the-case-of-the-stolen-conch-shell
+    mg_id: 5355
+    pcgw_id: Freddi_Fish_3:_The_Case_of_the_Stolen_Conch_Shell
+    qz_id: 560
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2026.2.0
+  uuid: 01956956-81ec-7740-80b4-9efde30923e1
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - FREDDI3.HE0
+          - FREDDI3.HE1
+          - FREDDI3.HE2
+          - FREDDI3.HE4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php?title=Freddi_Fish_3:_The_Case_of_the_Stolen_Conch_Shell
+        tasks:
+          - gen_run_script:
+              game: scumm:freddi3
+              path: '{DEST_APP_DIR}'
+              lang: en
