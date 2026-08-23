@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Widget Workshop - The Mad Scientist's Laboratory (USA).bin
+    format: 1CD
+    url: Widget Workshop - The Mad Scientist's Laboratory (USA).zip # redump
+  igdb_slug: widget-workshop-the-mad-scientists-laboratory
+  lang: en
+  media_assets:
+  name: "Widget Workshop: The Mad Scientist's Laboratory"
+  platform: win
+  publisher: Maxis
+  refs:
+    ag_id:
+    lutris_id: widget-workshop-the-mad-scientists-laboratory
+    mg_id: 18697
+    pcgw_id: Widget_Workshop:_The_Mad_Scientist%27s_Laboratory
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a03019-710a-7ce6-89fa-73f9261d4f30
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WIN31\WIDGET\WIDGET.EXE'
