@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Clifford the Big Red Dog - Reading (USA).bin
+    format: 1CD
+    url: Clifford the Big Red Dog - Reading (USA).zip # redump
+  igdb_slug: clifford-the-big-red-dog-reading--1
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a02fbc-39be-7356-94e2-6d460086b031
+    screenshots: []
+  name: 'Clifford the Big Red Dog: Reading'
+  platform: win
+  publisher: Scholastic
+  refs:
+    ag_id:
+    lutris_id: clifford-the-big-red-dog-reading--1
+    mg_id: 28784
+    pcgw_id: Clifford_the_Big_Red_Dog:_Reading
+    qz_id:
+  reqs:
+    color_bits: 8 # readme.txt
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a02fbc-39be-7356-94e2-6d460086b031
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # fake min 256 colors warning in WINXP, fails to start
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # path: '{FIRST_CD_DRIVE}\setup.exe'
+              path: 'explorer' # setup fails to run without explorer
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Clifford_Reading.exe'
