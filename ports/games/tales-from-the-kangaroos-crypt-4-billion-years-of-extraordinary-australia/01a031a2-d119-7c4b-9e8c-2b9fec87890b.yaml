@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Tales From The Kanagroo's Crypt.iso
+    format: 1CD
+    url: https://archive.org/download/tales-from-the-kanagroos-crypt/Tales%20From%20The%20Kanagroo%27s%20Crypt.iso
+  igdb_slug: tales-from-the-kangaroos-crypt-4-billion-years-of-extraordinary-australia
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a031a2-d119-7c4b-9e8c-2b9fec87890b
+    screenshots: []
+  name: "Tales from the Kangaroo's Crypt: 4 Billion Years of Extraordinary Australia"
+  platform: win
+  publisher: Australian Federal Department of Communication and the Arts
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a031a2-d119-7c4b-9e8c-2b9fec87890b
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\KCRYPT31.EXE'
