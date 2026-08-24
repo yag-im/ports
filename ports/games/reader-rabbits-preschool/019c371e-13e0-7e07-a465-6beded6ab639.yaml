@@ -1,18 +1,23 @@
 descr:
   distro:
     files:
-      - RR Preschool.iso
+      - Reader Rabbit's Preschool (USA) (Rerelease).bin
     format: 1CD
-    url: https://archive.org/download/rrpreschool/RR%20Preschool.iso
-  igdb_slug: reader-rabbit-preschool--1
+    url: Reader Rabbit's Preschool (USA) (Rerelease).zip # redump
+    # v2.0
+    # carnival version
+  igdb_slug: reader-rabbits-preschool
   lang: en
   media_assets:
-  name: Reader Rabbit Preschool
+    cover:
+      image_id: 019c371e-13e0-7e07-a465-6beded6ab639
+    screenshots: []
+  name: Reader Rabbit's Preschool
   platform: win
   publisher: The Learning Company
   refs:
     ag_id:
-    lutris_id: reader-rabbit-preschool--1
+    lutris_id: reader-rabbits-preschool
     mg_id: 75885
     pcgw_id:
     qz_id:
@@ -23,10 +28,12 @@ descr:
   runner:
     name: qemu
     ver: latest
-  ts_added: 2026-02-07 08:00:44 America/Los_Angeles
-  uuid: 14f84d3b-914b-4e07-a465-6beded6ab639
-  year_released: 1997
+  uuid: 019c371e-13e0-7e07-a465-6beded6ab639
+  year_released: 1998
   tags:
+    - kids
+    - edutainment
+    - reader-rabbit
 installer:
   tasks:
     - copy_src_cd_images:
@@ -34,10 +41,10 @@ installer:
         flavor: WINXPSP3
         tasks:
           - mount:
-              src: "{DEST_DIR}"
+              src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\RRPW32.EXE'
+              path: '{FIRST_CD_DRIVE}\RRPW32.EXE'
