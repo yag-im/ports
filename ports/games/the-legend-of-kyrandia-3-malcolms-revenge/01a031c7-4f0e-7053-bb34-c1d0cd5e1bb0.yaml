@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Legend of Kyrandia, The - Book Three (USA) (En,Fr,De) (Rerelease).bin
+    format: 1CD
+    url: Legend of Kyrandia, The - Book Three (USA) (En,Fr,De) (Rerelease).zip # redump
+  igdb_slug: the-legend-of-kyrandia-3-malcolms-revenge
+  lang: multi # en, fr, de
+  media_assets:
+  name: "The Legend of Kyrandia 3: Malcolm's Revenge"
+  platform: dos
+  publisher: Virgin Interactive Entertainment
+  refs:
+    ag_id: the-legend-of-kyrandia-malcolms-revenge-fables-fiends
+    lutris_id: the-legend-of-kyrandia-3-malcolms-revenge
+    mg_id: 872
+    pcgw_id: The_Legend_of_Kyrandia:_Malcolm%27s_Revenge
+    qz_id: 545
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a031c7-4f0e-7053-bb34-c1d0cd5e1bb0
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MAIN.EXE'

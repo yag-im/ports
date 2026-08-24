@@ -5,10 +5,10 @@ descr:
     format: 1CD
     url: Legend of Kyrandia, The - Book Two - The Hand of Fate (USA) (En,Fr,De) (Rerelease) (1996-11-22).zip # redump
   igdb_slug: the-legend-of-kyrandia-2-the-hand-of-fate
-  lang: en
+  lang: multi # en, fr, de
   media_assets:
   name: 'The Legend of Kyrandia 2: The Hand of Fate'
-  platform: win
+  platform: dos
   publisher: Virgin Interactive Entertainment
   refs:
     ag_id: the-legend-of-kyrandia-hand-of-fate-fables-fiends
