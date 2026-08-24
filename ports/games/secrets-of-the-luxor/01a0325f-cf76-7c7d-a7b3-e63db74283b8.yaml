@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Secrets of the Luxor (USA) (Disc 1).bin
+      - Secrets of the Luxor (USA) (Disc 2).bin
+    format: 1CD
+    url: https://archive.org/details/secrets-of-the-luxor-usa # redump
+  igdb_slug: secrets-of-the-luxor
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0325f-cf76-7c7d-a7b3-e63db74283b8
+    screenshots: []
+  name: Secrets of the Luxor
+  platform: win
+  publisher: Ubi Soft Entertainment
+  refs:
+    ag_id: secrets-of-the-luxor
+    lutris_id: secrets-of-the-luxor
+    mg_id: 14295
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0325f-cf76-7c7d-a7b3-e63db74283b8
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SECRETS.EXE'
