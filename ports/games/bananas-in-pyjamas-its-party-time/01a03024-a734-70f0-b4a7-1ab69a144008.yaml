@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Party Time.iso
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/7601320b-6189-4f6b-9041-ab797b1ba44d/Bananas-in-Pyjamas-It-s-Party-Time_Win_EN_ISO.zip
+  igdb_slug: bananas-in-pyjamas-its-party-time
+  lang: en
+  media_assets:
+  name: "Bananas in Pyjamas: It's Party Time"
+  platform: win
+  publisher: Darling Kindersley
+  refs:
+    ag_id:
+    lutris_id: bananas-in-pyjamas-its-party-time
+    mg_id: 223843
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # app startup message
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a03024-a734-70f0-b4a7-1ab69a144008
+  year_released: 1999
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # installs both QT2.1.2 and 3.0.2
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Party_Time.exe'
