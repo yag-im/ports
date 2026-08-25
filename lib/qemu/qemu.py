@@ -89,23 +89,27 @@ class QemuMountPoint:
     media: str
     letter: str
     format: str | None = None
+    cd_index: int | None = None  # position among CDROMs, used for ide-cd device placement
 
     def qemu_drive_mount_option_relative_to(self, p_base: Path | None = None):
-        """
-        TODO: bug - first CD appears as F and second as E, chatgpt suggests a fix:
-        -drive file=E,if=none,id=cd1,media=cdrom
-        -device ide-cd,drive=cd1,bus=ide.1,unit=0
-        -drive file=F,if=none,id=cd2,media=cdrom
-        -device ide-cd,drive=cd2,bus=ide.1,unit=1
-        """
         if p_base:
             rel_path = self.image_path.relative_to(p_base)
         else:
             rel_path = self.image_path
-        res = f"file={rel_path},if={self.interface},index={self.index},media={self.media}"
+        if self.media == "cdrom":
+            res = f"file={rel_path},if=none,id=cd{self.cd_index},media=cdrom"
+        else:
+            res = f"file={rel_path},if={self.interface},index={self.index},media={self.media}"
         if self.format:
             res += f",format={self.format}"
         return res
+
+    def qemu_device_option(self, unit: int | None = None) -> str | None:
+        """Returns the -device arg for attaching a CDROM to a specific IDE bus/unit."""
+        if self.media == "cdrom":
+            u = self.cd_index if unit is None else unit
+            return f"ide-cd,drive=cd{self.cd_index},bus=ide.1,unit={u}"
+        return None
 
 
 T = TypeVar("T", bound=QemuConf)
@@ -205,17 +209,32 @@ class Qemu((Protocol[T])):
                     move(tmp_iso_image, image_path)
         index = len(self.mount_points) if index is None else index
         letter = letter or chr(ord("A")) + index + 2
+        cd_index = sum(1 for mp in self.mount_points if mp.media == "cdrom") if media == "cdrom" else None
         self.mount_points.append(
             QemuMountPoint(
-                image_path=image_path, interface=interface, index=index, media=media, letter=letter, format=image_format
+                image_path=image_path,
+                interface=interface,
+                index=index,
+                media=media,
+                letter=letter,
+                format=image_format,
+                cd_index=cd_index,
             )
         )
+
+    def _cdrom_unit(self, mp: QemuMountPoint) -> int:
+        # QEMU enumerates ide.1 units in reverse order for drive letter assignment
+        n = sum(1 for m in self.mount_points if m.media == "cdrom")
+        return n - 1 - mp.cd_index
 
     def _run_qemu(self) -> None:
         cmd = ["qemu-system-x86_64", "-nodefaults"]
         for mp in self.mount_points:
             cmd.append("-drive")
             cmd.append(mp.qemu_drive_mount_option_relative_to(self.root_dir))
+            dev_opt = mp.qemu_device_option(unit=self._cdrom_unit(mp) if mp.media == "cdrom" else None)
+            if dev_opt:
+                cmd += ["-device", dev_opt]
         cmd += ["-cpu", str(self.conf.cpu), "-m", str(self.conf.memory), "-display", "sdl"]
         if self.conf.enable_kvm:
             cmd.append("-enable-kvm")
@@ -248,7 +267,12 @@ class Qemu((Protocol[T])):
             "cpu": self.conf.cpu,
             "memory": self.conf.memory,
             "mounts": " ".join(
-                str("-drive " + mp.qemu_drive_mount_option_relative_to(self.root_dir)) for mp in self.mount_points
+                part
+                for mp in self.mount_points
+                for part in [
+                    "-drive " + mp.qemu_drive_mount_option_relative_to(self.root_dir),
+                    *([f"-device {mp.qemu_device_option(unit=self._cdrom_unit(mp))}"] if mp.media == "cdrom" else []),
+                ]
             ),
             "display": display,
             "audiodev": self.conf.audio_device,

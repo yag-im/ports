@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Chemicus - Journey to the Other Side (USA) (Disc 1).bin
+      - Chemicus - Journey to the Other Side (USA) (Disc 2).bin
+    format: 2CD
+    url: Chemicus - Journey to the Other Side (USA) (Disc 1).zip # redump
+    # Chemicus - Journey to the Other Side (USA) (Disc 2).zip
+  igdb_slug: chemicus-journey-to-the-other-side--1
+  lang: en
+  media_assets:
+  name: 'Chemicus: Journey to the Other Side'
+  platform: win
+  publisher: HEUREKA-Klett-Softwareverlag GmbH
+  refs:
+    ag_id: chemicus
+    lutris_id: chemicus-journey-to-the-other-side--1
+    mg_id: 8389
+    pcgw_id: Chemicus
+    qz_id: 340
+  reqs:
+    # readme.txt
+    color_bits: 32 # readme says 16 bit, but app on startup says min 24
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a036b0-5be3-7b80-9d6e-23529708b1de
+  year_released: 2002
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        # app_drive_size: 60 # uses 50MB
+        flavor: WINXPSP3
+        tasks:
+          - mount: # app sees all CDs in different drives
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # QT5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\data\Chemicus.exe'

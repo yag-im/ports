@@ -3,7 +3,7 @@ descr:
     files:
       - Secrets of the Luxor (USA) (Disc 1).bin
       - Secrets of the Luxor (USA) (Disc 2).bin
-    format: 1CD
+    format: 2CD
     url: https://archive.org/details/secrets-of-the-luxor-usa # redump
   igdb_slug: secrets-of-the-luxor
   lang: en
