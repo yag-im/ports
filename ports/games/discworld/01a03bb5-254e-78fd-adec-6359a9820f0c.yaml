@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Terry Pratchett's Discworld (USA).bin
+    format: 1CD
+    url: Terry Pratchett's Discworld (USA).zip # redump
+    # https://archive.org/download/DISCUP/DISC_UP.ZIP
+    # patch v1.04, otherwise there is no sound in intro and distorted sound overall
+  igdb_slug: discworld
+  lang: en
+  media_assets:
+  name: Discworld
+  platform: dos
+  publisher: Psygnosis
+  refs:
+    ag_id: discworld
+    lutris_id: discworld
+    mg_id: 184
+    pcgw_id: Discworld
+    qz_id: 62
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a03bb5-254e-78fd-adec-6359a9820f0c
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - extract:
+        src: '{SRC_DIR}/DISC_UP.ZIP'
+        dest: '{DEST_DIR}/{APP_DRIVE_LETTER}'
+    - dosbox:
+        conf:
+          gus: true
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\DISC.BAT' # Ctrl+F9 to exit the game after install
+              exit: false
+          - run:
+              path: '{APP_DRIVE}\UPDATE.BAT'
+              args:
+                - '{APP_DRIVE_LETTER}:'
+          - gen_run_script:
+              path: '{APP_DRIVE}\DISCWLD.CD\DWB.EXE'
