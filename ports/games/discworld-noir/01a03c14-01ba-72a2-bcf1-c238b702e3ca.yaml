@@ -1,0 +1,61 @@
+descr:
+  distro:
+    files:
+      - Discworld Noir (Europe) (En,Es,It) (Disc 1).bin
+      - Discworld Noir (Europe) (En,Es,It) (Disc 2).bin
+      - Discworld Noir (Europe) (En,Es,It) (Disc 3).bin
+    format: 3CD
+    url: Discworld Noir (Europe) (En,Es,It) (Disc 1).zip # redump
+    # Discworld Noir (Europe) (En,Es,It) (Disc 2).zip
+    # Discworld Noir (Europe) (En,Es,It) (Disc 3).zip
+  igdb_slug: discworld-noir
+  lang: multi # En, Es, It
+  media_assets:
+  name: Discworld Noir
+  platform: win
+  publisher: GT Interactive Software
+  refs:
+    ag_id: discworld-noir
+    lutris_id: discworld-noir
+    mg_id: 1411
+    pcgw_id: Discworld_Noir
+    qz_id: 64
+  reqs:
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine
+    ver: '11.0'
+  uuid: 01a03c14-01ba-72a2-bcf1-c238b702e3ca
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][1]}'
+        dest: '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][2]}'
+        dest: '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+    - wine:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              #path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              path: 'explorer'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TIN3_DXD.EXE'
+    - copy:
+        # NoCD patch (original exe just crashes)
+        # "Discworld Noir v1.0 [ALL] Fixed EXE" from https://gamecopyworld.com/games/pc_discworld_noir.shtml
+        src: '{SRC_DIR}/patch/tin3_dxd.exe'
+        dest: '{DEST_APP_DIR}'
+# TODO: have to manually rename CD folder (E) for CD2 and CD3 and then back to CD1 during install (CD2 and CD3 can be deleted afterward)
+# Check: re-release (2003) available by redump came with no SafeDisk protection

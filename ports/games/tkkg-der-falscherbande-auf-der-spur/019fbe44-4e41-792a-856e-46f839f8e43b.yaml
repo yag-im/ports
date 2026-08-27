@@ -4,9 +4,6 @@ descr:
       - TKKG 06.iso
     format: 1CD
     url: https://d2.xp.myabandonware.com/t/bd911e8f-4379-43d0-8840-71ab23a52eba/Ein-Fall-fuer-TKKG-Der-Faelscherbande-auf-der-Spur_Win_DE_ISO-Version.zip
-    # https://archive.org/download/tkkg-6/TKKG6.iso
-    # TODO: reported crash of this release: https://discord.com/channels/1251206620822638684/1251209459271860277/1534498694538199150
-    # unfortunately, mentioned file is corrupted in the ISO, find BIN/CUE dump
   igdb_slug: tkkg-der-falscherbande-auf-der-spur
   lang: multi
   media_assets:
@@ -35,7 +32,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WINXPSP3
+        flavor: WIN98SE # reported crash in WINXP with TKKG6_16.EXE: https://discord.com/channels/1251206620822638684/1251209459271860277/1542253479119167670
         tasks:
           - mount:
               src: '{DEST_DIR}'
@@ -44,4 +41,8 @@ installer:
               path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\TKKG_6\TKKG6_16.EXE' # somehow in WINXP it's 16, in Win9x it's TKKG6_32.EXE
+              # path: '{APP_DIR}\TKKG_6\TKKG6_16.EXE' # somehow in WINXP it's 16, in Win9x it's TKKG6_32.EXE
+              path: '{APP_DIR}\TKKG_6\TKKG6_32.EXE'
+# https://archive.org/download/tkkg-6/TKKG6.iso
+# TODO: reported crash of this release: https://discord.com/channels/1251206620822638684/1251209459271860277/1534498694538199150
+# unfortunately, mentioned file is corrupted in the ISO, find BIN/CUE dump
