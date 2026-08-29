@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Carmen Sandiego - Junior Detective Edition (USA).bin
+    format: 1CD
+    url: Carmen Sandiego - Junior Detective Edition (USA).zip # redump
+  igdb_slug: carmen-sandiego-junior-detective-edition
+  lang: en
+  media_assets:
+  name: 'Carmen Sandiego: Junior Detective Edition'
+  platform: win
+  publisher: Brøderbund Software
+  refs:
+    ag_id:
+    lutris_id: carmen-sandiego-junior-detective-edition
+    mg_id: 15747
+    pcgw_id: Carmen_Sandiego:_Junior_Detective
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a04e37-1236-78e2-b8af-8061f8e29220
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CARMEN.EXE'
