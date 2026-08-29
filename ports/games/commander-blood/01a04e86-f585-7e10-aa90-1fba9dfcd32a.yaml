@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Commander Blood (USA).bin
+    format: 1CD
+    url: Commander Blood (USA).zip # redump
+  igdb_slug: commander-blood
+  lang: en
+  media_assets:
+  name: Commander Blood
+  platform: dos
+  publisher: Mindscape
+  refs:
+    ag_id:
+    lutris_id: commander-blood
+    mg_id: 1046
+    pcgw_id: Commander_Blood
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a04e86-f585-7e10-aa90-1fba9dfcd32a
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BLOODPRG'
+              args:
+                - AMR
+                - SDB2227
+                - 'WRI{APP_DIR}\'
