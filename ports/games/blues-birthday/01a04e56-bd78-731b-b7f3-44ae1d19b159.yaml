@@ -1,0 +1,60 @@
+descr:
+  distro:
+    files:
+      - Blue's Clues - Blue's Birthday Adventure (USA) (Red Disc).bin
+      - Blue's Clues - Blue's Birthday Adventure (USA) (Yellow Disc).bin
+    format: 2CD
+    url: Blue's Clues - Blue's Birthday Adventure (USA) (Red Disc).zip # redump
+    # Blue's Clues - Blue's Birthday Adventure (USA) (Yellow Disc).zip
+  igdb_slug: blues-birthday
+  lang: en
+  media_assets:
+  name: "Blue's Clues: Blue's Birthday Adventure"
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id:
+    lutris_id: blues-birthday
+    mg_id: 31131
+    pcgw_id: Blue%27s_Birthday_Adventure
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: scummvm
+    ver: 2026.2.0
+  uuid: 01a04e56-bd78-731b-b7f3-44ae1d19b159
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - Data
+          - Blue'sBirthday.(b)
+          - Blue'sBirthday-Red.HE0
+          - Blue'sBirthday-Red.(a)
+          - Blue'sBirthday-Red.he2
+          - Blue'sBirthday-Red.he4
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][1]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - Data
+          - Blue'sBirthday.(b)
+          - Blue'sBirthday-Yellow.HE0
+          - Blue'sBirthday-Yellow.(a)
+          - Blue'sBirthday-Yellow.he2
+          - Blue'sBirthday-Yellow.he4
+    - scummvm:
+        # https://wiki.scummvm.org/index.php/Blue's_Birthday_Adventure
+        tasks:
+          - gen_run_script:
+              game: scumm:BluesBirthday
+              path: '{DEST_APP_DIR}'

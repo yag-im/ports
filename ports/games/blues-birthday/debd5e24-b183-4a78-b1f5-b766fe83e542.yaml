@@ -42,3 +42,6 @@ installer:
               path: '{FIRST_CD_DRIVE}\Blue''sBirthday-Yellow.exe' # on the first run - installs app (required) and tests CD
           - gen_run_script:
               path: '{FIRST_CD_DRIVE}\Blue''sBirthday-Yellow.exe'
+
+# TODO: unable to bake the cake due to the manual CD switch requirement (see https://discord.com/channels/1251206620822638684/1542190666824810617)
+# scummvm runner version should not have this issue
