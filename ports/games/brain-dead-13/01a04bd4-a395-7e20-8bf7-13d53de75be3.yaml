@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - BrainDead 13 (USA, Canada).bin
+    format: 1CD
+    url: BrainDead 13 (USA, Canada).zip # redump
+  igdb_slug: brain-dead-13
+  lang: en
+  media_assets:
+  name: Brain Dead 13
+  platform: dos # TODO setup recommends win95 rather than dos (the game is for dos initially)
+  publisher: ReadySoft
+  refs:
+    ag_id:
+    lutris_id: brain-dead-13
+    mg_id: 2083
+    pcgw_id: Brain_Dead_13
+    qz_id: 9674
+  reqs:
+    color_bits: 8 # readme recommends 8bit for DOS and 24 for Windows
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a04bd4-a395-7e20-8bf7-13d53de75be3
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.BAT'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BD13.EXE'
