@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Playskool Puzzles (USA).bin
+    format: 1CD
+    url: Playskool Puzzles (USA).zip # redump
+  igdb_slug: playskool-puzzles
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a04bc8-736d-712e-984d-627780451395
+    screenshots: []
+  name: Playskool Puzzles
+  platform: win
+  publisher: Hasbro Interactive
+  refs:
+    ag_id:
+    lutris_id: playskool-puzzles
+    mg_id: 53974
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a04bc8-736d-712e-984d-627780451395
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DATA\PUZZLES.EXE'
