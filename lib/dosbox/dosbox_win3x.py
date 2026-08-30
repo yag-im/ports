@@ -75,7 +75,7 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
         replace(system_ini_file_path, "screen-size=[0-9]+", f"screen-size={screen_width}")
         replace(system_ini_file_path, "color-format=[0-9]+", f"color-format={color_bits}")
 
-    def run(self, path: PureWindowsPath, args: List[Any] = None, runexit=True, mock=False) -> None:
+    def run(self, path: PureWindowsPath, args: List[Any] = None, runexit=True, mock=False, work_dir=None) -> None:
         """Runs existing app in the Win311-flavored env"""
 
         if args is None:
@@ -85,7 +85,10 @@ class DosBoxWin3x(DosBox[DosBoxWin3xConf]):
             cmds.append(DosCmdExec("CHCP", [866]))
         app_exec = [path, *args]
         if runexit:
-            app_exec.insert(0, "RUNEXIT.EXE")
+            if work_dir is not None:
+                app_exec.insert(0, "RUNEXIT.EXE /pwd=" + str(work_dir))
+            else:
+                app_exec.insert(0, "RUNEXIT.EXE")
         # path or args containing path may have "\" characters that need to be collapsed into single "\"
         app_exec = [re.sub(r"\\+", r"\\", str(ae)) for ae in app_exec]
         cmds.append(DosCmdExec("C:\\WINDOWS\\WIN", app_exec))

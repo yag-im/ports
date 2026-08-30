@@ -71,7 +71,10 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
             runexit=runexit,
         )
     elif isinstance(dbox, DosBoxWin3x):
-        dbox.run(path=PureWindowsPath(run_path), args=task.get("args", []), runexit=runexit, mock=mock)
+        work_dir = task.get("work_dir", None)
+        dbox.run(
+            path=PureWindowsPath(run_path), args=task.get("args", []), runexit=runexit, mock=mock, work_dir=work_dir
+        )
     elif isinstance(dbox, DosBoxWin9x):
         work_dir = task.get("work_dir", None)
         dbox.run(

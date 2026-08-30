@@ -30,8 +30,10 @@ cd $WIN311_SRC_DIR/multimedia/quicktime
 wget https://www.dropbox.com/s/uimnc5wd4o62sg7/qteasy16.exe?dl=1 -O qteasy16.exe
 
 cd $WIN311_SRC_DIR/utils
-wget https://github.com/rayrapetyan/runexit/files/15227813/RUNEXIT.ZIP -O RUNEXIT.ZIP
-unzip RUNEXIT.ZIP
+# wget https://github.com/rayrapetyan/runexit/files/15227813/RUNEXIT.ZIP -O RUNEXIT.ZIP
+# unzip RUNEXIT.ZIP
+# customized version of runexit that allows specifying working directory
+wget https://github.com/andshrew/RunExit/releases/download/v2.0/RUNEXIT.EXE -O RUNEXIT.EXE
 
 cd $WIN311_SRC_DIR
 wget https://archive.org/download/windows-3.11/Windows%203.11.iso -O win3.11-en.iso
