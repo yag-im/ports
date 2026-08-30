@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - JUNGLETRAIN.BIN
+    format: 1CD
+    url: https://archive.org/details/JUNGLETRAIN
+  igdb_slug: 3d-jungle-train
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a05480-b22a-79be-805c-82447b148f93
+    screenshots: []
+  name: 3D Jungle Train
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # readme.txt
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a05480-b22a-79be-805c-82447b148f93
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JUNGLE.EXE'
+# TODO: audio CD
+# Crashes on startup in dosbox-x: win9x
+# Crashes after loading in qemu: win98se
