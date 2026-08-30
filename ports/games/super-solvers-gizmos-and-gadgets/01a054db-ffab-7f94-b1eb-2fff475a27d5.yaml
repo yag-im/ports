@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Super Solvers - Gizmos & Gadgets! (USA) (Rerelease) (2002-02-06).bin
+    format: 1CD
+    url: Super Solvers - Gizmos & Gadgets! (USA) (Rerelease) (2002-02-06).zip # redump
+  igdb_slug: super-solvers-gizmos-and-gadgets
+  lang: en
+  media_assets:
+  name: 'Super Solvers: Gizmos & Gadgets!'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: super-solvers-gizmos-and-gadgets
+    mg_id: 6812
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a054db-ffab-7f94-b1eb-2fff475a27d5
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SSGWIN32.EXE'
