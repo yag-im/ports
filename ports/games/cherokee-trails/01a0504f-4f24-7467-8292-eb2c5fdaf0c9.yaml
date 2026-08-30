@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Cherokee.Trails.Allys.Third.Adventure.NLiSO.bin
+    format: 1CD
+    url: https://www.myabandonware.com/game/cherokee-trails-nnm
+  igdb_slug: cherokee-trails
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0504f-4f24-7467-8292-eb2c5fdaf0c9
+    screenshots: []
+  name: Cherokee Trails
+  platform: win
+  publisher: Pharos Games
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 54881
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 768
+    screen_width: 1024
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0504f-4f24-7467-8292-eb2c5fdaf0c9
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\CherokeeTrails.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\CherokeeTrails.exe'
