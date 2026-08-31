@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Lek & Laer - Foerskolan (Sweden).cue
+    format: 1CD
+    url: Lek & Laer - Foerskolan (Sweden).zip # redump
+  igdb_slug: jumpstart-advanced-preschool
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a055c4-b5cc-727c-893f-273309510039
+    screenshots: []
+  name: Lek & Lär Förskolan
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: jumpstart-advanced-preschool
+    mg_id: 180277
+    pcgw_id: JumpStart_Advanced:_Preschool
+    qz_id:
+  reqs:
+    # app run
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a055c4-b5cc-727c-893f-273309510039
+  year_released: 2000 # 1996 version with some protection files from 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\KG.exe'
