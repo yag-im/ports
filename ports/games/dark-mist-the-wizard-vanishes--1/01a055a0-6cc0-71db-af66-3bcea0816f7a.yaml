@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - DMIST.ISO
+    format: 1CD
+    url: https://www.myabandonware.com/game/dark-mist-the-wizard-vanishes-3ik
+  igdb_slug: dark-mist-the-wizard-vanishes--1
+  lang: en
+  media_assets:
+  name: Dark Mist - The Wizard Vanishes
+  platform: win
+  publisher: Emerald Forest Toys
+  refs:
+    ag_id:
+    lutris_id: dark-mist-the-wizard-vanishes--1
+    mg_id: 5424
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a055a0-6cc0-71db-af66-3bcea0816f7a
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\QTinstall\QuickTimeInstaller.exe' # QT5
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DarkMist.exe'
