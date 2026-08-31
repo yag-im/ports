@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Lek och Laer - Foerskolan (Sweden) (2003).bin
+    format: 1CD
+    url: Lek och Laer - Foerskolan (Sweden) (2003).zip # redump
+  igdb_slug: jumpstart-advanced-preschool
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a055ae-ec4c-7621-bfb7-c122376d64d2
+    screenshots: []
+  name: Lek & Lär Förskolan Husdjursakuten
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: jumpstart-advanced-preschool
+    mg_id: 180277
+    pcgw_id: JumpStart_Advanced:_Preschool
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a055ae-ec4c-7621-bfb7-c122376d64d2
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Forskolan\FPF.exe'
