@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - RFSWINCD1.cue
+    format: 1CD
+    url: https://archive.org/details/FisherPriceReadyForSchoolKindergarten
+  igdb_slug: fisher-price-ready-for-school-kindergarten
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a05aba-4b59-7201-90b5-517d6081eda6
+    screenshots: []
+  name: 'Fisher-Price: Ready for School - Kindergarten'
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id: fisher-price-ready-for-school-kindergarten
+    mg_id: 111311
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a05aba-4b59-7201-90b5-517d6081eda6
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\READY\READY.EXE'
+              args:
+                - READY.BAP
+              work_dir: '{FIRST_CD_DRIVE}\READY'
+# TODO: cover from archive.org says it's a 2CD version, but CD2 is missing
