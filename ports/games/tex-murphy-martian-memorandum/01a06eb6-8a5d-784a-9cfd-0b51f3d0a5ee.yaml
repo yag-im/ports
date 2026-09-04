@@ -1,0 +1,85 @@
+descr:
+  distro:
+    files:
+      - disk1.img
+      - disk2.img
+      - disk3.img
+      - disk4.img
+      - disk5.img
+      - disk6.img
+      - disk7.img
+      - disk8.img
+      - disk9.img
+      - disk10.img
+    format: 10FD
+    url: https://archive.org/details/000299-MartianMemorandum
+  igdb_slug: tex-murphy-martian-memorandum
+  lang: en
+  media_assets:
+  name: 'Tex Murphy: Martian Memorandum'
+  platform: dos
+  publisher: Access Software
+  refs:
+    ag_id: tex-murphy-martian-memorandum
+    lutris_id: tex-murphy-martian-memorandum
+    mg_id: 222
+    pcgw_id: Tex_Murphy:_Martian_Memorandum
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a06eb6-8a5d-784a-9cfd-0b51f3d0a5ee
+  year_released: 1991
+  tags:
+    - tex-murphy
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+          - '{SRC_DIR}/{descr[distro][files][3]}'
+          - '{SRC_DIR}/{descr[distro][files][4]}'
+          - '{SRC_DIR}/{descr[distro][files][5]}'
+          - '{SRC_DIR}/{descr[distro][files][6]}'
+          - '{SRC_DIR}/{descr[distro][files][7]}'
+          - '{SRC_DIR}/{descr[distro][files][8]}'
+          - '{SRC_DIR}/{descr[distro][files][9]}'
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][4]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][5]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][6]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][7]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][8]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][9]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.EXE' # TODO: installer says last FD image is corrupted, but game starts ok
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MM.EXE'
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+    - copy:
+        src: '{PORT_FILES_DIR}/MM.CFG' # enable music (taken from exodos bundle)
+        dest: '{DEST_APP_DIR}'
