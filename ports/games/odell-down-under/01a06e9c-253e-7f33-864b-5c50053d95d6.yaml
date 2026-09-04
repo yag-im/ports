@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Odell Down Under (USA).bin
+    format: 1CD
+    url: Odell Down Under (USA).zip # redump
+  igdb_slug: odell-down-under
+  lang: en
+  media_assets:
+  name: Odell Down Under
+  platform: win
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id: odell-down-under
+    mg_id: 12013
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a06e9c-253e-7f33-864b-5c50053d95d6
+  year_released: 1995
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ODELL.EXE'
