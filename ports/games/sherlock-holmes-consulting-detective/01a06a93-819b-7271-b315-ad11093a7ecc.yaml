@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Sherlock Holmes - Consulting Detective - Vol. I (USA) (Rerelease) (1993-02-23).bin
+    format: 1CD
+    url: https://archive.org/details/Nova_SherlockHolmesVol1-19930223_USA # redump
+  igdb_slug: sherlock-holmes-consulting-detective
+  lang: en
+  media_assets:
+  name: 'Sherlock Holmes: Consulting Detective'
+  platform: dos
+  publisher: ICOM Simulations
+  refs:
+    ag_id:
+    lutris_id: sherlock-holmes-consulting-detective
+    mg_id: 392
+    pcgw_id:
+    qz_id: 2589
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a06a93-819b-7271-b315-ad11093a7ecc
+  year_released: 1993
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\SHERLOCK.EXE'
