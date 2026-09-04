@@ -30,7 +30,7 @@ descr:
   year_released: 1997
   tags:
 installer:
-  # app installs from CD1, runds from CD2
+  # app installs from CD1, runs from CD2
   tasks:
     - copy_src_cd_images:
     - dosbox:
