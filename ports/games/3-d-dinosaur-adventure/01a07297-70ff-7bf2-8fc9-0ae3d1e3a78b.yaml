@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - 3D_DINOSAUR.ISO
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/e74e6ce0-b54c-43a0-aad2-45ef2d03486e/3-D-Dinosaur-Adventure-Anniversary-Edition_Win-3x_EN_Win3xO-release.zip
+  igdb_slug: 3-d-dinosaur-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a07297-70ff-7bf2-8fc9-0ae3d1e3a78b
+    screenshots: []
+  name: '3-D Dinosaur Adventure: Anniversary Edition'
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: 3-d-dinosaur-adventure
+    mg_id: 44857
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a07297-70ff-7bf2-8fc9-0ae3d1e3a78b
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\DINO3D.EXE'
