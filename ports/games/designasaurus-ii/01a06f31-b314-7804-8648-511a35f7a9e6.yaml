@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Designasaurus II (1990).zip
+    format: 1FD
+    url: Designasaurus II (1990).zip # exodos
+  igdb_slug: designasaurus-ii
+  lang: en
+  media_assets:
+  name: Designasaurus II
+  platform: dos
+  publisher: Britannica Software, Inc.
+  refs:
+    ag_id:
+    lutris_id: designasaurus-ii
+    mg_id: 24193
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a06f31-b314-7804-8648-511a35f7a9e6
+  year_released: 1990
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - Designas/*
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\DINO.EXE'
