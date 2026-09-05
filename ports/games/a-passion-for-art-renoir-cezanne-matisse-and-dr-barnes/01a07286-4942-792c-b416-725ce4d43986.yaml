@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - BARNES.ISO
+    format: 1CD
+    url: https://archive.org/download/PASSION4ART/BARNES.ISO
+  igdb_slug: a-passion-for-art-renoir-cezanne-matisse-and-dr-barnes
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a07286-4942-792c-b416-725ce4d43986
+    screenshots: []
+  name: 'A Passion for Art: Renoir, Cézanne, Matisse, and Dr. Barnes'
+  platform: win
+  publisher: Corbis Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.wri
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a07286-4942-792c-b416-725ce4d43986
+  year_released: 1995
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\BARNES.EXE'
