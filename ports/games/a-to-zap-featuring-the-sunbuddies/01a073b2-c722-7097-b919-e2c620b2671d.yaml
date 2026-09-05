@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - A to Zap! (USA).bin
+    format: 1CD
+    url: A to Zap! (USA).zip # redump
+  igdb_slug: a-to-zap-featuring-the-sunbuddies
+  lang: en
+  media_assets:
+  name: 'A to Zap! Featuring the Sunbuddies'
+  platform: win
+  publisher: Sunburst Communications
+  refs:
+    ag_id:
+    lutris_id: a-to-zap-featuring-the-sunbuddies
+    mg_id: 86154
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a073b2-c722-7097-b919-e2c620b2671d
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ATOZAP.EXE'
+              work_dir: '{APP_DIR}'
