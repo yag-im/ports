@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - King's Quest II - Romancing the Throne (1987) (v2.2, Int. 2.917) (Sierra On-Line, Inc.) (720K) [cr].ima
+    format: 1FD
+    url: https://archive.org/download/20220303_20220303_0527/King%27s%20Quest%20II%20-%20Romancing%20the%20Throne%20%281987%29%20%28v2.2%2C%20Int.%202.917%29%20%28Sierra%20On-Line%2C%20Inc.%29%20%28720K%29%20%5Bcp%20cr%5D%20%5B%21%5D.zip
+    # v2.2
+  igdb_slug: king-s-quest-ii-romancing-the-throne
+  lang: en
+  media_assets:
+  name: "King's Quest II: Romancing the Throne"
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: kings-quest-ii-romancing-the-throne
+    lutris_id: king-s-quest-ii-romancing-the-throne
+    mg_id: 123
+    pcgw_id: King%27s_Quest_II:_Romancing_the_Throne
+    qz_id: 1801
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a073be-e23c-7da9-9189-d0ed44f98118
+  year_released: 1987
+  tags:
+    - kings-quest
+installer:
+  tasks:
+    - extract:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+    - dosbox:
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALLH.BAT'
+              args:
+                - 'D:'
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\KQ2\KQ2.COM'
+              args:
+                - '%1'
+                - '%2'
+                - '%3'
+                - '%4'
+                - '%5'
