@@ -1,0 +1,55 @@
+descr:
+  distro:
+    files:
+      - Atlantis - The Lost Tales (USA) (Disc 1) (Rerelease).bin
+      - Atlantis - The Lost Tales (USA) (Disc 2) (Alt).bin
+      - Atlantis - The Lost Tales (USA) (Disc 3) (Alt).bin
+      - Atlantis - The Lost Tales (USA) (Disc 4) (Alt).bin
+    format: 4CD
+    url: Atlantis - The Lost Tales (USA) (Disc 1) (Rerelease).zip # redump
+  igdb_slug: atlantis-the-lost-tales
+  lang: en
+  media_assets:
+  name: 'Atlantis: The Lost Tales'
+  platform: win
+  publisher: Cryo Interactive
+  refs:
+    ag_id: atlantis-the-lost-tales
+    lutris_id: atlantis-the-lost-tales
+    mg_id: 3186
+    pcgw_id: Atlantis:_The_Lost_Tales
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a06f3b-84c5-7504-ac6c-db780c344ea4
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 60 # installer recommendation is 50, but it still complains
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}'
+          - run:
+              # path: '{FIRST_CD_DRIVE}\setup.exe'
+              path: 'explorer.exe' # setup without explorer shows a glitching window
+              # path: '{FIRST_CD_DRIVE}\ATL_DOS\INSTALL.BAT'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\CRYO\ATLANTIS\atlantis.exe'
+              # path: '{SYSTEM_DRIVE}\ATLGAME\ATLDOS.EXE'
+# hangs in dos
+# TODO: BSODs on the very first run, copy clone after first run
