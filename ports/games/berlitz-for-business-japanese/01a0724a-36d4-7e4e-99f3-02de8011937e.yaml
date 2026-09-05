@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - berlitz_japanese.iso
+    format: 1CD
+    url: https://archive.org/download/berlitz_japanese/berlitz_japanese.iso
+  igdb_slug: berlitz-for-business-japanese
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0724a-36d4-7e4e-99f3-02de8011937e
+    screenshots: []
+  name: 'Berlitz for Business: Japanese'
+  platform: win
+  publisher: Bright Star Technology
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0724a-36d4-7e4e-99f3-02de8011937e
+  year_released: 1994
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\JA.EXE'
