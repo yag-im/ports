@@ -53,3 +53,5 @@ installer:
                 - '%3'
                 - '%4'
                 - '%5'
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'

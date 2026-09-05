@@ -1,0 +1,64 @@
+descr:
+  distro:
+    files:
+      - King's Quest III - To Heir is Human (1988) (v2.14, Int. 2.936) (Sierra On-Line, Inc.) (720K) (Disk 1) [cr].ima
+      - King's Quest III - To Heir is Human (1988) (v2.14, Int. 2.936) (Sierra On-Line, Inc.) (720K) (Disk 2) [!].ima
+    format: 2FD
+    url: https://archive.org/download/20220303_20220303_0527/King%27s%20Quest%20III%20-%20To%20Heir%20is%20Human%20%281988%29%20%28v2.14%2C%20Int.%202.936%29%20%28Sierra%20On-Line%2C%20Inc.%29%20%28720K%29%20%5Bcp%20cr%5D%20%5B%21%5D.zip
+    # v2.14
+  igdb_slug: kings-quest-iii-to-heir-is-human
+  lang: en
+  media_assets:
+  name: "King's Quest III: To Heir is Human"
+  platform: dos
+  publisher: Sierra On-Line
+  refs:
+    ag_id: kings-quest-iii-to-heir-is-human
+    lutris_id: kings-quest-iii-to-heir-is-human
+    mg_id: 126
+    pcgw_id: King%27s_Quest_III:_To_Heir_Is_Human
+    qz_id: 1802
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a073ce-48c7-7a0c-96ea-0492730747f3
+  year_released: 1988
+  tags:
+    - kings-quest
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+    - dosbox:
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALLH.BAT' # switch floppies once by CTRL+F4
+              args:
+                - 'D:'
+          - gen_run_script:
+              path: '{APP_DRIVE}\SIERRA\KQ3\KQ3.COM'
+              args:
+                - '%1'
+                - '%2'
+                - '%3'
+                - '%4'
+                - '%5'
+          - umount:
+              letter: "{FIRST_FD_DRIVE_LETTER}"
