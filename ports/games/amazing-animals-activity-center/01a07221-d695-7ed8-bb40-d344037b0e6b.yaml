@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Amazing Animals Activity Center (USA).bin
+    format: 1CD
+    url: Amazing Animals Activity Center (USA).zip # redump
+  igdb_slug: amazing-animals-activity-center
+  lang: en
+  media_assets:
+  name: Amazing Animals Activity Center
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id: amazing-animals-activity-center
+    mg_id: 199042
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt!
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a07221-d695-7ed8-bb40-d344037b0e6b
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\AANIMALS.EXE'
