@@ -23,7 +23,7 @@ def exec_subtask(task: dict, retroarch: RetroArch) -> None:
 
 def run(task: dict, app_descr: AppDesc) -> None:
     dst_dir = app_descr.dst_path()
-    retroarch = RetroArch(root_dir=dst_dir)
+    retroarch = RetroArch(root_dir=dst_dir, conf=task.get("conf"))
     task_: dict
     for task_ in task.get("tasks"):
         exec_subtask(task_, retroarch)

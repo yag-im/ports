@@ -3,4 +3,12 @@
 CUR_DIR=$(cd `dirname $0` && pwd)
 cd $CUR_DIR
 
-retroarch --fullscreen --libretro=${libretro} "${file}"
+% if libretro == "puae" and puae_model and puae_kickstart:
+sed -i \
+	-e 's/^puae_model = .*/puae_model = "${puae_model}"/' \
+	-e 's/^puae_kickstart = .*/puae_kickstart = "${puae_kickstart}"/' \
+	/home/gamer/.config/retroarch/config/PUAE/PUAE.opt
+% endif
+
+# without $PWD certain m3u playlists may not resolve correctly
+retroarch --fullscreen --libretro=${libretro} "$PWD/${file}"

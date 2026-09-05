@@ -1,0 +1,56 @@
+descr:
+  distro:
+    files:
+      - Alien Drug Lords - The Chyropian Connection v1.0 (1991)(Panther Games)[cr CLS - RZR].m3u # manually created
+      - Alien Drug Lords - The Chyropian Connection v1.0 (1991)(Panther Games)[cr CLS - RZR](Disk 1 of 4).adf
+      - Alien Drug Lords - The Chyropian Connection v1.0 (1991)(Panther Games)[cr CLS - RZR](Disk 2 of 4).adf
+      - Alien Drug Lords - The Chyropian Connection v1.0 (1991)(Panther Games)[cr CLS - RZR](Disk 3 of 4).adf
+      - Alien Drug Lords - The Chyropian Connection v1.0 (1991)(Panther Games)[cr CLS - RZR](Disk 4 of 4).adf
+    format: 4FD
+    url: https://www.myabandonware.com/game/alien-drug-lords-the-chyropian-connection-hl2
+  igdb_slug: alien-drug-lords-the-chyropian-connection
+  lang: en
+  media_assets:
+  name: 'Alien Drug Lords: The Chyropian Connection'
+  platform: amiga
+  publisher: Panther Games
+  refs:
+    ag_id:
+    lutris_id: alien-drug-lords-the-chyropian-connection
+    mg_id: 81708
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: '1.22.2'
+  uuid: 01a06f6c-a575-7cc0-b26e-efabcbe71c20
+  year_released: 1991
+  tags:
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][1]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][2]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][3]}'
+        dest: '{DEST_DIR}'
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][4]}'
+        dest: '{DEST_DIR}'
+    - retroarch:
+        conf:
+          puae_model: 'A500'
+        tasks:
+          - gen_run_script:
+              core: puae
+              file: '{descr[distro][files][0]}'
