@@ -147,7 +147,8 @@ class DosBoxWin9x(DosBox[DosBoxWin9xConf]):
                 shell_cmds.append("RUNEXIT.EXE")
             if work_dir:
                 shell_cmds.append(f'/C:"{work_dir}"')
-            shell_cmds.append(f'"{path}"')
+            if path:
+                shell_cmds.append(f'"{path}"')
             if args:
                 shell_cmds.append(" ".join([str(a) for a in args]))
             # Normalize any run of "\" characters to exactly 2 backslashes.

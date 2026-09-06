@@ -76,5 +76,6 @@ class DosBoxDos(DosBox[DosBoxConf]):
         if pre_exec:
             for cmd in pre_exec:
                 cmds.append(cmd)
-        cmds.append(DosCmdExec(path, args, cd))
+        if path:
+            cmds.append(DosCmdExec(path, args, cd))
         self._run(cmds, mock=mock, runexit=runexit)

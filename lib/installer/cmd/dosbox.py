@@ -53,17 +53,17 @@ def exec_regedit(dbox: DosBoxWin9x, task: dict):
 def exec_run(dbox: DosBox, task: dict, mock=False):
     run_path = task.get("path")
     runexit = task.get("exit", True)
-    if run_path is None:
-        raise ValueError("CMD_RUN: missing required field: 'path'")
-    # convert LFN with spaces to 8.3 short filenames (e.g. 'D:\APP\TKKG 8.EXE' -> 'D:\APP\TKKG8~1.EXE')
-    run_path = to_short_path(run_path)
+    # run_path can be null (e.g. for BOOT fd image pcjr case)
+    if run_path:
+        # convert LFN with spaces to 8.3 short filenames (e.g. 'D:\APP\TKKG 8.EXE' -> 'D:\APP\TKKG8~1.EXE')
+        run_path = PureWindowsPath(to_short_path(run_path))
     if isinstance(dbox, DosBoxDos):
         cd = task.get("cd", None)
         pre_exec = task.get("pre_exec", None)
         if cd:
             cd = PureWindowsPath(cd)
         dbox.run(
-            path=PureWindowsPath(run_path),
+            path=run_path,
             args=task.get("args", []),
             cd=cd,
             mock=mock,
@@ -72,13 +72,11 @@ def exec_run(dbox: DosBox, task: dict, mock=False):
         )
     elif isinstance(dbox, DosBoxWin3x):
         work_dir = task.get("work_dir", None)
-        dbox.run(
-            path=PureWindowsPath(run_path), args=task.get("args", []), runexit=runexit, mock=mock, work_dir=work_dir
-        )
+        dbox.run(path=run_path, args=task.get("args", []), runexit=runexit, mock=mock, work_dir=work_dir)
     elif isinstance(dbox, DosBoxWin9x):
         work_dir = task.get("work_dir", None)
         dbox.run(
-            path=PureWindowsPath(run_path),
+            path=run_path,
             args=task.get("args", []),
             runexit=runexit,
             mock=mock,

@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Wizard and the Princess, The (PCjr) (Booter) (1984) (Sierra On-Line, Inc.) (160K) [cr].img
+    format: 1FD
+    url: https://archive.org/download/20220303_20220303_0527/Booter/Wizard%20and%20the%20Princess%2C%20The%20%28PCjr%29%20%28Booter%29%20%281984%29%20%28Sierra%20On-Line%2C%20Inc.%29%20%28160K%29%20%5Bcp%20cr%5D%20%5B%21%5D.zip
+  igdb_slug: the-wizard-and-the-princess
+  lang: en
+  media_assets:
+  name: The Wizard and the Princess
+  platform: dos
+  publisher: On-Line Systems
+  refs:
+    ag_id: wizard-and-the-princess
+    lutris_id: the-wizard-and-the-princess
+    mg_id: 67808
+    pcgw_id: Adventure_in_Serenia
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a074e7-b170-7b90-baa4-0a99194357f3
+  year_released: 1984
+  tags:
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+    - dosbox:
+        conf:
+          machine: pcjr
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+              type: floppy
+          - gen_run_script:
+              pre_exec:
+                - 'BOOT {FIRST_FD_DRIVE_LETTER}:'

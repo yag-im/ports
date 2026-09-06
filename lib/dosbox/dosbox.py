@@ -206,6 +206,7 @@ class DosBox(Protocol[T]):
             "cdrom_insertion_delay": self.conf.cdrom_insertion_delay,
             "cycles": self.conf.cycles,
             "fullscreen": str(self.conf.fullscreen).lower(),
+            "machine": self.conf.machine,
             "sensitivity": self.conf.sensitivity or default_sensitivity,
             "gus": self.conf.gus,
         }

@@ -46,6 +46,7 @@ class DosBoxConf:
     fullscreen: bool = False
     _lang = BASE_LANG
     lock_pointer: bool = False
+    machine: str = "svga_s3"
     memsize: int = BASE_MEMORY_SIZE
     mod: DosBoxMod = DosBoxMod.ORIG
     mount_points: collections.OrderedDict[str, DosMountPoint] = field(default_factory=collections.OrderedDict)
