@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - King's Quest - Mask of Eternity (USA) (Rerelease).bin
+    format: 1CD
+    url: King's Quest - Mask of Eternity (USA) (Rerelease).zip # redump
+    # v1.0.0.3
+  igdb_slug: king-s-quest-viii-the-mask-of-eternity
+  lang: en
+  media_assets:
+  name: "King's Quest VIII: The Mask of Eternity"
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id: kings-quest-mask-of-eternity
+    lutris_id: king-s-quest-viii-the-mask-of-eternity
+    mg_id: 136
+    pcgw_id: King%27s_Quest:_Mask_of_Eternity
+    qz_id: 1776
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a078a3-a7f0-714a-a054-ebcc01af3010
+  year_released: 1999
+  tags:
+    - kings-quest
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # crashes in WINXP after intro
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SIERRA\Mask\Mask.exe'
