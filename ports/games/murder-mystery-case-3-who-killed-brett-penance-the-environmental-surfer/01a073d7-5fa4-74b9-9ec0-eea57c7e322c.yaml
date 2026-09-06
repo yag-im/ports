@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Who Killed Brett Penance (USA).bin
+    format: 1CD
+    url: Who Killed Brett Penance (USA).zip # redump
+  igdb_slug: murder-mystery-case-3-who-killed-brett-penance-the-environmental-surfer
+  lang: en
+  media_assets:
+  name: 'Murder Mystery Case 3: Who Killed Brett Penance - The Environmental Surfer'
+  platform: win
+  publisher: Creative Multimedia Corporation
+  refs:
+    ag_id:
+    lutris_id: murder-mystery-case-3-who-killed-brett-penance-the-environmental-surfer
+    mg_id: 31045
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a073d7-5fa4-74b9-9ec0-eea57c7e322c
+  year_released: 1994
+  tags:
+    - fmv
+installer:
+  tasks:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\BRETTP.EXE'
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - 'SUPPORT/*'
+    # without QT 1.0 removal game tries to use it and fails to play any movie
+    - file:
+        path: '{item}'
+        state: absent
+        loop:
+          - '{DEST_APP_DIR}/QT*'
+          - '{DEST_APP_DIR}/PLAYER.EXE'
+          - '{DEST_APP_DIR}/VIEWER.EXE'
+          - '{DEST_APP_DIR}/QCMC.QTC'
