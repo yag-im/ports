@@ -74,25 +74,58 @@ set -ux
 
 CUR_DIR=$(cd `dirname "$0"` && pwd)
 
+TUNNEL_OPEN=false
+
+cleanup() {
+    if [ "$TUNNEL_OPEN" = true ]; then
+        echo "Closing SSH tunnel..."
+        ssh -O exit $BASTION_USER@$BASTION_HOST 2>/dev/null || true
+    fi
+}
+
+on_error() {
+    cleanup
+    echo "" >&2
+    echo "=================================================================" >&2
+    echo "[FAILURE] Publish failed for '$IGDB_SLUG' ($RELEASE_UUID)" >&2
+    echo "=================================================================" >&2
+    exit 1
+}
+
+trap 'on_error' ERR
+
 # upload app bundle to appstor server and app sources to aws S3 glacier
 $CUR_DIR/store.sh $STORE_ARGS
 
 # upload media assets to AWS CDN
-curl -v --request POST \
+curl -f -v --request POST \
   --url "http://portsvc.yag.dc:8087/ports/apps/$IGDB_SLUG/releases/$RELEASE_UUID/publish"
 
 # update prod SQLDB
 # SSH tunnel setup: Starts SOCKS proxy in the background
-ssh -D $SOCKS_PORT -p $BASTION_PORT -f -N $BASTION_USER@$BASTION_HOST
-# Wait for the tunnel to establish
-sleep 2
+ssh -o ExitOnForwardFailure=yes -D $SOCKS_PORT -p $BASTION_PORT -f -N $BASTION_USER@$BASTION_HOST
+TUNNEL_OPEN=true
+
+# Poll until the SOCKS proxy port is listening (up to 10 seconds)
+for ((i=0; i<100; i++)); do
+    if (echo > /dev/tcp/127.0.0.1/$SOCKS_PORT) 2>/dev/null; then
+        break
+    fi
+    sleep 0.1
+done
 
 # API call via SOCKS5 proxy
 # Using 0:$SOCKS_PORT (localhost:8022) to route the request through the tunnel
-curl -v --request POST \
+curl -f -v --request POST \
   --socks5-hostname "0:$SOCKS_PORT" "http://portsvc/ports/apps/$IGDB_SLUG/releases/$RELEASE_UUID" \
   --header "content-type: application/x-yaml" \
   --data-binary "@/workspaces/ports/ports/games/$IGDB_SLUG/$RELEASE_UUID.yaml"
 
 # SSH tunnel teardown: Gracefully kill the backgrounded tunnel process
-ssh -O exit $BASTION_USER@$BASTION_HOST
+cleanup
+TUNNEL_OPEN=false
+
+echo ""
+echo "================================================================="
+echo "[SUCCESS] Publish completed successfully for '$IGDB_SLUG' ($RELEASE_UUID)"
+echo "================================================================="

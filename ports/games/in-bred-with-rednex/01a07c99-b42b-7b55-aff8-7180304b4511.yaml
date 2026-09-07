@@ -37,3 +37,5 @@ installer:
               src: '{DEST_DIR}/{descr[distro][files][0]}'
           - gen_run_script:
               path: '{FIRST_CD_DRIVE}\REDNEX.EXE'
+
+# TODO: experiences a hang when turning on the camera in the ambar on the left
