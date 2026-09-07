@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - ClueFinders, The - Reading Adventures Ages 9-12 - The Mystery of the Missing Amulet (USA).bin
+    format: 1CD
+    url: https://archive.org/details/redump-id-120912
+    # v1.0
+  igdb_slug: the-cluefinders-reading-adventures
+  lang: en
+  media_assets:
+  name: 'The ClueFinders Reading Adventures Ages 9-12: The Mistery of the Missing Amulet'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: the-cluefinders-reading-adventures
+    mg_id: 130783
+    pcgw_id: The_ClueFinders_Reading_Adventures_Ages_9-12:_Mystery_of_the_Missing_Amulet
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a07c87-2a96-78f3-8c01-f34573e763a0
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\cfread.exe'

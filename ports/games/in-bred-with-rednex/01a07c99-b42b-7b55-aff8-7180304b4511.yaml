@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Inbred with Rednex (Europe).cue
+    format: 1CD
+    url: Inbred with Rednex (Europe).zip # redump
+  igdb_slug: in-bred-with-rednex
+  lang: en
+  media_assets:
+  name: In Bred With Rednex
+  platform: win
+  publisher: BMG Interactive Entertainment
+  refs:
+    ag_id:
+    lutris_id: in-bred-with-rednex
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a07c99-b42b-7b55-aff8-7180304b4511
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\REDNEX.EXE'
