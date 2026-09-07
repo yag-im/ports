@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - MT123.iso # genisoimage -o MT123.iso MT123
+    format: 1CD
+    url: https://archive.org/download/mt-123/MT123.zip
+    # v7.0
+  igdb_slug: math-trek-1-2-3
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a07dd4-13dd-7634-a44e-f7b353f0452b
+    screenshots: []
+  name: "Math Trek 1, 2, 3 Fibonacci's Toy Store"
+  platform: win
+  publisher: NECTAR Foundation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640 # text on the main screen is blurry, but black border in 800x600
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a07dd4-13dd-7634-a44e-f7b353f0452b
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LOGIN.EXE'
