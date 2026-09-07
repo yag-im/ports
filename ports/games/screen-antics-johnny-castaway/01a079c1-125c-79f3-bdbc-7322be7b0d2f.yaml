@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Screen Antics - Johnny Castaway (Win3.1) (1993) (v1.01, Int. 1.4.93) (Sierra On-Line, Inc.) (1.44M) [!].ima
+    format: 1FD
+    url: https://archive.org/download/20220303_20220303_0527/Screen%20Antics%20-%20Johnny%20Castaway%20%28Win3.1%29%20%281993%29%20%28v1.01%2C%20Int.%201.4.93%29%20%28Sierra%20On-Line%2C%20Inc.%29%20%281.44M%29%20%5B%21%5D.zip
+    # v1.01
+  igdb_slug: screen-antics-johnny-castaway
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a079c1-125c-79f3-bdbc-7322be7b0d2f
+    screenshots: []
+  name: 'Screen Antics: Johnny Castaway'
+  platform: win
+  publisher: Sierra On-Line
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a079c1-125c-79f3-bdbc-7322be7b0d2f
+  year_released: 1993
+  tags:
+    - screen-saver
+installer:
+  tasks:
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: 'CONTROL.EXE'
+              args:
+                - DESKTOP
+              exit: false
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
