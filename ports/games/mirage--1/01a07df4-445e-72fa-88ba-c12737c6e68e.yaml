@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Mirage (USA).bin
+    format: 1CD
+    url: https://archive.org/details/mirage-usa # redump
+  igdb_slug: mirage--1
+  lang: en
+  media_assets:
+  name: Mirage
+  platform: win
+  publisher: Atlantean Interactive Games
+  refs:
+    ag_id:
+    lutris_id: mirage--1
+    mg_id: 40599
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # readme.wri
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a07df4-445e-72fa-88ba-c12737c6e68e
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MIRAGE.EXE'
