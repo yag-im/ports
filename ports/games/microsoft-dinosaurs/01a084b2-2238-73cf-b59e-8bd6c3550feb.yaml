@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - DINO.ISO
+    format: 1CD
+    url: https://www.myabandonware.com/game/microsoft-dinosaurs-pmw
+    # re-release
+  igdb_slug: microsoft-dinosaurs
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a084b2-2238-73cf-b59e-8bd6c3550feb
+    screenshots: []
+  name: Microsoft Dinosaurs
+  platform: win
+  publisher: Microsoft Home
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a084b2-2238-73cf-b59e-8bd6c3550feb
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MSDINOS.EXE'
