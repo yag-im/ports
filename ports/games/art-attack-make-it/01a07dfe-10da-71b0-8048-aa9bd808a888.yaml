@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Art Attack - Make It! (UK) (Rerelease).bin
+    format: 1CD
+    url: Art Attack - Make It! (UK) (Rerelease).zip # redump
+  igdb_slug: art-attack-make-it
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a07dfe-10da-71b0-8048-aa9bd808a888
+    screenshots: []
+  name: 'Art Attack: Make It!'
+  platform: win
+  publisher: Europress Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a07dfe-10da-71b0-8048-aa9bd808a888
+  year_released: 2004
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Make It!.exe'

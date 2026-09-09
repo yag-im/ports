@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - I Love Math! (USA).bin
+    format: 1CD
+    url: I Love Math! (USA).zip # redump
+  igdb_slug: i-love-math
+  lang: en
+  media_assets:
+  name: I Love Math!
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id: i-love-math
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a08479-45bf-7864-b758-944098992a54
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\IHMath.exe'
