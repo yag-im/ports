@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Cyberchase - Castleblanca Quest (USA).bin
+    format: 1CD
+    url: Cyberchase - Castleblanca Quest (USA).zip # redump
+  igdb_slug: cyberchase-castleblanca-quest
+  lang: en
+  media_assets:
+  name: 'Cyberchase: Castleblanca Quest'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: cyberchase-castleblanca-quest
+    mg_id: 27148
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0895b-37ae-7de2-9853-0949393d509c
+  year_released: 2003
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\PLAY.EXE' # setup+QT5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Cyberchase Castleblanca Quest\CyberChase.exe'
