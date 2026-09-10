@@ -1,0 +1,54 @@
+descr:
+  distro:
+    files:
+      - KIDSONGS.iso
+    format: 1CD
+    url: https://archive.org/download/msdos_Kidsongs_Musical_Mystery_1996/Kidsongs_Musical_Mystery_1996.zip/kidsongs%2FCD%2FKIDSONGS.iso
+  igdb_slug: kidsongs-musical-mystery
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a086bd-7e30-795d-a06b-7314abedef97
+    screenshots: []
+  name: 'Kidsongs: Musical Mystery'
+  platform: win
+  publisher: Terraglyph Interactive Studios
+  refs:
+    ag_id:
+    lutris_id: kidsongs-musical-mystery
+    mg_id: 120778
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true # otherwise mouse is not working
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a086bd-7e30-795d-a06b-7314abedef97
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              #path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              #path: 'explorer.exe' # bmp error on setup without explorer
+              path: '{FIRST_CD_DRIVE}\DOSINST.BAT'
+              exit: false
+          - gen_run_script:
+              #path: '{SYSTEM_DRIVE}\Program Files\TerraGlyph\Kidsongs - Musical Mystery\KidSongs.exe'
+              path: '{APP_DIR}\KIDSONGS.EXE'
+              exit: false
+# TODO: fails on startup in WIN9X
+# can't install in WIN311
