@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Logic Quest (USA) (Rerelease) (1997-01-14).bin
+    format: 1CD
+    url: Logic Quest (USA) (Rerelease) (1997-01-14).zip # redump
+    # v1.1
+  igdb_slug: logic-quest-3d
+  lang: en
+  media_assets:
+  name: Logic Quest 3D Adventure
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: logic-quest-3d
+    mg_id: 71317
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0896a-ce7c-71e1-b7b3-a76785214d88
+  year_released: 1997
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LQSHELL.EXE'
