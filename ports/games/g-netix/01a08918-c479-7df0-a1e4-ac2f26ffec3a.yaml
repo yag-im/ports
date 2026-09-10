@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - G-Netix.iso
+    format: 1CD
+    url: https://www.myabandonware.com/game/g-netix-3ka
+  igdb_slug: g-netix
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a08918-c479-7df0-a1e4-ac2f26ffec3a
+    screenshots: []
+  name: G-Netix
+  platform: win
+  publisher: ISM, Inc.
+  refs:
+    ag_id:
+    lutris_id: g-netix
+    mg_id: 28926
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a08918-c479-7df0-a1e4-ac2f26ffec3a
+  year_released: 1995
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # no sound without install
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\G-NETIX.EXE'
