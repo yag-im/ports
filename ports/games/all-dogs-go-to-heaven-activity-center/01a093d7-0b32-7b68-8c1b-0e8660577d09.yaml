@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - ALLDOGS.ISO
+    format: 1CD
+    url: https://archive.org/download/ALLDOGS/ALLDOGS.ISO
+  igdb_slug: all-dogs-go-to-heaven-activity-center
+  lang: en
+  media_assets:
+  name: 'All Dogs Go to Heaven: Activity Center'
+  platform: win
+  publisher: MGM Interactive
+  refs:
+    ag_id:
+    lutris_id: all-dogs-go-to-heaven-activity-center
+    mg_id: 219550
+    pcgw_id: All_Dogs_Go_to_Heaven_Activity_Center
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a093d7-0b32-7b68-8c1b-0e8660577d09
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUPW31.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DOGSW31.EXE'
