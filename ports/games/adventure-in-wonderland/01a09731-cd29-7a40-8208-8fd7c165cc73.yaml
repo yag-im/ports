@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - ALICE.DSK
+    format: 1TAPE
+    url: https://archive.org/download/alice_20260530/ALICE.DSK
+  igdb_slug: adventure-in-wonderland
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a09731-cd29-7a40-8208-8fd7c165cc73
+    screenshots: []
+  name: Adventure in Wonderland
+  platform: trs-80
+  publisher: Prickly-Pear Software
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 177148
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: retroarch
+    ver: '1.22.2'
+  uuid: 01a09731-cd29-7a40-8208-8fd7c165cc73
+  year_released: 1983
+  tags:
+    - alice-in-wonderland
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}'
+    - retroarch:
+        conf:
+          mame_driver: 'coco3' # coco3 gives better looking fonts
+        tasks:
+          - gen_run_script:
+              core: mame
+              file: '{descr[distro][files][0]}'

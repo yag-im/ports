@@ -11,4 +11,9 @@ sed -i \
 % endif
 
 # without $PWD certain m3u playlists may not resolve correctly
+% if libretro == "mame":
+echo '${mame_cmd}' > "${cmd_file}"
+retroarch --fullscreen --libretro=${libretro} "$PWD/${cmd_file}"
+% else:
 retroarch --fullscreen --libretro=${libretro} "$PWD/${file}"
+% endif
