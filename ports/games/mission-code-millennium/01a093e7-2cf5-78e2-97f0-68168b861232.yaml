@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Mission Code - Millennium (USA).bin
+    format: 1CD
+    url: Mission Code - Millennium (USA).zip # redump
+  igdb_slug: mission-code-millennium
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a093e7-2cf5-78e2-97f0-68168b861232
+    screenshots: []
+  name: 'Mission Code: Millennium'
+  platform: win
+  publisher: Virtual Entertainment, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8 # box
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a093e7-2cf5-78e2-97f0-68168b861232
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MILL.EXE'
