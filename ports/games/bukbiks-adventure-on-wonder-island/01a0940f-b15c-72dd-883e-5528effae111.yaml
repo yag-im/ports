@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Bukbik's Adventure on Wonder Island.iso
+    format: 1CD
+    url: https://archive.org/download/BukbiksAdventureonWonderIsland/Bukbik%27s%20Adventure%20on%20Wonder%20Island.iso
+  igdb_slug: bukbiks-adventure-on-wonder-island
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0940f-b15c-72dd-883e-5528effae111
+    screenshots: []
+  name: Bukbik's Adventure on Wonder Island
+  platform: win
+  publisher: MultiMedia Creation Co. Ltd.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0940f-b15c-72dd-883e-5528effae111
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WONDER\WONDER.EXE'
