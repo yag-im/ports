@@ -43,3 +43,5 @@ installer:
           - gen_run_script:
               pre_exec:
                 - 'BOOT {FIRST_FD_DRIVE_LETTER}:'
+# without mounting, boot using img file name: "A"
+# with mounting, boot using drive name: "A:"

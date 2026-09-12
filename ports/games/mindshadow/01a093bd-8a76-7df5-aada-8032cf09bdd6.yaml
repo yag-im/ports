@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Mindshadow (Booter) (1985) (Activision, Inc.) (320K) [cr].img
+    format: 1FD
+    url: https://archive.org/download/20230519_20230519_2000/Booter/Mindshadow%20%28Booter%29%20%281985%29%20%28Activision%2C%20Inc.%29%20%28320K%29%20%5Bcp%20cr%5D.zip
+    # v1.0
+  igdb_slug: mindshadow
+  lang: en
+  media_assets:
+  name: Mindshadow
+  platform: dos
+  publisher: Activision
+  refs:
+    ag_id: mindshadow
+    lutris_id: mindshadow
+    mg_id: 4519
+    pcgw_id:
+    qz_id: 516
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a093bd-8a76-7df5-aada-8032cf09bdd6
+  year_released: 1985
+  tags:
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+    - dosbox:
+        conf:
+          machine: pcjr
+          cycles: fixed 400
+        tasks:
+          - gen_run_script:
+              pre_exec:
+                - 'BOOT {FIRST_FD_DRIVE_LETTER}'
+# without mounting, boot using img file name: "A"
+# with mounting, boot using drive name: "A:"
