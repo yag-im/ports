@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - alice.iso
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/989287ca-a395-4852-93e3-5d4e56599834/Alice-s-Adventures-in-Wonderland_Win_EN_Full-RIP-Recommended.zip
+    # SafeDisc on original iso
+    # genisoimage -o alice.iso AliceInWonderLand
+    # TODO: is there an intro on the original CD?
+  igdb_slug: alices-adventures-in-wonderland
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a09422-89fe-7c1a-a95e-5aab8954cf2c
+    screenshots: []
+  name: Alice's Adventures in Wonderland
+  platform: win
+  publisher: Joriko Interactive
+  refs:
+    ag_id:
+    lutris_id: alices-adventures-in-wonderland
+    mg_id: 27815
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a09422-89fe-7c1a-a95e-5aab8954cf2c
+  year_released: 2000
+  tags:
+    - alice-in-wonderland
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # fails to run in WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\ALICE.EXE'
