@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Operation Neptune (USA) (Rerelease).bin
+    format: 1CD
+    url: Operation Neptune (USA) (Rerelease).zip # redump
+    # v1.23
+  igdb_slug: operation-neptune
+  lang: en
+  media_assets:
+  name: Operation Neptune
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: operation-neptune
+    mg_id: 4314
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a096e7-8d25-74aa-8a58-4262e98ab37f
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ONWIN.EXE'
