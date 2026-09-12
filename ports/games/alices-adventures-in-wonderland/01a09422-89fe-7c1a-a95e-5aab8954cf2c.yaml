@@ -6,7 +6,7 @@ descr:
     url: https://d2.xp.myabandonware.com/t/989287ca-a395-4852-93e3-5d4e56599834/Alice-s-Adventures-in-Wonderland_Win_EN_Full-RIP-Recommended.zip
     # SafeDisc on original iso
     # genisoimage -o alice.iso AliceInWonderLand
-    # TODO: is there an intro on the original CD?
+    # TODO: there is an intro on original CD: https://www.youtube.com/watch?v=MmeQIDHCGGo and no intro in a RIP
   igdb_slug: alices-adventures-in-wonderland
   lang: en
   media_assets:

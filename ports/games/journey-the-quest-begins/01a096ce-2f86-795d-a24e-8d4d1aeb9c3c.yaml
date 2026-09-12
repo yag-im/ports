@@ -1,0 +1,64 @@
+descr:
+  distro:
+    files:
+      - Journey - The Quest Begins (1989) (r83, Serial 890706) (Infocom, Inc.) (360K) (Disk 1) [!].ima
+      - Journey - The Quest Begins (1989) (r83, Serial 890706) (Infocom, Inc.) (360K) (Disk 2) [!].ima
+      - Journey - The Quest Begins (1989) (r83, Serial 890706) (Infocom, Inc.) (360K) (Disk 3) [!].ima
+      - Journey - The Quest Begins (1989) (r83, Serial 890706) (Infocom, Inc.) (360K) (Disk 4) [!].ima
+      # r83
+    format: 4FD
+    url: https://archive.org/download/20230305_20230305_2208/Floppy/Journey%20-%20The%20Quest%20Begins%20%281989%29%20%28r83%2C%20Serial%20890706%29%20%28Infocom%2C%20Inc.%29%20%28360K%29%20%5B%21%5D.zip
+    # url: https://archive.org/download/20230305_20230305_2208/Floppy/Journey%20-%20The%20Quest%20Begins%20%281989%29%20%28r83%2C%20Serial%20890706%29%20%28Infocom%2C%20Inc.%29%20%28720K%29%20%5B%21%5D.zip
+    # the 2x720KB FD version fails to start asking for diskette #3
+  igdb_slug: journey-the-quest-begins
+  lang: en
+  media_assets:
+  name: 'Journey: The Quest Begins'
+  platform: dos
+  publisher: Infocom
+  refs:
+    ag_id: journey-the-quest-begins
+    lutris_id: journey-the-quest-begins
+    mg_id: 1240
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a096ce-2f86-795d-a24e-8d4d1aeb9c3c
+  year_released: 1989
+  tags:
+installer:
+  tasks:
+    - file:
+        path: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        state: directory
+    - copy:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+          - '{SRC_DIR}/{descr[distro][files][3]}'
+    - dosbox:
+        tasks:
+          - mount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][3]}' # installer is on FD4
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][0]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][1]}'
+                - '{DEST_DIR}/{FIRST_FD_DRIVE_LETTER}/{descr[distro][files][2]}'
+              type: floppy
+          - run:
+              path: '{FIRST_FD_DRIVE}\INSTALL.EXE' # hit Ctrl+F4 multiple times when requested
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JOURNEY.EXE'
+          - umount:
+              letter: '{FIRST_FD_DRIVE_LETTER}'
