@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Tiny Toon Adventures - Buster and the Beanstalk (USA).cue
+    format: 1CD
+    url: Tiny Toon Adventures - Buster and the Beanstalk (USA).zip # redump
+    # v1.1
+  igdb_slug: tiny-toon-adventures-the-great-beanstalk
+  lang: en
+  media_assets:
+  name: 'Tiny Toon Adventures: The Great Beanstalk'
+  platform: win
+  publisher: Funsoft
+  refs:
+    ag_id:
+    lutris_id: tiny-toon-adventures-the-great-beanstalk
+    mg_id: 9091
+    pcgw_id: Tiny_Toon_Adventures:_Buster_and_the_Beanstalk
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019c768f-8478-7b88-b150-9a721f6ffbc4
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # works in vanilla dos, but crashes often
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              # path: '{FIRST_CD_DRIVE}\setup.exe' # fails without explorer
+              path: explorer.exe
+              exit: false
+              # TODO: manually copy lnk to startup
+          - gen_run_script:
+              path: 'explorer.exe'
+              exit: false
