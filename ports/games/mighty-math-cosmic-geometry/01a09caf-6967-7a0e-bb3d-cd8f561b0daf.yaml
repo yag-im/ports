@@ -1,0 +1,52 @@
+descr:
+  distro:
+    files:
+      - Mighty Math Cosmic Geometry (USA).bin
+    format: 1CD
+    url: Mighty Math Cosmic Geometry (USA).zip # redump
+    # url: https://archive.org/download/edmark-mighty-math-cosmic-geometry-1996-win-mac/Edmark_MightyMath-CosmicGeometry_1996_Win-Mac.iso - fails to start
+    # url: https://archive.org/download/mighty-math-cosmic-geometry-edmark-1996/Edmark_MightyMath-CosmicGeometry_1996_Win-Mac.iso - dup of above
+    # url: https://archive.org/download/mighty-math-cosmic-geom/mighty-math-cosmic-geom.iso - fails to start with error in qemu/dosbox-x WIN311 and WIN9X
+  igdb_slug: mighty-math-cosmic-geometry
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a09caf-6967-7a0e-bb3d-cd8f561b0daf
+    screenshots: []
+  name: Mighty Math Cosmic Geometry
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 7
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a09caf-6967-7a0e-bb3d-cd8f561b0daf
+  year_released: 1997
+  tags:
+    - kids
+    - edutaintment
+    - mighty-math
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25 # crashes in WIN311 with NO CD error
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Mighty Math Cosmic Geometry\Cosmic.exe'
