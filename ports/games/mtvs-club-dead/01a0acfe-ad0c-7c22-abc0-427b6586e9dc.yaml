@@ -1,0 +1,41 @@
+descr:
+  distro:
+    files:
+      - Club Dead (USA).bin
+    format: 1CD
+    url: Club Dead (USA).zip # redump
+  igdb_slug: mtvs-club-dead
+  lang: en
+  media_assets:
+  name: MTV's Club Dead
+  platform: dos
+  publisher: Viacom New Media
+  refs:
+    ag_id:
+    lutris_id: mtvs-club-dead
+    mg_id: 646
+    pcgw_id: MTV:_Club_Dead
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    ua:
+      lock_pointer: true
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a0acfe-ad0c-7c22-abc0-427b6586e9dc
+  year_released: 1994
+  tags:
+    - mature
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DEAD.EXE'
