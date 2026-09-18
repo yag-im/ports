@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Dkilbix.iso
+    format: 1CD
+    url: https://archive.org/download/Dkilbix/Dkilbix.iso
+  igdb_slug: my-first-amazing-british-isles-explorer
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0b2a3-4f23-7d3c-99b9-e3f445be6a16
+    screenshots: []
+  name: My First Amazing British Isles Explorer
+  platform: win
+  publisher: DK Interactive Learning
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 169087
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0b2a3-4f23-7d3c-99b9-e3f445be6a16
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\CX32.EXE'
