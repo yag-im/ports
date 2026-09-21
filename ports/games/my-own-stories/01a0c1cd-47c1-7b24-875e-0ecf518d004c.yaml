@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - My Own Stories.iso
+    format: 1CD
+    url: https://archive.org/download/myownstories/My%20Own%20Stories.iso
+  igdb_slug: my-own-stories
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0c1cd-47c1-7b24-875e-0ecf518d004c
+    screenshots: []
+  name: My Own Stories
+  platform: dos
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 125358
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a0c1cd-47c1-7b24-875e-0ecf518d004c
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\STORIES.EXE'
