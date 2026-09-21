@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Scholastic's The Magic School Bus Explores the Rainforest (USA).bin
+    format: 1CD
+    url: Scholastic's The Magic School Bus Explores the Rainforest (USA).zip
+  igdb_slug: the-magic-school-bus-explores-the-rainforest
+  lang: en
+  media_assets:
+  name: The Magic School Bus Explores the Rainforest
+  platform: win
+  publisher: Microsoft Corporation
+  refs:
+    ag_id:
+    lutris_id: the-magic-school-bus-explores-the-rainforest
+    mg_id: 34790
+    pcgw_id: Scholastic%27s_The_Magic_School_Bus_Explores_the_Rainforest
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0c1d9-f12e-72cc-8008-79cb736f3dec
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\Program Files\Microsoft Kids\MSB Rainforest\MSBRain.exe'
