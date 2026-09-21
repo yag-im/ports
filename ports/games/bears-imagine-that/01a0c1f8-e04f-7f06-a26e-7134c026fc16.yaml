@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Imagine!.bin
+    format: 1CD
+    url: https://archive.org/details/S7100910 # redump?
+  igdb_slug: bears-imagine-that
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0c1f8-e04f-7f06-a26e-7134c026fc16
+    screenshots: []
+  name: "Bear in the Big Blue House: Bear's Imagine That!"
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: bears-imagine-that
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0c1f8-e04f-7f06-a26e-7134c026fc16
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BEAR2\BEAR2.EXE'
+              exit: false # exits after intro
