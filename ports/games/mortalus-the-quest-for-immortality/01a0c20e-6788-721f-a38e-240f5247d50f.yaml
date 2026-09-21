@@ -17,22 +17,23 @@ descr:
     pcgw_id:
     qz_id:
   reqs:
-    color_bits: 16
+    # readme:
+    color_bits: 16 # readme: thouthands of colors
     screen_height: 480
     screen_width: 640
-    loading_duration: 7
+    # loading_duration: 7
   runner:
-    name: dosbox-x
-    ver: 2025.12.01
+    name: qemu
+    ver: latest
   uuid: 01a0c20e-6788-721f-a38e-240f5247d50f
   year_released: 1997
   tags:
 installer:
   tasks:
     - copy_src_cd_images:
-    - dosbox:
-        flavor: WIN95OSR25
-        app_drive_size: 30 # uses 23MB
+    - qemu:
+        flavor: WINXPSP3 # BSODS in WIN98SE
+        # app_drive_size: 30 # uses 23MB
         tasks:
           - mount:
               src: '{DEST_DIR}'
@@ -42,3 +43,4 @@ installer:
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\mortalus.exe'
+# chppy sound and slowness in dosbox-x win95
