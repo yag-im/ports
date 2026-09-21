@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Sammy's Science House (USA) (Rerelease).bin
+    format: 1CD
+    url: Sammy's Science House (USA) (Rerelease).zip # redump
+    # v3.00
+  igdb_slug: sammys-science-house
+  lang: en
+  media_assets:
+  name: Sammy's Science House
+  platform: win
+  publisher: Edmark Corporation
+  refs:
+    ag_id:
+    lutris_id: sammys-science-house
+    mg_id: 35112
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0c190-9241-737c-b37d-c8937dc777da
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\sammy.exe'
