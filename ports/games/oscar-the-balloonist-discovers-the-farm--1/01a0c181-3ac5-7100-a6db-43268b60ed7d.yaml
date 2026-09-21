@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - OSCARFARM.iso
+    format: 1CD
+    url: https://archive.org/download/oscar-farm/OSCARFARM.iso
+  igdb_slug: oscar-the-balloonist-discovers-the-farm--1
+  lang: multi # en, de
+  media_assets:
+  name: Oscar the Balloonist Discovers the Farm
+  platform: win
+  publisher: Tivola Verlag GmbH
+  refs:
+    ag_id:
+    lutris_id: oscar-the-balloonist-discovers-the-farm--1
+    mg_id: 217618
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0c181-3ac5-7100-a6db-43268b60ed7d
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\oscar2\oshof31.exe'
