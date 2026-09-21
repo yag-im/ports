@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Land Before Time, The - Animated Movie Book (USA).bin
+    format: 1CD
+    url: Land Before Time, The - Animated Movie Book (USA).zip # redump
+  igdb_slug: the-land-before-time-animated-moviebook
+  lang: en
+  media_assets:
+  name: The Land Before Time Animated MovieBook
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id: the-land-before-time-animated-moviebook
+    mg_id: 77480
+    pcgw_id: The_Land_Before_Time_Animated_Movie_Book
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0c1c3-1a63-7ba0-8679-a48150632455
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LBTMB.EXE'
