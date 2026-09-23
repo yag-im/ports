@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - MuppetBabiesToylandTrain.iso
+    format: 1CD
+    url: https://archive.org/download/muppet-babies-toyland-train/MuppetBabiesToylandTrain.iso
+    # TODO: this is some cracked version with nfo and 2022 files, replace asap
+  igdb_slug: muppet-babies-toyland-train
+  lang: en
+  media_assets:
+  name: 'Muppet Babies: Toyland Train'
+  platform: win
+  publisher: Brighter Child
+  refs:
+    ag_id:
+    lutris_id: muppet-babies-toyland-train
+    mg_id: 171749
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0c6e0-d085-7402-920e-cc8120c07690
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BABYKER.EXE'
+              args: '/CFG:{APP_DIR}\babyker.ini'
+              work_dir: '{FIRST_CD_DRIVE}'
