@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - ISLAND.img
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/03c50c7e-7ff5-4a60-be6d-3ef77811c1dd/Mysterious-Island-A-Race-Against-Time-and-Hot-Lava_Win-3x_EN_Win3xO-Release.zip
+  igdb_slug: mysterious-island-a-race-against-time-and-hot-lava
+  lang: en
+  media_assets:
+  name: 'Mysterious Island: A Race Against Time and Hot Lava'
+  platform: win
+  publisher: Virgin Entertainment
+  refs:
+    ag_id:
+    lutris_id: mysterious-island-a-race-against-time-and-hot-lava
+    mg_id: 185476
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0d146-ac0e-738a-896d-626af557bf18
+  year_released: 1996
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\island.exe'
