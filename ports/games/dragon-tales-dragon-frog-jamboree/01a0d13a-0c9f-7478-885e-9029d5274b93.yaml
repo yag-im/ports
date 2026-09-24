@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Dragon Tales - Dragon Frog Jamboree (USA).bin
+    format: 1CD
+    url: Dragon Tales - Dragon Frog Jamboree (USA).zip # redump
+  igdb_slug: dragon-tales-dragon-frog-jamboree
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0d13a-0c9f-7478-885e-9029d5274b93
+    screenshots: []
+  name: 'Dragon Tales: Dragon Frog Jamboree'
+  platform: win
+  publisher: Encore
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0d13a-0c9f-7478-885e-9029d5274b93
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DragonFrogs.exe'

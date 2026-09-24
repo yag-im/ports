@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Dragon Tales - Dragon Land Festival (USA).bin
+    format: 1CD
+    url: Dragon Tales - Dragon Land Festival (USA).zip # redump
+  igdb_slug: dragon-tales-dragon-land-festival
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0cc8f-b42d-7bb4-a5cc-d9eb2b57e654
+    screenshots: []
+  name: 'Dragon Tales: Dragon Land Festival'
+  platform: win
+  publisher: Encore
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0cc8f-b42d-7bb4-a5cc-d9eb2b57e654
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Dragon Land\Run\Dragon Land.exe'
