@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Reader Rabbit - Learn to Read with Phonics - Preschool & Kindergarten (USA) (Rerelease).bin
+    format: 1CD
+    url: Reader Rabbit - Learn to Read with Phonics - Preschool & Kindergarten (USA) (Rerelease).zip
+  igdb_slug: reader-rabbit-learn-to-read-with-phonics-preschool-and-kindergarten
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0d9f5-2fe9-7e2e-a0b8-6fd677a30b52
+    screenshots: []
+  name: 'Reader Rabbit: Learn to Read with Phonics Preschool & Kindergarten'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 124230
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0d9f5-2fe9-7e2e-a0b8-6fd677a30b52
+  year_released: 2002
+  tags:
+    - reader-rabbit
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Play.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Reader Rabbit Learn To Read With Phonics\superr.exe'
