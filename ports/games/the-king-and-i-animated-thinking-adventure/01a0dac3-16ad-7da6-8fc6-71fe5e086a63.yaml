@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - The King and I C.iso
+    format: 1CD
+    url: https://archive.org/download/the-king-and-i-c/The%20King%20and%20I%20C.iso
+  igdb_slug: the-king-and-i-animated-thinking-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0dac3-16ad-7da6-8fc6-71fe5e086a63
+    screenshots: []
+  name: 'The King and I: Animated Thinking Adventure'
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0dac3-16ad-7da6-8fc6-71fe5e086a63
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\King&I.exe'
