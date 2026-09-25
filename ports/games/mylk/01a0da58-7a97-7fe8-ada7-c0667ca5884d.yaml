@@ -1,0 +1,38 @@
+descr:
+  distro:
+    files:
+      - Mylk_Win-3x_EN.zip
+    format: archive
+    url: https://d3.xp.myabandonware.com/t/eed30dfb-afca-4f9b-bbc6-9a954cde3d2a/Mylk_Win-3x_EN.zip
+  igdb_slug: mylk
+  lang: en
+  media_assets:
+  name: Mylk
+  platform: win
+  publisher: Bart Gold
+  refs:
+    ag_id:
+    lutris_id: mylk
+    mg_id: 200528
+    pcgw_id:
+    qz_id: 151
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0da58-7a97-7fe8-ada7-c0667ca5884d
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\MYLK.EXE'
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
