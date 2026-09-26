@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - Lexia 4.iso
+    format: 1CD
+    url: https://archive.org/details/lexia-4
+    # version 4.28
+    # deps: http://download.microsoft.com/download/vb50pro/utility/1/win98/EN-US/Msvbvm50.exe
+  igdb_slug: lexia-4
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a0deb0-7196-708b-9d4f-f6306cb3753b
+    screenshots: []
+  name: Lexia 4
+  platform: win
+  publisher: Stiftelsen Stora Sköndal
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # setup warning
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0deb0-7196-708b-9d4f-f6306cb3753b
+  year_released: 2005
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          # MSVBVM50.DLL is required
+          - copy:
+              src: '{SRC_DIR}/deps/Msvbvm50.exe'
+              dest: '{APP_DRIVE}'
+          - run:
+              path: '{APP_DRIVE}\Msvbvm50.exe'
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LEXIA40.EXE'
+              args:
+                - -l-.usr
