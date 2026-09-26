@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - MTM_.ISO
+    format: 1CD
+    url: https://d2.xp.myabandonware.com/t/7426fbc2-0300-48ad-86f6-28eb2e2c1de2/Morgan-s-Trivia-Machine_Win-3x_EN_ISO.zip
+  igdb_slug: morgans-trivia-machine
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0de73-f978-7995-bd6d-1e8794baf3dd
+    screenshots: []
+  name: Morgan's Trivia Machine
+  platform: win
+  publisher: Morgan Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0de73-f978-7995-bd6d-1e8794baf3dd
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MTM.EXE'
