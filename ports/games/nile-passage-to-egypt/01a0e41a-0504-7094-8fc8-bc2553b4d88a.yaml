@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Nile - Passage to Egypt (USA).bin
+    format: 1CD
+    url: Nile - Passage to Egypt (USA).zip # redump
+  igdb_slug: nile-passage-to-egypt
+  lang: en
+  media_assets:
+  name: 'Nile: Passage to Egypt'
+  platform: win
+  publisher: Discovery Channel Multimedia
+  refs:
+    ag_id:
+    lutris_id: nile-passage-to-egypt
+    mg_id: 6497
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0e41a-0504-7094-8fc8-bc2553b4d88a
+  year_released: 1996
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\NILE.EXE'
