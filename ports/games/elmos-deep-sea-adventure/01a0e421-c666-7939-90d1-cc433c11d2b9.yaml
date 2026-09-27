@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Sesame Street - Elmo's Deep Sea Adventure (USA).bin
+    format: 1CD
+    url: Sesame Street - Elmo's Deep Sea Adventure (USA).zip # redump
+  igdb_slug: elmos-deep-sea-adventure
+  lang: en
+  media_assets:
+  name: Elmo's Deep Sea Adventure
+  platform: win
+  publisher: Encore Software Inc.
+  refs:
+    ag_id:
+    lutris_id: elmos-deep-sea-adventure
+    mg_id: 32575
+    pcgw_id: Elmo%27s_Deep_Sea_Adventure
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 5
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0e421-c666-7939-90d1-cc433c11d2b9
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\WORK\DEEPSEA.EXE'
