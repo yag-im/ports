@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - NT1.iso
+      - NT2.iso
+    format: 2CD
+    url: https://archive.org/details/night-trap-the-directors-cut-1995-ms-dos-windows-95-cd-rom
+  igdb_slug: night-trap
+  lang: en
+  media_assets:
+  name: Night Trap The Director's Cut
+  platform: dos
+  publisher: Digital Pictures
+  refs:
+    ag_id:
+    lutris_id: night-trap
+    mg_id: 7276
+    pcgw_id: Night_Trap
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a0e0da-1435-7134-b406-9d9bbf9c41e3
+  year_released: 1995
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\NT.BAT'
+# TODO: no exit at the end, create a custom BAT

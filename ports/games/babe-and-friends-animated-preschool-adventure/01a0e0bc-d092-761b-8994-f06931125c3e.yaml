@@ -7,6 +7,9 @@ descr:
   igdb_slug: babe-and-friends-animated-preschool-adventure
   lang: en
   media_assets:
+    cover:
+      image_id: 01a0e0bc-d092-761b-8994-f06931125c3e
+    screenshots: []
   name: 'Babe and Friends: Animated Preschool Adventure'
   platform: win
   publisher: Sound Source Interactive, Inc.
