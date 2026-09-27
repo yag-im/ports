@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Babe and Friends - Animated Early Reader (USA).bin
+    format: 1CD
+    url: Babe and Friends - Animated Early Reader (USA).zip # redump
+  igdb_slug: babe-and-friends-animated-early-reader
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0e410-2bab-761f-81de-98140a50eab5
+    screenshots: []
+  name: 'Babe and Friends: Animated Early Reader'
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0e410-2bab-761f-81de-98140a50eab5
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BabeER\BabeER.exe'
