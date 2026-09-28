@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - LENNY_V1.cue
+    format: 1CD
+    url: https://archive.org/details/lennys-music-toons
+  igdb_slug: lennys-music-toons
+  lang: en
+  media_assets:
+  name: Lenny's Music Toons
+  platform: win
+  publisher: Paramount Interactive
+  refs:
+    ag_id:
+    lutris_id: lennys-music-toons
+    mg_id: 8944
+    pcgw_id: Lenny%27s_Music_Toons
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0e5d8-18b8-7c1a-beeb-286e33de8b42
+  year_released: 1993
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\LENNY.EXE'
