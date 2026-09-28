@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Nine Worlds (1996)(Palladium)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/nine-worlds/Nine%20Worlds%20%281996%29%28Palladium%29%5BMac-PC%5D.iso
+  igdb_slug: nine-worlds-hosted-by-patrick-stewart
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0e5ce-b0c7-7fa3-812c-9d031d402db9
+    screenshots: []
+  name: Nine Worlds hosted by Patrick Stewart
+  platform: win
+  publisher: Palladium Interactive
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 217379
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0e5ce-b0c7-7fa3-812c-9d031d402db9
+  year_released: 1997
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\9Worlds.exe'
