@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Land Before Time, The - Preschool Adventure (USA) (Rerelease).bin
+    format: 1CD
+    url: Land Before Time, The - Preschool Adventure (USA) (Rerelease).zip # redump
+  igdb_slug: the-land-before-time-preschool-adventure
+  lang: en
+  media_assets:
+  name: 'The Land Before Time: Preschool Adventure'
+  platform: win
+  publisher: Sound Source Interactive, Inc.
+  refs:
+    ag_id:
+    lutris_id: the-land-before-time-preschool-adventure
+    mg_id: 77482
+    pcgw_id: The_Land_Before_Time:_Preschool_Adventure
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0f099-a72d-7f73-880a-5afc322268b2
+  year_released: 2005
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # incomplete/broken install in dosbox-x:win95osr25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\proj.exe'
