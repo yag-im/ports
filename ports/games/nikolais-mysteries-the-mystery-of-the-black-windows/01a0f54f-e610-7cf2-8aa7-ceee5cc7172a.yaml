@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Nikolai's Mysteries - The Mystery of the Black Windows (1996)(H+a)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/nikolais-mysteries-black-windows/Nikolai%27s%20Mysteries%20-%20The%20Mystery%20of%20the%20Black%20Windows%20%281996%29%28H%2Ba%29%5BMac-PC%5D.iso
+  igdb_slug: nikolais-mysteries-the-mystery-of-the-black-windows
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a0f54f-e610-7cf2-8aa7-ceee5cc7172a
+    screenshots: []
+  name: "Nikolai's Mysteries: The Mystery of the Black Windows"
+  platform: win
+  publisher: Hoffmann + Associates Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 94391
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a0f54f-e610-7cf2-8aa7-ceee5cc7172a
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\MYSTERY\B_WIN31.EXE'
