@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Opsys (USA).bin
+    format: 1CD
+    url: Opsys (USA).zip # redump
+  igdb_slug: opsys
+  lang: multi # en, gr
+  media_assets:
+  name: Opsys
+  platform: win
+  publisher: '[hyper]media limited'
+  refs:
+    ag_id:
+    lutris_id: opsys
+    mg_id: 21992
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a0fabd-46b2-7489-9faa-2f5bd2fee464
+  year_released: 2000
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\DATA\QuickTimeInstaller\QuickTimeInstaller.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DATA\OPSYS.EXE'
