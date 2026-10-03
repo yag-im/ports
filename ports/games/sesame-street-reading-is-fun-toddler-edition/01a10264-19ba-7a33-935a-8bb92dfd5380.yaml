@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Sesame Street Reading is Fun! Toddler (USA) (Disc 1) (Grover's Travels).bin
+    format: 2CD
+    url: Sesame Street Reading is Fun! Toddler (USA) (Disc 1) (Grover's Travels).zip # redump
+  igdb_slug: sesame-street-reading-is-fun-toddler-edition
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a10264-19ba-7a33-935a-8bb92dfd5380
+    screenshots: []
+  name: "Sesame Street Reading is Fun! Toddler Edition: Grover's Travels (CD1)"
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a10264-19ba-7a33-935a-8bb92dfd5380
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+    - sesame-street
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PC\GROVER.EXE'
