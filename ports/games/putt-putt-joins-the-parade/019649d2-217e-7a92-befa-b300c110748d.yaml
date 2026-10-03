@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Putt-Putt Joins the Parade (USA).bin
+    format: 1CD
+    url: Putt-Putt Joins the Parade (USA).zip # redump
+  igdb_slug: putt-putt-joins-the-parade
+  lang: en
+  media_assets:
+  name: Putt-Putt Joins the Parade
+  platform: win
+  publisher: Media Vision Technology
+  refs:
+    ag_id: putt-putt-joins-the-parade
+    lutris_id: putt-putt-joins-the-parade
+    mg_id: 1017
+    pcgw_id: Putt-Putt_Joins_the_Parade
+    qz_id: 434
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x # reported glitches in scummvm: https://discord.com/channels/1251206620822638684/1555306267801690213/1555661972668686379
+    ver: 2025.12.01
+  uuid: 019649d2-217e-7a92-befa-b300c110748d
+  year_released: 1995
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PUTTPUTT.EXE'
+    - copy:
+        src: '{PORT_FILES_DIR}/{item}'
+        dest: '{DEST_DIR}/C/WINDOWS'
+        loop:
+          - 'HEGAMES.INI' # to skip CD test at startup
