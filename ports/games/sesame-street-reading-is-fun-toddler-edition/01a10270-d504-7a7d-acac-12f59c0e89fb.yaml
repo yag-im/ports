@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Sesame Street Reading is Fun! Toddler (USA) (Disc 2) (The Three Grouchketeers).bin
+    format: 2CD
+    url: Sesame Street Reading is Fun! Toddler (USA) (Disc 2) (The Three Grouchketeers).zip # redump
+  igdb_slug: sesame-street-reading-is-fun-toddler-edition
+  lang: en
+  media_assets:
+  name: 'Sesame Street Reading is Fun! Toddler Edition: The Three Grouchketeers (CD2)'
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a10270-d504-7a7d-acac-12f59c0e89fb
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+    - sesame-street
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PC\3GS.EXE'
