@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - SACRED_POOLS_WIN95_DISK1.BIN
+      - SACRED_POOLS_WIN95_DISK2.BIN
+      - SACRED_POOLS_WIN95_DISK3.BIN
+    format: 3CD
+    url: https://archive.org/details/sacredpoolsprototypesdumps
+  igdb_slug: the-sacred-pools
+  lang: en
+  media_assets:
+  name: The Sacred Pools
+  platform: win
+  publisher: Sega
+  refs:
+    ag_id:
+    lutris_id: the-sacred-pools
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a103e0-0664-735b-95f3-087dea25093f
+  year_released: 1997
+  tags:
+    - fmv
+    - mature
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PROGRAM\SACRED.EXE'
