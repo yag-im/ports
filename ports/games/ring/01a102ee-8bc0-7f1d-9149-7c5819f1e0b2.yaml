@@ -1,0 +1,63 @@
+descr:
+  distro:
+    files:
+      - Ring - The Legend of the Nibelungen (Europe) (En,Fr,De) (Disc 1).bin
+      - Ring - The Legend of the Nibelungen (Europe) (En,Fr,De) (Disc 2).bin
+      - Ring - The Legend of the Nibelungen (Europe) (En,Fr,De) (Disc 3).bin
+      - Ring - The Legend of the Nibelungen (Europe) (En,Fr,De) (Disc 4).bin
+      - Ring - The Legend of the Nibelungen (Europe) (En,Fr,De) (Disc 5).bin
+      - Ring - The Legend of the Nibelungen (Europe) (En,Fr,De) (Disc 6) (Install Disc).bin
+    format: 6CD
+    url: https://archive.org/details/ringeuropeenfrde # redump
+  igdb_slug: ring
+  lang: multi # en, fr, de
+  media_assets:
+  name: 'Ring: The Legend of the Nibelungen'
+  platform: win
+  publisher: Cryo Interactive
+  refs:
+    ag_id: ring-the-legend-of-the-nibelungen
+    lutris_id: ring
+    mg_id: 3128
+    pcgw_id: Ring:_The_Legend_of_the_Nibelungen
+    qz_id: 4097
+  reqs:
+    color_bits: 32 # visual glitches in setup menu with 16
+    screen_height: 600
+    screen_width: 800
+    loading_duration: 21
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a102ee-8bc0-7f1d-9149-7c5819f1e0b2
+  year_released: 1998
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 350 # 290 is required
+        flavor: WIN98SE # glitches in WIN95OSR25
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{FOURTH_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{FIFTH_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SIXTH_CD_DRIVE_LETTER}'
+          - run:
+              #path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DX 6
+              # TODO: Ctrl+F4 till disk 6 to run setup
+              path: explorer
+              exit: false
+          - gen_run_script:
+              #path: '{APP_DIR}\RING.EXE'
+              path: explorer.exe # TODO: ring.exe won't start without explorer. Put a shortcut into Startup
+              exit: false
+# TODO:
+# critical glitches in dosbox-x: WIN95OSR25
+# slow in dosbox-x: WIN98SE
+# no CD-swap support in qemu (

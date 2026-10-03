@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Fractured Fairy Tales - The Frog Prince (1996)(SegaSoft)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/fractured-fairy-tales-the-frog-prince/Fractured%20Fairy%20Tales%20-%20The%20Frog%20Prince%20%281996%29%28SegaSoft%29%5BMac-PC%5D.iso
+  igdb_slug: fractured-fairy-tales-the-frog-prince
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a103d2-c5c5-7ca6-85f4-6a1f13f73da3
+    screenshots: []
+  name: 'Fractured Fairy Tales: The Frog Prince'
+  platform: win
+  publisher: SegaSoft
+  refs:
+    ag_id:
+    lutris_id: fractured-fairy-tales-the-frog-prince
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a103d2-c5c5-7ca6-85f4-6a1f13f73da3
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\FPRINCE.EXE'
