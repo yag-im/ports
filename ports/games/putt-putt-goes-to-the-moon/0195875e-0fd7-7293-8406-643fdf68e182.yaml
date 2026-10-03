@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Putt-Putt Goes to the Moon (USA).bin
+    format: 1CD
+    url: Putt-Putt Goes to the Moon (USA).zip # redump
+  igdb_slug: putt-putt-goes-to-the-moon
+  lang: en
+  media_assets:
+  name: Putt-Putt Goes to the Moon
+  platform: win
+  publisher: Humongous Entertainment
+  refs:
+    ag_id: putt-putt-goes-to-the-moon
+    lutris_id: putt-putt-goes-to-the-moon
+    mg_id: 1198
+    pcgw_id: Putt-Putt_Goes_to_the_Moon
+    qz_id: 435
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 0195875e-0fd7-7293-8406-643fdf68e182
+  year_released: 1995
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PUTTMOON.EXE'
+    - copy:
+        src: '{PORT_FILES_DIR}/{item}'
+        dest: '{DEST_DIR}/C/WINDOWS'
+        loop:
+          - 'HEGAMES.INI' # to skip CD test at startup
