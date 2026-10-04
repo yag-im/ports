@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Scooby-Doo! Jinx at the Sphinx (USA).bin
+    format: 1CD
+    url: Scooby-Doo! Jinx at the Sphinx (USA).zip # redump
+  igdb_slug: scooby-doo-jinx-at-the-sphinx
+  lang: en
+  media_assets:
+  name: 'Scooby-Doo: Jinx at the Sphinx'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: scooby-doo-jinx-at-the-sphinx
+    mg_id: 62493
+    pcgw_id: Scooby-Doo!_Jinx_at_the_Sphinx
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 768
+    screen_width: 1024
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a107ee-1aee-72ff-8d36-c97db63b6fdc
+  year_released: 2001
+  tags:
+    - scooby-doo
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # QT 5
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\scooby.exe'
