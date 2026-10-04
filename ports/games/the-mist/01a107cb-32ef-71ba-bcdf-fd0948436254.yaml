@@ -1,0 +1,39 @@
+descr:
+  distro:
+    files:
+      - Mist, The (1985).zip
+    format: 1FD
+    url: Mist, The (1985).zip # eXoIF
+  igdb_slug: the-mist
+  lang: en
+  media_assets:
+  name: The Mist
+  platform: dos
+  publisher: Mindscape, Inc.
+  refs:
+    ag_id:
+    lutris_id: the-mist
+    mg_id: 1130
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a107cb-32ef-71ba-bcdf-fd0948436254
+  year_released: 1985
+  tags:
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - Mist, The (1985)/MS-DOS/*
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\GAME.COM'
