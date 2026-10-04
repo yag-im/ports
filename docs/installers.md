@@ -20,7 +20,7 @@ In addition to the custom variables you define, a set of global variables availa
     Name                   Description            Context     Example
     SRC_DIR                Source directory       Host        $DATA_DIR/apps_src/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd
     DEST_DIR               Destination dir        Host        $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd
-    APP_DIR                Destination app dir    Host        dynamic, e.g. for dosbox and wine it's: $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd/D/APP, for scummvm - drive letter is omitted
+    DEST_APP_DIR           Destination app dir    Host        dynamic, e.g. for dosbox and wine it's: $DATA_DIR/apps/voyeur-ii/5f7b9929-4501-40c2-b42e-82d5ec3e0bcd/D/APP, for scummvm - drive letter is omitted
     PORT_FILES_DIR         Ports' files dir       Host        $PORTS_ROOT_PATH/games/voyeur-ii/files
     PORT_TEMPLATES_DIR     Ports' templates dir   Host        $PORTS_ROOT_PATH/games/ripper/templates
     SYSTEM_DRIVE_LETTER    System drive letter    Guest (win) C
