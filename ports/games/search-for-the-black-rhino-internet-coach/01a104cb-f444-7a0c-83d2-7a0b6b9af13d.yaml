@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - APTE Internet Coach.iso
+    format: 1CD
+    url: https://archive.org/download/apte-internet-coach/APTE%20Internet%20Coach.iso
+  igdb_slug: search-for-the-black-rhino-internet-coach
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a104cb-f444-7a0c-83d2-7a0b6b9af13d
+    screenshots: []
+  name: 'Search for the Black Rhino: Internet Coach'
+  platform: win
+  publisher: APTE, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu # see TODO why dosbox-x won't work
+    ver: latest
+  uuid: 01a104cb-f444-7a0c-83d2-7a0b6b9af13d
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\RHINO\RHINO32.EXE'
+# TODO: cd image is in UDF format and is not recognized in WIN9X
