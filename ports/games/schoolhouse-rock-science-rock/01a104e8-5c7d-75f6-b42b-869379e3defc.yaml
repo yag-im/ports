@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Science Rock.bin
+    format: 1CD
+    url: https://archive.org/details/schoolhouse-rock-science-rock
+  igdb_slug: schoolhouse-rock-science-rock
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a104e8-5c7d-75f6-b42b-869379e3defc
+    screenshots: []
+  name: Schoolhouse Rock! Science Rock
+  platform: win
+  publisher: Creative Wonders
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a104e8-5c7d-75f6-b42b-869379e3defc
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+    - schoolhouse-rock
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SCIENCE\SHRS.EXE'
