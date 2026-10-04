@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Arthur's 1st Grade (USA) (Disc 2) (Creativity).bin
+    format: 1CD
+    url: Arthur's 1st Grade (USA) (Disc 2) (Creativity).zip # redump
+  igdb_slug: arthurs-1st-grade
+  lang: en
+  media_assets:
+  name: "Arthur's 1st Grade: Activity Center [CD2]"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: arthurs-1st-grade
+    mg_id: 120027
+    pcgw_id: Arthur%27s_1st_Grade
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a1077d-66a8-715f-b260-c10cf370877a
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DCOM, DX in Win9x
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ArthurF2.exe'
