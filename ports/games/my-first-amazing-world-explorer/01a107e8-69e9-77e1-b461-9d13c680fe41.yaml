@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - DKMMWX2.ISO
+    format: 1CD
+    url: https://archive.org/download/dkmmwx-2-uk/DKMMWX2.ISO
+  igdb_slug: my-first-amazing-world-explorer
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a107e8-69e9-77e1-b461-9d13c680fe41
+    screenshots: []
+  name: My First Amazing World Explorer 2.0 (UK Version)
+  platform: win
+  publisher: DK Multimedia
+  refs:
+    ag_id:
+    lutris_id: my-first-amazing-world-explorer
+    mg_id: 151496
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 24
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a107e8-69e9-77e1-b461-9d13c680fe41
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\WX2.EXE'
