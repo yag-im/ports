@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Zombie Dinos from Planet Zeltoid (1995)(Interplay).iso
+    format: 1CD
+    url: https://archive.org/download/zombie-dinos-from-planet-zeltoid-msdos/Zombie%20Dinos%20from%20Planet%20Zeltoid%20%281995%29%28Interplay%29.iso
+  igdb_slug: zombie-dinos-from-planet-zeltoid
+  lang: en
+  media_assets:
+  name: Zombie Dinos From Planet Zeltoid
+  platform: dos
+  publisher: Interplay Productions
+  refs:
+    ag_id:
+    lutris_id: zombie-dinos-from-planet-zeltoid
+    mg_id: 26905
+    pcgw_id: Zombie_Dinos_from_Planet_Zeltoid
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a108a5-d00f-7232-9743-7d4bc3fc1f90
+  year_released: 1992
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.BAT'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ZD.BAT'
+    - copy:
+        src: '{PORT_FILES_DIR}/{item}'
+        dest: '{DEST_APP_DIR}'
+        loop:
+          - 'ZD.BAT'
+# TODO: all existing philips cd-i images of this title crash after the intro
+# no mouse support in dosbox-x
+# only sb-pro driver works in vanilla dosbox
