@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Fisher-Price 123's - Featuring the Counting Critters (USA).bin
+    format: 1CD
+    url: Fisher-Price 123's - Featuring the Counting Critters (USA).zip # redump
+  igdb_slug: fisher-price-1-2-3s
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a10ecb-d77d-7d0f-b533-bc53ec5e1eea
+    screenshots: []
+  name: Fisher-Price 1-2-3's
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 258139
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a10ecb-d77d-7d0f-b533-bc53ec5e1eea
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\FP12311\FP123.EXE'
+              args:
+                - FP123.BAP
