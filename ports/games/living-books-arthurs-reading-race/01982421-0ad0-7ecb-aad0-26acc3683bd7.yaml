@@ -17,23 +17,25 @@ descr:
     pcgw_id: Arthur%27s_Reading_Race
     qz_id:
   reqs:
-    color_bits: 24
+    color_bits: 8
     screen_height: 480
     screen_width: 640
   runner:
-    name: scummvm
-    ver: "2.9.0"
-  ts_added: 2025-07-19 19:20:02 America/Los_Angeles
-  uuid: a9c04865-8dea-4ecb-aad0-26acc3683bd7
+    name: dosbox-x # reported issues in scummvm 2.9.0: https://discord.com/channels/1251206620822638684/1251209459271860277/1556640181195374594
+    ver: 2025.12.01
+  uuid: 01982421-0ad0-7ecb-aad0-26acc3683bd7
   year_released: 1996
 installer:
   tasks:
-    - extract:
-        src: "{SRC_DIR}/{descr[distro][files][0]}"
-        dest: "{DEST_APP_DIR}"
-    - scummvm:
-        # https://wiki.scummvm.org/index.php?title=Arthur%27s_Reading_Race
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
         tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
           - gen_run_script:
-              game: "mohawk:arthurrace"
-              path: "{DEST_APP_DIR}"
+              path: '{FIRST_CD_DRIVE}\RACE.EXE'
