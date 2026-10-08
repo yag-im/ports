@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Simpsons Cartoon Studio, The (USA).bin
+    format: 1CD
+    url: Simpsons Cartoon Studio, The (USA).zip # redump
+  igdb_slug: the-simpsons-cartoon-studio
+  lang: en
+  media_assets:
+  name: 'The Simpsons: Cartoon Studio'
+  platform: win
+  publisher: Fox Interactive
+  refs:
+    ag_id:
+    lutris_id: the-simpsons-cartoon-studio
+    mg_id: 2517
+    pcgw_id: The_Simpsons:_Cartoon_Studio
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a11942-f4a5-7099-884d-2d64bad533d6
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SIMPSONS\SIMPSONS.EXE'
