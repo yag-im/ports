@@ -1,0 +1,51 @@
+descr:
+  distro:
+    files:
+      - Bioscopia - Where Science Conquers Evil (USA) (Disc 1).bin
+      - Bioscopia - Where Science Conquers Evil (USA) (Disc 2).bin
+    format: 2CD
+    url: Bioscopia - Where Science Conquers Evil (USA) (Disc 1).zip # redump
+    # Bioscopia - Where Science Conquers Evil (USA) (Disc 2).zip
+  igdb_slug: bioscopia-where-science-conquers-evil
+  lang: en
+  media_assets:
+  name: 'Bioscopia: Where Science Conquers Evil'
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id: bioscopia
+    lutris_id: bioscopia-where-science-conquers-evil
+    mg_id: 8394
+    pcgw_id: Biolab
+    qz_id: 393
+  reqs:
+    # readme.txt
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a12733-3e14-7dfd-8f6a-a7bbf4e42b17
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3 # sound distortion in both WIN9X and XP on intro
+        tasks:
+          # install from the first CD, play from the second
+          - mount:
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # QT4
+              exit: false
+          - umount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - mount:
+              src: '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{APP_DRIVE}\bioscopia\bioscopia.exe'

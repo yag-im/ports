@@ -1,8 +1,8 @@
 descr:
   distro:
     files:
-      - BluesTHunt-disk1.iso
-      - BluesTHunt-disc2.iso
+      - Blue's Clues - Blue's Treasure Hunt (USA) (Disc 1).bin
+      - Blue's Clues - Blue's Treasure Hunt (USA) (Disc 2).bin
     format: 2CD
     url: https://archive.org/details/BluesTHunt
   igdb_slug: blues-clues-blues-treasure-hunt
@@ -18,7 +18,7 @@ descr:
     pcgw_id: Blue%27s_Treasure_Hunt
     qz_id:
   reqs:
-    # 8bit - exec requirement
+    # 8bit - exec requirement (can be silenced by choosing an option)
     color_bits: 8
     screen_height: 480
     screen_width: 640
@@ -43,11 +43,11 @@ installer:
               cd_images_as_letters: true
               # auto discovery during CD switch
           - run:
-             path: '{FIRST_CD_DRIVE}\setup\setup.exe'
-             exit: false
+              path: '{FIRST_CD_DRIVE}\setup\setup.exe'
+              exit: false
           # run once to skip reg window and cd test
-          # TODO: ShowStartupAgain=1 in C:\WINDOWS\hegames.ini - skip reg window
+          # TODO: ShowStartupAgain=1 in C:\WINDOWS\hegames.ini - skip reg window (also mute 256 colors req in XP)
           - gen_run_script:
-             path: '{APP_DIR}\Blues Treasure Hunt\Blue''sTreasureHunt.r32'
-             args:
-               - Blue'sTreasureHunt-Disc1
+              path: '{APP_DIR}\Blues Treasure Hunt\Blue''sTreasureHunt.r32'
+              args:
+                - Blue'sTreasureHunt-Disc1
