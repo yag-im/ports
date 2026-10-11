@@ -89,7 +89,7 @@ class QemuMountPoint:
     media: str
     letter: str
     format: str | None = None
-    cd_index: int | None = None  # position among CDROMs, used for ide-cd device placement
+    cd_index: int | None = None  # unique CDROM id, used as the qemu drive id (cd<N>)
 
     def qemu_drive_mount_option_relative_to(self, p_base: Path | None = None):
         if p_base:
@@ -104,13 +104,9 @@ class QemuMountPoint:
             res += f",format={self.format}"
         return res
 
-    def qemu_device_option(self, unit: int | None = None) -> str | None:
-        """Returns the -device arg for attaching a CDROM to a specific IDE bus/unit."""
-        if self.media == "cdrom":
-            u = self.cd_index if unit is None else unit
-            return f"ide-cd,drive=cd{self.cd_index},bus=ide.1,unit={u}"
-        return None
 
+IDE_CDROM_SLOTS = 2
+USB_CDROM_DEVICE_ID = "usbcd"
 
 T = TypeVar("T", bound=QemuConf)
 
@@ -183,10 +179,12 @@ class Qemu((Protocol[T])):
     def set_display_params(self, screen_width: int, screen_height: int, color_bits: int) -> None:
         pass
 
-    def umount(self, drive_letter: str, remove: bool = False) -> None:
+    def umount(self, drive_letter: str, remove: bool = True) -> None:
         mp = next((x for x in self.mount_points if x.letter == drive_letter), None)
-        if mp:
-            self.mount_points.remove(mp)
+        if mp is None:
+            print(f"warning: no drive mounted as {drive_letter}, skipping umount")
+            return
+        self.mount_points.remove(mp)
         if remove:
             rm(mp.image_path)
 
@@ -209,7 +207,11 @@ class Qemu((Protocol[T])):
                     move(tmp_iso_image, image_path)
         index = len(self.mount_points) if index is None else index
         letter = letter or chr(ord("A")) + index + 2
-        cd_index = sum(1 for mp in self.mount_points if mp.media == "cdrom") if media == "cdrom" else None
+        cd_index = (
+            max((mp.cd_index for mp in self.mount_points if mp.media == "cdrom"), default=-1) + 1
+            if media == "cdrom"
+            else None
+        )
         self.mount_points.append(
             QemuMountPoint(
                 image_path=image_path,
@@ -222,19 +224,33 @@ class Qemu((Protocol[T])):
             )
         )
 
-    def _cdrom_unit(self, mp: QemuMountPoint) -> int:
-        # QEMU enumerates ide.1 units in reverse order for drive letter assignment
-        n = sum(1 for m in self.mount_points if m.media == "cdrom")
-        return n - 1 - mp.cd_index
+    def _mount_args(self) -> list[str]:
+        """Returns qemu args for all mounted drives.
+
+        The PIIX IDE controller has only 2 buses x 2 units; ide.0 is taken by the system and app disks,
+        so only 2 CDROMs fit on ide.1. Any extra CDROMs are attached as LUNs of a single USB mass storage
+        device, which is supported by WinXP out of the box (Win9x has no generic USB storage driver).
+        """
+        cdroms = [mp for mp in self.mount_points if mp.media == "cdrom"]
+        if len(cdroms) > IDE_CDROM_SLOTS and self.conf.flavor != QemuFlavor.WINXPSP3:
+            raise ValueError(f"{self.conf.flavor.value} supports at most {IDE_CDROM_SLOTS} CDROMs, got {len(cdroms)}")
+        args = []
+        for mp in self.mount_points:
+            args += ["-drive", mp.qemu_drive_mount_option_relative_to(self.root_dir)]
+        n_ide = min(len(cdroms), IDE_CDROM_SLOTS)
+        for pos, mp in enumerate(cdroms):
+            if pos < n_ide:
+                # WinXP assigns ide.1 drive letters in reverse unit order, Win98SE in natural order
+                unit = n_ide - 1 - pos if self.conf.flavor == QemuFlavor.WINXPSP3 else pos
+                args += ["-device", f"ide-cd,drive=cd{mp.cd_index},bus=ide.1,unit={unit}"]
+            else:
+                if pos == n_ide:
+                    args += ["-usb", "-device", f"usb-bot,id={USB_CDROM_DEVICE_ID}"]
+                args += ["-device", f"scsi-cd,drive=cd{mp.cd_index},bus={USB_CDROM_DEVICE_ID}.0,lun={pos - n_ide}"]
+        return args
 
     def _run_qemu(self) -> None:
-        cmd = ["qemu-system-x86_64", "-nodefaults"]
-        for mp in self.mount_points:
-            cmd.append("-drive")
-            cmd.append(mp.qemu_drive_mount_option_relative_to(self.root_dir))
-            dev_opt = mp.qemu_device_option(unit=self._cdrom_unit(mp) if mp.media == "cdrom" else None)
-            if dev_opt:
-                cmd += ["-device", dev_opt]
+        cmd = ["qemu-system-x86_64", "-nodefaults", *self._mount_args()]
         cmd += ["-cpu", str(self.conf.cpu), "-m", str(self.conf.memory), "-display", "sdl"]
         if self.conf.enable_kvm:
             cmd.append("-enable-kvm")
@@ -266,14 +282,7 @@ class Qemu((Protocol[T])):
         tmpl_params = {
             "cpu": self.conf.cpu,
             "memory": self.conf.memory,
-            "mounts": " ".join(
-                part
-                for mp in self.mount_points
-                for part in [
-                    "-drive " + mp.qemu_drive_mount_option_relative_to(self.root_dir),
-                    *([f"-device {mp.qemu_device_option(unit=self._cdrom_unit(mp))}"] if mp.media == "cdrom" else []),
-                ]
-            ),
+            "mounts": " ".join(self._mount_args()),
             "display": display,
             "audiodev": self.conf.audio_device,
             "flavor": self.conf.flavor.name,

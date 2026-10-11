@@ -1,0 +1,58 @@
+descr:
+  distro:
+    files:
+      - ebdeluxe1.iso
+      - ebdeluxe2.iso
+      - ebdeluxe3.iso
+      # Build 11 International UK
+      # Serial Number: 223DT0112336 # https://ia601606.us.archive.org/34/items/ebdeluxe2000/README.txt
+    format: 3CD
+    url: https://archive.org/details/ebdeluxe2000
+  igdb_slug: encyclopedia-britannica-deluxe-cd-2000
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a128b8-ed1c-718c-bfb5-acfd909a3682
+    screenshots: []
+  name: 'Encyclopedia Britannica Deluxe CD 2000'
+  platform: win
+  publisher: Encyclopaedia Britannica
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.doc
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+    loading_duration: 25
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a128b8-ed1c-718c-bfb5-acfd909a3682
+  year_released: 2000
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE # java issues in dosbox:WIN95OSR25 and qemu:WINXPSP3
+        app_drive_size: 2000
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}' # data cd2
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}' # data cd1
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}' # installation cd?
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # choose custom -> select all (1.8GB of data)
+              exit: false
+          - umount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{APP_DIR}\BCD2000.EXE'
