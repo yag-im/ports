@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - cd.BIN
+    format: 1CD
+    url: Oscar the Balloonist Drops into the Countryside (2001).zip # exoWin3x
+    # url: https://archive.org/download/oscar-country/OscarCountry.iso - can't find CD error on run
+  igdb_slug: oscar-the-balloonist-drops-into-the-country-side
+  lang: multi # en, fr, de
+  media_assets:
+    cover:
+      image_id: 01a12d4d-857b-7471-8c4c-be03cafa8321
+    screenshots: []
+  name: 'Oscar the Balloonist: Drops Into the Country Side'
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id:
+    lutris_id: oscar-the-balloonist-drops-into-the-country-side
+    mg_id: 176379
+    pcgw_id:
+    qz_id:
+  reqs:
+    # exec warn
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a12d4d-857b-7471-8c4c-be03cafa8321
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\oscar4\start32.exe'
