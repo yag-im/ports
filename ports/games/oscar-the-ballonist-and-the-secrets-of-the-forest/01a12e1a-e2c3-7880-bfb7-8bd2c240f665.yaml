@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - cd.BIN
+    format: 1CD
+    url: Oscar the Balloonist and the Secrets of the Forest (2000).zip # exoWin3x
+  igdb_slug: oscar-the-ballonist-and-the-secrets-of-the-forest
+  lang: multi # en, de
+  media_assets:
+  name: Oscar the Ballonist and The Secrets of the Forest
+  platform: win
+  publisher: Tivola Electronic Publishing
+  refs:
+    ag_id:
+    lutris_id: oscar-the-ballonist-and-the-secrets-of-the-forest
+    mg_id: 16445
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a12e1a-e2c3-7880-bfb7-8bd2c240f665
+  year_released: 2000
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\oswald31.exe'
