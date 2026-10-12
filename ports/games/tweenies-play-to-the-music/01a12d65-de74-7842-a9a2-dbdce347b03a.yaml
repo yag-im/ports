@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Tweenies Play to the Music (UK Version).iso
+    format: 1CD
+    url: https://archive.org/download/tweeniesplaytothemusicukversion/Tweenies%20Play%20to%20the%20Music%20%28UK%20Version%29.iso
+  igdb_slug: tweenies-play-to-the-music
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a12d65-de74-7842-a9a2-dbdce347b03a
+    screenshots: []
+  name: 'Tweenies: Play To The Music (UK Version)'
+  platform: win
+  publisher: BBC Multimedia
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 248517
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 600
+    screen_width: 800
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a12d65-de74-7842-a9a2-dbdce347b03a
+  year_released: 2004
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # DX8, QT6.3
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BBC Tweenies - Play to the Music\BBC Tweenies - Play to the Music.exe'
