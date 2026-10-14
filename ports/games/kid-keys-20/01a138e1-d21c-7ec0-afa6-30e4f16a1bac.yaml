@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - KidKeys 2.0.iso
+    format: 1CD
+    url: https://archive.org/download/kid-keys-2.0/KidKeys%202.0.iso
+  igdb_slug: kid-keys-20
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a138e1-d21c-7ec0-afa6-30e4f16a1bac
+    screenshots: []
+  name: Kid Keys 2.0
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 262380
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a138e1-d21c-7ec0-afa6-30e4f16a1bac
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 25 # requires 20
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Autorun.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\KIDKEYS.EXE'
+# TODO: on the first run shows menu. Find a way to ommit the menu.
