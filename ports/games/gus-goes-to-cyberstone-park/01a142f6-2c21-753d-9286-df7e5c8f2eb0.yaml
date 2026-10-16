@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Gus Goes to Cyberstone Park (1997)(Modern Media Ventures)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/gus-goes-to-cyberstone-park/Gus%20Goes%20to%20Cyberstone%20Park%20%281997%29%28Modern%20Media%20Ventures%29%5BMac-PC%5D.iso
+  igdb_slug: gus-goes-to-cyberstone-park
+  lang: en
+  media_assets:
+  name: Gus Goes to CyberStone Park
+  platform: win
+  publisher: Modern Media Ventures
+  refs:
+    ag_id:
+    lutris_id: gus-goes-to-cyberstone-park
+    mg_id: 203161
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a142f6-2c21-753d-9286-df7e5c8f2eb0
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\cybstone.exe'
