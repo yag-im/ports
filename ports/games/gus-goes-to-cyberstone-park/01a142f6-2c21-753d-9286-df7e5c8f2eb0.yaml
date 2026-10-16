@@ -38,7 +38,7 @@ installer:
               src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\setup.exe'
+              path: '{FIRST_CD_DRIVE}\install.exe'
               exit: false
           - gen_run_script:
               path: '{FIRST_CD_DRIVE}\cybstone.exe'
