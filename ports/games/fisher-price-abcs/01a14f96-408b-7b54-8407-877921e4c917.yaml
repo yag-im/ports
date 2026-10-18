@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Fisher-Price ABC's - Featuring the Jungle Jukebox (USA).bin
+    format: 1CD
+    url: Fisher-Price ABC's - Featuring the Jungle Jukebox (USA).zip # redump
+  igdb_slug: fisher-price-abcs
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a14f96-408b-7b54-8407-877921e4c917
+    screenshots: []
+  name: "Fisher-Price: ABC's"
+  platform: win
+  publisher: Davidson & Associates
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a14f96-408b-7b54-8407-877921e4c917
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\FPABC16\FPABC.EXE'
+              args:
+                - FPABC.BAP
