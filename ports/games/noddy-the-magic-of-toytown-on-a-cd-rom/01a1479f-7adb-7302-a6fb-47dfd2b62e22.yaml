@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - BBC Noddy - The Magic of Toytown (UK).bin
+    format: 1CD
+    url: BBC Noddy - The Magic of Toytown (UK).zip # redump
+    # all isos from oldgames and archive.org (1996) are corrupted and crash during gameplay
+  igdb_slug: noddy-the-magic-of-toytown-on-a-cd-rom
+  lang: en
+  media_assets:
+  name: 'Noddy: The Magic of Toytown on a CD-ROM'
+  platform: win
+  publisher: BBC Multimedia
+  refs:
+    ag_id:
+    lutris_id: noddy-the-magic-of-toytown-on-a-cd-rom
+    mg_id: 73175
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.wri
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: wine # crashes in dosbox-x (all os-es) and qemu
+    ver: '11.0'
+  uuid: 01a1479f-7adb-7302-a6fb-47dfd2b62e22
+  year_released: 2001
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}'
+        dest: '{DEST_DIR}'
+        cd_images_as_letters: true
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # QT 4, DX 7
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BBC Noddy - the Magic of Toytown\SHELL\Noddy.exe'
