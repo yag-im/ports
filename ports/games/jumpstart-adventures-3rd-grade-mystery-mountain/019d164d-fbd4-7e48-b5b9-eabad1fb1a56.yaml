@@ -35,7 +35,7 @@ installer:
     - copy_src_cd_images:
     - dosbox:
         app_drive_size: 20 # requires 10
-        flavor: WIN95OSR25 # reported sign in issue in WIN311 EN: https://discord.com/channels/1251206620822638684/1480967710367285268/1480970370554265724
+        flavor: WIN95OSR25
         tasks:
           - mount:
               src: "{DEST_DIR}"
@@ -44,3 +44,7 @@ installer:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
           - gen_run_script:
               path: '{APP_DIR}\3G.EXE'
+# CD is copy protected
+# QEMU: WIN98SE - "insert CD" error
+# dosbox-x: WIN311 - reported sign in issue: https://discord.com/channels/1251206620822638684/1480967710367285268/1480970370554265724
+# dosbox-x: WIN95OSR25 - reported exits (unconfirmed): https://discord.com/channels/1251206620822638684/1561488464703266816
