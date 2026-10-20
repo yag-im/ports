@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - DKMMFMA1.ISO
+    format: 1CD
+    url: https://archive.org/download/dkmmfma-1/DKMMFMA1.ISO
+  igdb_slug: my-first-math-adventure-counting-and-sorting
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a15786-d382-7c89-8411-ca70f2b19763
+    screenshots: []
+  name: 'My First Math Adventure 1: Counting and Sorting'
+  platform: win
+  publisher: Dorling Kindersley
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a15786-d382-7c89-8411-ca70f2b19763
+  year_released: 1997
+  tags:
+    - kids
+    - edutainment
+    - math
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\FMA1.EXE'
