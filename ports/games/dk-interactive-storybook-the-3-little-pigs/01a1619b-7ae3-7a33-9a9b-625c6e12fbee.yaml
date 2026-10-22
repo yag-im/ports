@@ -21,17 +21,18 @@ descr:
     color_bits: 16
     screen_height: 480
     screen_width: 640
+    loading_duration: 15
   runner:
-    name: qemu
-    ver: latest
+    name: dosbox-x
+    ver: 2025.12.01
   uuid: 01a1619b-7ae3-7a33-9a9b-625c6e12fbee
   year_released: 2000
   tags:
 installer:
   tasks:
     - copy_src_cd_images:
-    - qemu:
-        flavor: WINXPSP3
+    - dosbox:
+        flavor: WIN95OSR25
         tasks:
           - mount:
               src: '{DEST_DIR}'
@@ -41,3 +42,5 @@ installer:
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\3PC.EXE'
+# choppy sound in qemu (both 98 and XP)
+# dosbox-x: win98se - crashes on intro video, TODO: win95osr25 - also croppy sound but better than in QEMU
