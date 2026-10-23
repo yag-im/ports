@@ -1,0 +1,50 @@
+descr:
+  distro:
+    files:
+      - Daedalus Encounter, The (USA) (Disc 1).bin
+      - Daedalus Encounter, The (USA) (Disc 2).bin
+      - Daedalus Encounter, The (USA) (Disc 3).bin
+    format: 3CD
+    url: Daedalus Encounter, The (USA) (Disc 1).zip # redump
+    # Daedalus Encounter, The (USA) (Disc 2).zip
+    # Daedalus Encounter, The (USA) (Disc 3).zip
+  igdb_slug: the-daedalus-encounter
+  lang: en
+  media_assets:
+  name: The Daedalus Encounter
+  platform: win
+  publisher: Virgin Interactive Entertainment (Europe) Ltd.
+  refs:
+    ag_id: the-daedalus-encounter
+    lutris_id: the-daedalus-encounter
+    mg_id: 3363
+    pcgw_id: The_Daedalus_Encounter
+    qz_id: 9676
+  reqs:
+    color_bits: 16 # very poor colors in 8bit
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a16703-0be4-7748-b348-cdbe7c52ca8c
+  year_released: 1995
+  tags:
+    - fmv
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUPMIN.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\DAEDALUS.EXE'
