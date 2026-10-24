@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Sabrina the Teenage Witch - Brat Attack (USA).bin
+    format: 1CD
+    url: Sabrina the Teenage Witch - Brat Attack (USA).zip # redump
+  igdb_slug: sabrina-the-teenage-witch-brat-attack
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a16f33-a3bc-7888-8458-54455c50d3eb
+    screenshots: []
+  name: 'Sabrina, the Teenage Witch: Brat Attack'
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: sabrina-the-teenage-witch-brat-attack
+    mg_id: 3333
+    pcgw_id: Sabrina_the_Teenage_Witch:_Brat_Attack
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: latest
+  uuid: 01a16f33-a3bc-7888-8458-54455c50d3eb
+  year_released: 1999
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SABRINA2\Sabrina2.exe'
+              exit: false # otherwise exits after intro
