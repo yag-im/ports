@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - My First Encyclopedia.bin
+    format: 1CD
+    url: https://archive.org/details/ZZENC11CDNFRCD
+  igdb_slug: my-first-encyclopedia
+  lang: en
+  media_assets:
+  name: My First Encyclopedia
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: my-first-encyclopedia
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a16ef1-a3a5-7c64-8ac5-534b9c2769b3
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TREE.EXE'
