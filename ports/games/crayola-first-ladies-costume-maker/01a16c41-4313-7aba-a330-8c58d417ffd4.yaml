@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Crayola - First Ladies Costume Maker CD-ROM (USA).bin
+    format: 1CD
+    url: Crayola - First Ladies Costume Maker CD-ROM (USA).zip # redump
+  igdb_slug: crayola-first-ladies-costume-maker
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a16c41-4313-7aba-a330-8c58d417ffd4
+    screenshots: []
+  name: Crayola First Ladies Costume Maker
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.wri
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a16c41-4313-7aba-a330-8c58d417ffd4
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 15 # uses 11
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\First Ladies\PROGRAM\1ladies.exe'
