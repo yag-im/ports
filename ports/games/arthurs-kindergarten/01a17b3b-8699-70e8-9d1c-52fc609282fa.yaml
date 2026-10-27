@@ -32,14 +32,14 @@ installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
-        flavor: WIN98SE
+        flavor: WIN98SE # sound distortion in main menu in WIN95OSR25
         app_drive_size: 30 # uses 24
         tasks:
           - mount:
               src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DCOM, DX
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DCOM (win95 only), DX
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\ArthurK1.exe'
