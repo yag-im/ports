@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Arthur's Kindergarten (USA) (Disc 1) (Learning).bin
+    format: 2CD
+    url: Arthur's Kindergarten (USA) (Disc 1) (Learning).zip # redump
+  igdb_slug: arthurs-kindergarten
+  lang: en
+  media_assets:
+  name: "Arthur's Kindergarten: Learning [Disc 1]"
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: arthurs-kindergarten
+    mg_id: 119941
+    pcgw_id: Arthur%27s_Kindergarten
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a17b3b-8699-70e8-9d1c-52fc609282fa
+  year_released: 1999
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE
+        app_drive_size: 30 # uses 24
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DCOM, DX
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ArthurK1.exe'
