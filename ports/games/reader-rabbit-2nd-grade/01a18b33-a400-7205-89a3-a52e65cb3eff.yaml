@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - Kalle Kunskap - Tvaan (Sweden) (OEM).cue
+    format: 1CD
+    url: Kalle Kunskap - Tvaan (Sweden) (OEM).zip # redump
+  igdb_slug: reader-rabbit-2nd-grade
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a18b33-a400-7205-89a3-a52e65cb3eff
+    screenshots: []
+  name: 'Kalle Kunskap: Tvåan'
+  platform: win
+  publisher: Nordic Softsales AB
+  refs:
+    ag_id:
+    lutris_id: reader-rabbit-2nd-grade
+    mg_id: 44807
+    pcgw_id: Reader_Rabbit:_2nd_Grade
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 8
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a18b33-a400-7205-89a3-a52e65cb3eff
+  year_released: 2002
+  tags:
+    - reader-rabbit
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE' # DCOM for win95, DX
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\98.exe'
