@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Requiem 1.iso
+      - Requiem 2.iso
+    format: 2CD
+    url: https://archive.org/details/requiem-1
+  igdb_slug: requiem-en-mordgata-pa-1600-talet
+  lang: sv
+  media_assets:
+  name: 'Requiem: En mordgåta på 1600-talet'
+  platform: win
+  publisher: Norstedts Multimedia
+  refs:
+    ag_id:
+    lutris_id: requiem-en-mordgata-pa-1600-talet
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16 # exec requirement
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a185c1-9c49-7006-b9d8-c96ef8e90e24
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        app_drive_size: 15 # uses 11
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # QT 2.1.2 + browser plugin ?
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\requiem.exe'
