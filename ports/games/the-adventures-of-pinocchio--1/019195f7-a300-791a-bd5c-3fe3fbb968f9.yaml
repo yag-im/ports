@@ -1,0 +1,64 @@
+descr:
+  distro:
+    files:
+      - Adventures of Pinocchio, The (USA) (Start-Up & The Village).bin
+      - Adventures of Pinocchio, The (USA) (The Forest).bin
+      - Adventures of Pinocchio, The (USA) (The Sea).bin
+      - Adventures of Pinocchio, The (USA) (Terra Magica).bin
+    format: 4CD
+    url: Adventures of Pinocchio, The (USA) (Start-Up & The Village).zip # redump
+    # Adventures of Pinocchio, The (USA) (The Forest).zip
+    # Adventures of Pinocchio, The (USA) (The Sea).zip
+    # Adventures of Pinocchio, The (USA) (Terra Magica).zip
+  igdb_slug: the-adventures-of-pinocchio--1
+  lang: en
+  name: The Adventures of Pinocchio
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id: the-adventures-of-pinocchio
+    lutris_id: the-adventures-of-pinocchio--1
+    mg_id: 22872
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 019195f7-a300-791a-bd5c-3fe3fbb968f9
+  year_released: 1996
+installer:
+  tasks:
+    - copy:
+        src: '{SRC_DIR}'
+        dest: '{DEST_DIR}'
+        cd_images_as_letters: true
+        files:
+          - '{descr[distro][files][0]}'
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              # proceed installing with all suggested deps
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - umount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{APP_DIR}\PINOC.EXE'
+    # copy all AVI files from all CDs into app folder
+    - extract:
+        src: '{item}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - '*.AVI'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+          - '{SRC_DIR}/{descr[distro][files][3]}'
