@@ -33,7 +33,7 @@ installer:
   tasks:
     - copy_src_cd_images:
     - qemu:
-        flavor: WIN98SE
+        flavor: WINXPSP3
         tasks:
           - mount:
               src: '{DEST_DIR}'
@@ -42,5 +42,5 @@ installer:
               path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
-              path: '{APP_DIR}\SABRINA2\Sabrina2.exe'
-              exit: false # otherwise exits after intro
+              path: '{APP_DIR}\SABRINA2\Brat Attack.exe'
+# game saving issues when running through sabrina2.exe: https://discord.com/channels/1251206620822638684/1251209459271860277/1565483905753153577
