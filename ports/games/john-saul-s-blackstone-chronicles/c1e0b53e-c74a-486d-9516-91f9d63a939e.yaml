@@ -28,4 +28,36 @@ descr:
   ts_added: 2024-09-18 19:20:47 America/Los_Angeles
   uuid: c1e0b53e-c74a-486d-9516-91f9d63a939e
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}'
+        dest: '{DEST_DIR}'
+        cd_images_as_letters: true
+    # make full install into D:\APP with additional images
+    - extract:
+        src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/data1.cab'
+        dest: '{DEST_APP_DIR}'
+    - copy:
+        src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/BSC/*.PIC'
+        dest: '{DEST_APP_DIR}'
+    - wine:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          # QT3 install (select "custom", uncheck everything except QuickTime itself at the top), ignore errors
+          - run:
+              path: '{FIRST_CD_DRIVE}\QuickTime\QuickTime30.exe'
+          - umount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          # hi-res videos are on the CD2 so using it
+          - mount:
+              letter: '{SECOND_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+          - regedit:
+              path: 'HKEY_LOCAL_MACHINE\Software\Red Orb Entertainment\John Saul''s Blackstone Chronicles\1.0'
+              values:
+                - Disc: '2'
+          - gen_run_script:
+              path: '{APP_DIR}\BSC.EXE'

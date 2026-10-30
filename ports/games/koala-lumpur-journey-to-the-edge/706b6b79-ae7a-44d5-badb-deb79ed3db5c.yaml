@@ -25,4 +25,18 @@ descr:
   ts_added: 2024-07-21 12:06:00 America/Los_Angeles
   uuid: 706b6b79-ae7a-44d5-badb-deb79ed3db5c
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # proceed with a minimal CD installation, skip QT install
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\KOALA.EXE'

@@ -29,4 +29,18 @@ descr:
   ts_added: 2024-10-08 08:01:40 America/Los_Angeles
   uuid: 6b78dbc2-a797-42a0-9756-f0a93b805b56
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR21
+        app_drive_size: 5
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\ALICEGL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ALGLASS.EXE'

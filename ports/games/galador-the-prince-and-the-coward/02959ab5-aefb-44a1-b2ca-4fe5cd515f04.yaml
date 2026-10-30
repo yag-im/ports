@@ -25,4 +25,22 @@ descr:
   ts_added: 2024-09-14 12:43:00 America/Los_Angeles
   uuid: 02959ab5-aefb-44a1-b2ca-4fe5cd515f04
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+        files:
+          - DATA
+    # patched version of CODE.EXE (fixes "App relies on the Carry flag state after calling llseek" bug)
+    - copy:
+        src: '{SRC_DIR}/CODE.EXE'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}/DATA'
+    - wine:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          # app looks for all files on the drive of type CD and runs from there, no D:\APP dir is required
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\DATA\CODE.EXE'

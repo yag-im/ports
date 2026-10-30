@@ -29,4 +29,16 @@ descr:
   ts_added: 2024-05-17 21:25:00 America/Los_Angeles
   uuid: ff8c7fda-3fa3-4141-b2e5-7ac1601606c4
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - PARK.EXE
+          - PARK.IMV
+          - '*.DLL'
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\PARK.EXE'

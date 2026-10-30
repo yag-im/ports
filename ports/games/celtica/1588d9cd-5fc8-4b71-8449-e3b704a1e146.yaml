@@ -26,4 +26,39 @@ descr:
   ts_added: 2024-09-10 05:53:00 America/Los_Angeles
   uuid: 1588d9cd-5fc8-4b71-8449-e3b704a1e146
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    # merge "Celtica" folders from both CDs, they are copied into D:\Celtica below
+    - extract:
+        src: '{item}'
+        dest: '{DEST_DIR}'
+        files:
+          - Celtica
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 1000
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - copy:
+              src: '{DEST_DIR}/Celtica'
+              dest: '{APP_DRIVE}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+          - regedit:
+              path: 'HKEY_LOCAL_MACHINE\SOFTWARE\H+a\Celtica'
+              values:
+                - CD Location: '{APP_DRIVE_LETTER}:'
+                - Dir: '{APP_DIR}'
+          - umount:
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{APP_DIR}\CELTICA.EXE'
+    - file:
+        path: '{DEST_DIR}/Celtica'
+        state: absent

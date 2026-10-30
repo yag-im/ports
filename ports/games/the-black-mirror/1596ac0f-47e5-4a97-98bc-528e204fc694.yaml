@@ -25,4 +25,22 @@ descr:
   ts_added: 2024-05-16 02:49:00 America/Los_Angeles
   uuid: 1596ac0f-47e5-4a97-98bc-528e204fc694
   year_released: 2003
-installer: null
+installer:
+  tasks:
+    - file:
+        path: '{DEST_APP_DIR}'
+        state: directory
+    - innoextract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - app/*
+    - replace:
+        path: '{DEST_APP_DIR}/agds.cfg'
+        regexp: 'videomode=800x600x32'
+        replace: 'videomode=800x600x16'
+    - wine:
+        virtual_desktop: 800x600
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\BMirror.exe'

@@ -26,4 +26,18 @@ descr:
   ts_added: 2024-10-17 09:08:52 America/Los_Angeles
   uuid: 10a19613-f457-4994-98f5-b54b75fefd65
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # proceed with a minimal CD installation
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TDTWB.EXE'

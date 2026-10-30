@@ -26,4 +26,15 @@ descr:
   ts_added: 2024-10-16 19:59:26 America/Los_Angeles
   uuid: 7687dbf5-10d3-4471-aa88-b83594078d42
   year_released: 1994
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\HELLINST.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\HELL.COM'

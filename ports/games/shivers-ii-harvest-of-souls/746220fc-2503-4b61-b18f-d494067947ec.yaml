@@ -28,4 +28,33 @@ descr:
   ts_added: 2024-07-23 15:02:00 America/Los_Angeles
   uuid: 746220fc-2503-4b61-b18f-d494067947ec
   year_released: 1997
-installer: null
+installer:
+  # TODO
+  # rshivers exits properly, shivers2 leaves win311 running
+  # rshivers doesn't show startup banner, shivers2 does
+  # rshivers doesn't ask to exit game at the beginning, shivers2 does
+  # require to press F5 to animate Steve at the beginning
+  tasks:
+    - extract:
+        src: '{item}'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][0]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              # proceed installing into D:\APP\SIERRA\SHIVERS2, skip system check as it hangs
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SIERRA\SHIVERS2\RSHIVERS.EXE'
+    # patch removes startup delay (some timer based performance checks) at 0x413851
+    # TODO: make all videos play fullscreen by default (currently requires manual F5 press)
+    - copy:
+        src: '{SRC_DIR}/patches/RSHIVERS.EXE'
+        dest: '{DEST_APP_DIR}/SIERRA/SHIVERS2'

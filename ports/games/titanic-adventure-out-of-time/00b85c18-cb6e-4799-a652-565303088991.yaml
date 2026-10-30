@@ -26,4 +26,18 @@ descr:
   ts_added: 2024-06-10 03:45:00 America/Los_Angeles
   uuid: 00b85c18-cb6e-4799-a652-565303088991
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # proceed with a minimal CD installation
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TI.EXE'

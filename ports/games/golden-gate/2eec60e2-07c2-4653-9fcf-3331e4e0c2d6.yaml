@@ -26,33 +26,33 @@ descr:
   uuid: 2eec60e2-07c2-4653-9fcf-3331e4e0c2d6
   year_released: 1997
 installer:
-  # TODO: unverified, check install.py
-  vars:
-    app_exec: GOLDENGA.EXE
-    patch_exec: GOLDENGA.EXE-patch-mod
-  extract:
-    src: "${src_root_dir}/${descr['distro']['files'][0]}"
-    dest: "${first_cd_drive_dir}"
-    include:
-      - NEWMLIST.TXT
-      - GGVARS
-      - GGSYSTBL
-      - GOLDEN
-      - QTIME32
-  copy:
-    src: "${src_root_dir}/patch/${patch_exec}"
-    dest: "${app_dir}/${app_exec}"
-  wine:
-    mount:
-      letter: "${first_cd_letter}"
-      src: "${first_cd_drive_dir}"
-      type: cdrom
-      state: mounted
-    run:
-      exec: QT32INST.EXE
-      work_dir: "${wine_first_cd_drive_dir}\\QTIME32"
-    runner_script:
-      exec: "${app_exec}"
-  file: # cleanup
-    path: "${first_cd_drive_dir}/QTIME32"
-    state: absent
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+        files:
+          - NEWMLIST.TXT
+          - GGVARS
+          - GGSYSTBL
+          - GOLDEN
+          - QTIME32
+    - file:
+        path: '{DEST_APP_DIR}'
+        state: directory
+    # official patch with another manual patch on top of it (emulates fake HIGH video mode in wine,
+    # avoiding a MessageBox popup on a startup)
+    - copy:
+        src: '{SRC_DIR}/patch/GOLDENGA.EXE-patch-mod'
+        dest: '{DEST_APP_DIR}/GOLDENGA.EXE'
+    - wine:
+        os_ver: win95
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          # TODO: this hangs cos QT remains opened, so remove {DEST_DIR}/E/QTIME32 manually
+          - run:
+              path: '{FIRST_CD_DRIVE}\QTIME32\QT32INST.EXE'
+              virtual_desktop: false
+          - gen_run_script:
+              path: '{APP_DIR}\GOLDENGA.EXE'

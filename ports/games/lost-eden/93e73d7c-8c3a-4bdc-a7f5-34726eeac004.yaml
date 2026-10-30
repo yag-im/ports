@@ -26,4 +26,19 @@ descr:
   ts_added: 2024-09-29 17:49:27 America/Los_Angeles
   uuid: 93e73d7c-8c3a-4bdc-a7f5-34726eeac004
   year_released: 1999
-installer: null
+installer:
+  # TODO: fix cracky sound
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\EDEN.BAT'
+    - copy:
+        src: '{PORT_FILES_DIR}/EDEN.BAT'
+        dest: '{DEST_APP_DIR}'

@@ -27,4 +27,18 @@ descr:
   ts_added: 2024-10-19 17:48:00 America/Los_Angeles
   uuid: c4f14caf-8117-4b97-9c62-55ffeaab853d
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        conf:
+          fullscreen: true
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\install.exe'
+          # both CDs must remain mounted during runtime
+          - gen_run_script:
+              path: '{APP_DIR}\quiv.exe'

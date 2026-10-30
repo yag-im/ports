@@ -27,4 +27,12 @@ descr:
   year_released: 1999
   tags:
     - mature
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\STRLIZ.EXE'

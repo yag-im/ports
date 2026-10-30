@@ -28,4 +28,48 @@ descr:
   ts_added: 2024-05-23 21:29:00 America/Los_Angeles
   uuid: ab2076b7-77bb-4d12-94ea-40ef163b76c4
   year_released: 2000
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - DATA
+          - ames.ini
+          - aobj.ini
+          - arxrin3.fon
+          - Faust.exe
+          - fl.ini
+          - mmxImage.dll
+    - move:
+        src: '{DEST_APP_DIR}/DATA'
+        dest: '{DEST_APP_DIR}/data'
+    - copy:
+        src: '{DEST_APP_DIR}/data/eng/sy.at3'
+        dest: '{DEST_APP_DIR}/data'
+    - extract:
+        src: '{item}'
+        dest: '{DEST_APP_DIR}'
+        loop:
+          - '{SRC_DIR}/{descr[distro][files][1]}'
+          - '{SRC_DIR}/{descr[distro][files][2]}'
+          - '{SRC_DIR}/{descr[distro][files][3]}'
+    - copy:
+        src: '{PORT_FILES_DIR}/cd.ini'
+        dest: '{DEST_APP_DIR}/data'
+    - replace:
+        path: '{DEST_APP_DIR}/fl.ini'
+        regexp: 'CDROM'
+        replace: '.\\'
+    - replace:
+        path: '{DEST_APP_DIR}/fl.ini'
+        regexp: 'CHECKCD:\s+1'
+        replace: 'CHECKCD: 0'
+    - replace:
+        path: '{DEST_APP_DIR}/fl.ini'
+        regexp: 'CHECKLOADSAVE:\s+1'
+        replace: 'CHECKLOADSAVE: 0'
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\Faust.exe'

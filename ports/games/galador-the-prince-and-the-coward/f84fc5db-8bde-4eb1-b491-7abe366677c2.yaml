@@ -29,4 +29,26 @@ descr:
   ts_added: 2024-09-16 18:29:00 America/Los_Angeles
   uuid: f84fc5db-8bde-4eb1-b491-7abe366677c2
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}'
+        dest: '{DEST_DIR}'
+        cd_images_as_letters: true
+    - wine:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+          # make full install into D:\app
+          - run:
+              path: '{FIRST_CD_DRIVE}\autorun.exe'
+          - umount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - gen_run_script:
+              path: '{APP_DIR}\gal.exe'
+    # patch from https://www.old-games.ru/game/download/1942.html
+    # (modified, fixes "App relies on the Carry flag state after calling llseek" bug)
+    - copy:
+        src: '{SRC_DIR}/patch/gal-mod.exe'
+        dest: '{DEST_DIR}/{APP_DRIVE_LETTER}/app/gal.exe'

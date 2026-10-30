@@ -27,4 +27,15 @@ descr:
   ts_added: 2024-05-24 02:56:00 America/Los_Angeles
   uuid: 3bc3254b-c938-489c-affe-f204c5793ec7
   year_released: 1996
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\HARVEST.EXE'

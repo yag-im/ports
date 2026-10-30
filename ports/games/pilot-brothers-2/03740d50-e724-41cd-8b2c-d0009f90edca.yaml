@@ -30,4 +30,15 @@ descr:
   ts_added: 2024-09-11 03:39:00 America/Los_Angeles
   uuid: 03740d50-e724-41cd-8b2c-d0009f90edca
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - MOVIES2
+          - PILOTS2.EXE
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\PILOTS2.EXE'

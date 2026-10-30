@@ -25,4 +25,34 @@ descr:
   ts_added: 2024-07-23 15:01:00 America/Los_Angeles
   uuid: 4fb32b29-26f1-4ae1-9e34-c9af03edb807
   year_released: 1997
-installer: null
+installer:
+  # TODO: videoplayer freezes at startup on prod
+  tasks:
+    - file:
+        path: '{DEST_APP_DIR}'
+        state: directory
+    - innoextract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - DATA
+          - ROBOTS
+          - MOVIES
+          - DLL
+          - RESMAP.*
+          - RESOURCE.SFX
+          - LANGUAGE.INF
+          - SIERRA.ERR
+          - ddraw.dll
+          - 10908.AUD
+          - S2SYSR.DLL
+          - RSHIVERS.EXE
+          - RESSCI.*
+          - RESOURCE.WIN
+          - RESMDT.*
+          - GAMESYSR.DLL
+        gog: true
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\RSHIVERS.EXE'

@@ -30,4 +30,12 @@ descr:
   ts_added: 2024-07-19 19:26:00 America/Los_Angeles
   uuid: 2d24ea53-005e-423e-9e3e-4a0d1d12683c
   year_released: 1997
-installer: null
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\PILOTS.EXE'

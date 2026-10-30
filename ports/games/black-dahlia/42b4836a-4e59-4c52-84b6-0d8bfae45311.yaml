@@ -32,4 +32,35 @@ descr:
   ts_added: 2024-08-31 20:12:00 America/Los_Angeles
   uuid: 42b4836a-4e59-4c52-84b6-0d8bfae45311
   year_released: 1998
-installer: null
+installer:
+  tasks:
+    - copy_src_cd_images:
+    # fixes CDs paths and enables subtitles in a patched version
+    - template:
+        src: '{PORT_TEMPLATES_DIR}/bd.ini.tmpl'
+        dest: '{DEST_DIR}/BD.INI'
+        params:
+          first_cd_letter: '{FIRST_CD_DRIVE_LETTER}'
+        newline: "\r\n"
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 100
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+          - copy:
+              src: '{SRC_DIR}/BDPATCH.EXE'
+              dest: '{APP_DIR}'
+          - run:
+              path: '{APP_DIR}\BDPATCH.EXE'
+          - copy:
+              src: '{DEST_DIR}/BD.INI'
+              dest: '{APP_DIR}'
+          - gen_run_script:
+              path: '{APP_DIR}\BD_WIN.EXE'
+    - file:
+        path: '{DEST_DIR}/BD.INI'
+        state: absent

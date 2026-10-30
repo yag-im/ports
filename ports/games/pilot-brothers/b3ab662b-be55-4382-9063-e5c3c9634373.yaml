@@ -25,4 +25,18 @@ descr:
   ts_added: 2024-07-21 15:08:00 America/Los_Angeles
   uuid: b3ab662b-be55-4382-9063-e5c3c9634373
   year_released: 2014
-installer: null
+installer:
+  tasks:
+    - file:
+        path: '{DEST_APP_DIR}'
+        state: directory
+    - innoextract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - app/*
+        gog: true
+    - wine:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}\bin\Pilot Brothers.exe'

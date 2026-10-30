@@ -26,4 +26,20 @@ descr:
   ts_added: 2024-08-25 00:51:00 America/Los_Angeles
   uuid: 3a0921b0-545e-42bd-9479-4f4329d1e8b3
   year_released: 1994
-installer: null
+installer:
+  tasks:
+    # we need both BIN and CUE files for CD music to play
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              # CUE file should be mounted for CD music
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src: '{DEST_DIR}/{descr[distro][files][1]}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALUJ.EXE'
+          - gen_run_script:
+              path: '{APP_DIR}\TEENAGNT.EXE'
+    - copy:
+        src: '{PORT_FILES_DIR}/SOUND.SET'
+        dest: '{DEST_APP_DIR}'
