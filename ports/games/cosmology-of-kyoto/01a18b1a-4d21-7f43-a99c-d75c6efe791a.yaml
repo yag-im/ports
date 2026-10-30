@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Cosmology of Kyoto.ISO
+    format: 1CD
+    url: https://archive.org/download/CosmologyOfKyoto/Cosmology%20of%20Kyoto.ISO
+  igdb_slug: cosmology-of-kyoto
+  lang: en
+  media_assets:
+  name: Cosmology of Kyoto
+  platform: win
+  publisher: Yano Electric
+  refs:
+    ag_id:
+    lutris_id: cosmology-of-kyoto
+    mg_id: 4365
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a18b1a-4d21-7f43-a99c-d75c6efe791a
+  year_released: 1995
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # fonts install
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\PLAY_E.EXE'
