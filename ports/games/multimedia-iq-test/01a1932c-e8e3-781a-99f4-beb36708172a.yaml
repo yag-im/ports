@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Multimedia IQ Test (1996)(Virtual Entertainment)[Mac-PC].iso
+    format: 1CD
+    url: https://archive.org/download/multimedia-iq-test/Multimedia%20IQ%20Test%20%281996%29%28Virtual%20Entertainment%29%5BMac-PC%5D.iso
+  igdb_slug: multimedia-iq-test
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a1932c-e8e3-781a-99f4-beb36708172a
+    screenshots: []
+  name: Multimedia IQ Test
+  platform: win
+  publisher: Virtuality Entertainment
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a1932c-e8e3-781a-99f4-beb36708172a
+  year_released: 1996
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\iqtest.exe'
