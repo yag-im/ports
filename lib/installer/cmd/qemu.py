@@ -44,9 +44,9 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
             work_dir=PureWindowsPath(task.get("work_dir")) if task.get("work_dir") else None,
         )
     elif cmd == CMD_MOUNT:
-        src = Path(task.get("src"))
         cd_images_as_letters = task.get("cd_images_as_letters", False)
         if cd_images_as_letters:
+            src = Path(task.get("src"))
             cur_letter = FIRST_CD_DRIVE_LETTER
             image_path = Path(src / cur_letter)
             while image_path.exists():
@@ -54,7 +54,15 @@ def exec_subtask(task: dict, qemu: Qemu) -> None:
                 cur_letter = chr(ord(cur_letter) + 1)
                 image_path = Path(src / cur_letter)
         else:
-            qemu.mount(image_path=src, media="cdrom", letter=task.get("letter"))
+            src = task.get("src")
+            if isinstance(src, list):
+                # single CDROM drive with images cycled by Ctrl+F4
+                image_path = [Path(p) for p in src]
+            elif isinstance(src, str):
+                image_path = Path(src)
+            else:
+                raise ValueError(f"unknown src type: {src}")
+            qemu.mount(image_path=image_path, media="cdrom", letter=task.get("letter"))
     elif cmd == CMD_REGEDIT:
         qemu.upd_reg({task.get("path"): task.get("values")})
     elif cmd == CMD_RUN:

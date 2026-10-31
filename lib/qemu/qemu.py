@@ -1,4 +1,5 @@
 import os
+import shlex
 import stat
 import tempfile
 from abc import (
@@ -6,6 +7,7 @@ from abc import (
 )
 from dataclasses import (
     dataclass,
+    field,
 )
 from enum import StrEnum
 from pathlib import (
@@ -68,8 +70,8 @@ class QemuConf:
     pointer_device: str
     enable_kvm: bool = True
     _lang: str = BASE_LANG
-    # some games require CD swaps and therefore a switch to qemu monitor;
-    # after returning from monitor, mouse grab may not work in a full-screen mode;
+    # CD swaps via the qemu monitor may break mouse grab in a full-screen mode afterwards;
+    # prefer mounting a list of CD images into a single drive and swapping them with Ctrl+F4
     fullscreen: bool = BASE_FULLSCREEN_ENABLED
 
     @property
@@ -81,6 +83,15 @@ class QemuConf:
         self._lang = new_value if new_value in KNOWN_LANG else BASE_LANG
 
 
+def _qemu_opt_escape(val: Any) -> str:
+    # commas separate qemu sub-options, a literal comma must be doubled
+    return str(val).replace(",", ",,")
+
+
+def _relative_to(path: Path, p_base: Path | None) -> Path:
+    return path.relative_to(p_base) if p_base else path
+
+
 @dataclass
 class QemuMountPoint:
     image_path: Path
@@ -90,19 +101,25 @@ class QemuMountPoint:
     letter: str
     format: str | None = None
     cd_index: int | None = None  # unique CDROM id, used as the qemu drive id (cd<N>)
+    # extra CD images cycled (after image_path) by Ctrl+F4, see `-cdrom-swap`
+    swap_images: list[Path] = field(default_factory=list)
+
+    @property
+    def drive_id(self) -> str:
+        return f"cd{self.cd_index}"
 
     def qemu_drive_mount_option_relative_to(self, p_base: Path | None = None):
-        if p_base:
-            rel_path = self.image_path.relative_to(p_base)
-        else:
-            rel_path = self.image_path
+        rel_path = _qemu_opt_escape(_relative_to(self.image_path, p_base))
         if self.media == "cdrom":
-            res = f"file={rel_path},if=none,id=cd{self.cd_index},media=cdrom"
+            res = f"file={rel_path},if=none,id={self.drive_id},media=cdrom"
         else:
             res = f"file={rel_path},if={self.interface},index={self.index},media={self.media}"
         if self.format:
             res += f",format={self.format}"
         return res
+
+    def qemu_cdrom_swap_options_relative_to(self, p_base: Path | None = None) -> list[str]:
+        return [f"drive={self.drive_id},file={_qemu_opt_escape(_relative_to(p, p_base))}" for p in self.swap_images]
 
 
 IDE_CDROM_SLOTS = 2
@@ -186,25 +203,38 @@ class Qemu((Protocol[T])):
             return
         self.mount_points.remove(mp)
         if remove:
-            rm(mp.image_path)
+            for image_path in [mp.image_path, *mp.swap_images]:
+                rm(image_path)
 
     def mount(
         self,
-        image_path: Path,
+        image_path: Path | list[Path],
         interface: str | None = "ide",
         index: int | None = None,
         media: str | None = None,
         letter: str | None = None,
         image_format: str | None = None,
     ):
+        """Mounts an image to a drive.
+
+        A list of CD images is mounted into a single CDROM drive: the first image is inserted on boot,
+        and Ctrl+F4 cycles through all of them, DOSBox style.
+        """
         # TODO: fails to mount another drive to already mounted letter requiring an explicit umount. Bug?
+        image_paths = [Path(p) for p in image_path] if isinstance(image_path, list) else [Path(image_path)]
+        if not image_paths:
+            raise ValueError("no image to mount")
+        if len(image_paths) > 1 and media != "cdrom":
+            raise ValueError(f"multiple images can be mounted only as cdrom, got media: {media}")
         if media == "cdrom":
-            if not is_iso_image(image_path):
-                # qemu supports only iso cdrom images
-                with tempfile.TemporaryDirectory() as td:
-                    tmp_iso_image = Path(td) / "tmp.iso"
-                    run_cmd(["poweriso", "convert", image_path, "-o", tmp_iso_image, "-ot", "iso"])
-                    move(tmp_iso_image, image_path)
+            for p in image_paths:
+                if not is_iso_image(p):
+                    # qemu supports only iso cdrom images
+                    with tempfile.TemporaryDirectory() as td:
+                        tmp_iso_image = Path(td) / "tmp.iso"
+                        run_cmd(["poweriso", "convert", p, "-o", tmp_iso_image, "-ot", "iso"])
+                        move(tmp_iso_image, p)
+        image_path, *swap_images = image_paths
         index = len(self.mount_points) if index is None else index
         letter = letter or chr(ord("A")) + index + 2
         cd_index = (
@@ -221,6 +251,7 @@ class Qemu((Protocol[T])):
                 letter=letter,
                 format=image_format,
                 cd_index=cd_index,
+                swap_images=swap_images,
             )
         )
 
@@ -247,6 +278,9 @@ class Qemu((Protocol[T])):
                 if pos == n_ide:
                     args += ["-usb", "-device", f"usb-bot,id={USB_CDROM_DEVICE_ID}"]
                 args += ["-device", f"scsi-cd,drive=cd{mp.cd_index},bus={USB_CDROM_DEVICE_ID}.0,lun={pos - n_ide}"]
+        for mp in cdroms:
+            for opt in mp.qemu_cdrom_swap_options_relative_to(self.root_dir):
+                args += ["-cdrom-swap", opt]
         return args
 
     def _run_qemu(self) -> None:
@@ -282,7 +316,7 @@ class Qemu((Protocol[T])):
         tmpl_params = {
             "cpu": self.conf.cpu,
             "memory": self.conf.memory,
-            "mounts": " ".join(self._mount_args()),
+            "mounts": shlex.join(self._mount_args()),
             "display": display,
             "audiodev": self.conf.audio_device,
             "flavor": self.conf.flavor.name,

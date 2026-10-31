@@ -297,7 +297,19 @@ Create iso image with dependencies:
 
 ## qemu: how to swap CDs?
 
-Ctrl + Alt + 2, type: change ide1-cd1 F, then press Ctrl + Alt + 1
+Mount all CD images into a single drive by passing a list as `src`; the first image is inserted on boot:
+
+    - qemu:
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+
+Then press Ctrl + F4 (DOSBox style) to insert the next image, round-robin (SDL and GTK displays only).
+Under the hood every extra image is passed to qemu as `-cdrom-swap drive=ID,file=FILE`
+(see `.devcontainer/files/patches/cdrom-swap.patch`).
 
 ## guestfish: how to copy files to/from virtual drives?
 

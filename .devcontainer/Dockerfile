@@ -193,14 +193,65 @@ RUN apt-get update \
         bchunk \
         flac
 
-# qemu
+# qemu (patched): Ctrl+F4 cycling through multiple -cdrom / -cdrom-swap images (GTK and SDL displays)
+# libguestfs depends on the Debian qemu-system-x86 package (/usr/bin/qemu-system-x86_64), so the patched qemu
+# goes into /usr/local (precedes /usr/bin in PATH) to not be overwritten by apt
+ARG QEMU_VER=11.1.3
+
+# deps: https://www.qemu.org/docs/master/devel/build-environment.html
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        qemu-system-gui \
-        qemu-system-x86 \
-        qemu-utils
+        build-essential \
+        ca-certificates \
+        git \
+        ninja-build \
+        pkg-config \
+        python3 \
+        python3-venv \
+        libepoxy-dev \
+        libgbm-dev \
+        libglib2.0-dev \
+        libgtk-3-dev \
+        libpixman-1-dev \
+        libpulse-dev \
+        libsdl2-dev \
+        zlib1g-dev
+
+WORKDIR ${SRC_DIR}
+
+RUN git clone --depth 1 --single-branch --branch v${QEMU_VER} https://gitlab.com/qemu-project/qemu.git
+
+COPY files/patches/cdrom-swap.patch .
+RUN cd ./qemu \
+    && git apply --verbose ../cdrom-swap.patch
+
+# minimal x86_64 system emulator (KVM + TCG fallback) with SDL/GTK (OpenGL) displays, PulseAudio and qemu-img
+RUN cd ./qemu \
+    && ./configure \
+        --prefix=/usr/local \
+        --target-list=x86_64-softmmu \
+        --without-default-features \
+        --audio-drv-list=pa \
+        --disable-debug-info \
+        --enable-strip \
+        --enable-gtk \
+        --enable-kvm \
+        --enable-opengl \
+        --enable-pa \
+        --enable-pixman \
+        --enable-sdl \
+        --enable-tcg \
+        --enable-tools \
+    && make -j${NUM_BUILD_WORKERS} \
+    && make install
+
+# qemu 11 (unlike 10.0) forces SDL to use EGL instead of GLX on X11 (for dma-buf), which renders vertical stripes and a
+# squeezed image with "-display sdl,gl=on" on a 16-bit X server (e.g. COLOR_BITS=16). Env var overrides that hint.
+ENV SDL_VIDEO_X11_FORCE_EGL=0
+
 # TODO: this doesn't work; we have to set vscode group to 106 explicitly to match hosts' kvm group id
-RUN usermod -aG kvm ${USERNAME}
+RUN groupadd -f -r kvm \
+    && usermod -aG kvm ${USERNAME}
 
 # common
 RUN apt install --no-install-recommends -y \

@@ -1,0 +1,301 @@
+diff --git a/include/system/system.h b/include/system/system.h
+index 03a2d0e..482d7c3 100644
+--- a/include/system/system.h
++++ b/include/system/system.h
+@@ -105,6 +105,9 @@ void qemu_boot_set(const char *boot_order, Error **errp);
+ 
+ bool defaults_enabled(void);
+ 
++bool qemu_cdrom_cycle_enabled(void);
++void qemu_cdrom_cycle_next(void);
++
+ void qemu_init(int argc, char **argv);
+ int qemu_main_loop(void);
+ void qemu_cleanup(int);
+diff --git a/qemu-options.hx b/qemu-options.hx
+index f72f30e..d3de454 100644
+--- a/qemu-options.hx
++++ b/qemu-options.hx
+@@ -1468,6 +1468,31 @@ SRST
+     (which is IDE1 master on x86, so you cannot use ``-hdc`` and ``-cdrom``
+     at the same time there). On systems that support it, you can use the
+     host CD-ROM by using ``/dev/cdrom`` as filename.
++
++    ``-cdrom`` may be repeated. The first image is inserted at startup;
++    in the GTK and SDL displays, Ctrl+F4 then inserts the next image in
++    round-robin order (Ctrl+F4 is not passed to the guest in that case).
++ERST
++
++DEF("cdrom-swap", HAS_ARG, QEMU_OPTION_cdrom_swap,
++    "-cdrom-swap drive=id,file=file\n"
++    "                add 'file' to the Ctrl+F4 image rotation of -drive 'id'\n",
++    QEMU_ARCH_ALL)
++SRST
++``-cdrom-swap drive=id,file=file``
++    Add file to the list of images that Ctrl+F4 (GTK and SDL displays)
++    cycles through, round-robin, on the removable drive created with
++    ``-drive id=id``. The image given in that ``-drive`` comes first and
++    the ``format`` of that ``-drive`` is used for all images. May be
++    repeated, for the same or different drives; Ctrl+F4 advances every
++    drive with more than one image, including one built from repeated
++    ``-cdrom`` options. Commas in file names must be doubled.
++
++    .. parsed-literal::
++
++        |qemu_system_x86| -drive if=none,id=cd0,media=cdrom,file=d1.iso \\
++            -device ide-cd,drive=cd0,bus=ide.1,unit=0 \\
++            -cdrom-swap drive=cd0,file=d2.iso -cdrom-swap drive=cd0,file=d3.iso
+ ERST
+ 
+ DEF("blockdev", HAS_ARG, QEMU_OPTION_blockdev,
+diff --git a/system/vl.c b/system/vl.c
+index fbe5807..61a6b2d 100644
+--- a/system/vl.c
++++ b/system/vl.c
+@@ -79,6 +79,7 @@
+ #include "qemu/bitmap.h"
+ #include "qemu/log.h"
+ #include "system/blockdev.h"
++#include "system/block-backend.h"
+ #include "hw/block/block.h"
+ #include "hw/i386/x86.h"
+ #include "hw/i386/pc.h"
+@@ -133,6 +134,7 @@
+ #include "qapi/qapi-visit-machine.h"
+ #include "qapi/qapi-visit-migration.h"
+ #include "qapi/qapi-visit-ui.h"
++#include "qapi/qapi-commands-block.h"
+ #include "qapi/qapi-commands-block-core.h"
+ #include "qapi/qapi-commands-migration.h"
+ #include "qapi/qapi-commands-misc.h"
+@@ -656,6 +658,152 @@ static int cleanup_add_fd(void *opaque, QemuOpts *opts, Error **errp)
+ #define MTD_OPTS ""
+ #define SD_OPTS ""
+ 
++/*
++ * Image lists cycled round-robin by qemu_cdrom_cycle_next(), one per drive:
++ * repeated -cdrom options (drive_id == NULL) and -cdrom-swap drive=ID,file=F.
++ */
++typedef struct CdromSwapList {
++    char *drive_id;
++    char *blk_name;
++    char *format;
++    GPtrArray *files;
++    guint idx;
++} CdromSwapList;
++
++static GPtrArray *cdrom_swap_lists;
++
++static QemuOptsList qemu_cdrom_swap_opts = {
++    .name = "cdrom-swap",
++    .head = QTAILQ_HEAD_INITIALIZER(qemu_cdrom_swap_opts.head),
++    .desc = {
++        { .name = "drive", .type = QEMU_OPT_STRING },
++        { .name = "file", .type = QEMU_OPT_STRING },
++        { /* end of list */ }
++    },
++};
++
++static CdromSwapList *cdrom_swap_list_get(const char *drive_id)
++{
++    CdromSwapList *l;
++    guint i;
++
++    if (!cdrom_swap_lists) {
++        cdrom_swap_lists = g_ptr_array_new();
++    }
++    for (i = 0; i < cdrom_swap_lists->len; i++) {
++        l = g_ptr_array_index(cdrom_swap_lists, i);
++        if (g_strcmp0(l->drive_id, drive_id) == 0) {
++            return l;
++        }
++    }
++    l = g_new0(CdromSwapList, 1);
++    l->drive_id = g_strdup(drive_id);
++    l->files = g_ptr_array_new_with_free_func(g_free);
++    g_ptr_array_add(cdrom_swap_lists, l);
++    return l;
++}
++
++static void cdrom_swap_add_option(const char *optarg)
++{
++    QemuOpts *opts = qemu_opts_parse_noisily(&qemu_cdrom_swap_opts, optarg,
++                                             false);
++    const char *drive, *file;
++
++    if (!opts) {
++        exit(1);
++    }
++    drive = qemu_opt_get(opts, "drive");
++    file = qemu_opt_get(opts, "file");
++    if (!drive || !file) {
++        error_report("-cdrom-swap requires drive=ID,file=FILE");
++        exit(1);
++    }
++    g_ptr_array_add(cdrom_swap_list_get(drive)->files, g_strdup(file));
++    qemu_opts_del(opts);
++}
++
++/* Bind each list to its BlockBackend; called once the drives exist */
++static void cdrom_swap_resolve(BlockInterfaceType block_default_type)
++{
++    guint i;
++
++    for (i = 0; cdrom_swap_lists && i < cdrom_swap_lists->len; i++) {
++        CdromSwapList *l = g_ptr_array_index(cdrom_swap_lists, i);
++        DriveInfo *dinfo;
++        BlockBackend *blk;
++        const char *initial;
++
++        if (l->drive_id) {
++            blk = blk_by_name(l->drive_id);
++            dinfo = blk ? blk_legacy_dinfo(blk) : NULL;
++            if (!dinfo) {
++                error_report("-cdrom-swap: no -drive with id '%s'",
++                             l->drive_id);
++                exit(1);
++            }
++            initial = qemu_opt_get(dinfo->opts, "file");
++            if (initial && *initial) {
++                g_ptr_array_insert(l->files, 0, g_strdup(initial));
++            } else {
++                /* Started empty: the first switch inserts files[0] */
++                l->idx = l->files->len - 1;
++            }
++        } else {
++            dinfo = drive_get_by_index(block_default_type, 2);
++            blk = dinfo ? blk_by_legacy_dinfo(dinfo) : NULL;
++            if (!blk) {
++                error_report("-cdrom: drive not found");
++                exit(1);
++            }
++        }
++        l->blk_name = g_strdup(blk_name(blk));
++        l->format = g_strdup(qemu_opt_get(dinfo->opts, "format"));
++    }
++}
++
++bool qemu_cdrom_cycle_enabled(void)
++{
++    guint i;
++
++    for (i = 0; cdrom_swap_lists && i < cdrom_swap_lists->len; i++) {
++        CdromSwapList *l = g_ptr_array_index(cdrom_swap_lists, i);
++
++        if (l->blk_name && l->files->len > 1) {
++            return true;
++        }
++    }
++    return false;
++}
++
++void qemu_cdrom_cycle_next(void)
++{
++    guint i;
++
++    for (i = 0; cdrom_swap_lists && i < cdrom_swap_lists->len; i++) {
++        CdromSwapList *l = g_ptr_array_index(cdrom_swap_lists, i);
++        const char *file;
++        Error *err = NULL;
++
++        if (!l->blk_name || l->files->len < 2) {
++            continue;
++        }
++
++        /* Advance even on failure so a broken image can be skipped */
++        l->idx = (l->idx + 1) % l->files->len;
++        file = g_ptr_array_index(l->files, l->idx);
++
++        qmp_blockdev_change_medium(l->blk_name, NULL, file, l->format,
++                                   true, true, false, 0, &err);
++        if (err) {
++            error_reportf_err(err, "CD-ROM %s: switch to '%s' failed: ",
++                              l->blk_name, file);
++            continue;
++        }
++        info_report("CD-ROM %s: inserted '%s' (%u/%u)", l->blk_name, file,
++                    l->idx + 1, l->files->len);
++    }
++}
++
+ static int drive_init_func(void *opaque, QemuOpts *opts, Error **errp)
+ {
+     BlockInterfaceType *block_default_type = opaque;
+@@ -2082,6 +2230,7 @@ static void qemu_create_early_backends(void)
+      * setting machine properties, so they can be referred to.
+      */
+     configure_blockdev(&bdo_queue, machine_class, snapshot);
++    cdrom_swap_resolve(machine_class->block_default_type);
+     audio_init_audiodevs();
+     if (default_audio) {
+         audio_create_default_audiodevs();
+@@ -3045,8 +3194,17 @@ void qemu_init(int argc, char **argv)
+             case QEMU_OPTION_dtb:
+                 qdict_put_str(machine_opts_dict, "dtb", optarg);
+                 break;
+-            case QEMU_OPTION_cdrom:
+-                drive_add(IF_DEFAULT, 2, optarg, CDROM_OPTS);
++            case QEMU_OPTION_cdrom: {
++                CdromSwapList *l = cdrom_swap_list_get(NULL);
++
++                if (!l->files->len) {
++                    drive_add(IF_DEFAULT, 2, optarg, CDROM_OPTS);
++                }
++                g_ptr_array_add(l->files, g_strdup(optarg));
++                break;
++            }
++            case QEMU_OPTION_cdrom_swap:
++                cdrom_swap_add_option(optarg);
+                 break;
+             case QEMU_OPTION_boot:
+                 machine_parse_property_opt(qemu_find_opts("boot-opts"), "boot", optarg);
+diff --git a/ui/gtk.c b/ui/gtk.c
+index 8d312d6..4f266aa 100644
+--- a/ui/gtk.c
++++ b/ui/gtk.c
+@@ -1376,6 +1376,22 @@ static gboolean gd_key_event(GtkWidget *widget, GdkEventKey *key, void *opaque)
+     keycode = gd_get_keycode(key);
+     lnx = gd_map_keycode(keycode);
+ 
++    /* DOSBox-style Ctrl+F4: insert the next -cdrom image */
++    if (lnx == KEY_F4 && qemu_cdrom_cycle_enabled()) {
++        static bool cdrom_key_held;
++
++        if (key->type == GDK_KEY_RELEASE) {
++            cdrom_key_held = false;
++        } else if ((key->state & gtk_accelerator_get_default_mod_mask()) ==
++                   GDK_CONTROL_MASK) {
++            if (!cdrom_key_held) {
++                cdrom_key_held = true;
++                qemu_cdrom_cycle_next();
++            }
++            return TRUE;
++        }
++    }
++
+     trace_gd_key_event(vc->label, keycode, lnx,
+                        (key->type == GDK_KEY_PRESS) ? "down" : "up");
+ 
+diff --git a/ui/sdl2.c b/ui/sdl2.c
+index 1c97d23..1ecbb72 100644
+--- a/ui/sdl2.c
++++ b/ui/sdl2.c
+@@ -392,6 +392,18 @@ static void handle_keydown(SDL_Event *ev)
+ 
+     scon->gui_keysym = false;
+ 
++    /* DOSBox-style Ctrl+F4: insert the next -cdrom image */
++    if (!scon->ignore_hotkeys && qemu_cdrom_cycle_enabled() &&
++        ev->key.keysym.scancode == SDL_SCANCODE_F4 &&
++        (ev->key.keysym.mod & KMOD_CTRL) &&
++        !(ev->key.keysym.mod & (KMOD_ALT | KMOD_SHIFT | KMOD_GUI))) {
++        if (!ev->key.repeat) {
++            qemu_cdrom_cycle_next();
++        }
++        scon->gui_keysym = true;
++        return;
++    }
++
+     if (!scon->ignore_hotkeys && gui_key_modifier_pressed && !ev->key.repeat) {
+         switch (ev->key.keysym.scancode) {
+         case SDL_SCANCODE_2:
