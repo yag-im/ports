@@ -43,5 +43,4 @@ installer:
               exit: false
           - gen_run_script:
               path: '{APP_DRIVE}\Program Files\Kutoka\Mia\Mia.exe'
-              exit: false
 # first game in collection to support cd switch in a patched qemu!

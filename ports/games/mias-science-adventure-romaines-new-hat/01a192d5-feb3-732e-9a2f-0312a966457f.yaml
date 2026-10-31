@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - disc-1.iso
+      - disc-2.iso
+    format: 2CD
+    url: https://archive.org/details/MiasScienceAdventureRomainesNewHatGame
+  igdb_slug: mias-science-adventure-romaines-new-hat
+  lang: en
+  media_assets:
+  name: "Mia's Science Adventure: Romaine's New Hat"
+  platform: win
+  publisher: Kutoka Interactive
+  refs:
+    ag_id:
+    lutris_id: mias-science-adventure-romaines-new-hat
+    mg_id: 71648
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: '11.1.3'
+  uuid: 01a192d5-feb3-732e-9a2f-0312a966457f
+  year_released: 2001
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\Install.exe' # QT 4
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\Mia2\Mia2.exe'
+# TODO: distorted sound: disable hardware sound acceleration in Volume -> Advanced properties

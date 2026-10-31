@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Karlsson pa taket och kuckelimuckmedicinen (Sweden).bin
+    format: 1CD
+    url: Karlsson pa taket och kuckelimuckmedicinen (Sweden).zip # redump
+  igdb_slug: karlsson-pa-taket-och-kuckelimuckmedicinen
+  lang: sv
+  media_assets:
+  name: Karlsson på Taket och Kuckelimuckmedicinen
+  platform: win
+  publisher: Gammafon Multimedia
+  refs:
+    ag_id:
+    lutris_id: karlsson-pa-taket-och-kuckelimuckmedicinen
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: '11.1.3'
+  uuid: 01a19320-788c-74fb-8e08-572b5a96304a
+  year_released: 2004
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\Installera Karlsson.exe'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\Karlsson.exe'
