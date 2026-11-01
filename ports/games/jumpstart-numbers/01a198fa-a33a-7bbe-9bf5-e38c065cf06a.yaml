@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - JumpStart Numbers (USA) (Rerelease).bin
+    format: 1CD
+    url: JumpStart Numbers (USA) (Rerelease).zip # redump
+  igdb_slug: jumpstart-numbers
+  lang: en
+  media_assets:
+  name: JumpStart Numbers
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: jumpstart-numbers
+    mg_id: 209948
+    pcgw_id: JumpStart_Numbers
+    qz_id:
+  reqs:
+    color_bits: 16 # exec requirement
+    screen_height: 480
+    screen_width: 640
+    loading_duration: 12
+  runner:
+    name: dosbox-x
+    ver: 2025.12.01
+  uuid: 01a198fa-a33a-7bbe-9bf5-e38c065cf06a
+  year_released: 2002
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        app_drive_size: 30 # uses 3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              # path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              path: explorer # install crashes without explorer
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\JumpStart Numbers\JSNUMS.EXE'
