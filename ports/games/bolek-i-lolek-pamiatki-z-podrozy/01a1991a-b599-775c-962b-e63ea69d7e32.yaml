@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Bolek i Lolek - Pamiatki z Podrozy (Poland).bin
+    format: 1CD
+    url: Bolek i Lolek - Pamiatki z Podrozy (Poland).zip # redump
+  igdb_slug: bolek-i-lolek-pamiatki-z-podrozy
+  lang: pl
+  media_assets:
+    cover:
+      image_id: 01a1991a-b599-775c-962b-e63ea69d7e32
+    screenshots: []
+  name: 'Bolek i Lolek: Pamiątki z podróży'
+  platform: win
+  publisher: Aidem Media
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: '11.1.3'
+  uuid: 01a1991a-b599-775c-962b-e63ea69d7e32
+  year_released: 1999
+  tags:
+    - kids
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE # install crashes in WINXP, game hangs in dosbox-x: win9x sometimes
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALUJ.EXE' # select full install and "karta bez WaveTable", otherwise SYSTEM.INI will be corrupted by a new WaveTable section
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\BIL.EXE'
