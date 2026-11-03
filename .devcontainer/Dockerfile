@@ -1,33 +1,31 @@
+# Multi-stage build: every runner (dosbox-x, wine, qemu) is compiled in its own stage and only its installed files are
+# copied into the final image. A version ARG is redeclared only in the stage that uses it, so bumping one version
+# rebuilds only that runner (plus the cheap COPY --from layers at the end of the final stage), the others come from
+# the cache.
 ARG DEBIAN_VER=trixie
-# https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/python/tags
-# TODO: guestfs is incompatible with python > 3.11
-FROM mcr.microsoft.com/devcontainers/python:3.11-${DEBIAN_VER}
+ARG NUM_BUILD_WORKERS=8
 
 ARG DOSBOX_VER=0.74-3-5
-ARG DOSBOX_X_VER=2025.12.01
-ARG DEBIAN_VER
+ARG DOSBOX_X_VER=2026.10.01
+ARG WINE_VER=11.0
+ARG QEMU_VER=11.1.3
+
+# https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/python/tags
+# TODO: guestfs is incompatible with python > 3.11
+FROM mcr.microsoft.com/devcontainers/python:3.11-${DEBIAN_VER} AS base
+
+# ---------------------------------------------------------------------------------------------------------------------
+# build dependencies
+# chained (dosbox-x -> wine -> qemu) so every runner is configured against the same set of libraries as when they were
+# built sequentially (e.g. wine's configure picks up ffmpeg and pcap from the dosbox-x deps); the final image is based
+# on the last one, so all runtime libraries are present there too
+# ---------------------------------------------------------------------------------------------------------------------
+
+FROM base AS dosbox-x-deps
 ARG DEBIAN_FRONTEND=noninteractive
-ARG USERNAME=vscode
 
-# common
 RUN apt-get update \
-    && apt install --no-install-recommends -y \
-        pulseaudio
-RUN usermod -aG audio,video,pulse ${USERNAME}
-RUN mkdir -p /run/user/1000 && chown -R ${USERNAME} /run/user/1000
-RUN mkdir -p /home/${USERNAME}/.config/pulse/ \
-    && echo "default-server=unix:/tmp/pulseaudio.socket" > /home/${USERNAME}/.config/pulse/client.conf
-RUN chown -R ${USERNAME} /home/${USERNAME}
-RUN mkdir -p /usr/share/pulse && chown -R ${USERNAME} /usr/share/pulse
-COPY files/pulse/default.pa /etc/pulse/default.pa
-COPY files/pulse/daemon.conf /etc/pulse/daemon.conf
-
-# dosbox
-RUN apt-get install --no-install-recommends -y \
-    dosbox=${DOSBOX_VER}+b1
-
-# dosbox-x
-RUN apt-get install --no-install-recommends -y \
+    && apt-get install --no-install-recommends -y \
         automake \
         build-essential \
         ca-certificates \
@@ -35,22 +33,8 @@ RUN apt-get install --no-install-recommends -y \
         libncurses-dev nasm libsdl-net1.2-dev libsdl2-net-dev libpcap-dev libslirp-dev fluidsynth libfluidsynth-dev \
         libavformat-dev libavcodec-dev libavcodec-extra libswscale-dev libfreetype-dev libxkbfile-dev libxrandr-dev
 
-WORKDIR /tmp
-
-RUN git clone --depth 1 --single-branch --branch dosbox-x-v${DOSBOX_X_VER} https://github.com/joncampbell123/dosbox-x.git
-
-RUN cd ./dosbox-x \
-    && ./build-sdl2 \
-    && make install
-
-# wine
-
-ARG BUILD_DIR=/tmp/build
-ARG PACKAGES_DIR=/tmp/packages
-ARG SRC_DIR=/tmp/src
-
-ARG NUM_BUILD_WORKERS=8
-ARG WINE_VER=11.0
+FROM dosbox-x-deps AS wine-deps
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -63,18 +47,7 @@ RUN apt-get update \
         gettext \
         git
 
-WORKDIR ${SRC_DIR}
-
-RUN git clone --depth 1 --single-branch --branch wine-${WINE_VER} https://github.com/wine-mirror/wine.git
-# honor drive type reported by mounts manager (configured through the wincfg)
-# otherwise GetDriveTypeW() returns DRIVE_REMOTE for NFS mounted directories while we want them as DRIVE_CDROM
-# also adds support for custom CD-ROM labels (also defined through the winecfg)
-COPY files/patches/*.patch .
-RUN patch ./wine/dlls/kernelbase/volume.c kernelbase-volume.c.patch
-RUN patch ./wine/dlls/kernel32/volume.c kernel32-volume.c.patch
-RUN patch ./wine/programs/winecfg/driveui.c winecfg-driveui.c.patch
-
-# install wine64 deps
+# wine64 deps
 RUN apt-get install -y --no-install-recommends \
     libasound2-dev \
     libfontconfig-dev \
@@ -97,16 +70,7 @@ RUN apt-get install -y --no-install-recommends \
     libxrender-dev \
     libxxf86vm-dev
 
-# build wine64
-WORKDIR ${BUILD_DIR}/wine64
-
-RUN ${SRC_DIR}/wine/configure \
-        --prefix=${PACKAGES_DIR}/wine64 \
-        --enable-win64 \
-    && make -j${NUM_BUILD_WORKERS} \
-    && make install
-
-# install wine32 deps
+# wine32 deps
 RUN dpkg --add-architecture i386 \
     && apt-get update
 RUN apt-get install -y --no-install-recommends \
@@ -131,72 +95,8 @@ RUN apt-get install -y --no-install-recommends \
     libxrender-dev:i386 \
     libxxf86vm-dev:i386
 
-# build wine32-tools
-WORKDIR ${BUILD_DIR}/wine32-tools
-
-RUN ${SRC_DIR}/wine/configure \
-        --prefix=${PACKAGES_DIR}/wine32-tools \
-    && make -j${NUM_BUILD_WORKERS} \
-    && make install
-
-# build wine32
-WORKDIR ${BUILD_DIR}/wine32
-
-RUN ${SRC_DIR}/wine/configure \
-        --prefix=${PACKAGES_DIR}/wine32 \
-        --with-wine64=${BUILD_DIR}/wine64 \
-        --with-wine-tools=${BUILD_DIR}/wine32-tools \
-    && make -j${NUM_BUILD_WORKERS} \
-    && make install
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        fluidsynth \
-        gnupg2 \
-        wget
-
-# styrlitz requires avi player (gstreamer1.0-plugins-good:i386) with intel indeo codec (gstreamer1.0-libav:i386)
-RUN dpkg --add-architecture i386 \
-    && mkdir -pm755 /etc/apt/keyrings \
-    && wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
-    && wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/${DEBIAN_VER}/winehq-${DEBIAN_VER}.sources \
-    && apt-get update \
-    && apt-get install --install-recommends -y \
-        gstreamer1.0-plugins-good:i386 \
-        gstreamer1.0-libav:i386 \
-        wine-stable \
-        winehq-stable \
-    && rm -rf /var/lib/apt/lists/*
-
-# install wine32 (should go first) and wine64
-RUN rm -rf /opt/wine-stable && mkdir /opt/wine-stable
-RUN cp -r ${PACKAGES_DIR}/wine32/* /opt/wine-stable
-RUN cp -r ${PACKAGES_DIR}/wine64/* /opt/wine-stable
-
-RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
-    && chmod +x winetricks \
-    && mv winetricks /usr/bin
-
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        7zip \
-        gettext \
-        innoextract \
-        iputils-ping \
-        unshield \
-        uuid-runtime
-
-# scummvm utils
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        bchunk \
-        flac
-
-# qemu (patched): Ctrl+F4 cycling through multiple -cdrom / -cdrom-swap images (GTK and SDL displays)
-# libguestfs depends on the Debian qemu-system-x86 package (/usr/bin/qemu-system-x86_64), so the patched qemu
-# goes into /usr/local (precedes /usr/bin in PATH) to not be overwritten by apt
-ARG QEMU_VER=11.1.3
+FROM wine-deps AS qemu-deps
+ARG DEBIAN_FRONTEND=noninteractive
 
 # deps: https://www.qemu.org/docs/master/devel/build-environment.html
 RUN apt-get update \
@@ -217,13 +117,84 @@ RUN apt-get update \
         libsdl2-dev \
         zlib1g-dev
 
+# ---------------------------------------------------------------------------------------------------------------------
+# runner builds (independent of each other)
+# ---------------------------------------------------------------------------------------------------------------------
+
+# dosbox-x (installed into /out/usr)
+FROM dosbox-x-deps AS dosbox-x
+ARG DOSBOX_X_VER
+
+WORKDIR /tmp
+
+RUN git clone --depth 1 --single-branch --branch dosbox-x-v${DOSBOX_X_VER} https://github.com/joncampbell123/dosbox-x.git
+
+RUN cd ./dosbox-x \
+    && ./build-sdl2 --disable-debug \
+    && make install DESTDIR=/out
+
+# wine (installed into /tmp/packages/wine32 and /tmp/packages/wine64)
+FROM wine-deps AS wine
+ARG WINE_VER
+ARG BUILD_DIR=/tmp/build
+ARG PACKAGES_DIR=/tmp/packages
+ARG SRC_DIR=/tmp/src
+
 WORKDIR ${SRC_DIR}
+
+RUN git clone --depth 1 --single-branch --branch wine-${WINE_VER} https://github.com/wine-mirror/wine.git
+# honor drive type reported by mounts manager (configured through the wincfg)
+# otherwise GetDriveTypeW() returns DRIVE_REMOTE for NFS mounted directories while we want them as DRIVE_CDROM
+# also adds support for custom CD-ROM labels (also defined through the winecfg)
+COPY files/patches/kernelbase-volume.c.patch files/patches/kernel32-volume.c.patch files/patches/winecfg-driveui.c.patch ./
+RUN patch ./wine/dlls/kernelbase/volume.c kernelbase-volume.c.patch
+RUN patch ./wine/dlls/kernel32/volume.c kernel32-volume.c.patch
+RUN patch ./wine/programs/winecfg/driveui.c winecfg-driveui.c.patch
+
+ARG NUM_BUILD_WORKERS
+
+# build wine64
+WORKDIR ${BUILD_DIR}/wine64
+
+RUN ${SRC_DIR}/wine/configure \
+        --prefix=${PACKAGES_DIR}/wine64 \
+        --enable-win64 \
+    && make -j${NUM_BUILD_WORKERS} \
+    && make install
+
+# build wine32-tools
+WORKDIR ${BUILD_DIR}/wine32-tools
+
+RUN ${SRC_DIR}/wine/configure \
+        --prefix=${PACKAGES_DIR}/wine32-tools \
+    && make -j${NUM_BUILD_WORKERS} \
+    && make install
+
+# build wine32
+WORKDIR ${BUILD_DIR}/wine32
+
+RUN ${SRC_DIR}/wine/configure \
+        --prefix=${PACKAGES_DIR}/wine32 \
+        --with-wine64=${BUILD_DIR}/wine64 \
+        --with-wine-tools=${BUILD_DIR}/wine32-tools \
+    && make -j${NUM_BUILD_WORKERS} \
+    && make install
+
+# qemu (patched): Ctrl+F4 cycling through multiple -cdrom / -cdrom-swap images (GTK and SDL displays)
+# libguestfs depends on the Debian qemu-system-x86 package (/usr/bin/qemu-system-x86_64), so the patched qemu
+# goes into /usr/local (precedes /usr/bin in PATH) to not be overwritten by apt; installed into /out/usr/local
+FROM qemu-deps AS qemu
+ARG QEMU_VER
+
+WORKDIR /tmp/src
 
 RUN git clone --depth 1 --single-branch --branch v${QEMU_VER} https://gitlab.com/qemu-project/qemu.git
 
 COPY files/patches/cdrom-swap.patch .
 RUN cd ./qemu \
     && git apply --verbose ../cdrom-swap.patch
+
+ARG NUM_BUILD_WORKERS
 
 # minimal x86_64 system emulator (KVM + TCG fallback) with SDL/GTK (OpenGL) displays, PulseAudio and qemu-img
 RUN cd ./qemu \
@@ -243,7 +214,72 @@ RUN cd ./qemu \
         --enable-tcg \
         --enable-tools \
     && make -j${NUM_BUILD_WORKERS} \
-    && make install
+    && make install DESTDIR=/out
+
+# ---------------------------------------------------------------------------------------------------------------------
+# final image
+# ---------------------------------------------------------------------------------------------------------------------
+
+FROM qemu-deps
+ARG DEBIAN_VER
+ARG DEBIAN_FRONTEND=noninteractive
+ARG USERNAME=vscode
+
+# common
+RUN apt-get update \
+    && apt install --no-install-recommends -y \
+        pulseaudio
+RUN usermod -aG audio,video,pulse ${USERNAME}
+RUN mkdir -p /run/user/1000 && chown -R ${USERNAME} /run/user/1000
+RUN mkdir -p /home/${USERNAME}/.config/pulse/ \
+    && echo "default-server=unix:/tmp/pulseaudio.socket" > /home/${USERNAME}/.config/pulse/client.conf
+RUN chown -R ${USERNAME} /home/${USERNAME}
+RUN mkdir -p /usr/share/pulse && chown -R ${USERNAME} /usr/share/pulse
+COPY files/pulse/default.pa /etc/pulse/default.pa
+COPY files/pulse/daemon.conf /etc/pulse/daemon.conf
+
+# wine
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        fluidsynth \
+        gnupg2 \
+        wget
+
+# styrlitz requires avi player (gstreamer1.0-plugins-good:i386) with intel indeo codec (gstreamer1.0-libav:i386)
+RUN dpkg --add-architecture i386 \
+    && mkdir -pm755 /etc/apt/keyrings \
+    && wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
+    && wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/${DEBIAN_VER}/winehq-${DEBIAN_VER}.sources \
+    && apt-get update \
+    && apt-get install --install-recommends -y \
+        gstreamer1.0-plugins-good:i386 \
+        gstreamer1.0-libav:i386 \
+        wine-stable \
+        winehq-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# winehq-stable only provides dependencies, its files are replaced by our patched build (see COPY --from=wine below)
+RUN rm -rf /opt/wine-stable && mkdir /opt/wine-stable
+
+RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
+    && chmod +x winetricks \
+    && mv winetricks /usr/bin
+
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        7zip \
+        gettext \
+        innoextract \
+        iputils-ping \
+        unshield \
+        uuid-runtime
+
+# scummvm utils
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        bchunk \
+        flac
 
 # qemu 11 (unlike 10.0) forces SDL to use EGL instead of GLX on X11 (for dma-buf), which renders vertical stripes and a
 # squeezed image with "-display sdl,gl=on" on a 16-bit X server (e.g. COLOR_BITS=16). Env var overrides that hint.
@@ -269,3 +305,21 @@ RUN sed -i '/^Components:/ s/$/ contrib non-free/' /etc/apt/sources.list.d/debia
     && apt-get update \
     && apt-get install --no-install-recommends -y \
         unrar
+
+# runners: kept at the very end so a version bump only re-runs these cheap layers here
+
+# dosbox
+ARG DOSBOX_VER
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        dosbox=${DOSBOX_VER}+b1
+
+# install wine32 (should go first) and wine64
+COPY --from=wine /tmp/packages/wine32/ /opt/wine-stable/
+COPY --from=wine /tmp/packages/wine64/ /opt/wine-stable/
+
+COPY --from=qemu /out/ /
+
+COPY --from=dosbox-x /out/ /
+# dosbox-x's "make install" grants raw network access (pcap) via file capabilities, which may not survive COPY
+RUN if command -v setcap >/dev/null; then setcap cap_net_raw=ep /usr/bin/dosbox-x; fi
