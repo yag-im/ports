@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - Sabrina Magical Adventure.iso
+    format: 1CD
+    url: https://archive.org/download/sabrinamagicaladventure/Sabrina%20Magical%20Adventure.iso
+  igdb_slug: sabrina-the-animated-series-magical-adventure
+  lang: en
+  media_assets:
+  name: 'Sabrina the Animated Series: Magical Adventure'
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: sabrina-the-animated-series-magical-adventure
+    mg_id: 151306
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.txt
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: '11.1.3'
+  uuid: 01a1a9ce-f948-7575-9fd4-8730f80c8b1c
+  year_released: 2000
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: explorer
+              # path: '{FIRST_CD_DRIVE}\install.exe' # QT 4.1 # fails to run without explorer
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\SabrinaAnimated\MagicalAdventure.exe'
+# TODO: sound distortion in WIN98SE in intro (can be fixed by disabling hardware acceleration? See FAQ)
