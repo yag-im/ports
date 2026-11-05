@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - Myulk - Kampen om det oepnna landskapet (Sweden).bin
+    format: 1CD
+    url: Myulk - Kampen om det oepnna landskapet (Sweden).zip # redump
+  igdb_slug: myulk
+  lang: en
+  media_assets:
+  name: Myulk
+  platform: win
+  publisher: Arla
+  refs:
+    ag_id:
+    lutris_id: myulk
+    mg_id: 107252
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1a9e8-6f85-7976-b8ca-c1eb380d94a7
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          # installer just silently creates a shortcut (but looks like as it doesn't work at all)
+          # - run:
+              # path: '{FIRST_CD_DRIVE}\Install.exe'
+              # exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Myulk\myulk.exe'
