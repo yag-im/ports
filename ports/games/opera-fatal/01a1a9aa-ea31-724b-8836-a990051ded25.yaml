@@ -1,0 +1,42 @@
+descr:
+  distro:
+    files:
+      - Opera Fatal (Germany) (Rerelease).bin
+    format: 1CD
+    url: Opera Fatal (Germany) (Rerelease).zip # redump
+  igdb_slug: opera-fatal
+  lang: de
+  media_assets:
+    cover:
+      image_id: 01a1a9aa-ea31-724b-8836-a990051ded25
+    screenshots: []
+  name: Opera Fatal
+  platform: win
+  publisher: HEUREKA-Klett-Softwareverlag GmbH
+  refs:
+    ag_id: opera-fatal
+    lutris_id: opera-fatal
+    mg_id: 15949
+    pcgw_id: Opera_Fatal
+    qz_id: 4101
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1a9aa-ea31-724b-8836-a990051ded25
+  year_released: 2003
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\OPERA.EXE'
