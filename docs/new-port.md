@@ -204,3 +204,6 @@ Manual way of doing the same:
 
 where `d117352e-b8b6-40bc-853f-25dd8f62c472` is a UUID of updated port. Be careful and remove only broken clones.
 Otherwise (in case it's just e.g. a more performant runner update) better leave cloned versions as is as they may contain users' saves.
+
+Q: How to fix distorted sound in QEMU?
+A: Disable hardware sound acceleration under Volume → Advanced Properties.

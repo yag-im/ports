@@ -1,9 +1,9 @@
 descr:
   distro:
     files:
-      - rutochknut.iso
+      - Kalas med Rut & Knut (Sweden).bin
     format: 1CD
-    url: https://archive.org/download/kalasmedrutochknut/rutochknut.iso
+    url: https://archive.org/details/kalas-med-rut-knut-sweden # redump?
   igdb_slug: kalas-med-rut-och-knut
   lang: sv
   media_assets:
@@ -23,10 +23,9 @@ descr:
     color_bits: 16
     screen_height: 600
     screen_width: 800
-    loading_duration: 20
   runner:
     name: qemu
-    ver: latest
+    ver: 11.1.3
   uuid: 019e2e68-7b15-70fa-b6d5-87437815267c
   year_released: 2003
   tags:
@@ -37,8 +36,8 @@ installer:
     - copy_src_cd_images:
     - qemu:
         flavor: WINXPSP3
-        conf:
-          safe_disc: '2.90'
+        #conf:
+        #  safe_disc: '2.90' # redump version is DRM free
         tasks:
           - mount:
               src: '{DEST_DIR}'
