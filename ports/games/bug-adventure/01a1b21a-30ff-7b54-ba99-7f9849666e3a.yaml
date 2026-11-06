@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Äventyr Bland Småkryp.iso
+    format: 1CD
+    url: https://archive.org/download/aventyr-bland-smakryp-msdos/%C3%84ventyr%20Bland%20Sm%C3%A5kryp.iso
+  igdb_slug: bug-adventure
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a1b21a-30ff-7b54-ba99-7f9849666e3a
+    screenshots: []
+  name: Äventyr Bland Småkryp
+  platform: dos
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: bug-adventure
+    mg_id: 98901
+    pcgw_id: Bug_Adventure
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a1b21a-30ff-7b54-ba99-7f9849666e3a
+  year_released: 1995
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\KRYP.BAT'
