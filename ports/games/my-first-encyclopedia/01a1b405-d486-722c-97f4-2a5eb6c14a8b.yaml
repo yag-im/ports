@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - KUNSKAP.bin
+    format: 1CD
+    url: https://archive.org/details/mitt-forsta-kunskaps-aventyr # redump
+  igdb_slug: my-first-encyclopedia
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a1b405-d486-722c-97f4-2a5eb6c14a8b
+    screenshots: []
+  name: Mitt första kunskaps äventyr
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: my-first-encyclopedia
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1b405-d486-722c-97f4-2a5eb6c14a8b
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\TREE.EXE'
