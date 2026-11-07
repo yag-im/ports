@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - Elroy får insektsfnatt.iso
+    format: 1CD
+    url: https://archive.org/download/elroy-far-insektsfnatt/Elroy%20fa%CC%8Ar%20insektsfnatt.iso
+    # TODO: tampered data on iso (all files dated 2025) - invisible exe files in WIN311
+  igdb_slug: elroy-goes-bugzerk
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a1b729-1b94-7949-95a4-dcba03d3fc84
+    screenshots: []
+  name: Elroy Får Insektsfnatt
+  platform: win
+  publisher: Headbone Interactive
+  refs:
+    ag_id:
+    lutris_id: elroy-goes-bugzerk
+    mg_id: 49859
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1b729-1b94-7949-95a4-dcba03d3fc84
+  year_released: 1997
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\AHEAD\ELROY1\ELROY1.EXE'
