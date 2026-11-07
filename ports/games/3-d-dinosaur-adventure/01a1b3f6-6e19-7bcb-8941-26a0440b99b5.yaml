@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - DINOSAURIER.bin
+    format: 1CD
+    url: https://archive.org/details/aventyr-bland-dinosaurier_202501 # redump
+  igdb_slug: 3-d-dinosaur-adventure
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a1b3f6-6e19-7bcb-8941-26a0440b99b5
+    screenshots: []
+  name: Äventyr Bland Dinosaurier
+  platform: win
+  publisher: Knowledge Adventure
+  refs:
+    ag_id:
+    lutris_id: 3-d-dinosaur-adventure
+    mg_id: 44857
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1b3f6-6e19-7bcb-8941-26a0440b99b5
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\DINO3D.EXE'
