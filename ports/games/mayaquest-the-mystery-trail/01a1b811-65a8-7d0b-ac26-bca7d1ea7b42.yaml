@@ -1,0 +1,43 @@
+descr:
+  distro:
+    files:
+      - MayaQuest - The Mystery Trail (USA) (Rerelease) (1998-09-22).bin
+    format: 1CD
+    url: MayaQuest - The Mystery Trail (USA) (Rerelease) (1998-09-22).zip # redump
+  igdb_slug: mayaquest-the-mystery-trail
+  lang: multi # en, es
+  media_assets:
+  name: 'MayaQuest: The Mystery Trail'
+  platform: win
+  publisher: MECC
+  refs:
+    ag_id:
+    lutris_id: mayaquest-the-mystery-trail
+    mg_id: 6496
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1b811-65a8-7d0b-ac26-bca7d1ea7b42
+  year_released: 1998
+  tags:
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\MQUEST16.EXE'
