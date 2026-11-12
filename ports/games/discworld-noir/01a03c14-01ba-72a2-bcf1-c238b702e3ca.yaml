@@ -1,13 +1,14 @@
 descr:
   distro:
     files:
-      - Discworld Noir (Europe) (En,Es,It) (Disc 1).bin
-      - Discworld Noir (Europe) (En,Es,It) (Disc 2).bin
-      - Discworld Noir (Europe) (En,Es,It) (Disc 3).bin
+      - Discworld Noir (Europe) (En,Es,It) (Disc 1) (Rerelease) (2003-02-03).bin
+      - Discworld Noir (Europe) (En,Es,It) (Disc 2).bin # redumps' CD serial corresponds to (Rerelease) (2003-02-03)
+      - Discworld Noir (Europe) (En,Es,It) (Disc 3) (Rerelease) (2003-02-03).bin
     format: 3CD
-    url: Discworld Noir (Europe) (En,Es,It) (Disc 1).zip # redump
+    url: Discworld Noir (Europe) (En,Es,It) (Disc 1) (Rerelease) (2003-02-03).zip # redump
     # Discworld Noir (Europe) (En,Es,It) (Disc 2).zip
-    # Discworld Noir (Europe) (En,Es,It) (Disc 3).zip
+    # Discworld Noir (Europe) (En,Es,It) (Disc 3) (Rerelease) (2003-02-03).zip
+    # no SafeDisc in rerelease
   igdb_slug: discworld-noir
   lang: multi # En, Es, It
   media_assets:
@@ -25,37 +26,31 @@ descr:
     screen_height: 480
     screen_width: 640
   runner:
-    name: wine
-    ver: '11.0'
+    name: qemu
+    ver: '11.1.3'
   uuid: 01a03c14-01ba-72a2-bcf1-c238b702e3ca
-  year_released: 1999
+  year_released: 2003
   tags:
 installer:
   tasks:
-    - extract:
-        src: '{SRC_DIR}/{descr[distro][files][0]}'
-        dest: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
-    - extract:
-        src: '{SRC_DIR}/{descr[distro][files][1]}'
-        dest: '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
-    - extract:
-        src: '{SRC_DIR}/{descr[distro][files][2]}'
-        dest: '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
-    - wine:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
         tasks:
           - mount:
               letter: '{FIRST_CD_DRIVE_LETTER}'
-              src: '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+              src:
+                - '{DEST_DIR}/{FIRST_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{SECOND_CD_DRIVE_LETTER}'
+                - '{DEST_DIR}/{THIRD_CD_DRIVE_LETTER}'
           - run:
-              #path: '{FIRST_CD_DRIVE}\SETUP.EXE'
-              path: 'explorer'
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\TIN3_DXD.EXE'
-    - copy:
-        # NoCD patch (original exe just crashes)
-        # "Discworld Noir v1.0 [ALL] Fixed EXE" from https://gamecopyworld.com/games/pc_discworld_noir.shtml
-        src: '{SRC_DIR}/patch/tin3_dxd.exe'
-        dest: '{DEST_APP_DIR}'
+
+# FYI: for the original (no re-release) redump version (1999):
+# NoCD patch (original exe just crashes)
+# "Discworld Noir v1.0 [ALL] Fixed EXE" from https://gamecopyworld.com/games/pc_discworld_noir.shtml
 # TODO: have to manually rename CD folder (E) for CD2 and CD3 and then back to CD1 during install (CD2 and CD3 can be deleted afterward)
-# Check: re-release (2003) available by redump came with no SafeDisk protection
+# UPD: But then it still asks for CD #2 at some point: https://discord.com/channels/1251206620822638684/1251209459271860277/1569990252385533993
