@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - MOAKBYKOZEL.iso
+    format: 1CD
+    url: https://archive.org/download/MOAKBYKOZEL/MOAKBYKOZEL.iso
+  igdb_slug: mind-of-a-killer
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a1d2f9-0d35-7f46-9932-6a62abd838e2
+    screenshots: []
+  name: Mind of a Killer
+  platform: win
+  publisher: Cambrix Publishing
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1d2f9-0d35-7f46-9932-6a62abd838e2
+  year_released: 1995
+  tags:
+    - mature
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DRIVE}\KOZEL\MINDKILL\MINDKILL.EXE'
+              exit: false # otherwise exists on every menu item
