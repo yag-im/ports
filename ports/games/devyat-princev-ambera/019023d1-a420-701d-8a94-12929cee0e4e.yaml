@@ -22,16 +22,20 @@ descr:
   runner:
     name: dosbox
     ver: 0.74-3
-  ts_added: 2024-06-17 01:31:00 America/Los_Angeles
-  uuid: 7e54e2fb-052d-401d-8a94-12929cee0e4e
+  uuid: 019023d1-a420-701d-8a94-12929cee0e4e
   year_released: 1998
 installer:
   tasks:
     - copy_src_cd_images:
     - dosbox:
+        conf:
+          sensitivity: 200
+          # fixes right/down mouse movements stuck issue
+          # The game adds INT 33h/0Bh mouse deltas to its own cursor and then forces the cursor to an even coordinate, so with fast polling a slow single +1 step (right/down) is rounded back while -1 (left/up) moves by 2.
+          # sensitivity=200 makes DOSBox report every host pixel as a delta of 2, which the even-rounding never loses, so all four directions move the same.
         tasks:
           - mount:
-              src: "{DEST_DIR}"
+              src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
               path: '{FIRST_CD_DRIVE}\INSTALL.EXE'
