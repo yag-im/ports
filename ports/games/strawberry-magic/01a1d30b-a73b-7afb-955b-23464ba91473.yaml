@@ -42,3 +42,5 @@ installer:
               exit: false
           - gen_run_script:
               path: '{APP_DIR}\STR.BAT'
+# NOTE:
+# jukebox/runners/dosbox/patches/mouse.cpp.patch is required to fix a "sticky mouse cursor when moving down" issue in this and many other vanilla dosbox games

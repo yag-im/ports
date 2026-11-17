@@ -1,0 +1,44 @@
+descr:
+  distro:
+    files:
+      - Little People Farm (1992).zip
+    format: 1FD
+    url: Little People Farm (1992).zip # exodos
+  igdb_slug: little-people-farm
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a1e766-89d9-7e8b-a7e5-36dc7d4c9dd9
+    screenshots: []
+  name: Little People Farm
+  platform: dos
+  publisher: GameTek, Inc.
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox
+    ver: 0.74-3
+  uuid: 01a1e766-89d9-7e8b-a7e5-36dc7d4c9dd9
+  year_released: 1992
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - extract:
+        src: '{SRC_DIR}/{descr[distro][files][0]}'
+        dest: '{DEST_APP_DIR}'
+        files:
+          - 'LPFarm/*'
+    - dosbox:
+        tasks:
+          - gen_run_script:
+              path: '{APP_DIR}/FARM.EXE'
