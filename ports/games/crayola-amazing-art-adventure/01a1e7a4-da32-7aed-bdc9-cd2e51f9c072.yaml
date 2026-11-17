@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - CRAYOLA.bin
+    format: 1CD
+    url: https://archive.org/details/CrayolaAmazingArtAdventure
+  igdb_slug: crayola-amazing-art-adventure
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a1e7a4-da32-7aed-bdc9-cd2e51f9c072
+    screenshots: []
+  name: Crayola Amazing Art Adventure
+  platform: win
+  publisher: IBM
+  refs:
+    ag_id:
+    lutris_id: crayola-amazing-art-adventure
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1e7a4-da32-7aed-bdc9-cd2e51f9c072
+  year_released: 1994
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\START.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{SYSTEM_DRIVE}\WINDOWS\CRAYOLA\LAUNCH.EXE'
+              args:
+                - '{FIRST_CD_DRIVE}\PROGRAM\ADVENTUR.EXE'
