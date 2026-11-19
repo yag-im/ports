@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - MEGAMB.iso
+    format: 1CD
+    url: https://archive.org/download/mega_math_blaster_swe/MEGAMB.iso
+  igdb_slug: mega-math-blaster
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a1f195-b1e0-7558-bc25-e79fd79cab98
+    screenshots: []
+  name: Matteraketen 8-12 år
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: mega-math-blaster
+    mg_id: 217961
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1f195-b1e0-7558-bc25-e79fd79cab98
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN95OSR25
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{FIRST_CD_DRIVE}\Megamb\megamb.exe'
+              args:
+                - megamb.bap
