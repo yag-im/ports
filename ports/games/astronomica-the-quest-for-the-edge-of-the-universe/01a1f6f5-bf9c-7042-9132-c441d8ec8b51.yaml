@@ -1,0 +1,46 @@
+descr:
+  distro:
+    files:
+      - HyperQuest-AstronomicaTheQuestForTheEdgeOfTheUniverse-Win31-Eng.iso
+    format: 1CD
+    url: https://archive.org/download/HyperQuest_Astronomica_The_Quest_For_The_Edge_of_the_Universe_Win31_1995_Eng/HyperQuest-AstronomicaTheQuestForTheEdgeOfTheUniverse-Win31-Eng.iso
+    # url: Astronomica (USA).zip # redump
+  igdb_slug: astronomica-the-quest-for-the-edge-of-the-universe
+  lang: en
+  media_assets:
+  name: 'Astronomica: The Quest for the Edge of the Universe'
+  platform: win
+  publisher: Hyper-Quest, Inc.
+  refs:
+    ag_id: astronomica-the-quest-for-the-edge-of-the-universe
+    lutris_id: astronomica-the-quest-for-the-edge-of-the-universe
+    mg_id: 3124
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1f6f5-bf9c-7042-9132-c441d8ec8b51
+  year_released: 1994
+  tags:
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\ASTRO.EXE'
+# TODO: setup overwrites QT2 with QT1 and fails to play any movie.
+# After installation completes, open QT group, click "Reinstall QT", then click Start->Delete->Delete->Install
+# This will reinstall QT2 from scratch
