@@ -1,11 +1,11 @@
 descr:
   distro:
     files:
-      - Great Green Mouse Disaster, The (1996)(Ahead Multimedia)[M5][PC-Mac].iso
+      - Great Green Mouse Disaster, The (Sweden) (En,Sv,No,Da,Fi).bin
     format: 1CD
-    url: https://archive.org/download/great-green-mouse-disaster-cdrom/Great%20Green%20Mouse%20Disaster%2C%20The%20%281996%29%28Ahead%20Multimedia%29%5BM5%5D%5BPC-Mac%5D.iso
+    url: Great Green Mouse Disaster, The (Sweden) (En,Sv,No,Da,Fi).zip # redump
   igdb_slug: the-great-green-mouse-disaster
-  lang: en
+  lang: multi # En,Sv,No,Da,Fi
   media_assets:
   name: The Great Green Mouse Disaster
   platform: win
@@ -22,7 +22,7 @@ descr:
     screen_width: 640
   runner:
     name: dosbox-x
-    ver: 2025.12.01
+    ver: 2026.10.01
   uuid: 019ccfa3-5dde-7575-ad9c-05e3be158193
   year_released: 1996
   tags:
@@ -33,10 +33,11 @@ installer:
         flavor: WIN311
         tasks:
           - mount:
-              src: "{DEST_DIR}"
+              src: '{DEST_DIR}'
               cd_images_as_letters: true
           - run:
-              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # QT 2.1.2
+              path: '{FIRST_CD_DRIVE}\INSTALL.EXE' # skip QT 2.1.2 in WIN311
               exit: false
           - gen_run_script:
               path: '{APP_DRIVE}\AHEAD\KMDGM\KMDGM.EXE'
+# game works slow (in a room selection window and on every room load, but looks like it's by design?)

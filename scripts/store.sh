@@ -23,10 +23,16 @@ LOCAL_APPS_SRC_DIR="$DATA_DIR/apps_src"
 LOCAL_APPS_TMP_DIR="$DATA_DIR/tmp"
 
 # --- Connection Config ---
-BASTION_KEY_PATH=/workspaces/ports/.devcontainer/secrets/id_ed25519
+BASTION_KEY_PATH=$HOME/.ssh/id_ed25519
 BASTION_HOST=bastion.yag.im
 BASTION_PORT=2207
 BASTION_USER=infra
+APPSTOR_KEY_PATH=/workspaces/ports/.devcontainer/secrets/id_ed25519
+SSH_KEEPALIVE_OPTS="-o ServerAliveInterval=10 -o ServerAliveCountMax=3"
+# ProxyCommand (instead of -J) so the bastion hop gets its own key and keepalive options
+SSH_PROXY_CMD="ssh -i $BASTION_KEY_PATH $SSH_KEEPALIVE_OPTS -p $BASTION_PORT -W %h:%p $BASTION_USER@$BASTION_HOST"
+RSYNC_SSH_CMD="ssh -i $APPSTOR_KEY_PATH $SSH_KEEPALIVE_OPTS -o 'ProxyCommand=$SSH_PROXY_CMD'"
+SSH_RETRY_ATTEMPTS=5
 
 # --- AWS Config ---
 AWS_PROFILE=yag-prod
@@ -119,6 +125,26 @@ set -euo pipefail
 # MAIN SCRIPT LOGIC
 # ==============================================================================
 
+remote_ssh() {
+    ssh -i "$APPSTOR_KEY_PATH" $SSH_KEEPALIVE_OPTS -o "ProxyCommand=$SSH_PROXY_CMD" "$@"
+}
+
+# Usage: retry <attempts> <command...>
+retry() {
+    local attempts=$1
+    shift
+    local n=1
+    until "$@"; do
+        if (( n >= attempts )); then
+            echo "Command failed after $n attempts: $*" >&2
+            return 1
+        fi
+        echo "Attempt $n/$attempts failed, retrying in $((n * 5))s..." >&2
+        sleep $((n * 5))
+        n=$((n + 1))
+    done
+}
+
 # --- Host Array Setup ---
 IFS=',' read -r -a APPSTOR_HOSTS_ARRAY <<< "$APPSTOR_HOSTS"
 MASTER_APPSTOR_HOST="${APPSTOR_HOSTS_ARRAY[0]}"
@@ -134,16 +160,13 @@ tar -I "xz -9 -T 0 -v" -cvf "$LOCAL_APPS_TMP_DIR/$APP_ARCH_NAME" \
 # 2. Copy archived app to appstor
 echo "Copying archive to appstor host..."
 rsync -ahr --progress \
-    -e "ssh -i $BASTION_KEY_PATH -o ServerAliveInterval=10 -J $BASTION_USER@$BASTION_HOST:$BASTION_PORT" \
+    -e "$RSYNC_SSH_CMD" \
     "$LOCAL_APPS_TMP_DIR/$APP_ARCH_NAME" \
     "$APPSTOR_USER@$MASTER_APPSTOR_HOST:$APPSTOR_TMP_PATH"
 
 # 3. Unpack app in appstor
 echo "Unpacking app on appstor host..."
-ssh -i "$BASTION_KEY_PATH" \
-    -o ServerAliveInterval=10 \
-    -J "$BASTION_USER@$BASTION_HOST:$BASTION_PORT" \
-    "$APPSTOR_USER@$MASTER_APPSTOR_HOST" \
+remote_ssh "$APPSTOR_USER@$MASTER_APPSTOR_HOST" \
     "rm -rf \"$APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID\" && \
      mkdir -p \"$APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID\" && \
      tar -xvf \"$APPSTOR_TMP_PATH/$APP_ARCH_NAME\" -C \"$APPSTOR_APPS_PATH/$IGDB_SLUG/$RELEASE_ID\" && \
@@ -154,10 +177,7 @@ if $RM_CLONES; then
     echo "Clones removal enabled. Cleaning up clones on all hosts."
     for HOST in "${APPSTOR_HOSTS_ARRAY[@]}"; do
         echo "  - Removing clones for $IGDB_SLUG/$RELEASE_ID on host $HOST"
-        ssh -i "$BASTION_KEY_PATH" \
-            -o ServerAliveInterval=10 \
-            -J "$BASTION_USER@$BASTION_HOST:$BASTION_PORT" \
-            "$APPSTOR_USER@$HOST" \
+        retry "$SSH_RETRY_ATTEMPTS" remote_ssh "$APPSTOR_USER@$HOST" \
             "find \"$APPSTOR_CLONES_PATH\" -type d -name '$RELEASE_ID' -exec rm -rf {} +"
     done
 fi

@@ -1,0 +1,48 @@
+descr:
+  distro:
+    files:
+      - Jag kan stava (Sweden) (Rerelease).bin
+    format: 1CD
+    url: Jag kan stava (Sweden) (Rerelease).zip # redump
+  igdb_slug: jag-kan-stava
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a1fa9d-e93f-7112-82f7-dfda3e0c29b6
+    screenshots: []
+  name: Jag kan stava
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id: 229001
+    pcgw_id:
+    qz_id:
+  reqs:
+    # readme.wri
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: 11.1.3
+  uuid: 01a1fa9d-e93f-7112-82f7-dfda3e0c29b6
+  year_released: 1998
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WINXPSP3
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\setup.exe' # some suspicious XP update
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\IHSPELL.EXE'
