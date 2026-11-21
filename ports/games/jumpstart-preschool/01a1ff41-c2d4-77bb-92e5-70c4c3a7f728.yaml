@@ -1,0 +1,49 @@
+descr:
+  distro:
+    files:
+      - LEKIS.cue
+      # LEKIS.bin renamed to LEKIS.BIN manually to comply with cue record in linux
+    format: 1CD
+    url: https://archive.org/details/jumpstart-preschool-swe
+  igdb_slug: jumpstart-preschool
+  lang: sv
+  media_assets:
+    cover:
+      image_id: 01a1ff41-c2d4-77bb-92e5-70c4c3a7f728
+    screenshots: []
+  name: 'Lek & Lär: Lekis'
+  platform: win
+  publisher: Levande Böcker
+  refs:
+    ag_id:
+    lutris_id: jumpstart-preschool
+    mg_id: 207822
+    pcgw_id: JumpStart_Preschool
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1ff41-c2d4-77bb-92e5-70c4c3a7f728
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}/{descr[distro][files][0]}'
+              letter: '{FIRST_CD_DRIVE_LETTER}'
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\PRSCHOOL.EXE'
+              # exit: false # confirmed
