@@ -1,0 +1,47 @@
+descr:
+  distro:
+    files:
+      - Highlights Interactive.iso
+    format: 1CD
+    url: https://archive.org/download/HighlightsInteractive/Highlights%20Interactive.iso
+  igdb_slug: highlights-interactive-fun-with-a-purpose
+  lang: en
+  media_assets:
+    cover:
+      image_id: 01a1fbfc-d68d-714e-bf2e-e312cc7924a7
+    screenshots: []
+  name: 'Highlights Interactive: Fun with a Purpose'
+  platform: win
+  publisher: Creative Multimedia Corporation
+  refs:
+    ag_id:
+    lutris_id:
+    mg_id:
+    pcgw_id:
+    qz_id:
+  reqs:
+    color_bits: 8
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: dosbox-x
+    ver: 2026.10.01
+  uuid: 01a1fbfc-d68d-714e-bf2e-e312cc7924a7
+  year_released: 1996
+  tags:
+    - kids
+    - edutainment
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - dosbox:
+        flavor: WIN311
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\SETUP.EXE'
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\hilights.exe'
