@@ -1,0 +1,45 @@
+descr:
+  distro:
+    files:
+      - StarFlyers - Royal Jewel Rescue (USA).bin
+    format: 1CD
+    url: StarFlyers - Royal Jewel Rescue (USA).zip # redump
+  igdb_slug: starflyers-royal-jewel-rescue
+  lang: en
+  media_assets:
+  name: 'StarFlyers: Royal Jewel Rescue'
+  platform: win
+  publisher: The Learning Company
+  refs:
+    ag_id:
+    lutris_id: starflyers-royal-jewel-rescue
+    mg_id: 68936
+    pcgw_id: StarFlyers:_Royal_Jewel_Rescue
+    qz_id:
+  reqs:
+    # Users's Guide.pdf
+    color_bits: 16
+    screen_height: 480
+    screen_width: 640
+  runner:
+    name: qemu
+    ver: 11.1.3
+  uuid: 01980d22-1c20-78c8-b11a-64d0b4ed0189
+  year_released: 2002
+installer:
+  tasks:
+    - copy_src_cd_images:
+    - qemu:
+        flavor: WIN98SE
+        tasks:
+          - mount:
+              src: '{DEST_DIR}'
+              cd_images_as_letters: true
+          - run:
+              path: '{FIRST_CD_DRIVE}\INSTALL\_SETUP.exe' # restart once to update some files
+              exit: false
+          - gen_run_script:
+              path: '{APP_DIR}\StarFlyers Royal Jewel Rescue\Royal Jewel Rescue.exe'
+# qemu:WINXPSP3 - black screen on startup
+# dosbox-x:WIN98SE - game and sound glitches (https://github.com/yag-im/ports/issues/18)
+# TODO: sometime after restart all app files are gone
